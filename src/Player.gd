@@ -568,7 +568,7 @@ func _rotate_sprite_degrees(delta: float):
 	#region ball
 	$Icon/Ball.scale.y = 1.0
 	if speed_multiplier > 0.0:
-		var rotation_delta := delta * 0.6 * gravity_multiplier * (velocity.rotated(-gameplay_rotation).x / speed_multiplier)
+		var rotation_delta := delta * 0.45 * gravity_multiplier * (velocity.rotated(-gameplay_rotation).x / speed_multiplier)
 		if not dash_control:
 			rotation_delta *= gravity_flip
 		$Icon/Ball.rotation_degrees += rotation_delta
