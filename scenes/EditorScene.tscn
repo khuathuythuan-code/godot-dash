@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=218 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -181,6 +181,7 @@
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="147_1ad2k"]
 [ext_resource type="PackedScene" uid="uid://ctxjk60spq5il" path="res://scenes/components/level_components/triggers/MoveTrigger.tscn" id="153_gdkvu"]
+[ext_resource type="PackedScene" uid="uid://drepa3qdmjttb" path="res://scenes/components/level_components/triggers/TimewarpTrigger.tscn" id="154_nk067"]
 [ext_resource type="PackedScene" uid="uid://dbh4utdrx5n2c" path="res://scenes/components/level_components/triggers/RotateTrigger.tscn" id="156_vtwef"]
 [ext_resource type="PackedScene" uid="uid://dfybg5ac3hmh6" path="res://scenes/components/level_components/triggers/ToggleTrigger.tscn" id="167_7k2uw"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="179_0v0om"]
@@ -505,7 +506,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 4
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -2556,6 +2557,7 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -3521,7 +3523,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Triggers" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 metadata/_tab_name = ""
@@ -3942,8 +3943,8 @@ block_palette_button = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/Timewarp"]
 script = ExtResource("7_f0stj")
-type = 9
-object = ExtResource("7_ii36d")
+type = 8
+object = ExtResource("154_nk067")
 
 [node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/Timewarp"]
 layout_mode = 1
