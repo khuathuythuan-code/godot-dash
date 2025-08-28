@@ -554,7 +554,10 @@ func _rotate_sprite_degrees(delta: float):
 	$Icon/Jetpack.scale.x = dash_horizontal_direction
 	if not dash_control:
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
-			$Icon/UFO.rotation_degrees = lerpf($Icon/UFO.rotation_degrees, velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.2, ICON_LERP_FACTOR * delta * 60)
+			$Icon/UFO.rotation_degrees = lerpf(
+				$Icon/UFO.rotation_degrees,
+				velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5,
+				ICON_LERP_FACTOR * delta * 60)
 		else:
 			$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
 		$Icon/Jetpack.rotation = lerp_angle(
