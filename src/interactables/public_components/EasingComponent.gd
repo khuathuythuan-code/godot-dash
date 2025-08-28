@@ -28,11 +28,12 @@ func _physics_process(_delta: float) -> void:
 
 
 func start(player: Player) -> void:
-	tweens.set(player, create_tween())
+	tweens.set(player, get_tree().create_tween())
 	reset(player)
-	tweens[player].tween_property(self, ^"weights", 1.0, duration) \
+	var tween_weight := func(value: float): weights[player] = value
+	tweens[player].tween_method(tween_weight, 0.0, 1.0, duration) \
 		.set_trans(easing_transition) \
-		.set_ease(easing_type).from(0.0)
+		.set_ease(easing_type)
 	tweens[player].finished.connect(func(): finished.emit(player))
 
 
