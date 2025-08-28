@@ -131,6 +131,7 @@ var _dead: bool
 var _is_flying_gamemode: bool
 var _last_spider_trail: SpiderTrail
 var _last_spider_trail_height: float
+var _wave_rotation_degrees_goal: float
 var _deferred_velocity_redirect: bool
 var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
@@ -527,25 +528,13 @@ func _rotate_sprite_degrees(delta: float):
 	$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
 	$Icon/Wave.scale.y = 1.0
 	if get_direction() != 0 or _get_jump_state() != 0:
-		$Icon/Wave.set_meta("last_8_direction", Vector2(get_direction(), _get_jump_state()))
-	var wave_8_direction = $Icon/Wave.get_meta("last_8_direction", Vector2(0, -1))
+		_wave_rotation_degrees_goal = rad_to_deg(-pingpong(local_velocity.angle() - PI/2, PI) + PI/2)
 	$Icon/Wave.scale.x = dash_horizontal_direction
 	if not dash_control:
-		if not is_on_floor() and not is_on_ceiling():
-			if wave_8_direction == Vector2.UP or wave_8_direction == Vector2.DOWN:
-				$Icon/Wave/Icon.rotation_degrees = lerpf($Icon/Wave/Icon.rotation_degrees, 90.0 * -wave_8_direction.y * sign(gravity_flip), 0.25 * delta * 60)
-			elif wave_8_direction:
-				if player_scale == PlayerScale.NORMAL:
-					$Icon/Wave/Icon.rotation_degrees = lerpf($Icon/Wave/Icon.rotation_degrees, 45.0 * -wave_8_direction.y * sign(gravity_flip), 0.25 * delta * 60)
-				elif player_scale == PlayerScale.MINI:
-					$Icon/Wave/Icon.rotation_degrees = lerpf($Icon/Wave/Icon.rotation_degrees, 60.0 * -wave_8_direction.y * sign(gravity_flip), 0.25 * delta * 60)
-				elif player_scale == PlayerScale.BIG:
-					$Icon/Wave/Icon.rotation_degrees = lerpf($Icon/Wave/Icon.rotation_degrees, 30.0 * -wave_8_direction.y * sign(gravity_flip), 0.25 * delta * 60)
-		else:
-			$Icon/Wave/Icon.rotation = lerp_angle(
-					$Icon/Wave/Icon.rotation,
-					sprite_floor_angle * sign(gravity_flip) * $Icon/Wave.scale.x - gameplay_rotation,
-					ICON_LERP_FACTOR * delta * 60)
+		$Icon/Wave/Icon.rotation_degrees = lerpf(
+				$Icon/Wave/Icon.rotation_degrees,
+				_wave_rotation_degrees_goal,
+				0.25 * delta * 60)
 	#endregion
 	#region ufo
 	$Icon/UFO.scale.y = sign(gravity_flip)
@@ -602,7 +591,6 @@ func _rotate_sprite_degrees(delta: float):
 	if dash_control:
 		var dash_angle: float = dash_control.path.get_velocity(self).angle()
 		var dash_angle_one_sided: float = pingpong(dash_angle - PI/2, PI) - PI/2
-		# HACK: wave doesn't rotate correctly in reverse??
 		var dash_angle_one_sided_wave: float = pingpong(-dash_angle - PI/2, PI) - PI/2
 		$DashParticles.rotation = dash_angle
 		$DashParticles.process_material.angle_min = rad_to_deg(dash_angle)
