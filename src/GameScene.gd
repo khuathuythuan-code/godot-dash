@@ -6,7 +6,6 @@ var has_level_started: bool
 func _ready() -> void:
 	LevelManager.game_scene = self
 	Engine.time_scale = 1
-	LevelManager.active_camera_static = null
 	LevelManager.in_editor = get_parent() is EditorScene
 	LevelManager.background_sprites.clear()
 	LevelManager.background_sprites.append($BackgroundParallax/Background)

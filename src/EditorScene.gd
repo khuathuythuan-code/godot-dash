@@ -77,8 +77,7 @@ func _physics_process(_delta: float) -> void:
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
 		return false
-	if placed_objects_collider.get_overlapping_areas()[-1].get_parent() is Interactable \
-			or placed_objects_collider.get_overlapping_areas()[-1].get_parent() is TriggerBase:
+	if placed_objects_collider.get_overlapping_areas()[-1].get_parent() is Interactable:
 		return true
 	if placed_objects_collider.get_overlapping_areas()[-1].type == type:
 		return placed_objects_collider.get_overlapping_areas()[-1].id == id

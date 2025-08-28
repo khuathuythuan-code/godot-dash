@@ -211,10 +211,6 @@ static func is_interactable(object: Node2D) -> bool:
 	return object is Interactable
 
 
-static func is_trigger(object: Node2D) -> bool:
-	return object is TriggerBase
-
-
 static func same_script(object: Interactable, reference: Interactable) -> bool:
 	return object.get_script() == reference.get_script()
 

@@ -22,7 +22,6 @@ var platformer := false
 var editor_clipboard: Array[NodePath]
 var editor_backup := PackedScene.new()
 var editor_level_backup := PackedScene.new()
-var active_camera_static: CameraStaticTrigger
 var shortcut_blocker: Node
 
 func _ready() -> void:
