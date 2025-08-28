@@ -6,13 +6,14 @@ signal changed(gravity_multiplier: String)
 @export var gravity_multiplier: float = 1.0:
 	set(value):
 		gravity_multiplier = value
-		changed.emit(str(gravity_multiplier))
+		changed.emit("%.f%%" % (gravity_multiplier * 100))
 
 var initial_gravity_multipliers: Dictionary[Player, float]
 
 func _ready() -> void:
 	super()
 	await require([EasingComponent])
+	changed.emit("%.f%%" % (gravity_multiplier * 100))
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 
