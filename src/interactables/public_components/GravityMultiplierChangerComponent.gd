@@ -1,7 +1,12 @@
 extends Component
 class_name GravityMultiplierChangerComponent
 
-@export var gravity_multiplier: float = 1.0
+signal changed(gravity_multiplier: String)
+
+@export var gravity_multiplier: float = 1.0:
+	set(value):
+		gravity_multiplier = value
+		changed.emit(str(gravity_multiplier))
 
 var initial_gravity_multipliers: Dictionary[Player, float]
 
