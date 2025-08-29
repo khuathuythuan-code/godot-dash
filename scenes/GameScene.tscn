@@ -212,6 +212,7 @@ debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 [node name="PlayerCamera" parent="." instance=ExtResource("9_e8rlm")]
 position = Vector2(640, 413)
 editor_draw_drag_margin = true
+position_smoothing = 0.1
 
 [node name="ShaderLayer" type="CanvasLayer" parent="."]
 layer = 50
