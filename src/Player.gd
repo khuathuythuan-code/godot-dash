@@ -289,7 +289,7 @@ func _get_jump_state(options: int = 0) -> int:
 		if get_viewport().gui_get_hovered_control().name == "EditorViewport":
 			return jump_state
 		else:
-			return -1
+			return 0 if LevelManager.platformer else -1
 	return jump_state
 
 
