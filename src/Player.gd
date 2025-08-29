@@ -165,6 +165,7 @@ func _physics_process(delta: float) -> void:
 		$Icon/Spider/SpiderCast.shape = default_collider
 	last_collision = move_and_collide(velocity * delta, true)
 	floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
+	$GroundCollider.rotation = gameplay_rotation
 	_handle_collision(last_collision)
 	move_and_slide()
 	_rotate_sprite_degrees(delta)
