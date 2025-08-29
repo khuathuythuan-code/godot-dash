@@ -545,7 +545,7 @@ func _rotate_sprite_degrees(delta: float):
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
 			$Icon/UFO.rotation_degrees = lerpf(
 				$Icon/UFO.rotation_degrees,
-				velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5,
+				velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5 + gameplay_rotation_degrees,
 				ICON_LERP_FACTOR * delta * 60)
 		else:
 			$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
