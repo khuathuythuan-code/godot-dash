@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://w2jrg14yci8j"]
+
+[ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_slu5d"]
+[ext_resource type="Texture2D" uid="uid://d3l8sf08ogkdf" path="res://assets/textures/triggers/Song.svg" id="2_ojj1v"]
+[ext_resource type="Script" uid="uid://bprlclnyydjbh" path="res://src/interactables/public_components/SongChangerComponent.gd" id="3_ojj1v"]
+[ext_resource type="Script" uid="uid://cilw18c36fh6" path="res://src/interactables/public_components/TriggerHitboxComponent.gd" id="6_v7u0e"]
+[ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="7_5qmbq"]
+[ext_resource type="Script" uid="uid://m5i4ldkc8kfv" path="res://src/interactables/private_components/HitboxDisplay.gd" id="8_bdn0s"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nuarc"]
+a = Vector2(0, -8192)
+b = Vector2(0, 8192)
+
+[node name="SongTrigger" type="Area2D"]
+script = ExtResource("1_slu5d")
+metadata/_custom_type_script = "uid://rt6vy5mae3if"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ojj1v")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("SegmentShape2D_nuarc")
+debug_color = Color(0, 1, 0, 0)
+
+[node name="SongChangerComponent" type="Node" parent="."]
+script = ExtResource("3_ojj1v")
+
+[node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
+script = ExtResource("6_v7u0e")
+_hitbox = NodePath("../Hitbox")
+metadata/_custom_type_script = "uid://cilw18c36fh6"
+
+[node name="TextureRotationPinComponent" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+script = ExtResource("7_5qmbq")
+pinned = NodePath("../Sprite")
+sprite_scale = Vector2(0.2, 0.2)
+metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
+
+[node name="HitboxDisplay" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
+z_index = -20
+script = ExtResource("8_bdn0s")
+hitbox = NodePath("../Hitbox")
+color = Color(0, 1, 1, 1)
+metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
