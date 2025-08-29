@@ -202,14 +202,16 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	if not collision:
 		return
 	var collision_angle: float = collision.get_angle(up_direction)
-	var restricted_collision_angle: float = pingpong(collision_angle, PI/2) * sign(collision_angle)
+	var restricted_collision_angle: float = -pingpong(collision_angle - PI/2, PI) + PI/2 * sign(collision_angle)
 	var is_floor: bool = restricted_collision_angle <= deg_to_rad(10.0)
-	var is_ceiling: bool = restricted_collision_angle >= floor_max_angle
-	if not LevelManager.platformer and not is_floor:
+	var is_ceiling: bool = restricted_collision_angle >= deg_to_rad(180.0 - 10.0)
+	var is_wall: bool = restricted_collision_angle > floor_max_angle and restricted_collision_angle < PI - floor_max_angle
+	var is_slope := not is_floor and not is_ceiling
+	if is_wall and not LevelManager.platformer:
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
-	if not (is_floor or is_ceiling):
+	if is_slope:
 		$GroundCollider.shape = slope_collider
 		$Icon/Spider/SpiderCast.shape = slope_collider
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
@@ -488,10 +490,7 @@ func _rotate_sprite_degrees(delta: float):
 					-last_collision.get_normal().angle_to(up_direction) + gameplay_rotation + ceiling_slide_rotation,
 					delta * 60 * ICON_LERP_FACTOR)
 	else:
-		if displayed_gamemode == Gamemode.CUBE:
-			sprite_floor_angle = 0.0
-		else:
-			sprite_floor_angle = lerp_angle(sprite_floor_angle, gameplay_rotation, delta * 60 * ICON_LERP_FACTOR)
+		sprite_floor_angle = lerp_angle(sprite_floor_angle, gameplay_rotation, delta * 60 * ICON_LERP_FACTOR)
 	#region cube
 	$Icon/Cube.scale.y = 1.0
 	if horizontal_direction != 0:
