@@ -144,10 +144,21 @@ func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty
 				if "degrees" in hint_string:
 					property.suffix = "°"
 				if "suffix" in hint_string:
-					property.suffix = split_hint_string[split_hint_string.find("suffix")].get_slice(":", 1)
+					property.suffix = split_hint_string[split_hint_string.find("suffix")].trim_prefix("suffix:")
 		TYPE_STRING, TYPE_STRING_NAME:
-			property = StringProperty.new()
-			property.placeholder = field.hint_string
+			if field.hint == PROPERTY_HINT_GLOBAL_FILE:
+				property = FileProperty.new()
+				var split_hint_string := Array(field.hint_string.split(","))
+				if "load_root" in field.hint_string:
+					property.load_root = split_hint_string[split_hint_string.find("load_root")].trim_prefix("load_root:")
+					# split_hint_string.pop_at(split_hint_string.find("load_root"))
+				if "import_to" in field.hint_string:
+					property.load_root = split_hint_string[split_hint_string.find("import_to")].trim_prefix("import_to:")
+					# split_hint_string.pop_at(split_hint_string.find("import_to"))
+				property.filetype_filters = PackedStringArray(split_hint_string)
+			else:
+				property = StringProperty.new()
+				property.placeholder = field.hint_string
 		TYPE_COLOR:
 			property = ColorProperty.new()
 		TYPE_VECTOR2:
