@@ -3581,70 +3581,6 @@ grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("19_lbtum")
 
-[node name="CameraOffset" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("147_1ad2k")
-toggle_mode = true
-button_group = ExtResource("3_0vcbd")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("4_gl2yd")
-block_palette_button = true
-
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset"]
-script = ExtResource("7_f0stj")
-type = 9
-object = ExtResource("7_ii36d")
-
-[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset/CenterAnchor"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("22_2am2m")
-
-[node name="CameraRotate" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-focus_mode = 0
-theme = ExtResource("147_1ad2k")
-toggle_mode = true
-button_group = ExtResource("3_0vcbd")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("4_gl2yd")
-block_palette_button = true
-
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate"]
-script = ExtResource("7_f0stj")
-type = 9
-object = ExtResource("7_ii36d")
-
-[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate/CenterAnchor"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("24_ji6ug")
-
 [node name="CameraStatic" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3708,6 +3644,70 @@ grow_vertical = 2
 [node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraZoom/CenterAnchor"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("108_cxib2")
+
+[node name="CameraOffset" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset"]
+script = ExtResource("7_f0stj")
+type = 9
+object = ExtResource("7_ii36d")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraOffset/CenterAnchor"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("22_2am2m")
+
+[node name="CameraRotate" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate"]
+script = ExtResource("7_f0stj")
+type = 9
+object = ExtResource("7_ii36d")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate/CenterAnchor"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("24_ji6ug")
 
 [node name="GameplayRotate" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
