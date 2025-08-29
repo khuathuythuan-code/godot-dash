@@ -3,7 +3,7 @@ class_name TimescaleChangerComponent
 
 signal changed(time_scale: String)
 
-@export var time_scale: float = 1.0:
+@export_range(0.01, 2.0, 0.01, "or_greater") var time_scale: float = 1.0:
 	set(value):
 		time_scale = value
 		changed.emit("%.f%%" % (time_scale * 100))
