@@ -57,12 +57,13 @@ func rebuild_ui(interactables: Array[Interactable]) -> void:
 func build_ui(interactables: Array[Interactable]) -> void:
 	var first_interactable := interactables[0]
 	var ui_root := VBoxContainer.new()
-	var should_component_be_displayed := func(component): return not component.get_script() in COMPONENT_BLACKLIST and not component.get_script() in MARKER_COMPONENTS
+	var should_component_be_displayed := func(component):
+		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
 	var displayed_components := first_interactable \
 			.components \
 			.filter(should_component_be_displayed)
 	for i in displayed_components.size():
-		var component = first_interactable.components[i]
+		var component = displayed_components[i]
 		NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
 		var fields = component.script.get_script_property_list()
 		# Follow _validate_property
