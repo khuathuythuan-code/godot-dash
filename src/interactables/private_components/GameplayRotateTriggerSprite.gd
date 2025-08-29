@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name GameplayRotateTriggerSprite
 
 @export var gameplay_rotation_changer_component: GameplayRotationChangerComponent
 @export var direction_changer_component: DirectionChangerComponent
