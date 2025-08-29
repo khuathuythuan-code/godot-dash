@@ -1,4 +1,4 @@
-[gd_scene load_steps=220 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=221 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -181,6 +181,7 @@
 [ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotate.tscn" id="144_wkjme"]
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="147_1ad2k"]
+[ext_resource type="PackedScene" uid="uid://dh7b5vqqkai36" path="res://scenes/components/level_components/triggers/ScaleTrigger.tscn" id="152_5ik7l"]
 [ext_resource type="PackedScene" uid="uid://ctxjk60spq5il" path="res://scenes/components/level_components/triggers/MoveTrigger.tscn" id="153_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://w2jrg14yci8j" path="res://scenes/components/level_components/triggers/SongTrigger.tscn" id="153_rke8t"]
 [ext_resource type="PackedScene" uid="uid://drepa3qdmjttb" path="res://scenes/components/level_components/triggers/TimewarpTrigger.tscn" id="154_nk067"]
@@ -3852,8 +3853,8 @@ block_palette_button = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/Scale"]
 script = ExtResource("7_f0stj")
-type = 9
-object = ExtResource("7_ii36d")
+type = 8
+object = ExtResource("152_5ik7l")
 
 [node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/Scale"]
 layout_mode = 1
