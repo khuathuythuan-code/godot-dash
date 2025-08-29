@@ -439,9 +439,10 @@ script = ExtResource("5_rke8t")
 edit_handler = NodePath("../../../../../../EditHandler")
 
 [node name="View" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" node_paths=PackedStringArray("game_scene", "side_panel", "bottom_panel")]
+unique_name_in_owner = true
 size = Vector2i(133, 100)
 hide_on_checkable_item_selection = false
-item_count = 3
+item_count = 4
 item_0/text = "Grid"
 item_0/checkable = 1
 item_0/checked = true
@@ -454,6 +455,8 @@ item_2/text = "Bottom Panel"
 item_2/checkable = 1
 item_2/checked = true
 item_2/id = 2
+item_3/text = "Toggle Maximize Viewport"
+item_3/id = 3
 script = ExtResource("6_5ik7l")
 game_scene = NodePath("../../../../../../GameScene")
 side_panel = NodePath("../../../../SidePanel")

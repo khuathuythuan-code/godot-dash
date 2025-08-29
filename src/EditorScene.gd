@@ -134,3 +134,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		level.version_history.redo()
 	elif event.is_action_pressed(&"ui_undo"):
 		level.version_history.undo()
+	elif event.is_action_pressed(&"editor_hide_panels"):
+		%View.toggle_maximize_viewport()
