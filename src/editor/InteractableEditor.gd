@@ -77,12 +77,14 @@ func build_ui(interactables: Array[Interactable]) -> void:
 				continue
 			if field.usage & PROPERTY_USAGE_GROUP:
 				if last_section_heading:
-					last_section_heading.fold.call_deferred(true)
 					ui_root.add_child(last_section_heading)
+					last_section_heading.fold.call_deferred(true)
+					last_section_heading.show.call_deferred()
 				last_section_heading = SectionHeading.new()
 				last_section_heading.name = field_name
 				last_section_heading.label_settings = preload("res://resources/SectionHeadings.tres")
 				last_section_heading.label_alignment = HORIZONTAL_ALIGNMENT_LEFT
+				last_section_heading.hide()
 				continue
 			var property: AbstractProperty
 			property = generate_property(field.type, field)
@@ -94,8 +96,9 @@ func build_ui(interactables: Array[Interactable]) -> void:
 			else:
 				ui_root.add_child(property)
 		if last_section_heading:
-			last_section_heading.fold.call_deferred(true)
 			ui_root.add_child(last_section_heading)
+			last_section_heading.fold.call_deferred(true)
+			last_section_heading.show.call_deferred()
 		if i < displayed_components.size() - 1:
 			ui_root.add_child(HSeparator.new())
 	%ComponentRoot.add_child(ui_root)
