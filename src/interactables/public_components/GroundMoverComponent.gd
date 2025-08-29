@@ -30,6 +30,8 @@ func _move_grounds(_player: Player) -> void:
 	GroundData.distance = LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[parent.get_node("GamemodeChangerComponent")._gamemode] * LevelManager.CELL_SIZE * 0.5
 	if parent.global_position.y + GroundData.distance > LevelManager.ground_sprites[0].DEFAULT_Y:
 		GroundData.offset = (parent.global_position.y + GroundData.distance) - LevelManager.ground_sprites[0].DEFAULT_Y
+	else:
+		GroundData.offset = 0
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not parent.has_node("GamemodeChangerComponent"):
