@@ -5,9 +5,12 @@ signal progressed(weight_delta: float)
 signal finished(player: Player)
 
 @export_range(0.0, 10.0, 0.0001, "or_more", "suffix:s") var duration: float = 1.0
-@export var keep_active: bool ## Keep the easing active after it completes.
 @export var easing_type: Tween.EaseType = Tween.EASE_IN_OUT
 @export var easing_transition: Tween.TransitionType
+@export_group("Activation")
+@export var keep_active: bool ## Keep the easing active after it completes.
+@export var trigger_for_one_player := false
+@export var ignore_time_scale := false
 
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
@@ -27,10 +30,20 @@ func _physics_process(_delta: float) -> void:
 			progressed.emit(player, get_weight_delta(player))
 
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name in ["trigger_for_one_player", "ignore_time_scale"] and parent.has(TimescaleChangerComponent):
+		property.usage |= PROPERTY_USAGE_READ_ONLY
+		trigger_for_one_player = true
+		ignore_time_scale = true
+
+
 func start(player: Player) -> void:
+	if trigger_for_one_player and tweens.size() == 1:
+		return
 	tweens.set(player, get_tree().create_tween())
 	reset(player)
 	var tween_weight := func(value: float): weights[player] = value
+	tweens[player].set_ignore_time_scale(ignore_time_scale)
 	tweens[player].tween_method(tween_weight, 0.0, 1.0, duration) \
 		.set_trans(easing_transition) \
 		.set_ease(easing_type)
@@ -45,6 +58,10 @@ func get_weight_delta(player: Player) -> float:
 
 func is_inactive(player: Player) -> bool:
 	return weights[player] == 0.0 or (_previous_weights[player] == 1.0 and not keep_active)
+
+
+func is_inactive_any() -> bool:
+	return weights.values().all(func(value): return value == 0.0) or (_previous_weights.values().all(func(value): return value == 1.0) and not keep_active)
 
 
 func reset(player: Player) -> void:
