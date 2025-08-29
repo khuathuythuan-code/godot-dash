@@ -17,7 +17,6 @@ layout_mode = 2
 script = ExtResource("1_cgw8h")
 load_root = "user://created_levels/songs/"
 import_to = "user://created_levels/songs/"
-_value = ""
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 
 [node name="TriggerPropertyInternalName" type="Node" parent="Song"]
@@ -29,7 +28,6 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("3_w6aa4")
 suffix = "s"
-_value = 0.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
 [node name="TriggerPropertyInternalName" type="Node" parent="Start"]

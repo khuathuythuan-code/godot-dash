@@ -45,7 +45,6 @@ func _ready() -> void:
 func start_level() -> void:
 	if get_tree().paused:
 		await _pause_manager.unpaused
-	# print_debug(SongManager.load_song_threaded_get(song_path))
 	song_player.stream = SongManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer

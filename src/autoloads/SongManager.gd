@@ -35,7 +35,6 @@ func load_song_threaded_request(path: String) -> Error:
 
 func load_song_threaded_get(path: String) -> AudioStream:
 	if path.is_empty() or path == null:
-		printerr("Song path is empty")
 		return null
 	if thread.is_started():
 		thread.wait_to_finish()
