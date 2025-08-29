@@ -101,6 +101,7 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
+		%MenuBarContainer.hide()
 		%EditorModes.hide()
 		%SidePanel.hide()
 		%LevelSettings.hide()
