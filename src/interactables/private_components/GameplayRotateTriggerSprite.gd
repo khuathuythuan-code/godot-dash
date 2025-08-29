@@ -7,6 +7,6 @@ extends Sprite2D
 func _process(_delta: float) -> void:
 	if not visible:
 		return
-	rotation_degrees = gameplay_rotation_changer_component.gameplay_rotation
+	global_rotation_degrees = gameplay_rotation_changer_component.gameplay_rotation
 	flip_h = direction_changer_component.direction == DirectionChangerComponent.Direction.BACKWARDS
 
