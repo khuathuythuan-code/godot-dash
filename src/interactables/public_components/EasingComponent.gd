@@ -47,7 +47,9 @@ func start(player: Player) -> void:
 	tweens[player].tween_method(tween_weight, 0.0, 1.0, duration) \
 		.set_trans(easing_transition) \
 		.set_ease(easing_type)
-	tweens[player].finished.connect(func(): finished.emit(player))
+	tweens[player].finished.connect(func():
+		finished.emit(player)
+		tweens.erase(player))
 
 
 func get_weight_delta(player: Player) -> float:
