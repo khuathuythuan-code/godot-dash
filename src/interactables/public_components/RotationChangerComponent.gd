@@ -10,12 +10,12 @@ enum Mode {
 	set(value):
 		mode = value
 		notify_property_list_changed()
+@export_range(-360, 360, 0.01, "or_greater", "or_less", "degrees") var rotation_degrees: float
+@export var pivot: Node2D
 @export var rotate_around_self: bool:
 	set(value):
 		rotate_around_self = value
 		notify_property_list_changed()
-@export var pivot: Node2D
-@export_range(-360, 360, 0.01, "or_greater", "or_less", "degrees") var rotation_degrees: float
 
 var initial_global_rotations_degrees: Dictionary[Node2D, float]
 var group_objects: Array[Node2D]
@@ -29,8 +29,6 @@ func _ready() -> void:
 
 
 func _validate_property(property: Dictionary) -> void:
-	if property.name == "rotation_degrees" and (mode != Mode.SET and mode != Mode.ADD):
-		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name == "pivot" and rotate_around_self:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
 
