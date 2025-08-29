@@ -45,7 +45,7 @@ instance_dock/preview_resolution=Vector2i(64, 64)
 
 [application]
 
-config/name="Godot Dash"
+config/name="godot-dash"
 config/version="0.0.1"
 run/main_scene="res://scenes/MainScene.tscn"
 config/use_custom_user_dir=true
