@@ -77,6 +77,6 @@ script = ExtResource("11_sjwk2")
 [node name="GroundMoverComponent" type="Node" parent="."]
 script = ExtResource("12_re3iv")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_hwy8w")
-sprite = NodePath("../Sprites/IndicatorIcon")
+pinned = NodePath("../Sprites/IndicatorIcon")

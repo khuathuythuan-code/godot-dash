@@ -79,6 +79,6 @@ metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 [node name="GroundMoverComponent" type="Node" parent="."]
 script = ExtResource("12_gi1ek")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_dxq01")
-sprite = NodePath("../Sprites/IndicatorIcon")
+pinned = NodePath("../Sprites/IndicatorIcon")

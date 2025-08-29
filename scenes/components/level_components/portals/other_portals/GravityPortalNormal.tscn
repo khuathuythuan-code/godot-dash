@@ -73,7 +73,7 @@ script = ExtResource("10_ufkdc")
 [node name="GravityFlipChangerComponent" type="Node" parent="."]
 script = ExtResource("11_12or6")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
 script = ExtResource("12_rnoqo")
-sprite = NodePath("../Sprites/IndicatorIcon")
+pinned = NodePath("../Sprites/IndicatorIcon")
 pin_to_gameplay_rotation = true
