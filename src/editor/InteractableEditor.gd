@@ -77,8 +77,8 @@ func build_ui(interactables: Array[Interactable]) -> void:
 				continue
 			if field.usage & PROPERTY_USAGE_GROUP:
 				if last_section_heading:
-					ui_root.add_child(last_section_heading)
 					last_section_heading.fold.call_deferred(true)
+					ui_root.add_child(last_section_heading)
 				last_section_heading = SectionHeading.new()
 				last_section_heading.name = field_name
 				last_section_heading.label_settings = preload("res://resources/SectionHeadings.tres")
@@ -149,6 +149,8 @@ func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty
 			property = ColorProperty.new()
 		TYPE_VECTOR2:
 			property = Vector2Property.new()
+			property.allow_lesser = true
+			property.allow_greater = true
 		TYPE_BOOL:
 			property = BoolProperty.new()
 		TYPE_OBJECT:
@@ -188,9 +190,10 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 
 func save_property(value: Variant, component_name: String, property: String, interactables: Array[Interactable]) -> void:
 	interactables.map(func(interactable):
+		var _value = value
 		if interactable.get_node(component_name) is TargetGroupComponent:
-			value = GroupEditor.GROUP_PREFIX + value
-		interactable.get_node(component_name).set(property, value))
+			_value = GroupEditor.GROUP_PREFIX + value
+		interactable.get_node(component_name).set(property, _value))
 
 
 func refresh_marker(enabled: bool, marker_script: Script, interactables: Array[Interactable]) -> void:
