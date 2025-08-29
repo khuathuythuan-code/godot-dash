@@ -9,7 +9,7 @@ signal finished(player: Player)
 @export var easing_transition: Tween.TransitionType
 @export_group("Activation")
 @export var keep_active: bool ## Keep the easing active after it completes.
-@export var trigger_for_one_player := false
+@export var trigger_for_one_player := true
 @export var ignore_time_scale := false
 
 var tweens: Dictionary[Player, Tween]
