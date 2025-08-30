@@ -26,13 +26,13 @@ func _physics_process(delta: float) -> void:
 						* zoom_factor.y \
 						+ GroundData.center.y - GroundData.offset
 			),
-			1-exp(-delta * LERP_FACTOR)
+			0.2 * delta * 60
 		)
 		global_position = global_position_rotated.rotated(-LevelManager.player.gameplay_rotation)
 	else:
 		global_position = global_position.lerp(
 			Vector2(global_position.x, DEFAULT_Y),
-			1-exp(-delta * LERP_FACTOR)
+			0.2 * delta * 60
 		)
 	_previous_camera_rotation = LevelManager.player_camera.rotation
 

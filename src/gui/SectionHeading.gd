@@ -47,4 +47,5 @@ func _refresh_text() -> void:
 func fold(_folded: bool) -> void:
 	fold_button.icon = icon_closed if _folded else icon_open
 	folded = _folded
+	fold_button.set_pressed_no_signal(_folded)
 	get_children().map(func(child): child.visible = not _folded)

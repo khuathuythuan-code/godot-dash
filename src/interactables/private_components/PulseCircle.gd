@@ -14,10 +14,7 @@ var _radius: float = RADIUS:
 
 
 func _ready() -> void:
-	if parent is OrbInteractable:
-		parent.pressed.connect(pulse)
-	else:
-		parent.body_entered.connect(pulse)
+	parent.interacted.connect(pulse)
 	hide()
 	modulate.a = 0.5
 	if not no_blending:
@@ -25,7 +22,7 @@ func _ready() -> void:
 
 
 func pulse(_player: Player) -> void:
-	if parent.no_effects:
+	if parent.has(NoEffectsComponent):
 		return
 	show()
 	var pulse_tween := create_tween().set_parallel()

@@ -92,7 +92,7 @@ func texture_variation_overlapping(placed_objects_collider: Area2D, type: Editor
 	if not placed_objects_collider.has_overlapping_areas():
 		return false
 	var overlapping_areas := placed_objects_collider.get_overlapping_areas()
-	var is_interactable_or_trigger_base := func(area_parent): return area_parent is Interactable or area_parent is TriggerBase
+	var is_interactable_or_trigger_base := func(area_parent): return area_parent is Interactable
 	if not overlapping_areas.map(get_area).filter(is_interactable_or_trigger_base).is_empty():
 		return true
 	if placed_objects_collider.get_overlapping_areas()[-1].type == type:

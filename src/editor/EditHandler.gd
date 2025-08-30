@@ -142,9 +142,7 @@ func _update_selection() -> void:
 
 
 func _get_object_parent(object: Node) -> Node2D:
-	if object.get_parent() is TriggerBase:
-		return object.get_parent().get_parent()
-	elif object is EditorSelectionCollider:
+	if object is EditorSelectionCollider:
 		return object.get_parent()
 	else:
 		return object

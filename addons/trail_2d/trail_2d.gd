@@ -17,6 +17,6 @@ func _physics_process(_delta: float) -> void:
 	if points.is_empty() or point != points[0]:
 		add_point(point, 0)
 	
-	if get_point_count() > length:
+	if get_point_count() > length / abs(Engine.time_scale):
 		remove_point(get_point_count() - 1)
 

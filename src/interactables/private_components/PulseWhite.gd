@@ -8,7 +8,7 @@ var _pulse_target: Node2D
 
 
 func _ready() -> void:
-	parent.body_entered.connect(pulse)
+	parent.interacted.connect(pulse)
 	_pulse_target = get_node_or_null("../Sprites")
 	if _pulse_target == null:
 		_pulse_target = get_node_or_null("../Sprite")
@@ -20,6 +20,6 @@ func _process(delta: float) -> void:
 
 
 func pulse(_player: Player) -> void:
-	if parent.no_effects:
+	if parent.has(NoEffectsComponent):
 		return
 	_factor = 1.0

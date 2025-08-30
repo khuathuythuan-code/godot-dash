@@ -77,8 +77,7 @@ func _physics_process(_delta: float) -> void:
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
 		return false
-	if placed_objects_collider.get_overlapping_areas()[-1].get_parent() is Interactable \
-			or placed_objects_collider.get_overlapping_areas()[-1].get_parent() is TriggerBase:
+	if placed_objects_collider.get_overlapping_areas()[-1].get_parent() is Interactable:
 		return true
 	if placed_objects_collider.get_overlapping_areas()[-1].type == type:
 		return placed_objects_collider.get_overlapping_areas()[-1].id == id
@@ -102,12 +101,13 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
+		%MenuBarContainer.hide()
 		%EditorModes.hide()
 		%SidePanel.hide()
 		%LevelSettings.hide()
 		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
 		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
-		$GameScene/EditorGridParallax/EditorGrid.hide()
+		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.config.hide_grid_on_playtest
 		if not $EditHandler.selection.is_empty():
 			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
 			$EditHandler.selection.clear()
@@ -134,3 +134,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		level.version_history.redo()
 	elif event.is_action_pressed(&"ui_undo"):
 		level.version_history.undo()
+	elif event.is_action_pressed(&"editor_hide_panels"):
+		%View.toggle_maximize_viewport()
