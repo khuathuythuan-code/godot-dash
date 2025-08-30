@@ -85,4 +85,4 @@ func _draw() -> void:
 	draw_rect(Rect2(-MAX_DISTANCE / zoom, 2 * MAX_DISTANCE / zoom), Color.CYAN, false, 4.0)
 	draw_set_transform(Vector2.ZERO, 0.0)
 	draw_circle(Vector2.ZERO, 20.0, Color.GREEN, false, 4.0)
-	draw_circle(offset, 20.0, Color.MAGENTA, false, 4.0)
+	draw_circle(offset.rotated(-rotation), 20.0, Color.MAGENTA, false, 4.0)
