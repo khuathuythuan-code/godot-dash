@@ -130,22 +130,7 @@ func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty
 				property.allow_lesser = true
 				property.allow_greater = true
 			elif field.hint == PROPERTY_HINT_RANGE:
-				var hint_string: String = field.hint_string
-				var split_hint_string := Array(hint_string.split(","))
-				var min_value = split_hint_string[0]
-				var max_value = split_hint_string[1]
-				var step = split_hint_string[2]
-				property.min_value = min_value
-				property.max_value = max_value
-				property.step = step
-				if "or_greater" in hint_string:
-					property.allow_greater = true
-				if "or_less" in hint_string:
-					property.allow_lesser = true
-				if "degrees" in hint_string:
-					property.suffix = "°"
-				if "suffix" in hint_string:
-					property.suffix = split_hint_string[split_hint_string.find("suffix")].trim_prefix("suffix:")
+				property = handle_range_hint(field, property)
 		TYPE_STRING, TYPE_STRING_NAME:
 			if field.hint == PROPERTY_HINT_GLOBAL_FILE:
 				property = FileProperty.new()
@@ -164,8 +149,13 @@ func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty
 			property = ColorProperty.new()
 		TYPE_VECTOR2:
 			property = Vector2Property.new()
-			property.allow_lesser = true
-			property.allow_greater = true
+			if field.hint == PROPERTY_HINT_NONE:
+				property.allow_lesser = true
+				property.allow_greater = true
+				if "suffix" in field.hint_string:
+					property.suffix = field.hint_string.trim_prefix("suffix:")
+			elif field.hint == PROPERTY_HINT_RANGE:
+				property = handle_range_hint(field, property)
 		TYPE_BOOL:
 			property = BoolProperty.new()
 		TYPE_OBJECT:
@@ -239,6 +229,26 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 		if component is TargetGroupComponent:
 			value = value.trim_prefix(GroupEditor.GROUP_PREFIX)
 		property.set_value_no_signal(value)
+
+
+static func handle_range_hint(field: Dictionary, property: AbstractProperty) -> AbstractProperty:
+	var hint_string: String = field.hint_string
+	var split_hint_string := Array(hint_string.split(","))
+	var min_value = split_hint_string[0]
+	var max_value = split_hint_string[1]
+	var step = split_hint_string[2]
+	property.min_value = min_value
+	property.max_value = max_value
+	property.step = step
+	if "or_greater" in hint_string:
+		property.allow_greater = true
+	if "or_less" in hint_string:
+		property.allow_lesser = true
+	if "degrees" in hint_string:
+		property.suffix = "°"
+	if "suffix" in hint_string:
+		property.suffix = split_hint_string[split_hint_string.find("suffix")].trim_prefix("suffix:")
+	return property
 
 
 static func is_interactable(object: Node2D) -> bool:

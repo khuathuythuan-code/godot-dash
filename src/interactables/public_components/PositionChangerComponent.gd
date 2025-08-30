@@ -13,7 +13,7 @@ enum Mode {
 	set(value):
 		mode = value
 		notify_property_list_changed()
-@export var position: Vector2 ## New position in units.
+@export_custom(PROPERTY_HINT_NONE, "suffix:cells") var position: Vector2
 @export var move_towards: Node2D
 @export var group_center: Node2D
 ## Multiplies the target distance between each object in the group. [br][br]
