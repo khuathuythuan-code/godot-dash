@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://db7ebleody4s3"]
+[gd_scene load_steps=23 format=3 uid="uid://db7ebleody4s3"]
 
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_i4f6q"]
@@ -15,9 +15,6 @@
 [ext_resource type="Shader" uid="uid://c37wfprwryexl" path="res://resources/shaders/Grayscale.gdshader" id="10_tgbxk"]
 [ext_resource type="Shader" uid="uid://bmo5oa3f8elxu" path="res://resources/shaders/LensCircle.gdshader" id="11_bdlmb"]
 [ext_resource type="Shader" uid="uid://g502tst55eft" path="res://resources/shaders/Sepia.gdshader" id="11_yix40"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ubx"]
-size = Vector2(4096, 20)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
@@ -52,7 +49,7 @@ script = ExtResource("1_k47tp")
 metadata/_edit_lock_ = true
 
 [node name="BackgroundParallax" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.2, 0.2)
 repeat_size = Vector2(20480, 8189)
 repeat_times = 3
 
@@ -66,19 +63,6 @@ texture = ExtResource("2_i4f6q")
 region_enabled = true
 region_rect = Rect2(0, 0, 10240, 2048)
 metadata/_edit_lock_ = true
-
-[node name="BackgroundKillCollider" type="StaticBody2D" parent="BackgroundParallax/Background" node_paths=PackedStringArray("target")]
-position = Vector2(0, -1376)
-collision_layer = 4
-script = ExtResource("6_kvomc")
-target = NodePath("../../../Player")
-copy_x = true
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundParallax/Background/BackgroundKillCollider"]
-position = Vector2(0, 112.5)
-shape = SubResource("RectangleShape2D_y3ubx")
-debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="Background2" type="Sprite2D" parent="BackgroundParallax"]
 modulate = Color(0.211765, 0.439216, 1, 1)
@@ -161,7 +145,7 @@ shape = SubResource("RectangleShape2D_l4i0t")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
 [node name="GroundUpParallax" type="Parallax2D" parent="."]
-scroll_offset = Vector2(130, 429)
+scroll_offset = Vector2(130, 0)
 repeat_size = Vector2(24000, 0)
 repeat_times = 3
 metadata/_edit_lock_ = true
@@ -209,9 +193,11 @@ position = Vector2(0, -77.2)
 shape = SubResource("RectangleShape2D_l4i0t")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
-[node name="PlayerCamera" parent="." instance=ExtResource("9_e8rlm")]
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("ground_down", "ground_up") instance=ExtResource("9_e8rlm")]
 position = Vector2(640, 413)
 editor_draw_drag_margin = true
+ground_down = NodePath("../GroundDownParallax/GroundDownOrigin")
+ground_up = NodePath("../GroundUpParallax/GroundUpOrigin")
 position_smoothing = 0.1
 
 [node name="ShaderLayer" type="CanvasLayer" parent="."]

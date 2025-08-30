@@ -1,4 +1,4 @@
-[gd_scene load_steps=223 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=224 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -178,6 +178,7 @@
 [ext_resource type="PackedScene" uid="uid://bwjxj7jcot0cn" path="res://scenes/components/level_components/letter_objects/StopDash.tscn" id="137_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://bxhdprvq16gwq" path="res://scenes/components/level_components/triggers/AlphaTrigger.tscn" id="138_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://dv0sqs0l30luf" path="res://assets/textures/guis/editor/block_palette/Slopes.svg" id="138_ha8mj"]
+[ext_resource type="PackedScene" uid="uid://dn1mnmpt5m6ir" path="res://scenes/components/level_components/triggers/CameraZoomTrigger.tscn" id="141_t7625"]
 [ext_resource type="PackedScene" uid="uid://cn1x7e76gb4fp" path="res://scenes/components/level_components/triggers/CameraRotateTrigger.tscn" id="143_33w7i"]
 [ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotate.tscn" id="144_wkjme"]
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
@@ -3631,8 +3632,8 @@ block_palette_button = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraZoom"]
 script = ExtResource("7_f0stj")
-type = 9
-object = ExtResource("7_ii36d")
+type = 8
+object = ExtResource("141_t7625")
 
 [node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraZoom"]
 layout_mode = 1
