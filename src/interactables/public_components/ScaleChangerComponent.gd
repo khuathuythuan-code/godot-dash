@@ -3,7 +3,6 @@ class_name ScaleChangerComponent
 
 enum Mode {
 	MULTIPLY,
-	DIVIDE,
 	ADD,
 	SET,
 }
@@ -56,8 +55,6 @@ func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 				scale_delta = scale * weight_delta
 			Mode.MULTIPLY:
 				scale_delta = (initial_global_scale * scale - initial_global_scale) * weight_delta
-			Mode.DIVIDE:
-				scale_delta = (initial_global_scale / scale - initial_global_scale) * weight_delta
 		_apply_scale_delta(group_object, scale_delta)
 
 
