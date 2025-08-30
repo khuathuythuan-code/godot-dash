@@ -51,10 +51,10 @@ jump_boost = 0.985
 
 [node name="GravityFlipChangerComponent" type="Node" parent="."]
 script = ExtResource("11_ihas7")
-gravity = 2
 
-[node name="TextureRotate" type="Node" parent="."]
+[node name="TextureRotate" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("13_gbohu")
+sprite = NodePath("../Sprite")
 rotation_rate_degrees = 180.0
 
 [node name="DirectionChangerComponent" type="Node" parent="."]

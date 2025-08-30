@@ -54,6 +54,7 @@ jump_boost = -1.34
 [node name="DirectionChangerComponent" type="Node" parent="."]
 script = ExtResource("8_0hmq7")
 
-[node name="TextureRotate" type="Node" parent="."]
+[node name="TextureRotate" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("8_pj4c0")
+sprite = NodePath("../Sprite")
 rotation_rate_degrees = 180.0
