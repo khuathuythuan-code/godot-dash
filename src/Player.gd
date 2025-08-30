@@ -496,7 +496,7 @@ func _rotate_sprite_degrees(delta: float):
 	if horizontal_direction != 0:
 		$Icon/Cube.scale.x = horizontal_direction
 	if not dash_control:
-		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
+		if not is_on_floor() and not is_on_ceiling() and speed_multiplier != 0.0:
 			$Icon/Cube.rotation_degrees += delta * gravity_flip * 400 * get_direction() * gravity_multiplier
 		else:
 			$Icon/Cube.rotation = lerp_angle(
