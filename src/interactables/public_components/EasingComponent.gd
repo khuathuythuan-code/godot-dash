@@ -51,6 +51,8 @@ func start(player: Player) -> void:
 		.set_ease(easing_type)
 	tweens[player].finished.connect(func():
 		finished.emit(player)
+		await get_tree().process_frame
+		await get_tree().process_frame
 		tweens.erase(player))
 
 
