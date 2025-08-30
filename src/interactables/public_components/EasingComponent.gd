@@ -22,7 +22,7 @@ func _ready() -> void:
 	parent.interacted.connect(start)
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	for player in tweens.keys():
@@ -35,12 +35,14 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
 		trigger_for_one_player = true
 		ignore_time_scale = true
+	if property.name == "duration" and parent.has(SpawnTriggerComponent):
+		property.usage = PROPERTY_USAGE_NO_EDITOR
 
 
 func start(player: Player) -> void:
 	if trigger_for_one_player and tweens.size() == 1:
 		return
-	tweens.set(player, get_tree().create_tween())
+	tweens.set(player, create_tween())
 	reset(player)
 	var tween_weight := func(value: float): weights[player] = value
 	tweens[player].set_ignore_time_scale(ignore_time_scale)
