@@ -12,6 +12,7 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 @export var position_smoothing: float = 0.1
 @export var offset_smoothing: float = 0.125
 @export var gameplay_offset := Vector2.ONE
+@export var additional_offset: Vector2
 
 var player: Player
 var freefly := true
@@ -70,11 +71,11 @@ func local_target_distance_axis(distance: float, max_distance: float, framerate_
 
 func get_offset_target() -> Vector2:
 	if LevelManager.platformer:
-		return Vector2.ZERO
+		return Vector2.ZERO + additional_offset
 	else:
 		return Vector2(
 			((DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x),
-			(DEFAULT_OFFSET.y / zoom.y)) * gameplay_offset
+			(DEFAULT_OFFSET.y / zoom.y)) * gameplay_offset + additional_offset
 
 
 func _draw() -> void:
