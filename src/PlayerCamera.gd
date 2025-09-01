@@ -12,7 +12,14 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 @export var position_smoothing: float = 0.1
 @export var offset_smoothing: float = 0.125
 @export var gameplay_offset := Vector2.ONE
-@export var additional_offset: Vector2
+@export var additional_offset := Vector2.ZERO
+@export var static_factor := Vector2.ZERO:
+	set(value):
+		# if static_factor.x < 0.01:
+		# 	static_factor.x = 0.0
+		# if static_factor.y < 0.01:
+		# 	static_factor.y = 0.0
+		static_factor = value.clamp(Vector2.ZERO, Vector2.ONE)
 
 var player: Player
 var freefly := true
@@ -24,7 +31,7 @@ func _ready() -> void:
 	offset = get_offset_target()
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if not LevelManager.level_playing:
 		return
 	queue_redraw()
@@ -48,8 +55,14 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply distance
 	var added_distance = local_added_distance.rotated(player.gameplay_rotation)
-	position += added_distance
-	offset = offset.lerp(get_offset_target().rotated(player.gameplay_rotation), 0.125 * framerate_compensation)
+	if static_factor.x == 0:
+		position.x += added_distance.x
+	if static_factor.y == 0:
+		position.y += added_distance.y
+	# print(static_factor)
+	offset = offset.lerp(
+		get_offset_target().rotated(player.gameplay_rotation),
+		0.125 * framerate_compensation if static_factor.is_zero_approx() else 1.0)
 
 	# Clamp bottom edge of the screen to the ground
 	var half_screen_height = get_viewport_rect().size.y / 2
@@ -75,7 +88,7 @@ func get_offset_target() -> Vector2:
 	else:
 		return Vector2(
 			((DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x),
-			(DEFAULT_OFFSET.y / zoom.y)) * gameplay_offset + additional_offset
+			(DEFAULT_OFFSET.y / zoom.y)) * gameplay_offset * (Vector2.ONE - static_factor) + additional_offset
 
 
 func _draw() -> void:
