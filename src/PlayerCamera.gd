@@ -59,7 +59,6 @@ func _process(delta: float) -> void:
 		position.x += added_distance.x
 	if static_factor.y == 0:
 		position.y += added_distance.y
-	# print(static_factor)
 	offset = offset.lerp(
 		get_offset_target().rotated(player.gameplay_rotation),
 		0.125 * framerate_compensation if static_factor.is_zero_approx() else 1.0)
