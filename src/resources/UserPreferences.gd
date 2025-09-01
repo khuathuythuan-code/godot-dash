@@ -23,6 +23,9 @@ class_name UserPreferences extends Resource
 @export_group("Debug")
 @export var draw_debug_overlays: bool
 
+@export_group("Easter Eggs")
+@export var enable_easter_eggs: bool
+
 func save() -> void:
 	ResourceSaver.save(self, "user://user_prefs.tres")
 

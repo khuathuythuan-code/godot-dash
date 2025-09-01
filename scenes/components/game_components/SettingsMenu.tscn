@@ -334,6 +334,23 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"draw_debug_overlays"
 
+[node name="Easter Eggs" type="VBoxContainer" parent="Debug/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("8_eb8rq")
+label_settings = ExtResource("6_ea76q")
+label_alignment = 1
+metadata/_custom_type_script = "uid://cuih47milvqcs"
+
+[node name="Enable easter eggs" type="BoxContainer" parent="Debug/MarginContainer/VBoxContainer/Easter Eggs"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Debug/MarginContainer/VBoxContainer/Easter Eggs/Enable easter eggs"]
+script = ExtResource("6_p6jor")
+config_property = &"enable_easter_eggs"
+
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Master" to="." method="_on_game_volume_value_changed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Music" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]

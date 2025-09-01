@@ -126,3 +126,13 @@ metadata/_custom_type_script = "uid://d3j6obbost55b"
 [node name="ResourceProperty" parent="CenterContainer/VBoxContainer" instance=ExtResource("12_ostnf")]
 layout_mode = 2
 default = SubResource("Resource_iyxla")
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_xcvel")
+theme_type_variation = &"TransButton"
+text = "Trans Linear"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Trans Linear"

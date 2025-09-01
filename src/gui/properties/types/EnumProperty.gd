@@ -41,8 +41,9 @@ func reset() -> void:
 func refresh() -> void:
 	label.text = name
 	input.clear()
+	input.theme_type_variation = &"TransButton" if fields[0].begins_with("Trans ") and Config.config.enable_easter_eggs else &""
 	for field in fields:
-		input.add_item(field)
+		input.add_item(field if Config.config.enable_easter_eggs else field.trim_prefix("Trans "))
 	if Engine.is_editor_hint():
 		reset()
 
