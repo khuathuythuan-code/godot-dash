@@ -38,6 +38,9 @@ func set_value_no_signal(new_value: Node2D) -> void:
 			input.text = "    Assign…    "
 		_:
 			input.text = LevelManager.current_level.get_path_to(new_value)
+			# Remove trailing dots for special nodes, e.g. LevelManager.player
+			if input.text.contains(".."):
+				input.text = input.text.get_file()
 
 
 func get_value() -> Node2D:
