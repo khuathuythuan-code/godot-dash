@@ -8,7 +8,7 @@ enum Axis {
 	Y,
 }
 
-@export var restrict_axis: Axis
+@export var axis: Axis
 @export var redirect_velocity: bool:
 	set(value):
 		redirect_velocity = value
@@ -47,7 +47,7 @@ func teleport(player: Player) -> void:
 	var target_component: TargetObjectComponent = parent.query(TargetObjectComponent)
 	var target := target_component.target
 	# No null checking as the component is required and should always exist.
-	match restrict_axis:
+	match axis:
 		Axis.BOTH:
 			player.global_position = target.global_position
 		Axis.X:
