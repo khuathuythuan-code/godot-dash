@@ -48,5 +48,6 @@ metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 z_index = -20
 script = ExtResource("8_pb1p6")
 hitbox = NodePath("../Hitbox")
-color = Color(0, 1, 1, 1)
+color_config_key = "trigger_hitbox_color"
+fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
