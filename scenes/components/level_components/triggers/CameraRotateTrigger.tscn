@@ -12,7 +12,7 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
-[node name="RotateTrigger" type="Area2D"]
+[node name="CameraRotateTrigger" type="Area2D"]
 script = ExtResource("1_qjnrb")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
