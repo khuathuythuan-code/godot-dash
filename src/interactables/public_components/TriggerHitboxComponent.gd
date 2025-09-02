@@ -25,7 +25,7 @@ enum HitboxShape {
 			HitboxShape.DISABLED:
 				_hitbox.shape = null
 
-@export var hitbox_height: float = 64.0:
+@export_range(0.01, 128.0, 0.01, "or_greater", "suffix:cells") var hitbox_height: float = 64.0:
 	set(value):
 		hitbox_height = value
 		if hitbox_shape != HitboxShape.LINE or _hitbox == null:

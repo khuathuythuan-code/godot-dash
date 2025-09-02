@@ -60,6 +60,7 @@ func refresh() -> void:
 	input.prefix = prefix
 	input.suffix = suffix
 	input.select_all_on_focus = true
+	input.custom_minimum_size.x = 128 # Consistency with Vector2SpinBox
 	input.get_line_edit().expand_to_text_length = expand_to_text_length
 	if Engine.is_editor_hint():
 		reset()
