@@ -20,6 +20,6 @@ func _on_button_pressed() -> void:
 		fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 		await get_tree().create_timer(0.5).timeout
 		LevelManager.current_level_name = name
-		LevelManager.is_first_attempt = true
+		LevelManager.attempt = 0
 		LevelManager.current_level_path = selected_level
 		get_tree().change_scene_to_packed(LevelManager.game_scene_packed)

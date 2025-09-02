@@ -31,6 +31,7 @@ func _ready() -> void:
 				.set_trans(Tween.TRANS_EXPO) \
 				.from(Vector2.ONE * 0.4)
 	
+	LevelManager.attempt = 1
 	LevelManager.level_playing = false
 	$EditorCamera.enabled = true
 	%EditorModes.show()
@@ -120,6 +121,7 @@ func _on_playtest_pressed() -> void:
 	else:
 		LevelManager.player_duals.clear()
 		get_tree().reload_current_scene()
+		$LevelOperationsHandler._save_level()
 
 
 func _on_leave_pressed() -> void:

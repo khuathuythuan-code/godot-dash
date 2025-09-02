@@ -9,7 +9,7 @@ var current_level: LevelProps
 var current_level_path: String
 var current_level_name: String
 var current_level_duration: float = INF
-var is_first_attempt: bool
+var attempt: int
 var level_playing: bool
 var in_editor: bool
 var pause_manager: Node
