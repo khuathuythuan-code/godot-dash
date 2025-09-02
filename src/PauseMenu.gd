@@ -42,7 +42,7 @@ func _on_leave_pressed() -> void:
 	get_tree().change_scene_to_packed(main_scene)
 
 func _on_continue_pressed() -> void:
-	$VBoxContainer/LevelName.text = LevelManager.current_level.name
+	$VBoxContainer/LevelName.text = LevelManager.current_level.name.capitalize()
 	if $"../SettingsLayer/SettingsContainer".position.y == -$"../SettingsLayer/SettingsContainer".get_viewport_rect().size.y:
 		get_tree().paused = !get_tree().paused
 		if get_tree().paused:
