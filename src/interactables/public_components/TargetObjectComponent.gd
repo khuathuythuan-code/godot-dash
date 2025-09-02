@@ -29,4 +29,5 @@ func _validate_property(property: Dictionary) -> void:
 			target = override
 			property.usage |= PROPERTY_USAGE_READ_ONLY
 		else:
-			target = _override_saved_value
+			# Avoid `previously freed` values
+			target = _override_saved_value if _override_saved_value != null else null
