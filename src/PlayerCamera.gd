@@ -11,7 +11,7 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 
 @export var position_smoothing: float = 0.1
 @export var offset_smoothing: float = 0.125
-@export var gameplay_offset := Vector2.ONE
+@export var gameplay_offset_factor := Vector2.ONE
 @export var additional_offset := Vector2.ZERO
 @export var static_factor := Vector2.ZERO:
 	set(value):
@@ -23,12 +23,14 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 
 var player: Player
 var freefly := true
+## Value in pixels of the gameplay offset. Smoothed over time.
+var gameplay_offset: Vector2
 
 
 func _ready() -> void:
 	LevelManager.player_camera = self
 	player = LevelManager.player
-	offset = get_offset_target()
+	offset = get_offset_target(1/offset_smoothing)
 
 
 func _process(delta: float) -> void:
@@ -59,9 +61,8 @@ func _process(delta: float) -> void:
 		position.x += added_distance.x
 	if static_factor.y == 0:
 		position.y += added_distance.y
-	offset = offset.lerp(
-		get_offset_target().rotated(player.gameplay_rotation),
-		0.125 * framerate_compensation if static_factor.is_zero_approx() else 1.0)
+
+	offset = get_offset_target(framerate_compensation).rotated(player.gameplay_rotation)
 
 	# Clamp bottom edge of the screen to the ground
 	var half_screen_height = get_viewport_rect().size.y / 2
@@ -81,13 +82,16 @@ func local_target_distance_axis(distance: float, max_distance: float, framerate_
 		return (distance - sign(distance) * max_distance) * 0.2 * framerate_compensation
 
 
-func get_offset_target() -> Vector2:
+func get_offset_target(framerate_compensation: float) -> Vector2:
 	if LevelManager.platformer:
-		return Vector2.ZERO + additional_offset
+		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation)
 	else:
-		return Vector2(
-			((DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x),
-			(DEFAULT_OFFSET.y / zoom.y)) * gameplay_offset * (Vector2.ONE - static_factor) + additional_offset
+		gameplay_offset = gameplay_offset.lerp(
+			Vector2(
+				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
+				DEFAULT_OFFSET.y / zoom.y),
+			0.125 * framerate_compensation)
+	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset
 
 
 func _draw() -> void:
