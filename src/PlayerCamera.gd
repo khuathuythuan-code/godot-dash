@@ -13,13 +13,8 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 @export var offset_smoothing: float = 0.125
 @export var gameplay_offset_factor := Vector2.ONE
 @export var additional_offset := Vector2.ZERO
-@export var static_factor := Vector2.ZERO:
-	set(value):
-		# if static_factor.x < 0.01:
-		# 	static_factor.x = 0.0
-		# if static_factor.y < 0.01:
-		# 	static_factor.y = 0.0
-		static_factor = value.clamp(Vector2.ZERO, Vector2.ONE)
+@export var static_factor := Vector2.ZERO
+@export var shake_offset := Vector2.ZERO
 
 var player: Player
 var freefly := true
@@ -91,7 +86,7 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
 				DEFAULT_OFFSET.y / zoom.y),
 			0.125 * framerate_compensation)
-	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset
+	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset
 
 
 func _draw() -> void:

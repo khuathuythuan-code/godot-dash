@@ -1,4 +1,4 @@
-[gd_scene load_steps=228 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=230 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -187,6 +187,8 @@
 [ext_resource type="PackedScene" uid="uid://c28un3xgl8pr7" path="res://scenes/components/level_components/triggers/CameraGameplayOffsetTrigger.tscn" id="145_momrj"]
 [ext_resource type="Texture2D" uid="uid://ci6s0o5mq1p0q" path="res://assets/textures/triggers/CameraGameplayOffset.svg" id="146_6fwf3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="147_1ad2k"]
+[ext_resource type="PackedScene" uid="uid://br6tlxe8b4qug" path="res://scenes/components/level_components/triggers/CameraShakeTrigger.tscn" id="150_7k2uw"]
+[ext_resource type="Texture2D" uid="uid://wib5y5m8x16b" path="res://assets/textures/triggers/Shake.svg" id="151_tkktq"]
 [ext_resource type="PackedScene" uid="uid://dh7b5vqqkai36" path="res://scenes/components/level_components/triggers/ScaleTrigger.tscn" id="152_5ik7l"]
 [ext_resource type="PackedScene" uid="uid://ctxjk60spq5il" path="res://scenes/components/level_components/triggers/MoveTrigger.tscn" id="153_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://w2jrg14yci8j" path="res://scenes/components/level_components/triggers/SongTrigger.tscn" id="153_rke8t"]
@@ -3748,6 +3750,38 @@ grow_vertical = 2
 [node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraRotate/CenterAnchor"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("24_ji6ug")
+
+[node name="CameraShake" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraShake"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("150_7k2uw")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraShake"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/CameraShake/CenterAnchor"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("151_tkktq")
 
 [node name="GameplayRotate" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
