@@ -24,10 +24,13 @@ const START_SPEED: Array[float] = [
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
 @export var color_channels: Array[ColorChannelData]
+@export_storage var level_duration: float
 
 @onready var song_player := AudioStreamPlayer.new()
 
+var level_start_time: float
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
+
 var _pause_manager: Node
 
 func _ready() -> void:
@@ -53,6 +56,9 @@ func start_level() -> void:
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
 	LevelManager.player_camera.position = LevelManager.player.position
 	LevelManager.level_playing = true
+	level_duration = LevelManager.current_level_duration
+	LevelManager.current_level_duration = INF
+	level_start_time = Time.get_ticks_msec()
 
 
 func stop_level() -> void:
@@ -60,6 +66,12 @@ func stop_level() -> void:
 	LevelManager.player_duals.clear()
 	LevelManager.level_playing = false
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+func stop_timer() -> void:
+	if LevelManager.in_editor:
+		var level_end_time = Time.get_ticks_msec()
+		LevelManager.current_level_duration = level_end_time - level_start_time
 
 
 func setup_color_channel_watchers() -> void:
