@@ -80,6 +80,7 @@ func _new_level() -> void:
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	new_level.version_history = UndoRedo.new()
+	LevelManager.current_level_duration = INF
 	level_loaded.emit(new_level)
 
 
@@ -101,6 +102,7 @@ func _open_level(path: String) -> void:
 	editor.level.queue_free()
 	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	edit_handler.selection.clear()
+	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	$AutosaveTimer.stop()
