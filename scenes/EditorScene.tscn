@@ -1,4 +1,4 @@
-[gd_scene load_steps=232 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=234 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -82,9 +82,11 @@
 [ext_resource type="Texture2D" uid="uid://dqxrs4l0ucuu5" path="res://assets/textures/solids/regular_blocks/RegularSlope04.svg" id="38_wkjme"]
 [ext_resource type="Texture2D" uid="uid://dwu2fxe16epee" path="res://assets/textures/pads/YellowPad.svg" id="42_lu10t"]
 [ext_resource type="Texture2D" uid="uid://bxjs1u44gok7c" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalFront.png" id="42_rq471"]
+[ext_resource type="Texture2D" uid="uid://cffqorkpa6ctb" path="res://assets/textures/hazards/RegularSpikeMedium.svg" id="43_dl3g1"]
 [ext_resource type="PackedScene" uid="uid://qfmv2p1wt1tn" path="res://scenes/components/level_components/portals/gamemode_portals/CubePortal.tscn" id="43_ow5kt"]
 [ext_resource type="PackedScene" uid="uid://nsvkooc5od83" path="res://scenes/components/level_components/pads/YellowPad.tscn" id="43_t67qq"]
 [ext_resource type="Texture2D" uid="uid://bcdstukpupgb5" path="res://assets/textures/portals/gamemode_portals/robot_portal/RobotPortalFront.png" id="44_5nc47"]
+[ext_resource type="PackedScene" uid="uid://c06024p37tjwo" path="res://scenes/components/level_components/hazards/SpikeMedium.tscn" id="44_gehis"]
 [ext_resource type="Texture2D" uid="uid://cbbt17ufbgqqu" path="res://assets/textures/pads/RedPad.svg" id="44_iptn6"]
 [ext_resource type="PackedScene" uid="uid://bxutnqoa41uso" path="res://scenes/components/level_components/portals/gamemode_portals/RobotPortal.tscn" id="44_jb677"]
 [ext_resource type="Texture2D" uid="uid://byomqjoflsnnw" path="res://assets/textures/portals/gamemode_portals/ship_portal/ShipPortalFront.png" id="44_ll2xx"]
@@ -520,7 +522,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 2
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -2494,7 +2496,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Hazards" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = ""
@@ -2534,7 +2535,25 @@ script = ExtResource("7_f0stj")
 type = 1
 object = ExtResource("12_18txt")
 
-[node name="OutlineBlock01" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
+[node name="RegularSpikeMedium" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("43_dl3g1")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/RegularSpikeMedium"]
+script = ExtResource("7_f0stj")
+type = 3
+object = ExtResource("44_gehis")
+
+[node name="RegularSpikeFlat" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -2547,7 +2566,7 @@ expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/OutlineBlock01"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/RegularSpikeFlat"]
 script = ExtResource("7_f0stj")
 type = 2
 object = ExtResource("14_wyjb2")
@@ -2571,6 +2590,7 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
