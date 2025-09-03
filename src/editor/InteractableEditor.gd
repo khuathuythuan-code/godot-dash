@@ -12,6 +12,9 @@ var COMPONENT_BLACKLIST: Array[Script] = [
 	# PlayerCountChangerComponent, # we need to be able to set if duals use the same gravity
 	PlayerScaleChangerComponent,
 	TextureRotationPinComponent,
+	StopHeldJumpComponent,
+	StopDashComponent,
+	HiddenOutsideEditorComponent,
 ]
 
 # Querying this at runtime is overkill
