@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2o4o1630e50x"]
+[gd_scene load_steps=10 format=3 uid="uid://b2o4o1630e50x"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_7rp4f"]
 [ext_resource type="Texture2D" uid="uid://6tc6g218qrva" path="res://assets/textures/triggers/CameraOffset.svg" id="2_31tvo"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://tfriwfc7uruu" path="res://src/interactables/public_components/EasingComponent.gd" id="6_dhkcg"]
 [ext_resource type="Script" uid="uid://cilw18c36fh6" path="res://src/interactables/public_components/TriggerHitboxComponent.gd" id="7_roy2v"]
 [ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="8_3frdy"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="8_wlim6"]
 [ext_resource type="Script" uid="uid://m5i4ldkc8kfv" path="res://src/interactables/private_components/HitboxDisplay.gd" id="9_fkese"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ydte"]
@@ -50,3 +51,7 @@ hitbox = NodePath("../Hitbox")
 color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
+
+[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
+script = ExtResource("8_wlim6")
+metadata/_custom_type_script = "uid://b27xonb0bpa1d"
