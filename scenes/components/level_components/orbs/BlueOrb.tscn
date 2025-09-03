@@ -51,7 +51,7 @@ jump_boost = -0.706
 
 [node name="GravityFlipChangerComponent" type="Node" parent="."]
 script = ExtResource("8_knu32")
-gravity = 2
+flip_state = 2
 
 [node name="GravityTextureFlip" type="Node" parent="."]
 script = ExtResource("9_pskmb")
