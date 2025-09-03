@@ -121,7 +121,8 @@ func _on_playtest_pressed() -> void:
 	else:
 		LevelManager.player_duals.clear()
 		get_tree().reload_current_scene()
-		$LevelOperationsHandler._save_level()
+		if level.has_meta(&"packed_file_name"):
+			$LevelOperationsHandler._save_level()
 
 
 func _on_leave_pressed() -> void:
