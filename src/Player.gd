@@ -639,6 +639,7 @@ func _update_wave_trail(delta: float) -> void:
 
 
 func _get_spider_velocity_delta() -> float:
+	$Icon/Spider/SpiderCast.force_shapecast_update()
 	var _target_position = $Icon/Spider/SpiderCast.get_collision_point(0)
 	var _spider_velocity_delta: float = abs((_target_position - position).rotated(-gameplay_rotation).y)
 	_spider_velocity_delta -= LevelManager.CELL_SIZE/2.0 * scale.y
@@ -647,6 +648,7 @@ func _get_spider_velocity_delta() -> float:
 	_last_spider_trail_height = abs(result/SpiderTrail.SPIDER_TRAIL_HEIGHT)
 	_last_spider_trail.scale.x = horizontal_direction
 	_last_spider_trail.trail_rotation = gameplay_rotation
+	$Icon/Spider/SpiderCast.scale.y = 1
 	return result
 
 
