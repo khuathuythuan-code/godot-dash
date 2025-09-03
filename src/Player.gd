@@ -255,8 +255,6 @@ func get_direction() -> int:
 
 func _get_jump_state(options: int = 0) -> int:
 	var jump_state: int
-	if Input.is_action_just_pressed("jump") and is_on_floor() and jump_hold_disabled:
-		jump_hold_disabled = false
 	if options & EVALUATE_CLICK_BUFFER:
 		if _click_buffer_state == ClickBufferState.NOT_HOLDING and Input.is_action_just_pressed("jump") and not (is_on_floor() or is_on_ceiling()) \
 				and internal_gamemode != Gamemode.SHIP and internal_gamemode != Gamemode.SWING and internal_gamemode != Gamemode.WAVE:
@@ -265,6 +263,8 @@ func _get_jump_state(options: int = 0) -> int:
 			_click_buffer_state = ClickBufferState.JUMPING
 		if Input.is_action_just_released("jump") or ((is_on_floor() or is_on_ceiling()) and not Input.is_action_pressed("jump")):
 			_click_buffer_state = ClickBufferState.NOT_HOLDING
+	if Input.is_action_just_pressed("jump") and is_on_floor() and jump_hold_disabled:
+		jump_hold_disabled = false
 	if jump_hold_disabled:
 		jump_state = -1
 	elif internal_gamemode == Gamemode.CUBE:
@@ -353,7 +353,7 @@ func _compute_velocity(delta: float,
 		(is_on_ceiling() and jump_state >= 0) or
 		(is_on_floor() and get_last_slide_collision() != null and get_floor_angle_signed(true) != 0.0 and get_direction() != 0 and jump_state == 1))
 
-	if ((is_on_floor() and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
+	if (((is_on_floor() or is_on_ceiling()) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
 		_velocity.y = slope_velocity.y
 
 	#region Apply pads velocity
