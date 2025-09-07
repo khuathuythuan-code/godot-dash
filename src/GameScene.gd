@@ -19,7 +19,7 @@ func _ready() -> void:
 	if not get_parent() is EditorScene:
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		$PauseMenuLayer/PauseMenu.leave.connect(_leave_level)
-		if LevelManager.is_first_attempt:
+		if LevelManager.attempt == 0:
 			$FadeScreenLayer/FadeScreen.show()
 			$FadeScreenLayer/FadeScreen.modulate = Color("000000ff")
 		$EditorGridParallax/EditorGrid.hide()
@@ -38,14 +38,14 @@ func add_loaded_level(level: LevelProps) -> LevelProps:
 
 
 func _start_level() -> void:
-	if LevelManager.is_first_attempt:
+	if LevelManager.attempt == 0:
 		await get_tree().create_timer(0.2).timeout
 		$FadeScreenLayer/FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		await $FadeScreenLayer/FadeScreen.fade_finished
 		$Level.get_child(0).start_level()
-		LevelManager.is_first_attempt = false
 	else:
 		$Level.get_child(0).start_level()
+	LevelManager.attempt += 1
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 

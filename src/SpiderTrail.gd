@@ -15,7 +15,7 @@ func _ready() -> void:
 	scale.y = displayed_scale_x
 	rotation += trail_rotation
 	play()
-	animation_finished.connect(Callable(self, "queue_free"))
+	animation_finished.connect(queue_free)
 
 func _physics_process(_delta: float) -> void:
 	global_position = trail_global_position

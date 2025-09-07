@@ -10,7 +10,6 @@ func _ready() -> void:
 	$"../SettingsLayer".visible = visible
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
-	$VBoxContainer/LevelName.text = LevelManager.current_level_name
 
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed("restart_level"):
@@ -43,6 +42,7 @@ func _on_leave_pressed() -> void:
 	get_tree().change_scene_to_packed(main_scene)
 
 func _on_continue_pressed() -> void:
+	$VBoxContainer/LevelName.text = LevelManager.current_level.name
 	if $"../SettingsLayer/SettingsContainer".position.y == -$"../SettingsLayer/SettingsContainer".get_viewport_rect().size.y:
 		get_tree().paused = !get_tree().paused
 		if get_tree().paused:
