@@ -1,4 +1,4 @@
-[gd_scene load_steps=230 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=234 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -82,9 +82,11 @@
 [ext_resource type="Texture2D" uid="uid://dqxrs4l0ucuu5" path="res://assets/textures/solids/regular_blocks/RegularSlope04.svg" id="38_wkjme"]
 [ext_resource type="Texture2D" uid="uid://dwu2fxe16epee" path="res://assets/textures/pads/YellowPad.svg" id="42_lu10t"]
 [ext_resource type="Texture2D" uid="uid://bxjs1u44gok7c" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalFront.png" id="42_rq471"]
+[ext_resource type="Texture2D" uid="uid://cffqorkpa6ctb" path="res://assets/textures/hazards/RegularSpikeMedium.svg" id="43_dl3g1"]
 [ext_resource type="PackedScene" uid="uid://qfmv2p1wt1tn" path="res://scenes/components/level_components/portals/gamemode_portals/CubePortal.tscn" id="43_ow5kt"]
 [ext_resource type="PackedScene" uid="uid://nsvkooc5od83" path="res://scenes/components/level_components/pads/YellowPad.tscn" id="43_t67qq"]
 [ext_resource type="Texture2D" uid="uid://bcdstukpupgb5" path="res://assets/textures/portals/gamemode_portals/robot_portal/RobotPortalFront.png" id="44_5nc47"]
+[ext_resource type="PackedScene" uid="uid://c06024p37tjwo" path="res://scenes/components/level_components/hazards/SpikeMedium.tscn" id="44_gehis"]
 [ext_resource type="Texture2D" uid="uid://cbbt17ufbgqqu" path="res://assets/textures/pads/RedPad.svg" id="44_iptn6"]
 [ext_resource type="PackedScene" uid="uid://bxutnqoa41uso" path="res://scenes/components/level_components/portals/gamemode_portals/RobotPortal.tscn" id="44_jb677"]
 [ext_resource type="Texture2D" uid="uid://byomqjoflsnnw" path="res://assets/textures/portals/gamemode_portals/ship_portal/ShipPortalFront.png" id="44_ll2xx"]
@@ -173,8 +175,9 @@
 [ext_resource type="Texture2D" uid="uid://b6eeefnqgnv52" path="res://assets/textures/triggers/Spawn.svg" id="123_tl5y0"]
 [ext_resource type="Texture2D" uid="uid://btcr6ed74qke" path="res://assets/textures/triggers/Timewarp.svg" id="125_1ad2k"]
 [ext_resource type="Texture2D" uid="uid://b7fnymfkmta1d" path="res://assets/textures/triggers/ToggleMultipleGroups.svg" id="127_d556q"]
+[ext_resource type="Texture2D" uid="uid://kvlnc2ofgvcs" path="res://assets/textures/triggers/StopHeldJump.svg" id="135_wiub1"]
 [ext_resource type="PackedScene" uid="uid://fo7vbjwc7r60" path="res://scenes/components/level_components/letter_objects/StopJump.tscn" id="136_6fwf3"]
-[ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="136_vtwef"]
+[ext_resource type="Texture2D" uid="uid://wxnp5voc8u7a" path="res://assets/textures/triggers/StopDash.svg" id="136_mvta7"]
 [ext_resource type="PackedScene" uid="uid://bwjxj7jcot0cn" path="res://scenes/components/level_components/letter_objects/StopDash.tscn" id="137_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://bxhdprvq16gwq" path="res://scenes/components/level_components/triggers/AlphaTrigger.tscn" id="138_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://dv0sqs0l30luf" path="res://assets/textures/guis/editor/block_palette/Slopes.svg" id="138_ha8mj"]
@@ -182,7 +185,7 @@
 [ext_resource type="PackedScene" uid="uid://dn1mnmpt5m6ir" path="res://scenes/components/level_components/triggers/CameraZoomTrigger.tscn" id="141_t7625"]
 [ext_resource type="PackedScene" uid="uid://cn1x7e76gb4fp" path="res://scenes/components/level_components/triggers/CameraRotateTrigger.tscn" id="143_33w7i"]
 [ext_resource type="PackedScene" uid="uid://b2o4o1630e50x" path="res://scenes/components/level_components/triggers/CameraOffsetTrigger.tscn" id="143_e0lml"]
-[ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotate.tscn" id="144_wkjme"]
+[ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotateTrigger.tscn" id="144_wkjme"]
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
 [ext_resource type="PackedScene" uid="uid://c28un3xgl8pr7" path="res://scenes/components/level_components/triggers/CameraGameplayOffsetTrigger.tscn" id="145_momrj"]
 [ext_resource type="Texture2D" uid="uid://ci6s0o5mq1p0q" path="res://assets/textures/triggers/CameraGameplayOffset.svg" id="146_6fwf3"]
@@ -196,6 +199,8 @@
 [ext_resource type="PackedScene" uid="uid://dbh4utdrx5n2c" path="res://scenes/components/level_components/triggers/RotateTrigger.tscn" id="156_vtwef"]
 [ext_resource type="PackedScene" uid="uid://fxf42hm6fitr" path="res://scenes/components/level_components/triggers/SpawnTrigger.tscn" id="158_0v0om"]
 [ext_resource type="PackedScene" uid="uid://dfybg5ac3hmh6" path="res://scenes/components/level_components/triggers/ToggleTrigger.tscn" id="167_7k2uw"]
+[ext_resource type="PackedScene" uid="uid://b4troe7d14whv" path="res://scenes/components/level_components/triggers/EndLevelTrigger.tscn" id="170_mvta7"]
+[ext_resource type="Texture2D" uid="uid://ycaj60j88fld" path="res://assets/textures/triggers/EndLevel.svg" id="171_wiub1"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="179_0v0om"]
 [ext_resource type="PackedScene" uid="uid://ylswfd45fw38" path="res://scenes/components/game_components/LevelSettings.tscn" id="180_nk067"]
 [ext_resource type="PackedScene" uid="uid://b4vh26wn3qq40" path="res://scenes/components/game_components/InteractableEditor.tscn" id="183_momrj"]
@@ -346,10 +351,6 @@ script = ExtResource("12_egrfm")
 base = ExtResource("20_hgbal")
 name = "OutlineSlope04"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
-
-[sub_resource type="LabelSettings" id="LabelSettings_7k2uw"]
-font = ExtResource("136_vtwef")
-font_size = 64
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ac3bt"]
 radius = 2.0
@@ -521,7 +522,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 4
+current_tab = 2
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -2495,7 +2496,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Hazards" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = ""
@@ -2535,7 +2535,25 @@ script = ExtResource("7_f0stj")
 type = 1
 object = ExtResource("12_18txt")
 
-[node name="OutlineBlock01" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
+[node name="RegularSpikeMedium" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("43_dl3g1")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/RegularSpikeMedium"]
+script = ExtResource("7_f0stj")
+type = 3
+object = ExtResource("44_gehis")
+
+[node name="RegularSpikeFlat" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -2548,7 +2566,7 @@ expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/OutlineBlock01"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/ButtonContainer/RegularSpikeFlat"]
 script = ExtResource("7_f0stj")
 type = 2
 object = ExtResource("14_wyjb2")
@@ -3462,7 +3480,7 @@ focus_mode = 0
 theme = ExtResource("147_1ad2k")
 toggle_mode = true
 button_group = ExtResource("3_0vcbd")
-icon = ExtResource("6_2nlu4")
+icon = ExtResource("135_wiub1")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -3475,27 +3493,6 @@ script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("136_6fwf3")
 
-[node name="Letter" type="Label" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/ButtonContainer/LetterObjects/StopJump"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-pivot_offset = Vector2(256, 256)
-text = "stop
-jump"
-label_settings = SubResource("LabelSettings_7k2uw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="StopDash" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/ButtonContainer/LetterObjects"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3503,7 +3500,7 @@ focus_mode = 0
 theme = ExtResource("147_1ad2k")
 toggle_mode = true
 button_group = ExtResource("3_0vcbd")
-icon = ExtResource("6_2nlu4")
+icon = ExtResource("136_mvta7")
 flat = true
 icon_alignment = 1
 expand_icon = true
@@ -3516,28 +3513,8 @@ script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("137_gdkvu")
 
-[node name="Letter" type="Label" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/ButtonContainer/LetterObjects/StopDash"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -256.0
-offset_top = -256.0
-offset_right = 256.0
-offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-pivot_offset = Vector2(256, 256)
-text = "stop
-dash"
-label_settings = SubResource("LabelSettings_7k2uw")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Triggers" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 metadata/_tab_name = ""
@@ -4070,6 +4047,38 @@ grow_vertical = 2
 [node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/Toggle/CenterAnchor"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("127_d556q")
+
+[node name="EndLevel" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/EndLevel"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("170_mvta7")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/EndLevel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/ButtonContainer/EndLevel/CenterAnchor"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("171_wiub1")
 
 [node name="BlockPaletteIcons" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
 script = ExtResource("3_d5qub")

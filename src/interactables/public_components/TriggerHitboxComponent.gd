@@ -13,7 +13,6 @@ enum HitboxShape {
 		hitbox_shape = value
 		if _hitbox == null:
 			return
-		print_debug(value)
 		match value:
 			HitboxShape.LINE:
 				_hitbox.shape = SegmentShape2D.new()

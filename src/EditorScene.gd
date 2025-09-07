@@ -31,6 +31,7 @@ func _ready() -> void:
 				.set_trans(Tween.TRANS_EXPO) \
 				.from(Vector2.ONE * 0.4)
 	
+	LevelManager.attempt = 1
 	LevelManager.level_playing = false
 	$EditorCamera.enabled = true
 	%EditorModes.show()
@@ -52,6 +53,7 @@ func _ready() -> void:
 		level = LevelManager.game_scene.add_loaded_level(LevelManager.editor_level_backup.instantiate()) 
 	elif not $GameScene/Level.get_child_count():
 		level = LevelProps.new()
+		level.name = "New level"
 		level.version_history = UndoRedo.new()
 		LevelManager.game_scene.add_loaded_level(level)
 
@@ -107,6 +109,7 @@ func _on_playtest_pressed() -> void:
 		%LevelSettings.hide()
 		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
 		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
+		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.config.hide_grid_on_playtest
 		if not $EditHandler.selection.is_empty():
 			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
@@ -118,6 +121,8 @@ func _on_playtest_pressed() -> void:
 	else:
 		LevelManager.player_duals.clear()
 		get_tree().reload_current_scene()
+		if level.has_meta(&"packed_file_name"):
+			$LevelOperationsHandler._save_level()
 
 
 func _on_leave_pressed() -> void:

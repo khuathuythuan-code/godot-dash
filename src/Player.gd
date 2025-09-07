@@ -202,12 +202,11 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	if not collision:
 		return
 	var collision_angle: float = collision.get_angle(up_direction)
-	var restricted_collision_angle: float = -pingpong(collision_angle - PI/2, PI) + PI/2 * sign(collision_angle)
-	var is_floor: bool = restricted_collision_angle <= deg_to_rad(10.0)
-	var is_ceiling: bool = restricted_collision_angle >= deg_to_rad(180.0 - 10.0)
-	var is_wall: bool = restricted_collision_angle > floor_max_angle and restricted_collision_angle < PI - floor_max_angle
+	var is_floor: bool = collision_angle <= deg_to_rad(10.0)
+	var is_ceiling: bool = collision_angle >= deg_to_rad(180.0 - 10.0)
+	var is_wall: bool = collision_angle > floor_max_angle and collision_angle < PI - floor_max_angle
 	var is_slope := not is_floor and not is_ceiling
-	if is_wall and not LevelManager.platformer:
+	if (is_ceiling or is_wall) and not LevelManager.platformer:
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
@@ -255,8 +254,6 @@ func get_direction() -> int:
 
 func _get_jump_state(options: int = 0) -> int:
 	var jump_state: int
-	if Input.is_action_just_pressed("jump") and is_on_floor() and jump_hold_disabled:
-		jump_hold_disabled = false
 	if options & EVALUATE_CLICK_BUFFER:
 		if _click_buffer_state == ClickBufferState.NOT_HOLDING and Input.is_action_just_pressed("jump") and not (is_on_floor() or is_on_ceiling()) \
 				and internal_gamemode != Gamemode.SHIP and internal_gamemode != Gamemode.SWING and internal_gamemode != Gamemode.WAVE:
@@ -265,6 +262,8 @@ func _get_jump_state(options: int = 0) -> int:
 			_click_buffer_state = ClickBufferState.JUMPING
 		if Input.is_action_just_released("jump") or ((is_on_floor() or is_on_ceiling()) and not Input.is_action_pressed("jump")):
 			_click_buffer_state = ClickBufferState.NOT_HOLDING
+	if Input.is_action_just_pressed("jump") and is_on_floor() and jump_hold_disabled:
+		jump_hold_disabled = false
 	if jump_hold_disabled:
 		jump_state = -1
 	elif internal_gamemode == Gamemode.CUBE:
@@ -353,7 +352,7 @@ func _compute_velocity(delta: float,
 		(is_on_ceiling() and jump_state >= 0) or
 		(is_on_floor() and get_last_slide_collision() != null and get_floor_angle_signed(true) != 0.0 and get_direction() != 0 and jump_state == 1))
 
-	if ((is_on_floor() and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
+	if (((is_on_floor() or is_on_ceiling()) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
 		_velocity.y = slope_velocity.y
 
 	#region Apply pads velocity
@@ -639,6 +638,7 @@ func _update_wave_trail(delta: float) -> void:
 
 
 func _get_spider_velocity_delta() -> float:
+	$Icon/Spider/SpiderCast.force_shapecast_update()
 	var _target_position = $Icon/Spider/SpiderCast.get_collision_point(0)
 	var _spider_velocity_delta: float = abs((_target_position - position).rotated(-gameplay_rotation).y)
 	_spider_velocity_delta -= LevelManager.CELL_SIZE/2.0 * scale.y
@@ -647,6 +647,7 @@ func _get_spider_velocity_delta() -> float:
 	_last_spider_trail_height = abs(result/SpiderTrail.SPIDER_TRAIL_HEIGHT)
 	_last_spider_trail.scale.x = horizontal_direction
 	_last_spider_trail.trail_rotation = gameplay_rotation
+	$Icon/Spider/SpiderCast.scale.y = 1
 	return result
 
 

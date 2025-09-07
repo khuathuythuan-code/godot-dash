@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfybg5ac3hmh6"]
+[gd_scene load_steps=11 format=3 uid="uid://dfybg5ac3hmh6"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_iid00"]
 [ext_resource type="Texture2D" uid="uid://b7fnymfkmta1d" path="res://assets/textures/triggers/ToggleMultipleGroups.svg" id="2_iid00"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqc5xe1c2thcj" path="res://scenes/components/game_components/GroupDisplay.tscn" id="4_nuarc"]
 [ext_resource type="Script" uid="uid://cilw18c36fh6" path="res://src/interactables/public_components/TriggerHitboxComponent.gd" id="7_72sgc"]
 [ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="8_8kq85"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="9_iid00"]
 [ext_resource type="Script" uid="uid://m5i4ldkc8kfv" path="res://src/interactables/private_components/HitboxDisplay.gd" id="9_vhwbu"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nuarc"]
@@ -57,5 +58,9 @@ hitbox = NodePath("../Hitbox")
 color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
+
+[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
+script = ExtResource("9_iid00")
+metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [connection signal="send_to_group_display" from="ToggleComponent" to="Sprite/GroupDisplay" method="_on_target_group_component_changed"]

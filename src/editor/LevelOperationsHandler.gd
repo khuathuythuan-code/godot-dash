@@ -75,9 +75,12 @@ func _on_level_index_pressed(index:int) -> void:
 
 func _new_level() -> void:
 	var new_level := LevelProps.new()
+	editor.level.name = "tempname"
 	editor.level.queue_free()
+	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	new_level.version_history = UndoRedo.new()
+	LevelManager.current_level_duration = INF
 	level_loaded.emit(new_level)
 
 
@@ -99,6 +102,7 @@ func _open_level(path: String) -> void:
 	editor.level.queue_free()
 	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	edit_handler.selection.clear()
+	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	$AutosaveTimer.stop()
@@ -181,6 +185,7 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 
 func _on_save_level_as_dialog_file_selected(path:String) -> void:
 	editor.level.set_meta("packed_file_name", path.get_file())
+	editor.level.name = path.get_file().get_basename()
 	_save_level()
 
 
