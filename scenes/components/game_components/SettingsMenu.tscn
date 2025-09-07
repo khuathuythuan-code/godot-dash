@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=15 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
@@ -11,6 +11,16 @@
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="10_vf3uf"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_06nbq"]
+color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="InputEventAction" id="InputEventAction_bmwhr"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_ndunm"]
+events = [SubResource("InputEventAction_bmwhr")]
 
 [node name="SettingsMenu" type="TabContainer"]
 texture_filter = 4
@@ -95,6 +105,20 @@ metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 [node name="PropertySaveLoad" type="Node" parent="Graphics/MarginContainer/VBoxContainer/Window/Window Mode"]
 script = ExtResource("6_p6jor")
 config_property = &"window_mode"
+
+[node name="HSeparator" type="HSeparator" parent="Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Graphics/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="Graphics/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ndunm")
+text = " Close "
 
 [node name="Audio" type="ScrollContainer" parent="."]
 visible = false
@@ -181,6 +205,20 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"mute_game_on_unfocus"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="HSeparator" type="HSeparator" parent="Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Audio/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="Audio/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ndunm")
+text = " Close "
 
 [node name="Editor" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -304,6 +342,20 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 script = ExtResource("6_p6jor")
 config_property = &"trigger_hitbox_fill_alpha"
 
+[node name="HSeparator" type="HSeparator" parent="Editor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Editor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="Editor/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ndunm")
+text = " Close "
+
 [node name="Debug" type="ScrollContainer" parent="."]
 visible = false
 layout_mode = 2
@@ -351,7 +403,25 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"enable_easter_eggs"
 
+[node name="HSeparator" type="HSeparator" parent="Debug/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="Debug/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_ndunm")
+text = " Close "
+
+[connection signal="pressed" from="Graphics/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Master" to="." method="_on_game_volume_value_changed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Music" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Audio/MarginContainer/VBoxContainer/Volume/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
+[connection signal="pressed" from="Audio/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Editor/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Debug/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
