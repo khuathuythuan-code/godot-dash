@@ -1,7 +1,5 @@
 extends TabContainer
 
-var menu_tween: Tween
-
 func _ready() -> void:
 	Engine.max_fps = int(Config.config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
@@ -47,5 +45,4 @@ func _on_in_level_sfx_volume_value_changed(value:float) -> void:
 
 
 func _on_close_pressed() -> void:
-	menu_tween = create_tween()
-	menu_tween.tween_property($/root/MainScene/SettingsLayer/SettingsContainer, "position:y", -$/root/MainScene/SettingsLayer/SettingsContainer.get_viewport_rect().size.y, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	$/root/MainScene/SettingsLayer.hide_menu()
