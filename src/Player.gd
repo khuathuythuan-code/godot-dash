@@ -202,12 +202,11 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	if not collision:
 		return
 	var collision_angle: float = collision.get_angle(up_direction)
-	var restricted_collision_angle: float = -pingpong(collision_angle - PI/2, PI) + PI/2 * sign(collision_angle)
-	var is_floor: bool = restricted_collision_angle <= deg_to_rad(10.0)
-	var is_ceiling: bool = restricted_collision_angle >= deg_to_rad(180.0 - 10.0)
-	var is_wall: bool = restricted_collision_angle > floor_max_angle and restricted_collision_angle < PI - floor_max_angle
+	var is_floor: bool = collision_angle <= deg_to_rad(10.0)
+	var is_ceiling: bool = collision_angle >= deg_to_rad(180.0 - 10.0)
+	var is_wall: bool = collision_angle > floor_max_angle and collision_angle < PI - floor_max_angle
 	var is_slope := not is_floor and not is_ceiling
-	if is_wall and not LevelManager.platformer:
+	if (is_ceiling or is_wall) and not LevelManager.platformer:
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
