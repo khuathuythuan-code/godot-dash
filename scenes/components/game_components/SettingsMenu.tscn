@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=13 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
@@ -14,13 +14,6 @@
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_06nbq"]
 color = Color(1, 1, 1, 0.5)
-
-[sub_resource type="InputEventAction" id="InputEventAction_bmwhr"]
-action = &"ui_cancel"
-pressed = true
-
-[sub_resource type="Shortcut" id="Shortcut_ndunm"]
-events = [SubResource("InputEventAction_bmwhr")]
 
 [node name="SettingsMenu" type="TabContainer"]
 texture_filter = 4
@@ -117,7 +110,6 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Graphics/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-shortcut = SubResource("Shortcut_ndunm")
 text = " Close "
 
 [node name="Audio" type="ScrollContainer" parent="."]
@@ -217,7 +209,6 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Audio/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-shortcut = SubResource("Shortcut_ndunm")
 text = " Close "
 
 [node name="Editor" type="ScrollContainer" parent="."]
@@ -353,7 +344,6 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Editor/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-shortcut = SubResource("Shortcut_ndunm")
 text = " Close "
 
 [node name="Debug" type="ScrollContainer" parent="."]
@@ -414,7 +404,6 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Debug/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-shortcut = SubResource("Shortcut_ndunm")
 text = " Close "
 
 [connection signal="pressed" from="Graphics/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
