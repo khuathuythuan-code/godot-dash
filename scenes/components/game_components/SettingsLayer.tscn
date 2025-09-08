@@ -35,3 +35,10 @@ grow_vertical = 2
 [node name="SettingsMenu" parent="SettingsContainer/SettingsContainerInner" instance=ExtResource("2_v1s6v")]
 unique_name_in_owner = true
 layout_mode = 1
+
+[connection signal="pressed" from="SettingsContainer/SettingsContainerInner/SettingsMenu/Graphics/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_hide_menu"]
+[connection signal="pressed" from="SettingsContainer/SettingsContainerInner/SettingsMenu/Audio/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_hide_menu"]
+[connection signal="pressed" from="SettingsContainer/SettingsContainerInner/SettingsMenu/Editor/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_hide_menu"]
+[connection signal="pressed" from="SettingsContainer/SettingsContainerInner/SettingsMenu/Debug/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_hide_menu"]
+
+[editable path="SettingsContainer/SettingsContainerInner/SettingsMenu"]
