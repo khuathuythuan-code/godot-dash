@@ -1,10 +1,14 @@
 extends TabContainer
 
+signal closed
+
+
 func _ready() -> void:
 	Engine.max_fps = int(Config.config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	_on_window_mode_value_changed(Config.config.window_mode)
+
 
 func _on_max_fps_value_changed(value:float) -> void:
 	Engine.max_fps = int(value)
@@ -42,3 +46,7 @@ func _on_game_sfx_volume_value_changed(value:float) -> void:
 func _on_in_level_sfx_volume_value_changed(value:float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"In Level SFX"), linear_to_db(value))
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
+
+
+func _on_close_pressed() -> void:
+	closed.emit()
