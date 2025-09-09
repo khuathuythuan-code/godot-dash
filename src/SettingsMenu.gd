@@ -1,6 +1,5 @@
 extends TabContainer
 
-
 func _ready() -> void:
 	Engine.max_fps = int(Config.config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)

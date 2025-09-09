@@ -24,4 +24,3 @@ func _on_menu_bar_handler_level_loaded(level: LevelProps) -> void:
 func _on_close_pressed() -> void:
 	LevelManager.shortcut_blocker = null
 	hide()
-
