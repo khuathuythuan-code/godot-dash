@@ -39,6 +39,7 @@ var _tween_zoom
 var _pan_direction: set = _set_pan_direction
 var _pan_direction_mouse = Vector2.ZERO
 var _dragging = false
+var wrap_offset = null
 
 @onready var _target_zoom = zoom
 
@@ -87,7 +88,7 @@ func _input(event):
 				_tween_offset.kill()
 
 			if enable_wrap:
-				_wrap(event.relative, editor_viewport, event)
+				_wrap(event.relative, editor_viewport)
 			else:
 				clamp_offset(-event.relative / zoom)
 
@@ -139,7 +140,7 @@ func _set_pan_direction(value):
 		if _tween_offset != null:
 			_tween_offset.kill()
 
-func _wrap(relative: Vector2, viewport: Control, event, margins: float = 1) -> void:
+func _wrap(relative: Vector2, viewport: Control, margins: float = 1) -> void:
 	var mouse_position := get_viewport().get_mouse_position() + relative
 	var rect := viewport.get_rect()
 	var new_position := mouse_position
@@ -148,8 +149,14 @@ func _wrap(relative: Vector2, viewport: Control, event, margins: float = 1) -> v
 	if (mouse_position.x - new_position.x > rect.position.x + rect.size.x/2) or (mouse_position.y - new_position.y > rect.position.y + rect.size.y/2) \
 			or (mouse_position.x - new_position.x < 0) or (mouse_position.y - new_position.y < 0):
 		get_viewport().warp_mouse(new_position)
-	else:
-		clamp_offset(-event.relative / zoom)
+		if !wrap_offset:
+			wrap_offset = new_position - mouse_position
+		else:
+			clamp_offset(-relative / zoom + wrap_offset / zoom)
+			wrap_offset = null
+	else: 
+		clamp_offset(-relative / zoom)
+		wrap_offset = null
 
 ## After changing the node's global position, set [code]offset = offset[/code] then call this to stay within limits.
 func clamp_offset(relative := Vector2()):
