@@ -640,11 +640,10 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="MarginVSeparatorLeft" type="VSeparator" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
+[node name="SpacerLeft" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 mouse_filter = 2
-theme = ExtResource("4_eh0ur")
-theme_override_constants/separation = 15
 
 [node name="PreviousLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
@@ -653,11 +652,10 @@ icon = ExtResource("15_7mwgk")
 flat = true
 script = ExtResource("5_wiac2")
 
-[node name="VSeparator" type="VSeparator" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
+[node name="Spacer" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
-theme = ExtResource("4_eh0ur")
 
 [node name="NextLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
@@ -666,11 +664,10 @@ icon = ExtResource("16_btcin")
 flat = true
 script = ExtResource("5_wiac2")
 
-[node name="MarginVSeparatorRight" type="VSeparator" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
+[node name="SpacerRight" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
+custom_minimum_size = Vector2(15, 0)
 layout_mode = 2
 mouse_filter = 2
-theme = ExtResource("4_eh0ur")
-theme_override_constants/separation = 15
 
 [node name="BackButton" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer"]
 layout_mode = 1
