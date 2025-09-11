@@ -149,11 +149,14 @@ func _wrap(relative: Vector2, viewport: Control, margins: float = 1) -> void:
 	if (mouse_position.x - new_position.x > rect.position.x + rect.size.x/2) or (mouse_position.y - new_position.y > rect.position.y + rect.size.y/2) \
 			or (mouse_position.x - new_position.x < 0) or (mouse_position.y - new_position.y < 0):
 		get_viewport().warp_mouse(new_position)
-		if !wrap_offset:
-			wrap_offset = new_position - mouse_position
+		if DisplayServer.get_name() == "X11":
+			if !wrap_offset:
+				wrap_offset = new_position - mouse_position
+			else:
+				clamp_offset(-relative / zoom + wrap_offset / zoom)
+				wrap_offset = null
 		else:
-			clamp_offset(-relative / zoom + wrap_offset / zoom)
-			wrap_offset = null
+			clamp_offset(-relative / zoom)
 	else: 
 		clamp_offset(-relative / zoom)
 		wrap_offset = null
