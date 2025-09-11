@@ -23,7 +23,7 @@ signal zoom_changed
 ## If [code]true[/code], panning can also be done with the arrow keys (and space bar for centering).
 @export var pan_keyboard := true
 
-## If [code]true[/code], the map can be dragged while holding the left mouse button.
+## If [code]true[/code], the map can be dragged while holding the middle mouse button.
 @export var drag := true
 
 ## If [code]true[/code], the mouse will warp to the opposite edge when going close to an edge, like in the Godot editor.
@@ -39,6 +39,7 @@ var _tween_zoom
 var _pan_direction: set = _set_pan_direction
 var _pan_direction_mouse = Vector2.ZERO
 var _dragging = false
+var wrap_offset = null
 
 @onready var _target_zoom = zoom
 
@@ -88,8 +89,9 @@ func _input(event):
 
 			if enable_wrap:
 				_wrap(event.relative, editor_viewport)
-			
-			clamp_offset(-event.relative / zoom)
+			else:
+				clamp_offset(-event.relative / zoom)
+
 		elif pan_margin > 0:
 			var camera_size = get_viewport_rect().size
 			
@@ -147,6 +149,17 @@ func _wrap(relative: Vector2, viewport: Control, margins: float = 1) -> void:
 	if (mouse_position.x - new_position.x > rect.position.x + rect.size.x/2) or (mouse_position.y - new_position.y > rect.position.y + rect.size.y/2) \
 			or (mouse_position.x - new_position.x < 0) or (mouse_position.y - new_position.y < 0):
 		get_viewport().warp_mouse(new_position)
+		if DisplayServer.get_name() == "X11":
+			if !wrap_offset:
+				wrap_offset = new_position - mouse_position
+			else:
+				clamp_offset(-relative / zoom + wrap_offset / zoom)
+				wrap_offset = null
+		else:
+			clamp_offset(-relative / zoom)
+	else: 
+		clamp_offset(-relative / zoom)
+		wrap_offset = null
 
 ## After changing the node's global position, set [code]offset = offset[/code] then call this to stay within limits.
 func clamp_offset(relative := Vector2()):
