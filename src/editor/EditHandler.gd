@@ -367,4 +367,3 @@ func remove_gizmo(_selection = null) -> void:
 		rotate_gizmo.queue_free()
 	selection_changed.disconnect(remove_gizmo)
 	LevelManager.shortcut_blocker = null
-
