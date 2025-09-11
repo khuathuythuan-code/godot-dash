@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjbdfuvh8nxcn"]
+[gd_scene load_steps=11 format=3 uid="uid://cjbdfuvh8nxcn"]
 
 [ext_resource type="Script" uid="uid://bccihwc0pstxx" path="res://src/interactables/PadInteractable.gd" id="1_6nccy"]
 [ext_resource type="PackedScene" uid="uid://05h0teol0odp" path="res://scenes/particle_emitter_presets/PadParticles.tscn" id="4_26ak1"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="5_hg5x3"]
 [ext_resource type="Script" uid="uid://bprbt31kxjc76" path="res://src/interactables/public_components/ReboundComponent.gd" id="6_actth"]
-[ext_resource type="Shader" uid="uid://b7xaqusvxvr8f" path="res://scenes/components/level_components/pads/ReboundPad.gdshader" id="6_akqco"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="8_lapvy"]
 [ext_resource type="Script" uid="uid://b26yjae2kfyeo" path="res://src/interactables/private_components/ReboundPadSprite.gd" id="9_50uy8"]
 
@@ -29,9 +28,6 @@ scale_curve = SubResource("CurveTexture_dol5j")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxki2"]
 size = Vector2(92, 24)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q354n"]
-shader = ExtResource("6_akqco")
 
 [node name="ReboundPad" type="Area2D"]
 process_priority = 1
@@ -64,6 +60,5 @@ clip_children = 1
 polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 
 [node name="ReboundPadSprite" type="Node2D" parent="ClippingMask"]
-material = SubResource("ShaderMaterial_q354n")
 position = Vector2(0, 64)
 script = ExtResource("9_50uy8")
