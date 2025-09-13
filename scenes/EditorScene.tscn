@@ -1,4 +1,4 @@
-[gd_scene load_steps=234 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=235 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -207,6 +207,7 @@
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
+[ext_resource type="PackedScene" uid="uid://d3pdkogipaw3r" path="res://scenes/components/game_components/EditorManual.tscn" id="200_5tfcf"]
 
 [sub_resource type="Resource" id="Resource_aofxv"]
 script = ExtResource("12_egrfm")
@@ -4429,6 +4430,9 @@ unique_name_in_owner = true
 visible = false
 metadata/_edit_lock_ = true
 
+[node name="EditorManual" parent="EditorUI" instance=ExtResource("200_5tfcf")]
+visible = false
+
 [node name="Gizmos" type="CanvasLayer" parent="."]
 layer = 91
 follow_viewport_enabled = true
@@ -4509,10 +4513,11 @@ base = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginCon
 detail = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/Detail Color")
 color_channel_editor = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/Channel Editor/ColorChannelEditor")
 
-[node name="LevelOperationsHandler" type="Node" parent="." node_paths=PackedStringArray("edit_handler", "level_settings", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
+[node name="LevelOperationsHandler" type="Node" parent="." node_paths=PackedStringArray("edit_handler", "level_settings", "editor_manual", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
 script = ExtResource("189_ao6md")
 edit_handler = NodePath("../EditHandler")
 level_settings = NodePath("../EditorUI/LevelSettings")
+editor_manual = NodePath("../EditorUI/EditorManual")
 open_dialog = NodePath("../OpenLevelDialog")
 import_dialog = NodePath("../ImportAndOpenLevelDialog")
 save_as_dialog = NodePath("../SaveLevelAsDialog")
@@ -4596,6 +4601,7 @@ cancel_button_text = "Open Existing"
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Level" to="LevelOperationsHandler" method="_on_level_index_pressed"]
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" method="_on_index_pressed"]
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" method="_on_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Help" to="LevelOperationsHandler" method="_on_help_index_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/Playtest" to="." method="_on_playtest_pressed"]
 [connection signal="ready" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/BlockPaletteIcons" method="_on_tab_container_ready"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft90" to="EditHandler" method="_on_rotate_left_90_pressed"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3pdkogipaw3r"]
+
+[ext_resource type="Script" uid="uid://c83t6751qcb28" path="res://src/editor/EditorManual.gd" id="1_4qs60"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_f8eqg"]
+[ext_resource type="Script" uid="uid://cuih47milvqcs" path="res://src/gui/SectionHeading.gd" id="2_clw4i"]
+[ext_resource type="LabelSettings" uid="uid://cge013srcxvfk" path="res://resources/SectionHeadings.tres" id="3_4qs60"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_f8eqg"]
+color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="InputEventAction" id="InputEventAction_bmwhr"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_4qs60"]
+events = [SubResource("InputEventAction_bmwhr")]
+
+[node name="EditorManual" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4qs60")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+material = ExtResource("1_f8eqg")
+layout_mode = 2
+current_tab = 0
+
+[node name="Controls" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Camera" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_clw4i")
+label_settings = ExtResource("3_4qs60")
+metadata/_custom_type_script = "uid://cuih47milvqcs"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Camera"]
+layout_mode = 2
+text = "Move - Middle Click
+Zoom In - Scroll Up / +
+Zoom Out - Scroll Down / -"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_f8eqg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Close" type="Button" parent="TabContainer/Controls/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_4qs60")
+text = " Close "
+
+[connection signal="pressed" from="TabContainer/Controls/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
