@@ -36,17 +36,36 @@ metadata/_tab_index = 0
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="Camera" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+[node name="Navigation" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("2_clw4i")
 label_settings = ExtResource("3_4qs60")
 metadata/_custom_type_script = "uid://cuih47milvqcs"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Camera"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Navigation"]
 layout_mode = 2
-text = "Move - Middle Click
-Zoom In - Scroll Up / +
-Zoom Out - Scroll Down / -"
+text = "Move camera - Middle Click
+Zoom in - Scroll Up / +
+Zoom out - Scroll Down / -
+Change bottom panel tab - 1 / 2 / 3"
+fit_content = true
+
+[node name="Editing" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_clw4i")
+label_settings = ExtResource("3_4qs60")
+metadata/_custom_type_script = "uid://cuih47milvqcs"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Editing"]
+layout_mode = 2
+text = "Rotate selected object 90° - E
+Rotate selected object -90° - Q
+Move selected object up 1 tile - W / Up Arrow
+Move selected object left 1 tile - A / Left Arrow
+Move selected object down 1 tile - S / Down Arrow
+Move selected object right 1 tile - D / Right Arrow
+
+Hold Shift to halve movement. Ex. Shift + W moves 0.5 tiles instead of 1 tile."
 fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/VBoxContainer"]
