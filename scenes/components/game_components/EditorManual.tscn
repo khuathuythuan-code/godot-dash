@@ -60,6 +60,11 @@ metadata/_custom_type_script = "uid://cuih47milvqcs"
 layout_mode = 2
 text = "Undo - Control + Z
 Redo - Control + Shift + Z / Control + Y
+Duplicate selected object - Control + D
+Delete selected object - Delete / X
+Deselect object - Alt + D / Alt + Left Click
+
+Open rotation gizmo - R
 Rotate selected object 90° - E
 Rotate selected object -90° - Q
 Move selected object up 1 tile - W / Up Arrow
