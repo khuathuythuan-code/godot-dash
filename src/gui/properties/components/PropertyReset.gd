@@ -1,7 +1,7 @@
 extends Node
 class_name PropertyReset
 
-@onready var parent := get_parent() as AbstractProperty
+@onready var parent := get_parent() as Property
 var input: Control
 
 func _unhandled_input(event: InputEvent) -> void:
