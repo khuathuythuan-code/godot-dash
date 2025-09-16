@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3pdkogipaw3r"]
+[gd_scene load_steps=10 format=3 uid="uid://d3pdkogipaw3r"]
 
 [ext_resource type="Script" uid="uid://c83t6751qcb28" path="res://src/editor/EditorManual.gd" id="1_4qs60"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_f8eqg"]
 [ext_resource type="Script" uid="uid://cuih47milvqcs" path="res://src/gui/SectionHeading.gd" id="2_clw4i"]
 [ext_resource type="LabelSettings" uid="uid://cge013srcxvfk" path="res://resources/SectionHeadings.tres" id="3_4qs60"]
+[ext_resource type="Script" uid="uid://bvwupnoijqe24" path="res://src/editor/manual/NavigationControls.gd" id="5_5rkbl"]
+[ext_resource type="Script" uid="uid://b0x6mft145vnx" path="res://src/editor/manual/EditingControls.gd" id="5_ruc8k"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_f8eqg"]
 color = Color(1, 1, 1, 0.5)
@@ -61,6 +63,7 @@ Scroll Down / -
 1 / 2 / 3"
 fit_content = true
 horizontal_alignment = 2
+script = ExtResource("5_5rkbl")
 
 [node name="Editing" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
 layout_mode = 2
@@ -86,8 +89,7 @@ Move selected object up 1 tile
 Move selected object left 1 tile
 Move selected object down 1 tile
 Move selected object right 1 tile
-
-Hold Shift to halve movement. Ex. Shift + W moves 0.5 tiles instead of 1 tile."
+"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Editing/MarginContainer"]
@@ -107,6 +109,7 @@ S / Down Arrow
 D / Right Arrow"
 fit_content = true
 horizontal_alignment = 2
+script = ExtResource("5_ruc8k")
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/VBoxContainer"]
 layout_mode = 2
