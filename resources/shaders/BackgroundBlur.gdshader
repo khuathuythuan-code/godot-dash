@@ -7,7 +7,7 @@ uniform float mix_factor: hint_range(0.0, 1.0, 0.01);
 
 void fragment() {
     float average = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
-    if (COLOR.r == average && COLOR.g == average && COLOR.b == average && round(COLOR.r + COLOR.g + COLOR.b) != 3.0) {
+    if (COLOR.r == average && COLOR.g == average && COLOR.b == average && round(average * 3.0) != 3.0) {
         vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV, lod);
         color = mix(color, gui_color, mix_factor);
         COLOR = color;
