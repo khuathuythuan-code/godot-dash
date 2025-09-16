@@ -26,7 +26,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ## Compilation
 
-**⚠️ Make sure to use Godot 4.4. ⚠️**
+**⚠️ Make sure to use Godot 4.5. ⚠️**
 
 - Clone the repo locally or download the source code as a zip from the releases.
 - Import the project.godot file (if you cloned the repo) or the source code zip (if you downloaded it from the releases).
