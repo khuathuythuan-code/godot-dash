@@ -1,5 +1,6 @@
+@abstract
 extends BoxContainer
-class_name AbstractProperty
+class_name Property
 
 
 # Used to serialize the value
@@ -8,14 +9,11 @@ var _value: Variant
 func _init() -> void:
 	custom_minimum_size.y = 32.0
 
-func reset() -> void:
-	pass
+@abstract func reset() -> void
 
-func refresh() -> void:
-	pass
+@abstract func refresh() -> void
 
-func set_input_state(enabled: bool) -> void:
-	pass
+@abstract func set_input_state(enabled: bool) -> void
 
 
 func submitted_release_focus(_new_value):

@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name ArrayProperty
 
 signal value_changed(value: Array)

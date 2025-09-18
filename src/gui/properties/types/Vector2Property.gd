@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name Vector2Property
 
 signal value_changed(value: float)
