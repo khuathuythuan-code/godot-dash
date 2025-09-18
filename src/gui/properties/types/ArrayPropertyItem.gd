@@ -1,11 +1,11 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name ArrayPropertyItem
 
 signal value_changed(value: Variant)
 
 var reorder_button: Button
-var property: AbstractProperty
+var property: Property
 var delete_button: Button
 
 func _ready() -> void:

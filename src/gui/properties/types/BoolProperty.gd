@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name BoolProperty
 
 signal value_changed(value: bool)

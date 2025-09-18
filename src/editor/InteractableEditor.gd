@@ -90,7 +90,7 @@ func build_ui(interactables: Array[Interactable]) -> void:
 				last_section_heading.label_alignment = HORIZONTAL_ALIGNMENT_LEFT
 				last_section_heading.hide()
 				continue
-			var property: AbstractProperty
+			var property: Property
 			property = generate_property(field.type, field)
 			property.name = field_name.capitalize()
 			property.set_meta("component_name", component.name)
@@ -112,8 +112,8 @@ func build_ui(interactables: Array[Interactable]) -> void:
 	load_properties.call_deferred(first_interactable, self)
 
 
-func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty:
-	var property: AbstractProperty
+func generate_property(variant_type: int, field: Dictionary) -> Property:
+	var property: Property
 	match variant_type:
 		TYPE_INT:
 			if field["hint"] == PROPERTY_HINT_ENUM:
@@ -181,10 +181,10 @@ func generate_property(variant_type: int, field: Dictionary) -> AbstractProperty
 
 
 func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
-	var properties := NodeUtils.get_children_of_type(ui_root, AbstractProperty, true)
+	var properties := NodeUtils.get_children_of_type(ui_root, Property, true)
 	if properties.is_empty():
 		return
-	for property in properties as Array[AbstractProperty]:
+	for property in properties as Array[Property]:
 		var remove_connections := func(connection):
 			if not "watcher" in connection.callable.get_method():
 				property.value_changed.disconnect(connection.callable)
@@ -216,10 +216,10 @@ func refresh_marker(enabled: bool, marker_script: Script, interactables: Array[I
 
 
 func load_properties(interactable: Interactable, ui_root: Control) -> void:
-	var properties := NodeUtils.get_children_of_type(ui_root, AbstractProperty, true)
+	var properties := NodeUtils.get_children_of_type(ui_root, Property, true)
 	if properties.is_empty():
 		return
-	for property in properties as Array[AbstractProperty]:
+	for property in properties as Array[Property]:
 		if property is BoolProperty and property in marker_properties.values():
 			property.set_value_no_signal(interactable.has(marker_properties.find_key(property)))
 			continue
@@ -234,7 +234,7 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 		property.set_value_no_signal(value)
 
 
-static func handle_range_hint(field: Dictionary, property: AbstractProperty) -> AbstractProperty:
+static func handle_range_hint(field: Dictionary, property: Property) -> Property:
 	var hint_string: String = field.hint_string
 	var split_hint_string := Array(hint_string.split(","))
 	var min_value = split_hint_string[0]

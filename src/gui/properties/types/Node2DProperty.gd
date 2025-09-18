@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name Node2DProperty
 
 signal value_changed(value: Node2D)

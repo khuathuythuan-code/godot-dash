@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name FloatSliderProperty
 
 signal value_changed(value: float)

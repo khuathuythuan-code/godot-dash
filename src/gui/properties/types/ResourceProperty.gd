@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name ResourceProperty
 
 signal value_changed(value: Resource)

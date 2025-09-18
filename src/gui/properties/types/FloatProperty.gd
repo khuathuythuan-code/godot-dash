@@ -1,5 +1,5 @@
 @tool
-extends AbstractProperty
+extends Property
 class_name FloatProperty
 
 signal value_changed(value: float)

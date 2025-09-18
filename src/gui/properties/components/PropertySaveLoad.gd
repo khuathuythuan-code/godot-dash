@@ -4,7 +4,7 @@ class_name PropertySaveLoad
 
 @export var config_property: StringName
 @export var property_owner: Node
-@onready var parent := get_parent() as AbstractProperty
+@onready var parent := get_parent() as Property
 var _property_owner: Variant
 
 
