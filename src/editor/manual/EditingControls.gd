@@ -1,5 +1,3 @@
-@tool
-
 extends RichTextLabel
 
 
