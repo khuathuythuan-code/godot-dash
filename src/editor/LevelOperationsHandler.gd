@@ -5,6 +5,7 @@ signal level_loaded(level: LevelProps)
 
 @export var edit_handler: EditHandler
 @export var level_settings: LevelSettings
+@export var editor_manual: EditorManual
 @export var open_dialog: FileDialog
 @export var import_dialog: FileDialog
 @export var save_as_dialog: FileDialog
@@ -71,6 +72,13 @@ func _on_level_index_pressed(index:int) -> void:
 		7: # Level Options
 			level_settings.show()
 			LevelManager.shortcut_blocker = level_settings
+
+
+func _on_help_index_pressed(index: int) -> void:
+	match index:
+		0: # Manual
+			editor_manual.show()
+			LevelManager.shortcut_blocker = editor_manual
 
 
 func _new_level() -> void:
