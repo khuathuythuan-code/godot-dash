@@ -5,8 +5,7 @@ extends Control
 
 
 func _ready() -> void:
-	var restore_displayed_group := func(): $Label.text = displayed_group
-	restore_displayed_group.call_deferred()
+	_on_target_group_component_changed.call_deferred(displayed_group)
 
 
 func _on_target_group_component_changed(target_group: String) -> void:
