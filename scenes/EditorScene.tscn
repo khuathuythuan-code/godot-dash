@@ -1,4 +1,4 @@
-[gd_scene load_steps=235 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=236 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -208,7 +208,7 @@
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
-[ext_resource type="PackedScene" uid="uid://d3pdkogipaw3r" path="res://scenes/components/game_components/EditorManual.tscn" id="200_5tfcf"]
+[ext_resource type="PackedScene" path="res://scenes/components/game_components/EditorManual.tscn" id="200_5tfcf"]
 
 [sub_resource type="Resource" id="Resource_aofxv"]
 script = ExtResource("12_egrfm")
@@ -4750,6 +4750,7 @@ level_already_exists_dialog = NodePath("../LevelAlreadyExists")
 one_shot = true
 
 [node name="OpenLevelDialog" type="FileDialog" parent="."]
+oversampling_override = 1.0
 title = "Open"
 initial_position = 2
 size = Vector2i(1088, 720)
@@ -4763,6 +4764,7 @@ use_native_dialog = true
 
 [node name="ImportAndOpenLevelDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "Import and open"
 initial_position = 2
 size = Vector2i(1088, 720)
@@ -4778,6 +4780,7 @@ option_0/default = 1
 
 [node name="SaveLevelAsDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "Save as"
 initial_position = 2
 size = Vector2i(1088, 720)
@@ -4789,6 +4792,7 @@ use_native_dialog = true
 
 [node name="ExportLevelDialog" type="FileDialog" parent="."]
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "Export"
 initial_position = 2
 size = Vector2i(1088, 720)
@@ -4798,22 +4802,23 @@ filters = PackedStringArray("*.level")
 use_native_dialog = true
 
 [node name="SaveChangesBeforeOpening" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
 initial_position = 2
-size = Vector2i(289, 106)
-force_native = true
+size = Vector2i(290, 106)
 ok_button_text = "Save"
 dialog_text = "Save changes before opening level?"
 
 [node name="CorruptedLevelAcceptDialog" type="AcceptDialog" parent="."]
+oversampling_override = 1.0
 title = "Warning!"
 initial_position = 2
 size = Vector2i(588, 100)
 dialog_text = "This exported level doesn't contain a valid .tscn file and can't be imported."
 
 [node name="LevelAlreadyExists" type="ConfirmationDialog" parent="."]
+oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(514, 100)
-force_native = true
 ok_button_text = "Overwrite"
 dialog_text = "A level with the same name already exists in the game directory!"
 cancel_button_text = "Open Existing"
