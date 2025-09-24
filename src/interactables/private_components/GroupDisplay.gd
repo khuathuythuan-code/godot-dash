@@ -5,7 +5,7 @@ extends Control
 
 
 func _ready() -> void:
-	_on_target_group_component_changed.call_deferred(displayed_group)
+	_on_target_group_component_changed.call_deferred(GroupEditor.GROUP_PREFIX + displayed_group)
 
 
 func _on_target_group_component_changed(target_group: String) -> void:
