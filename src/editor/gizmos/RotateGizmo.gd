@@ -75,7 +75,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func remove_gizmo(reset_angle: bool = false) -> void:
 	rotating = RotationState.DISABLED
-	tween = create_tween()
+	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()
 	var do_reset_angle := func(angle: float):
 		var angle_delta := angle - handle_position.angle()
