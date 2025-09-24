@@ -40,8 +40,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 				var grid_offset_to_level_origin := Vector2(0, 64)
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
-				level.add_child(object, true)
-				NodeUtils.change_owner_recursive(object, level)
+
+				# Version history
+				var add_object := func(_object: Node):
+					level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, level)
+				var remove_object := func(_object: Node):
+					_object.get_parent().remove_child(_object)
+				level.version_history.create_action("Placed object " + object.name)
+				level.version_history.add_do_method(add_object.bind(object))
+				level.version_history.add_undo_method(remove_object.bind(object))
+				level.version_history.commit_action()
+
 				object.scene_file_path = ""
 				var to_be_colored: Array
 				to_be_colored.append(object.get_node("Base") if object.has_node("Base") else object)
@@ -54,21 +64,6 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					hsv_watcher.set_owner(LevelManager.current_level)
 				object.rotation_degrees = placed_object_rotation_degrees
 
-				# Version history
-				var add_object := func(_object: Node):
-					if _object.is_in_group("deleted"):
-						_object.remove_from_group("deleted")
-					_object.show()
-					_object.process_mode = Node.PROCESS_MODE_INHERIT
-				var remove_object := func(_object: Node):
-					_object.hide()
-					_object.process_mode = Node.PROCESS_MODE_DISABLED
-					_object.add_to_group("deleted")
-				level.version_history.create_action("Place object " + object.name)
-				level.version_history.add_do_method(add_object.bind(object))
-				level.version_history.add_do_reference(object)
-				level.version_history.add_undo_method(remove_object.bind(object))
-				level.version_history.commit_action()
 	
 				# Change selection
 				edit_handler.clear_selection()
@@ -81,7 +76,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not LevelProps:
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
 				object_deleted.emit(overlapping_areas[-1])
-				get_area(overlapping_areas[-1]).queue_free()
+				var object := get_area(overlapping_areas[-1])
+
+				# Version history
+				var delete_object := func(_object: Node):
+					_object.get_parent().remove_child(_object)
+				var restore_object := func(_object: Node):
+					level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, level)
+				level.version_history.create_action("Deleted object " + object.name)
+				level.version_history.add_do_method(delete_object.bind(object))
+				level.version_history.add_undo_method(restore_object.bind(object))
+				level.version_history.commit_action()
 
 
 func get_area(area: Area2D) -> Node:
