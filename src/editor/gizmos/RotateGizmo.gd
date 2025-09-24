@@ -30,6 +30,7 @@ var quick_rotation_initial_angle: float
 
 
 func _ready() -> void:
+	LevelManager.shortcut_blocker = self
 	tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(self, ^"scale_multiplier", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
@@ -56,6 +57,7 @@ func _ready() -> void:
 	snap_interval_input.max_value = 360.0
 	snap_interval_input.default = 45.0
 	snap_interval_input.refresh()
+	snap_interval_input.input.custom_minimum_size.x = 0
 	# Quick rotation
 	if quick_rotation:
 		snap_interval_input.set_value_no_signal(0.001)
@@ -64,6 +66,29 @@ func _ready() -> void:
 		angle_input.hide()
 		snap_interval_input.hide()
 		quick_rotation_is_first_frame = true
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_cancel"):
+		await remove_gizmo(true)
+
+
+func remove_gizmo(reset_angle: bool = false) -> void:
+	rotating = RotationState.DISABLED
+	tween = create_tween()
+	tween.set_parallel()
+	var do_reset_angle := func(angle: float):
+		var angle_delta := angle - handle_position.angle()
+		handle_position = handle_position.rotated(angle_delta)
+		angle_changed.emit(rad_to_deg(angle_delta))
+	tween.tween_property(self, ^"scale_multiplier", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	if reset_angle:
+		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	await tween.finished
+	if LevelManager.shortcut_blocker == self:
+		LevelManager.shortcut_blocker = null
+	queue_free()
 
 
 func _physics_process(_delta: float) -> void:

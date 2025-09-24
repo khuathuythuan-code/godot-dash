@@ -357,13 +357,8 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 
 
 func remove_gizmo(_selection = null) -> void:
+	if not rotate_gizmo:
+		return
 	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
-	var tween := create_tween()
-	tween.set_parallel()
-	tween.tween_property(rotate_gizmo, ^"scale_multiplier", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
-	tween.tween_property(rotate_gizmo, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	await tween.finished
-	if rotate_gizmo != null:
-		rotate_gizmo.queue_free()
+	await rotate_gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
-	LevelManager.shortcut_blocker = null
