@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -13,6 +13,25 @@ thickness = 2
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t62t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1vdk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jaexg"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+border_width_top = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10srq"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+border_color = Color(0.18, 0.18, 0.18, 1)
+corner_detail = 3
 
 [sub_resource type="Gradient" id="Gradient_ostnf"]
 interpolation_mode = 1
@@ -79,6 +98,8 @@ MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_8t62t")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_o1vdk")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_jaexg")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_10srq")
 TransButton/base_type = &"Button"
 TransButton/colors/font_color = Color(0, 0, 0, 1)
 TransButton/colors/font_disabled_color = Color(0, 0, 0, 0.870588)
