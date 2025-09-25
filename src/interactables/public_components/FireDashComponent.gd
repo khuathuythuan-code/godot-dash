@@ -9,7 +9,7 @@ var initial_gameplay_rotation: float
 var initial_horizontal_direction: int
 
 func _ready() -> void:
-	$"../DashOrbPreview".visible = LevelManager.in_editor
+	$"../DashOrbPreview".visible = Editor.in_editor
 	parent.interacted.connect(start)
 
 func start(player: Player) -> void:

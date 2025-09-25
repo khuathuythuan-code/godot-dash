@@ -47,7 +47,7 @@ enum Axis {
 func _ready() -> void:
 	if get_parent() is Parallax2D:
 		get_parent().repeat_size = Vector2(grid_size) * cell_size * 2
-	visible = LevelManager.in_editor
+	visible = Editor.in_editor
 
 
 func _draw() -> void:

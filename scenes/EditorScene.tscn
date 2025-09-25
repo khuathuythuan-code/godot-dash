@@ -208,7 +208,7 @@
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
-[ext_resource type="PackedScene" path="res://scenes/components/game_components/EditorManual.tscn" id="200_5tfcf"]
+[ext_resource type="PackedScene" uid="uid://d3pdkogipaw3r" path="res://scenes/components/game_components/EditorManual.tscn" id="200_5tfcf"]
 
 [sub_resource type="Resource" id="Resource_aofxv"]
 script = ExtResource("12_egrfm")

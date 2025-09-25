@@ -71,14 +71,14 @@ func _on_level_index_pressed(index:int) -> void:
 			export_dialog.show()
 		7: # Level Options
 			level_settings.show()
-			LevelManager.shortcut_blocker = level_settings
+			Editor.shortcut_blocker = level_settings
 
 
 func _on_help_index_pressed(index: int) -> void:
 	match index:
 		0: # Manual
 			editor_manual.show()
-			LevelManager.shortcut_blocker = editor_manual
+			Editor.shortcut_blocker = editor_manual
 
 
 func _new_level() -> void:
@@ -163,12 +163,12 @@ func _save_level() -> void:
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		LevelManager.editor_level_backup.pack(editor.level)
+		Editor.editor_level_backup.pack(editor.level)
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.config.autosave_delay * 60)
-	ResourceSaver.save(LevelManager.editor_level_backup, "user://created_levels/levels/" + file_name)
+	ResourceSaver.save(Editor.editor_level_backup, "user://created_levels/levels/" + file_name)
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 
 
@@ -232,10 +232,10 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		LevelManager.editor_level_backup.pack(editor.level)
+		Editor.editor_level_backup.pack(editor.level)
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
-	ResourceSaver.save(LevelManager.editor_level_backup, OS.get_temp_dir().path_join(file_name)) # We don't care about overwriting a tempfile.
+	ResourceSaver.save(Editor.editor_level_backup, OS.get_temp_dir().path_join(file_name)) # We don't care about overwriting a tempfile.
 	var level_bytes := FileAccess.get_file_as_bytes(OS.get_temp_dir().path_join(file_name))
 	writer.write_file(level_bytes)
 	writer.close_file()

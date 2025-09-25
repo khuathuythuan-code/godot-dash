@@ -30,7 +30,7 @@ var quick_rotation_initial_angle: float
 
 
 func _ready() -> void:
-	LevelManager.shortcut_blocker = self
+	Editor.shortcut_blocker = self
 	tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(self, ^"scale_multiplier", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
@@ -86,8 +86,8 @@ func remove_gizmo(reset_angle: bool = false) -> void:
 	if reset_angle:
 		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	await tween.finished
-	if LevelManager.shortcut_blocker == self:
-		LevelManager.shortcut_blocker = null
+	if Editor.shortcut_blocker == self:
+		Editor.shortcut_blocker = null
 	queue_free()
 
 

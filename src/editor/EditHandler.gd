@@ -26,7 +26,7 @@ var rotate_gizmo: RotateGizmo
 func _ready() -> void:
 	_reset_selection_zone(true)
 	selection_changed.connect(_reset_selection_pivot)
-	var update_global_clipboard := func(new_clipboard): LevelManager.editor_clipboard = new_clipboard
+	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
 func _physics_process(delta: float) -> void:
@@ -348,7 +348,7 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	rotate_gizmo = RotateGizmo.new()
 	rotate_gizmo.quick_rotation = quick
 	if quick:
-		LevelManager.shortcut_blocker = self
+		Editor.shortcut_blocker = self
 	gizmo_layer.add_child(rotate_gizmo)
 	rotate_gizmo.global_position = selection_pivot
 	rotate_gizmo.angle_changed.connect(_rotate_selection)

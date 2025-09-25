@@ -14,7 +14,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed("restart_level"):
 		_on_restart_pressed()
-	if event.is_action_pressed("pause_level") and LevelManager.shortcut_blocker == null and not SceneTransition.is_transitioning:
+	if event.is_action_pressed("pause_level") and Editor.shortcut_blocker == null and not SceneTransition.is_transitioning:
 		_on_continue_pressed()
 	if event.is_action_pressed("hide_pause_menu"):
 		visible = not visible
@@ -37,7 +37,7 @@ func _on_leave_pressed() -> void:
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.game_scene = null
-	LevelManager.editor_clipboard.clear()
+	Editor.editor_clipboard.clear()
 	SceneTransition.is_transitioning = false
 	get_tree().change_scene_to_packed(main_scene)
 
@@ -52,7 +52,7 @@ func _on_continue_pressed() -> void:
 			$"../SettingsLayer".show()
 		else:
 			unpaused.emit()
-			if LevelManager.in_editor:
+			if Editor.in_editor:
 				# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			else:

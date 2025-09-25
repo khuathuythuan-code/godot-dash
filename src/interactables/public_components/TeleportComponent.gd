@@ -40,7 +40,7 @@ func _ready() -> void:
 	if redirect_velocity:
 		parent.collision_layer |= 1 << 10 # Velocity redirectors
 	parent.interacted.connect(teleport)
-	$"../TargetLink".visible = LevelManager.in_editor
+	$"../TargetLink".visible = Editor.in_editor
 
 
 func teleport(player: Player) -> void:

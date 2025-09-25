@@ -11,7 +11,6 @@ var current_level_name: String
 var current_level_duration: float = INF
 var attempt: int
 var level_playing: bool
-var in_editor: bool
 var pause_manager: Node
 var player: Player
 var player_duals: Array[Player]
@@ -20,10 +19,6 @@ var background_sprites: Array[Sprite2D]
 var ground_sprites: Array[GroundObject]
 var level_song_player: AudioStreamPlayer
 var platformer := false
-var editor_clipboard: Array[NodePath]
-var editor_backup := PackedScene.new()
-var editor_level_backup := PackedScene.new()
-var shortcut_blocker: Node
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)

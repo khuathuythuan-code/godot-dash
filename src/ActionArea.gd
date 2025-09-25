@@ -23,7 +23,7 @@ func _ready() -> void:
 	_letter = get_node_or_null("Letter")
 	_ninepatchrect = get_node_or_null("NinePatchRect")
 	_hitbox = $Hitbox
-	if LevelManager.in_editor:
+	if Editor.in_editor:
 		var editor_selection_collider := preload("res://scenes/components/level_components/EditorSelectionCollider.tscn").instantiate() as EditorSelectionCollider
 		editor_selection_collider.type = EditorSelectionCollider.Type.TRIGGER
 		editor_selection_collider.id = hash(get_script())
@@ -31,7 +31,7 @@ func _ready() -> void:
 		NodeUtils.set_child_owner(self, editor_selection_collider)
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint() or get_tree().debug_collisions_hint or LevelManager.in_editor:
+	if Engine.is_editor_hint() or get_tree().debug_collisions_hint or Editor.in_editor:
 		_hitbox.debug_color = Color("00ff0000")
 		_ninepatchrect.visible = true
 		_letter.visible = true

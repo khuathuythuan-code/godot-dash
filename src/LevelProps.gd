@@ -71,7 +71,7 @@ func stop_level() -> void:
 
 
 func stop_timer() -> void:
-	if LevelManager.in_editor:
+	if Editor.in_editor:
 		LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
 		print_debug(LevelManager.current_level_duration)
 

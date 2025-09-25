@@ -41,7 +41,7 @@ func start(_player: Player) -> void:
 	group_objects.map(func(object): inital_alphas.set(object, object.modulate.a))
 	if group_objects.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
-	if mode == Mode.COPY and copy_target == null and LevelManager.in_editor:
+	if mode == Mode.COPY and copy_target == null and Editor.in_editor:
 		Toasts.error("In %s: copy target is unset" % parent.name)
 
 

@@ -54,7 +54,7 @@ func start(_player: Player) -> void:
 	if mode == Mode.MOVE_TOWARDS:
 		if move_towards:
 			group_objects.map(func(object): initial_distances.set(object, move_towards.global_position - object.global_position))
-		elif LevelManager.in_editor:
+		elif Editor.in_editor:
 			Toasts.error("In %s: move towards is unset" % parent.name)
 
 

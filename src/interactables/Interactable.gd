@@ -7,7 +7,7 @@ var components: Array[Component]
 
 
 func _ready() -> void:
-	if LevelManager.in_editor:
+	if Editor.in_editor:
 		var editor_selection_collider := get_node_or_null("EditorSelectionCollider")
 		if editor_selection_collider == null:
 			editor_selection_collider = preload("res://scenes/components/level_components/EditorSelectionCollider.tscn").instantiate() as EditorSelectionCollider

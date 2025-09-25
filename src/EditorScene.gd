@@ -42,15 +42,15 @@ func _ready() -> void:
 	$GameScene/EditorGridParallax/EditorGrid.queue_redraw()
 	$GameScene/PauseMenuLayer/PauseMenu.leave.connect(_on_leave_pressed)
 
-	LevelManager.in_editor = true
+	Editor.in_editor = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#%MenuBar/View.set_item_submenu(0, 'PanelVisibility') temporarily removed because it causes an  error
 	$EditorCamera.zoom_changed.connect($GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
 
-	if LevelManager.editor_level_backup.can_instantiate():
-		level = LevelManager.game_scene.add_loaded_level(LevelManager.editor_level_backup.instantiate()) 
+	if Editor.editor_level_backup.can_instantiate():
+		level = LevelManager.game_scene.add_loaded_level(Editor.editor_level_backup.instantiate()) 
 	elif not $GameScene/Level.get_child_count():
 		level = LevelProps.new()
 		level.name = "New level"
@@ -115,8 +115,8 @@ func _on_playtest_pressed() -> void:
 			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
 			$EditHandler.selection.clear()
 		await get_tree().process_frame
-		LevelManager.editor_level_backup.pack(level)
-		LevelManager.editor_backup.pack(self)
+		Editor.editor_level_backup.pack(level)
+		Editor.editor_backup.pack(self)
 		$GameScene._start_level()
 	else:
 		LevelManager.player_duals.clear()

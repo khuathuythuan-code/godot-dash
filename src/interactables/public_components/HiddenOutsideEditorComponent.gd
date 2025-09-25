@@ -4,4 +4,4 @@ class_name HiddenOutsideEditorComponent
 
 func _ready() -> void:
 	super()
-	parent.visible = LevelManager.in_editor
+	parent.visible = Editor.in_editor
