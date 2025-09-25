@@ -34,12 +34,14 @@ func _on_leave_pressed() -> void:
 	SongManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
 	SceneTransition.is_transitioning = true
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.game_scene = null
 	Editor.editor_clipboard.clear()
 	SceneTransition.is_transitioning = false
 	get_tree().change_scene_to_packed(main_scene)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 
 func _on_continue_pressed() -> void:
 	$VBoxContainer/LevelName.text = LevelManager.current_level.name
