@@ -44,6 +44,7 @@ const WAVE_TRAIL_WIDTH: float = 50.0
 const WAVE_TRAIL_LENGTH: int = 250
 const SPIDER_TRAIL: PackedScene = preload("res://scenes/components/game_components/SpiderTrail.tscn")
 const DASH_BOOM: PackedScene = preload("res://scenes/components/game_components/DashBoom.tscn")
+const GROUND_HIT_PARTICLE: PackedScene = preload("uid://c3pbl5e1vp2ck")
 const ICON_LERP_FACTOR := 0.5
 const SHIP_ROTATION_LERP_FACTOR := 0.15
 const PLATFORMER_ACCELERATION := 5.0
@@ -169,6 +170,7 @@ func _physics_process(delta: float) -> void:
 	_handle_collision(last_collision)
 	move_and_slide()
 	_rotate_sprite_degrees(delta)
+	$GroundRaycast/GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
 	_update_wave_trail(delta)
 	if _last_spider_trail != null:
 		add_child(_last_spider_trail)
@@ -214,6 +216,9 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 		$GroundCollider.shape = slope_collider
 		$Icon/Spider/SpiderCast.shape = slope_collider
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
+	if is_floor and not dash_control:
+		var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
+		$GroundRaycast/GroundParticles.add_child(ground_hit_particles)
 
 
 func get_floor_angle_signed(last_slide: bool) -> float:
@@ -319,6 +324,7 @@ func _compute_velocity(delta: float,
 	$KillColliderCircularHazard.rotation = gameplay_rotation
 	$GroundRaycast.rotation = gameplay_rotation
 	$GroundRaycast.scale.y = gravity_flip
+	$GroundRaycast.scale.x = horizontal_direction
 	$SlopeShapecast.rotation = gameplay_rotation
 	$SlopeShapecast.scale.y = gravity_flip
 
@@ -674,6 +680,8 @@ func _player_death() -> void:
 	$DeathEffect.frame = 0
 	$DeathEffect.play()
 	$DeathParticles.restart()
+	$DashParticles.emitting = false
+	$GroundRaycast/GroundParticles.emitting = false
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 
 

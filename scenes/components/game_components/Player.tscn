@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://bl48psvuka73y"]
+[gd_scene load_steps=112 format=3 uid="uid://bl48psvuka73y"]
 
 [ext_resource type="Script" uid="uid://dlfmgrvw7q01y" path="res://src/Player.gd" id="1_nvqsc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="2_6ab5b"]
@@ -49,13 +49,12 @@ size = Vector2(126, 126)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xclbr"]
 radius = 63.0
 
-[sub_resource type="Gradient" id="Gradient_locq2"]
+[sub_resource type="Gradient" id="Gradient_vov5s"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.5, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_81vt3"]
-gradient = SubResource("Gradient_locq2")
+gradient = SubResource("Gradient_vov5s")
 
 [sub_resource type="Curve" id="Curve_rn54d"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -123,6 +122,30 @@ animations = [{
 "name": &"default",
 "speed": 30.0
 }]
+
+[sub_resource type="Curve" id="Curve_244xe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vov5s"]
+curve = SubResource("Curve_244xe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_244xe"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(-1, -0.5, 0)
+spread = 20.0
+initial_velocity_min = 96.0
+initial_velocity_max = 160.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_vov5s")
+color_ramp = SubResource("GradientTexture1D_81vt3")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2txy"]
 radius = 64.0
@@ -1596,7 +1619,7 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_g4xb6")
 nodes/TimeScale/position = Vector2(120, 120)
 nodes/fall/node = SubResource("AnimationNodeAnimation_ssp1h")
 nodes/fall/position = Vector2(-40, 120)
-node_connections = [&"TimeScale", 0, &"fall", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"fall"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eebv5"]
 animation = &"idle-alt"
@@ -1611,12 +1634,12 @@ animation = &"jump"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmjtn"]
 graph_offset = Vector2(-176.157, 11.5537)
+nodes/output/position = Vector2(440, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_yf4fu")
 nodes/TimeScale/position = Vector2(260, 120)
 nodes/jump/node = SubResource("AnimationNodeAnimation_iccba")
 nodes/jump/position = Vector2(122.464, 117.205)
-nodes/output/position = Vector2(440, 140)
-node_connections = [&"TimeScale", 0, &"jump", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"jump"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xchl5"]
 animation = &"run"
@@ -1633,7 +1656,7 @@ nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_ow8tj")
 nodes/PlayerSpeed/position = Vector2(20, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8p8op")
 nodes/TimeScale/position = Vector2(160, 140)
-node_connections = [&"PlayerSpeed", 0, &"Animation", &"TimeScale", 0, &"PlayerSpeed", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"Animation", &"TimeScale", 0, &"PlayerSpeed"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j3k2l"]
 
@@ -1650,7 +1673,7 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ksqvo")
 nodes/TimeScale/position = Vector2(160, 100)
 nodes/walk/node = SubResource("AnimationNodeAnimation_tv3m1")
 nodes/walk/position = Vector2(-120, 100)
-node_connections = [&"PlayerSpeed", 0, &"walk", &"TimeScale", 0, &"PlayerSpeed", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"walk", &"TimeScale", 0, &"PlayerSpeed"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j87l4"]
 xfade_time = 0.1
@@ -1875,6 +1898,17 @@ sprite_frames = SubResource("SpriteFrames_whmfp")
 autoplay = "default"
 frame_progress = 0.144669
 offset = Vector2(-96, 0)
+
+[node name="GroundRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 128)
+collision_mask = 32
+
+[node name="GroundParticles" type="GPUParticles2D" parent="GroundRaycast"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(0, 64)
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_244xe")
 
 [node name="WaveTrail" type="Line2D" parent="."]
 unique_name_in_owner = true
@@ -2206,10 +2240,6 @@ libraries = {
 [node name="RobotTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="GroundRaycast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 128)
-collision_mask = 32
 
 [node name="ParentedObjects" type="Node2D" parent="."]
 editor_description = "Anchor for any level objects that need to be parented to the player (to keep it tidy)."
