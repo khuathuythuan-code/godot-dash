@@ -35,6 +35,7 @@ func _on_leave_pressed() -> void:
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
 	SceneTransition.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	LevelManager.current_level.process_mode = Node.PROCESS_MODE_DISABLED
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.game_scene = null
