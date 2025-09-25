@@ -10,6 +10,7 @@ enum EditorAction {
 }
 
 @export var block_palette_button_group: ButtonGroup
+@export var editor_camera: MapCamera2D
 
 var level: LevelProps:
 	set(value):

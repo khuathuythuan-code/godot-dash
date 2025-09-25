@@ -90,6 +90,10 @@ func _new_level() -> void:
 	new_level.version_history = UndoRedo.new()
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(new_level)
+	# Reset camera to default position
+	editor.editor_camera.offset = Vector2(640.0, 413.0)
+	editor.editor_camera.zoom_factor = 1.25
+	editor.editor_camera.zoom = Vector2.ONE * 0.8
 
 
 func _open_level(path: String) -> void:
@@ -113,6 +117,10 @@ func _open_level(path: String) -> void:
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
+	# Reset camera to default position
+	editor.editor_camera.offset = Vector2(640.0, 413.0)
+	editor.editor_camera.zoom_factor = 1.25
+	editor.editor_camera.zoom = Vector2.ONE * 0.8
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.config.autosave_delay * 60)
 

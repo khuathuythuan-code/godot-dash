@@ -360,11 +360,12 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aju4o"]
 size = Vector2(2, 2)
 
-[node name="LevelEditor" type="Control"]
+[node name="LevelEditor" type="Control" node_paths=PackedStringArray("editor_camera")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ftcrp")
 block_palette_button_group = ExtResource("3_0vcbd")
+editor_camera = NodePath("EditorCamera")
 metadata/_edit_vertical_guides_ = [-111.0]
 metadata/_edit_lock_ = true
 
