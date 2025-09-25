@@ -143,7 +143,7 @@ func _on_go_to_created_levels_list_pressed() -> void:
 		history._change_phantomcamera(active_pcam, created_levels_list_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
-		if Editor.editor_backup:
+		if Editor.editor_backup.can_instantiate():
 			get_tree().change_scene_to_packed(Editor.editor_backup)
 		else:
 			get_tree().change_scene_to_packed(editor_scene)
