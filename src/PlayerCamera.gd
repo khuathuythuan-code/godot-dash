@@ -21,6 +21,8 @@ var freefly := true
 ## Value in pixels of the gameplay offset. Smoothed over time.
 var gameplay_offset: Vector2
 
+var _smoothed_gameplay_rotation: float
+
 
 func _ready() -> void:
 	LevelManager.player_camera = self
@@ -33,6 +35,7 @@ func _process(delta: float) -> void:
 		return
 	queue_redraw()
 	var framerate_compensation := delta * 60.0
+	_smoothed_gameplay_rotation = lerpf(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation)
 
 	var player_distance = player.position - position
 	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI/2) * GroundData.offset
@@ -57,7 +60,7 @@ func _process(delta: float) -> void:
 	if static_factor.y == 0:
 		position.y += added_distance.y
 
-	offset = get_offset_target(framerate_compensation).rotated(player.gameplay_rotation)
+	offset = get_offset_target(framerate_compensation).rotated(_smoothed_gameplay_rotation)
 
 	# Clamp bottom edge of the screen to the ground
 	var half_screen_height = get_viewport_rect().size.y / 2
@@ -81,6 +84,7 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 	if LevelManager.platformer:
 		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation)
 	else:
+		print_debug(gameplay_offset)
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
 				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
