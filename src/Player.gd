@@ -170,7 +170,7 @@ func _physics_process(delta: float) -> void:
 	_handle_collision(last_collision)
 	move_and_slide()
 	_rotate_sprite_degrees(delta)
-	$GroundRaycast/GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
+	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
 	_update_wave_trail(delta)
 	if _last_spider_trail != null:
 		add_child(_last_spider_trail)
@@ -218,7 +218,7 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
 	if is_floor and not dash_control:
 		var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
-		$GroundRaycast/GroundParticles.add_child(ground_hit_particles)
+		%GroundParticles.add_child(ground_hit_particles)
 
 
 func get_floor_angle_signed(last_slide: bool) -> float:
@@ -324,7 +324,6 @@ func _compute_velocity(delta: float,
 	$KillColliderCircularHazard.rotation = gameplay_rotation
 	$GroundRaycast.rotation = gameplay_rotation
 	$GroundRaycast.scale.y = gravity_flip
-	$GroundRaycast.scale.x = horizontal_direction
 	$SlopeShapecast.rotation = gameplay_rotation
 	$SlopeShapecast.scale.y = gravity_flip
 
@@ -498,6 +497,11 @@ func _rotate_sprite_degrees(delta: float):
 					delta * 60 * ICON_LERP_FACTOR)
 	else:
 		sprite_floor_angle = lerp_angle(sprite_floor_angle, gameplay_rotation, delta * 60 * ICON_LERP_FACTOR)
+
+	$GroundParticlesOrigin.scale.y = gravity_flip
+	$GroundParticlesOrigin.scale.x = horizontal_direction
+	$GroundParticlesOrigin.rotation = sprite_floor_angle
+
 	#region cube
 	$Icon/Cube.scale.y = 1.0
 	if horizontal_direction != 0:
@@ -681,7 +685,7 @@ func _player_death() -> void:
 	$DeathEffect.play()
 	$DeathParticles.restart()
 	$DashParticles.emitting = false
-	$GroundRaycast/GroundParticles.emitting = false
+	%GroundParticles.emitting = false
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 
 
