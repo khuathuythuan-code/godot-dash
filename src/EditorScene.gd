@@ -126,6 +126,8 @@ func _on_playtest_pressed() -> void:
 
 
 func _on_leave_pressed() -> void:
+	Editor.editor_level_backup.pack(level)
+	Editor.editor_backup.pack(self)
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)

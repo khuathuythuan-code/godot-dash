@@ -143,8 +143,10 @@ func _on_go_to_created_levels_list_pressed() -> void:
 		history._change_phantomcamera(active_pcam, created_levels_list_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
-		# get_tree().change_scene_to_packed(level_editor)
-		get_tree().change_scene_to_packed(editor_scene)
+		if Editor.editor_backup:
+			get_tree().change_scene_to_packed(Editor.editor_backup)
+		else:
+			get_tree().change_scene_to_packed(editor_scene)
 
 func _on_go_to_icon_garage_pressed() -> void:
 	level_selector.hide()
