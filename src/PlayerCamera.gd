@@ -84,7 +84,6 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 	if LevelManager.platformer:
 		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation)
 	else:
-		print_debug(gameplay_offset)
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
 				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
