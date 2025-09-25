@@ -1899,16 +1899,20 @@ autoplay = "default"
 frame_progress = 0.144669
 offset = Vector2(-96, 0)
 
-[node name="GroundRaycast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 128)
-collision_mask = 32
+[node name="GroundParticlesOrigin" type="Node2D" parent="."]
 
-[node name="GroundParticles" type="GPUParticles2D" parent="GroundRaycast"]
+[node name="GroundParticles" type="GPUParticles2D" parent="GroundParticlesOrigin"]
+unique_name_in_owner = true
 modulate = Color(0, 1, 1, 1)
 position = Vector2(0, 64)
+emitting = false
 amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_244xe")
+
+[node name="GroundRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 128)
+collision_mask = 32
 
 [node name="WaveTrail" type="Line2D" parent="."]
 unique_name_in_owner = true

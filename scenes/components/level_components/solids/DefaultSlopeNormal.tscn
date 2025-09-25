@@ -21,4 +21,4 @@ shape = SubResource("ConvexPolygonShape2D_onp7b")
 debug_color = Color(0, 0.071, 0.702, 0.25)
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("3_ubt82")]
-type = 5
+type = 6
