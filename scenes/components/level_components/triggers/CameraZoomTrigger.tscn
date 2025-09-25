@@ -52,6 +52,6 @@ color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="HitboxDisplay"]
+[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
 script = ExtResource("8_hjlwe")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
