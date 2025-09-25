@@ -679,7 +679,10 @@ func _player_death() -> void:
 
 func _on_death_restart() -> void:
 	LevelManager.player_duals.clear()
-	get_tree().reload_current_scene()
+	if Editor.in_editor:
+		get_tree().change_scene_to_packed(Editor.editor_backup)
+	else:
+		get_tree().reload_current_scene()
 
 
 func _on_kill_collider_solid_body_entered(_body:Node2D) -> void:

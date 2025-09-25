@@ -103,6 +103,12 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
+		if not $EditHandler.selection.is_empty():
+			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
+			$EditHandler.selection.clear()
+		await get_tree().process_frame
+		Editor.editor_level_backup.pack(level)
+		Editor.editor_backup.pack(self)
 		%MenuBarContainer.hide()
 		%EditorModes.hide()
 		%SidePanel.hide()
@@ -111,16 +117,10 @@ func _on_playtest_pressed() -> void:
 		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
 		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.config.hide_grid_on_playtest
-		if not $EditHandler.selection.is_empty():
-			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
-			$EditHandler.selection.clear()
-		await get_tree().process_frame
-		Editor.editor_level_backup.pack(level)
-		Editor.editor_backup.pack(self)
 		$GameScene._start_level()
 	else:
 		LevelManager.player_duals.clear()
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_packed(Editor.editor_backup)
 		if level.has_meta(&"packed_file_name"):
 			$LevelOperationsHandler._save_level()
 
