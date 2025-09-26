@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="1_5npyg"]
 [ext_resource type="Script" uid="uid://c3dqcr6r1jkr3" path="res://src/InstanciatedOneShotParticle.gd" id="2_0fo3v"]
 
-[sub_resource type="Gradient" id="Gradient_vov5s"]
-interpolation_mode = 2
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="Curve" id="Curve_vov5s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0467227, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_81vt3"]
-gradient = SubResource("Gradient_vov5s")
+[sub_resource type="CurveTexture" id="CurveTexture_0fo3v"]
+curve = SubResource("Curve_vov5s")
 
 [sub_resource type="Curve" id="Curve_244xe"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -28,7 +28,7 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
-color_ramp = SubResource("GradientTexture1D_81vt3")
+alpha_curve = SubResource("CurveTexture_0fo3v")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0

@@ -45,6 +45,7 @@ const WAVE_TRAIL_LENGTH: int = 250
 const SPIDER_TRAIL: PackedScene = preload("res://scenes/components/game_components/SpiderTrail.tscn")
 const DASH_BOOM: PackedScene = preload("res://scenes/components/game_components/DashBoom.tscn")
 const GROUND_HIT_PARTICLE: PackedScene = preload("uid://c3pbl5e1vp2ck")
+const UFO_PARTICLE: PackedScene = preload("uid://nt6jgd7lk03t")
 const ICON_LERP_FACTOR := 0.5
 const SHIP_ROTATION_LERP_FACTOR := 0.15
 const PLATFORMER_ACCELERATION := 5.0
@@ -517,6 +518,7 @@ func _rotate_sprite_degrees(delta: float):
 	#endregion
 	#region ship/swing
 	$Icon/Ship.scale.y = sign(gravity_flip)
+	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and _get_jump_state() > 0
 	$Icon/Swing.scale.y = 1.0
 	$Icon/Ship.scale.x = dash_horizontal_direction
 	$Icon/Swing.scale.x = dash_horizontal_direction
@@ -549,8 +551,8 @@ func _rotate_sprite_degrees(delta: float):
 	#endregion
 	#region ufo
 	$Icon/UFO.scale.y = sign(gravity_flip)
-	$Icon/Jetpack.scale.y = sign(gravity_flip)
 	$Icon/UFO.scale.x = dash_horizontal_direction
+	$Icon/Jetpack.scale.y = sign(gravity_flip)
 	$Icon/Jetpack.scale.x = dash_horizontal_direction
 	if not dash_control:
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
@@ -564,6 +566,9 @@ func _rotate_sprite_degrees(delta: float):
 				$Icon/Jetpack.rotation,
 				deg_to_rad(velocity.rotated(-gameplay_rotation).x/speed_multiplier * delta * 5) + sprite_floor_angle,
 				ICON_LERP_FACTOR * delta * 60)
+		if _get_jump_state() > 0:
+			var ufo_particle := UFO_PARTICLE.instantiate()
+			$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
 	#endregion
 	#region ball
 	$Icon/Ball.scale.y = 1.0
@@ -620,9 +625,13 @@ func _update_swing_fire(delta: float) -> void:
 	if gravity_flip < 0.0:
 		$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
 		$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2(-54.0, 63.0), 1-exp(-delta * 12))
+		$Icon/Swing/FireBoostTop/FireParticles.emitting = false
+		$Icon/Swing/FireBoostBottom/FireParticles.emitting = true
 	else:
 		$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2(-54.0, -63.0), 1-exp(-delta * 12))
 		$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
+		$Icon/Swing/FireBoostTop/FireParticles.emitting = true
+		$Icon/Swing/FireBoostBottom/FireParticles.emitting = false
 
 
 func _update_wave_trail(delta: float) -> void:

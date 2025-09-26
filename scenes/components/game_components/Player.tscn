@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bl48psvuka73y"]
+[gd_scene load_steps=118 format=3 uid="uid://bl48psvuka73y"]
 
 [ext_resource type="Script" uid="uid://dlfmgrvw7q01y" path="res://src/Player.gd" id="1_nvqsc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="2_6ab5b"]
@@ -123,6 +123,13 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="Curve" id="Curve_vov5s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0467227, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_244xe"]
+curve = SubResource("Curve_vov5s")
+
 [sub_resource type="Curve" id="Curve_244xe"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -133,6 +140,8 @@ curve = SubResource("Curve_244xe")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_244xe"]
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
+angle_min = -44.99999
+angle_max = 45.00001
 direction = Vector3(-1, -0.5, 0)
 spread = 20.0
 initial_velocity_min = 96.0
@@ -141,7 +150,7 @@ gravity = Vector3(0, 98, 0)
 scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
-color_ramp = SubResource("GradientTexture1D_81vt3")
+alpha_curve = SubResource("CurveTexture_244xe")
 collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
@@ -1765,7 +1774,36 @@ states/run/position = Vector2(360, 221)
 states/walk/node = SubResource("AnimationNodeBlendTree_3t6xh")
 states/walk/position = Vector2(256, 100)
 transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_j87l4"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_ux6am"), "idle", "idle-alt", SubResource("AnimationNodeStateMachineTransition_xjiwe"), "idle-alt", "idle", SubResource("AnimationNodeStateMachineTransition_3ow27"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_oqq0p"), "idle-alt", "jump", SubResource("AnimationNodeStateMachineTransition_102cw"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_f8c6o"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ti1vy"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_333xh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_y725x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_d8wj8"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_hfsl1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cnpoe"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_w0b68"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_w21ie"), "fall", "walk", SubResource("AnimationNodeStateMachineTransition_36kv4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_b4v22"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_87vic"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_i1yrl"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_eidpu"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_vccgf")]
-graph_offset = Vector2(-109, 42)
+graph_offset = Vector2(-13.371094, -31.914063)
+
+[sub_resource type="CurveTexture" id="CurveTexture_fruiv"]
+curve = SubResource("Curve_vov5s")
+
+[sub_resource type="Gradient" id="Gradient_244xe"]
+offsets = PackedFloat32Array(0, 0.6456502)
+colors = PackedColorArray(1.353256, 1.2197721, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fruiv"]
+gradient = SubResource("Gradient_244xe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vov5s"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+angle_min = -44.99999
+angle_max = 45.00001
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 96.0
+initial_velocity_max = 160.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_vov5s")
+color_ramp = SubResource("GradientTexture1D_fruiv")
+alpha_curve = SubResource("CurveTexture_fruiv")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+collision_use_scale = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mg1a"]
 size = Vector2(32, 32)
@@ -2107,11 +2145,20 @@ position = Vector2(0, -3)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("18_nmour")
 
+[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO"]
+position = Vector2(0, 64)
+
 [node name="Ship" type="Node2D" parent="Icon"]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 1
 platformer = 1
+
+[node name="ShipParticles" type="GPUParticles2D" parent="Icon/Ship"]
+position = Vector2(-79, 22)
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
 
 [node name="ShipIcon" type="Sprite2D" parent="Icon/Ship"]
 scale = Vector2(0.25, 0.25)
@@ -2143,17 +2190,42 @@ rotation = 2.35619
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
 
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostTop"]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+emitting = false
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
 [node name="FireBoostMiddle" type="Sprite2D" parent="Icon/Swing"]
 position = Vector2(-82, 0)
 rotation = 1.57079
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
 
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostMiddle"]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
 [node name="FireBoostBottom" type="Sprite2D" parent="Icon/Swing"]
 position = Vector2(-54, 63)
 rotation = 0.785397
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
+
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostBottom"]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
 
 [node name="Swing-NoGlow" type="Sprite2D" parent="Icon/Swing"]
 scale = Vector2(0.25, 0.25)
