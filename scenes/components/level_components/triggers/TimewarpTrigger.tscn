@@ -39,6 +39,7 @@ script = ExtResource("4_qj3ls")
 
 [node name="EasingComponent" type="Node" parent="."]
 script = ExtResource("5_d0b04")
+duration = 0.0
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
 [node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
