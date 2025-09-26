@@ -554,6 +554,7 @@ func _rotate_sprite_degrees(delta: float):
 	$Icon/UFO.scale.x = dash_horizontal_direction
 	$Icon/Jetpack.scale.y = sign(gravity_flip)
 	$Icon/Jetpack.scale.x = dash_horizontal_direction
+	$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and _get_jump_state() > 0
 	if not dash_control:
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
 			$Icon/UFO.rotation_degrees = lerpf(

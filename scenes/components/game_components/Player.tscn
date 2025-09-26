@@ -2170,6 +2170,13 @@ script = ExtResource("2_sxyn3")
 gamemode = 1
 platformer = 2
 
+[node name="JetpackParticles" type="GPUParticles2D" parent="Icon/Jetpack"]
+position = Vector2(-43, 57.000008)
+rotation = -1.4522295
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
 [node name="JetpackIcon" type="Sprite2D" parent="Icon/Jetpack"]
 position = Vector2(0, -10)
 scale = Vector2(0.25, 0.25)
