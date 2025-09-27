@@ -1,8 +1,10 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_521vp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10srq"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_10srq"]
 color = Color(0, 0, 0, 0.5)
@@ -90,6 +92,7 @@ thickness = 2
 [resource]
 default_font = ExtResource("1_10srq")
 Button/styles/focus = SubResource("StyleBoxEmpty_521vp")
+FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_10srq")
 HSeparator/styles/separator = SubResource("StyleBoxLine_10srq")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_h2htm")
 MarginContainer/constants/margin_bottom = 10
