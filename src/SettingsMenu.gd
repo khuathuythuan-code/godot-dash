@@ -1,6 +1,8 @@
 extends TabContainer
 
 signal closed
+signal enable_escape
+signal disable_escape
 
 
 func _ready() -> void:

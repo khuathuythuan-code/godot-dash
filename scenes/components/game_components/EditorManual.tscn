@@ -31,24 +31,24 @@ custom_minimum_size = Vector2(550, 610)
 layout_mode = 2
 current_tab = 0
 
-[node name="Controls" type="MarginContainer" parent="TabContainer"]
+[node name="Keybinds" type="MarginContainer" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Keybinds"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="Navigation" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+[node name="Navigation" type="VBoxContainer" parent="TabContainer/Keybinds/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("2_clw4i")
 label_settings = ExtResource("3_4qs60")
 metadata/_custom_type_script = "uid://cuih47milvqcs"
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls/VBoxContainer/Navigation"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinds/VBoxContainer/Navigation"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Navigation/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Keybinds/VBoxContainer/Navigation/MarginContainer"]
 layout_mode = 2
 text = "Move camera
 Zoom in
@@ -56,41 +56,41 @@ Zoom out
 Change bottom panel tab"
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Navigation/MarginContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Keybinds/VBoxContainer/Navigation/MarginContainer"]
 layout_mode = 2
 fit_content = true
 horizontal_alignment = 2
 script = ExtResource("5_5rkbl")
 
-[node name="Editing" type="VBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+[node name="Editing" type="VBoxContainer" parent="TabContainer/Keybinds/VBoxContainer"]
 layout_mode = 2
 script = ExtResource("2_clw4i")
 label_settings = ExtResource("3_4qs60")
 metadata/_custom_type_script = "uid://cuih47milvqcs"
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls/VBoxContainer/Editing"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Keybinds/VBoxContainer/Editing"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Editing/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Keybinds/VBoxContainer/Editing/MarginContainer"]
 layout_mode = 2
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Controls/VBoxContainer/Editing/MarginContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/Keybinds/VBoxContainer/Editing/MarginContainer"]
 layout_mode = 2
 fit_content = true
 horizontal_alignment = 2
 script = ExtResource("5_ruc8k")
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Controls/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Keybinds/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/separator = SubResource("StyleBoxLine_f8eqg")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Controls/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Keybinds/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="TabContainer/Controls/VBoxContainer/HBoxContainer"]
+[node name="Close" type="Button" parent="TabContainer/Keybinds/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_4qs60")
 text = " Close "
@@ -201,6 +201,6 @@ layout_mode = 2
 shortcut = SubResource("Shortcut_4qs60")
 text = " Close "
 
-[connection signal="pressed" from="TabContainer/Controls/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="TabContainer/Keybinds/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="TabContainer/Properties/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="TabContainer/Custom Objects/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
