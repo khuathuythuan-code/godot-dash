@@ -25,4 +25,5 @@ func refresh_inputs():
 
 	var add_button = Button.new()
 	add_button.text = "Add"
+	add_button.set_script(load("res://src/AddKeybindButton.gd"))
 	add_child(add_button)
