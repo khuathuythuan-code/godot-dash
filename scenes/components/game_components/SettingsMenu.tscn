@@ -464,6 +464,21 @@ layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_add"
 
+[node name="Add Object (Swipe)" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor"]
+layout_mode = 2
+
+[node name="FoldableContainer" type="FoldableContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Add Object (Swipe)"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Add Object (Swipe)"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Add Object (Swipe)/FoldableContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_add_swipe"
+
 [node name="Remove Object" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor"]
 layout_mode = 2
 
@@ -479,20 +494,20 @@ layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_remove"
 
-[node name="Swipe" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor"]
+[node name="Remove Object (Swipe)2" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor"]
 layout_mode = 2
 
-[node name="FoldableContainer" type="FoldableContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Swipe"]
+[node name="FoldableContainer" type="FoldableContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Remove Object (Swipe)2"]
 layout_mode = 2
 size_flags_horizontal = 3
 folded = true
-title = "Swipe"
+title = "Remove Object (Swipe)"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Swipe/FoldableContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer/Editor/Remove Object (Swipe)2/FoldableContainer"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
-input_action = "editor_swipe"
+input_action = "editor_remove_swipe"
 
 [node name="HSeparator" type="HSeparator" parent="Keybinds/MarginContainer/VBoxContainer"]
 layout_mode = 2
