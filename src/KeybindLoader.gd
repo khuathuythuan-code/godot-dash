@@ -6,8 +6,23 @@ extends VBoxContainer
 func _ready() -> void:
 	refresh_inputs()
 
+
 func refresh_inputs():
+	var children = get_children()
+	for child in children:
+		child.free()
+
 	for input_event in InputMap.action_get_events(input_action):
+		var container = HBoxContainer.new()
+		add_child(container)
 		var button = Button.new()
 		button.text = input_event.as_text()
-		add_child(button)
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		container.add_child(button)
+		var remove_button = Button.new()
+		remove_button.text = "Remove"
+		container.add_child(remove_button)
+
+	var add_button = Button.new()
+	add_button.text = "Add"
+	add_child(add_button)
