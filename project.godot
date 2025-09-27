@@ -43,6 +43,10 @@ instance_dock/scenes=[{
 }]
 instance_dock/preview_resolution=Vector2i(64, 64)
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+
 [application]
 
 config/name="godot-dash"

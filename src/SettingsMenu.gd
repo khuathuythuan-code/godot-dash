@@ -1,8 +1,6 @@
 extends TabContainer
 
 signal closed
-signal enable_escape
-signal disable_escape
 
 
 func _ready() -> void:
@@ -29,6 +27,7 @@ func _on_window_mode_value_changed(id: int) -> void:
 		1: window_mode = DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN
 		2: window_mode = DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 	DisplayServer.window_set_mode(window_mode)
+
 
 func _on_game_volume_value_changed(value:float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(value))
