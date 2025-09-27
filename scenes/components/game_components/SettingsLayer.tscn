@@ -37,3 +37,5 @@ unique_name_in_owner = true
 layout_mode = 1
 
 [connection signal="closed" from="SettingsContainer/SettingsContainerInner/SettingsMenu" to="." method="_hide_menu"]
+[connection signal="disable_escape" from="SettingsContainer/SettingsContainerInner/SettingsMenu" to="." method="_disable_escape"]
+[connection signal="enable_escape" from="SettingsContainer/SettingsContainerInner/SettingsMenu" to="." method="_enable_escape"]
