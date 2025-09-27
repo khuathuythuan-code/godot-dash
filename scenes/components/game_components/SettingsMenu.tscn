@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=13 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
@@ -12,9 +12,6 @@
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
 [ext_resource type="Script" uid="uid://co733tkf77uuu" path="res://src/settings/KeybindLoader.gd" id="12_vf3uf"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_06nbq"]
-color = Color(1, 1, 1, 0.5)
 
 [node name="SettingsMenu" type="TabContainer"]
 texture_filter = 4
@@ -103,7 +100,6 @@ config_property = &"window_mode"
 [node name="HSeparator" type="HSeparator" parent="Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -202,7 +198,6 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="HSeparator" type="HSeparator" parent="Audio/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Audio/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -338,7 +333,6 @@ config_property = &"trigger_hitbox_fill_alpha"
 [node name="HSeparator" type="HSeparator" parent="Editor/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Editor/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -512,7 +506,6 @@ input_action = "editor_remove_swipe"
 [node name="HSeparator" type="HSeparator" parent="Keybinds/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -572,7 +565,6 @@ config_property = &"enable_easter_eggs"
 [node name="HSeparator" type="HSeparator" parent="Debug/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-theme_override_styles/separator = SubResource("StyleBoxLine_06nbq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Debug/MarginContainer/VBoxContainer"]
 layout_mode = 2
