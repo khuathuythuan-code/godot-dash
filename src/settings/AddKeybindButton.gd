@@ -24,5 +24,5 @@ func _on_button_pressed() -> void:
 func _input(event: InputEvent) -> void:
 	if remapping && event is not InputEventJoypadMotion && event is not InputEventMouseMotion:
 		InputMap.action_add_event(keybind_loader.input_action, event)
-		keybind_loader.refresh_inputs()
 		Editor.shortcut_blocker = null
+		keybind_loader.refresh_inputs()
