@@ -74,13 +74,6 @@ func _on_level_index_pressed(index:int) -> void:
 			Editor.shortcut_blocker = level_settings
 
 
-func _on_help_index_pressed(index: int) -> void:
-	match index:
-		0: # Manual
-			editor_manual.show()
-			Editor.shortcut_blocker = editor_manual
-
-
 func _new_level() -> void:
 	var new_level := LevelProps.new()
 	editor.level.name = "tempname"
