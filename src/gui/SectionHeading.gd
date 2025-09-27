@@ -39,10 +39,12 @@ func _ready() -> void:
 	renamed.connect(_refresh_text)
 	label_settings.changed.connect(_refresh_text)
 
+
 func _refresh_text() -> void:
 	heading.name = name
 	heading.label_settings = label_settings
 	heading._refresh_text()
+
 
 func fold(_folded: bool) -> void:
 	fold_button.icon = icon_closed if _folded else icon_open
