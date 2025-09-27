@@ -4575,10 +4575,12 @@ layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
@@ -4660,7 +4662,9 @@ visible = false
 metadata/_edit_lock_ = true
 
 [node name="EditorManual" parent="EditorUI" instance=ExtResource("200_5tfcf")]
+unique_name_in_owner = true
 visible = false
+metadata/_edit_lock_ = true
 
 [node name="Gizmos" type="CanvasLayer" parent="."]
 layer = 91
