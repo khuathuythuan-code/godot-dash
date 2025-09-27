@@ -10,7 +10,7 @@ func _ready() -> void:
 func refresh_inputs():
 	var children = get_children()
 	for child in children:
-		child.free()
+		child.queue_free()
 
 	for input_event in InputMap.action_get_events(input_action):
 		var container = HBoxContainer.new()
