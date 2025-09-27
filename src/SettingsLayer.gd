@@ -5,7 +5,7 @@ var menu_tween: Tween
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_cancel") \
-			and Editor.shortcut_blocker is AddKeybindButton \
+			and Editor.shortcut_blocker == null \
 			and not get_viewport().gui_get_focus_owner() is LineEdit:
 		_hide_menu()
 
