@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 class_name GroupEditor
 
 @export var line_edit: LineEdit

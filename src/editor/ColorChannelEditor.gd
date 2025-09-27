@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 class_name ColorChannelEditor
 
 @export var button_group: ButtonGroup
@@ -55,26 +55,24 @@ func _show_properties() -> void:
 	%Channel.visible = channel_item.data.copy
 	%Color.visible = not channel_item.data.copy
 
-func _on_color_value_changed(value:Variant) -> void:
-	var new_color := value as Color
+func _on_color_value_changed(value: Color) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_color(new_color)
+	channel_item.data.set_color(value)
 	channel_item.update()
 
-func _on_copy_channel_value_changed(value:Variant) -> void:
-	var copy_channel := value as bool
+func _on_copy_channel_value_changed(value: bool) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_copy(copy_channel)
+	channel_item.data.set_copy(value)
 	channel_item.update()
-	%Color.visible = not copy_channel
-	%Channel.visible = copy_channel
+	%Color.visible = not value
+	%Channel.visible = value
 
 
-func _on_channel_value_changed(value:Variant) -> void:
+func _on_channel_value_changed(value: int) -> void:
 	var new_channel := value as ColorChannelData.CopyColor
 	if button_group.get_pressed_button() == null:
 		return
@@ -83,53 +81,48 @@ func _on_channel_value_changed(value:Variant) -> void:
 	channel_item.update()
 
 
-func _on_hue_value_changed(value:Variant) -> void:
-	var new_hue := value as float
+func _on_hue_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
-	new_hsv_shift[0] = new_hue
+	new_hsv_shift[0] = value
 	channel_item.data.set_hsv_shift(new_hsv_shift)
 	channel_item.update()
 
 
-func _on_saturation_value_changed(value:Variant) -> void:
-	var new_value := value as float
+func _on_saturation_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
-	new_hsv_shift[1] = new_value
+	new_hsv_shift[1] = value
 	channel_item.data.set_hsv_shift(new_hsv_shift)
 	channel_item.update()
 
 
-func _on_value_value_changed(value:Variant) -> void:
-	var new_saturation := value as float
+func _on_value_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
-	new_hsv_shift[2] = new_saturation
+	new_hsv_shift[2] = value
 	channel_item.data.set_hsv_shift(new_hsv_shift)
 	channel_item.update()
 
 
-func _on_strength_value_changed(value:Variant) -> void:
-	var new_strength := value as float
+func _on_strength_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_strength(new_strength)
+	channel_item.data.set_strength(value)
 	channel_item.update()
 
 
-func _on_alpha_value_changed(value:Variant) -> void:
-	var new_alpha := value as float
+func _on_alpha_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_alpha(new_alpha)
+	channel_item.data.set_alpha(value)
 	channel_item.update()
 
