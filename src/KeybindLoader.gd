@@ -21,6 +21,8 @@ func refresh_inputs():
 		container.add_child(button)
 		var remove_button = Button.new()
 		remove_button.text = "Remove"
+		remove_button.set_script(load("res://src/RemoveKeybindButton.gd"))
+		remove_button.input_event = input_event
 		container.add_child(remove_button)
 
 	var add_button = Button.new()
