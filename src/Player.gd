@@ -358,7 +358,7 @@ func _compute_velocity(delta: float,
 		(is_on_ceiling() and jump_state >= 0) or
 		(is_on_floor() and get_last_slide_collision() != null and get_floor_angle_signed(true) != 0.0 and get_direction() != 0 and jump_state == 1))
 
-	if (((is_on_floor() or is_on_ceiling()) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
+	if ((((is_on_floor() or is_on_ceiling() and not _is_flying_gamemode) or (is_on_floor() and _is_flying_gamemode)) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
 		_velocity.y = slope_velocity.y
 
 	#region Apply pads velocity
