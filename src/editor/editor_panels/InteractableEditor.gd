@@ -74,35 +74,36 @@ func build_ui(interactables: Array[Interactable]) -> void:
 			fields.map(func(field): component._validate_property(field))
 		fields = fields \
 				.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
-		var last_section_heading: SectionHeading = null
+		var last_section: FoldableContainer = null
 		for field in fields:
 			var field_name: String = field.name
 			if field_name.begins_with("_"):
 				continue
 			if field.usage & PROPERTY_USAGE_GROUP:
-				if last_section_heading:
-					ui_root.add_child(last_section_heading)
-					last_section_heading.fold.call_deferred(true)
-					last_section_heading.show.call_deferred()
-				last_section_heading = SectionHeading.new()
-				last_section_heading.name = field_name
-				last_section_heading.label_settings = preload("res://resources/SectionHeadings.tres")
-				last_section_heading.label_alignment = HORIZONTAL_ALIGNMENT_LEFT
-				last_section_heading.hide()
+				if last_section:
+					ui_root.add_child(last_section)
+					last_section.show.call_deferred()
+				last_section = FoldableContainer.new()
+				last_section.name = field_name
+				last_section.title = field_name
+				last_section.title_alignment = HORIZONTAL_ALIGNMENT_LEFT
+				last_section.add_child(VBoxContainer.new())
+				last_section.folded = true
+				last_section.hide()
 				continue
 			var property: Property
 			property = generate_property(field.type, field)
 			property.name = field_name.capitalize()
 			property.set_meta("component_name", component.name)
 			property.set_input_state.call_deferred(not field.usage & PROPERTY_USAGE_READ_ONLY)
-			if last_section_heading:
-				last_section_heading.add_child(property)
+			if last_section:
+				var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
+				section_vboxcontainer.add_child(property)
 			else:
 				ui_root.add_child(property)
-		if last_section_heading:
-			ui_root.add_child(last_section_heading)
-			last_section_heading.fold.call_deferred(true)
-			last_section_heading.show.call_deferred()
+		if last_section:
+			ui_root.add_child(last_section)
+			last_section.show.call_deferred()
 		if i < displayed_components.size() - 1:
 			ui_root.add_child(HSeparator.new())
 	%ComponentRoot.add_child(ui_root)
