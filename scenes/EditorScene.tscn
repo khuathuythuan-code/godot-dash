@@ -1,4 +1,4 @@
-[gd_scene load_steps=236 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=237 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -207,6 +207,7 @@
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
+[ext_resource type="Script" uid="uid://cry3286stfmmk" path="res://src/editor/editor_panels/AttributeEditor.gd" id="195_gehis"]
 
 [sub_resource type="Resource" id="Resource_aofxv"]
 script = ExtResource("12_egrfm")
@@ -4561,6 +4562,7 @@ script = ExtResource("179_0v0om")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
 [node name="Interactable" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 title = "Interactable"
 title_alignment = 1
@@ -4577,9 +4579,11 @@ title = "Attributes"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Attributes"]
+[node name="AttributeEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Attributes"]
 visible = false
 layout_mode = 2
+script = ExtResource("195_gehis")
+metadata/_custom_type_script = "uid://cry3286stfmmk"
 
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -4888,6 +4892,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="_on_menu_bar_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="_save_level"]
