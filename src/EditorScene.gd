@@ -114,7 +114,6 @@ func _on_playtest_pressed() -> void:
 		%EditorModes.hide()
 		%SidePanel.hide()
 		%LevelSettings.hide()
-		%EditorManual.hide()
 		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
 		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
 		$GameScene/PercentageLayer.show()
