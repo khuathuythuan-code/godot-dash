@@ -1,4 +1,4 @@
-[gd_scene load_steps=235 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=236 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -351,6 +351,8 @@ script = ExtResource("12_egrfm")
 base = ExtResource("20_hgbal")
 name = "OutlineSlope04"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="FoldableGroup" id="FoldableGroup_dl3g1"]
 
 [sub_resource type="FoldableGroup" id="FoldableGroup_bmgxg"]
 
@@ -4559,20 +4561,35 @@ script = ExtResource("179_0v0om")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
 [node name="Interactable" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 title = "Interactable"
 title_alignment = 1
+foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Interactable" instance=ExtResource("183_momrj")]
 layout_mode = 2
 
+[node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+folded = true
+title = "Attributes"
+title_alignment = 1
+foldable_group = SubResource("FoldableGroup_dl3g1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Attributes"]
+visible = false
+layout_mode = 2
+
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+folded = true
 title = "Colors"
 title_alignment = 1
+foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors"]
+visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
@@ -4716,7 +4733,7 @@ debug_color = Color(0.284375, 0, 0.7, 0.42)
 z_index = 100
 script = ExtResource("35_xjepn")
 
-[node name="SidePanelManager" type="Node" parent="." node_paths=PackedStringArray("side_panel", "object_name", "group_section", "group_editor", "group_parent", "interactable_section", "color_section", "base", "detail", "hsv_shift")]
+[node name="SidePanelManager" type="Node" parent="." node_paths=PackedStringArray("side_panel", "object_name", "group_section", "group_editor", "group_parent", "interactable_section", "attributes_section", "color_section", "base", "detail", "hsv_shift")]
 script = ExtResource("58_hnsxj")
 side_panel = NodePath("../EditorUI/EditorContainer/SidePanel")
 object_name = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Name")
@@ -4724,6 +4741,7 @@ group_section = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/
 group_editor = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer/GroupEditor")
 group_parent = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer/Group parent")
 interactable_section = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Interactable")
+attributes_section = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Attributes")
 color_section = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors")
 base = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color")
 detail = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color")
