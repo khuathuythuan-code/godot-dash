@@ -17,7 +17,7 @@ func _ready() -> void:
 	# Set `custom_minimum_size` the next frame, after the layout is solved
 	# and `size` is set.
 	await get_tree().process_frame
-	custom_minimum_size = Vector2.ONE * size.y
+	custom_minimum_size = Vector2.ONE * get_parent().size.y
 
 
 func _on_button_pressed() -> void:
