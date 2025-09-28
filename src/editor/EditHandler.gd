@@ -269,6 +269,7 @@ func select_all() -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	selection.assign(level.get_children().duplicate().filter(only_node_2ds))
 	selection.map(add_selection_highlight)
+	selection_changed.emit(selection)
 
 
 func _update_pivot() -> void:
