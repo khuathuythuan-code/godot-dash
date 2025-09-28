@@ -38,6 +38,8 @@ func _physics_process(delta: float) -> void:
 	if cursor_position_snapped != previous_cursor_position_snapped:
 		selection_index = 0
 	var is_already_swiping_selection: bool = $SelectionZone/Hitbox.shape.size != Vector2.ZERO
+	if Input.is_action_just_pressed(&"editor_select_all"):
+		select_all()
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
 				rotate_gizmo != null && (
@@ -49,8 +51,6 @@ func _physics_process(delta: float) -> void:
 				Input.is_action_pressed(&"editor_new_level") or
 				Input.is_action_pressed(&"editor_import_level") or
 				Input.is_action_pressed(&"editor_export_level")):
-			if Input.is_action_just_pressed(&"editor_select_all"):
-				select_all()
 			if Input.is_action_just_pressed(&"editor_deselect"):
 				clear_selection()
 			if Input.is_action_just_pressed(&"editor_delete"):
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&"ui_paste"):
 				paste_selection()
 				object_move_cooldown = 5
-			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down") and object_move_cooldown <= 0:
+			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down") and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all"):
 				var move_vector: Vector2
 				move_vector.x = Input.get_axis(&"ui_left", &"ui_right")
 				move_vector.y = Input.get_axis(&"ui_up", &"ui_down")
@@ -265,6 +265,7 @@ func clear_selection() -> void:
 
 func select_all() -> void:
 	clear_selection()
+	await get_tree().process_frame
 	var only_node_2ds := func(object): return object is Node2D
 	selection.assign(level.get_children().duplicate().filter(only_node_2ds))
 	selection.map(add_selection_highlight)
