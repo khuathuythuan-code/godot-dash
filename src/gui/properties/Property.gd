@@ -19,6 +19,7 @@ func _init() -> void:
 func submitted_release_focus(_new_value):
 	get_viewport().gui_release_focus()
 
+
 func unedit_release_focus(toggled_on):
 	if not toggled_on:
 		get_viewport().gui_release_focus()
