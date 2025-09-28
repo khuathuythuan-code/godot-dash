@@ -23,5 +23,8 @@ func _on_button_pressed() -> void:
 
 func _input(event: InputEvent) -> void:
 	if remapping && event is not InputEventJoypadMotion && event is not InputEventMouseMotion:
+		# Support keybinds with modifiers
+		if event is InputEventKey and (event.keycode == KEY_SHIFT or event.keycode == KEY_CTRL or event.keycode == KEY_ALT):
+			return
 		InputMap.action_add_event(keybind_loader.input_action, event)
 		keybind_loader.refresh_inputs()
