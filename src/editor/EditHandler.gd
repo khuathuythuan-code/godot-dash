@@ -49,9 +49,8 @@ func _physics_process(delta: float) -> void:
 				Input.is_action_pressed(&"editor_new_level") or
 				Input.is_action_pressed(&"editor_import_level") or
 				Input.is_action_pressed(&"editor_export_level")):
-			# if Input.is_action_just_pressed(&"ui_cancel") and rotate_gizmo != null and rotate_gizmo.quick_rotation == true:
-			# 	remove_gizmo()
-			#   TODO: cancel rotation here
+			if Input.is_action_just_pressed(&"editor_select_all"):
+				select_all()
 			if Input.is_action_just_pressed(&"editor_deselect"):
 				clear_selection()
 			if Input.is_action_just_pressed(&"editor_delete"):
