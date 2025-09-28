@@ -290,82 +290,492 @@ title_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor"]
 layout_mode = 2
 
-[node name="Undo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+layout_mode = 2
+title = "Viewport"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport"]
+layout_mode = 2
+
+[node name="Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+layout_mode = 2
+title = "Selection"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection"]
+layout_mode = 2
+
+[node name="Add Object, Set Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 folded = true
-title = "Undo"
+title = "Add Object, Set Selection"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Undo"]
-visible = false
-layout_mode = 2
-script = ExtResource("12_vf3uf")
-input_action = "ui_undo"
-metadata/_custom_type_script = "uid://co733tkf77uuu"
-
-[node name="Redo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-folded = true
-title = "Redo"
-
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Redo"]
-visible = false
-layout_mode = 2
-script = ExtResource("12_vf3uf")
-input_action = "ui_redo"
-metadata/_custom_type_script = "uid://co733tkf77uuu"
-
-[node name="Add Object" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-folded = true
-title = "Add Object"
-
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Add Object"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object, Set Selection"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_add"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Add Object (Swipe)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Add Object (Swipe), Add to Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 folded = true
-title = "Add Object (Swipe)"
+title = "Add Object (Swipe), Add to Selection"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Add Object (Swipe)"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object (Swipe), Add to Selection"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_add_swipe"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Remove Object" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Remove Object" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 folded = true
 title = "Remove Object"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Remove Object"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_remove"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Remove Object (Swipe)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Remove Object (Swipe)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 folded = true
 title = "Remove Object (Swipe)"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Remove Object (Swipe)"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object (Swipe)"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_remove_swipe"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Remove from Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Remove from Selection"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove from Selection"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_selection_remove"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Move" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+layout_mode = 2
+title = "Move"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move"]
+layout_mode = 2
+
+[node name="Move Left" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Move Left"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Left"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_left"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Move Right" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Move Right"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Right"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_right"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Move Up" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Move Up"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Up"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_up"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Move Down" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Move Down"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Down"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_down"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Rotate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+layout_mode = 2
+title = "Move"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate"]
+layout_mode = 2
+
+[node name="Rotate 90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Rotate 90°"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 90°"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_rotate_90"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Rotate -90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Rotate -90°"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -90°"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_rotate_-90"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Rotate 45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Rotate 45°"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 45°"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_rotate_45"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Rotate -45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Rotate -45°"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -45°"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_rotate_-45"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Quick Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Quick Rotate (Free)"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Quick Rotate (Free)"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_quick_rotate_free"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Rotate -45°"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate (Free)"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_rotate_free"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Flip" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+layout_mode = 2
+title = "Move"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip"]
+layout_mode = 2
+
+[node name="Flip Vertically" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Flip Vertically"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Vertically"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_flip_h"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Flip Horizontally" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Flip Horizontally"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Horizontally"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_flip_v"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Menus" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+layout_mode = 2
+title = "Menus"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus"]
+layout_mode = 2
+
+[node name="Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+layout_mode = 2
+title = "Level"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level"]
+layout_mode = 2
+
+[node name="New" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "New"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/New"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_new_level"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Open" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Open"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Open"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_open_level"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Import" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Import"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Import"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_import_level"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Save" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Save"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_save"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Save As" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Save As"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save As"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_save_as"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Export" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Export"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Export"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_export_level"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Edit" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+layout_mode = 2
+title = "Edit"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit"]
+layout_mode = 2
+
+[node name="Undo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Undo"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Undo"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_undo"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Redo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Redo"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Redo"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_redo"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Copy" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Copy"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Copy"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_copy"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Paste" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Paste"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Paste"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "ui_paste"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Duplicate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Duplicate"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Duplicate"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_duplicate"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Select All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Select All"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Select All"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_select_all"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Deselect All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Deselect All"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Deselect All"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_deselect"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Delete" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Delete"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Delete"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_delete"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="View" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+layout_mode = 2
+title = "View"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View"]
+layout_mode = 2
+
+[node name="Toggle Maximize Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+folded = true
+title = "Toggle Maximize Viewport"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer/Toggle Maximize Viewport"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_hide_panels"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="HSeparator" type="HSeparator" parent="Keybinds"]

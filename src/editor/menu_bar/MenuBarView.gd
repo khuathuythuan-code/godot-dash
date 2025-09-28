@@ -4,6 +4,7 @@ extends PopupMenu
 @export var side_panel: Container
 @export var bottom_panel: Container
 
+
 func _on_index_pressed(index:int) -> void:
 	match index:
 		0: # Grid
