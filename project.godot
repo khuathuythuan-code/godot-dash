@@ -74,6 +74,7 @@ SceneTransition="*res://src/autoloads/SceneTransition.gd"
 Files="*res://scenes/autoloads/Files.tscn"
 SongManager="*res://src/autoloads/SongManager.gd"
 Editor="*res://src/autoloads/Editor.gd"
+KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 
 [display]
 

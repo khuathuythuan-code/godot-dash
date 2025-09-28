@@ -12,6 +12,9 @@ class_name UserPreferences extends Resource
 @export_range(0, 1, .05) var in_level_sfx_audio_level: float = 1.0
 @export var mute_game_on_unfocus: bool = true
 
+@export_group("Keybinds")
+@export_storage var input_map: Dictionary[StringName, Array] = {} # Dictionary[StringName, Array[InputEvent]]
+
 @export_group("Editor")
 @export var hide_grid_on_playtest: bool = true
 @export var autosave_delay: float
@@ -25,6 +28,7 @@ class_name UserPreferences extends Resource
 
 @export_group("Easter Eggs")
 @export var enable_easter_eggs: bool
+
 
 func save() -> void:
 	ResourceSaver.save(self, "user://user_prefs.tres")

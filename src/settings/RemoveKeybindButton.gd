@@ -22,4 +22,6 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	InputMap.action_erase_event(keybind_loader.input_action, input_event)
+	Config.config.input_map.set(keybind_loader.input_action, InputMap.action_get_events(keybind_loader.input_action))
+	Config.config.save()
 	keybind_loader.refresh_inputs()
