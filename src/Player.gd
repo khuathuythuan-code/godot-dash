@@ -663,7 +663,7 @@ func _get_spider_velocity_delta() -> float:
 	$Icon/Spider/SpiderCast.force_shapecast_update()
 	var _target_position = $Icon/Spider/SpiderCast.get_collision_point(0)
 	var _spider_velocity_delta: float = abs((_target_position - position).rotated(-gameplay_rotation).y)
-	_spider_velocity_delta -= LevelManager.CELL_SIZE/2.0 * scale.y
+	_spider_velocity_delta -= default_collider.size.y/2.0 * scale.y
 	var result := _spider_velocity_delta * gravity_flip * gravity_multiplier
 	_last_spider_trail = SPIDER_TRAIL.instantiate()
 	_last_spider_trail_height = abs(result/SpiderTrail.SPIDER_TRAIL_HEIGHT)
