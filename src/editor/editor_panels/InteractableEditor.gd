@@ -207,7 +207,7 @@ func save_property(value: Variant, component_name: String, property: String, int
 func refresh_marker(enabled: bool, marker_script: Script, interactables: Array[Interactable]) -> void:
 	for interactable in	interactables:
 		if enabled:
-			var marker: Component = NodeUtils.get_node_or_add(interactable, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+			var marker: Marker = NodeUtils.get_node_or_add(interactable, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 			interactable.register_public(marker)
 		else:
 			NodeUtils.get_children_of_type(interactable, marker_script).map(func(marker):
