@@ -1,8 +1,14 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_521vp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jaexg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cjwly"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1p5x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10srq"]
 
@@ -146,6 +152,9 @@ thickness = 2
 [resource]
 default_font = ExtResource("1_10srq")
 Button/styles/focus = SubResource("StyleBoxEmpty_521vp")
+ColorPicker/styles/picker_focus_circle = SubResource("StyleBoxEmpty_jaexg")
+ColorPicker/styles/picker_focus_rectangle = SubResource("StyleBoxEmpty_cjwly")
+ColorPicker/styles/sample_focus = SubResource("StyleBoxEmpty_f1p5x")
 FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_10srq")
 FoldableContainer/styles/panel = SubResource("StyleBoxFlat_cjwly")
 FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat_xcyaj")

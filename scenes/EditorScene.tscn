@@ -4744,11 +4744,10 @@ base = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginCon
 detail = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color")
 color_channel_editor = NodePath("../EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor/ColorChannelEditor")
 
-[node name="LevelOperationsHandler" type="Node" parent="." node_paths=PackedStringArray("edit_handler", "level_settings", "editor_manual", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
+[node name="LevelOperationsHandler" type="Node" parent="." node_paths=PackedStringArray("edit_handler", "level_settings", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
 script = ExtResource("189_ao6md")
 edit_handler = NodePath("../EditHandler")
 level_settings = NodePath("../EditorUI/LevelSettings")
-editor_manual = NodePath("")
 open_dialog = NodePath("../OpenLevelDialog")
 import_dialog = NodePath("../ImportAndOpenLevelDialog")
 save_as_dialog = NodePath("../SaveLevelAsDialog")
