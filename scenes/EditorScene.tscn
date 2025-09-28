@@ -441,19 +441,29 @@ item_7/id = 0
 
 [node name="Edit" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" node_paths=PackedStringArray("edit_handler")]
 size = Vector2i(110, 147)
-item_count = 6
-item_0/text = "Copy"
-item_0/id = 0
-item_1/text = "Paste"
-item_1/id = 1
-item_2/text = "Duplicate"
-item_2/id = 2
-item_3/id = 3
-item_3/separator = true
-item_4/text = "Select All"
-item_4/id = 4
-item_5/text = "Deselect All"
-item_5/id = 5
+item_count = 11
+item_0/text = "Undo"
+item_0/id = 6
+item_1/text = "Redo"
+item_1/id = 7
+item_2/id = 8
+item_2/separator = true
+item_3/text = "Copy"
+item_3/id = 0
+item_4/text = "Paste"
+item_4/id = 1
+item_5/text = "Duplicate"
+item_5/id = 2
+item_6/id = 3
+item_6/separator = true
+item_7/text = "Select All"
+item_7/id = 4
+item_8/text = "Deselect All"
+item_8/id = 5
+item_9/id = 9
+item_9/separator = true
+item_10/text = "Delete Selected"
+item_10/id = 10
 script = ExtResource("5_rke8t")
 edit_handler = NodePath("../../../../../../EditHandler")
 
@@ -4564,11 +4574,13 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="Interactable" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
+folded = true
 title = "Interactable"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Interactable" instance=ExtResource("183_momrj")]
+visible = false
 layout_mode = 2
 
 [node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -4598,10 +4610,12 @@ layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 

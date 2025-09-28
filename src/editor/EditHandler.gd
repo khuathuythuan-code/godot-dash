@@ -55,11 +55,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&"editor_deselect"):
 				clear_selection()
 			if Input.is_action_just_pressed(&"editor_delete"):
-				selection.map(func(object): object.queue_free())
-				selection.clear()
-				rotated_object_degrees.emit(0.0) # Reset
-				_reset_selection_zone()
-				selection_changed.emit(selection)
+				delete_selection()
 			if Input.is_action_just_pressed(&"editor_duplicate"):
 				duplicate_selection()
 				object_move_cooldown = 5
@@ -238,6 +234,14 @@ func paste_selection() -> void:
 	var move_objects_to_new_screen_center = func(object):
 		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
 	selection.map(move_objects_to_new_screen_center)
+
+
+func delete_selection() -> void:
+	selection.map(func(object): object.queue_free())
+	selection.clear()
+	rotated_object_degrees.emit(0.0) # Reset
+	_reset_selection_zone()
+	selection_changed.emit(selection)
 
 
 func _rotate_selection(angle: float) -> void:

@@ -3,15 +3,25 @@ extends PopupMenu
 @export var edit_handler: EditHandler
 
 func _on_index_pressed(index:int) -> void:
+	print(index)
 	match index:
-		0: # Copy
+		0: # Undo
+			edit_handler.level.version_history.undo()
+		1: # Redo
+			edit_handler.level.version_history.redo()
+		# --- Separator ---
+		3: # Copy
 			edit_handler.copy_selection()
-		1: # Paste
+		4: # Paste
 			edit_handler.paste_selection()
-		2: # Duplicate
+		5: # Duplicate
 			edit_handler.duplicate_selection()
-		4: # Select All
+		# --- Separator ---
+		7: # Select All
 			edit_handler.select_all()
-		5: # Deselect All
+		8: # Deselect All
 			edit_handler.clear_selection()
+		# --- Separator ---
+		10: # Delete Selected
+			edit_handler.delete_selection()
 
