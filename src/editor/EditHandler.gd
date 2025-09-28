@@ -49,8 +49,6 @@ func _physics_process(delta: float) -> void:
 				Input.is_action_pressed(&"editor_new_level") or
 				Input.is_action_pressed(&"editor_import_level") or
 				Input.is_action_pressed(&"editor_export_level")):
-			if Input.is_action_just_pressed(&"editor_single_selection_cycle"):
-				selection_index -= 1
 			# if Input.is_action_just_pressed(&"ui_cancel") and rotate_gizmo != null and rotate_gizmo.quick_rotation == true:
 			# 	remove_gizmo()
 			#   TODO: cancel rotation here
@@ -108,8 +106,8 @@ func _physics_process(delta: float) -> void:
 
 func _update_selection() -> void:
 	if get_viewport().gui_get_hovered_control() == editor_viewport and Input.is_action_just_pressed(&"editor_add"):
-		if not Input.is_action_just_pressed(&"editor_add_swipe") and not Input.is_action_just_pressed(&"editor_selection_remove") \
-				and not Input.is_action_just_pressed(&"editor_single_selection_cycle"):
+		if not Input.is_action_just_pressed(&"editor_add_swipe") \
+				and not Input.is_action_just_pressed(&"editor_selection_remove"):
 			for object in selection:
 				if object.has_node("HSVWatcher"):
 					object = object.get_node("HSVWatcher")
@@ -348,7 +346,7 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	rotate_gizmo = RotateGizmo.new()
 	rotate_gizmo.quick_rotation = quick
 	if quick:
-		Editor.shortcut_blocker = self
+		Editor.shortcut_blocker = rotate_gizmo
 	gizmo_layer.add_child(rotate_gizmo)
 	rotate_gizmo.global_position = selection_pivot
 	rotate_gizmo.angle_changed.connect(_rotate_selection)
