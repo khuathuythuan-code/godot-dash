@@ -3,12 +3,18 @@ extends Node
 
 @export var side_panel: PanelContainer
 @export var object_name: LineEdit
+
 @export_group("Groups")
 @export var group_section: FoldableContainer
 @export var group_editor: GroupEditor
 @export var group_parent: BoolProperty
+
 @export_group("Interactables")
 @export var interactable_section: FoldableContainer
+
+@export_group("Attributes")
+@export var attributes_section: FoldableContainer
+
 @export_group("Colors")
 @export var color_section: FoldableContainer
 @export var base: StringProperty
@@ -34,19 +40,16 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 		object_name.editable = false
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
-	#section Groups
+	
 	group_section.visible = not selection.is_empty()
 	group_editor.selected_objects = selection
-	#endsection
-	#section Trigger
+	
 	interactable_section.visible = not selection.is_empty() and selection.all(InteractableEditor.is_interactable)
-	interactable_section.folded = not interactable_section.visible
-	#endsection
-	#section Colors
-	color_section.folded = interactable_section.visible
+	
+	attributes_section.visible = not selection.is_empty()
+
 	for element in [base, detail, hsv_shift]:
 		element.visible = not selection.is_empty()
-	#endsection
 
 
 func update_object_name(text: String):

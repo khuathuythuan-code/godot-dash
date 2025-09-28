@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4vh26wn3qq40"]
 
-[ext_resource type="Script" uid="uid://dxxcbi05qwalg" path="res://src/editor/InteractableEditor.gd" id="1_vj0e3"]
+[ext_resource type="Script" uid="uid://dxxcbi05qwalg" path="res://src/editor/editor_panels/InteractableEditor.gd" id="1_vj0e3"]
 
 [node name="InteractableEditor" type="VBoxContainer"]
 anchors_preset = 15
