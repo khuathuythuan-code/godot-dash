@@ -18,7 +18,6 @@ func _on_button_pressed() -> void:
 	text = "Press Any Key"
 	remapping = true
 	Editor.shortcut_blocker = self
-	
 
 
 func _input(event: InputEvent) -> void:
