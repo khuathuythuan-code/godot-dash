@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=28 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -17,7 +17,7 @@ content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
 content_margin_bottom = 10.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0, 0, 0, 0.3019608)
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
@@ -71,6 +71,18 @@ color = Color(0, 0, 0, 0.5)
 thickness = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2htm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2efnh"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.3019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t62t"]
 
@@ -167,6 +179,8 @@ MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
+Panel/styles/panel = SubResource("StyleBoxFlat_2efnh")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2efnh")
 TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_8t62t")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_o1vdk")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_jaexg")
