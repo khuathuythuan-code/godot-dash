@@ -5,7 +5,6 @@ signal level_loaded(level: LevelProps)
 
 @export var edit_handler: EditHandler
 @export var level_settings: LevelSettings
-@export var editor_manual: EditorManual
 @export var open_dialog: FileDialog
 @export var import_dialog: FileDialog
 @export var save_as_dialog: FileDialog
