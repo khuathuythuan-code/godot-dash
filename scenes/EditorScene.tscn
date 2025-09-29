@@ -4710,8 +4710,6 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 [node name="LevelSettings" parent="EditorUI" instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
 visible = false
-offset_right = 520.0
-offset_bottom = 308.0
 theme = null
 metadata/_edit_lock_ = true
 
