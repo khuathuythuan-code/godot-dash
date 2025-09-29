@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://3bc5088argko"]
+[gd_scene load_steps=16 format=3 uid="uid://3bc5088argko"]
 
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="1_1q0ts"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_xcvel"]
+[ext_resource type="Script" uid="uid://cddoyeip6c1ax" path="res://addons/ReorderableContainer/reorderable_vbox.gd" id="2_iyxla"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="2_rks8l"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="3_bgdif"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="4_rks8l"]
@@ -17,8 +18,6 @@
 [sub_resource type="Resource" id="Resource_iyxla"]
 resource_local_to_scene = true
 script = ExtResource("13_iyxla")
-path = NodePath("")
-time = 0.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -46,8 +45,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="Container" parent="CenterContainer"]
+process_mode = 1
+custom_minimum_size = Vector2(0, 794)
 layout_mode = 2
+script = ExtResource("2_iyxla")
+is_vertical = true
+metadata/_custom_type_script = "uid://cddoyeip6c1ax"
 
 [node name="FloatProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -120,6 +124,7 @@ layout_mode = 2
 vertical = true
 script = ExtResource("10_jpvj5")
 default_size = 1
+minimum_size = 1
 item_template = ExtResource("12_ostnf")
 metadata/_custom_type_script = "uid://d3j6obbost55b"
 
@@ -136,3 +141,6 @@ text = "Trans Linear"
 [node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Trans Linear"
+
+[connection signal="sort_children" from="CenterContainer/VBoxContainer" to="CenterContainer/VBoxContainer" method="_on_sort_children"]
+[connection signal="sort_children" from="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/Items" to="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/Items" method="_on_sort_children"]

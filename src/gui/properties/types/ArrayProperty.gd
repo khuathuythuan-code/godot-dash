@@ -16,8 +16,8 @@ const NO_SIGNAL = 1
 var label_container: HBoxContainer
 var label: Label
 var add: Button
-var items: VBoxContainer
-var reordered_item: ArrayPropertyItem # Option<ArrayPropertyItem>
+var items: ReorderableVBox
+var item_panel: PanelContainer
 
 func _ready() -> void:
 	if _value is not Array:
@@ -33,32 +33,18 @@ func _ready() -> void:
 	add.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add.custom_minimum_size.x = custom_minimum_size.y
 	add.pressed.connect(add_item.bind(-1))
-	var margin_container: MarginContainer = NodeUtils.get_node_or_add(
-		NodeUtils.get_node_or_add(self, "PanelContainer", PanelContainer, NodeUtils.INTERNAL),
-		"MarginContainer",
-		MarginContainer,
-		NodeUtils.INTERNAL
-	)
-	items = NodeUtils.get_node_or_add(margin_container, "Items", VBoxContainer, NodeUtils.INTERNAL)
+	item_panel = NodeUtils.get_node_or_add(self, "PanelContainer", PanelContainer, NodeUtils.INTERNAL)
+	var margin_container: MarginContainer = NodeUtils.get_node_or_add(item_panel, "MarginContainer", MarginContainer, NodeUtils.INTERNAL)
+	items = NodeUtils.get_node_or_add(margin_container, "Items", ReorderableVBox, NodeUtils.INTERNAL)
+	items.hold_duration = 0.2
 	items.set_meta("array_property", self)
+	items.reordered.connect(refresh_item_names)
 	renamed.connect(refresh)
 	refresh()
 
 
-func _process(_delta: float) -> void:
-	if reordered_item == null:
-		return
-	var index: int = reordered_item.get_index()
-	var new_index: int = -1 # Option<i32>
-	# The actual positions of nodes within a container are kinda weird
-	if get_local_mouse_position().y < reordered_item.position.y + reordered_item.size.y - 4.0:
-		new_index = index - 1
-	if index < items.get_child_count() - 1 and get_local_mouse_position().y > reordered_item.position.y + reordered_item.size.y * 2.0 + 8.0:
-		new_index = index + 1
-	if new_index == -1:
-		return
-	new_index = clampi(new_index, 0, items.get_child_count() - 1)
-	items.move_child(reordered_item, new_index)
+func refresh_item_names(from: int, to: int) -> void:
+	_value.insert(to, _value.pop_at(from))
 	# Avoid duplicate names (e.g. <idx>2)
 	# I'm forced to apply a unique name to every item first,
 	# and then put the actual index as the name, because
@@ -73,8 +59,9 @@ func _process(_delta: float) -> void:
 func refresh() -> void:
 	label.text = name
 	var array_size = items.get_child_count() if not Engine.is_editor_hint() else default_size
-	array_size = minimum_size if array_size < minimum_size else array_size
-	array_size = maximum_size if array_size > maximum_size and not or_greater else array_size
+	array_size = maxi(array_size, minimum_size)
+	if not or_greater:
+		array_size = mini(array_size, maximum_size)
 	# Substractive
 	if items.get_child_count() > array_size:
 		for i in range(array_size, items.get_child_count()):
@@ -87,13 +74,13 @@ func refresh() -> void:
 		if items.get_child(i) != null:
 			continue
 		add_item(i)
+	item_panel.visible = array_size > 0
 
 
 func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 	if items.get_child_count() + 1 > maximum_size and not or_greater:
 		return
-	var item = ArrayPropertyItem.new()
-	item.property = item_template.instantiate()
+	var item = ArrayPropertyItem.new(item_template.instantiate())
 	item.property.show()
 	item.value_changed.connect(func(value):
 		_value = _value.duplicate()
@@ -107,6 +94,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 		_value.append(item.get_value())
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value)
+	item_panel.show()
 	return item
 
 
@@ -125,6 +113,9 @@ func remove_item(idx: int, options: int = 0) -> void:
 	_value.remove_at(idx)
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value)
+	if _value.size() == 0:
+		items.custom_minimum_size.y = 0.0
+		item_panel.hide()
 
 
 func set_value(value: Array) -> void:
@@ -134,6 +125,7 @@ func set_value(value: Array) -> void:
 
 func set_value_no_signal(value: Array) -> void:
 	items.get_children().map(func(item): item.queue_free())
+	await get_tree().process_frame
 	if value.size() < minimum_size:
 		for i in range(minimum_size):
 			add_item(i, NO_SIGNAL)

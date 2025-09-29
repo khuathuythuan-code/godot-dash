@@ -4,37 +4,33 @@ class_name ArrayPropertyItem
 
 signal value_changed(value: Variant)
 
-var reorder_button: Button
 var property: Property
 var delete_button: Button
 
+
+func _init(_property: Property) -> void:
+	property = _property
+
+
 func _ready() -> void:
-	reorder_button = NodeUtils.get_node_or_add(self, "Reorder", Button, NodeUtils.INTERNAL)
-	reorder_button.icon = preload("res://assets/textures/godot_editor_icons/TripleBar.png")
-	reorder_button.keep_pressed_outside = true
-	reorder_button.button_down.connect(reorder.bind(false))
-	reorder_button.button_up.connect(reorder.bind(true))
 	add_child(property, false, INTERNAL_MODE_FRONT)
 	property.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
-	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.png")
-	for button in [reorder_button, delete_button]:
-		button.custom_minimum_size.x = custom_minimum_size.y
-		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	property.name = name
 	property.value_changed.connect(func(value): value_changed.emit(value))
+
+	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
+	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.png")
+	delete_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	delete_button.pressed.connect(remove_self)
+
 	renamed.connect(refresh)
 
 
-func reorder(stop: bool) -> void:
-	var parent_container := get_parent() as BoxContainer
-	var parent_property := parent_container.get_meta("array_property") as ArrayProperty
-	parent_property.reordered_item = self if not stop else null
-
-
 func remove_self() -> void:
-	var parent_container := get_parent() as BoxContainer
+	var parent_container := get_parent() as ReorderableContainer
+	var is_being_reordered := parent_container._focus_child and parent_container._focus_child.z_index == 1
+	if is_being_reordered:
+		return
 	var parent_property := parent_container.get_meta("array_property") as ArrayProperty
 	parent_property.remove_item(get_index())
 
@@ -61,6 +57,5 @@ func reset() -> void:
 
 
 func set_input_state(enabled: bool) -> void:
-	reorder_button.disabled = not enabled
 	delete_button.disabled = not enabled
 	property.set_input_state(enabled)
