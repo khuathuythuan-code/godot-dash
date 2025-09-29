@@ -1,15 +1,41 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=21 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
 [ext_resource type="Script" uid="uid://86h6yxdj6auo" path="res://src/SettingsMenu.gd" id="3_rvg0e"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="6_p6jor"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="7_ndunm"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_ndunm"]
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="9_vf3uf"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_egxjo"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="10_vf3uf"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
 [ext_resource type="Script" uid="uid://co733tkf77uuu" path="res://src/settings/KeybindLoader.gd" id="12_vf3uf"]
+
+[sub_resource type="Resource" id="Resource_ndunm"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_vf3uf"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_egxjo"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_bi686"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_fl6v2"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_c7um1"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_ivev1"]
+script = ExtResource("10_egxjo")
+
+[sub_resource type="Resource" id="Resource_y26le"]
+script = ExtResource("10_egxjo")
 
 [node name="SettingsMenu" type="TabContainer"]
 texture_filter = 4
@@ -30,31 +56,36 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Graphics"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Graphics"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 1
 theme = ExtResource("1_r47on")
+script = ExtResource("9_ndunm")
+wheel_scroll_damper = SubResource("Resource_ndunm")
+dragging_scroll_damper = SubResource("Resource_vf3uf")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="Graphics/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Graphics/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Framerate" type="FoldableContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Framerate" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Framerate"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Framerate"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Max FPS" type="BoxContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer"]
+[node name="Max FPS" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("7_ndunm")
@@ -65,11 +96,11 @@ allow_greater = true
 suffix = "fps"
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer/Max FPS"]
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer/Max FPS"]
 script = ExtResource("6_p6jor")
 config_property = &"max_fps"
 
-[node name="VSync" type="BoxContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer"]
+[node name="VSync" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("9_vf3uf")
@@ -77,20 +108,21 @@ default = 1
 fields = PackedStringArray("Disabled", "Enabled", "Adaptive", "Mailbox")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="PropertySaveLoad" type="Node" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer/VSync"]
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate/VBoxContainer/VSync"]
 script = ExtResource("6_p6jor")
 config_property = &"vsync"
 
-[node name="Window" type="FoldableContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Window" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Window"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Window"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Window Mode" type="BoxContainer" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Window/VBoxContainer"]
+[node name="Window Mode" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -99,7 +131,7 @@ default = 1
 fields = PackedStringArray("Windowed", "Borderless Fullscreen", "Exclusive Fullscreen")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="PropertySaveLoad" type="Node" parent="Graphics/ScrollContainer/MarginContainer/VBoxContainer/Window/VBoxContainer/Window Mode"]
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window/VBoxContainer/Window Mode"]
 script = ExtResource("6_p6jor")
 config_property = &"window_mode"
 
@@ -127,30 +159,35 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Audio"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Audio"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 1
+script = ExtResource("9_ndunm")
+wheel_scroll_damper = SubResource("Resource_egxjo")
+dragging_scroll_damper = SubResource("Resource_bi686")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="Audio/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Audio/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Audio/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Volume" type="FoldableContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Volume" type="FoldableContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Volume"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Master" type="BoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
+[node name="Master" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("10_vf3uf")
@@ -159,11 +196,11 @@ max_value = 1.0
 slider_width = 256.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master"]
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master"]
 script = ExtResource("6_p6jor")
 config_property = &"master_audio_level"
 
-[node name="Music" type="BoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
+[node name="Music" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("10_vf3uf")
@@ -172,11 +209,11 @@ max_value = 1.0
 slider_width = 256.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music"]
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music"]
 script = ExtResource("6_p6jor")
 config_property = &"music_audio_level"
 
-[node name="Game SFX" type="BoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
+[node name="Game SFX" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("10_vf3uf")
@@ -185,11 +222,11 @@ max_value = 1.0
 slider_width = 256.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX"]
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX"]
 script = ExtResource("6_p6jor")
 config_property = &"game_sfx_audio_level"
 
-[node name="Level SFX" type="BoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
+[node name="Level SFX" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("10_vf3uf")
@@ -198,18 +235,18 @@ max_value = 1.0
 slider_width = 256.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX"]
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX"]
 script = ExtResource("6_p6jor")
 config_property = &"in_level_sfx_audio_level"
 
-[node name="Mute game on unfocus" type="BoxContainer" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
+[node name="Mute game on unfocus" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("11_egxjo")
 default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="PropertySaveLoad" type="Node" parent="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Mute game on unfocus"]
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Mute game on unfocus"]
 script = ExtResource("6_p6jor")
 config_property = &"mute_game_on_unfocus"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
@@ -238,601 +275,605 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Keybinds"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Keybinds"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("9_ndunm")
+wheel_scroll_damper = SubResource("Resource_fl6v2")
+dragging_scroll_damper = SubResource("Resource_c7um1")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="Keybinds/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Keybinds/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Gameplay" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Gameplay" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Gameplay"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay"]
 layout_mode = 2
 
-[node name="Jump" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
+[node name="Jump" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Jump"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Jump"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Jump"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "jump"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Restart Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
+[node name="Restart Level" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Restart Level"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Restart Level"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Restart Level"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "restart_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Pause Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
+[node name="Pause Level" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Pause Level"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Pause Level"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Pause Level"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "pause_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Editor" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Editor" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Editor"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor"]
 layout_mode = 2
 
-[node name="Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Viewport" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Viewport"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport"]
 layout_mode = 2
 
-[node name="Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+[node name="Selection" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Selection"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection"]
 layout_mode = 2
 
-[node name="Add Object, Set Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+[node name="Add Object, Set Selection" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Add Object, Set Selection"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object, Set Selection"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object, Set Selection"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_add"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Add Object (Swipe), Add to Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+[node name="Add Object (Swipe), Add to Selection" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Add Object (Swipe), Add to Selection"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object (Swipe), Add to Selection"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Add Object (Swipe), Add to Selection"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_add_swipe"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Remove Object" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+[node name="Remove Object" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Remove Object"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_remove"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Remove Object (Swipe)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+[node name="Remove Object (Swipe)" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Remove Object (Swipe)"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object (Swipe)"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove Object (Swipe)"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_remove_swipe"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Remove from Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
+[node name="Remove from Selection" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Remove from Selection"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove from Selection"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer/Remove from Selection"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_selection_remove"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Move" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+[node name="Move" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move"]
 layout_mode = 2
 
-[node name="Move Left" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+[node name="Move Left" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Move Left"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Left"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Left"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_left"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Move Right" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+[node name="Move Right" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Move Right"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Right"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Right"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_right"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Move Up" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+[node name="Move Up" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Move Up"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Up"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Up"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_up"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Move Down" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+[node name="Move Down" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Move Down"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Down"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Move Down"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_down"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Rotate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+[node name="Rotate" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate"]
 layout_mode = 2
 
-[node name="Rotate 90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Rotate 90°" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Rotate 90°"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 90°"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 90°"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_rotate_90"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Rotate -90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Rotate -90°" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Rotate -90°"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -90°"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -90°"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_rotate_-90"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Rotate 45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Rotate 45°" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Rotate 45°"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 45°"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate 45°"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_rotate_45"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Rotate -45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Rotate -45°" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Rotate -45°"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -45°"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate -45°"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_rotate_-45"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Quick Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Quick Rotate (Free)" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Quick Rotate (Free)"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Quick Rotate (Free)"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Quick Rotate (Free)"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_quick_rotate_free"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
+[node name="Rotate (Free)" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Rotate -45°"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate (Free)"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer/Rotate (Free)"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_rotate_free"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Flip" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
+[node name="Flip" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip"]
 layout_mode = 2
 
-[node name="Flip Vertically" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
+[node name="Flip Vertically" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Flip Vertically"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Vertically"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Vertically"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_flip_h"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Flip Horizontally" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
+[node name="Flip Horizontally" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Flip Horizontally"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Horizontally"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer/Flip Horizontally"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_flip_v"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Menus" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
+[node name="Menus" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Menus"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus"]
 layout_mode = 2
 
-[node name="Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+[node name="Level" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Level"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level"]
 layout_mode = 2
 
-[node name="New" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="New" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "New"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/New"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/New"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_new_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Open" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="Open" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Open"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Open"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Open"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_open_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Import" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="Import" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Import"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Import"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Import"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_import_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Save" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="Save" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Save"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_save"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Save As" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="Save As" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Save As"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save As"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Save As"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_save_as"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Export" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
+[node name="Export" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Export"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Export"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer/Export"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_export_level"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Edit" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+[node name="Edit" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "Edit"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit"]
 layout_mode = 2
 
-[node name="Undo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Undo" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Undo"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Undo"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Undo"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_undo"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Redo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Redo" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Redo"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Redo"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Redo"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_redo"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Copy" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Copy" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Copy"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Copy"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Copy"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_copy"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Paste" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Paste" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Paste"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Paste"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Paste"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "ui_paste"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Duplicate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Duplicate" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Duplicate"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Duplicate"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Duplicate"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_duplicate"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Select All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Select All" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Select All"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Select All"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Select All"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_select_all"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Deselect All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Deselect All" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Deselect All"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Deselect All"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Deselect All"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_deselect"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="Delete" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
+[node name="Delete" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Delete"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Delete"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer/Delete"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "editor_delete"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="View" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
+[node name="View" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
 title = "View"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View"]
 layout_mode = 2
 
-[node name="Toggle Maximize Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer"]
+[node name="Toggle Maximize Viewport" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 folded = true
 title = "Toggle Maximize Viewport"
 
-[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer/Toggle Maximize Viewport"]
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer/Toggle Maximize Viewport"]
 visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
@@ -863,49 +904,55 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Editor"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Editor"]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 1
 theme = ExtResource("1_r47on")
+script = ExtResource("9_ndunm")
+wheel_scroll_damper = SubResource("Resource_ivev1")
+dragging_scroll_damper = SubResource("Resource_y26le")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="Editor/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Editor/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Interface" type="FoldableContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Interface" type="FoldableContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Interface"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Interface"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Interface"]
 layout_mode = 2
 
-[node name="Hide grid on playtest" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Interface/VBoxContainer"]
+[node name="Hide grid on playtest" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Interface/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("11_egxjo")
 default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Interface/VBoxContainer/Hide grid on playtest"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Interface/VBoxContainer/Hide grid on playtest"]
 script = ExtResource("6_p6jor")
 config_property = &"hide_grid_on_playtest"
 
-[node name="Level" type="FoldableContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Level" type="FoldableContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Level"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Level"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Level"]
 layout_mode = 2
 
-[node name="Autosave Delay" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Level/VBoxContainer"]
+[node name="Autosave Delay" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Level/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 tooltip_text = "Delay in minutes after which the level will be automatically saved.
@@ -917,40 +964,42 @@ allow_greater = true
 suffix = "min"
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Level/VBoxContainer/Autosave Delay"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Level/VBoxContainer/Autosave Delay"]
 script = ExtResource("6_p6jor")
 config_property = &"autosave_delay"
 
-[node name="Colors" type="FoldableContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Colors" type="FoldableContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Colors"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 focus_mode = 1
 
-[node name="Selection Hone" type="FoldableContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
+[node name="Selection Hone" type="FoldableContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Selection Zone"
 
-[node name="Selection zone" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone"]
+[node name="Selection zone" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Color" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone"]
+[node name="Color" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("12_bi686")
 default = Color(0, 1, 0, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Color"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Color"]
 script = ExtResource("6_p6jor")
 config_property = &"selection_zone_color"
 
-[node name="Alpha" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone"]
+[node name="Alpha" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("7_ndunm")
@@ -958,30 +1007,31 @@ default = 0.2
 max_value = 1.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Alpha"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Alpha"]
 script = ExtResource("6_p6jor")
 config_property = &"selection_zone_fill_alpha"
 
-[node name="Trigger Hitboxes" type="FoldableContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
+[node name="Trigger Hitboxes" type="FoldableContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Trigger Hitboxes"
 
-[node name="Trigger hitboxes" type="VBoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes"]
+[node name="Trigger hitboxes" type="VBoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Color" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes"]
+[node name="Color" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("12_bi686")
 default = Color(0, 1, 1, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes/Color"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes/Color"]
 script = ExtResource("6_p6jor")
 config_property = &"trigger_hitbox_color"
 
-[node name="Alpha" type="BoxContainer" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes"]
+[node name="Alpha" type="BoxContainer" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 script = ExtResource("7_ndunm")
@@ -989,7 +1039,7 @@ default = 0.2
 max_value = 1.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="Editor/ScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes/Alpha"]
+[node name="PropertySaveLoad" type="Node" parent="Editor/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes/Alpha"]
 script = ExtResource("6_p6jor")
 config_property = &"trigger_hitbox_fill_alpha"
 
@@ -1083,8 +1133,8 @@ alignment = 1
 layout_mode = 2
 text = " Close "
 
-[connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master" to="." method="_on_game_volume_value_changed"]
-[connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
-[connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
+[connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master" to="." method="_on_game_volume_value_changed"]
+[connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
+[connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
 [connection signal="pressed" from="Keybinds/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

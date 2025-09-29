@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=58 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_e44lk"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_dgjna"]
@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="16_dgsi1"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="19_qavw1"]
 [ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="21_i7ifx"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_mekmn"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_l3o4o"]
 [ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="22_r3sjc"]
 [ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="26_nre0g"]
 
@@ -44,6 +46,66 @@ script = ExtResource("12_ct30d")
 duration = 0.5
 transition = 5
 ease = 0
+
+[sub_resource type="Resource" id="Resource_kwqb8"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_y15d6"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_u55b3"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_wsqty"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_oiest"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_f4jp2"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_kik7w"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_4ikpr"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_doyhq"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_2so2y"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_7yh6i"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_pwxld"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_cw1g3"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_yc0gu"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_qnen4"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_q5chl"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_j2mks"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_5ha8j"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_xuwja"]
+script = ExtResource("22_l3o4o")
+
+[sub_resource type="Resource" id="Resource_g8282"]
+script = ExtResource("22_l3o4o")
 
 [sub_resource type="Resource" id="Resource_m8p16"]
 script = ExtResource("12_ct30d")
@@ -285,7 +347,6 @@ inactive_update_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="IconGarage" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,6 +440,10 @@ current_tab = 0
 
 [node name="Cube" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_kwqb8")
+dragging_scroll_damper = SubResource("Resource_y15d6")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 0
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Cube"]
@@ -393,6 +458,10 @@ amount = 100
 [node name="Ship" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_u55b3")
+dragging_scroll_damper = SubResource("Resource_wsqty")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 1
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ship"]
@@ -407,6 +476,10 @@ amount = 50
 [node name="Ball" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_oiest")
+dragging_scroll_damper = SubResource("Resource_f4jp2")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 2
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ball"]
@@ -421,6 +494,10 @@ amount = 30
 [node name="Ufo" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_kik7w")
+dragging_scroll_damper = SubResource("Resource_4ikpr")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 3
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ufo"]
@@ -435,6 +512,10 @@ amount = 40
 [node name="Wave" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_doyhq")
+dragging_scroll_damper = SubResource("Resource_2so2y")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 4
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Wave"]
@@ -449,6 +530,10 @@ amount = 60
 [node name="Robot" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_7yh6i")
+dragging_scroll_damper = SubResource("Resource_pwxld")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 5
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Robot"]
@@ -463,6 +548,10 @@ amount = 30
 [node name="Spider" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_cw1g3")
+dragging_scroll_damper = SubResource("Resource_yc0gu")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 6
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Spider"]
@@ -477,6 +566,10 @@ amount = 30
 [node name="Swing" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_qnen4")
+dragging_scroll_damper = SubResource("Resource_q5chl")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 7
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Swing"]
@@ -491,6 +584,10 @@ amount = 20
 [node name="Jetpack" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_j2mks")
+dragging_scroll_damper = SubResource("Resource_5ha8j")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 8
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Jetpack"]
@@ -505,6 +602,10 @@ amount = 20
 [node name="Death Effect" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("21_mekmn")
+wheel_scroll_damper = SubResource("Resource_xuwja")
+dragging_scroll_damper = SubResource("Resource_g8282")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 metadata/_tab_index = 9
 
 [node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Death Effect"]
