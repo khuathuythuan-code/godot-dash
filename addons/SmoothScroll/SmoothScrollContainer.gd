@@ -345,7 +345,6 @@ func _scrollbar_hide_timer_timeout() -> void:
 # Updates content margins from current StyleBox
 # Captures baseline offset and clears velocity; keeps scroll math in margin-free space
 func _update_content_margins() -> void:
-	print("updated")
 	_initializing_margins = true
 	
 	var style_box = get_theme_stylebox("panel")
