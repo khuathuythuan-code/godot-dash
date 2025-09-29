@@ -22,7 +22,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_r47on")
-current_tab = 2
+current_tab = 4
 script = ExtResource("3_rvg0e")
 
 [node name="Graphics" type="VBoxContainer" parent="."]
@@ -103,15 +103,22 @@ metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 script = ExtResource("6_p6jor")
 config_property = &"window_mode"
 
-[node name="HSeparator" type="HSeparator" parent="Graphics"]
+[node name="MarginContainer" type="MarginContainer" parent="Graphics"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Graphics"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Graphics/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="Graphics/HBoxContainer"]
+[node name="Close" type="Button" parent="Graphics/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " Close "
 
@@ -207,19 +214,27 @@ script = ExtResource("6_p6jor")
 config_property = &"mute_game_on_unfocus"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="HSeparator" type="HSeparator" parent="Audio"]
+[node name="MarginContainer" type="MarginContainer" parent="Audio"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Audio/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Audio"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Audio/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="Audio/HBoxContainer"]
+[node name="Close" type="Button" parent="Audio/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " Close "
 
 [node name="Keybinds" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -237,6 +252,7 @@ layout_mode = 2
 
 [node name="Gameplay" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Gameplay"
 title_alignment = 1
 
@@ -246,6 +262,7 @@ layout_mode = 2
 [node name="Jump" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Jump"
 
@@ -259,6 +276,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Restart Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Restart Level"
 
@@ -272,6 +290,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Pause Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Pause Level"
 
@@ -284,6 +303,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Editor" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Editor"
 title_alignment = 1
 
@@ -292,6 +312,7 @@ layout_mode = 2
 
 [node name="Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Viewport"
 title_alignment = 1
 
@@ -300,6 +321,7 @@ layout_mode = 2
 
 [node name="Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Selection"
 title_alignment = 1
 
@@ -309,6 +331,7 @@ layout_mode = 2
 [node name="Add Object, Set Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Add Object, Set Selection"
 
@@ -322,6 +345,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Add Object (Swipe), Add to Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Add Object (Swipe), Add to Selection"
 
@@ -335,6 +359,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Remove Object" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Remove Object"
 
@@ -348,6 +373,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Remove Object (Swipe)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Remove Object (Swipe)"
 
@@ -361,6 +387,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Remove from Selection" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Remove from Selection"
 
@@ -373,6 +400,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Move" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
@@ -382,6 +410,7 @@ layout_mode = 2
 [node name="Move Left" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Move Left"
 
@@ -395,6 +424,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Move Right" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Move Right"
 
@@ -408,6 +438,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Move Up" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Move Up"
 
@@ -421,6 +452,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Move Down" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Move Down"
 
@@ -433,6 +465,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Rotate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
@@ -442,6 +475,7 @@ layout_mode = 2
 [node name="Rotate 90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Rotate 90°"
 
@@ -455,6 +489,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Rotate -90°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Rotate -90°"
 
@@ -468,6 +503,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Rotate 45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Rotate 45°"
 
@@ -481,6 +517,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Rotate -45°" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Rotate -45°"
 
@@ -494,6 +531,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Quick Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Quick Rotate (Free)"
 
@@ -507,6 +545,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Rotate (Free)" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Rotate -45°"
 
@@ -519,6 +558,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Flip" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Move"
 title_alignment = 1
 
@@ -528,6 +568,7 @@ layout_mode = 2
 [node name="Flip Vertically" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Flip Vertically"
 
@@ -541,6 +582,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Flip Horizontally" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Flip Horizontally"
 
@@ -553,6 +595,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Menus" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Menus"
 title_alignment = 1
 
@@ -561,6 +604,7 @@ layout_mode = 2
 
 [node name="Level" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Level"
 title_alignment = 1
 
@@ -570,6 +614,7 @@ layout_mode = 2
 [node name="New" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "New"
 
@@ -583,6 +628,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Open" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Open"
 
@@ -596,6 +642,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Import" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Import"
 
@@ -609,6 +656,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Save" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Save"
 
@@ -622,6 +670,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Save As" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Save As"
 
@@ -635,6 +684,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Export" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Export"
 
@@ -647,6 +697,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Edit" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "Edit"
 title_alignment = 1
 
@@ -656,6 +707,7 @@ layout_mode = 2
 [node name="Undo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Undo"
 
@@ -669,6 +721,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Redo" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Redo"
 
@@ -682,6 +735,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Copy" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Copy"
 
@@ -695,6 +749,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Paste" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Paste"
 
@@ -708,6 +763,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Duplicate" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Duplicate"
 
@@ -721,6 +777,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Select All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Select All"
 
@@ -734,6 +791,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Deselect All" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Deselect All"
 
@@ -747,6 +805,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Delete" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Delete"
 
@@ -759,6 +818,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="View" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 title = "View"
 title_alignment = 1
 
@@ -768,6 +828,7 @@ layout_mode = 2
 [node name="Toggle Maximize Viewport" type="FoldableContainer" parent="Keybinds/ScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 folded = true
 title = "Toggle Maximize Viewport"
 
@@ -778,15 +839,22 @@ script = ExtResource("12_vf3uf")
 input_action = "editor_hide_panels"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
-[node name="HSeparator" type="HSeparator" parent="Keybinds"]
+[node name="MarginContainer" type="MarginContainer" parent="Keybinds"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Keybinds/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Keybinds"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Keybinds/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="Keybinds/HBoxContainer"]
+[node name="Close" type="Button" parent="Keybinds/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " Close "
 
@@ -925,20 +993,26 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 script = ExtResource("6_p6jor")
 config_property = &"trigger_hitbox_fill_alpha"
 
-[node name="HSeparator" type="HSeparator" parent="Editor"]
+[node name="MarginContainer" type="MarginContainer" parent="Editor"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Editor/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Editor/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Editor"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Editor/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="Editor/HBoxContainer"]
+[node name="Close" type="Button" parent="Editor/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " Close "
 
 [node name="Debug" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
@@ -990,24 +1064,27 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"enable_easter_eggs"
 
-[node name="HSeparator" type="HSeparator" parent="Debug"]
+[node name="MarginContainer" type="MarginContainer" parent="Debug"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Debug/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="Debug/HBoxContainer"]
+[node name="Close" type="Button" parent="Debug/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = " Close "
 
-[connection signal="pressed" from="Graphics/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master" to="." method="_on_game_volume_value_changed"]
 [connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Audio/ScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
-[connection signal="pressed" from="Audio/HBoxContainer/Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="Keybinds/HBoxContainer/Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="Editor/HBoxContainer/Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="Debug/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Keybinds/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
