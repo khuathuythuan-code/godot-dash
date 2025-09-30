@@ -132,7 +132,7 @@ func _ready() -> void:
 		text_submitted.connect(_on_change)
 	else:
 		if right_icon == null:
-			right_icon = ResourceLoader.load("res://addons/search_bar_node/search.svg")
+			right_icon = ResourceLoader.load("res://assets/textures/godot_editor_icons/Search.svg")
 
 func _on_change(_event: String) -> void:
 	_queue_update()
