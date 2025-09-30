@@ -11,9 +11,6 @@ var CONTAINER_ATTRIBUTES: Dictionary[String, Array] = {
 
 var properties: Dictionary[Script, BoolProperty]
 
-var dictionary_properties: Dictionary[Script, Dictionary]
-
-
 func _init() -> void:
 	BOOL_ATTRIBUTES.make_read_only()
 	CONTAINER_ATTRIBUTES.make_read_only()
