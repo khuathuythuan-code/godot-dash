@@ -3,11 +3,11 @@ class_name HideDetailAttribute
 @onready var parent := get_parent()
 
 func _ready() -> void:
-	var base := parent.get_node_or_null(^"Detail")
-	if base:
-		base.hide()
+	var detail := parent.get_node_or_null(^"Detail")
+	if detail:
+		detail.hide()
 
 func _exit_tree() -> void:
-	var base := parent.get_node_or_null(^"Detail")
-	if base:
-		base.show()
+	var detail := parent.get_node_or_null(^"Detail")
+	if detail:
+		detail.show()
