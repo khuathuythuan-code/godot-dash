@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=243 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -178,6 +178,7 @@
 [ext_resource type="Texture2D" uid="uid://kvlnc2ofgvcs" path="res://assets/textures/triggers/StopHeldJump.svg" id="135_wiub1"]
 [ext_resource type="PackedScene" uid="uid://fo7vbjwc7r60" path="res://scenes/components/level_components/letter_objects/StopJump.tscn" id="136_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://wxnp5voc8u7a" path="res://assets/textures/triggers/StopDash.svg" id="136_mvta7"]
+[ext_resource type="Shader" uid="uid://gfibjmoqpcol" path="res://resources/shaders/FlipUVs.gdshader" id="137_5tfcf"]
 [ext_resource type="PackedScene" uid="uid://bwjxj7jcot0cn" path="res://scenes/components/level_components/letter_objects/StopDash.tscn" id="137_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://bxhdprvq16gwq" path="res://scenes/components/level_components/triggers/AlphaTrigger.tscn" id="138_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://dv0sqs0l30luf" path="res://assets/textures/guis/editor/block_palette/Slopes.svg" id="138_ha8mj"]
@@ -354,6 +355,10 @@ script = ExtResource("12_egrfm")
 base = ExtResource("20_hgbal")
 name = "OutlineSlope04"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhc6f"]
+shader = ExtResource("137_5tfcf")
+shader_parameter/flip = 1
 
 [sub_resource type="Resource" id="Resource_vhc6f"]
 script = ExtResource("193_5tfcf")
@@ -3696,6 +3701,7 @@ type = 8
 object = ExtResource("82_n18q3")
 
 [node name="TeleportalOut" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/ButtonContainer/Teleportals"]
+material = SubResource("ShaderMaterial_vhc6f")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -4591,13 +4597,11 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 visible = false
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Interactable"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Interactable" instance=ExtResource("183_momrj")]
-visible = false
 layout_mode = 2
 
 [node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
@@ -4618,11 +4622,13 @@ metadata/_custom_type_script = "uid://cry3286stfmmk"
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Colors"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors"]
+visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
