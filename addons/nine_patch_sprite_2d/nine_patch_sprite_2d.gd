@@ -20,8 +20,8 @@
 
 @tool
 @icon("nine_patch_sprite_2d.svg")
-
 class_name NinePatchSprite2D extends Node2D
+
 
 
 ## A Node2D that displays a texture by keeping its corners intact,
