@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bylba27vuavv5"
-path="res://.godot/imported/CloseButton.png-ffca0eda9b306f993de1f60ea37685fc.ctex"
+uid="uid://c88nniclu0mts"
+path="res://.godot/imported/TripleBar.svg-f10f6a42987e20cfcdafa6a0ebecafb8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/guis/shared/CloseButton.png"
-dest_files=["res://.godot/imported/CloseButton.png-ffca0eda9b306f993de1f60ea37685fc.ctex"]
+source_file="res://assets/textures/godot_editor_icons/TripleBar.svg"
+dest_files=["res://.godot/imported/TripleBar.svg-f10f6a42987e20cfcdafa6a0ebecafb8.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

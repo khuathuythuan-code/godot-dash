@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuqy5kedacfwe"
-path="res://.godot/imported/RemoveItem.svg-b40509afe3f889f741bcb0e45c8b550d.ctex"
+uid="uid://bw6pd8mb4o8dg"
+path="res://.godot/imported/tip.png-b8dfd430b24cef6336134563f54a1762.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/guis/shared/RemoveItem.svg"
-dest_files=["res://.godot/imported/RemoveItem.svg-b40509afe3f889f741bcb0e45c8b550d.ctex"]
+source_file="res://addons/search_bar_node/example/tip.png"
+dest_files=["res://.godot/imported/tip.png-b8dfd430b24cef6336134563f54a1762.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

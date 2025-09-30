@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://da4xswy05y0ve"]
+[gd_scene load_steps=10 format=3 uid="uid://da4xswy05y0ve"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_b71ym"]
 [ext_resource type="Script" uid="uid://u5n6v8qenvt6" path="res://src/editor/editor_panels/GroupEditor.gd" id="1_laiw3"]
-[ext_resource type="Texture2D" uid="uid://bnuunm3nj6gcg" path="res://assets/textures/guis/shared/AddItem.svg" id="2_scenm"]
+[ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/godot_editor_icons/Add.svg" id="3_dlgkp"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="3_vvypi"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="4_xkqcn"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="6_ibtip"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="7_1melt"]
+
+[sub_resource type="Resource" id="Resource_gi0fj"]
+script = ExtResource("7_1melt")
+
+[sub_resource type="Resource" id="Resource_c6xh5"]
+script = ExtResource("7_1melt")
 
 [node name="GroupEditor" type="VBoxContainer" node_paths=PackedStringArray("line_edit", "confirm_button", "group_container")]
 custom_minimum_size = Vector2(0, 200)
@@ -15,33 +25,43 @@ theme = ExtResource("1_b71ym")
 script = ExtResource("1_laiw3")
 line_edit = NodePath("HBoxContainer/LineEdit")
 confirm_button = NodePath("HBoxContainer/Button")
-group_container = NodePath("ScrollContainer/GroupContainer")
+group_container = NodePath("SmoothScrollContainer/GroupContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" node_paths=PackedStringArray("root_node_to_search")]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 theme = ExtResource("1_b71ym")
-placeholder_text = "Add a group to the selected objects…"
+placeholder_text = "Add or find a group…"
 clear_button_enabled = true
+right_icon = ExtResource("3_vvypi")
+script = ExtResource("4_xkqcn")
+root_node_to_search = NodePath("../../SmoothScrollContainer/GroupContainer")
+group_name = PackedStringArray()
+filters = Array[StringName]([&"text"])
+discard_similars = false
+metadata/_custom_type_script = "uid://y1hecem53675"
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 texture_filter = 4
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 focus_mode = 0
-icon = ExtResource("2_scenm")
+icon = ExtResource("3_dlgkp")
 icon_alignment = 1
-expand_icon = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("6_ibtip")
+wheel_scroll_damper = SubResource("Resource_gi0fj")
+dragging_scroll_damper = SubResource("Resource_c6xh5")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="GroupContainer" type="HFlowContainer" parent="ScrollContainer"]
+[node name="GroupContainer" type="HFlowContainer" parent="SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 

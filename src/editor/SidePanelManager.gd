@@ -25,6 +25,7 @@ extends Node
 func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
+	color_section.folded = false
 	_on_edit_handler_selection_changed([])
 
 

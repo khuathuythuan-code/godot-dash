@@ -159,8 +159,12 @@ func _physics_process(delta: float) -> void:
 	if _dead or not LevelManager.level_playing:
 		return
 	
+	# Get velocity
 	up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
-	velocity = _compute_velocity(delta, velocity, get_direction(), _get_jump_state(EVALUATE_CLICK_BUFFER))
+	var jump_state = _get_jump_state()
+	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state)
+	
+	# Slope collision resolution
 	if not $SlopeShapecast.is_colliding() and $GroundCollider.shape is CircleShape2D:
 		$GroundCollider.shape = default_collider
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = default_collider
@@ -169,10 +173,21 @@ func _physics_process(delta: float) -> void:
 	floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
 	$GroundCollider.rotation = gameplay_rotation
 	_handle_collision(last_collision)
+
+	# Apply movement
 	move_and_slide()
-	_rotate_sprite_degrees(delta)
+	
+	# Sprite updates
+	_rotate_sprite_degrees(delta, jump_state)
 	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
 	_update_wave_trail(delta)
+	match displayed_gamemode:
+		Gamemode.SPIDER:
+			_update_spider_state_machine(jump_state)
+		Gamemode.SWING:
+			_update_swing_fire(delta)
+	
+	# Instantiate spider trail if needed
 	if _last_spider_trail != null:
 		add_child(_last_spider_trail)
 		_last_spider_trail.trail_global_position = $Icon/Spider/SpiderCast/SpiderTrailSpawnPoint.global_position if horizontal_direction > 0 \
@@ -180,25 +195,24 @@ func _physics_process(delta: float) -> void:
 		_last_spider_trail.displayed_scale_y = abs(_last_spider_trail_height) * sign(gravity_flip)
 		_last_spider_trail.displayed_scale_x = -horizontal_direction
 		_last_spider_trail = null
-	#region 0x speed portal position nudge
+	
+	# 0x speed portal position nudge
 	if speed_0_portal_control:
 		var rotation_local_global_position = global_position.rotated(-gameplay_rotation)
 		var rotation_local_portal_global_position = speed_0_portal_control.parent.global_position.rotated(-gameplay_rotation)
 		var rotation_local_velocity = velocity.rotated(-gameplay_rotation)
+		# Update ship icon by running `displayed_gamemode` setter
 		displayed_gamemode = displayed_gamemode
 		global_position = Vector2(
 			rotation_local_global_position.lerp(rotation_local_portal_global_position, 0.3 * delta * 60).x,
 			rotation_local_global_position.y
-			).rotated(gameplay_rotation)
+		).rotated(gameplay_rotation)
 		velocity = Vector2(
 			0.0,
 			rotation_local_velocity.y
-			).rotated(gameplay_rotation)
+		).rotated(gameplay_rotation)
 		if is_equal_approx(rotation_local_global_position.x, rotation_local_portal_global_position.x):
 			speed_0_portal_control = null
-	#endregion
-	if displayed_gamemode == Gamemode.SPIDER: _update_spider_state_machine()
-	if displayed_gamemode == Gamemode.SWING: _update_swing_fire(delta)
 
 
 func _handle_collision(collision: KinematicCollision2D) -> void:
@@ -222,14 +236,14 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 		%GroundParticles.add_child(ground_hit_particles)
 
 
-func get_floor_angle_signed(last_slide: bool) -> float:
+func get_floor_angle_signed(last_slide: bool, jump_state: int) -> float:
 	var floor_normal: Vector2
 	if last_slide:
 		floor_normal = get_last_slide_collision().get_normal()
 	else:
 		floor_normal = get_floor_normal()
 	var floor_angle: float
-	if _is_flying_gamemode and is_on_ceiling() and _get_jump_state() == 1:
+	if _is_flying_gamemode and is_on_ceiling() and jump_state == 1:
 		var local_up_direction: Vector2 = Vector2.DOWN.rotated(gameplay_rotation) * sign(gravity_flip)
 		floor_angle = snappedf(rad_to_deg(floor_normal.angle_to(local_up_direction)), 0.01)
 	else:
@@ -258,20 +272,21 @@ func get_direction() -> int:
 	return direction
 
 
-func _get_jump_state(options: int = 0) -> int:
+func _get_jump_state() -> int:
 	var jump_state: int
-	if options & EVALUATE_CLICK_BUFFER:
-		if _click_buffer_state == ClickBufferState.NOT_HOLDING and Input.is_action_just_pressed("jump") and not (is_on_floor() or is_on_ceiling()) \
-				and internal_gamemode != Gamemode.SHIP and internal_gamemode != Gamemode.SWING and internal_gamemode != Gamemode.WAVE:
-			_click_buffer_state = ClickBufferState.BUFFERING
-		if _click_buffer_state == ClickBufferState.BUFFERING and not orb_queue.is_empty():
-			_click_buffer_state = ClickBufferState.JUMPING
-		if Input.is_action_just_released("jump") or ((is_on_floor() or is_on_ceiling()) and not Input.is_action_pressed("jump")):
-			_click_buffer_state = ClickBufferState.NOT_HOLDING
-	if Input.is_action_just_pressed("jump") and is_on_floor() and jump_hold_disabled:
-		jump_hold_disabled = false
+	
+	if _click_buffer_state == ClickBufferState.NOT_HOLDING and Input.is_action_just_pressed("jump") and not (is_on_floor() or is_on_ceiling()) \
+			and internal_gamemode != Gamemode.SHIP and internal_gamemode != Gamemode.SWING and internal_gamemode != Gamemode.WAVE:
+		_click_buffer_state = ClickBufferState.BUFFERING
+	if _click_buffer_state == ClickBufferState.BUFFERING and not orb_queue.is_empty():
+		_click_buffer_state = ClickBufferState.JUMPING
+	if Input.is_action_just_released("jump") or ((is_on_floor() or is_on_ceiling()) and not Input.is_action_pressed("jump")):
+		_click_buffer_state = ClickBufferState.NOT_HOLDING
+	
 	if jump_hold_disabled:
 		jump_state = -1
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling()):
+			jump_hold_disabled = false
 	elif internal_gamemode == Gamemode.CUBE:
 		jump_state = 1 if (Input.is_action_pressed("jump") and (is_on_floor() or is_on_ceiling())) else -1
 	elif internal_gamemode == Gamemode.ROBOT:
@@ -290,11 +305,13 @@ func _get_jump_state(options: int = 0) -> int:
 		jump_state = 1 if Input.is_action_just_pressed("jump") else -1
 	elif internal_gamemode == Gamemode.BALL or internal_gamemode == Gamemode.SPIDER:
 		jump_state = 1 if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling())) else -1
+	
 	if get_viewport().gui_get_hovered_control() != null:
 		if get_viewport().gui_get_hovered_control().name == "EditorViewport":
 			return jump_state
 		else:
 			return 0 if LevelManager.platformer else -1
+	
 	return jump_state
 
 
@@ -309,7 +326,7 @@ func _compute_velocity(delta: float,
 	#region Slope physics
 	var slope_velocity: Vector2
 	if $GroundCollider.shape is CircleShape2D and get_last_slide_collision() != null:
-		var floor_angle := get_floor_angle_signed(true)
+		var floor_angle := get_floor_angle_signed(true, jump_state)
 		# 90° collision warp prevention
 		if pingpong(floor_angle, PI/2) < floor_max_angle:
 			slope_velocity.y = tan(-floor_angle) * abs(_velocity.x) * direction
@@ -356,7 +373,11 @@ func _compute_velocity(delta: float,
 	
 	var flying_gamemode_slope_boost: bool = _is_flying_gamemode and (
 		(is_on_ceiling() and jump_state >= 0) or
-		(is_on_floor() and get_last_slide_collision() != null and get_floor_angle_signed(true) != 0.0 and get_direction() != 0 and jump_state == 1))
+		(is_on_floor()
+			and get_last_slide_collision() != null
+			and get_floor_angle_signed(true, jump_state) != 0.0
+			and get_direction() != 0
+			and jump_state == 1))
 
 	if ((((is_on_floor() or is_on_ceiling() and not _is_flying_gamemode) or (is_on_floor() and _is_flying_gamemode)) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
 		_velocity.y = slope_velocity.y
@@ -478,16 +499,16 @@ func _ensure_velocity_redirect(delta: float, global_velocity: Vector2) -> bool:
 	return false
 
 
-func _rotate_sprite_degrees(delta: float):
+func _rotate_sprite_degrees(delta: float, jump_state: int):
 	var local_velocity := velocity.rotated(-gameplay_rotation)
 	var local_velocity_angle_degrees := rad_to_deg(atan2(local_velocity.y * get_direction(), local_velocity.x * get_direction()))
 	var dash_horizontal_direction := horizontal_direction if not LevelManager.platformer or dash_control == null else dash_control.initial_horizontal_direction
 	if $GroundCollider.shape is CircleShape2D:
 		if get_floor_normal() != Vector2.ZERO:
-			if not is_zero_approx(get_floor_angle_signed(false)):
+			if not is_zero_approx(get_floor_angle_signed(false, jump_state)):
 				sprite_floor_angle = lerp_angle(
 						sprite_floor_angle,
-						-get_floor_angle_signed(false) + gameplay_rotation,
+						-get_floor_angle_signed(false, jump_state) + gameplay_rotation,
 						delta * 60 * ICON_LERP_FACTOR)
 		elif last_collision != null and last_collision.get_normal() != Vector2.ZERO:
 			var collision_angle := -last_collision.get_normal().angle_to(up_direction)
@@ -516,9 +537,10 @@ func _rotate_sprite_degrees(delta: float):
 					snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
 					ICON_LERP_FACTOR * delta * 60)
 	#endregion
+
 	#region ship/swing
 	$Icon/Ship.scale.y = sign(gravity_flip)
-	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and _get_jump_state() > 0
+	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
 	$Icon/Swing.scale.y = 1.0
 	$Icon/Ship.scale.x = dash_horizontal_direction
 	$Icon/Swing.scale.x = dash_horizontal_direction
@@ -537,10 +559,11 @@ func _rotate_sprite_degrees(delta: float):
 			$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
 			$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
 	#endregion
+
 	#region wave
 	$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
 	$Icon/Wave.scale.y = 1.0
-	if get_direction() != 0 or _get_jump_state() != 0:
+	if get_direction() != 0 or jump_state != 0:
 		_wave_rotation_degrees_goal = rad_to_deg(-pingpong(local_velocity.angle() - PI/2, PI) + PI/2)
 	$Icon/Wave.scale.x = dash_horizontal_direction
 	if not dash_control:
@@ -549,12 +572,13 @@ func _rotate_sprite_degrees(delta: float):
 				_wave_rotation_degrees_goal,
 				0.25 * delta * 60)
 	#endregion
+
 	#region ufo
 	$Icon/UFO.scale.y = sign(gravity_flip)
 	$Icon/UFO.scale.x = dash_horizontal_direction
 	$Icon/Jetpack.scale.y = sign(gravity_flip)
 	$Icon/Jetpack.scale.x = dash_horizontal_direction
-	$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and _get_jump_state() > 0
+	$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and jump_state > 0
 	if not dash_control:
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
 			$Icon/UFO.rotation_degrees = lerpf(
@@ -567,10 +591,11 @@ func _rotate_sprite_degrees(delta: float):
 				$Icon/Jetpack.rotation,
 				deg_to_rad(velocity.rotated(-gameplay_rotation).x/speed_multiplier * delta * 5) + sprite_floor_angle,
 				ICON_LERP_FACTOR * delta * 60)
-		if _get_jump_state() > 0:
+		if jump_state > 0:
 			var ufo_particle := UFO_PARTICLE.instantiate()
 			$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
 	#endregion
+
 	#region ball
 	$Icon/Ball.scale.y = 1.0
 	if speed_multiplier > 0.0:
@@ -588,6 +613,7 @@ func _rotate_sprite_degrees(delta: float):
 		var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
 		$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
 	#endregion
+
 	#region spider/robot
 	$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
 	$Icon/Spider/SpiderSprites.rotation = lerp_angle(
@@ -673,10 +699,10 @@ func _get_spider_velocity_delta() -> float:
 	return result
 
 
-func _update_spider_state_machine() -> void:
+func _update_spider_state_machine(jump_state: int) -> void:
 	# `jump` was moved to _compute_velocity to only be triggered with orbs and pads
 	# _spider_state_machine.travel("jump")
-	if dash_control or (_get_jump_state() == -1 and not is_on_floor() and not is_on_ceiling() and not is_on_wall() and not $GroundCollider.shape is CircleShape2D):
+	if dash_control or (jump_state == -1 and not is_on_floor() and not is_on_ceiling() and not is_on_wall() and not $GroundCollider.shape is CircleShape2D):
 		_spider_state_machine.travel("fall")
 	elif speed_multiplier == 0 or get_direction() == 0:
 		_spider_state_machine.travel("idle")

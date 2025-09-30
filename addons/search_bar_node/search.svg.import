@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnuunm3nj6gcg"
-path="res://.godot/imported/AddItem.svg-006ca6e0226a23845e61fb5724a84893.ctex"
+uid="uid://bh83veus651m7"
+path="res://.godot/imported/search.svg-940914d0fa293c754e13eb9211debf69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/guis/shared/AddItem.svg"
-dest_files=["res://.godot/imported/AddItem.svg-006ca6e0226a23845e61fb5724a84893.ctex"]
+source_file="res://addons/search_bar_node/search.svg"
+dest_files=["res://.godot/imported/search.svg-940914d0fa293c754e13eb9211debf69.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
