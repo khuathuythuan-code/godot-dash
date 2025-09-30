@@ -1162,8 +1162,12 @@ alignment = 1
 layout_mode = 2
 text = " Close "
 
+[connection signal="pressed" from="Graphics/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master" to="." method="_on_game_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
+[connection signal="pressed" from="Audio/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Keybinds/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Editor/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Debug/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
