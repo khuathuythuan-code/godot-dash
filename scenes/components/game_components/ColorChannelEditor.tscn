@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw15476n2m4we"]
+[gd_scene load_steps=12 format=3 uid="uid://cw15476n2m4we"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_orc32"]
 [ext_resource type="Script" uid="uid://dpfci6rxt0pwi" path="res://src/editor/editor_panels/color_channel/ColorChannelEditor.gd" id="2_cnty4"]
 [ext_resource type="ButtonGroup" uid="uid://cev0xn2madcx2" path="res://resources/ColorChannelItemButtonGroup.tres" id="3_u8i2y"]
 [ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/godot_editor_icons/Add.svg" id="4_lmm7r"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="4_maglq"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="5_b5wg1"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="5_dv0aw"]
 [ext_resource type="Script" uid="uid://dewr6g2sliqsr" path="res://src/gui/properties/components/PropertyWatcher.gd" id="6_lmm7r"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="6_maglq"]
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="7_dv0aw"]
@@ -24,7 +26,7 @@ properties_container = NodePath("VBoxContainer")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" node_paths=PackedStringArray("root_node_to_search")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -32,6 +34,13 @@ focus_mode = 1
 theme = ExtResource("1_orc32")
 placeholder_text = "Find a color channel or create one…"
 clear_button_enabled = true
+right_icon = ExtResource("4_maglq")
+script = ExtResource("5_dv0aw")
+root_node_to_search = NodePath("../../ScrollContainer/ColorChannelContainer")
+group_name = PackedStringArray()
+filters = Array[StringName]([&"channel_name"])
+discard_similars = false
+metadata/_custom_type_script = "uid://y1hecem53675"
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 texture_filter = 4
