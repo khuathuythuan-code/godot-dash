@@ -1,17 +1,20 @@
 extends HideAttribute
 class_name HideSpriteAttribute
-@onready var parent := get_parent().get_children()
+
+@onready var parent := get_parent()
+
 
 func _ready() -> void:
-	for node in parent:
-		if node and (node is Sprite2D or (node.name.contains("Sprite") and node is Node2D)):
-			node.hide()
-			continue
-
+	for child in parent.get_children():
+		if _is_valid_sprite(child):
+			child.hide()
 
 
 func _exit_tree() -> void:
-	for node in parent:
-		if node and (node is Sprite2D or (node.name.contains("Sprite") and node is Node2D)):
-			node.show()
-			continue
+	for child in parent.get_children():
+		if _is_valid_sprite(child):
+			child.hide()
+	
+
+func _is_valid_sprite(node: Node) -> bool:
+	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
