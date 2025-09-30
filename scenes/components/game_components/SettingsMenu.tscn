@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=23 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
@@ -9,8 +9,10 @@
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="9_vf3uf"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_egxjo"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="10_vf3uf"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="11_bi686"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="12_fl6v2"]
 [ext_resource type="Script" uid="uid://co733tkf77uuu" path="res://src/settings/KeybindLoader.gd" id="12_vf3uf"]
 
 [sub_resource type="Resource" id="Resource_ndunm"]
@@ -48,7 +50,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_r47on")
-current_tab = 4
+current_tab = 2
 script = ExtResource("3_rvg0e")
 
 [node name="Graphics" type="VBoxContainer" parent="."]
@@ -271,7 +273,6 @@ layout_mode = 2
 text = " Close "
 
 [node name="Keybinds" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
@@ -290,6 +291,19 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer"]
 layout_mode = 2
+
+[node name="SearchBarNode" type="LineEdit" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("root_nodes_to_search")]
+layout_mode = 2
+mouse_filter = 1
+placeholder_text = "Filter settings…"
+right_icon = ExtResource("11_bi686")
+script = ExtResource("12_fl6v2")
+search_by = 1
+root_nodes_to_search = [NodePath("../Gameplay/VBoxContainer"), NodePath("../Editor/VBoxContainer"), NodePath("../Editor/VBoxContainer/Viewport/VBoxContainer"), NodePath("../Editor/VBoxContainer/Viewport/VBoxContainer/Selection/VBoxContainer"), NodePath("../Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"), NodePath("../Editor/VBoxContainer/Viewport/VBoxContainer/Rotate/VBoxContainer"), NodePath("../Editor/VBoxContainer/Viewport/VBoxContainer/Flip/VBoxContainer"), NodePath("../Editor/VBoxContainer/Menus/VBoxContainer"), NodePath("../Editor/VBoxContainer/Menus/VBoxContainer/Level/VBoxContainer"), NodePath("../Editor/VBoxContainer/Menus/VBoxContainer/Edit/VBoxContainer"), NodePath("../Editor/VBoxContainer/Menus/VBoxContainer/View/VBoxContainer")]
+group_name = PackedStringArray()
+filters = Array[StringName]([&"title"])
+discard_similars = false
+metadata/_custom_type_script = "uid://y1hecem53675"
 
 [node name="Gameplay" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -340,6 +354,20 @@ visible = false
 layout_mode = 2
 script = ExtResource("12_vf3uf")
 input_action = "pause_level"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Hide Pause Menu" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Hide Pause Menu"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Hide Pause Menu"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "hide_pause_menu"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
 [node name="Editor" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer"]
@@ -507,7 +535,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Rotate" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-title = "Move"
+title = "Rotate"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Rotate"]
@@ -600,7 +628,7 @@ metadata/_custom_type_script = "uid://co733tkf77uuu"
 [node name="Flip" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-title = "Move"
+title = "Flip"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Flip"]
@@ -1063,6 +1091,7 @@ layout_mode = 2
 text = " Close "
 
 [node name="Debug" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
