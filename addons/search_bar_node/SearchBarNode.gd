@@ -1,6 +1,7 @@
 @tool
 @icon("res://addons/search_bar_node/search.svg")
 extends LineEdit
+class_name SearchBarNode
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #	SearchBarNode
 #	https://github.com/CodeNameTwister/GD-SearchBar-Node
@@ -278,7 +279,13 @@ func _unfold_parent_foldablecontainer(widget: Control) -> void:
 	if parent is FoldableContainer:
 		parent.folded = false
 	parent.show()
-	if parent.has_node("SearchBarNode"):
-		return
-	_unfold_parent_foldablecontainer(parent)
+	match search_by:
+		SEARCH_BY.SINGLE_ROOT_NODE:
+			if parent == root_node_to_search:
+				return
+		SEARCH_BY.MULTI_ROOT_NODE, SEARCH_BY.GROUP_NAME_NODE:
+			if NodeUtils.get_child_of_type(parent, SearchBarNode):
+				return
+	if parent is Control:
+		_unfold_parent_foldablecontainer(parent)
 
