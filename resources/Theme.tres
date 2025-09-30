@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=30 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=34 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -64,6 +64,54 @@ content_margin_bottom = 7.0
 bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkfic"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd5pb"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d60o6"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxxg4"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_10srq"]
@@ -201,6 +249,11 @@ FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBoxFlat
 FoldableContainer/styles/title_collapsed_panel = SubResource("StyleBoxFlat_khfr8")
 FoldableContainer/styles/title_hover_panel = SubResource("StyleBoxFlat_ig1n5")
 FoldableContainer/styles/title_panel = SubResource("StyleBoxFlat_f1p5x")
+GroupButton/base_type = &"Button"
+GroupButton/styles/disabled = SubResource("StyleBoxFlat_hkfic")
+GroupButton/styles/hover = SubResource("StyleBoxFlat_yd5pb")
+GroupButton/styles/normal = SubResource("StyleBoxFlat_d60o6")
+GroupButton/styles/pressed = SubResource("StyleBoxFlat_xxxg4")
 HSeparator/styles/separator = SubResource("StyleBoxLine_10srq")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_h2htm")
 MarginContainer/constants/margin_bottom = 10
