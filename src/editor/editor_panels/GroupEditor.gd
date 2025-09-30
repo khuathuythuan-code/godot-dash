@@ -24,6 +24,7 @@ func _update_groups(selection: Array[Node2D], group: String, add: bool) -> void:
 			var group_button := Button.new()
 			group_button.text = group.trim_prefix(GROUP_PREFIX)
 			group_button.pressed.connect(_remove_group)
+			group_button.theme_type_variation = &"GroupButton"
 			group_container.add_child(group_button)
 			group_buttons[group] = group_button
 		elif group_buttons[group].modulate == NONSHARED_GROUP_COLOR:
