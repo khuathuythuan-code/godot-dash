@@ -13,7 +13,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
 	for child in parent.get_children():
 		if _is_valid_sprite(child):
-			child.hide()
+			child.show()
 	
 
 func _is_valid_sprite(node: Node) -> bool:
