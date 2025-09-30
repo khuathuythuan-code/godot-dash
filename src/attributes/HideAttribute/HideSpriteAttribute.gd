@@ -4,7 +4,6 @@ class_name HideSpriteAttribute
 
 func _ready() -> void:
 	for node in parent:
-		print(node.get_class())
 		if node and (node is Sprite2D or (node.name.contains("Sprite") and node is Node2D)):
 			node.hide()
 			continue
