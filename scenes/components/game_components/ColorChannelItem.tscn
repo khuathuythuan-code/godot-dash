@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://d1wkjpnilh50a"]
 
 [ext_resource type="Script" uid="uid://c74ll20dwcp1l" path="res://src/editor/editor_panels/color_channel/ColorChannelItem.gd" id="1_2ntyf"]
-[ext_resource type="Texture2D" uid="uid://cuqy5kedacfwe" path="res://assets/textures/guis/shared/RemoveItem.svg" id="1_8ueuv"]
 [ext_resource type="ButtonGroup" uid="uid://cev0xn2madcx2" path="res://resources/ColorChannelItemButtonGroup.tres" id="2_t5ace"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="3_8fjmm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1h1sw"]
 
@@ -76,7 +76,7 @@ vertical_alignment = 1
 texture_filter = 4
 layout_mode = 2
 theme_override_constants/icon_max_width = 15
-icon = ExtResource("1_8ueuv")
+icon = ExtResource("3_8fjmm")
 icon_alignment = 2
 
 [connection signal="toggled" from="EditButton" to="." method="_on_edit_button_toggled"]

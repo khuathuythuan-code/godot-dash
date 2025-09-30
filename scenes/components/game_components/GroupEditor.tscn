@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_b71ym"]
 [ext_resource type="Script" uid="uid://u5n6v8qenvt6" path="res://src/editor/editor_panels/GroupEditor.gd" id="1_laiw3"]
-[ext_resource type="Texture2D" uid="uid://bnuunm3nj6gcg" path="res://assets/textures/guis/shared/AddItem.svg" id="2_scenm"]
+[ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/godot_editor_icons/Add.svg" id="3_dlgkp"]
 
 [node name="GroupEditor" type="VBoxContainer" node_paths=PackedStringArray("line_edit", "confirm_button", "group_container")]
 custom_minimum_size = Vector2(0, 200)
@@ -33,9 +33,8 @@ texture_filter = 4
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
 focus_mode = 0
-icon = ExtResource("2_scenm")
+icon = ExtResource("3_dlgkp")
 icon_alignment = 1
-expand_icon = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
