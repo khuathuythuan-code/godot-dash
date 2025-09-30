@@ -1,23 +1,43 @@
 extends VBoxContainer
 class_name AttributeEditor
 
-var ATTRIBUTES: Array[Script] = [
-	NoTouchAttribute
+var BOOL_ATTRIBUTES: Array[Script] = [
+	NoTouchAttribute,
 ]
+
+var CONTAINER_ATTRIBUTES: Dictionary[String, Array] = {
+	"HideAttribute": [HideSpriteAttribute, HideBaseAttribute, HideDetailAttribute, HideParticlesAttribute],
+}
 
 var properties: Dictionary[Script, BoolProperty]
 
+var dictionary_properties: Dictionary[Script, Dictionary]
+
 
 func _init() -> void:
-	ATTRIBUTES.make_read_only()
+	BOOL_ATTRIBUTES.make_read_only()
+	CONTAINER_ATTRIBUTES.make_read_only()
 
-
+ # I know this kind of sucks but it's only getting run once so it's fine right???
 func _ready() -> void:
-	for attribute in ATTRIBUTES:
+	for attribute in BOOL_ATTRIBUTES:
 		var property := BoolProperty.new()
 		property.name = attribute.get_global_name().trim_suffix("Attribute").capitalize()
 		properties.set(attribute, property)
 		add_child(property)
+
+	for attribute in CONTAINER_ATTRIBUTES:
+		var paramater_box := FoldableContainer.new()
+		paramater_box.name = attribute.trim_suffix("Attribute").capitalize()
+		paramater_box.title = paramater_box.name
+		paramater_box.folded = true
+		add_child(paramater_box)
+		paramater_box.add_child(VBoxContainer.new())
+		for paramater in CONTAINER_ATTRIBUTES.get(attribute):
+			var paramater_property = BoolProperty.new()
+			paramater_property.name = paramater.get_global_name().trim_suffix("Attribute").capitalize()
+			properties.set(paramater, paramater_property)
+			paramater_box.get_child(0).add_child(paramater_property)
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
