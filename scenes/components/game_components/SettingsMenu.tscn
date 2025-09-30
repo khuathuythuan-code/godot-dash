@@ -295,6 +295,7 @@ layout_mode = 2
 [node name="SearchBarNode" type="LineEdit" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("root_nodes_to_search")]
 layout_mode = 2
 mouse_filter = 1
+theme_type_variation = &"PaddedLineEdit"
 placeholder_text = "Filter settings…"
 right_icon = ExtResource("11_bi686")
 script = ExtResource("12_fl6v2")
