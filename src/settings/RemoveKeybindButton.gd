@@ -11,7 +11,7 @@ func _init(_keybind_loader: KeybindLoader, _input_event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	icon = preload("res://assets/textures/godot_editor_icons/Remove.png")
+	icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
 	icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pressed.connect(_on_button_pressed)
 	# Set `custom_minimum_size` the next frame, after the layout is solved

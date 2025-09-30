@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjopxesrtflex"
-path="res://.godot/imported/TripleBar.png-03f600007394a060c1ccb9ae623f52a4.ctex"
+uid="uid://kb53hjd3amp0"
+path="res://.godot/imported/Edit.svg-c252703a0e22df9288d386565d8bb33f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/TripleBar.png"
-dest_files=["res://.godot/imported/TripleBar.png-03f600007394a060c1ccb9ae623f52a4.ctex"]
+source_file="res://assets/textures/godot_editor_icons/Edit.svg"
+dest_files=["res://.godot/imported/Edit.svg-c252703a0e22df9288d386565d8bb33f.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

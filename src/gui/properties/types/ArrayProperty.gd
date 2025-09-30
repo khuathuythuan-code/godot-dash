@@ -29,7 +29,7 @@ func _ready() -> void:
 	var spacer := NodeUtils.get_node_or_add(label_container, "Label", Label, NodeUtils.INTERNAL)
 	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	add = NodeUtils.get_node_or_add(label_container, "Add", Button, NodeUtils.INTERNAL)
-	add.icon = preload("res://assets/textures/godot_editor_icons/Add.png")
+	add.icon = preload("res://assets/textures/godot_editor_icons/Add.svg")
 	add.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add.custom_minimum_size.x = custom_minimum_size.y
 	add.pressed.connect(add_item.bind(-1))

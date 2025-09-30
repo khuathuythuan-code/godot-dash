@@ -19,7 +19,7 @@ func _ready() -> void:
 	property.value_changed.connect(func(value): value_changed.emit(value))
 
 	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
-	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.png")
+	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
 	delete_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	delete_button.pressed.connect(remove_self)
 
