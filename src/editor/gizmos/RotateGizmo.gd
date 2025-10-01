@@ -24,9 +24,11 @@ var rotating: RotationState
 var handle_hovered: bool
 var tween: Tween
 var scale_multiplier: float
-var quick_rotation: bool
 var quick_rotation_is_first_frame: bool
 var quick_rotation_initial_angle: float
+var quick_gizmo_value_input: QuickGizmoValueInput
+
+var _quick_rotation: bool
 
 
 func _ready() -> void:
@@ -59,18 +61,28 @@ func _ready() -> void:
 	snap_interval_input.refresh()
 	snap_interval_input.input.custom_minimum_size.x = 0
 	# Quick rotation
-	if quick_rotation:
+	if _quick_rotation:
 		snap_interval_input.set_value_no_signal(0.001)
 		rotating = RotationState.FORCED
 		input_panel.hide()
 		angle_input.hide()
 		snap_interval_input.hide()
 		quick_rotation_is_first_frame = true
+		assert(quick_gizmo_value_input != null, "quick_rotation() needs to be called before the RotateGizmo is added to the tree")
+		add_child(quick_gizmo_value_input) # Required for _unhandled_input
+		quick_gizmo_value_input.value_changed.connect(_on_angle_input_value_changed)
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_cancel"):
 		await remove_gizmo(true)
+	if event.is_action_pressed(&"ui_accept"):
+		await remove_gizmo(false)
+
+
+func quick_rotation(keychord_display: Label) -> void:
+	_quick_rotation = true
+	quick_gizmo_value_input = QuickGizmoValueInput.new(keychord_display, "Rotating", "°", true)
 
 
 func remove_gizmo(reset_angle: bool = false) -> void:
@@ -85,6 +97,8 @@ func remove_gizmo(reset_angle: bool = false) -> void:
 	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	if reset_angle:
 		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	if quick_gizmo_value_input:
+		quick_gizmo_value_input.keychord_display.text = ""
 	await tween.finished
 	if Editor.shortcut_blocker == self:
 		Editor.shortcut_blocker = null
@@ -104,7 +118,7 @@ func _physics_process(_delta: float) -> void:
 			rotating = RotationState.DISABLED
 	if rotating == RotationState.FORCED:
 		snap_interval_input.set_value_no_signal(45.0 if Input.is_key_pressed(KEY_CTRL) else 0.001)
-	if rotating:
+	if rotating and not quick_gizmo_value_input.has_value():
 		var previous_handle_position = handle_position
 		if quick_rotation_is_first_frame:
 			quick_rotation_is_first_frame = false
@@ -118,6 +132,8 @@ func _physics_process(_delta: float) -> void:
 			) * radius
 		angle_changed.emit(rad_to_deg(handle_position.angle() - previous_handle_position.angle()))
 		angle_input.set_value_no_signal(rad_to_deg(handle_position.angle()))
+		if quick_gizmo_value_input:
+			quick_gizmo_value_input.original_value = rad_to_deg(handle_position.angle())
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and rotating == RotationState.ENABLED:
 		rotating = RotationState.DISABLED
 	if get_viewport().get_camera_2d() != null:

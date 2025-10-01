@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmbrwf8s3jk72"]
+[gd_scene load_steps=3 format=3 uid="uid://bmbrwf8s3jk72"]
 
 [ext_resource type="Script" uid="uid://ci55iiem50gpe" path="res://src/editor/gizmos/RotateGizmo.gd" id="1_fppgi"]
+[ext_resource type="Script" uid="uid://dmoghagxbithp" path="res://src/editor/gizmos/ScaleGizmo.gd" id="2_wi2ry"]
 
 [node name="Gizmos" type="Control"]
 layout_mode = 3
@@ -32,3 +33,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fppgi")
 handle_radius = 10.0
+
+[node name="ScaleGizmo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_wi2ry")

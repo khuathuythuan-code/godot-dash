@@ -8,6 +8,7 @@ signal rotated_object_degrees(rotation_degrees: float)
 
 @export var editor_viewport: Control
 @export var gizmo_layer: CanvasLayer
+@export var keychord_display: Label
 
 var level: LevelProps
 var selection: Array[Node2D]
@@ -50,7 +51,8 @@ func _physics_process(delta: float) -> void:
 				Input.is_action_pressed(&"editor_save_as") or
 				Input.is_action_pressed(&"editor_new_level") or
 				Input.is_action_pressed(&"editor_import_level") or
-				Input.is_action_pressed(&"editor_export_level")):
+				Input.is_action_pressed(&"editor_export_level") or
+				any_gizmo_is_open()):
 			if Input.is_action_just_pressed(&"editor_deselect"):
 				clear_selection()
 			if Input.is_action_just_pressed(&"editor_delete"):
@@ -349,9 +351,10 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	if rotate_gizmo != null:
 		rotate_gizmo.queue_free()
 	rotate_gizmo = RotateGizmo.new()
-	rotate_gizmo.quick_rotation = quick
+	rotate_gizmo.quick_rotation(keychord_display)
 	if quick:
 		Editor.shortcut_blocker = rotate_gizmo
+		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(rotate_gizmo)
 	rotate_gizmo.global_position = selection_pivot
 	rotate_gizmo.angle_changed.connect(_rotate_selection)
@@ -364,3 +367,7 @@ func remove_gizmo(_selection = null) -> void:
 	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
 	await rotate_gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
+
+
+func any_gizmo_is_open() -> bool:
+	return rotate_gizmo != null

@@ -33,6 +33,7 @@ signal zoom_changed
 @export var passthrough_gui := false
 
 @export var editor_viewport: Control
+@export var edit_handler: EditHandler
 
 var _tween_offset
 var _tween_zoom
@@ -109,7 +110,8 @@ func _input(event):
 		
 		_pan_direction += _pan_direction_mouse
 	elif event is InputEventKey:
-		if zoom_keyboard && event.pressed and (get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui:
+		if zoom_keyboard and event.pressed and not edit_handler.any_gizmo_is_open() \
+				and (get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui:
 			match event.keycode:
 				KEY_MINUS:
 					_change_zoom(zoom_factor if zoom_factor < 1 else 1 / zoom_factor, false)

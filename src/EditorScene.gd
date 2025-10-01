@@ -63,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
-	if get_viewport().gui_get_focus_owner() is not LineEdit and not any_dialog_is_open():
+	if get_viewport().gui_get_focus_owner() is not LineEdit and not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
 		if Input.is_action_just_pressed(&"editor_place_mode"):
 			%EditorModes.current_tab = 0
 		elif Input.is_action_just_pressed(&"editor_edit_mode"):
