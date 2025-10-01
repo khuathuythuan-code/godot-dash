@@ -125,4 +125,3 @@ func _on_alpha_value_changed(value: float) -> void:
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	channel_item.data.set_alpha(value)
 	channel_item.update()
-

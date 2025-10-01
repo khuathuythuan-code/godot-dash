@@ -91,9 +91,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				_expression += "9"
 			KEY_0, KEY_KP_0:
 				_expression += "0"
-			KEY_MINUS, KEY_KP_SUBTRACT:
+			KEY_MINUS, KEY_KP_SUBTRACT, KEY_UNDERSCORE:
 				_expression += "-"
-			KEY_PLUS, KEY_KP_ADD:
+			KEY_PLUS, KEY_KP_ADD, KEY_EQUAL:
 				_expression += "+"
 			KEY_ASTERISK, KEY_KP_MULTIPLY:
 				_expression += "*"
