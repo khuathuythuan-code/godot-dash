@@ -1,6 +1,8 @@
 extends Node
 class_name QuickGizmoValueInput
 
+const NUMBERS := "0123456789"
+
 signal value_changed(value: float)
 
 enum AxisConstraint {
@@ -104,6 +106,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_PERIOD, KEY_KP_PERIOD:
 				if not _expression.contains("."):
 					_expression += "."
+				else:
+					var can_add_period := true
+					var has_number := false
+					for character: String in _expression.reverse():
+						if character == "." and has_number:
+							# Period before number, invalid
+							can_add_period = false
+							break
+						# Not a period and not a number. If a number was found before, allow adding a period.
+						elif not NUMBERS.contains(character):
+							can_add_period = has_number
+							break
+						else:
+							has_number = true
+					if can_add_period:
+						_expression += "."
+							
+				
 			# AxisConstraint constraints are exclusive and can only figure once in the expression.
 			# Double axis constraint mean rotation-local transformations
 			KEY_X when _axis_constraint != AxisConstraint.DISABLED:
@@ -130,7 +150,6 @@ func _make_expression_evaluate_to_float(expression: String) -> String:
 	# We need at least one float in the expression for it to evaluate to a float.
 	if "." in expression:
 		return expression
-	const NUMBERS := "0123456789"
 	var float_expression := expression
 	var insert_decimal_at := float_expression.length()
 	for character: String in float_expression.reverse():
