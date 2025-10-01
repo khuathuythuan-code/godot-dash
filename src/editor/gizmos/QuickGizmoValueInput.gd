@@ -32,10 +32,12 @@ var keychord_display: Label
 var _expression: String:
 	set(new_expression):
 		_expression = new_expression
+
 		if new_expression.is_empty():
 			value_changed.emit(original_value)
-		elif not is_nan(value):
+		elif not is_nan(value) and not is_inf(value):
 			value_changed.emit(value)
+
 		if keychord_display:
 			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 			match _axis_constraint:
