@@ -454,15 +454,12 @@ material = ExtResource("3_m55bu")
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer"]
-layout_mode = 2
-
-[node name="MenuBar" type="MenuBar" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer"]
+[node name="MenuBar" type="MenuBar" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 flat = true
 
-[node name="Level" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar"]
+[node name="Level" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
 position = Vector2i(0, 32)
 size = Vector2i(153, 147)
 system_menu_id = 3
@@ -485,7 +482,7 @@ item_6/separator = true
 item_7/text = "Level Settings"
 item_7/id = 0
 
-[node name="Edit" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar" node_paths=PackedStringArray("edit_handler")]
+[node name="Edit" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" node_paths=PackedStringArray("edit_handler")]
 size = Vector2i(110, 147)
 item_count = 11
 item_0/text = "Undo"
@@ -511,9 +508,9 @@ item_9/separator = true
 item_10/text = "Delete Selected"
 item_10/id = 10
 script = ExtResource("5_rke8t")
-edit_handler = NodePath("../../../../../../../EditHandler")
+edit_handler = NodePath("../../../../../../EditHandler")
 
-[node name="View" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar" node_paths=PackedStringArray("game_scene", "side_panel", "bottom_panel")]
+[node name="View" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" node_paths=PackedStringArray("game_scene", "side_panel", "bottom_panel")]
 unique_name_in_owner = true
 size = Vector2i(133, 100)
 hide_on_checkable_item_selection = false
@@ -533,22 +530,26 @@ item_2/id = 2
 item_3/text = "Toggle Maximize Viewport"
 item_3/id = 3
 script = ExtResource("6_5ik7l")
-game_scene = NodePath("../../../../../../../GameScene")
-side_panel = NodePath("../../../../../SidePanel")
-bottom_panel = NodePath("../../../../VSplitContainer/EditorModes")
+game_scene = NodePath("../../../../../../GameScene")
+side_panel = NodePath("../../../../SidePanel")
+bottom_panel = NodePath("../../../VSplitContainer/EditorModes")
 
-[node name="Help" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar"]
+[node name="Help" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
 oversampling_override = 1.0
 item_count = 1
 item_0/text = "Manual"
 item_0/id = 0
 script = ExtResource("8_dl3g1")
 
-[node name="Spacer" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer"]
+[node name="KeychordDisplay" type="Label" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+horizontal_alignment = 2
 
-[node name="TransformPivot" type="OptionButton" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TransformPivot" type="OptionButton" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/CenterContainer"]
 layout_mode = 2
 tooltip_text = "Transform Pivot Point"
 alignment = 1
@@ -559,14 +560,6 @@ popup/item_0/text = "Median Point"
 popup/item_0/id = 0
 popup/item_1/text = "Individual Origins"
 popup/item_1/id = 1
-
-[node name="Spacer2" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="KeychordDisplay" type="Label" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer"]
-layout_mode = 2
-horizontal_alignment = 2
 
 [node name="VSplitContainer" type="VSplitContainer" parent="EditorUI/EditorContainer/VBoxContainer"]
 layout_mode = 2
@@ -4945,8 +4938,8 @@ edit_handler = NodePath("../EditHandler")
 script = ExtResource("34_7dx3o")
 editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 gizmo_layer = NodePath("../Gizmos")
-keychord_display = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/KeychordDisplay")
-transform_pivot_button = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/TransformPivot")
+keychord_display = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/KeychordDisplay")
+transform_pivot_button = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/CenterContainer/TransformPivot")
 
 [node name="SelectionZone" type="Area2D" parent="EditHandler"]
 collision_layer = 128
@@ -5079,10 +5072,10 @@ ok_button_text = "Overwrite"
 dialog_text = "A level with the same name already exists in the game directory!"
 cancel_button_text = "Open Existing"
 
-[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/Level" to="LevelOperationsHandler" method="_on_level_index_pressed"]
-[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/Edit" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/Edit" method="_on_index_pressed"]
-[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/View" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/View" method="_on_index_pressed"]
-[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/Help" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/HBoxContainer/MenuBar/Help" method="_on_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Level" to="LevelOperationsHandler" method="_on_level_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" method="_on_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" method="_on_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Help" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Help" method="_on_index_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/Playtest" to="." method="_on_playtest_pressed"]
 [connection signal="ready" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/BlockPaletteIcons" method="_on_tab_container_ready"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft90" to="EditHandler" method="_on_rotate_left_90_pressed"]

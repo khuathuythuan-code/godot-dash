@@ -33,6 +33,7 @@ var _quick_rotation: bool
 
 func _ready() -> void:
 	Editor.shortcut_blocker = self
+	get_viewport().gui_release_focus()
 	tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property(self, ^"scale_multiplier", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
