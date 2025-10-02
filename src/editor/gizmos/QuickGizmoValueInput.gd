@@ -32,10 +32,12 @@ var keychord_display: Label
 var _expression: String:
 	set(new_expression):
 		_expression = new_expression
+
 		if new_expression.is_empty():
 			value_changed.emit(original_value)
-		elif not is_nan(value):
+		elif not is_nan(value) and not is_inf(value):
 			value_changed.emit(value)
+
 		if keychord_display:
 			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 			match _axis_constraint:
@@ -91,9 +93,9 @@ func _unhandled_input(event: InputEvent) -> void:
 				_expression += "9"
 			KEY_0, KEY_KP_0:
 				_expression += "0"
-			KEY_MINUS, KEY_KP_SUBTRACT:
+			KEY_MINUS, KEY_KP_SUBTRACT, KEY_UNDERSCORE:
 				_expression += "-"
-			KEY_PLUS, KEY_KP_ADD:
+			KEY_PLUS, KEY_KP_ADD, KEY_EQUAL:
 				_expression += "+"
 			KEY_ASTERISK, KEY_KP_MULTIPLY:
 				_expression += "*"
