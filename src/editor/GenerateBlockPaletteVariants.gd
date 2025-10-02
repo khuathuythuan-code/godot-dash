@@ -10,6 +10,7 @@ extends Node
 
 @onready var parent := get_parent()
 
+
 func generate_buttons() -> void:
 	var clear_children := func(child): if child is BouncyButton: child.queue_free()
 	parent.get_children().map(clear_children)

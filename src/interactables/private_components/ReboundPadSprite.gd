@@ -2,14 +2,14 @@
 extends Node2D
 class_name ReboundPadSprite
 
-@onready var _rebound_gradient = preload("res://resources/gradients/rebound_gradient.tres")
-
 var factor: float:
 	set(value):
 		factor = value
 		queue_redraw()
 
 var _factor_smoothed: float
+
+@onready var _rebound_gradient: Gradient = preload("res://resources/gradients/rebound_gradient.tres")
 
 func _ready() -> void:
 	$"../../ReboundComponent".sprite = self

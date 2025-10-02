@@ -13,13 +13,16 @@ var _color: Color
 
 @onready var parent: GameplayRotateTriggerSprite = get_parent()
 
+
 func _ready() -> void:
 	show_behind_parent = true
+
 
 func _process(_delta: float) -> void:
 	global_rotation = 0.0
 	scale = Vector2.ONE / parent.scale
 	queue_redraw()
+
 
 func _draw() -> void:
 	if parent.visible:

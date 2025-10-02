@@ -2,7 +2,7 @@
 extends Node2D
 class_name ReboundOrbSprite
 
-@onready var _rebound_gradient = preload("res://resources/gradients/rebound_gradient.tres")
+@onready var _rebound_gradient: Gradient = preload("res://resources/gradients/rebound_gradient.tres")
 
 var factor: float:
 	set(value):

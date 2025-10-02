@@ -1,13 +1,13 @@
 extends Node2D
 class_name PulseRing
 
-@onready var parent := get_parent() as OrbInteractable
-
 var _radius: float:
 	set(value):
 		_radius = value
 		queue_redraw()
 var _alpha := 1.0
+
+@onready var parent := get_parent() as OrbInteractable
 
 
 func _ready() -> void:

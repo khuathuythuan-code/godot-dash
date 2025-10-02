@@ -4,6 +4,7 @@ class_name ColorChannelEditor
 @export var button_group: ButtonGroup
 @export var separator: HSeparator
 @export var properties_container: VBoxContainer
+
 @onready var color_channel_item := preload("res://scenes/components/game_components/ColorChannelItem.tscn")
 
 

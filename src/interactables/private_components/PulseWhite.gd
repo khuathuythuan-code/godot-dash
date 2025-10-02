@@ -1,10 +1,10 @@
 extends Node
 class_name PulseWhite
 
-@onready var parent := get_parent() as Interactable
-
 var _factor: float
 var _pulse_target: Node2D
+
+@onready var parent := get_parent() as Interactable
 
 
 func _ready() -> void:

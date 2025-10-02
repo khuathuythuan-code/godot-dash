@@ -7,6 +7,7 @@ extends Node
 
 @onready var tab_container := get_parent() as TabContainer
 
+
 func _refresh_icon_list() -> void:
 	for i in range(len(icons)):
 		tab_container.set_tab_icon(i, icons[i])

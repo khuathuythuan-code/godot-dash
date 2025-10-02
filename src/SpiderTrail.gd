@@ -9,6 +9,7 @@ const SPIDER_TRAIL_HEIGHT: float = 896.0 * 0.75
 @onready var displayed_scale_y: float = 0.0 # DISPLAYED y scale
 @onready var displayed_scale_x: float = 0.0
 
+
 func _ready() -> void:
 	global_scale = Vector2.ONE
 	scale.x = displayed_scale_y
@@ -16,6 +17,7 @@ func _ready() -> void:
 	rotation += trail_rotation
 	play()
 	animation_finished.connect(queue_free)
+
 
 func _physics_process(_delta: float) -> void:
 	global_position = trail_global_position

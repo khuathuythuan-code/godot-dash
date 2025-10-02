@@ -1,8 +1,6 @@
 extends Node
 class_name QuickGizmoValueInput
 
-const NUMBERS := "0123456789"
-
 signal value_changed(value: float)
 
 enum AxisConstraint {
@@ -13,6 +11,8 @@ enum AxisConstraint {
 	LOCAL_Y,
 	DISABLED,
 }
+
+const NUMBERS := "0123456789"
 
 ## The typed value as a float
 var value: float:
@@ -60,14 +60,6 @@ func _init(_keychord_display: Label, _displayed_gizmo_action: String, _displayed
 	displayed_gizmo_unit = _displayed_gizmo_unit
 	if disable_axis_constraint:
 		_axis_constraint = AxisConstraint.DISABLED
-
-
-func has_value() -> bool:
-	return not _expression.is_empty()
-
-
-func get_axis_constraints() -> AxisConstraint:
-	return _axis_constraint
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -146,6 +138,14 @@ func _unhandled_input(event: InputEvent) -> void:
 						_axis_constraint = AxisConstraint.NONE
 			KEY_BACKSPACE:
 				_expression = _expression.left(-1)
+
+
+func has_value() -> bool:
+	return not _expression.is_empty()
+
+
+func get_axis_constraints() -> AxisConstraint:
+	return _axis_constraint
 
 
 func _make_expression_evaluate_to_float(expression: String) -> String:

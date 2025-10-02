@@ -1,11 +1,11 @@
 extends Node2D
 class_name PulseCircle
 
-@export var no_blending := false
-@onready var parent := get_parent() as Interactable
-
 const RADIUS := 128 * 1.25
 
+@export var no_blending := false
+
+@onready var parent := get_parent() as Interactable
 
 var _radius: float = RADIUS:
 	set(value):
@@ -21,6 +21,11 @@ func _ready() -> void:
 		material = preload("res://resources/AdditiveBlendingMaterial.tres")
 
 
+func _draw() -> void:
+	var color: Color = $"../ParticleEmitter".modulate
+	draw_circle(Vector2.ZERO, _radius, color, true, -1, true)
+
+
 func pulse(_player: Player) -> void:
 	if parent.has(NoEffectsComponent):
 		return
@@ -30,8 +35,3 @@ func pulse(_player: Player) -> void:
 	await pulse_tween.finished
 	hide()
 	_radius = RADIUS
-
-
-func _draw() -> void:
-	var color: Color = $"../ParticleEmitter".modulate
-	draw_circle(Vector2.ZERO, _radius, color, true, -1, true)

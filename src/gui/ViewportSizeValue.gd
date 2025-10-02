@@ -2,8 +2,11 @@ extends Node
 class_name ViewportSizeValue
 
 @export var property: StringName
-@onready var parent := get_parent() as Node
+
 var viewport_size: Vector2
+
+@onready var parent := get_parent() as Node
+
 
 func _ready() -> void:
 	viewport_size = parent.get_viewport_rect().size

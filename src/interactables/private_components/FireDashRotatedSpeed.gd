@@ -3,9 +3,11 @@ class_name RotatedSpeed
 
 @onready var parent := get_parent() as FireDashComponent
 
+
 func _ready() -> void:
 	if NodeUtils.get_child_of_type(parent, TangentSpeed) == null or (NodeUtils.get_child_of_type(parent, TangentSpeed) != null and LevelManager.platformer):
 		parent.path = self
+
 
 func get_velocity(player: Player) -> Vector2:
 	var velocity: Vector2

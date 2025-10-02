@@ -14,12 +14,6 @@ const DIVISORS_OF_360 := [0.001, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24,
 @export var radius: float = 128.0
 @export var handle_radius: float = 8.0
 
-@onready var default_font := ThemeDB.get_project_theme().default_font
-@onready var handle_position: Vector2 = Vector2.RIGHT * radius
-@onready var input_panel: Panel = NodeUtils.get_node_or_add(self, "Input panel", Panel, NodeUtils.INTERNAL)
-@onready var snap_interval_input: FloatProperty = NodeUtils.get_node_or_add(self, "Snap interval", FloatProperty, NodeUtils.INTERNAL)
-@onready var angle_input: SpinBox = NodeUtils.get_node_or_add(self, "Angle", SpinBox, NodeUtils.INTERNAL)
-
 var rotating: RotationState
 var handle_hovered: bool
 var tween: Tween
@@ -29,6 +23,12 @@ var quick_rotation_initial_angle: float
 var quick_gizmo_value_input: QuickGizmoValueInput
 
 var _quick_rotation: bool
+
+@onready var default_font := ThemeDB.get_project_theme().default_font
+@onready var handle_position: Vector2 = Vector2.RIGHT * radius
+@onready var input_panel: Panel = NodeUtils.get_node_or_add(self, "Input panel", Panel, NodeUtils.INTERNAL)
+@onready var snap_interval_input: FloatProperty = NodeUtils.get_node_or_add(self, "Snap interval", FloatProperty, NodeUtils.INTERNAL)
+@onready var angle_input: SpinBox = NodeUtils.get_node_or_add(self, "Angle", SpinBox, NodeUtils.INTERNAL)
 
 
 func _ready() -> void:

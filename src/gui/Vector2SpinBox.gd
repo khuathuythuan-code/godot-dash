@@ -27,11 +27,13 @@ signal value_changed(new_value: Vector2)
 			return
 		for spinbox in [spinbox_x, spinbox_y]:
 			spinbox.editable = value
-@onready var spinbox_x: SpinBox
-@onready var spinbox_y: SpinBox
 @export var expand_to_text_length: bool
+
 var aspect_ratio: float
 var value: Vector2: set = _set_value
+
+@onready var spinbox_x: SpinBox
+@onready var spinbox_y: SpinBox
 
 
 func _ready() -> void:

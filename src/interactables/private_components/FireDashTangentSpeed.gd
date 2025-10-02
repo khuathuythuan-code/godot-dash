@@ -3,8 +3,10 @@ class_name TangentSpeed
 
 @onready var parent := get_parent() as FireDashComponent
 
+
 func _ready() -> void:
 	parent.path = self
+
 
 func get_velocity(player: Player) -> Vector2:
 	var velocity: Vector2

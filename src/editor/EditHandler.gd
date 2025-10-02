@@ -46,13 +46,17 @@ func _physics_process(delta: float) -> void:
 				rotate_gizmo != null && (
 					rotate_gizmo.rotating != RotateGizmo.RotationState.DISABLED or rotate_gizmo.handle_hovered)):
 			_update_selection()
-		if not selection.is_empty() and not (
-				Input.is_action_pressed(&"editor_save") or
-				Input.is_action_pressed(&"editor_save_as") or
-				Input.is_action_pressed(&"editor_new_level") or
-				Input.is_action_pressed(&"editor_import_level") or
-				Input.is_action_pressed(&"editor_export_level") or
-				any_gizmo_is_open()):
+		var can_use_actions: bool = (
+				not selection.is_empty() and not (
+					Input.is_action_pressed(&"editor_save")
+					or Input.is_action_pressed(&"editor_save_as")
+					or Input.is_action_pressed(&"editor_new_level")
+					or Input.is_action_pressed(&"editor_import_level")
+					or Input.is_action_pressed(&"editor_export_level")
+					or any_gizmo_is_open()
+				)
+		)
+		if can_use_actions:
 			if Input.is_action_just_pressed(&"editor_deselect"):
 				clear_selection()
 			if Input.is_action_just_pressed(&"editor_delete"):
