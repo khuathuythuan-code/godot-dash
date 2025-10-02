@@ -1,40 +1,42 @@
 extends VBoxContainer
 class_name AttributeEditor
 
-var BOOL_ATTRIBUTES: Array[Script] = [
+var SINGLE_ATTRIBUTES: Array[Script] = [
 	NoTouchAttribute,
 ]
 
-var CONTAINER_ATTRIBUTES: Dictionary[String, Array] = {
-	"HideAttribute": [HideSpriteAttribute, HideBaseAttribute, HideDetailAttribute, HideParticlesAttribute],
+var GROUPED_ATTRIBUTES: Dictionary[String, Array] = {
+	"Hide": [HideSpriteAttribute, HideBaseAttribute, HideDetailAttribute, HideParticlesAttribute],
 }
 
 var properties: Dictionary[Script, BoolProperty]
 
-func _init() -> void:
-	BOOL_ATTRIBUTES.make_read_only()
-	CONTAINER_ATTRIBUTES.make_read_only()
 
- # I know this kind of sucks but it's only getting run once so it's fine right???
+func _init() -> void:
+	SINGLE_ATTRIBUTES.make_read_only()
+	GROUPED_ATTRIBUTES.make_read_only()
+
+
 func _ready() -> void:
-	for attribute in BOOL_ATTRIBUTES:
+	for attribute in SINGLE_ATTRIBUTES:
 		var property := BoolProperty.new()
 		property.name = attribute.get_global_name().trim_suffix("Attribute").capitalize()
 		properties.set(attribute, property)
 		add_child(property)
 
-	for attribute in CONTAINER_ATTRIBUTES:
-		var paramater_box := FoldableContainer.new()
-		paramater_box.name = attribute.trim_suffix("Attribute").capitalize()
-		paramater_box.title = paramater_box.name
-		paramater_box.folded = true
-		add_child(paramater_box)
-		paramater_box.add_child(VBoxContainer.new())
-		for paramater in CONTAINER_ATTRIBUTES.get(attribute):
-			var paramater_property = BoolProperty.new()
-			paramater_property.name = paramater.get_global_name().trim_suffix("Attribute").capitalize()
-			properties.set(paramater, paramater_property)
-			paramater_box.get_child(0).add_child(paramater_property)
+	for category_name in GROUPED_ATTRIBUTES:
+		var category_container := FoldableContainer.new()
+		category_container.name = category_name
+		category_container.title = category_name
+		category_container.folded = true
+		add_child(category_container)
+		var category_vbox := VBoxContainer.new()
+		category_container.add_child(category_vbox)
+		for attribute in GROUPED_ATTRIBUTES.get(category_name):
+			var property := BoolProperty.new()
+			property.name = attribute.get_global_name().trim_prefix(category_name).trim_suffix("Attribute").capitalize()
+			properties.set(attribute, property)
+			category_vbox.add_child(property)
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
