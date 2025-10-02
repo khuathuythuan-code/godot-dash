@@ -371,6 +371,57 @@ script = ExtResource("12_vf3uf")
 input_action = "hide_pause_menu"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
+[node name="Platformer" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+title = "Platformer"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer"]
+layout_mode = 2
+
+[node name="Left" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Left"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer/Left"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "move_left"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Right" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Right"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer/Right"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "move_right"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Down (Wave)" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Down (Wave)"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Gameplay/VBoxContainer/Platformer/VBoxContainer/Down (Wave)"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "platformer_wave_down"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
 [node name="Editor" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
