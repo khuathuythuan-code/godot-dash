@@ -1,5 +1,11 @@
 # Contribution guidelines
 
+## Pull Requests
+
+Give descriptive names to PR branches, e.g. `spawn-trigger-crash-fix` instead of `fix`.
+This also goes for PR names.
+Group PRs by topic, e.g. a single feature or a fix.
+
 ## Scripts
 
 ### Style guide
