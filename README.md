@@ -21,6 +21,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ## Contributing
 
+- **Read [CONTRIBUTING.md](./CONTRIBUTING.md).**
 - Clone the repo and import it in Godot.
 - Open a PR with your changes.
 
