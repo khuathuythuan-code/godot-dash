@@ -76,6 +76,8 @@ func _process(_delta: float) -> void:
 	if resizing_state == ResizingState.DISABLED:
 		for i: int in handles.size():
 			if handles[i].displayed_position(handles_transform).distance_to(get_local_mouse_position()) < HANDLE_RADIUS:
+				if handles[i].is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
+					continue
 				hovered_handle_idx = i
 				has_hovered_handle = true
 				break
@@ -146,10 +148,13 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 			handle_color.a /= 2.0
 		if resizing_state == ResizingState.ENABLED and handle_idx == hovered_handle_idx:
 			handle_color.a /= 2.0
+		if handle.is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
+			continue
 		if outline:
 			draw_circle(handle.displayed_position(handles_transform), HANDLE_RADIUS, handle_color, false, 6.0)
 		else:
 			draw_circle(handle.displayed_position(handles_transform), HANDLE_RADIUS, handle_color)
 	
-	draw_line(Vector2.ZERO, handles_transform.x, Color.RED, 6.0)
-	draw_line(Vector2.ZERO, handles_transform.y, Color.GREEN, 6.0)
+	if Config.config.draw_debug_overlays:
+		draw_line(Vector2.ZERO, handles_transform.x, Color.RED, 6.0)
+		draw_line(Vector2.ZERO, handles_transform.y, Color.GREEN, 6.0)
