@@ -19,4 +19,3 @@ func _physics_process(_delta: float) -> void:
 	
 	if get_point_count() > length / abs(Engine.time_scale):
 		remove_point(get_point_count() - 1)
-

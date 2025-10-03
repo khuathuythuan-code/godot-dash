@@ -30,7 +30,7 @@ func _ready() -> void:
 	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	if object_move_cooldown > 0:
