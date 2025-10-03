@@ -172,6 +172,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
 	if _initializing_margins: return
+	add_child(VisibleOnScreenEnabler2D.new())
 	scroll(true, velocity.y, pos.y, delta)
 	scroll(false, velocity.x, pos.x, delta)
 	update_scrollbars()
