@@ -1,14 +1,8 @@
-extends Control
+extends Gizmo
 class_name ScaleGizmo
 
 # Scale and skew
 signal transform_changed(new_transform: Transform2D, new_position: Vector2)
-
-enum ResizingState {
-	DISABLED,
-	ENABLED,
-	FORCED,
-}
 
 const HANDLE_RADIUS: float = 6.0
 
@@ -23,10 +17,10 @@ var handles: Array[Handle] = [
 ]
 var hovered_handle_idx: int
 var has_hovered_handle: bool
-var resizing_state: ResizingState
 var handle_center_mouse_offset: Vector2
 var handles_transform := Transform2D.IDENTITY.scaled(Vector2.ONE * 128.0)
 var previous_mouse_position: Vector2
+var tween: Tween
 
 
 class Handle:
@@ -65,15 +59,24 @@ class Handle:
 		return type == Type.HORIZONTAL_SKEW or type == Type.VERTICAL_SKEW
 
 
+func _ready() -> void:
+	Editor.shortcut_blocker = self
+	get_viewport().gui_release_focus()
+	tween = create_tween()
+	tween.set_parallel()
+	tween.tween_property(self, ^"gizmo_scale", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, ^"modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+
 func _process(_delta: float) -> void:
 	# Handle focus
-	if has_hovered_handle and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and resizing_state == ResizingState.DISABLED:
-		resizing_state = ResizingState.ENABLED
+	if has_hovered_handle and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.DISABLED:
+		state = State.ENABLED
 		handle_center_mouse_offset = handles[hovered_handle_idx].position - get_local_mouse_position()
 		previous_mouse_position = get_local_mouse_position()
-	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and resizing_state == ResizingState.ENABLED:
-		resizing_state = ResizingState.DISABLED
-	if resizing_state == ResizingState.DISABLED:
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.ENABLED:
+		state = State.DISABLED
+	if state == State.DISABLED:
 		for i: int in handles.size():
 			if handles[i].displayed_position(handles_transform).distance_to(get_local_mouse_position()) < HANDLE_RADIUS:
 				if handles[i].is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
@@ -85,7 +88,7 @@ func _process(_delta: float) -> void:
 				has_hovered_handle = false
 	
 	# Move handles
-	if resizing_state != ResizingState.DISABLED:
+	if state != State.DISABLED:
 		var moved_handle: Handle = handles[hovered_handle_idx]
 		var mouse_position_delta: Vector2 = get_local_mouse_position() - previous_mouse_position
 		# When we're not resizing around the center, we move the center of the gizmo to the mean position
@@ -125,6 +128,9 @@ func _process(_delta: float) -> void:
 				Handle.Type.HORIZONTAL_SKEW:
 					position += mouse_position_delta * Vector2.RIGHT * 0.5
 		previous_mouse_position = get_local_mouse_position()
+		transform_changed.emit(handles_transform, position)
+	
+	scale = Vector2.ONE * gizmo_scale
 	queue_redraw()
 
 
@@ -146,7 +152,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		var handle_color: Color = color
 		if has_hovered_handle and handle_idx == hovered_handle_idx:
 			handle_color.a /= 2.0
-		if resizing_state == ResizingState.ENABLED and handle_idx == hovered_handle_idx:
+		if state == State.ENABLED and handle_idx == hovered_handle_idx:
 			handle_color.a /= 2.0
 		if handle.is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
 			continue
@@ -158,3 +164,30 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	if Config.config.draw_debug_overlays:
 		draw_line(Vector2.ZERO, handles_transform.x, Color.RED, 6.0)
 		draw_line(Vector2.ZERO, handles_transform.y, Color.GREEN, 6.0)
+
+
+func remove_gizmo(reset: bool = false) -> void:
+	state = State.DISABLED
+	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_parallel()
+	# var do_reset_transform := func(angle: float):
+	#
+	# 	transform_changed.emit(rad_to_deg(angle_delta))
+	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	# if reset:
+	# 	tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	if quick_gizmo_value_input:
+		quick_gizmo_value_input.keychord_display.text = ""
+	await tween.finished
+	if Editor.shortcut_blocker == self:
+		Editor.shortcut_blocker = null
+	queue_free()
+
+
+func is_enabled() -> bool:
+	return state != State.DISABLED
+
+
+func any_handle_hovered() -> bool:
+	return has_hovered_handle

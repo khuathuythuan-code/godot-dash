@@ -28,7 +28,7 @@ var selection_index := 0
 var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
 var selection_pivot := Vector2.INF
-var rotate_gizmo: RotateGizmo
+var gizmo: Gizmo
 
 
 func _ready() -> void:
@@ -51,8 +51,8 @@ func _physics_process(delta: float) -> void:
 		select_all()
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
-				rotate_gizmo != null && (
-					rotate_gizmo.rotating != RotateGizmo.RotationState.DISABLED or rotate_gizmo.handle_hovered)):
+				gizmo != null && (
+					gizmo.is_enabled() or gizmo.any_handle_hovered())):
 			_update_selection()
 		var can_use_actions: bool = (
 				not selection.is_empty() and not (
@@ -103,6 +103,10 @@ func _physics_process(delta: float) -> void:
 				_on_rotate_free_pressed()
 			elif Input.is_action_just_pressed(&"editor_quick_rotate_free"):
 				_on_rotate_free_pressed(true)
+			if Input.is_action_just_pressed(&"editor_scale"):
+				_on_scale_pressed()
+			elif Input.is_action_just_pressed(&"editor_quick_scale"):
+				_on_scale_pressed(true)
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
@@ -255,15 +259,15 @@ func select_all() -> void:
 
 
 func remove_gizmo(_selection = null) -> void:
-	if not rotate_gizmo:
+	if not gizmo:
 		return
-	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
-	await rotate_gizmo.remove_gizmo()
+	await gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 
 
 func any_gizmo_is_open() -> bool:
-	return rotate_gizmo != null
+	return gizmo != null
 
 
 func _rotate_selection(angle: float) -> void:
@@ -278,6 +282,17 @@ func _rotate_selection(angle: float) -> void:
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 			object.global_position += position_delta
 	rotation_lock = false
+
+
+func _scale_selection(transform: Transform2D, position: Vector2) -> void:
+	if selection.is_empty():
+		return
+	_update_pivot()
+	for object in selection:
+		var original_transform: Transform2D = object.get_meta(&"scale_gizmo_original_transform")
+		var original_position: Vector2 = object.get_meta(&"scale_gizmo_original_position")
+		object.global_transform = (transform / 128.0) * original_transform
+		object.global_position = position + original_position
 
 
 func _update_pivot() -> void:
@@ -354,17 +369,36 @@ func _on_flip_v_pressed() -> void:
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
 	_update_pivot()
-	if rotate_gizmo != null:
-		rotate_gizmo.queue_free()
-	rotate_gizmo = RotateGizmo.new()
-	rotate_gizmo.quick_rotation(keychord_display)
+	if gizmo != null:
+		gizmo.queue_free()
+	gizmo = RotateGizmo.new()
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
-		Editor.shortcut_blocker = rotate_gizmo
+		gizmo.quick(keychord_display, "Rotating", "°")
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
-	gizmo_layer.add_child(rotate_gizmo)
-	rotate_gizmo.global_position = selection_pivot
-	rotate_gizmo.angle_changed.connect(_rotate_selection)
+	gizmo_layer.add_child(gizmo)
+	gizmo.global_position = selection_pivot
+	gizmo.angle_changed.connect(_rotate_selection)
 	selection_changed.connect(remove_gizmo)
+
+
+func _on_scale_pressed(quick: bool = false) -> void:
+	_update_pivot()
+	if gizmo != null:
+		gizmo.queue_free()
+	gizmo = ScaleGizmo.new()
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	if quick:
+		gizmo.quick(keychord_display, "Scaling", "×")
+		get_viewport().gui_focus_changed.connect(remove_gizmo)
+	selection.map(func(object): 
+		object.set_meta(&"scale_gizmo_original_transform", object.global_transform)
+		object.set_meta(&"scale_gizmo_original_position", object.global_position))
+	gizmo_layer.add_child(gizmo)
+	gizmo.global_position = selection_pivot
+	gizmo.transform_changed.connect(_scale_selection)
+	selection_changed.connect(remove_gizmo)
+
 
 
 static func add_selection_highlight(object: Node2D) -> void:
