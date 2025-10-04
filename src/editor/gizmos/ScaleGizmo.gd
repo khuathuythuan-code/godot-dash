@@ -18,6 +18,7 @@ var handles_scale: Vector2
 var previous_mouse_position: Vector2
 var tween: Tween
 var bounding_box_size: Vector2
+var initial_position: Vector2
 # Deltas for the signal
 var previous_position: Vector2
 var previous_scale: Vector2
@@ -61,7 +62,10 @@ func _ready() -> void:
 	tween.set_parallel()
 	tween.tween_property(self, ^"gizmo_scale", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, ^"modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	(func(): previous_position = position).call_deferred()
+	(func(): 
+		previous_position = position
+		initial_position = position
+	).call_deferred()
 
 
 func _process(_delta: float) -> void:
@@ -151,13 +155,19 @@ func remove_gizmo(reset: bool = false) -> void:
 	state = State.DISABLED
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()
-	# var do_reset_transform := func(angle: float):
-	#
-	# 	transform_changed.emit(rad_to_deg(angle_delta))
 	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	# if reset:
-	# 	tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	var do_reset_scale := func(weight: float, original_position: Vector2, original_scale: Vector2):
+		var new_position: Vector2 = original_position.lerp(initial_position, weight)
+		var new_scale: Vector2 = original_scale.lerp(bounding_box_size * 0.5, weight)
+		var position_delta: Vector2 = new_position - position
+		var scale_delta: Vector2 = new_scale / handles_scale
+		print(position_delta, scale_delta)
+		scale_changed.emit(position_delta, scale_delta)
+		position = new_position
+		handles_scale = new_scale
+	if reset:
+		tween.tween_method(do_reset_scale.bind(position, handles_scale), 0.0, 1.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	if quick_gizmo_value_input:
 		quick_gizmo_value_input.keychord_display.text = ""
 	await tween.finished
