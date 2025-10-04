@@ -91,7 +91,7 @@ func _process(_delta: float) -> void:
 		var mouse_position_delta: Vector2 = get_local_mouse_position() - previous_mouse_position
 		# When we're not resizing around the center, we move the center of the gizmo to the mean position
 		# between the opposite edge and the cursor, and resize by half the amount.
-		var resize_and_move: bool = not Input.is_key_pressed(KEY_CTRL)
+		var resize_and_move: bool = not Input.is_key_pressed(KEY_ALT)
 		var resize_and_move_multiplier: float = 0.5 if resize_and_move else 1.0
 		if Input.is_key_pressed(KEY_SHIFT):
 			mouse_position_delta = mouse_position_delta.project(moved_handle.displayed_position(handles_scale))
