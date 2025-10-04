@@ -30,4 +30,4 @@ func _process(_delta: float) -> void:
 	shifted_modulate.v += hsv_shift[2]
 	get_parent().modulate = shifted_modulate * strength
 	get_parent().modulate.a = alpha * modulate.a
-	modulate = get_parent().modulate
+	last_modulate = get_parent().modulate
