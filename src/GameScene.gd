@@ -1,8 +1,6 @@
 extends Node2D
 class_name GameScene
 
-var has_level_started: bool
-
 func _ready() -> void:
 	LevelManager.game_scene = self
 	Engine.time_scale = 1
@@ -58,7 +56,7 @@ func _leave_level() -> void:
 
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	for ground_sprite in LevelManager.ground_sprites:
 		ground_sprite.get_node("Ground/Line").scale.x = 1/LevelManager.player_camera.zoom.x * 0.2
 

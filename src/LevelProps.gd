@@ -1,5 +1,6 @@
 extends Node2D
 class_name LevelProps
+var music_scale: float = 1.0
 
 const START_SPEED: Array[float] = [
 	0.0,   # 0x
@@ -48,6 +49,8 @@ func _ready() -> void:
 	add_child(song_player)
 	setup_color_channel_watchers()
 
+func _process(delta: float) -> void:
+	music_scale = 0.85 + MusicVolume.get_volume()
 
 func start_level() -> void:
 	if get_tree().paused:

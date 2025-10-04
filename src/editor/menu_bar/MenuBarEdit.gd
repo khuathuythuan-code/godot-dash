@@ -24,4 +24,3 @@ func _on_index_pressed(index:int) -> void:
 		# --- Separator ---
 		10: # Delete Selected
 			edit_handler.delete_selection()
-
