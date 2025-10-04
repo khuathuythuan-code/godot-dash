@@ -96,7 +96,6 @@ static func bounding_box(collision_objects: Array[CollisionObject2D]) -> Rect2:
 		shape_rect.size *= collision_shape.global_scale
 		# shape_rect.position += LevelManager.current_level.to_local(collision_shape.global_position)
 		extents = extents.merge(shape_rect)
-	print_debug(collision_shapes)
 	return extents
 
 
