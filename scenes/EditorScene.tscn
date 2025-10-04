@@ -4979,6 +4979,7 @@ corrupted_level_dialog = NodePath("../CorruptedLevelAcceptDialog")
 level_already_exists_dialog = NodePath("../LevelAlreadyExists")
 
 [node name="AutosaveTimer" type="Timer" parent="LevelOperationsHandler"]
+wait_time = 10.0
 one_shot = true
 
 [node name="OpenLevelDialog" type="FileDialog" parent="."]
