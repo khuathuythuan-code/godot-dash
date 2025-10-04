@@ -40,9 +40,9 @@ scale_curve = SubResource("CurveTexture_ybkcj")
 [node name="ParticleEmitter" type="GPUParticles2D"]
 material = ExtResource("1_41o7e")
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_clhg6")
 texture = ExtResource("2_1od0c")
 lifetime = 0.75
-preprocess = 5.0
+preprocess = 0.75
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_clhg6")
