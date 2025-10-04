@@ -372,7 +372,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
-	gizmo.transform_changed.connect(_scale_selection)
+	gizmo.scale_changed.connect(_scale_selection)
 	selection_changed.connect(remove_gizmo)
 
 
@@ -388,15 +388,13 @@ func _rotate_selection(angle: float) -> void:
 			object.global_position += position_delta
 
 
-func _scale_selection(position_delta: Vector2, rotation_delta: float, scale_delta: Vector2, skew_delta: float) -> void:
+func _scale_selection(position_delta: Vector2, scale_delta: Vector2) -> void:
 	if selection.is_empty():
 		return
 	_update_pivot()
 	for object in selection:
 		object.global_position += position_delta
-		object.global_rotation += rotation_delta
 		object.global_scale *= scale_delta
-		object.global_skew += skew_delta
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 			var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
 			object.global_position = selection_pivot + position_relative_to_pivot * scale_delta

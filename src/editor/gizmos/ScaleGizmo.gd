@@ -1,8 +1,7 @@
 extends Gizmo
 class_name ScaleGizmo
 
-# Scale and skew
-signal transform_changed(position_delta: Vector2, rotation_delta: float, scale_delta: Vector2, skew_delta: float)
+signal scale_changed(position_delta: Vector2, scale_delta: Vector2)
 
 const HANDLE_RADIUS: float = 6.0
 
@@ -11,22 +10,17 @@ var handles: Array[Handle] = [
 	Handle.new(Vector2(-1.0, -1.0), Handle.Type.CORNER, 0), Handle.new(Vector2(0.0, -1.0), Handle.Type.HORIZONTAL_EDGE), Handle.new(Vector2(1.0, -1.0), Handle.Type.CORNER, 1),
 	Handle.new(Vector2(-1.0, 0.0), Handle.Type.VERTICAL_EDGE), Handle.new(Vector2(1.0, 0.0), Handle.Type.VERTICAL_EDGE),
 	Handle.new(Vector2(-1.0, 1.0), Handle.Type.CORNER, 3), Handle.new(Vector2(0.0, 1.0), Handle.Type.HORIZONTAL_EDGE), Handle.new(Vector2(1.0, 1.0), Handle.Type.CORNER, 2),
-	# Skew handles
-	Handle.new(Vector2.UP, Handle.Type.HORIZONTAL_SKEW), Handle.new(Vector2.DOWN, Handle.Type.HORIZONTAL_SKEW),
-	Handle.new(Vector2.LEFT, Handle.Type.VERTICAL_SKEW), Handle.new(Vector2.RIGHT, Handle.Type.VERTICAL_SKEW),
 ]
 var hovered_handle_idx: int
 var has_hovered_handle: bool
 var handle_center_mouse_offset: Vector2
-var handles_transform := Transform2D.IDENTITY
+var handles_scale: Vector2
 var previous_mouse_position: Vector2
 var tween: Tween
 var bounding_box_size: Vector2
 # Deltas for the signal
 var previous_position: Vector2
 var previous_scale: Vector2
-var previous_rotation: float
-var previous_skew: float
 
 
 class Handle:
@@ -34,8 +28,6 @@ class Handle:
 		CORNER,
 		VERTICAL_EDGE,
 		HORIZONTAL_EDGE,
-		VERTICAL_SKEW,
-		HORIZONTAL_SKEW,
 	}
 
 	var position: Vector2
@@ -52,22 +44,14 @@ class Handle:
 			corner_idx = _corner_idx
 	
 
-	func displayed_position(transform: Transform2D) -> Vector2:
-		if is_skew_handle():
-			var normalized_transform: Transform2D = Transform2D(transform.x.normalized(), transform.y.normalized(), Vector2.ZERO)
-			var position_offset: Vector2 = position * normalized_transform * 20.0
-			return position * transform + position_offset
-		else:
-			return position * transform
-	
-
-	func is_skew_handle() -> bool:
-		return type == Type.HORIZONTAL_SKEW or type == Type.VERTICAL_SKEW
+	func displayed_position(scale: Vector2) -> Vector2:
+		return position * scale
 
 
 func _init(_bounding_box_size: Vector2) -> void:
 	bounding_box_size = _bounding_box_size
-	handles_transform = handles_transform.scaled(_bounding_box_size * 0.5)
+	handles_scale = _bounding_box_size * 0.5
+	previous_scale = handles_scale
 
 
 func _ready() -> void:
@@ -78,9 +62,6 @@ func _ready() -> void:
 	tween.tween_property(self, ^"gizmo_scale", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, ^"modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	(func(): previous_position = position).call_deferred()
-	previous_rotation = handles_transform.get_rotation()
-	previous_scale = handles_transform.get_scale()
-	previous_skew = handles_transform.get_skew()
 
 
 func _process(_delta: float) -> void:
@@ -93,9 +74,7 @@ func _process(_delta: float) -> void:
 		state = State.DISABLED
 	if state == State.DISABLED:
 		for i: int in handles.size():
-			if handles[i].displayed_position(handles_transform).distance_to(get_local_mouse_position()) < HANDLE_RADIUS:
-				if handles[i].is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
-					continue
+			if handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position()) < HANDLE_RADIUS:
 				hovered_handle_idx = i
 				has_hovered_handle = true
 				break
@@ -110,26 +89,14 @@ func _process(_delta: float) -> void:
 		# between the opposite edge and the cursor, and resize by half the amount.
 		var resize_and_move: bool = not Input.is_key_pressed(KEY_CTRL)
 		var resize_and_move_multiplier: float = 0.5 if resize_and_move else 1.0
-		if moved_handle.is_skew_handle():
-			var skew_vector := (
-					mouse_position_delta
-						* moved_handle.position.rotated(PI/2) # Constrains the angle parallel to the side
-						* resize_and_move_multiplier
-			).rotated(PI/2)
-			match moved_handle.type:
-				Handle.Type.VERTICAL_SKEW:
-					handles_transform.y -= skew_vector
-				Handle.Type.HORIZONTAL_SKEW:
-					handles_transform.x -= skew_vector
-		else:
-			if Input.is_key_pressed(KEY_SHIFT):
-				mouse_position_delta = mouse_position_delta.project((handles_transform.x + handles_transform.y) * moved_handle.position)
-			handles_transform = handles_transform.scaled_local(
-					Vector2.ONE
-					+ mouse_position_delta * handles_transform.affine_inverse()
-						* moved_handle.position # Constrains the angle perpendicular to the side
-						* resize_and_move_multiplier
-			)
+		if Input.is_key_pressed(KEY_SHIFT):
+			mouse_position_delta = mouse_position_delta.project(moved_handle.displayed_position(handles_scale))
+		handles_scale *= (
+				Vector2.ONE
+				+ mouse_position_delta / handles_scale
+					* moved_handle.position # Constrains the angle perpendicular to the side
+					* resize_and_move_multiplier
+		)
 		if resize_and_move:
 			match moved_handle.type:
 				Handle.Type.CORNER:
@@ -138,21 +105,13 @@ func _process(_delta: float) -> void:
 					position += mouse_position_delta * Vector2.RIGHT * 0.5
 				Handle.Type.HORIZONTAL_EDGE:
 					position += mouse_position_delta * Vector2.DOWN * 0.5
-				Handle.Type.VERTICAL_SKEW:
-					position += mouse_position_delta * Vector2.DOWN * 0.5
-				Handle.Type.HORIZONTAL_SKEW:
-					position += mouse_position_delta * Vector2.RIGHT * 0.5
 		previous_mouse_position = get_local_mouse_position()
-		transform_changed.emit(
+		scale_changed.emit(
 				position - previous_position,
-				handles_transform.get_rotation() - previous_rotation,
-				handles_transform.get_scale() / previous_scale,
-				handles_transform.get_skew() - previous_skew
+				handles_scale / previous_scale,
 		)
 		previous_position = position
-		previous_rotation = handles_transform.get_rotation()
-		previous_scale = handles_transform.get_scale()
-		previous_skew = handles_transform.get_skew()
+		previous_scale = handles_scale
 	
 	scale = Vector2.ONE * gizmo_scale
 	queue_redraw()
@@ -169,7 +128,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	var corner_handles := handles.filter(func(handle: Handle): return handle.type == Handle.Type.CORNER)
 	corner_handles.sort_custom(func(handle_a: Handle, handle_b: Handle): return handle_a.corner_idx < handle_b.corner_idx)
 	corner_handles.append(corner_handles[0])
-	draw_polyline(corner_handles.map(func(handle: Handle): return handle.displayed_position(handles_transform)), color, 6.0 if outline else 1.0)
+	draw_polyline(corner_handles.map(func(handle: Handle): return handle.displayed_position(handles_scale)), color, 6.0 if outline else 1.0)
 
 	for handle_idx: int in handles.size():
 		var handle: Handle = handles[handle_idx]
@@ -178,16 +137,14 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 			handle_color.a /= 2.0
 		if state == State.ENABLED and handle_idx == hovered_handle_idx:
 			handle_color.a /= 2.0
-		if handle.is_skew_handle() and not Input.is_key_pressed(KEY_ALT):
-			continue
 		if outline:
-			draw_circle(handle.displayed_position(handles_transform), HANDLE_RADIUS, handle_color, false, 6.0)
+			draw_circle(handle.displayed_position(handles_scale), HANDLE_RADIUS, handle_color, false, 6.0)
 		else:
-			draw_circle(handle.displayed_position(handles_transform), HANDLE_RADIUS, handle_color)
+			draw_circle(handle.displayed_position(handles_scale), HANDLE_RADIUS, handle_color)
 	
 	if Config.config.draw_debug_overlays:
-		draw_line(Vector2.ZERO, handles_transform.x, Color.RED, 6.0)
-		draw_line(Vector2.ZERO, handles_transform.y, Color.GREEN, 6.0)
+		draw_line(Vector2.ZERO, handles_scale * Vector2.RIGHT, Color.RED, 6.0)
+		draw_line(Vector2.ZERO, handles_scale * Vector2.DOWN, Color.GREEN, 6.0)
 
 
 func remove_gizmo(reset: bool = false) -> void:
