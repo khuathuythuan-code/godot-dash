@@ -22,6 +22,9 @@ var initial_position: Vector2
 # Deltas for the signal
 var previous_position: Vector2
 var previous_scale: Vector2
+# Non snapped transform
+var real_handles_scale: Vector2
+var real_position: Vector2
 
 
 class Handle:
@@ -52,6 +55,7 @@ class Handle:
 func _init(_bounding_box_size: Vector2) -> void:
 	bounding_box_size = _bounding_box_size
 	handles_scale = _bounding_box_size * 0.5
+	real_handles_scale = handles_scale
 	previous_scale = handles_scale
 
 
@@ -65,6 +69,7 @@ func _ready() -> void:
 	(func(): 
 		previous_position = position
 		initial_position = position
+		real_position = position
 	).call_deferred()
 
 
@@ -84,6 +89,8 @@ func _process(_delta: float) -> void:
 				break
 			else:
 				has_hovered_handle = false
+		real_handles_scale = handles_scale
+		real_position = position
 	
 	# Move handles
 	if state != State.DISABLED:
@@ -95,20 +102,33 @@ func _process(_delta: float) -> void:
 		var resize_and_move_multiplier: float = 0.5 if resize_and_move else 1.0
 		if Input.is_key_pressed(KEY_SHIFT):
 			mouse_position_delta = mouse_position_delta.project(moved_handle.displayed_position(handles_scale))
-		handles_scale *= (
+		var scale_multiplier: Vector2 = (
 				Vector2.ONE
 				+ mouse_position_delta / handles_scale
 					* moved_handle.position # Constrains the angle perpendicular to the side
 					* resize_and_move_multiplier
 		)
+		real_handles_scale *= scale_multiplier
+		var snapped_handles_scale: Vector2 = real_handles_scale.maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5)
 		if resize_and_move:
 			match moved_handle.type:
 				Handle.Type.CORNER:
-					position += mouse_position_delta * 0.5
+					real_position += mouse_position_delta * 0.5
 				Handle.Type.VERTICAL_EDGE:
-					position += mouse_position_delta * Vector2.RIGHT * 0.5
+					real_position += mouse_position_delta * Vector2.RIGHT * 0.5
 				Handle.Type.HORIZONTAL_EDGE:
-					position += mouse_position_delta * Vector2.DOWN * 0.5
+					real_position += mouse_position_delta * Vector2.DOWN * 0.5
+		# Snap the position relative to the level origin aka the grid origin
+		var snapped_position = LevelManager.current_level.to_global(
+				LevelManager.current_level.to_local(real_position)
+				.snappedf(LevelManager.CELL_SIZE * 0.5)
+		)
+		if Input.is_key_pressed(KEY_CTRL):
+			handles_scale = snapped_handles_scale
+			position = snapped_position
+		else:
+			handles_scale = real_handles_scale
+			position = real_position
 		previous_mouse_position = get_local_mouse_position()
 		scale_changed.emit(
 				position - previous_position,
