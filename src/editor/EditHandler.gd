@@ -6,9 +6,15 @@ signal selection_changed(selection: Array[Node2D])
 signal clipboard_changed(clipboard: Array[NodePath])
 signal rotated_object_degrees(rotation_degrees: float)
 
+enum TransformPivot {
+	MEDIAN_POINT,
+	INDIVIDUAL_ORIGINS,
+}
+
 @export var editor_viewport: Control
 @export var gizmo_layer: CanvasLayer
 @export var keychord_display: Label
+@export var transform_pivot_button: OptionButton
 
 var level: LevelProps
 var selection: Array[Node2D]
@@ -24,13 +30,15 @@ var previous_cursor_position_snapped: Vector2
 var selection_pivot := Vector2.INF
 var rotate_gizmo: RotateGizmo
 
+
 func _ready() -> void:
 	_reset_selection_zone(true)
 	selection_changed.connect(_reset_selection_pivot)
 	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	if object_move_cooldown > 0:
@@ -146,25 +154,6 @@ func _get_object_parent(object: Node) -> Node2D:
 		return object
 
 
-static func add_selection_highlight(object: Node2D) -> void:
-	if object.has_node("HSVWatcher"):
-		object = object.get_node("HSVWatcher")
-	if not object.has_node("SelectionHighlight"):
-		var selection_highlight = SelectionHighlight.new()
-		object.add_child(selection_highlight)
-
-
-static func remove_selection_highlight(object: Node2D) -> void:
-	if object.has_node("HSVWatcher"):
-		object = object.get_node("HSVWatcher")
-	if not object.has_node("SelectionHighlight"):
-		return
-	object.modulate = object.get_node("SelectionHighlight").modulate
-	if object is HSVWatcher:
-		object.get_parent().modulate = object.modulate
-	object.get_node("SelectionHighlight").queue_free()
-
-
 func _reset_selection_zone(unreachable: bool = true) -> void:
 	$SelectionZone.position = Vector2.ONE * INF if unreachable else get_parent().get_local_mouse_position()
 	$SelectionZone/Hitbox.shape.size = Vector2.ZERO
@@ -249,19 +238,6 @@ func delete_selection() -> void:
 	selection_changed.emit(selection)
 
 
-func _rotate_selection(angle: float) -> void:
-	if selection.is_empty():
-		return
-	rotation_lock = true
-	_update_pivot()
-	for object in selection:
-		object.global_rotation_degrees += angle
-		var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-		object.global_position += position_delta
-	rotation_lock = false
-
-
 func clear_selection() -> void:
 	selection.map(remove_selection_highlight)
 	selection.clear()
@@ -276,6 +252,32 @@ func select_all() -> void:
 	selection.assign(level.get_children().duplicate().filter(only_node_2ds))
 	selection.map(add_selection_highlight)
 	selection_changed.emit(selection)
+
+
+func remove_gizmo(_selection = null) -> void:
+	if not rotate_gizmo:
+		return
+	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
+	await rotate_gizmo.remove_gizmo()
+	selection_changed.disconnect(remove_gizmo)
+
+
+func any_gizmo_is_open() -> bool:
+	return rotate_gizmo != null
+
+
+func _rotate_selection(angle: float) -> void:
+	if selection.is_empty():
+		return
+	rotation_lock = true
+	_update_pivot()
+	for object in selection:
+		object.global_rotation_degrees += angle
+		var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
+		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
+		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+			object.global_position += position_delta
+	rotation_lock = false
 
 
 func _update_pivot() -> void:
@@ -365,13 +367,20 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	selection_changed.connect(remove_gizmo)
 
 
-func remove_gizmo(_selection = null) -> void:
-	if not rotate_gizmo:
+static func add_selection_highlight(object: Node2D) -> void:
+	if object.has_node("HSVWatcher"):
+		object = object.get_node("HSVWatcher")
+	if not object.has_node("SelectionHighlight"):
+		var selection_highlight = SelectionHighlight.new()
+		object.add_child(selection_highlight)
+
+
+static func remove_selection_highlight(object: Node2D) -> void:
+	if object.has_node("HSVWatcher"):
+		object = object.get_node("HSVWatcher")
+	if not object.has_node("SelectionHighlight"):
 		return
-	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
-	await rotate_gizmo.remove_gizmo()
-	selection_changed.disconnect(remove_gizmo)
-
-
-func any_gizmo_is_open() -> bool:
-	return rotate_gizmo != null
+	object.modulate = object.get_node("SelectionHighlight").modulate
+	if object is HSVWatcher:
+		object.get_parent().modulate = object.modulate
+	object.get_node("SelectionHighlight").queue_free()
