@@ -15,8 +15,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	_factor = move_toward(_factor, 0.0, delta * 6)
-	_pulse_target.material.set_shader_parameter("factor", _factor)
+	if _factor != 0.0:
+		_factor = move_toward(_factor, 0.0, delta * 6)
+		_pulse_target.material.set_shader_parameter("factor", _factor)
 
 
 func pulse(_player: Player) -> void:
