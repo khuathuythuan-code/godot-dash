@@ -2,7 +2,7 @@ extends Gizmo
 class_name ScaleGizmo
 
 # Scale and skew
-signal transform_changed(new_transform: Transform2D, new_position: Vector2)
+signal transform_changed(position_delta: Vector2, rotation_delta: float, scale_delta: Vector2, skew_delta: float)
 
 const HANDLE_RADIUS: float = 6.0
 
@@ -18,9 +18,15 @@ var handles: Array[Handle] = [
 var hovered_handle_idx: int
 var has_hovered_handle: bool
 var handle_center_mouse_offset: Vector2
-var handles_transform := Transform2D.IDENTITY.scaled(Vector2.ONE * 128.0)
+var handles_transform := Transform2D.IDENTITY
 var previous_mouse_position: Vector2
 var tween: Tween
+var bounding_box_size: Vector2
+# Deltas for the signal
+var previous_position: Vector2
+var previous_scale: Vector2
+var previous_rotation: float
+var previous_skew: float
 
 
 class Handle:
@@ -59,6 +65,11 @@ class Handle:
 		return type == Type.HORIZONTAL_SKEW or type == Type.VERTICAL_SKEW
 
 
+func _init(_bounding_box_size: Vector2) -> void:
+	bounding_box_size = _bounding_box_size
+	handles_transform = handles_transform.scaled(_bounding_box_size * 0.5)
+
+
 func _ready() -> void:
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
@@ -66,6 +77,10 @@ func _ready() -> void:
 	tween.set_parallel()
 	tween.tween_property(self, ^"gizmo_scale", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, ^"modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	(func(): previous_position = position).call_deferred()
+	previous_rotation = handles_transform.get_rotation()
+	previous_scale = handles_transform.get_scale()
+	previous_skew = handles_transform.get_skew()
 
 
 func _process(_delta: float) -> void:
@@ -128,7 +143,16 @@ func _process(_delta: float) -> void:
 				Handle.Type.HORIZONTAL_SKEW:
 					position += mouse_position_delta * Vector2.RIGHT * 0.5
 		previous_mouse_position = get_local_mouse_position()
-		transform_changed.emit(handles_transform, position)
+		transform_changed.emit(
+				position - previous_position,
+				handles_transform.get_rotation() - previous_rotation,
+				handles_transform.get_scale() / previous_scale,
+				handles_transform.get_skew() - previous_skew
+		)
+		previous_position = position
+		previous_rotation = handles_transform.get_rotation()
+		previous_scale = handles_transform.get_scale()
+		previous_skew = handles_transform.get_skew()
 	
 	scale = Vector2.ONE * gizmo_scale
 	queue_redraw()

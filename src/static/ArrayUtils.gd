@@ -6,12 +6,14 @@ enum Transformation {
 	MEDIAN,
 }
 
+
 ## Appends an array to another and removes the duplicates between the two.
 static func union(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
 	for element in b:
 		if element not in a:
 			a.append(element)
 	return Array(a, type, hint, null)
+
 
 ## Get an array of the elements only in the first array.
 static func difference(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
@@ -21,6 +23,7 @@ static func difference(a: Array, b: Array, type: Variant.Type, hint: StringName)
 			result.append(element)
 	return Array(result, type, hint, null)
 
+
 ## Get an array of the elements only in both arrays.
 static func intersect(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
 	var result: Array
@@ -29,6 +32,7 @@ static func intersect(a: Array, b: Array, type: Variant.Type, hint: StringName) 
 			result.append(element)
 	return Array(result, type, hint, null)
 
+
 ## Get an array with only unique elements from the source array (removes duplicates).
 static func to_set(array: Array) -> Array:
 	var result: Array
@@ -36,6 +40,7 @@ static func to_set(array: Array) -> Array:
 		if not result.has(element):
 			result.append(element)
 	return result
+
 
 ## Get an array of the median of a float array or a [Vector2] with the median of the x and y components.
 static func transform(array: Array[Variant], transformation: Transformation, at_edges: bool = false) -> Variant:
@@ -78,12 +83,30 @@ static func transform(array: Array[Variant], transformation: Transformation, at_
 		printerr("Array must be of type float, int, Vector2 or Vector2i")
 		return null
 
+
+static func bounding_box(collision_objects: Array[CollisionObject2D]) -> Rect2:
+	var collision_shapes: Array[CollisionShape2D]
+	for collision_object in collision_objects:
+		for shape_owner: int in collision_object.get_shape_owners():
+			collision_shapes.append(collision_object.shape_owner_get_owner(shape_owner))
+	var extents: Rect2
+	for collision_shape: CollisionShape2D in collision_shapes:
+		var shape_rect: Rect2 = collision_shape.shape.get_rect()
+		shape_rect.position *= collision_shape.global_scale
+		shape_rect.size *= collision_shape.global_scale
+		# shape_rect.position += LevelManager.current_level.to_local(collision_shape.global_position)
+		extents = extents.merge(shape_rect)
+	print_debug(collision_shapes)
+	return extents
+
+
 static func _median_float(array: Array) -> float:
 	array.sort()
 	if len(array) % 2 == 1:
 		return array[(len(array))*0.5]
 	else:
 		return (array[len(array)*0.5-1]+array[len(array)*0.5])*0.5
+
 
 static func _mean_float(array: Array) -> float:
 	return array.reduce(func(accum, number): return accum + number)/len(array)
