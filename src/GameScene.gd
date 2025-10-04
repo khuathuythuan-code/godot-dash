@@ -1,6 +1,5 @@
 extends Node2D
 class_name GameScene
-var music_scale: float = 1.0
 
 func _ready() -> void:
 	LevelManager.game_scene = self
@@ -58,7 +57,6 @@ func _leave_level() -> void:
 
 
 func _process(delta: float) -> void:
-	music_scale = 0.85 + MusicVolume.get_volume()
 	for ground_sprite in LevelManager.ground_sprites:
 		ground_sprite.get_node("Ground/Line").scale.x = 1/LevelManager.player_camera.zoom.x * 0.2
 
