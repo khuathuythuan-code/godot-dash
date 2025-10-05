@@ -109,7 +109,9 @@ func _process(_delta: float) -> void:
 					* resize_and_move_multiplier
 		)
 		real_handles_scale *= scale_multiplier
-		var snapped_handles_scale: Vector2 = real_handles_scale.maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5)
+		# Small minimum to avoid NaN or INF-related issues
+		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
+		var snapped_handles_scale: Vector2 = real_handles_scale.abs().maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5) * real_handles_scale.sign()
 		if resize_and_move:
 			match moved_handle.type:
 				Handle.Type.CORNER:
@@ -121,7 +123,9 @@ func _process(_delta: float) -> void:
 		# Snap the position relative to the level origin aka the grid origin
 		var snapped_position = LevelManager.current_level.to_global(
 				LevelManager.current_level.to_local(real_position)
+				.abs()
 				.snappedf(LevelManager.CELL_SIZE * 0.5)
+				* LevelManager.current_level.to_local(real_position).sign()
 		)
 		if Input.is_key_pressed(KEY_CTRL):
 			handles_scale = snapped_handles_scale
@@ -130,10 +134,11 @@ func _process(_delta: float) -> void:
 			handles_scale = real_handles_scale
 			position = real_position
 		previous_mouse_position = get_local_mouse_position()
-		scale_changed.emit(
-				position - previous_position,
-				handles_scale / previous_scale,
-		)
+		if (handles_scale / previous_scale).is_finite():
+			scale_changed.emit(
+					position - previous_position,
+					handles_scale / previous_scale,
+			)
 		previous_position = position
 		previous_scale = handles_scale
 	
