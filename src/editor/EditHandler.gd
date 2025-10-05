@@ -26,13 +26,12 @@ var editor_mode: TabContainer
 var selection_index := 0
 var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
-var selection_pivot := Vector2.INF
+var selection_pivot: Vector2
 var gizmo: Gizmo
 
 
 func _ready() -> void:
 	_reset_selection_zone(true)
-	selection_changed.connect(_reset_selection_pivot)
 	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
@@ -86,10 +85,12 @@ func _physics_process(delta: float) -> void:
 				selection.map(func(object): object.global_position += move_vector * LevelManager.CELL_SIZE * move_multiplier)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
+				_update_pivot()
 				_rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
+				_update_pivot()
 				_rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				object_move_cooldown = 0.2
@@ -278,19 +279,17 @@ func _update_pivot() -> void:
 	if selection.is_empty():
 		return
 	var group_parents := selection.filter(func(object): return object.has_meta("group_parent"))
-	if selection_pivot == Vector2.INF:
-		if not group_parents.is_empty():
-			selection_pivot = group_parents[0].global_position
-		else:
-			# Take the mean of the position of all objects
-			var object_positions := selection.duplicate().map(func(object): return object.global_position)
-			selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
+	if not group_parents.is_empty():
+		selection_pivot = group_parents[0].global_position
+	else:
+		# Take the mean of the position of all objects
+		var object_positions := selection.duplicate().map(func(object): return object.global_position)
+		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
 func _flip_selection(axis: int):
 	if selection.is_empty():
 		return
-	_update_pivot()
 	match axis:
 		Vector2.AXIS_X:
 			for object in selection:
@@ -316,31 +315,33 @@ func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> voi
 	selection.map(func(object): object.position += LevelManager.CELL_SIZE * direction * step)
 
 
-func _reset_selection_pivot(_selection: Array[Node2D]) -> void:
-	selection_pivot = Vector2.INF
-
-
 func _on_rotate_left_90_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(-90)
 
 
 func _on_rotate_right_90_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(90)
 
 
 func _on_rotate_left_45_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(-45)
 
 
 func _on_rotate_right_45_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(45)
 
 
 func _on_flip_h_pressed() -> void:
+	_update_pivot()
 	_flip_selection(Vector2.AXIS_X)
 
 
 func _on_flip_v_pressed() -> void:
+	_update_pivot()
 	_flip_selection(Vector2.AXIS_Y)
 
 
@@ -363,13 +364,16 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	_update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
-	var selection_collision_shapes: Array[CollisionObject2D]
-	selection_collision_shapes.assign(
+	var selection_collision_objects: Array[CollisionObject2D]
+	selection_collision_objects.assign(
 			selection
 			.filter(func(object: Node2D): return object is CollisionObject2D)
-			.map(_get_object_selection_collider)
 	)
-	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_shapes).size
+	var positions_relative_to_pivot: Dictionary[Node2D, Vector2]
+	for collision_object in selection_collision_objects:
+		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
+	selection_collision_objects.assign(selection_collision_objects.map(_get_object_selection_collider))
+	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_objects).size
 	gizmo = ScaleGizmo.new(selection_bounding_box_size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
@@ -377,14 +381,13 @@ func _on_scale_pressed(quick: bool = false) -> void:
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
-	gizmo.scale_changed.connect(_scale_selection)
+	gizmo.scale_changed.connect(_scale_selection.bind(positions_relative_to_pivot))
 	selection_changed.connect(remove_gizmo)
 
 
 func _rotate_selection(angle: float) -> void:
 	if selection.is_empty():
 		return
-	_update_pivot()
 	for object in selection:
 		object.global_rotation_degrees += angle
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
@@ -393,16 +396,16 @@ func _rotate_selection(angle: float) -> void:
 			object.global_position += position_delta
 
 
-func _scale_selection(position_delta: Vector2, scale_delta: Vector2) -> void:
+func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, positions_relative_to_pivot: Dictionary[Node2D, Vector2]) -> void:
 	if selection.is_empty():
 		return
-	_update_pivot()
+	selection_pivot += position_delta
 	for object in selection:
 		object.global_position += position_delta
 		object.scale *= scale_delta
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-			var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-			object.global_position = selection_pivot + position_relative_to_pivot * scale_delta
+			var position_relative_to_pivot: Vector2 = positions_relative_to_pivot[object]
+			object.global_position = selection_pivot + position_relative_to_pivot * total_scale
 
 
 static func add_selection_highlight(object: Node2D) -> void:

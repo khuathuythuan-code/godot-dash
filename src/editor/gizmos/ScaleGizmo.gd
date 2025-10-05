@@ -1,7 +1,7 @@
 extends Gizmo
 class_name ScaleGizmo
 
-signal scale_changed(position_delta: Vector2, scale_delta: Vector2)
+signal scale_changed(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2)
 
 const HANDLE_RADIUS: float = 6.0
 
@@ -53,7 +53,7 @@ class Handle:
 
 
 func _init(_bounding_box_size: Vector2) -> void:
-	bounding_box_size = _bounding_box_size
+	bounding_box_size = _bounding_box_size * 0.5
 	handles_scale = _bounding_box_size * 0.5
 	real_handles_scale = handles_scale
 	previous_scale = handles_scale
@@ -138,6 +138,7 @@ func _process(_delta: float) -> void:
 			scale_changed.emit(
 					position - previous_position,
 					handles_scale / previous_scale,
+					handles_scale / bounding_box_size,
 			)
 		previous_position = position
 		previous_scale = handles_scale
@@ -184,10 +185,10 @@ func remove_gizmo(reset: bool = false) -> void:
 	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	var do_reset_scale := func(weight: float, original_position: Vector2, original_scale: Vector2):
 		var new_position: Vector2 = original_position.lerp(initial_position, weight)
-		var new_scale: Vector2 = original_scale.lerp(bounding_box_size * 0.5, weight)
+		var new_scale: Vector2 = original_scale.lerp(bounding_box_size, weight)
 		var position_delta: Vector2 = new_position - position
 		var scale_delta: Vector2 = new_scale / handles_scale
-		scale_changed.emit(position_delta, scale_delta)
+		scale_changed.emit(position_delta, scale_delta, new_scale / bounding_box_size)
 		position = new_position
 		handles_scale = new_scale
 	if reset:
