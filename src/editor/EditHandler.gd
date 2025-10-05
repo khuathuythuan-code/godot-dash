@@ -296,14 +296,12 @@ func _flip_selection(axis: int):
 			for object in selection:
 				object.scale.x *= -1
 				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				var x_delta := position_relative_to_pivot.x * -1 - position_relative_to_pivot.x
-				object.global_position.x += x_delta
+				object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
 		Vector2.AXIS_Y:
 			for object in selection:
 				object.scale.y *= -1
 				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				var y_delta := position_relative_to_pivot.y * -1 - position_relative_to_pivot.y
-				object.global_position.y += y_delta
+				object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
 
 
 func _on_place_handler_object_deleted(object:Node) -> void:
@@ -401,7 +399,7 @@ func _scale_selection(position_delta: Vector2, scale_delta: Vector2) -> void:
 	_update_pivot()
 	for object in selection:
 		object.global_position += position_delta
-		object.global_scale *= scale_delta
+		object.scale *= scale_delta
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 			var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
 			object.global_position = selection_pivot + position_relative_to_pivot * scale_delta
