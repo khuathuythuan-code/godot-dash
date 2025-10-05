@@ -104,7 +104,7 @@ func _process(_delta: float) -> void:
 			mouse_position_delta = mouse_position_delta.project(moved_handle.displayed_position(handles_scale))
 		var scale_multiplier: Vector2 = (
 				Vector2.ONE
-				+ mouse_position_delta / handles_scale
+				+ mouse_position_delta / real_handles_scale
 					* moved_handle.position # Constrains the angle perpendicular to the side
 					* resize_and_move_multiplier
 		)
@@ -120,13 +120,7 @@ func _process(_delta: float) -> void:
 					real_position += mouse_position_delta * Vector2.RIGHT * 0.5
 				Handle.Type.HORIZONTAL_EDGE:
 					real_position += mouse_position_delta * Vector2.DOWN * 0.5
-		# Snap the position relative to the level origin aka the grid origin
-		var snapped_position = LevelManager.current_level.to_global(
-				LevelManager.current_level.to_local(real_position)
-				.abs()
-				.snappedf(LevelManager.CELL_SIZE * 0.5)
-				* LevelManager.current_level.to_local(real_position).sign()
-		)
+		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.position
 		if Input.is_key_pressed(KEY_CTRL):
 			handles_scale = snapped_handles_scale
 			position = snapped_position
