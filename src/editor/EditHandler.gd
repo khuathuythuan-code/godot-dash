@@ -156,6 +156,11 @@ func _get_object_parent(object: Node) -> Node2D:
 		return object
 
 
+func _get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
+	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
+	return selection_collider if selection_collider else object
+
+
 func _reset_selection_zone(unreachable: bool = true) -> void:
 	$SelectionZone.position = Vector2.ONE * INF if unreachable else get_parent().get_local_mouse_position()
 	$SelectionZone/Hitbox.shape.size = Vector2.ZERO
@@ -363,6 +368,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	selection_collision_shapes.assign(
 			selection
 			.filter(func(object: Node2D): return object is CollisionObject2D)
+			.map(_get_object_selection_collider)
 	)
 	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_shapes).size
 	gizmo = ScaleGizmo.new(selection_bounding_box_size)

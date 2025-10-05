@@ -38,5 +38,5 @@ texture = ExtResource("6_p5kb6")
 flip_h = true
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("5_0chxq")]
-scale = Vector2(1.4, 3)
+scale = Vector2(1, 3)
 type = 8
