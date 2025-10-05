@@ -267,6 +267,7 @@ func remove_gizmo(_selection = null) -> void:
 	await gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	gizmo = null
 
 
 func any_gizmo_is_open() -> bool:

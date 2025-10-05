@@ -182,7 +182,6 @@ func remove_gizmo(reset: bool = false) -> void:
 		var new_scale: Vector2 = original_scale.lerp(bounding_box_size * 0.5, weight)
 		var position_delta: Vector2 = new_position - position
 		var scale_delta: Vector2 = new_scale / handles_scale
-		print(position_delta, scale_delta)
 		scale_changed.emit(position_delta, scale_delta)
 		position = new_position
 		handles_scale = new_scale
