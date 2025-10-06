@@ -283,7 +283,7 @@ func _update_pivot() -> void:
 		selection_pivot = group_parents[0].global_position
 	else:
 		# Take the mean of the position of all objects
-		var object_positions := selection.duplicate().map(func(object): return object.global_position)
+		var object_positions := selection.map(func(object): return object.global_position)
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
@@ -369,18 +369,27 @@ func _on_scale_pressed(quick: bool = false) -> void:
 			selection
 			.filter(func(object: Node2D): return object is CollisionObject2D)
 	)
+
+	var mean_objects_rotation: float = ArrayUtils.transform(selection.map(func(object: Node2D): return object.global_rotation), ArrayUtils.Transformation.MEAN)
+	var gizmo_center: Vector2 = ArrayUtils.transform(
+			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
+			ArrayUtils.Transformation.MEAN
+	).rotated(mean_objects_rotation)
+	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
+	selection_pivot = gizmo_center
+
 	var positions_relative_to_pivot: Dictionary[Node2D, Vector2]
 	for collision_object in selection_collision_objects:
 		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
 	selection_collision_objects.assign(selection_collision_objects.map(_get_object_selection_collider))
-	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot).size
-	gizmo = ScaleGizmo.new(selection_bounding_box_size)
+	gizmo = ScaleGizmo.new(selection_bounding_box.size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
 		gizmo.quick(keychord_display, "Scaling", "×")
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
+	gizmo.global_position = gizmo_center
+	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
-	gizmo.global_position = selection_pivot
 	gizmo.scale_changed.connect(_scale_selection.bind(positions_relative_to_pivot))
 	selection_changed.connect(remove_gizmo)
 
@@ -396,7 +405,7 @@ func _rotate_selection(angle: float) -> void:
 			object.global_position += position_delta
 
 
-func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, positions_relative_to_pivot: Dictionary[Node2D, Vector2]) -> void:
+func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, rotation: float, positions_relative_to_pivot: Dictionary[Node2D, Vector2]) -> void:
 	if selection.is_empty():
 		return
 	selection_pivot += position_delta
@@ -405,7 +414,7 @@ func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale
 		object.scale *= scale_delta
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 			var position_relative_to_pivot: Vector2 = positions_relative_to_pivot[object]
-			object.global_position = selection_pivot + position_relative_to_pivot * total_scale
+			object.global_position = selection_pivot + (position_relative_to_pivot.rotated(-rotation) * total_scale).rotated(rotation)
 
 
 static func add_selection_highlight(object: Node2D) -> void:

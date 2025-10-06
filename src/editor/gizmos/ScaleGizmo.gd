@@ -1,7 +1,7 @@
 extends Gizmo
 class_name ScaleGizmo
 
-signal scale_changed(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2)
+signal scale_changed(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, rotation: float)
 
 const HANDLE_RADIUS: float = 8.0
 
@@ -102,8 +102,8 @@ func _process(_delta: float) -> void:
 	# Move handles
 	if state != State.DISABLED:
 		# Modifiers
-		var resizing_keep_aspect: bool = Input.is_key_pressed(KEY_SHIFT)
-		var resizing_around_center: bool = Input.is_key_pressed(KEY_ALT)
+		var resizing_keep_aspect: bool = Input.is_key_pressed(KEY_SHIFT) or _quick
+		var resizing_around_center: bool = Input.is_key_pressed(KEY_ALT) or _quick
 		var resizing_snapped: bool = Input.is_key_pressed(KEY_CTRL)
 
 		var moved_handle: Handle = handles[hovered_handle_idx]
@@ -132,12 +132,12 @@ func _process(_delta: float) -> void:
 		if resize_and_move:
 			match moved_handle.type:
 				Handle.Type.CORNER:
-					real_position += mouse_position_delta * 0.5
+					real_position += (mouse_position_delta * 0.5).rotated(rotation)
 				Handle.Type.VERTICAL_EDGE:
-					real_position += mouse_position_delta * Vector2.RIGHT * 0.5
+					real_position += (mouse_position_delta * Vector2.RIGHT * 0.5).rotated(rotation)
 				Handle.Type.HORIZONTAL_EDGE:
-					real_position += mouse_position_delta * Vector2.DOWN * 0.5
-		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.axis
+					real_position += (mouse_position_delta * Vector2.DOWN * 0.5).rotated(rotation)
+		var snapped_position: Vector2 = initial_position + ((snapped_handles_scale - bounding_box_size) * moved_handle.axis).rotated(rotation)
 		if resizing_snapped:
 			handles_scale = snapped_handles_scale
 			position = snapped_position if not resizing_around_center else real_position
@@ -150,6 +150,7 @@ func _process(_delta: float) -> void:
 					position - previous_position,
 					handles_scale / previous_scale,
 					handles_scale / bounding_box_size,
+					rotation,
 			)
 		previous_position = position
 		previous_scale = handles_scale
@@ -204,7 +205,7 @@ func remove_gizmo(reset: bool = false) -> void:
 		var new_scale: Vector2 = original_scale.lerp(bounding_box_size, weight)
 		var position_delta: Vector2 = new_position - position
 		var scale_delta: Vector2 = new_scale / handles_scale
-		scale_changed.emit(position_delta, scale_delta, new_scale / bounding_box_size)
+		scale_changed.emit(position_delta, scale_delta, new_scale / bounding_box_size, rotation)
 		position = new_position
 		handles_scale = new_scale
 	if reset:
