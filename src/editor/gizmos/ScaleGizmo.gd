@@ -35,13 +35,13 @@ class Handle:
 		HORIZONTAL_EDGE,
 	}
 
-	var position: Vector2
+	var axis: Vector2
 	var type: Type
 	var corner_idx: int
 
 
-	func _init(_position: Vector2, _type: Type, _corner_idx: int = -1) -> void:
-		position = _position
+	func _init(_axis: Vector2, _type: Type, _corner_idx: int = -1) -> void:
+		axis = _axis
 		type = _type
 
 		if _type == Type.CORNER:
@@ -50,7 +50,7 @@ class Handle:
 	
 
 	func displayed_position(scale: Vector2) -> Vector2:
-		return position * scale
+		return axis * scale
 
 
 func _init(_bounding_box_size: Vector2) -> void:
@@ -84,7 +84,7 @@ func _process(_delta: float) -> void:
 	# Handle focus
 	if has_hovered_handle and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.DISABLED:
 		state = State.ENABLED
-		handle_center_mouse_offset = handles[hovered_handle_idx].position - get_local_mouse_position()
+		handle_center_mouse_offset = handles[hovered_handle_idx].axis - get_local_mouse_position()
 		previous_mouse_position = get_local_mouse_position()
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.ENABLED:
 		state = State.DISABLED
@@ -117,9 +117,14 @@ func _process(_delta: float) -> void:
 		var scale_multiplier: Vector2 = (
 				Vector2.ONE
 				+ mouse_position_delta / real_handles_scale
-					* moved_handle.position # Constrains the angle perpendicular to the side
+					* moved_handle.axis # Constrains the angle perpendicular to the side
 					* resize_and_move_multiplier
 		)
+		if resizing_keep_aspect and (moved_handle.axis.abs() == Vector2.RIGHT or moved_handle.axis.abs() == Vector2.DOWN):
+			if scale_multiplier.x == 1.0:
+				scale_multiplier.x = scale_multiplier.y
+			elif scale_multiplier.y == 1.0:
+				scale_multiplier.y = scale_multiplier.x
 		real_handles_scale *= scale_multiplier
 		# Small minimum to avoid NaN or INF-related issues
 		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
@@ -132,7 +137,7 @@ func _process(_delta: float) -> void:
 					real_position += mouse_position_delta * Vector2.RIGHT * 0.5
 				Handle.Type.HORIZONTAL_EDGE:
 					real_position += mouse_position_delta * Vector2.DOWN * 0.5
-		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.position
+		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.axis
 		if resizing_snapped:
 			handles_scale = snapped_handles_scale
 			position = snapped_position if not resizing_around_center else real_position
