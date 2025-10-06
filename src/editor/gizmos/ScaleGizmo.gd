@@ -130,7 +130,7 @@ func _process(_delta: float) -> void:
 		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.position
 		if Input.is_key_pressed(KEY_CTRL):
 			handles_scale = snapped_handles_scale
-			position = snapped_position
+			position = snapped_position if not Input.is_key_pressed(KEY_ALT) else real_position
 		else:
 			handles_scale = real_handles_scale
 			position = real_position
