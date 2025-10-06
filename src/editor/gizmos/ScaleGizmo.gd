@@ -70,6 +70,7 @@ func _ready() -> void:
 	previous_position = position
 	initial_position = position
 	real_position = position
+	quick_set_selected_handle.call_deferred()
 
 
 func _process(_delta: float) -> void:
@@ -162,6 +163,13 @@ func _draw() -> void:
 	outline_color.a = 0.5
 	draw_gizmo(outline_color, true)
 	draw_gizmo(Color.WHITE)
+
+
+func quick_set_selected_handle() -> void:
+	var handle_distances_to_cursor: Array[float]
+	for i: int in handles.size():
+		handle_distances_to_cursor.insert(i, handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position()))
+	hovered_handle_idx = handle_distances_to_cursor.find(handle_distances_to_cursor.min())
 
 
 func draw_gizmo(color: Color, outline: bool = false) -> void:
