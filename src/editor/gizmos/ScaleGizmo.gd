@@ -101,13 +101,18 @@ func _process(_delta: float) -> void:
 	
 	# Move handles
 	if state != State.DISABLED:
+		# Modifiers
+		var resizing_keep_aspect: bool = Input.is_key_pressed(KEY_SHIFT)
+		var resizing_around_center: bool = Input.is_key_pressed(KEY_ALT)
+		var resizing_snapped: bool = Input.is_key_pressed(KEY_CTRL)
+
 		var moved_handle: Handle = handles[hovered_handle_idx]
 		var mouse_position_delta: Vector2 = get_local_mouse_position() - previous_mouse_position
 		# When we're not resizing around the center, we move the center of the gizmo to the mean position
 		# between the opposite edge and the cursor, and resize by half the amount.
-		var resize_and_move: bool = not Input.is_key_pressed(KEY_ALT)
+		var resize_and_move: bool = not resizing_around_center
 		var resize_and_move_multiplier: float = 0.5 if resize_and_move else 1.0
-		if Input.is_key_pressed(KEY_SHIFT):
+		if resizing_keep_aspect:
 			mouse_position_delta = mouse_position_delta.project(moved_handle.displayed_position(handles_scale))
 		var scale_multiplier: Vector2 = (
 				Vector2.ONE
@@ -128,9 +133,9 @@ func _process(_delta: float) -> void:
 				Handle.Type.HORIZONTAL_EDGE:
 					real_position += mouse_position_delta * Vector2.DOWN * 0.5
 		var snapped_position: Vector2 = initial_position + (snapped_handles_scale - bounding_box_size) * moved_handle.position
-		if Input.is_key_pressed(KEY_CTRL):
+		if resizing_snapped:
 			handles_scale = snapped_handles_scale
-			position = snapped_position if not Input.is_key_pressed(KEY_ALT) else real_position
+			position = snapped_position if not resizing_around_center else real_position
 		else:
 			handles_scale = real_handles_scale
 			position = real_position
