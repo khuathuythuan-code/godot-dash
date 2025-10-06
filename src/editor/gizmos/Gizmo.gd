@@ -25,6 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func quick(keychord_display: Label, prefix: String, suffix: String) -> void:
 	_quick = true
 	quick_gizmo_value_input = QuickGizmoValueInput.new(keychord_display, prefix, suffix, true)
+	state = State.FORCED
 
 
 @abstract func remove_gizmo(reset: bool = false) -> void

@@ -53,7 +53,6 @@ func _ready() -> void:
 	# Quick rotation
 	if _quick:
 		snap_interval_input.set_value_no_signal(0.001)
-		state = State.FORCED
 		input_panel.hide()
 		angle_input.hide()
 		snap_interval_input.hide()

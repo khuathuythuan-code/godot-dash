@@ -67,11 +67,9 @@ func _ready() -> void:
 	tween.set_parallel()
 	tween.tween_property(self, ^"gizmo_scale", 1.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, ^"modulate:a", 1.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	(func(): 
-		previous_position = position
-		initial_position = position
-		real_position = position
-	).call_deferred()
+	previous_position = position
+	initial_position = position
+	real_position = position
 
 
 func _process(_delta: float) -> void:
