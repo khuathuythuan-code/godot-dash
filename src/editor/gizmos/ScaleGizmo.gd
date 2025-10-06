@@ -3,7 +3,7 @@ class_name ScaleGizmo
 
 signal scale_changed(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2)
 
-const HANDLE_RADIUS: float = 6.0
+const HANDLE_RADIUS: float = 8.0
 
 var handles: Array[Handle] = [
 	# Resize handles
@@ -19,6 +19,7 @@ var previous_mouse_position: Vector2
 var tween: Tween
 var bounding_box_size: Vector2
 var initial_position: Vector2
+var displayed_handle_radius: float
 # Deltas for the signal
 var previous_position: Vector2
 var previous_scale: Vector2
@@ -74,6 +75,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# Update displayed_handle_radius
+	if get_viewport().get_camera_2d():
+		displayed_handle_radius = 1/get_viewport().get_camera_2d().zoom.length() * HANDLE_RADIUS
+	else:
+		displayed_handle_radius = HANDLE_RADIUS
+
 	# Handle focus
 	if has_hovered_handle and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.DISABLED:
 		state = State.ENABLED
@@ -83,7 +90,7 @@ func _process(_delta: float) -> void:
 		state = State.DISABLED
 	if state == State.DISABLED:
 		for i: int in handles.size():
-			if handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position()) < HANDLE_RADIUS:
+			if handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position()) < displayed_handle_radius:
 				hovered_handle_idx = i
 				has_hovered_handle = true
 				break
@@ -152,7 +159,11 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	var corner_handles := handles.filter(func(handle: Handle): return handle.type == Handle.Type.CORNER)
 	corner_handles.sort_custom(func(handle_a: Handle, handle_b: Handle): return handle_a.corner_idx < handle_b.corner_idx)
 	corner_handles.append(corner_handles[0])
-	draw_polyline(corner_handles.map(func(handle: Handle): return handle.displayed_position(handles_scale)), color, 6.0 if outline else 1.0)
+	draw_polyline(
+			corner_handles.map(func(handle: Handle): return handle.displayed_position(handles_scale)),
+			color,
+			(displayed_handle_radius * 8.0) / HANDLE_RADIUS if outline else (displayed_handle_radius * 2.0) / HANDLE_RADIUS
+	)
 
 	for handle_idx: int in handles.size():
 		var handle: Handle = handles[handle_idx]
@@ -162,9 +173,9 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		if state == State.ENABLED and handle_idx == hovered_handle_idx:
 			handle_color.a /= 2.0
 		if outline:
-			draw_circle(handle.displayed_position(handles_scale), HANDLE_RADIUS, handle_color, false, 6.0)
+			draw_circle(handle.displayed_position(handles_scale), displayed_handle_radius, handle_color, false, displayed_handle_radius)
 		else:
-			draw_circle(handle.displayed_position(handles_scale), HANDLE_RADIUS, handle_color)
+			draw_circle(handle.displayed_position(handles_scale), displayed_handle_radius, handle_color)
 	
 	if Config.config.draw_debug_overlays:
 		draw_line(Vector2.ZERO, handles_scale * Vector2.RIGHT, Color.RED, 6.0)
@@ -173,6 +184,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 
 func remove_gizmo(reset: bool = false) -> void:
 	state = State.DISABLED
+	has_hovered_handle = false
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()
 	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
