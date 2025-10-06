@@ -373,7 +373,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	for collision_object in selection_collision_objects:
 		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
 	selection_collision_objects.assign(selection_collision_objects.map(_get_object_selection_collider))
-	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_objects).size
+	var selection_bounding_box_size: Vector2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot).size
 	gizmo = ScaleGizmo.new(selection_bounding_box_size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
