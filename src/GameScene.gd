@@ -1,6 +1,7 @@
 extends Node2D
 class_name GameScene
 
+
 func _ready() -> void:
 	LevelManager.game_scene = self
 	Engine.time_scale = 1
