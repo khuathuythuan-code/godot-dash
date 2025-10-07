@@ -168,6 +168,7 @@ func _ready() -> void:
 	if hide_scrollbar_over_time:
 		scrollbar_hide_timer.start(scrollbar_hide_time)
 	get_tree().node_added.connect(_on_node_added)
+	add_child(VisibleOnScreenEnabler2D.new())
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return

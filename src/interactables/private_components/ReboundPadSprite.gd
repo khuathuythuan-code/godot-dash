@@ -5,7 +5,8 @@ class_name ReboundPadSprite
 var factor: float:
 	set(value):
 		factor = value
-		queue_redraw()
+		if visible:
+			queue_redraw()
 
 var _factor_smoothed: float
 

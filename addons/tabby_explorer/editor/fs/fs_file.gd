@@ -60,4 +60,3 @@ func is_valid()->bool:
 
 func get_uid()->int:
 	return ResourceLoader.get_resource_uid(get_path())
-

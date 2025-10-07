@@ -12,10 +12,10 @@ size = Vector2(130, 130)
 collision_layer = 2
 
 [node name="Base" type="Node2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(2.4999998, 2.4999998)
 script = ExtResource("3_5g55o")
 texture = ExtResource("2_yn5k1")
-size = Vector2(512, 512)
+size = Vector2(72, 72)
 patch_margin_left = 36.0
 patch_margin_top = 36.0
 patch_margin_right = 36.0
@@ -40,3 +40,5 @@ debug_color = Color(0, 0.071, 0.702, 0.25)
 [node name="NinePatchSprite2DAbsoluteSize" type="Node" parent="." node_paths=PackedStringArray("nine_patch_sprite")]
 script = ExtResource("4_cpky5")
 nine_patch_sprite = NodePath("../Base")
+
+[connection signal="property_list_changed" from="." to="NinePatchSprite2DAbsoluteSize" method="_on_size_changed"]

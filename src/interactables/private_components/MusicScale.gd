@@ -1,8 +1,9 @@
 extends Node
 class_name MusicScale
 
-@onready var initial_scale: Vector2 = get_parent().scale
-
+@onready var parent: Node2D = get_parent()
+@onready var initial_scale: Vector2 = parent.scale
+@onready var music_scale: float = LevelManager.current_level.music_scale
 
 func _process(delta):
-	get_parent().scale = get_parent().scale.lerp(initial_scale * (0.85 + MusicVolume.get_volume()), 1-exp(-delta * 12))
+	parent.scale = parent.scale.lerp(initial_scale * (music_scale), 1-exp(-delta * 12))

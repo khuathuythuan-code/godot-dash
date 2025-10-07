@@ -12,7 +12,7 @@ func _ready() -> void:
 	connect("button_down", Callable(self, "_button_held"))
 	connect("button_up", Callable(self, "_button_unheld"))
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	pivot_offset.x = size.x/2
 	pivot_offset.y = size.y/2
 	if block_palette_button:
