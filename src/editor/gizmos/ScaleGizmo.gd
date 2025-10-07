@@ -128,14 +128,12 @@ func _process(_delta: float) -> void:
 				scale_multiplier.x = scale_multiplier.y
 			elif scale_multiplier.y == 1.0:
 				scale_multiplier.y = scale_multiplier.x
-		if quick_gizmo_value_input:
-			if quick_gizmo_value_input.has_value():
-				real_handles_scale = bounding_box_size * quick_gizmo_value_input.value
-			else:
-				quick_gizmo_value_input.original_value = real_handles_scale.length()
-			print(quick_gizmo_value_input.axis_constraint)
-		else:
+		if not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
 			real_handles_scale *= scale_multiplier
+			if real_handles_scale.x == 1.0:
+				quick_gizmo_value_input.original_value = real_handles_scale.y
+			elif real_handles_scale.y == 1.0:
+				quick_gizmo_value_input.original_value = real_handles_scale.x
 		# Small minimum to avoid NaN or INF-related issues
 		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
 		var snapped_handles_scale: Vector2 = real_handles_scale.abs().maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5) * real_handles_scale.sign()
@@ -248,13 +246,13 @@ func any_handle_hovered() -> bool:
 
 
 func _on_quick_scale_changed(quick_scale: float) -> void:
-	# handles_scale = bounding_box_size * quick_scale
-	# if (handles_scale / previous_scale).is_finite():
-	# 	scale_changed.emit(
-	# 			position - previous_position,
-	# 			handles_scale / previous_scale,
-	# 			handles_scale / bounding_box_size,
-	# 			rotation,
-	# 	)
-	pass
+	match quick_gizmo_value_input.axis_constraint:
+		QuickGizmoValueInput.AxisConstraint.NONE:
+			real_handles_scale = bounding_box_size * quick_gizmo_value_input.value
+		QuickGizmoValueInput.AxisConstraint.LOCAL_X:
+			real_handles_scale = bounding_box_size * Vector2(quick_gizmo_value_input.value, 1.0)
+		QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
+			real_handles_scale = bounding_box_size * Vector2(1.0, quick_gizmo_value_input.value)
+	if quick_scale == quick_gizmo_value_input.original_value:
+		real_handles_scale = bounding_box_size
 	
