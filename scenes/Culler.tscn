@@ -16,7 +16,7 @@ process_thread_messages = 0
 script = ExtResource("2_mxpbp")
 
 [node name="Timer" type="Timer" parent="."]
-process_thread_group = 1
+process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
 autostart = true
