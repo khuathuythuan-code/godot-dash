@@ -140,9 +140,9 @@ func _process(_delta: float) -> void:
 					real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y)
 				QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
 					real_handles_scale = Vector2(bounding_box_size.x, real_handles_scale.y)
-			if real_handles_scale.x == 1.0:
+			if real_handles_scale.x == bounding_box_size.x:
 				quick_gizmo_value_input.original_value = real_handles_scale.y
-			elif real_handles_scale.y == 1.0:
+			elif real_handles_scale.y == bounding_box_size.y:
 				quick_gizmo_value_input.original_value = real_handles_scale.x
 		# Small minimum to avoid NaN or INF-related issues
 		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
@@ -182,6 +182,16 @@ func _draw() -> void:
 	outline_color.a = 0.5
 	draw_gizmo(outline_color, true)
 	draw_gizmo(Color.WHITE)
+	if quick_gizmo_value_input:
+		var zoom_ratio: float = displayed_handle_radius / HANDLE_RADIUS
+		match quick_gizmo_value_input.axis_constraint:
+			QuickGizmoValueInput.AxisConstraint.LOCAL_X:
+				draw_line(Vector2.LEFT * 2048.0 * zoom_ratio, Vector2.RIGHT * 2048.0 * zoom_ratio, outline_color, zoom_ratio * 8.0)
+				draw_line(Vector2.LEFT * 2048.0 * zoom_ratio, Vector2.RIGHT * 2048.0 * zoom_ratio, Color.RED, zoom_ratio * 2.0)
+			QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
+				draw_line(Vector2.UP * 2048.0 * zoom_ratio, Vector2.DOWN * 2048.0 * zoom_ratio, outline_color, zoom_ratio * 8.0)
+				draw_line(Vector2.UP * 2048.0 * zoom_ratio, Vector2.DOWN * 2048.0 * zoom_ratio, Color.GREEN, zoom_ratio * 2.0)
+
 
 
 func _quick() -> void:
@@ -263,6 +273,7 @@ func _on_quick_scale_changed(quick_scale: float) -> void:
 			real_handles_scale = bounding_box_size * Vector2(quick_scale, 1.0)
 		QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
 			real_handles_scale = bounding_box_size * Vector2(1.0, quick_scale)
+	prints(quick_scale, quick_gizmo_value_input.original_value)
 	if quick_scale == quick_gizmo_value_input.original_value:
-		real_handles_scale = bounding_box_size
+		real_handles_scale = (Vector2.ONE * quick_scale) / bounding_box_size
 	
