@@ -134,16 +134,18 @@ func _process(_delta: float) -> void:
 				QuickGizmoValueInput.AxisConstraint.NONE:
 					if real_handles_scale.x == bounding_box_size.x:
 						real_handles_scale = Vector2(bounding_box_size.x * real_handles_scale.y / bounding_box_size.y, real_handles_scale.y)
-					elif real_handles_scale.y == bounding_box_size.x:
+					elif real_handles_scale.y == bounding_box_size.y:
 						real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y * real_handles_scale.x / bounding_box_size.x)
 				QuickGizmoValueInput.AxisConstraint.LOCAL_X:
 					real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y)
 				QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
 					real_handles_scale = Vector2(bounding_box_size.x, real_handles_scale.y)
 			if real_handles_scale.x == bounding_box_size.x:
-				quick_gizmo_value_input.original_value = real_handles_scale.y
+				quick_gizmo_value_input.original_value = real_handles_scale.y / bounding_box_size.y
 			elif real_handles_scale.y == bounding_box_size.y:
-				quick_gizmo_value_input.original_value = real_handles_scale.x
+				quick_gizmo_value_input.original_value = real_handles_scale.x / bounding_box_size.x
+			else:
+				quick_gizmo_value_input.original_value = real_handles_scale.x / bounding_box_size.x
 		# Small minimum to avoid NaN or INF-related issues
 		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
 		var snapped_handles_scale: Vector2 = real_handles_scale.abs().maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5) * real_handles_scale.sign()
@@ -275,5 +277,5 @@ func _on_quick_scale_changed(quick_scale: float) -> void:
 			real_handles_scale = bounding_box_size * Vector2(1.0, quick_scale)
 	prints(quick_scale, quick_gizmo_value_input.original_value)
 	if quick_scale == quick_gizmo_value_input.original_value:
-		real_handles_scale = (Vector2.ONE * quick_scale) / bounding_box_size
+		real_handles_scale = bounding_box_size * quick_scale
 	
