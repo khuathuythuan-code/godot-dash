@@ -40,6 +40,7 @@ var _expression: String:
 			value_changed.emit(value)
 
 		if keychord_display:
+			keychord_display.visible = not new_expression.is_empty()
 			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 			match axis_constraint:
 				AxisConstraint.GLOBAL_X:
@@ -124,6 +125,8 @@ func _unhandled_input(event: InputEvent) -> void:
 						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.NONE
+				# Force keychord_display refresh
+				_expression = _expression
 			KEY_Y:
 				match axis_constraint:
 					AxisConstraint.NONE:
@@ -132,6 +135,8 @@ func _unhandled_input(event: InputEvent) -> void:
 						axis_constraint = AxisConstraint.LOCAL_Y
 					AxisConstraint.LOCAL_Y:
 						axis_constraint = AxisConstraint.NONE
+				# Force keychord_display refresh
+				_expression = _expression
 			KEY_BACKSPACE:
 				_expression = _expression.left(-1)
 
