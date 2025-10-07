@@ -105,8 +105,8 @@ func _process(_delta: float) -> void:
 	# Move handles
 	if state != State.DISABLED:
 		# Modifiers
-		var resizing_keep_aspect: bool = Input.is_key_pressed(KEY_SHIFT) or _quick
-		var resizing_around_center: bool = Input.is_key_pressed(KEY_ALT) or _quick
+		var resizing_keep_aspect: bool = Input.is_key_pressed(KEY_SHIFT) or is_quick
+		var resizing_around_center: bool = Input.is_key_pressed(KEY_ALT) or is_quick
 		var resizing_snapped: bool = Input.is_key_pressed(KEY_CTRL)
 
 		var moved_handle: Handle = handles[hovered_handle_idx]
@@ -128,7 +128,14 @@ func _process(_delta: float) -> void:
 				scale_multiplier.x = scale_multiplier.y
 			elif scale_multiplier.y == 1.0:
 				scale_multiplier.y = scale_multiplier.x
-		real_handles_scale *= scale_multiplier
+		if quick_gizmo_value_input:
+			if quick_gizmo_value_input.has_value():
+				real_handles_scale = bounding_box_size * quick_gizmo_value_input.value
+			else:
+				quick_gizmo_value_input.original_value = real_handles_scale.length()
+			print(quick_gizmo_value_input.axis_constraint)
+		else:
+			real_handles_scale *= scale_multiplier
 		# Small minimum to avoid NaN or INF-related issues
 		real_handles_scale = real_handles_scale.abs().maxf(0.0000001) * real_handles_scale.sign()
 		var snapped_handles_scale: Vector2 = real_handles_scale.abs().maxf(LevelManager.CELL_SIZE * 0.5).snappedf(LevelManager.CELL_SIZE * 0.5) * real_handles_scale.sign()
@@ -167,6 +174,10 @@ func _draw() -> void:
 	outline_color.a = 0.5
 	draw_gizmo(outline_color, true)
 	draw_gizmo(Color.WHITE)
+
+
+func _quick() -> void:
+	quick_gizmo_value_input.value_changed.connect(_on_quick_scale_changed)
 
 
 func quick_set_selected_handle() -> void:
@@ -234,3 +245,16 @@ func is_enabled() -> bool:
 
 func any_handle_hovered() -> bool:
 	return has_hovered_handle
+
+
+func _on_quick_scale_changed(quick_scale: float) -> void:
+	# handles_scale = bounding_box_size * quick_scale
+	# if (handles_scale / previous_scale).is_finite():
+	# 	scale_changed.emit(
+	# 			position - previous_position,
+	# 			handles_scale / previous_scale,
+	# 			handles_scale / bounding_box_size,
+	# 			rotation,
+	# 	)
+	pass
+	

@@ -51,35 +51,12 @@ func _ready() -> void:
 	snap_interval_input.refresh()
 	snap_interval_input.input.custom_minimum_size.x = 0
 	# Quick rotation
-	if _quick:
+	if is_quick:
 		snap_interval_input.set_value_no_signal(0.001)
 		input_panel.hide()
 		angle_input.hide()
 		snap_interval_input.hide()
 		quick_rotation_is_first_frame = true
-		assert(quick_gizmo_value_input != null, "quick_rotation() needs to be called before the RotateGizmo is added to the tree")
-		add_child(quick_gizmo_value_input) # Required for _unhandled_input
-		quick_gizmo_value_input.value_changed.connect(_on_angle_input_value_changed)
-
-
-func remove_gizmo(reset_angle: bool = false) -> void:
-	state = State.DISABLED
-	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	tween.set_parallel()
-	var do_reset_angle := func(angle: float):
-		var angle_delta := angle - handle_position.angle()
-		handle_position = handle_position.rotated(angle_delta)
-		angle_changed.emit(rad_to_deg(angle_delta))
-	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
-	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	if reset_angle:
-		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-	if quick_gizmo_value_input:
-		quick_gizmo_value_input.keychord_display.text = ""
-	await tween.finished
-	if Editor.shortcut_blocker == self:
-		Editor.shortcut_blocker = null
-	queue_free()
 
 
 func _physics_process(_delta: float) -> void:
@@ -122,6 +99,10 @@ func _physics_process(_delta: float) -> void:
 	queue_redraw()
 
 
+func _quick() -> void:
+	quick_gizmo_value_input.value_changed.connect(_on_angle_input_value_changed)
+
+
 func _draw() -> void:
 	var outline_color := Color.BLACK
 	outline_color.a = 0.5
@@ -162,6 +143,26 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		snap_ticks.append(tick_start_half)
 		snap_ticks.append(tick_end_half)
 	draw_multiline(snap_ticks, color, 1.0 if not outline else 6.0)
+
+
+func remove_gizmo(reset_angle: bool = false) -> void:
+	state = State.DISABLED
+	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	tween.set_parallel()
+	var do_reset_angle := func(angle: float):
+		var angle_delta := angle - handle_position.angle()
+		handle_position = handle_position.rotated(angle_delta)
+		angle_changed.emit(rad_to_deg(angle_delta))
+	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	if reset_angle:
+		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	if quick_gizmo_value_input:
+		quick_gizmo_value_input.keychord_display.text = ""
+	await tween.finished
+	if Editor.shortcut_blocker == self:
+		Editor.shortcut_blocker = null
+	queue_free()
 
 
 func is_enabled() -> bool:
