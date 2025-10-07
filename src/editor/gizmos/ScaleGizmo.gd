@@ -130,6 +130,16 @@ func _process(_delta: float) -> void:
 				scale_multiplier.y = scale_multiplier.x
 		if not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
 			real_handles_scale *= scale_multiplier
+			match quick_gizmo_value_input.axis_constraint:
+				QuickGizmoValueInput.AxisConstraint.NONE:
+					if real_handles_scale.x == bounding_box_size.x:
+						real_handles_scale = Vector2(bounding_box_size.x * real_handles_scale.y / bounding_box_size.y, real_handles_scale.y)
+					elif real_handles_scale.y == bounding_box_size.x:
+						real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y * real_handles_scale.x / bounding_box_size.x)
+				QuickGizmoValueInput.AxisConstraint.LOCAL_X:
+					real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y)
+				QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
+					real_handles_scale = Vector2(bounding_box_size.x, real_handles_scale.y)
 			if real_handles_scale.x == 1.0:
 				quick_gizmo_value_input.original_value = real_handles_scale.y
 			elif real_handles_scale.y == 1.0:
@@ -248,11 +258,11 @@ func any_handle_hovered() -> bool:
 func _on_quick_scale_changed(quick_scale: float) -> void:
 	match quick_gizmo_value_input.axis_constraint:
 		QuickGizmoValueInput.AxisConstraint.NONE:
-			real_handles_scale = bounding_box_size * quick_gizmo_value_input.value
+			real_handles_scale = bounding_box_size * quick_scale
 		QuickGizmoValueInput.AxisConstraint.LOCAL_X:
-			real_handles_scale = bounding_box_size * Vector2(quick_gizmo_value_input.value, 1.0)
+			real_handles_scale = bounding_box_size * Vector2(quick_scale, 1.0)
 		QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
-			real_handles_scale = bounding_box_size * Vector2(1.0, quick_gizmo_value_input.value)
+			real_handles_scale = bounding_box_size * Vector2(1.0, quick_scale)
 	if quick_scale == quick_gizmo_value_input.original_value:
 		real_handles_scale = bounding_box_size
 	

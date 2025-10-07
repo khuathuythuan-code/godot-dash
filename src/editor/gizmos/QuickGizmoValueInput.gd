@@ -38,13 +38,7 @@ var _expression: String:
 			value_changed.emit(value)
 
 		if keychord_display:
-			keychord_display.visible = not new_expression.is_empty()
-			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
-			match axis_constraint:
-				AxisConstraint.LOCAL_X:
-					keychord_display.text += " along local X"
-				AxisConstraint.LOCAL_Y:
-					keychord_display.text += " along local Y"
+			update_keychord_display(new_expression)
 
 var _expression_evaluator := Expression.new()
 
@@ -113,22 +107,30 @@ func _unhandled_input(event: InputEvent) -> void:
 						_expression += "."
 			KEY_X:
 				match axis_constraint:
-					AxisConstraint.NONE, AxisConstraint.LOCAL_Y:
+					AxisConstraint.NONE:
 						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.NONE
-				# Force keychord_display refresh
-				_expression = _expression
+				update_keychord_display(_expression)
 			KEY_Y:
 				match axis_constraint:
-					AxisConstraint.NONE, AxisConstraint.LOCAL_X:
+					AxisConstraint.NONE:
 						axis_constraint = AxisConstraint.LOCAL_Y
 					AxisConstraint.LOCAL_Y:
 						axis_constraint = AxisConstraint.NONE
-				# Force keychord_display refresh
-				_expression = _expression
+				update_keychord_display(_expression)
 			KEY_BACKSPACE:
 				_expression = _expression.left(-1)
+
+
+func update_keychord_display(new_expression: String) -> void:
+	keychord_display.visible = not new_expression.is_empty()
+	keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
+	match axis_constraint:
+		AxisConstraint.LOCAL_X:
+			keychord_display.text += " along local X"
+		AxisConstraint.LOCAL_Y:
+			keychord_display.text += " along local Y"
 
 
 func has_value() -> bool:
