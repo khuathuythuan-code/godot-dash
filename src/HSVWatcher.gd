@@ -9,6 +9,7 @@ var last_modulate: Color
 
 
 func _ready() -> void:
+	process_thread_group = Node.PROCESS_THREAD_GROUP_SUB_THREAD
 	# Avoid using the parent's modulate if the modulate is already set.
 	# This happens when a scene with HSVWatchers with set up modulates is loaded.
 	
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if has_node("SelectionHighlight"):
-		get_parent().modulate = modulate
+		get_parent().set_deferred("modulate", modulate)
 		return
 	if last_modulate == modulate:
 		return
@@ -28,6 +29,6 @@ func _process(_delta: float) -> void:
 	shifted_modulate.h = fmod(shifted_modulate.h + hsv_shift[0], 1.0)
 	shifted_modulate.s += hsv_shift[1]
 	shifted_modulate.v += hsv_shift[2]
-	get_parent().modulate = shifted_modulate * strength	
-	get_parent().modulate.a = alpha * modulate.a
+	get_parent().set_deferred("modulate", shifted_modulate * strength)
+	get_parent().set_deferred("modulate.a", alpha * modulate.a)
 	last_modulate = get_parent().modulate
