@@ -5,8 +5,6 @@ signal value_changed(value: float)
 
 enum AxisConstraint {
 	NONE,
-	GLOBAL_X,
-	GLOBAL_Y,
 	LOCAL_X,
 	LOCAL_Y,
 	DISABLED,
@@ -43,10 +41,6 @@ var _expression: String:
 			keychord_display.visible = not new_expression.is_empty()
 			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 			match axis_constraint:
-				AxisConstraint.GLOBAL_X:
-					keychord_display.text += " along global X"
-				AxisConstraint.GLOBAL_Y:
-					keychord_display.text += " along global Y"
 				AxisConstraint.LOCAL_X:
 					keychord_display.text += " along local X"
 				AxisConstraint.LOCAL_Y:
@@ -119,9 +113,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						_expression += "."
 			KEY_X:
 				match axis_constraint:
-					AxisConstraint.NONE:
-						axis_constraint = AxisConstraint.GLOBAL_X
-					AxisConstraint.GLOBAL_X:
+					AxisConstraint.NONE, AxisConstraint.LOCAL_Y:
 						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.NONE
@@ -129,9 +121,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				_expression = _expression
 			KEY_Y:
 				match axis_constraint:
-					AxisConstraint.NONE:
-						axis_constraint = AxisConstraint.GLOBAL_Y
-					AxisConstraint.GLOBAL_Y:
+					AxisConstraint.NONE, AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.LOCAL_Y
 					AxisConstraint.LOCAL_Y:
 						axis_constraint = AxisConstraint.NONE
