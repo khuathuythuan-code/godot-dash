@@ -5,8 +5,6 @@ signal value_changed(value: float)
 
 enum AxisConstraint {
 	NONE,
-	GLOBAL_X,
-	GLOBAL_Y,
 	LOCAL_X,
 	LOCAL_Y,
 	DISABLED,
@@ -28,6 +26,11 @@ var displayed_gizmo_action: String
 var displayed_gizmo_unit: String
 ## The Label that will display the gizmo action and the expression. Required.
 var keychord_display: Label
+var axis_constraint: AxisConstraint:
+	set(value):
+		previous_axis_constraint = axis_constraint
+		axis_constraint = value
+var previous_axis_constraint: AxisConstraint
 
 var _expression: String:
 	set(new_expression):
@@ -39,19 +42,9 @@ var _expression: String:
 			value_changed.emit(value)
 
 		if keychord_display:
-			keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
-			match _axis_constraint:
-				AxisConstraint.GLOBAL_X:
-					keychord_display.text += " along global X"
-				AxisConstraint.GLOBAL_Y:
-					keychord_display.text += " along global Y"
-				AxisConstraint.LOCAL_X:
-					keychord_display.text += " along local X"
-				AxisConstraint.LOCAL_Y:
-					keychord_display.text += " along local Y"
+			update_keychord_display(new_expression)
 
 var _expression_evaluator := Expression.new()
-var _axis_constraint: AxisConstraint
 
 
 func _init(_keychord_display: Label, _displayed_gizmo_action: String, _displayed_gizmo_unit: String, disable_axis_constraint: bool = false) -> void:
@@ -59,7 +52,7 @@ func _init(_keychord_display: Label, _displayed_gizmo_action: String, _displayed
 	displayed_gizmo_action = _displayed_gizmo_action
 	displayed_gizmo_unit = _displayed_gizmo_unit
 	if disable_axis_constraint:
-		_axis_constraint = AxisConstraint.DISABLED
+		axis_constraint = AxisConstraint.DISABLED
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -116,28 +109,32 @@ func _unhandled_input(event: InputEvent) -> void:
 							has_number = true
 					if can_add_period:
 						_expression += "."
-							
-				
-			# AxisConstraint constraints are exclusive and can only figure once in the expression.
-			# Double axis constraint mean rotation-local transformations
-			KEY_X when _axis_constraint != AxisConstraint.DISABLED:
-				match _axis_constraint:
+			KEY_X:
+				match axis_constraint:
 					AxisConstraint.NONE:
-						_axis_constraint = AxisConstraint.GLOBAL_X
-					AxisConstraint.GLOBAL_X:
-						_axis_constraint = AxisConstraint.LOCAL_X
+						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
-						_axis_constraint = AxisConstraint.NONE
-			KEY_Y when _axis_constraint != AxisConstraint.DISABLED:
-				match _axis_constraint:
+						axis_constraint = AxisConstraint.NONE
+				update_keychord_display(_expression)
+			KEY_Y:
+				match axis_constraint:
 					AxisConstraint.NONE:
-						_axis_constraint = AxisConstraint.GLOBAL_Y
-					AxisConstraint.GLOBAL_Y:
-						_axis_constraint = AxisConstraint.LOCAL_Y
+						axis_constraint = AxisConstraint.LOCAL_Y
 					AxisConstraint.LOCAL_Y:
-						_axis_constraint = AxisConstraint.NONE
+						axis_constraint = AxisConstraint.NONE
+				update_keychord_display(_expression)
 			KEY_BACKSPACE:
 				_expression = _expression.left(-1)
+
+
+func update_keychord_display(new_expression: String) -> void:
+	keychord_display.visible = not new_expression.is_empty()
+	keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
+	match axis_constraint:
+		AxisConstraint.LOCAL_X:
+			keychord_display.text += " along local X"
+		AxisConstraint.LOCAL_Y:
+			keychord_display.text += " along local Y"
 
 
 func has_value() -> bool:
@@ -145,7 +142,7 @@ func has_value() -> bool:
 
 
 func get_axis_constraints() -> AxisConstraint:
-	return _axis_constraint
+	return axis_constraint
 
 
 func _make_expression_evaluate_to_float(expression: String) -> String:

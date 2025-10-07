@@ -23,17 +23,15 @@ var clipboard_camera_position: Vector2
 var object_move_cooldown: float
 var placed_objects_collider: Area2D
 var editor_mode: TabContainer
-var rotation_lock := false ## Lock variable to ensure 2 rotations aren't happening at the same time.
 var selection_index := 0
 var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
-var selection_pivot := Vector2.INF
-var rotate_gizmo: RotateGizmo
+var selection_pivot: Vector2
+var gizmo: Gizmo
 
 
 func _ready() -> void:
 	_reset_selection_zone(true)
-	selection_changed.connect(_reset_selection_pivot)
 	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
@@ -51,8 +49,8 @@ func _physics_process(delta: float) -> void:
 		select_all()
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
-				rotate_gizmo != null && (
-					rotate_gizmo.rotating != RotateGizmo.RotationState.DISABLED or rotate_gizmo.handle_hovered)):
+				gizmo != null && (
+					gizmo.is_enabled() or gizmo.any_handle_hovered())):
 			_update_selection()
 		var can_use_actions: bool = (
 				not selection.is_empty() and not (
@@ -86,15 +84,16 @@ func _physics_process(delta: float) -> void:
 					move_multiplier = 0.5
 				selection.map(func(object): object.global_position += move_vector * LevelManager.CELL_SIZE * move_multiplier)
 				object_move_cooldown = 0.2
-			if not rotation_lock:
-				if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
-					_rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
-					rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
-					object_move_cooldown = 0.2
-				if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
-					_rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
-					rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
-					object_move_cooldown = 0.2
+			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
+				_update_pivot()
+				_rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
+				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
+				object_move_cooldown = 0.2
+			if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
+				_update_pivot()
+				_rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
+				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
+				object_move_cooldown = 0.2
 			if Input.is_action_just_pressed(&"editor_flip_h"):
 				_flip_selection(Vector2.AXIS_X)
 			if Input.is_action_just_pressed(&"editor_flip_v"):
@@ -103,6 +102,10 @@ func _physics_process(delta: float) -> void:
 				_on_rotate_free_pressed()
 			elif Input.is_action_just_pressed(&"editor_quick_rotate_free"):
 				_on_rotate_free_pressed(true)
+			if Input.is_action_just_pressed(&"editor_scale"):
+				_on_scale_pressed()
+			elif Input.is_action_just_pressed(&"editor_quick_scale"):
+				_on_scale_pressed(true)
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
@@ -152,6 +155,11 @@ func _get_object_parent(object: Node) -> Node2D:
 		return object.get_parent()
 	else:
 		return object
+
+
+func _get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
+	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
+	return selection_collider if selection_collider else object
 
 
 func _reset_selection_zone(unreachable: bool = true) -> void:
@@ -255,61 +263,44 @@ func select_all() -> void:
 
 
 func remove_gizmo(_selection = null) -> void:
-	if not rotate_gizmo:
+	if not gizmo:
 		return
-	rotate_gizmo.rotating = RotateGizmo.RotationState.DISABLED
-	await rotate_gizmo.remove_gizmo()
+	await gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	gizmo = null
 
 
 func any_gizmo_is_open() -> bool:
-	return rotate_gizmo != null
-
-
-func _rotate_selection(angle: float) -> void:
-	if selection.is_empty():
-		return
-	rotation_lock = true
-	_update_pivot()
-	for object in selection:
-		object.global_rotation_degrees += angle
-		var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-			object.global_position += position_delta
-	rotation_lock = false
+	return gizmo != null
 
 
 func _update_pivot() -> void:
 	if selection.is_empty():
 		return
 	var group_parents := selection.filter(func(object): return object.has_meta("group_parent"))
-	if selection_pivot == Vector2.INF:
-		if not group_parents.is_empty():
-			selection_pivot = group_parents[0].global_position
-		else:
-			# Take the mean of the position of all objects
-			var object_positions := selection.duplicate().map(func(object): return object.global_position)
-			selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
+	if not group_parents.is_empty():
+		selection_pivot = group_parents[0].global_position
+	else:
+		# Take the mean of the position of all objects
+		var object_positions := selection.map(func(object): return object.global_position)
+		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
 func _flip_selection(axis: int):
 	if selection.is_empty():
 		return
-	_update_pivot()
 	match axis:
 		Vector2.AXIS_X:
 			for object in selection:
 				object.scale.x *= -1
 				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				var x_delta := position_relative_to_pivot.x * -1 - position_relative_to_pivot.x
-				object.global_position.x += x_delta
+				object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
 		Vector2.AXIS_Y:
 			for object in selection:
 				object.scale.y *= -1
 				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				var y_delta := position_relative_to_pivot.y * -1 - position_relative_to_pivot.y
-				object.global_position.y += y_delta
+				object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
 
 
 func _on_place_handler_object_deleted(object:Node) -> void:
@@ -324,47 +315,106 @@ func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> voi
 	selection.map(func(object): object.position += LevelManager.CELL_SIZE * direction * step)
 
 
-func _reset_selection_pivot(_selection: Array[Node2D]) -> void:
-	selection_pivot = Vector2.INF
-
-
 func _on_rotate_left_90_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(-90)
 
 
 func _on_rotate_right_90_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(90)
 
 
 func _on_rotate_left_45_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(-45)
 
 
 func _on_rotate_right_45_pressed() -> void:
+	_update_pivot()
 	_rotate_selection(45)
 
 
 func _on_flip_h_pressed() -> void:
+	_update_pivot()
 	_flip_selection(Vector2.AXIS_X)
 
 
 func _on_flip_v_pressed() -> void:
+	_update_pivot()
 	_flip_selection(Vector2.AXIS_Y)
 
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
 	_update_pivot()
-	if rotate_gizmo != null:
-		rotate_gizmo.queue_free()
-	rotate_gizmo = RotateGizmo.new()
-	rotate_gizmo.quick_rotation(keychord_display)
+	if gizmo != null:
+		gizmo.queue_free()
+	gizmo = RotateGizmo.new()
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
-		Editor.shortcut_blocker = rotate_gizmo
+		gizmo.quick(keychord_display, "Rotating", "°", true)
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
-	gizmo_layer.add_child(rotate_gizmo)
-	rotate_gizmo.global_position = selection_pivot
-	rotate_gizmo.angle_changed.connect(_rotate_selection)
+	gizmo_layer.add_child(gizmo)
+	gizmo.global_position = selection_pivot
+	gizmo.angle_changed.connect(_rotate_selection)
 	selection_changed.connect(remove_gizmo)
+
+
+func _on_scale_pressed(quick: bool = false) -> void:
+	_update_pivot()
+	if gizmo != null:
+		gizmo.queue_free()
+	var selection_collision_objects: Array[CollisionObject2D]
+	selection_collision_objects.assign(
+			selection
+			.filter(func(object: Node2D): return object is CollisionObject2D)
+	)
+
+	var mean_objects_rotation: float = ArrayUtils.transform(selection.map(func(object: Node2D): return object.global_rotation), ArrayUtils.Transformation.MEAN)
+	var gizmo_center: Vector2 = ArrayUtils.transform(
+			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
+			ArrayUtils.Transformation.MEAN
+	).rotated(mean_objects_rotation)
+	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
+	selection_pivot = gizmo_center
+
+	var positions_relative_to_pivot: Dictionary[Node2D, Vector2]
+	for collision_object in selection_collision_objects:
+		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
+	selection_collision_objects.assign(selection_collision_objects.map(_get_object_selection_collider))
+	gizmo = ScaleGizmo.new(selection_bounding_box.size)
+	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	if quick:
+		gizmo.quick(keychord_display, "Scaling", "×", false)
+		get_viewport().gui_focus_changed.connect(remove_gizmo)
+	gizmo.global_position = gizmo_center
+	gizmo.rotation = mean_objects_rotation
+	gizmo_layer.add_child(gizmo)
+	gizmo.scale_changed.connect(_scale_selection.bind(positions_relative_to_pivot))
+	selection_changed.connect(remove_gizmo)
+
+
+func _rotate_selection(angle: float) -> void:
+	if selection.is_empty():
+		return
+	for object in selection:
+		object.global_rotation_degrees += angle
+		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+			var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
+			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
+			object.global_position += position_delta
+
+
+func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, rotation: float, positions_relative_to_pivot: Dictionary[Node2D, Vector2]) -> void:
+	if selection.is_empty():
+		return
+	selection_pivot += position_delta
+	for object in selection:
+		object.global_position += position_delta
+		object.scale *= scale_delta
+		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+			var position_relative_to_pivot: Vector2 = positions_relative_to_pivot[object]
+			object.global_position = selection_pivot + (position_relative_to_pivot.rotated(-rotation) * total_scale).rotated(rotation)
 
 
 static func add_selection_highlight(object: Node2D) -> void:

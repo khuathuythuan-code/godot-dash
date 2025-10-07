@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dh7b5vqqkai36"]
+[gd_scene load_steps=13 format=3 uid="uid://dh7b5vqqkai36"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_g0aec"]
 [ext_resource type="Texture2D" uid="uid://bba5v7yjggwa" path="res://assets/textures/triggers/Scale.svg" id="2_g0aec"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="8_o421b"]
 [ext_resource type="Script" uid="uid://m5i4ldkc8kfv" path="res://src/interactables/private_components/HitboxDisplay.gd" id="9_cmnhj"]
 [ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="10_fls4d"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_nnpiq"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4ydte"]
 a = Vector2(0, -8192)
@@ -69,5 +70,7 @@ metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 [node name="HiddenOutsideEditorComponent" type="Node" parent="."]
 script = ExtResource("10_fls4d")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("11_nnpiq")]
 
 [connection signal="changed" from="TargetGroupComponent" to="Sprite/GroupDisplay" method="_on_target_group_component_changed"]

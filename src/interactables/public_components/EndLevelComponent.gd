@@ -25,9 +25,6 @@ func _ready() -> void:
 	shake_easing.easing_transition = Tween.TRANS_QUAD
 	shake_easing.finished.connect(_on_shake_easing_finished)
 	parent.interacted.connect(start)
-	# Make the internal children triggers unselectable
-	NodeUtils.get_child_of_type(static_trigger, EditorSelectionCollider).queue_free()
-	NodeUtils.get_child_of_type(shake_trigger, EditorSelectionCollider).queue_free()
 
 
 func start(player: Player) -> void:
