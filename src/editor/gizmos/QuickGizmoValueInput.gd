@@ -116,11 +116,7 @@ func _unhandled_input(event: InputEvent) -> void:
 							has_number = true
 					if can_add_period:
 						_expression += "."
-							
-				
-			# AxisConstraint constraints are exclusive and can only figure once in the expression.
-			# Double axis constraint mean rotation-local transformations
-			KEY_X when axis_constraint != AxisConstraint.DISABLED:
+			KEY_X:
 				match axis_constraint:
 					AxisConstraint.NONE:
 						axis_constraint = AxisConstraint.GLOBAL_X
@@ -128,7 +124,7 @@ func _unhandled_input(event: InputEvent) -> void:
 						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.NONE
-			KEY_Y when axis_constraint != AxisConstraint.DISABLED:
+			KEY_Y:
 				match axis_constraint:
 					AxisConstraint.NONE:
 						axis_constraint = AxisConstraint.GLOBAL_Y
