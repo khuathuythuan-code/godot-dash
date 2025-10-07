@@ -28,6 +28,9 @@ func _ready() -> void:
 		add_loaded_level(current_level)
 		SceneTransition.previous = SceneTransition.Scene.LEVEL
 		_start_level()
+	await get_tree().create_timer(0.1).timeout
+	if Config.config.cull_hitboxes or Config.config.cull_sprites:
+		$Level.get_child(0).add_child(load("res://scenes/Culler.tscn").instantiate())
 
 
 func add_loaded_level(level: LevelProps) -> LevelProps:
