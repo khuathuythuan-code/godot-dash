@@ -132,10 +132,12 @@ func _process(_delta: float) -> void:
 			real_handles_scale *= scale_multiplier
 			match quick_gizmo_value_input.axis_constraint:
 				QuickGizmoValueInput.AxisConstraint.NONE:
-					if real_handles_scale.x == bounding_box_size.x:
-						real_handles_scale = Vector2(bounding_box_size.x * real_handles_scale.y / bounding_box_size.y, real_handles_scale.y)
-					elif real_handles_scale.y == bounding_box_size.y:
-						real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y * real_handles_scale.x / bounding_box_size.x)
+					# Restore aspect ratio
+					match quick_gizmo_value_input.previous_axis_constraint:
+						QuickGizmoValueInput.AxisConstraint.LOCAL_X:
+							real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y * real_handles_scale.x / bounding_box_size.x)
+						QuickGizmoValueInput.AxisConstraint.LOCAL_Y:
+							real_handles_scale = Vector2(bounding_box_size.x * real_handles_scale.y / bounding_box_size.y, real_handles_scale.y)
 				QuickGizmoValueInput.AxisConstraint.LOCAL_X:
 					real_handles_scale = Vector2(real_handles_scale.x, bounding_box_size.y)
 				QuickGizmoValueInput.AxisConstraint.LOCAL_Y:

@@ -26,7 +26,11 @@ var displayed_gizmo_action: String
 var displayed_gizmo_unit: String
 ## The Label that will display the gizmo action and the expression. Required.
 var keychord_display: Label
-var axis_constraint: AxisConstraint
+var axis_constraint: AxisConstraint:
+	set(value):
+		previous_axis_constraint = axis_constraint
+		axis_constraint = value
+var previous_axis_constraint: AxisConstraint
 
 var _expression: String:
 	set(new_expression):
