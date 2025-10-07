@@ -352,7 +352,7 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	gizmo = RotateGizmo.new()
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
-		gizmo.quick(keychord_display, "Rotating", "°")
+		gizmo.quick(keychord_display, "Rotating", "°", true)
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
@@ -385,7 +385,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo = ScaleGizmo.new(selection_bounding_box.size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
-		gizmo.quick(keychord_display, "Scaling", "×")
+		gizmo.quick(keychord_display, "Scaling", "×", false)
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo.global_position = gizmo_center
 	gizmo.rotation = mean_objects_rotation

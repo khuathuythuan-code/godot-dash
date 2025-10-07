@@ -22,10 +22,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		remove_gizmo(false)
 
 
-func quick(keychord_display: Label, prefix: String, suffix: String) -> void:
+func quick(keychord_display: Label, prefix: String, suffix: String, disable_axis_constraint: bool) -> void:
 	_quick = true
-	quick_gizmo_value_input = QuickGizmoValueInput.new(keychord_display, prefix, suffix, true)
+	quick_gizmo_value_input = QuickGizmoValueInput.new(keychord_display, prefix, suffix, disable_axis_constraint)
 	state = State.FORCED
+
+
+func get_gizmo_local_mouse_position() -> Vector2:
+	return (get_global_mouse_position() - global_position).rotated(-rotation)
 
 
 @abstract func remove_gizmo(reset: bool = false) -> void

@@ -70,6 +70,7 @@ func _ready() -> void:
 	previous_position = position
 	initial_position = position
 	real_position = position
+	previous_mouse_position = get_gizmo_local_mouse_position()
 	quick_set_selected_handle.call_deferred()
 
 
@@ -79,17 +80,20 @@ func _process(_delta: float) -> void:
 		displayed_handle_radius = 1/get_viewport().get_camera_2d().zoom.length() * HANDLE_RADIUS
 	else:
 		displayed_handle_radius = HANDLE_RADIUS
+	
+	if is_zero_approx(gizmo_scale):
+		return
 
 	# Handle focus
 	if has_hovered_handle and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.DISABLED:
 		state = State.ENABLED
-		handle_center_mouse_offset = handles[hovered_handle_idx].axis - get_local_mouse_position()
-		previous_mouse_position = get_local_mouse_position()
+		handle_center_mouse_offset = handles[hovered_handle_idx].axis - get_local_mouse_position() / gizmo_scale
+		previous_mouse_position = get_local_mouse_position() / gizmo_scale
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.ENABLED:
 		state = State.DISABLED
 	if state == State.DISABLED:
 		for i: int in handles.size():
-			if handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position()) < displayed_handle_radius:
+			if handles[i].displayed_position(handles_scale).distance_to(get_local_mouse_position() / gizmo_scale) < displayed_handle_radius:
 				hovered_handle_idx = i
 				has_hovered_handle = true
 				break
@@ -106,7 +110,7 @@ func _process(_delta: float) -> void:
 		var resizing_snapped: bool = Input.is_key_pressed(KEY_CTRL)
 
 		var moved_handle: Handle = handles[hovered_handle_idx]
-		var mouse_position_delta: Vector2 = get_local_mouse_position() - previous_mouse_position
+		var mouse_position_delta: Vector2 = get_gizmo_local_mouse_position() - previous_mouse_position
 		# When we're not resizing around the center, we move the center of the gizmo to the mean position
 		# between the opposite edge and the cursor, and resize by half the amount.
 		var resize_and_move: bool = not resizing_around_center
@@ -143,7 +147,7 @@ func _process(_delta: float) -> void:
 		else:
 			handles_scale = real_handles_scale
 			position = real_position
-		previous_mouse_position = get_local_mouse_position()
+		previous_mouse_position = get_gizmo_local_mouse_position()
 		if (handles_scale / previous_scale).is_finite():
 			scale_changed.emit(
 					position - previous_position,
