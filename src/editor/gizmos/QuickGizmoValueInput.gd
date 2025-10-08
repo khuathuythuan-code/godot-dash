@@ -38,7 +38,7 @@ var _expression: String:
 
 		if new_expression.is_empty():
 			value_changed.emit(original_value)
-		elif not is_nan(value) and not is_inf(value):
+		elif is_finite(value):
 			value_changed.emit(value)
 
 		if keychord_display:
