@@ -1,4 +1,4 @@
-[gd_scene load_steps=253 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=256 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c3d7se3g1r25n" path="res://assets/textures/guis/editor/block_palette/Solids.svg" id="4_7or8s"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="4_gl2yd"]
 [ext_resource type="Texture2D" uid="uid://buwtqcrkk8knn" path="res://assets/textures/solids/regular_blocks/RegularBlock01.svg" id="4_u8igg"]
+[ext_resource type="Script" uid="uid://bmcfx1nuxqejh" path="res://src/editor/TriggerGroupBoundingBox.gd" id="4_vhc6f"]
 [ext_resource type="StyleBox" uid="uid://bhjd8eq3ccy6n" path="res://resources/UnroundedStyle.tres" id="5_gehis"]
 [ext_resource type="Texture2D" uid="uid://7qnm5gdpp818" path="res://assets/textures/guis/editor/block_palette/Hazards.svg" id="5_gyl57"]
 [ext_resource type="Script" uid="uid://dgml627pc73bt" path="res://src/editor/menu_bar/MenuBarEdit.gd" id="5_rke8t"]
@@ -185,7 +186,9 @@
 [ext_resource type="PackedScene" uid="uid://bwe063yi8no43" path="res://scenes/components/level_components/triggers/CameraStaticTrigger.tscn" id="140_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://dn1mnmpt5m6ir" path="res://scenes/components/level_components/triggers/CameraZoomTrigger.tscn" id="141_t7625"]
 [ext_resource type="PackedScene" uid="uid://cn1x7e76gb4fp" path="res://scenes/components/level_components/triggers/CameraRotateTrigger.tscn" id="143_33w7i"]
+[ext_resource type="Texture2D" uid="uid://bryaobm17acnu" path="res://assets/textures/triggers/AllowCeilingHit.svg" id="143_apuo8"]
 [ext_resource type="PackedScene" uid="uid://b2o4o1630e50x" path="res://scenes/components/level_components/triggers/CameraOffsetTrigger.tscn" id="143_e0lml"]
+[ext_resource type="PackedScene" uid="uid://dv58wkmaa8a8j" path="res://scenes/components/level_components/letter_objects/AllowCeilingHit.tscn" id="144_a0ntt"]
 [ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotateTrigger.tscn" id="144_wkjme"]
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
 [ext_resource type="PackedScene" uid="uid://c28un3xgl8pr7" path="res://scenes/components/level_components/triggers/CameraGameplayOffsetTrigger.tscn" id="145_momrj"]
@@ -417,6 +420,13 @@ metadata/_edit_lock_ = true
 
 [node name="GameScene" parent="." instance=ExtResource("1_ql4al")]
 
+[node name="TriggerGroupBoundingBoxLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="TriggerGroupBoundingBox" type="Node2D" parent="TriggerGroupBoundingBoxLayer"]
+script = ExtResource("4_vhc6f")
+metadata/_custom_type_script = "uid://bmcfx1nuxqejh"
+
 [node name="EditorUI" type="CanvasLayer" parent="."]
 layer = 90
 
@@ -583,7 +593,6 @@ offset_bottom = 192.0
 pivot_offset = Vector2(64, 64)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("147_1ad2k")
 icon = ExtResource("3_qy4mu")
 flat = true
 icon_alignment = 1
@@ -597,20 +606,20 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 1
+current_tab = 0
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 0
+current_tab = 3
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -2921,7 +2930,6 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -3858,6 +3866,26 @@ object = ExtResource("83_gaibe")
 [node name="LetterObjects" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer"]
 layout_mode = 2
 
+[node name="AllowCeilingHit" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("143_apuo8")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/AllowCeilingHit"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("144_a0ntt")
+
 [node name="StopJump" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3872,7 +3900,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
-metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopJump"]
 script = ExtResource("7_f0stj")
@@ -3893,7 +3920,6 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
-metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopDash"]
 script = ExtResource("7_f0stj")
@@ -4515,6 +4541,7 @@ script = ExtResource("3_d5qub")
 icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
 
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
+visible = false
 layout_mode = 2
 current_tab = 0
 script = ExtResource("4_2at5j")
@@ -5114,6 +5141,7 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer/Strength" to="HSVHandler" method="_on_strength_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
 [connection signal="rotated_object_degrees" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_rotated_object_degrees"]
+[connection signal="selection_changed" from="EditHandler" to="TriggerGroupBoundingBoxLayer/TriggerGroupBoundingBox" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Interactable/InteractableEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]

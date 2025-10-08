@@ -121,6 +121,11 @@ var floor_angle_history: Array[float]
 var floor_angle_average: float
 var sprite_floor_angle: float
 var dual_index: int
+# Allow Ceiling Hit blocks can stack, this avoids their effect being disabled
+# in the case of a double collision, which would happen with a bool.
+var allow_ceiling_hit_count: int:
+	set(value):
+		allow_ceiling_hit_count = max(value, 0)
 
 # Queues
 var orb_queue: Array[OrbInteractable]
@@ -223,7 +228,7 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 	var is_ceiling: bool = collision_angle >= deg_to_rad(180.0 - 10.0)
 	var is_wall: bool = collision_angle > floor_max_angle and collision_angle < PI - floor_max_angle
 	var is_slope := not is_floor and not is_ceiling
-	if (is_ceiling or is_wall) and not LevelManager.platformer:
+	if ((is_ceiling and allow_ceiling_hit_count == 0) or is_wall) and not LevelManager.platformer:
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
@@ -288,9 +293,9 @@ func _get_jump_state() -> int:
 		if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling()):
 			jump_hold_disabled = false
 	elif internal_gamemode == Gamemode.CUBE:
-		jump_state = 1 if (Input.is_action_pressed("jump") and (is_on_floor() or is_on_ceiling())) else -1
+		jump_state = 1 if Input.is_action_pressed("jump") and is_on_floor() else -1
 	elif internal_gamemode == Gamemode.ROBOT:
-		if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling()):
+		if Input.is_action_just_pressed("jump") and is_on_floor():
 			$RobotTimer.start(0.25)
 		if Input.is_action_just_released("jump"):
 			$RobotTimer.stop()
@@ -377,9 +382,11 @@ func _compute_velocity(delta: float,
 			and get_last_slide_collision() != null
 			and get_floor_angle_signed(true, jump_state) != 0.0
 			and get_direction() != 0
-			and jump_state == 1))
+			and jump_state == 1)
+	)
+	var isnt_jumping: bool = is_on_floor() and jump_state <= 0 and not _deferred_velocity_redirect
 
-	if ((((is_on_floor() or is_on_ceiling() and not _is_flying_gamemode) or (is_on_floor() and _is_flying_gamemode)) and jump_state <= 0 and not _deferred_velocity_redirect) or flying_gamemode_slope_boost) and pad_queue.is_empty():
+	if pad_queue.is_empty() and flying_gamemode_slope_boost or isnt_jumping:
 		_velocity.y = slope_velocity.y
 
 	#region Apply pads velocity
