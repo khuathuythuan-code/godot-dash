@@ -184,6 +184,11 @@ func _physics_process(delta: float) -> void:
 		last_collision = move_and_collide(velocity * delta, true)
 		$GroundCollider.rotation = gameplay_rotation
 		_handle_collision(last_collision, i != 0)
+		# Collide down with solids so the wave can crash into them
+		if internal_gamemode == Gamemode.WAVE and allow_wave_slide_count == 0:
+			last_collision = move_and_collide(speed.y * Vector2.DOWN * delta, true)
+			$GroundCollider.rotation = gameplay_rotation
+			_handle_collision(last_collision, true)
 
 	# Apply movement
 	move_and_slide()
