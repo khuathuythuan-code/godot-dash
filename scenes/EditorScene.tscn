@@ -1,4 +1,4 @@
-[gd_scene load_steps=258 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=260 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -190,8 +190,10 @@
 [ext_resource type="PackedScene" uid="uid://b2o4o1630e50x" path="res://scenes/components/level_components/triggers/CameraOffsetTrigger.tscn" id="143_e0lml"]
 [ext_resource type="PackedScene" uid="uid://dv58wkmaa8a8j" path="res://scenes/components/level_components/letter_objects/AllowCeilingHit.tscn" id="144_a0ntt"]
 [ext_resource type="PackedScene" uid="uid://dfwwxyf5unhva" path="res://scenes/components/level_components/triggers/GameplayRotateTrigger.tscn" id="144_wkjme"]
+[ext_resource type="Texture2D" uid="uid://puq2amlox0qe" path="res://assets/textures/triggers/AllowWaveSlide.svg" id="145_6kd42"]
 [ext_resource type="PackedScene" uid="uid://bl8b2hp20yb8d" path="res://scenes/components/level_components/triggers/GravityTrigger.tscn" id="145_ao6md"]
 [ext_resource type="PackedScene" uid="uid://c28un3xgl8pr7" path="res://scenes/components/level_components/triggers/CameraGameplayOffsetTrigger.tscn" id="145_momrj"]
+[ext_resource type="PackedScene" uid="uid://csy3endgg7ko2" path="res://scenes/components/level_components/letter_objects/AllowWaveSlide.tscn" id="146_5qr8h"]
 [ext_resource type="Texture2D" uid="uid://ci6s0o5mq1p0q" path="res://assets/textures/triggers/CameraGameplayOffset.svg" id="146_6fwf3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="147_1ad2k"]
 [ext_resource type="PackedScene" uid="uid://dtesaw4opgkin" path="res://scenes/components/level_components/letter_objects/FlipGravity.tscn" id="149_a0ntt"]
@@ -3887,6 +3889,26 @@ block_palette_button = true
 script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("144_a0ntt")
+
+[node name="AllowWaveSlide" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("145_6kd42")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/AllowWaveSlide"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("146_5qr8h")
 
 [node name="StopDash" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
 custom_minimum_size = Vector2(64, 64)

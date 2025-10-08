@@ -128,6 +128,9 @@ var dual_index: int
 var allow_ceiling_hit_count: int:
 	set(value):
 		allow_ceiling_hit_count = max(value, 0)
+var allow_wave_slide_count: int:
+	set(value):
+		allow_wave_slide_count = max(value, 0)
 
 # Queues
 var orb_queue: Array[OrbInteractable]
@@ -231,7 +234,7 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 	var is_ceiling: bool = collision_angle >= deg_to_rad(180.0 - 10.0)
 	var is_wall: bool = collision_angle > floor_max_angle and collision_angle < PI - floor_max_angle
 	var is_slope := not is_floor and not is_ceiling
-	if ((is_ceiling and allow_ceiling_hit_count == 0) or is_wall) and not LevelManager.platformer:
+	if not LevelManager.platformer and ((is_ceiling and allow_ceiling_hit_count == 0) or is_wall) or (internal_gamemode == Gamemode.WAVE and allow_wave_slide_count == 0):
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
