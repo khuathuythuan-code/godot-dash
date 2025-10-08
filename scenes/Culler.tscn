@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://cchlem3y27p2b" path="res://src/NodeFeeder.gd" id="2_mxpbp"]
 
 [node name="Culler" type="Node"]
-process_thread_group = 2
-process_thread_group_order = 0
-process_thread_messages = 0
 script = ExtResource("1_4acc2")
 
 [node name="NodeFeeder" type="Node" parent="."]
@@ -16,7 +13,7 @@ process_thread_messages = 0
 script = ExtResource("2_mxpbp")
 
 [node name="Timer" type="Timer" parent="."]
-process_thread_group = 2
+process_thread_group = 1
 process_thread_group_order = 0
 process_thread_messages = 0
 autostart = true

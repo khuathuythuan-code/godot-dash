@@ -30,7 +30,7 @@ func _ready() -> void:
 		_start_level()
 	await get_tree().create_timer(0.1).timeout
 	if Config.config.cull_hitboxes or Config.config.cull_sprites:
-		$Level.get_child(0).add_child(load("res://scenes/Culler.tscn").instantiate())
+		$Level.add_child(load("res://scenes/Culler.tscn").instantiate())
 
 
 func add_loaded_level(level: LevelProps) -> LevelProps:
