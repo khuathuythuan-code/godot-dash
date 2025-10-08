@@ -130,7 +130,7 @@ func _update_selection() -> void:
 		_reset_selection_zone(false)
 		if placed_objects_collider.has_overlapping_areas() and not (Input.is_action_just_pressed(&"editor_add_swipe") or Input.is_action_just_pressed(&"editor_selection_remove")):
 			selection = [
-				_get_object_parent(
+				get_object_parent(
 					placed_objects_collider.get_overlapping_areas()[
 						selection_index%len(placed_objects_collider.get_overlapping_areas())
 					]
@@ -139,7 +139,7 @@ func _update_selection() -> void:
 			selection_changed.emit(selection)
 	if Input.is_action_pressed(&"editor_selection_remove") or Input.is_action_pressed(&"editor_add"):
 		_swipe_selection_zone()
-	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(_get_object_parent), TYPE_OBJECT, "Node2D", null)
+	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
 	if Input.is_action_just_released(&"editor_selection_remove"):
 		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
 		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
@@ -148,18 +148,6 @@ func _update_selection() -> void:
 		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
 		selection_changed.emit(selection)
 	selection.erase(level)
-
-
-func _get_object_parent(object: Node) -> Node2D:
-	if object is EditorSelectionCollider:
-		return object.get_parent()
-	else:
-		return object
-
-
-func _get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
-	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
-	return selection_collider if selection_collider else object
 
 
 func _reset_selection_zone(unreachable: bool = true) -> void:
@@ -381,7 +369,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	var positions_relative_to_pivot: Dictionary[Node2D, Vector2]
 	for collision_object in selection_collision_objects:
 		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
-	selection_collision_objects.assign(selection_collision_objects.map(_get_object_selection_collider))
+	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
 	gizmo = ScaleGizmo.new(selection_bounding_box.size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
@@ -434,3 +422,15 @@ static func remove_selection_highlight(object: Node2D) -> void:
 	if object is HSVWatcher:
 		object.get_parent().modulate = object.modulate
 	object.get_node("SelectionHighlight").queue_free()
+
+
+static func get_object_parent(object: Node) -> Node2D:
+	if object is EditorSelectionCollider:
+		return object.get_parent()
+	else:
+		return object
+
+
+static func get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
+	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
+	return selection_collider if selection_collider else object
