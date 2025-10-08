@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://db7ebleody4s3"]
+[gd_scene load_steps=25 format=3 uid="uid://db7ebleody4s3"]
 
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_i4f6q"]
@@ -16,7 +16,6 @@
 [ext_resource type="Shader" uid="uid://g502tst55eft" path="res://resources/shaders/Sepia.gdshader" id="11_yix40"]
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
-[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="17_21xg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
@@ -245,5 +244,3 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4phyr")
 camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
-
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("17_21xg8")]
