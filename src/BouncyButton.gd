@@ -27,9 +27,11 @@ func _button_held() -> void:
 		scale_tween.set_ease(Tween.EASE_OUT)
 		scale_tween.set_trans(Tween.TRANS_BOUNCE)
 		scale_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.2)
-		saved_position = position
-		position = get_global_rect().position
-		top_level = true
+		if get_parent() is Container:
+			if not top_level:
+				saved_position = position
+				position = get_global_rect().position
+			top_level = true
 
 func _button_unheld() -> void:
 	if is_inside_tree():
@@ -39,5 +41,6 @@ func _button_unheld() -> void:
 		scale_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
 		release_focus()
 		await scale_tween.finished
-		top_level = false
-		position = saved_position
+		if get_parent() is Container:
+			top_level = false
+			position = saved_position

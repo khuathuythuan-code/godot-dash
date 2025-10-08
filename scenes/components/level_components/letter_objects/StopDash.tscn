@@ -39,3 +39,4 @@ nine_patch_sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://cjdpf2wcxjfb1"
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("7_ua7qa")]
+type = 9

@@ -76,3 +76,4 @@ speed = 1.849
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("10_3akpp")]
 scale = Vector2(2, 2)
+type = 8
