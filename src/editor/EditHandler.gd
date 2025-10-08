@@ -363,13 +363,13 @@ func _on_scale_pressed(quick: bool = false) -> void:
 			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 			ArrayUtils.Transformation.MEAN
 	).rotated(mean_objects_rotation)
-	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
 	selection_pivot = gizmo_center
 
 	var positions_relative_to_pivot: Dictionary[Node2D, Vector2]
 	for collision_object in selection_collision_objects:
 		positions_relative_to_pivot.set(collision_object, collision_object.global_position - selection_pivot)
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
+	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
 	gizmo = ScaleGizmo.new(selection_bounding_box.size)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
