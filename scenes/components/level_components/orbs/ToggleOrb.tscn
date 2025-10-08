@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://43t0kgu3lhyt"]
+[gd_scene load_steps=13 format=3 uid="uid://43t0kgu3lhyt"]
 
 [ext_resource type="Script" uid="uid://bxvjbgjx18gup" path="res://src/interactables/public_components/ToggleComponent.gd" id="1_dcl03"]
 [ext_resource type="Script" uid="uid://f5fvarclvwxg" path="res://src/interactables/OrbInteractable.gd" id="1_klrau"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cx0n1qip15t20" path="res://src/interactables/private_components/MusicScale.gd" id="3_8a4sg"]
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="8_8h2d8"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="9_hfjph"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_4mcye"]
 [ext_resource type="Script" uid="uid://b0qdkfpjncyhk" path="res://src/interactables/private_components/VariableFillColor.gd" id="11_fi63b"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="12_j5u27"]
 
@@ -57,3 +58,6 @@ script = ExtResource("1_dcl03")
 [node name="Detail" type="Node2D" parent="."]
 script = ExtResource("11_fi63b")
 metadata/_custom_type_script = "uid://b0qdkfpjncyhk"
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("11_4mcye")]
+type = 8

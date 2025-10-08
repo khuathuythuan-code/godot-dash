@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmb3bpsvcre7y"]
+[gd_scene load_steps=13 format=3 uid="uid://dmb3bpsvcre7y"]
 
 [ext_resource type="Script" uid="uid://f5fvarclvwxg" path="res://src/interactables/OrbInteractable.gd" id="1_0mkth"]
 [ext_resource type="Script" uid="uid://cqkay7r3kwd6f" path="res://src/interactables/public_components/JumpBoostComponent.gd" id="2_lpdi7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="6_5y7xc"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="8_0hmq7"]
 [ext_resource type="Script" uid="uid://uatxmfuua4wq" path="res://src/interactables/private_components/TextureRotate.gd" id="8_pj4c0"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_my48n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwypc"]
 size = Vector2(128, 128)
@@ -58,3 +59,6 @@ script = ExtResource("8_0hmq7")
 script = ExtResource("8_pj4c0")
 sprite = NodePath("../Sprite")
 rotation_rate_degrees = 180.0
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("11_my48n")]
+type = 8
