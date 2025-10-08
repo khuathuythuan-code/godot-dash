@@ -38,7 +38,8 @@ debug_color = Color(0, 0.071, 0.702, 0.25)
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("4_a151s")]
 
 [node name="NinePatchSprite2DAbsoluteSize" type="Node" parent="." node_paths=PackedStringArray("nine_patch_sprite")]
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 0
 script = ExtResource("4_cpky5")
 nine_patch_sprite = NodePath("../Base")
-
-[connection signal="property_list_changed" from="." to="NinePatchSprite2DAbsoluteSize" method="_on_size_changed"]
