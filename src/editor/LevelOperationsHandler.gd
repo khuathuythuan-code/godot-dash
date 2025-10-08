@@ -49,6 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_level_index_pressed(5)
 
 
+func pause_autosave() -> void:
+	$AutosaveTimer.paused = true
+
+
 func _on_level_index_pressed(index:int) -> void:
 	match index:
 		0: # New

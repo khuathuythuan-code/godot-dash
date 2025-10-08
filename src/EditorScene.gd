@@ -118,6 +118,7 @@ func _on_playtest_pressed() -> void:
 		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
 		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.config.hide_grid_on_playtest
+		$LevelOperationsHandler.pause_autosave()
 		$GameScene._start_level()
 	else:
 		LevelManager.player_duals.clear()
