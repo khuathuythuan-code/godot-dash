@@ -597,10 +597,11 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 0
+current_tab = 1
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
@@ -4514,7 +4515,6 @@ script = ExtResource("3_d5qub")
 icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
 
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
-visible = false
 layout_mode = 2
 current_tab = 0
 script = ExtResource("4_2at5j")
@@ -5089,6 +5089,7 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/FlipH" to="EditHandler" method="_on_flip_h_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/FlipV" to="EditHandler" method="_on_flip_v_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
+[connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft90" to="EditHandler" method="_on_rotate_left_90_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateRight90" to="EditHandler" method="_on_rotate_right_90_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft45" to="EditHandler" method="_on_rotate_left_45_pressed"]
@@ -5098,6 +5099,8 @@ cancel_button_text = "Open Existing"
 [connection signal="direction_pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/MoveControlsEight" to="EditHandler" method="_on_move_controls_direction_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/FlipH" to="EditHandler" method="_on_flip_h_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/FlipV" to="EditHandler" method="_on_flip_v_pressed"]
+[connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
+[connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
 [connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_on_sort_children"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_value_changed"]
