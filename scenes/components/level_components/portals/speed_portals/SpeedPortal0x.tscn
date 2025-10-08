@@ -68,3 +68,4 @@ script = ExtResource("6_xon7y")
 script = ExtResource("7_vr53l")
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("8_gexpq")]
+type = 8

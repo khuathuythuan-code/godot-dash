@@ -75,3 +75,4 @@ script = ExtResource("9_xohr6")
 speed = 0.807
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("10_bnl8i")]
+type = 8
