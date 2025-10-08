@@ -174,10 +174,11 @@ func _physics_process(delta: float) -> void:
 		$GroundCollider.shape = default_collider
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = default_collider
 		$Icon/Spider/SpiderCast.shape = default_collider
-	last_collision = move_and_collide(velocity * delta, true)
 	floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
-	$GroundCollider.rotation = gameplay_rotation
-	_handle_collision(last_collision)
+	for i in range(10):
+		last_collision = move_and_collide(velocity * delta, true)
+		$GroundCollider.rotation = gameplay_rotation
+		_handle_collision(last_collision, i != 0)
 
 	# Apply movement
 	move_and_slide()
@@ -220,7 +221,7 @@ func _physics_process(delta: float) -> void:
 			speed_0_portal_control = null
 
 
-func _handle_collision(collision: KinematicCollision2D) -> void:
+func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: bool) -> void:
 	if not collision:
 		return
 	var collision_angle: float = collision.get_angle(up_direction)
@@ -232,13 +233,14 @@ func _handle_collision(collision: KinematicCollision2D) -> void:
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
-	if is_slope:
-		$GroundCollider.shape = slope_collider
-		$Icon/Spider/SpiderCast.shape = slope_collider
-		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
-	if is_floor and not dash_control:
-		var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
-		%GroundParticles.add_child(ground_hit_particles)
+	if not is_refine_iteration:
+		if is_slope:
+			$GroundCollider.shape = slope_collider
+			$Icon/Spider/SpiderCast.shape = slope_collider
+			$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
+		if is_floor and not dash_control:
+			var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
+			%GroundParticles.add_child(ground_hit_particles)
 
 
 func get_floor_angle_signed(last_slide: bool, jump_state: int) -> float:
