@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwjxj7jcot0cn"]
+[gd_scene load_steps=9 format=3 uid="uid://bwjxj7jcot0cn"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_jafy6"]
 [ext_resource type="Script" uid="uid://sv2oa8nvx3ob" path="res://addons/nine_patch_sprite_2d/nine_patch_sprite_2d.gd" id="2_3soko"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://411xfh8l0h1w" path="res://src/interactables/public_components/StopDashComponent.gd" id="4_jafy6"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="4_unfh5"]
 [ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="5_ua7qa"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_ua7qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_65trp"]
 size = Vector2(128, 128)
@@ -36,3 +37,5 @@ metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 script = ExtResource("4_unfh5")
 nine_patch_sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://cjdpf2wcxjfb1"
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_ua7qa")]

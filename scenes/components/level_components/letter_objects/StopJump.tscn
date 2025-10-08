@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://fo7vbjwc7r60"]
+[gd_scene load_steps=9 format=3 uid="uid://fo7vbjwc7r60"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_faige"]
 [ext_resource type="Texture2D" uid="uid://kvlnc2ofgvcs" path="res://assets/textures/triggers/StopHeldJump.svg" id="2_faige"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkj26fjk1w4gq" path="res://src/interactables/public_components/StopHeldJumpComponent.gd" id="4_7pcgp"]
 [ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="4_8kgnb"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="5_8kgnb"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_1acla"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_65trp"]
 size = Vector2(128, 128)
@@ -39,3 +40,5 @@ metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 script = ExtResource("5_8kgnb")
 nine_patch_sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://cjdpf2wcxjfb1"
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_1acla")]
