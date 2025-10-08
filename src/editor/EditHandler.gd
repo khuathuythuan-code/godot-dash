@@ -75,7 +75,9 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&"ui_paste"):
 				paste_selection()
 				object_move_cooldown = 5
-			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down") and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all"):
+			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")\
+			and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")\
+			and not Input.is_action_pressed(&"editor_layer_up") and not Input.is_action_pressed(&"editor_layer_down"):
 				var move_vector: Vector2
 				move_vector.x = Input.get_axis(&"ui_left", &"ui_right")
 				move_vector.y = Input.get_axis(&"ui_up", &"ui_down")
@@ -106,6 +108,12 @@ func _physics_process(delta: float) -> void:
 				_on_scale_pressed()
 			elif Input.is_action_just_pressed(&"editor_quick_scale"):
 				_on_scale_pressed(true)
+			if Input.is_action_just_pressed(&"editor_z_index_down"):
+				selection.map(z_index_up)
+				object_move_cooldown = 0.0
+			if Input.is_action_just_pressed(&"editor_z_index_down"):
+				selection.map(z_index_down)
+				object_move_cooldown = 0.0
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
@@ -114,6 +122,20 @@ func _physics_process(delta: float) -> void:
 			selection.map(add_selection_highlight)
 			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped
+
+
+func z_index_up(object: Node):
+	if object.z_index < 4096:
+		object.z_index += 1
+		return
+	Toasts.warning("Maximum z-index is 4096")
+
+
+func z_index_down(object: Node):
+	if object.z_index > -100:
+		object.z_index -= 1
+		return
+	Toasts.warning("Minimum z-index is -100")
 
 
 func _update_selection() -> void:
