@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_i4f6q"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
-[ext_resource type="Texture2D" uid="uid://dga7nm2rjr2b0" path="res://assets/textures/ground_overlays/floorLine_001.png" id="3_l4t8r"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="6_7ju4w"]
 [ext_resource type="Script" uid="uid://nl1xrhaw0nyb" path="res://src/PositionFollow2D.gd" id="6_kvomc"]
@@ -17,9 +16,11 @@
 [ext_resource type="Shader" uid="uid://g502tst55eft" path="res://resources/shaders/Sepia.gdshader" id="11_yix40"]
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="17_21xg8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
+shader_parameter/ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4i0t"]
 size = Vector2(534.4, 154.4)
@@ -128,16 +129,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
 
-[node name="Line" type="Sprite2D" parent="GroundDownParallax/GroundDownOrigin/Ground" node_paths=PackedStringArray("target")]
-z_index = 50
-position = Vector2(4, -119.6)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_l4t8r")
-script = ExtResource("6_kvomc")
-target = NodePath("../../../../PlayerCamera")
-copy_x = true
-metadata/_edit_lock_ = true
-
 [node name="GroundColliderDown" type="StaticBody2D" parent="GroundDownParallax/GroundDownOrigin/Ground" node_paths=PackedStringArray("target")]
 z_index = 50
 position = Vector2(-120, -120)
@@ -177,15 +168,6 @@ flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
-
-[node name="Line" type="Sprite2D" parent="GroundUpParallax/GroundUpOrigin/Ground" node_paths=PackedStringArray("target")]
-z_index = 50
-position = Vector2(4, 119.6)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_l4t8r")
-script = ExtResource("6_kvomc")
-target = NodePath("../../../../PlayerCamera")
-copy_x = true
 
 [node name="GroundColliderUp" type="StaticBody2D" parent="GroundUpParallax/GroundUpOrigin/Ground" node_paths=PackedStringArray("target")]
 z_index = 50
@@ -263,3 +245,5 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4phyr")
 camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("17_21xg8")]

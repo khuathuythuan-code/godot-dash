@@ -1,15 +1,12 @@
-[gd_scene load_steps=58 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=55 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_e44lk"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_dgjna"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="3_r3sjc"]
-[ext_resource type="Texture2D" uid="uid://dga7nm2rjr2b0" path="res://assets/textures/ground_overlays/floorLine_001.png" id="3_skuyc"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="4_eh0ur"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="4_r3sjc"]
 [ext_resource type="Texture2D" uid="uid://bjrdbga1v3vba" path="res://assets/textures/guis/title_screen/PlayButton.png" id="4_tln2n"]
 [ext_resource type="Texture2D" uid="uid://bu2hpb5owl44q" path="res://assets/textures/guis/title_screen/Title.png" id="4_yqc6o"]
-[ext_resource type="Script" uid="uid://nl1xrhaw0nyb" path="res://src/PositionFollow2D.gd" id="5_4luv8"]
-[ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_7ohp0"]
 [ext_resource type="Texture2D" uid="uid://cwoultxx6k47" path="res://assets/textures/guis/title_screen/GarageButton.png" id="5_th0n8"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="5_wiac2"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_0wc6k"]
@@ -35,6 +32,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fto0a"]
 shader = ExtResource("3_r3sjc")
+shader_parameter/ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("12_ct30d")
@@ -167,15 +165,6 @@ position = Vector2(940, 1005)
 texture = ExtResource("4_r3sjc")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
-
-[node name="GroundLine" type="Sprite2D" parent="TitleScreen/GroundParallax/Ground" node_paths=PackedStringArray("target")]
-material = ExtResource("5_7ohp0")
-position = Vector2(10, -118.5)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_skuyc")
-script = ExtResource("5_4luv8")
-target = NodePath("../../../../Camera")
-copy_x = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
 layout_mode = 1

@@ -59,12 +59,6 @@ func _leave_level() -> void:
 	$FadeScreenLayer/FadeScreen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 
 
-
-func _process(delta: float) -> void:
-	for ground_sprite in LevelManager.ground_sprites:
-		ground_sprite.get_node("Ground/Line").scale.x = 1/LevelManager.player_camera.zoom.x * 0.2
-
-
 static func get_camera_rect(camera: Camera2D, viewport: Viewport) -> Rect2:
 	var rect_pos := camera.get_screen_center_position()
 	var rect_size := (viewport.get_visible_rect().size/camera.zoom)
