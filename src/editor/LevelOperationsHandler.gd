@@ -98,6 +98,8 @@ func _open_level(path: String) -> void:
 		editor._on_playtest_pressed()
 		_open_level.call_deferred(path)
 		return
+	# Avoid name conflicts
+	editor.level.name = str(hash(editor.level))
 	ResourceLoader.load_threaded_request(path, "PackedScene")
 	var level_packed := ResourceLoader.load_threaded_get(path) as PackedScene
 	var level = level_packed.instantiate() as LevelProps
@@ -163,6 +165,7 @@ func _save_level() -> void:
 		save_as_dialog.show()
 		return # _save_level will get called again by the dialog
 	var file_name = editor.level.get_meta("packed_file_name")
+	editor.level.name = file_name.get_basename()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
