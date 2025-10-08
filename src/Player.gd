@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+signal hit_ceiling(player: Player)
+
 enum Gamemode {
 	CUBE,
 	SHIP,
@@ -233,6 +235,8 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
+	if is_ceiling and allow_ceiling_hit_count > 0:
+		hit_ceiling.emit(self)
 	if not is_refine_iteration:
 		if is_slope:
 			$GroundCollider.shape = slope_collider

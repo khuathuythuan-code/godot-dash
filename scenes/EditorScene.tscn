@@ -1,4 +1,4 @@
-[gd_scene load_steps=256 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=258 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -194,6 +194,8 @@
 [ext_resource type="PackedScene" uid="uid://c28un3xgl8pr7" path="res://scenes/components/level_components/triggers/CameraGameplayOffsetTrigger.tscn" id="145_momrj"]
 [ext_resource type="Texture2D" uid="uid://ci6s0o5mq1p0q" path="res://assets/textures/triggers/CameraGameplayOffset.svg" id="146_6fwf3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="147_1ad2k"]
+[ext_resource type="PackedScene" uid="uid://dtesaw4opgkin" path="res://scenes/components/level_components/letter_objects/FlipGravity.tscn" id="149_a0ntt"]
+[ext_resource type="Texture2D" uid="uid://cpwidpl0d6peh" path="res://assets/textures/triggers/FlipGravity.svg" id="149_l661x"]
 [ext_resource type="PackedScene" uid="uid://br6tlxe8b4qug" path="res://scenes/components/level_components/triggers/CameraShakeTrigger.tscn" id="150_7k2uw"]
 [ext_resource type="Texture2D" uid="uid://wib5y5m8x16b" path="res://assets/textures/triggers/Shake.svg" id="151_tkktq"]
 [ext_resource type="PackedScene" uid="uid://dh7b5vqqkai36" path="res://scenes/components/level_components/triggers/ScaleTrigger.tscn" id="152_5ik7l"]
@@ -3886,6 +3888,26 @@ script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("144_a0ntt")
 
+[node name="StopDash" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("136_mvta7")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopDash"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("137_gdkvu")
+
 [node name="StopJump" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3906,7 +3928,7 @@ script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("136_6fwf3")
 
-[node name="StopDash" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
+[node name="FlipGravity" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -3914,17 +3936,17 @@ mouse_filter = 1
 theme = ExtResource("147_1ad2k")
 toggle_mode = true
 button_group = ExtResource("3_0vcbd")
-icon = ExtResource("136_mvta7")
+icon = ExtResource("149_l661x")
 flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopDash"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/FlipGravity"]
 script = ExtResource("7_f0stj")
 type = 8
-object = ExtResource("137_gdkvu")
+object = ExtResource("149_a0ntt")
 
 [node name="Triggers" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
 visible = false
@@ -4803,13 +4825,11 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 visible = false
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Interactable"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Interactable" instance=ExtResource("183_momrj")]
-visible = false
 layout_mode = 2
 
 [node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
@@ -4842,12 +4862,10 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
-visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
