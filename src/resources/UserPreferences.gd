@@ -20,7 +20,8 @@ class_name UserPreferences extends Resource
 @export_subgroup("Culling")
 @export var cull_hitboxes: bool = false
 @export var cull_sprites: bool = false
-@export var cull_limit: int = 32
+@export var hitboxes_cull_limit: int = 4
+@export var sprites_cull_limit: int = 32
 @export var cull_interval: float = 0.1
 
 @export_group("Audio")
