@@ -5,6 +5,25 @@ class_name UserPreferences extends Resource
 @export var vsync: int
 @export var window_mode: int
 
+@export_group("Performance")
+@export var hide_particles_editor_only: bool = true
+@export var hide_orb_particles: bool = false
+@export var hide_pad_particles: bool = false
+@export var hide_portal_particles: bool = false
+@export var hide_speedportal_particles: bool = false
+@export var preprocess_particles_editor_only: bool = true
+@export var preprocess_orb_particles: bool = true
+@export var preprocess_pad_particles: bool = true
+@export var preprocess_portal_particles: bool = true
+@export var preprocess_speedportal_particles: bool = true
+
+@export_subgroup("Culling")
+@export var cull_hitboxes: bool = false
+@export var cull_sprites: bool = false
+@export var hitboxes_cull_limit: int = 4
+@export var sprites_cull_limit: int = 32
+@export var cull_interval: float = 0.1
+
 @export_group("Audio")
 @export_range(0, 1, .05) var master_audio_level: float = 1.0
 @export_range(0, 1, .05) var music_audio_level: float = 1.0
@@ -22,6 +41,7 @@ class_name UserPreferences extends Resource
 @export_range(0, 1, .05) var selection_zone_fill_alpha := 0.2
 @export var trigger_hitbox_color := Color.CYAN
 @export_range(0, 1, .05) var trigger_hitbox_fill_alpha := 0.2
+
 
 @export_group("Debug")
 @export var draw_debug_overlays: bool

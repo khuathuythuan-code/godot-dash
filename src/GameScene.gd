@@ -1,6 +1,7 @@
 extends Node2D
 class_name GameScene
 
+
 func _ready() -> void:
 	LevelManager.game_scene = self
 	Engine.time_scale = 1
@@ -27,6 +28,9 @@ func _ready() -> void:
 		add_loaded_level(current_level)
 		SceneTransition.previous = SceneTransition.Scene.LEVEL
 		_start_level()
+	await get_tree().create_timer(0.1).timeout
+	if Config.config.cull_hitboxes or Config.config.cull_sprites:
+		$Level.add_child(load("res://scenes/Culler.tscn").instantiate())
 
 
 func add_loaded_level(level: LevelProps) -> LevelProps:
