@@ -8,14 +8,14 @@
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="5_43du4"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="6_cfkdj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_65trp"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3s5q"]
+size = Vector2(153.6, 153.6)
 
 [node name="AllowCeilingHit" type="Area2D"]
 script = ExtResource("1_0fegu")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_65trp")
+shape = SubResource("RectangleShape2D_f3s5q")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprite" type="Node2D" parent="."]
