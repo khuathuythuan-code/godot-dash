@@ -27,8 +27,9 @@ func _button_held() -> void:
 		scale_tween.set_ease(Tween.EASE_OUT)
 		scale_tween.set_trans(Tween.TRANS_BOUNCE)
 		scale_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.2)
-		saved_position = position
-		position = get_global_rect().position
+		if not top_level:
+			saved_position = position
+			position = get_global_rect().position
 		top_level = true
 
 func _button_unheld() -> void:
