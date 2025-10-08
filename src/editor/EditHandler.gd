@@ -253,7 +253,7 @@ func select_all() -> void:
 func remove_gizmo(_selection = null) -> void:
 	if not gizmo:
 		return
-	await gizmo.remove_gizmo()
+	gizmo.remove_gizmo()
 	selection_changed.disconnect(remove_gizmo)
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	gizmo = null
