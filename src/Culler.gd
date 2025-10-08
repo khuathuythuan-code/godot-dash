@@ -3,6 +3,8 @@ extends Node
 
 @onready var amount: int = Config.config.cull_limit
 @onready var parent: Node2D = get_parent()
+@onready var cull_sprites: bool = Config.config.cull_sprites
+@onready var cull_hitboxes: bool = Config.config.cull_hitboxes
 
 func _ready() -> void:
 	$Timer.wait_time = Config.config.cull_interval
@@ -20,12 +22,12 @@ func cull(objects: Array[Node]) -> void:
 		for object in object_dictionary[position]:
 			index += 1
 			if index < amount:
-				if Config.config.cull_sprites:
+				if cull_sprites:
 					object.call_deferred("show")
-				if Config.config.cull_hitboxes:
+				if cull_hitboxes:
 					object.find_child("Hitbox").set_deferred("disabled", false)
 				continue
-			if Config.config.cull_sprites:
+			if cull_sprites:
 				object.call_deferred("hide")
-			if Config.config.cull_hitboxes:
+			if cull_hitboxes:
 				object.find_child("Hitbox").set_deferred("disabled", true)
