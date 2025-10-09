@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if cursor_position_snapped != previous_cursor_position_snapped:
 		selection_index = 0
 	var is_already_swiping_selection: bool = $SelectionZone/Hitbox.shape.size != Vector2.ZERO
-	if Input.is_action_just_pressed(&"editor_select_all"):
+	if Input.is_action_just_pressed(&"editor_select_all") and not get_viewport().gui_get_focus_owner() is LineEdit:
 		select_all()
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
