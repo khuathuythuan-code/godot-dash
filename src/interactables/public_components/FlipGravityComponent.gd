@@ -19,3 +19,4 @@ func disengage_player_for_flip(player: Player) -> void:
 func flip(player: Player) -> void:
 	# Avoid flipping gravity multiple times in a frame
 	player.set_deferred(&"gravity_flip", -player.gravity_flip)
+	player.jump_hold_disabled = true
