@@ -1,4 +1,4 @@
-[gd_scene load_steps=261 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=262 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -404,7 +404,11 @@ script = ExtResource("193_5tfcf")
 [sub_resource type="Resource" id="Resource_vv5vx"]
 script = ExtResource("193_5tfcf")
 
+[sub_resource type="FoldableGroup" id="FoldableGroup_c6gj0"]
+allow_folding_all = true
+
 [sub_resource type="FoldableGroup" id="FoldableGroup_dl3g1"]
+allow_folding_all = true
 
 [sub_resource type="FoldableGroup" id="FoldableGroup_bmgxg"]
 
@@ -4826,6 +4830,7 @@ layout_mode = 2
 mouse_filter = 1
 title = "Transform"
 title_alignment = 1
+foldable_group = SubResource("FoldableGroup_c6gj0")
 
 [node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("z_index_node", "scale_node", "position_node", "rotation_node")]
 layout_mode = 2
@@ -4881,10 +4886,13 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 visible = false
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Groups"
 title_alignment = 1
+foldable_group = SubResource("FoldableGroup_c6gj0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups"]
+visible = false
 layout_mode = 2
 
 [node name="GroupEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer" instance=ExtResource("55_5vu0v")]
