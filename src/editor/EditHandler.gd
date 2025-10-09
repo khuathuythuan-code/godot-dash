@@ -463,5 +463,14 @@ static func get_object_selection_collider(object: CollisionObject2D) -> Collisio
 	return selection_collider if selection_collider else object
 
 
-func _on_scale_value_changed(value: float) -> void:
-	pass # Replace with function body.
+func _on_scale_value_changed(value: Vector2) -> void:
+	selection.map(func(object): object.scale = value)
+
+
+func _on_position_value_changed(value: Vector2) -> void:
+	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE)
+	selection.map(func(object): object.position = value)
+
+
+func _on_rotation_value_changed(value: float) -> void:
+	selection.map(func(object): object.rotation_degrees = value)
