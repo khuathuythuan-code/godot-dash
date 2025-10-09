@@ -89,8 +89,10 @@ func _on_position_value_changed(value: Vector2) -> void:
 
 
 func _on_rotation_value_changed(value: float) -> void:
-	current_selection.map(func(object): object.rotation_degrees = value)
-
+	if selection_size == 1 or same_rotation:
+		current_selection.map(func(object): object.rotation_degrees = value)
+		return
+	current_selection.map(func(object): object.rotation_degrees += value)
 
 func _set_z_index(value: float):
 	value = int(value)
