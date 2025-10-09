@@ -4877,6 +4877,7 @@ layout_mode = 2
 script = ExtResource("185_t7625")
 min_value = -360.0
 max_value = 360.0
+step = 0.01
 allow_lesser = true
 allow_greater = true
 suffix = "°"
@@ -5238,10 +5239,10 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
 [connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_on_sort_children"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditHandler" method="_set_z_index"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditHandler" method="_on_scale_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Position" to="EditHandler" method="_on_position_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Rotation" to="EditHandler" method="_on_rotation_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_set_z_index"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_scale_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Position" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_position_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]

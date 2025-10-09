@@ -124,11 +124,6 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func _set_z_index(value: float):
-	value = int(value)
-	selection.map(func(object): object.z_index = value)
-
-
 func increase_z_index(object: Node):
 	if object.z_index < 4096:
 		object.z_index += 1
@@ -461,16 +456,3 @@ static func get_object_parent(object: Node) -> Node2D:
 static func get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
 	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
 	return selection_collider if selection_collider else object
-
-
-func _on_scale_value_changed(value: Vector2) -> void:
-	selection.map(func(object): object.scale = value)
-
-
-func _on_position_value_changed(value: Vector2) -> void:
-	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE)
-	selection.map(func(object): object.position = value)
-
-
-func _on_rotation_value_changed(value: float) -> void:
-	selection.map(func(object): object.rotation_degrees = value)
