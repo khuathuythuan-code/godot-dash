@@ -461,3 +461,7 @@ static func get_object_parent(object: Node) -> Node2D:
 static func get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
 	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
 	return selection_collider if selection_collider else object
+
+
+func _on_scale_value_changed(value: float) -> void:
+	pass # Replace with function body.
