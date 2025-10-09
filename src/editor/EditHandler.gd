@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 				object_move_cooldown = 5
 			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")\
 			and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")\
-			and not Input.is_action_pressed(&"editor_layer_up") and not Input.is_action_pressed(&"editor_layer_down"):
+			and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index"):
 				var move_vector: Vector2
 				move_vector.x = Input.get_axis(&"ui_left", &"ui_right")
 				move_vector.y = Input.get_axis(&"ui_up", &"ui_down")
@@ -108,11 +108,11 @@ func _physics_process(delta: float) -> void:
 				_on_scale_pressed()
 			elif Input.is_action_just_pressed(&"editor_quick_scale"):
 				_on_scale_pressed(true)
-			if Input.is_action_just_pressed(&"editor_z_index_down"):
-				selection.map(z_index_up)
+			if Input.is_action_just_pressed(&"editor_increase_z_index"):
+				selection.map(increase_z_index)
 				object_move_cooldown = 0.0
-			if Input.is_action_just_pressed(&"editor_z_index_down"):
-				selection.map(z_index_down)
+			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
+				selection.map(decrease_z_index)
 				object_move_cooldown = 0.0
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
@@ -124,14 +124,19 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func z_index_up(object: Node):
+func _set_z_index(value: float):
+	value = int(value)
+	selection.map(func(object): object.z_index = value)
+
+
+func increase_z_index(object: Node):
 	if object.z_index < 4096:
 		object.z_index += 1
 		return
 	Toasts.warning("Maximum z-index is 4096")
 
 
-func z_index_down(object: Node):
+func decrease_z_index(object: Node):
 	if object.z_index > -100:
 		object.z_index -= 1
 		return
