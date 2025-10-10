@@ -30,7 +30,8 @@ signal value_changed(new_value: Vector2)
 @export var expand_to_text_length: bool
 
 var aspect_ratio: float
-var value: Vector2: set = _set_value
+
+var _value: Vector2
 
 @onready var spinbox_x: SpinBox
 @onready var spinbox_y: SpinBox
@@ -42,7 +43,7 @@ func _ready() -> void:
 	spinbox_x.value_changed.connect(_set_x)
 	spinbox_y.value_changed.connect(_set_y)
 	update_internals()
-	_set_value(value)
+	set_value(_value)
 
 
 func update_internals() -> void:
@@ -63,46 +64,44 @@ func update_internals() -> void:
 	_set_prefix(prefix)
 
 
+func set_value(new_value: Vector2) -> void:
+	set_value_no_signal(new_value)
+	value_changed.emit(_value)
+
+
+func set_value_no_signal(new_value: Vector2):
+	_value = new_value
+	spinbox_x.set_value_no_signal(new_value.x)
+	spinbox_y.set_value_no_signal(new_value.y)
+
+
+func _set_x(new_value: float) -> void:
+	_value.x = new_value
+	if keep_aspect:
+		_value.y = new_value * 1/aspect_ratio
+		spinbox_y.set_value_no_signal(_value.y)
+	value_changed.emit(_value)
+
+
+func _set_y(new_value: float) -> void:
+	_value.y = new_value
+	if keep_aspect:
+		_value.x = new_value * aspect_ratio
+		spinbox_x.set_value_no_signal(_value.x)
+	value_changed.emit(_value)
+
+
+func get_value() -> Vector2:
+	return _value
+
+
 func _set_prefix(new_prefix: String) -> void:
 	if spinbox_x == null or spinbox_y == null:
 		return
 	prefix = new_prefix
 	if new_prefix != "":
 		for spinbox in [spinbox_x, spinbox_y]:
-			spinbox.prefix = value
+			spinbox.prefix = _value
 	else:
 		spinbox_x.prefix = "x:"
 		spinbox_y.prefix = "y:"
-
-func _set_value(new_value: Vector2) -> void:
-	value = new_value
-	if spinbox_x == null:
-		spinbox_x = NodeUtils.get_node_or_add(self, "SpinBoxX", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
-	if spinbox_y == null:
-		spinbox_y = NodeUtils.get_node_or_add(self, "SpinBoxY", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
-	if not Engine.is_editor_hint():
-		spinbox_x.set_value_no_signal(new_value.x)
-		spinbox_y.set_value_no_signal(new_value.y)
-	value_changed.emit(value)
-
-func _set_x(new_value: float) -> void:
-	value.x = new_value
-	value_changed.emit(value)
-	if keep_aspect:
-		value.y = new_value * 1/aspect_ratio
-		spinbox_y.set_value_no_signal(value.y)
-
-
-func _set_y(new_value: float) -> void:
-	value.y = new_value
-	value_changed.emit(value)
-	if keep_aspect:
-		value.x = new_value * aspect_ratio
-		spinbox_x.set_value_no_signal(value.x)
-
-func set_value_no_signal(new_value: Vector2):
-	spinbox_x.set_value_no_signal(new_value.x)
-	spinbox_y.set_value_no_signal(new_value.y)
-
-func get_value() -> Vector2:
-	return value
