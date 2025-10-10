@@ -60,6 +60,12 @@ func _input(event):
 		_change_zoom(1 + ((zoom_factor if zoom_factor > 1 else 1 / zoom_factor) - 1) * (event.factor - 1) * 2.5)
 	elif event is InputEventPanGesture:
 		_change_zoom(1 + (1 / zoom_factor - 1) * event.delta.y / 7.5)
+	elif event is InputEventScreenDrag:
+		if ((get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui):
+			_dragging = true
+			enable_wrap = false
+		if event.is_canceled():
+			_dragging = false
 	elif event is InputEventMouseButton:
 		if event.pressed:
 			match event.button_index:
@@ -72,7 +78,7 @@ func _input(event):
 				MOUSE_BUTTON_MIDDLE:
 					if drag and ((get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui):
 						_dragging = true
-						
+						enable_wrap = true
 						# Input.set_default_cursor_shape(Input.CURSOR_DRAG) # delete to disable drag cursor
 						editor_viewport.mouse_default_cursor_shape = Control.CURSOR_DRAG
 		elif event.button_index == MOUSE_BUTTON_MIDDLE:
