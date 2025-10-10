@@ -8,15 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="6_0gigw"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="7_e40vt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_65trp"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5lhx"]
+size = Vector2(153.6, 153.6)
 
 [node name="AllowWaveSlide" type="Area2D"]
 script = ExtResource("1_b5lhx")
-
-[node name="Hitbox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_65trp")
-debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprite" type="Node2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -24,6 +20,10 @@ script = ExtResource("2_xdsve")
 texture = ExtResource("3_b5lhx")
 size = Vector2(512, 512)
 metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b5lhx")
+debug_color = Color(0, 1, 0, 0)
 
 [node name="AllowWaveSlideComponent" type="Node" parent="."]
 script = ExtResource("4_b5lhx")

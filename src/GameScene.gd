@@ -30,8 +30,10 @@ func _ready() -> void:
 		_start_level()
 	await get_tree().create_timer(0.1).timeout
 	if Config.config.cull_hitboxes or Config.config.cull_sprites:
-		$Level.add_child(load("res://scenes/Culler.tscn").instantiate())
+		add_culler()
 
+func add_culler():
+	$Level.add_child(load("res://scenes/Culler.tscn").instantiate())
 
 func add_loaded_level(level: LevelProps) -> LevelProps:
 	LevelManager.current_level = level
@@ -44,16 +46,21 @@ func _start_level() -> void:
 		await get_tree().create_timer(0.2).timeout
 		$FadeScreenLayer/FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		await $FadeScreenLayer/FadeScreen.fade_finished
-		$Level.get_child(0).start_level()
+		for node in $Level.get_children():
+			if node is not LevelCuller:
+				node.start_level()
 	else:
-		$Level.get_child(0).start_level()
+		for node in $Level.get_children():
+			if node is not LevelCuller:
+				node.start_level()
 	LevelManager.attempt += 1
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _leave_level() -> void:
-	if $Level.get_child(0) != null:
-		$Level.get_child(0).stop_level()
+	for node in $Level.get_children():
+		if node is not LevelCuller:
+			node.stop_level()
 	LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 	LevelManager.player_camera.process_mode = Node.PROCESS_MODE_DISABLED
 	$FadeScreenLayer/FadeScreen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
