@@ -2,7 +2,7 @@
 extends Property
 class_name Vector2Property
 
-signal value_changed(value: float)
+signal value_changed(value: Vector2)
 
 @export var default: Vector2
 @export var min_value: float

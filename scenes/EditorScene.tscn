@@ -1,4 +1,4 @@
-[gd_scene load_steps=260 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=262 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://c3d7se3g1r25n" path="res://assets/textures/guis/editor/block_palette/Solids.svg" id="4_7or8s"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="4_gl2yd"]
 [ext_resource type="Texture2D" uid="uid://buwtqcrkk8knn" path="res://assets/textures/solids/regular_blocks/RegularBlock01.svg" id="4_u8igg"]
-[ext_resource type="Script" uid="uid://bmcfx1nuxqejh" path="res://src/editor/TriggerGroupBoundingBox.gd" id="4_vhc6f"]
 [ext_resource type="StyleBox" uid="uid://bhjd8eq3ccy6n" path="res://resources/UnroundedStyle.tres" id="5_gehis"]
 [ext_resource type="Texture2D" uid="uid://7qnm5gdpp818" path="res://assets/textures/guis/editor/block_palette/Hazards.svg" id="5_gyl57"]
 [ext_resource type="Script" uid="uid://dgml627pc73bt" path="res://src/editor/menu_bar/MenuBarEdit.gd" id="5_rke8t"]
@@ -218,6 +217,8 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="192_hvjsv"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="193_5tfcf"]
 [ext_resource type="Script" uid="uid://cry3286stfmmk" path="res://src/editor/editor_panels/AttributeEditor.gd" id="195_gehis"]
+[ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
+[ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -403,7 +404,11 @@ script = ExtResource("193_5tfcf")
 [sub_resource type="Resource" id="Resource_vv5vx"]
 script = ExtResource("193_5tfcf")
 
+[sub_resource type="FoldableGroup" id="FoldableGroup_c6gj0"]
+allow_folding_all = true
+
 [sub_resource type="FoldableGroup" id="FoldableGroup_dl3g1"]
+allow_folding_all = true
 
 [sub_resource type="FoldableGroup" id="FoldableGroup_bmgxg"]
 
@@ -428,7 +433,6 @@ metadata/_edit_lock_ = true
 follow_viewport_enabled = true
 
 [node name="TriggerGroupBoundingBox" type="Node2D" parent="TriggerGroupBoundingBoxLayer"]
-script = ExtResource("4_vhc6f")
 metadata/_custom_type_script = "uid://bmcfx1nuxqejh"
 
 [node name="EditorUI" type="CanvasLayer" parent="."]
@@ -4820,14 +4824,76 @@ theme_type_variation = &"PaddedLineEdit"
 placeholder_text = "Name"
 alignment = 1
 
+[node name="Transform" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+title = "Transform"
+title_alignment = 1
+foldable_group = SubResource("FoldableGroup_c6gj0")
+
+[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("z_index_node", "scale_node", "position_node", "rotation_node")]
+layout_mode = 2
+script = ExtResource("208_5qr8h")
+z_index_node = NodePath("Z Index")
+scale_node = NodePath("Scale")
+position_node = NodePath("Position")
+rotation_node = NodePath("Rotation")
+
+[node name="Z Index" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("185_t7625")
+min_value = -100.0
+max_value = 4096.0
+step = 1.0
+rounded = true
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Scale" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("209_c6gj0")
+default = Vector2(1, 1)
+min_value = -16.0
+max_value = 16.0
+allow_lesser = true
+allow_greater = true
+metadata/_custom_type_script = "uid://crich318mmmk2"
+
+[node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("209_c6gj0")
+min_value = -1000.0
+max_value = 1000.0
+allow_lesser = true
+allow_greater = true
+metadata/_custom_type_script = "uid://crich318mmmk2"
+
+[node name="Rotation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("185_t7625")
+min_value = -360.0
+max_value = 360.0
+step = 0.01
+allow_lesser = true
+allow_greater = true
+suffix = "°"
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
 [node name="Groups" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Groups"
 title_alignment = 1
+foldable_group = SubResource("FoldableGroup_c6gj0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups"]
+visible = false
 layout_mode = 2
 
 [node name="GroupEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer" instance=ExtResource("55_5vu0v")]
@@ -4884,10 +4950,12 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
@@ -4910,12 +4978,10 @@ metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 [node name="HSV Shift" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "HSV Shift"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift"]
-visible = false
 layout_mode = 2
 
 [node name="Hue" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer"]
@@ -5173,6 +5239,10 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
 [connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_on_sort_children"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_set_z_index"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_scale_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Position" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_position_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
@@ -5187,6 +5257,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="_on_menu_bar_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="_save_level"]

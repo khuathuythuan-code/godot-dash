@@ -830,6 +830,34 @@ script = ExtResource("12_vf3uf")
 input_action = "ui_down"
 metadata/_custom_type_script = "uid://co733tkf77uuu"
 
+[node name="Increase Z Index" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Increase Z Index"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Increase Z Index"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_increase_z_index"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
+[node name="Decrease Z Index" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+folded = true
+title = "Decrease Z Index"
+
+[node name="KeybindLoader" type="VBoxContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer/Move/VBoxContainer/Decrease Z Index"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_vf3uf")
+input_action = "editor_decrease_z_index"
+metadata/_custom_type_script = "uid://co733tkf77uuu"
+
 [node name="Rotate" type="FoldableContainer" parent="Keybinds/SmoothScrollContainer/MarginContainer/VBoxContainer/Editor/VBoxContainer/Viewport/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
