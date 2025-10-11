@@ -344,6 +344,10 @@ editor_decrease_z_index={
 ]
 }
 
+[input_devices]
+
+pointing/android/enable_pan_and_scale_gestures=true
+
 [layer_names]
 
 2d_physics/layer_1="player"

@@ -34,7 +34,7 @@ signal zoom_changed
 
 @export var editor_viewport: Control
 @export var edit_handler: EditHandler
-
+var swipe := false
 var _tween_offset
 var _tween_zoom
 var _pan_direction: set = _set_pan_direction
@@ -60,6 +60,15 @@ func _input(event):
 		_change_zoom(1 + ((zoom_factor if zoom_factor > 1 else 1 / zoom_factor) - 1) * (event.factor - 1) * 2.5)
 	elif event is InputEventPanGesture:
 		_change_zoom(1 + (1 / zoom_factor - 1) * event.delta.y / 7.5)
+	elif event is InputEventScreenDrag:
+		if ((not edit_handler.any_gizmo_is_open() and not passthrough_gui) or passthrough_gui) and swipe == false:
+			_dragging = true
+			enable_wrap = false
+	elif event is InputEventScreenTouch:
+		if event.pressed:
+			pass # Might be useful later
+		else:
+			_dragging = false
 	elif event is InputEventMouseButton:
 		if event.pressed:
 			match event.button_index:
@@ -72,7 +81,7 @@ func _input(event):
 				MOUSE_BUTTON_MIDDLE:
 					if drag and ((get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui):
 						_dragging = true
-						
+						enable_wrap = true
 						# Input.set_default_cursor_shape(Input.CURSOR_DRAG) # delete to disable drag cursor
 						editor_viewport.mouse_default_cursor_shape = Control.CURSOR_DRAG
 		elif event.button_index == MOUSE_BUTTON_MIDDLE:
