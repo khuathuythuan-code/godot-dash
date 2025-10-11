@@ -52,7 +52,7 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	
 	interactable_section.visible = not selection.is_empty() and selection.all(InteractableEditor.is_interactable)
 	interactable_section.set_deferred(&"folded", not selection.all(InteractableEditor.is_interactable))
-	color_section.set_deferred(&"folded", selection.all(InteractableEditor.is_interactable))
+	color_section.set_deferred(&"folded", selection.all(InteractableEditor.is_interactable) and not selection.is_empty())
 	
 	attributes_section.visible = not selection.is_empty()
 
