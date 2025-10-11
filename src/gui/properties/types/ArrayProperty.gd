@@ -14,7 +14,6 @@ const NO_SIGNAL = 1
 @export_tool_button("Refresh") var _refresh = refresh
 
 var label_container: HBoxContainer
-var label: Label
 var add: Button
 var items: ReorderableVBox
 var item_panel: PanelContainer

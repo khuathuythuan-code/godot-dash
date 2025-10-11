@@ -5,6 +5,7 @@ class_name Property
 
 # Used to serialize the value
 var _value: Variant
+var label: Label
 
 func _init() -> void:
 	custom_minimum_size.y = 32.0

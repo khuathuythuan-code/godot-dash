@@ -10,7 +10,6 @@ signal value_changed(value: String)
 @export var lineedit_width: float = 160.0
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: LineEdit
 
 func _ready() -> void:

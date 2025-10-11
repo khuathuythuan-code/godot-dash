@@ -10,7 +10,6 @@ signal value_changed(value: String)
 @export var import_to: String
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: MenuButton
 
 func _ready() -> void:

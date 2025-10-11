@@ -8,7 +8,6 @@ signal value_changed(value: String)
 @export var fields: PackedStringArray
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: OptionButton
 
 func _ready() -> void:

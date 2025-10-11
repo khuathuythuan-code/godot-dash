@@ -7,7 +7,6 @@ signal value_changed(value: bool)
 @export var default: bool
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: CheckBox
 
 func _ready() -> void:

@@ -17,7 +17,6 @@ signal value_changed(value: float)
 @export var expand_to_text_length: bool
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: HSliderSpinBox
 
 func _ready() -> void:

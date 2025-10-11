@@ -15,7 +15,6 @@ signal value_changed(value: Resource)
 		default.resource_local_to_scene = true
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var indentation_container: VBoxContainer
 var resource_properties: Array
 

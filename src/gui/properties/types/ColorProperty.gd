@@ -8,7 +8,6 @@ signal value_changed(value: Color)
 @export var button_width: float = 100.0
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: ColorPickerButton
 
 func _ready() -> void:

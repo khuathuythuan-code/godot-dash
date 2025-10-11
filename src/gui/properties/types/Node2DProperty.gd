@@ -7,7 +7,6 @@ signal value_changed(value: Node2D)
 @export var default: Node2D
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label: Label
 var input: Button
 
 
