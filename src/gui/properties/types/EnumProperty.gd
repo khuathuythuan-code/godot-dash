@@ -12,8 +12,6 @@ var input: OptionButton
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	var spacer = NodeUtils.get_node_or_add(self, "Spacer", Control, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", OptionButton, NodeUtils.INTERNAL)
 	input.item_selected.connect(func(new_value): value_changed.emit(new_value))
 	renamed.connect(refresh)
@@ -41,6 +39,7 @@ func refresh() -> void:
 	label.text = name
 	input.clear()
 	input.theme_type_variation = &"TransButton" if fields[0].begins_with("Trans ") and Config.config.enable_easter_eggs else &""
+	input.custom_minimum_size.y = MIN_HEIGHT
 	for field in fields:
 		input.add_item(field if Config.config.enable_easter_eggs else field.trim_prefix("Trans "))
 	if Engine.is_editor_hint():

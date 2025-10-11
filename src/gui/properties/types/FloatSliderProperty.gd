@@ -19,10 +19,9 @@ signal value_changed(value: float)
 
 var input: HSliderSpinBox
 
+
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	var spacer = NodeUtils.get_node_or_add(self, "Spacer", Control, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", HSliderSpinBox, NodeUtils.INTERNAL)
 	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
 	renamed.connect(refresh)
@@ -34,20 +33,25 @@ func _ready() -> void:
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
 
+
 func set_value(new_value: float) -> void:
 	_value = new_value
 	input.set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 
+
 func set_value_no_signal(new_value: float) -> void:
 	_value = new_value
 	input.set_value_no_signal(new_value)
 
+
 func get_value() -> float:
 	return input.get_value()
 
+
 func reset() -> void:
 	set_value(default)
+
 
 func refresh() -> void:
 	label.text = name
@@ -65,6 +69,7 @@ func refresh() -> void:
 	input.update_internals()
 	if Engine.is_editor_hint():
 		reset()
+
 
 func set_input_state(enabled: bool) -> void:
 	input.editable = enabled

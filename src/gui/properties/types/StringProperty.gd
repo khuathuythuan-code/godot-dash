@@ -12,10 +12,9 @@ signal value_changed(value: String)
 
 var input: LineEdit
 
+
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	var spacer = NodeUtils.get_node_or_add(self, "Spacer", Control, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", LineEdit, NodeUtils.INTERNAL)
 	input.text_submitted.connect(func(new_value): value_changed.emit(new_value))
 	input.text_submitted.connect(submitted_release_focus)
@@ -26,20 +25,25 @@ func _ready() -> void:
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
 
+
 func set_value(new_value: String) -> void:
 	_value = new_value
 	input.set_text(new_value)
 	value_changed.emit(new_value)
 
+
 func set_value_no_signal(new_value: String) -> void:
 	_value = new_value
 	input.set_text(new_value)
 
+
 func get_value() -> String:
 	return input.get_text()
 
+
 func reset() -> void:
 	set_value(default)
+
 
 func refresh() -> void:
 	label.text = name
@@ -49,6 +53,7 @@ func refresh() -> void:
 	input.select_all_on_focus = select_all_on_focus
 	if Engine.is_editor_hint():
 		reset()
+
 
 func set_input_state(enabled: bool) -> void:
 	input.editable = enabled

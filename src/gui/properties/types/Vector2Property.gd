@@ -15,7 +15,7 @@ signal value_changed(value: Vector2)
 @export var suffix: String
 @export var keep_aspect: bool ## Use the monitor's aspect ratio
 @export var expand_to_text_length: bool
-@export var vertical_spinbox: bool = true
+@export var vertical_spinbox: bool = false
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: Vector2SpinBox
@@ -23,9 +23,9 @@ var input: Vector2SpinBox
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	var spacer = NodeUtils.get_node_or_add(self, "Spacer", Control, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
+	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", Vector2SpinBox, NodeUtils.INTERNAL)
+	input.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
 	renamed.connect(refresh)
 	refresh()

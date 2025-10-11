@@ -2,13 +2,18 @@
 extends BoxContainer
 class_name Property
 
+const MIN_HEIGHT: float = 28.0
 
 # Used to serialize the value
 var _value: Variant
-var label: Label
+var label: Label:
+	set(value):
+		label = value
+		label.theme_type_variation = &"PropertyLabel"
 
 func _init() -> void:
 	custom_minimum_size.y = 32.0
+	vertical = true
 
 @abstract func reset() -> void
 

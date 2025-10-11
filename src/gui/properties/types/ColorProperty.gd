@@ -39,7 +39,7 @@ func reset() -> void:
 
 func refresh() -> void:
 	label.text = name
-	input.custom_minimum_size.x = button_width
+	input.custom_minimum_size.y = MIN_HEIGHT
 	if Engine.is_editor_hint():
 		reset()
 

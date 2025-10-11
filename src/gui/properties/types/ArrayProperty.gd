@@ -13,31 +13,28 @@ const NO_SIGNAL = 1
 @export var item_template: PackedScene
 @export_tool_button("Refresh") var _refresh = refresh
 
-var label_container: HBoxContainer
 var add: Button
 var items: ReorderableVBox
 var item_panel: PanelContainer
+
 
 func _ready() -> void:
 	if _value is not Array:
 		_value = []
 	vertical = true
-	label_container = NodeUtils.get_node_or_add(self, "LabelContainer", HBoxContainer, NodeUtils.INTERNAL)
-	label_container.custom_minimum_size.y = custom_minimum_size.y
-	label = NodeUtils.get_node_or_add(label_container, "Label", Label, NodeUtils.INTERNAL)
-	var spacer := NodeUtils.get_node_or_add(label_container, "Label", Label, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
-	add = NodeUtils.get_node_or_add(label_container, "Add", Button, NodeUtils.INTERNAL)
+	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
+	item_panel = NodeUtils.get_node_or_add(self, "PanelContainer", PanelContainer, NodeUtils.INTERNAL)
+	var margin_container: MarginContainer = NodeUtils.get_node_or_add(item_panel, "MarginContainer", MarginContainer, NodeUtils.INTERNAL)
+	var vbox: VBoxContainer = NodeUtils.get_node_or_add(margin_container, "VBoxContainer", VBoxContainer, NodeUtils.INTERNAL)
+	items = NodeUtils.get_node_or_add(vbox, "Items", ReorderableVBox, NodeUtils.INTERNAL)
+	items.hold_duration = 0.2
+	items.set_meta("array_property", self)
+	items.reordered.connect(refresh_item_names)
+	add = NodeUtils.get_node_or_add(vbox, "Add", Button, NodeUtils.INTERNAL)
 	add.icon = preload("res://assets/textures/godot_editor_icons/Add.svg")
 	add.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add.custom_minimum_size.x = custom_minimum_size.y
 	add.pressed.connect(add_item.bind(-1))
-	item_panel = NodeUtils.get_node_or_add(self, "PanelContainer", PanelContainer, NodeUtils.INTERNAL)
-	var margin_container: MarginContainer = NodeUtils.get_node_or_add(item_panel, "MarginContainer", MarginContainer, NodeUtils.INTERNAL)
-	items = NodeUtils.get_node_or_add(margin_container, "Items", ReorderableVBox, NodeUtils.INTERNAL)
-	items.hold_duration = 0.2
-	items.set_meta("array_property", self)
-	items.reordered.connect(refresh_item_names)
 	renamed.connect(refresh)
 	refresh()
 

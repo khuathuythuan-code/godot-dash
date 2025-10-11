@@ -57,7 +57,6 @@ func _ready() -> void:
 
 func refresh() -> void:
 	label.text = name
-	label.custom_minimum_size.y = custom_minimum_size.y
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	vertical = true
 	if Engine.is_editor_hint():

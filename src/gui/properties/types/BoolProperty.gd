@@ -15,6 +15,9 @@ func _ready() -> void:
 	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", CheckBox, NodeUtils.INTERNAL) as CheckBox
 	input.toggled.connect(func(new_value): value_changed.emit(new_value))
+	input.text = "Enabled"
+	input.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	input.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \

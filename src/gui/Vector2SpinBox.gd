@@ -40,6 +40,8 @@ var _value: Vector2
 func _ready() -> void:
 	spinbox_x = NodeUtils.get_node_or_add(self, "SpinBoxX", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
 	spinbox_y = NodeUtils.get_node_or_add(self, "SpinBoxY", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
+	spinbox_x.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	spinbox_y.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	spinbox_x.value_changed.connect(_set_x)
 	spinbox_y.value_changed.connect(_set_y)
 	update_internals()
