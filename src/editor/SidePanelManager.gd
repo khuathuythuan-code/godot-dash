@@ -4,6 +4,9 @@ extends Node
 @export var side_panel: PanelContainer
 @export var object_name: LineEdit
 
+@export_group("Transform")
+@export var transform_section: FoldableContainer
+
 @export_group("Groups")
 @export var group_section: FoldableContainer
 @export var group_editor: GroupEditor
@@ -41,11 +44,15 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 		object_name.editable = false
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
+
+	transform_section.visible = not selection.is_empty()
 	
 	group_section.visible = not selection.is_empty()
 	group_editor.selected_objects = selection
 	
 	interactable_section.visible = not selection.is_empty() and selection.all(InteractableEditor.is_interactable)
+	interactable_section.set_deferred(&"folded", not selection.all(InteractableEditor.is_interactable))
+	color_section.set_deferred(&"folded", selection.all(InteractableEditor.is_interactable))
 	
 	attributes_section.visible = not selection.is_empty()
 

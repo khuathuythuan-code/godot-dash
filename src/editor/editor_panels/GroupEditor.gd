@@ -77,6 +77,7 @@ func _populate_group_list(selection: Array[Node2D]) -> void:
 			group_buttons[new_group] = Button.new()
 			group_buttons[new_group].text = new_group.trim_prefix(GROUP_PREFIX)
 			group_buttons[new_group].pressed.connect(_remove_group)
+			group_buttons[new_group].theme_type_variation = &"GroupButton"
 			group_container.add_child(group_buttons[new_group])
 	# Substractive pass
 	for old_group in group_buttons.keys():

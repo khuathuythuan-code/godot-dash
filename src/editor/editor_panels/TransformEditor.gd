@@ -16,9 +16,7 @@ var same_rotation: bool = true
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	current_selection = selection
 	if selection.is_empty():
-		parent.hide()
 		return
-	parent.show()
 	first_object = current_selection.get(0)
 	selection_size = selection.size()
 
