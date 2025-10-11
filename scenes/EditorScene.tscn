@@ -217,7 +217,7 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="192_hvjsv"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="193_5tfcf"]
 [ext_resource type="Script" uid="uid://cry3286stfmmk" path="res://src/editor/editor_panels/AttributeEditor.gd" id="195_gehis"]
-[ext_resource type="Script" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
+[ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
@@ -4953,12 +4953,10 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
-visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 

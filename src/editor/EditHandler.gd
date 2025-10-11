@@ -356,6 +356,8 @@ func _on_flip_v_pressed() -> void:
 
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
+	if selection.is_empty():
+		return
 	_update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
@@ -371,6 +373,8 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 
 
 func _on_scale_pressed(quick: bool = false) -> void:
+	if selection.is_empty():
+		return
 	_update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
