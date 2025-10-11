@@ -34,7 +34,7 @@ signal zoom_changed
 
 @export var editor_viewport: Control
 @export var edit_handler: EditHandler
-
+var swipe := false
 var _tween_offset
 var _tween_zoom
 var _pan_direction: set = _set_pan_direction
@@ -61,7 +61,7 @@ func _input(event):
 	elif event is InputEventPanGesture:
 		_change_zoom(1 + (1 / zoom_factor - 1) * event.delta.y / 7.5)
 	elif event is InputEventScreenDrag:
-		if ((not $"../Gizmos".get_child(0) and not passthrough_gui) or passthrough_gui):
+		if ((not $"../Gizmos".get_child(0) and not passthrough_gui) or passthrough_gui) and swipe == false:
 			_dragging = true
 			enable_wrap = false
 	elif event is InputEventScreenTouch:

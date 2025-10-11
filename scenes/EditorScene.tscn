@@ -1,4 +1,4 @@
-[gd_scene load_steps=263 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=264 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ccdry45jmn43w" path="res://scenes/components/level_components/solids/DefaultBlock.tscn" id="7_ii36d"]
 [ext_resource type="Texture2D" uid="uid://bq33ebf402ci7" path="res://assets/textures/guis/editor/block_palette/Triggers.svg" id="7_m16em"]
 [ext_resource type="Script" uid="uid://demkbf7ghqc82" path="res://src/editor/menu_bar/MenuBarHelp.gd" id="8_dl3g1"]
-[ext_resource type="Script" uid="uid://dwe55gg8wscaq" path="res://scenes/Actions.gd" id="8_pfb6b"]
+[ext_resource type="Script" uid="uid://dwe55gg8wscaq" path="res://src/editor/menu_bar/Actions.gd" id="8_pfb6b"]
 [ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/RegularSpikeNormal.svg" id="11_xeik2"]
 [ext_resource type="PackedScene" uid="uid://calhypvupvj4m" path="res://scenes/components/level_components/hazards/Spike.tscn" id="12_18txt"]
 [ext_resource type="Script" uid="uid://co2f1y4xv7viv" path="res://src/resources/TextureOverride.gd" id="12_egrfm"]
@@ -218,6 +218,7 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="192_hvjsv"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="193_5tfcf"]
 [ext_resource type="Script" uid="uid://cry3286stfmmk" path="res://src/editor/editor_panels/AttributeEditor.gd" id="195_gehis"]
+[ext_resource type="Script" uid="uid://bwu71rlnecn3p" path="res://src/editor/SelectOptions.gd" id="202_6b621"]
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 
@@ -623,10 +624,11 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 0
+current_tab = 1
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
@@ -4598,13 +4600,13 @@ script = ExtResource("3_d5qub")
 icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
 
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
-visible = false
 layout_mode = 2
-current_tab = 0
+current_tab = 2
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 1
 
 [node name="Integer Steps" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -4793,6 +4795,28 @@ focus_mode = 0
 icon = ExtResource("60_46ckf")
 text_overrun_behavior = 1
 expand_icon = true
+
+[node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
+layout_mode = 2
+script = ExtResource("202_6b621")
+metadata/_tab_index = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options"]
+layout_mode = 2
+
+[node name="AdditionalControlsLeft" type="VBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="Swipe" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Swipe"
+
+[node name="Swipe2" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+text = "Swipe"
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
 visible = false
@@ -5248,6 +5272,7 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/FlipV" to="EditHandler" method="_on_flip_v_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
+[connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Swipe" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_swipe_toggled"]
 [connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_on_sort_children"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_set_z_index"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_scale_value_changed"]
