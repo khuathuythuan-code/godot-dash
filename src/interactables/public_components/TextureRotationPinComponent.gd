@@ -18,3 +18,4 @@ func _process(_delta: float) -> void:
 	else:
 		pinned.set_deferred(&"global_rotation", 0.0)
 	pinned.set_deferred(&"global_scale", parent.scale.abs() * sprite_scale)
+	pinned.set_deferred(&"global_skew", 0.0)
