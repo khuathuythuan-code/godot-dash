@@ -3,7 +3,7 @@ class_name ScaleGizmo
 
 signal scale_changed(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, rotation: float)
 
-const HANDLE_RADIUS: float = 8.0
+var HANDLE_RADIUS: float = 8.0
 
 var handles: Array[Handle] = [
 	# Resize handles
@@ -61,6 +61,8 @@ func _init(_bounding_box_size: Vector2) -> void:
 
 
 func _ready() -> void:
+	if Config.config.touch_screen:
+		HANDLE_RADIUS = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
 	tween = create_tween()

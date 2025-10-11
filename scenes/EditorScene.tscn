@@ -626,11 +626,10 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 2
+current_tab = 0
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
@@ -4818,6 +4817,7 @@ layout_mode = 2
 icon = ExtResource("204_w20ac")
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
