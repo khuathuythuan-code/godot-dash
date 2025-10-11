@@ -1,4 +1,4 @@
-[gd_scene load_steps=262 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=263 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://ccdry45jmn43w" path="res://scenes/components/level_components/solids/DefaultBlock.tscn" id="7_ii36d"]
 [ext_resource type="Texture2D" uid="uid://bq33ebf402ci7" path="res://assets/textures/guis/editor/block_palette/Triggers.svg" id="7_m16em"]
 [ext_resource type="Script" uid="uid://demkbf7ghqc82" path="res://src/editor/menu_bar/MenuBarHelp.gd" id="8_dl3g1"]
+[ext_resource type="Script" uid="uid://dwe55gg8wscaq" path="res://scenes/Actions.gd" id="8_pfb6b"]
 [ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/RegularSpikeNormal.svg" id="11_xeik2"]
 [ext_resource type="PackedScene" uid="uid://calhypvupvj4m" path="res://scenes/components/level_components/hazards/Spike.tscn" id="12_18txt"]
 [ext_resource type="Script" uid="uid://co2f1y4xv7viv" path="res://src/resources/TextureOverride.gd" id="12_egrfm"]
@@ -551,6 +552,14 @@ script = ExtResource("6_5ik7l")
 game_scene = NodePath("../../../../../../GameScene")
 side_panel = NodePath("../../../../SidePanel")
 bottom_panel = NodePath("../../../VSplitContainer/EditorModes")
+
+[node name="Actions" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
+size = Vector2i(133, 100)
+hide_on_checkable_item_selection = false
+item_count = 1
+item_0/text = "Menu"
+item_0/id = 0
+script = ExtResource("8_pfb6b")
 
 [node name="Help" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
 oversampling_override = 1.0
@@ -5213,6 +5222,7 @@ cancel_button_text = "Open Existing"
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Level" to="LevelOperationsHandler" method="_on_level_index_pressed"]
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Edit" method="_on_index_pressed"]
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View" method="_on_index_pressed"]
+[connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Actions" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Actions" method="_on_index_pressed"]
 [connection signal="index_pressed" from="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Help" to="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/Help" method="_on_index_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/Playtest" to="." method="_on_playtest_pressed"]
 [connection signal="ready" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/BlockPaletteIcons" method="_on_tab_container_ready"]
