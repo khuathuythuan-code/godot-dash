@@ -34,7 +34,7 @@ signal zoom_changed
 
 @export var editor_viewport: Control
 @export var edit_handler: EditHandler
-var swipe := false
+var swipe := Editor.swipe
 var _tween_offset
 var _tween_zoom
 var _pan_direction: set = _set_pan_direction

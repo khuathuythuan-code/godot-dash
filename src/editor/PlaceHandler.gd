@@ -111,4 +111,3 @@ func _on_edit_handler_rotated_object_degrees(rotation_degrees:float) -> void:
 		placed_object_rotation_degrees = 0.0
 	else:
 		placed_object_rotation_degrees += rotation_degrees
-

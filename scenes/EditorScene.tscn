@@ -4815,7 +4815,6 @@ layout_mode = 2
 [node name="Swipe" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-text = "Swipe"
 icon = ExtResource("204_w20ac")
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
