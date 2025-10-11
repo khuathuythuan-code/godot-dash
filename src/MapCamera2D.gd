@@ -64,7 +64,10 @@ func _input(event):
 		if ((get_viewport().gui_get_hovered_control() == editor_viewport and not passthrough_gui) or passthrough_gui):
 			_dragging = true
 			enable_wrap = false
-		if event.is_canceled():
+	elif event is InputEventScreenTouch:
+		if event.pressed:
+			pass # Might be useful later
+		else:
 			_dragging = false
 	elif event is InputEventMouseButton:
 		if event.pressed:
