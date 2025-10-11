@@ -4,6 +4,7 @@ class_name UserPreferences extends Resource
 @export_range(0, 60, 1, "or_greater") var max_fps: int = 60
 @export var vsync: int
 @export var window_mode: int
+@export var anti_aliasing: int = 0
 
 @export_group("Performance")
 @export var hide_particles_editor_only: bool = true
