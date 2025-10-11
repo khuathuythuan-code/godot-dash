@@ -1,4 +1,4 @@
-[gd_scene load_steps=264 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=265 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -624,11 +624,10 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 1
+current_tab = 0
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
@@ -4600,6 +4599,7 @@ script = ExtResource("3_d5qub")
 icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
 
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
+visible = false
 layout_mode = 2
 current_tab = 2
 script = ExtResource("4_2at5j")
@@ -4913,6 +4913,7 @@ min_value = -16.0
 max_value = 16.0
 allow_lesser = true
 allow_greater = true
+vertical_spinbox = null
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
 [node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
@@ -4924,6 +4925,7 @@ max_value = 1000.0
 allow_lesser = true
 allow_greater = true
 suffix = "cells"
+vertical_spinbox = null
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
 [node name="Rotation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
