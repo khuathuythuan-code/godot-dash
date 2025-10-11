@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="7_dv0aw"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="7_xmx11"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="8_00t8p"]
-[ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="10_b5wg1"]
+[ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="13_xmx11"]
 
 [sub_resource type="Resource" id="Resource_17tqa"]
 script = ExtResource("8_00t8p")
@@ -83,6 +83,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("5_b5wg1")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
@@ -104,6 +105,7 @@ metadata/_custom_type_script = "uid://dewr6g2sliqsr"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("6_maglq")
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
@@ -111,6 +113,7 @@ metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("7_dv0aw")
 fields = PackedStringArray("Background", "Ground", "Line", "P1", "P2", "Glow")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
@@ -127,47 +130,55 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_b5wg1")
+vertical = true
+script = ExtResource("13_xmx11")
+default = 1.0
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Saturation" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_b5wg1")
+vertical = true
+script = ExtResource("13_xmx11")
+default = 1.0
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Value" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_b5wg1")
+vertical = true
+script = ExtResource("13_xmx11")
+default = 1.0
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Strength" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_b5wg1")
-min_value = -1.0
-max_value = 1.0
+vertical = true
+script = ExtResource("13_xmx11")
+default = 1.0
+max_value = 5.0
 allow_greater = true
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Alpha" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-script = ExtResource("10_b5wg1")
-min_value = -1.0
+vertical = true
+script = ExtResource("13_xmx11")
+default = 1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 auto_translate_mode = 1

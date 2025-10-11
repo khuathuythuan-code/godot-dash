@@ -2,11 +2,11 @@ extends Node
 class_name HSVHandler
 
 
-@export var hue: FloatProperty
-@export var saturation: FloatProperty
-@export var value: FloatProperty
-@export var strength: FloatProperty
-@export var alpha: FloatProperty
+@export var hue: FloatSliderProperty
+@export var saturation: FloatSliderProperty
+@export var value: FloatSliderProperty
+@export var strength: FloatSliderProperty
+@export var alpha: FloatSliderProperty
 @export var editor_viewport: Control
 
 

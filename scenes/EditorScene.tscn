@@ -1,4 +1,4 @@
-[gd_scene load_steps=265 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=266 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -222,6 +222,7 @@
 [ext_resource type="Script" uid="uid://bwu71rlnecn3p" path="res://src/editor/SelectOptions.gd" id="202_6b621"]
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
+[ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -4873,6 +4874,7 @@ mouse_filter = 1
 [node name="Group parent" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("179_0v0om")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
@@ -4908,6 +4910,7 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 [node name="Scale" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 vertical = true
 script = ExtResource("209_c6gj0")
 default = Vector2(1, 1)
@@ -4920,6 +4923,7 @@ metadata/_custom_type_script = "uid://crich318mmmk2"
 [node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 vertical = true
 script = ExtResource("209_c6gj0")
 min_value = -1000.0
@@ -4973,13 +4977,11 @@ metadata/_custom_type_script = "uid://cry3286stfmmk"
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Colors"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors"]
-visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
@@ -5026,51 +5028,51 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
+script = ExtResource("213_w20ac")
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Saturation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
+script = ExtResource("213_w20ac")
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Value" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
+script = ExtResource("213_w20ac")
 min_value = -1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Strength" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
-min_value = -1.0
-max_value = 1.0
+script = ExtResource("213_w20ac")
+default = 1.0
+max_value = 5.0
 allow_greater = true
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Alpha" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
-min_value = -1.0
+script = ExtResource("213_w20ac")
+default = 1.0
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="LevelSettings" parent="EditorUI" instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
