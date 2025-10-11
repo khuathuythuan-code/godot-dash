@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	if cursor_position_snapped != previous_cursor_position_snapped:
 		selection_index = 0
 	var is_already_swiping_selection: bool = $SelectionZone/Hitbox.shape.size != Vector2.ZERO
-	if Input.is_action_just_pressed(&"editor_select_all"):
+	if Input.is_action_just_pressed(&"editor_select_all", true) and not get_viewport().gui_get_focus_owner() is LineEdit:
 		select_all()
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
@@ -54,25 +54,25 @@ func _physics_process(delta: float) -> void:
 			_update_selection()
 		var can_use_actions: bool = (
 				not selection.is_empty() and not (
-					Input.is_action_pressed(&"editor_save")
-					or Input.is_action_pressed(&"editor_save_as")
-					or Input.is_action_pressed(&"editor_new_level")
-					or Input.is_action_pressed(&"editor_import_level")
-					or Input.is_action_pressed(&"editor_export_level")
+					Input.is_action_pressed(&"editor_save", true)
+					or Input.is_action_pressed(&"editor_save_as", true)
+					or Input.is_action_pressed(&"editor_new_level", true)
+					or Input.is_action_pressed(&"editor_import_level", true)
+					or Input.is_action_pressed(&"editor_export_level", true)
 					or any_gizmo_is_open()
 				)
 		)
 		if can_use_actions:
-			if Input.is_action_just_pressed(&"editor_deselect"):
+			if Input.is_action_just_pressed(&"editor_deselect", true):
 				clear_selection()
-			if Input.is_action_just_pressed(&"editor_delete"):
+			if Input.is_action_just_pressed(&"editor_delete", true):
 				delete_selection()
-			if Input.is_action_just_pressed(&"editor_duplicate"):
+			if Input.is_action_just_pressed(&"editor_duplicate", true):
 				duplicate_selection()
 				object_move_cooldown = 5
-			if Input.is_action_just_pressed(&"ui_copy"):
+			if Input.is_action_just_pressed(&"ui_copy", true):
 				copy_selection()
-			if Input.is_action_just_pressed(&"ui_paste"):
+			if Input.is_action_just_pressed(&"ui_paste", true):
 				paste_selection()
 				object_move_cooldown = 5
 			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")\
@@ -96,17 +96,17 @@ func _physics_process(delta: float) -> void:
 				_rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				object_move_cooldown = 0.2
-			if Input.is_action_just_pressed(&"editor_flip_h"):
+			if Input.is_action_just_pressed(&"editor_flip_h", true):
 				_flip_selection(Vector2.AXIS_X)
-			if Input.is_action_just_pressed(&"editor_flip_v"):
+			if Input.is_action_just_pressed(&"editor_flip_v", true):
 				_flip_selection(Vector2.AXIS_Y)
-			if Input.is_action_just_pressed(&"editor_rotate_free"):
+			if Input.is_action_just_pressed(&"editor_rotate_free", true):
 				_on_rotate_free_pressed()
-			elif Input.is_action_just_pressed(&"editor_quick_rotate_free"):
+			elif Input.is_action_just_pressed(&"editor_quick_rotate_free", true):
 				_on_rotate_free_pressed(true)
-			if Input.is_action_just_pressed(&"editor_scale"):
+			if Input.is_action_just_pressed(&"editor_scale", true):
 				_on_scale_pressed()
-			elif Input.is_action_just_pressed(&"editor_quick_scale"):
+			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
 				selection.map(increase_z_index)
@@ -139,9 +139,9 @@ func decrease_z_index(object: Node):
 
 
 func _update_selection() -> void:
-	if get_viewport().gui_get_hovered_control() == editor_viewport and Input.is_action_just_pressed(&"editor_add"):
-		if not Input.is_action_just_pressed(&"editor_add_swipe") \
-				and not Input.is_action_just_pressed(&"editor_selection_remove"):
+	if get_viewport().gui_get_hovered_control() == editor_viewport and Input.is_action_just_pressed(&"editor_add", false):
+		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
+				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			for object in selection:
 				if object.has_node("HSVWatcher"):
 					object = object.get_node("HSVWatcher")
@@ -150,7 +150,7 @@ func _update_selection() -> void:
 			selection_index += 1
 			selection_changed.emit(selection)
 		_reset_selection_zone(false)
-		if placed_objects_collider.has_overlapping_areas() and not (Input.is_action_just_pressed(&"editor_add_swipe") or Input.is_action_just_pressed(&"editor_selection_remove")):
+		if placed_objects_collider.has_overlapping_areas() and not (Input.is_action_just_pressed(&"editor_add_swipe", false) or Input.is_action_just_pressed(&"editor_selection_remove", false)):
 			selection = [
 				get_object_parent(
 					placed_objects_collider.get_overlapping_areas()[
@@ -159,14 +159,14 @@ func _update_selection() -> void:
 				)
 			]
 			selection_changed.emit(selection)
-	if Input.is_action_pressed(&"editor_selection_remove") or Input.is_action_pressed(&"editor_add"):
+	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
 	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
-	if Input.is_action_just_released(&"editor_selection_remove"):
+	if Input.is_action_just_released(&"editor_selection_remove", true):
 		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
 		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
 		selection_changed.emit(selection)
-	elif (Input.is_action_just_released(&"editor_add") and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe"):
+	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
 		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
 		selection_changed.emit(selection)
 	selection.erase(level)

@@ -23,5 +23,8 @@ func set_gravity(player: Player) -> void:
 			player.gravity_flip = -1
 		FlipState.FLIP:
 			player.gravity_flip *= -1
+	var local_velocity: Vector2 = player.velocity.rotated(-player.gameplay_rotation)
+	local_velocity.y = clampf(local_velocity.y, -Player.TERMINAL_VELOCITY.y, Player.TERMINAL_VELOCITY.y)
+	player.velocity = local_velocity.rotated(player.gameplay_rotation)
 
 

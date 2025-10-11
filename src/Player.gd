@@ -76,7 +76,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var slope_collider: CircleShape2D
 
 # Public
-var coyote_frames: int
+var coyote_time: float
 var rebound_velocity: float
 var gameplay_rotation_degrees: float = 0.0
 var gameplay_rotation: float:
@@ -305,12 +305,12 @@ func _get_jump_state() -> int:
 	
 	if jump_hold_disabled:
 		jump_state = -1
-		if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling() or coyote_frames > 0):
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling() or coyote_time > 0):
 			jump_hold_disabled = false
 	elif internal_gamemode == Gamemode.CUBE:
-		jump_state = 1 if Input.is_action_pressed("jump") and (is_on_floor() or coyote_frames > 0) else -1
+		jump_state = 1 if Input.is_action_pressed("jump") and (is_on_floor() or coyote_time > 0) else -1
 	elif internal_gamemode == Gamemode.ROBOT:
-		if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_frames > 0):
+		if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
 			$RobotTimer.start(0.25)
 		if Input.is_action_just_released("jump"):
 			$RobotTimer.stop()
@@ -501,12 +501,12 @@ func _compute_velocity(delta: float,
 
 	var is_falling: bool = _velocity.y * gravity_flip > 0
 	if is_on_floor():
-		coyote_frames = 10
+		coyote_time = 2.0/60.0
 	else:
 		if is_falling:
-			coyote_frames = max(0, coyote_frames - 1)
+			coyote_time = max(0, coyote_time - delta)
 		else:
-			coyote_frames = 0
+			coyote_time = 0.0
 
 	_deferred_velocity_redirect = _ensure_velocity_redirect(delta, _velocity.rotated(gameplay_rotation))
 

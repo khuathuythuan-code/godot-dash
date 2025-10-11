@@ -4897,6 +4897,7 @@ min_value = -1000.0
 max_value = 1000.0
 allow_lesser = true
 allow_greater = true
+suffix = "cells"
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
 [node name="Rotation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
@@ -4941,11 +4942,13 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 visible = false
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Interactable"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Interactable" instance=ExtResource("183_momrj")]
+visible = false
 layout_mode = 2
 
 [node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
