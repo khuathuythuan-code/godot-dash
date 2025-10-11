@@ -23,6 +23,10 @@ var MARKER_COMPONENTS: Array[Script] = [
 	NoEffectsComponent,
 ]
 
+@export var components_root: Container
+@export var separator: HSeparator
+@export var markers_root: Container
+
 var marker_properties: Dictionary[Script, BoolProperty]
 
 
@@ -36,7 +40,7 @@ func _ready() -> void:
 		var property := BoolProperty.new()
 		property.name = marker.get_global_name().trim_suffix("Component").capitalize()
 		marker_properties.set(marker, property)
-		%MarkerRoot.add_child(property)
+		markers_root.add_child(property)
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
@@ -49,7 +53,7 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 
 
 func clear_ui() -> void:
-	%ComponentRoot.get_children().map(func(child): child.queue_free())
+	components_root.get_children().map(func(child): child.queue_free())
 
 
 func rebuild_ui(interactables: Array[Interactable]) -> void:
@@ -106,8 +110,9 @@ func build_ui(interactables: Array[Interactable]) -> void:
 			last_section.show.call_deferred()
 		if i < displayed_components.size() - 1:
 			ui_root.add_child(HSeparator.new())
-	%ComponentRoot.add_child(ui_root)
-	%ComponentRoot.visible = ui_root.get_child_count() > 0
+	components_root.add_child(ui_root)
+	components_root.visible = ui_root.get_child_count() > 0
+	separator.visible = components_root.visible
 
 	connect_ui(interactables, self)
 	load_properties.call_deferred(first_interactable, self)

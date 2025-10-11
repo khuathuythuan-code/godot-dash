@@ -2,22 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dxxcbi05qwalg" path="res://src/editor/editor_panels/InteractableEditor.gd" id="1_vj0e3"]
 
-[node name="InteractableEditor" type="VBoxContainer"]
+[node name="InteractableEditor" type="VBoxContainer" node_paths=PackedStringArray("components_root", "separator", "markers_root")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vj0e3")
+components_root = NodePath("Components")
+separator = NodePath("HSeparator")
+markers_root = NodePath("Markers")
 
-[node name="ComponentRoot" type="FoldableContainer" parent="."]
-unique_name_in_owner = true
+[node name="Components" type="FoldableContainer" parent="."]
 layout_mode = 2
 title = "Components"
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
 
-[node name="MarkerRoot" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
+[node name="Markers" type="VBoxContainer" parent="."]
 layout_mode = 2
