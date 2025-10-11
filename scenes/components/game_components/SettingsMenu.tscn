@@ -139,10 +139,12 @@ config_property = &"window_mode"
 [node name="Particles" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Particles"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles"]
+visible = false
 layout_mode = 2
 
 [node name="Preprocess" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer"]
@@ -293,20 +295,24 @@ config_property = &"hide_speedportal_particles"
 [node name="Performance" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Performance"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance"]
+visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
 [node name="Culling" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Culling"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Culling"]
+visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
@@ -381,6 +387,30 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 [node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Culling/VBoxContainer/Interval"]
 script = ExtResource("6_p6jor")
 config_property = &"cull_interval"
+
+[node name="Post Processing" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+folded = true
+title = "Post Processing"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing"]
+visible = false
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="Anti-Aliasing" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+script = ExtResource("9_vf3uf")
+fields = PackedStringArray("MSAA 8x", "MSAA 4x", "MSAA 2x", "Disabled")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Anti-Aliasing"]
+script = ExtResource("6_p6jor")
+config_property = &"anti_aliasing"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="MarginContainer" type="MarginContainer" parent="Graphics"]
 layout_mode = 2

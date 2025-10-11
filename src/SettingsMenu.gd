@@ -9,6 +9,7 @@ func _ready() -> void:
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	_on_window_mode_value_changed(Config.config.window_mode)
+	_on_anti_aliasing_value_changed(Config.config.anti_aliasing)
 
 
 func _on_max_fps_value_changed(value:float) -> void:
@@ -18,6 +19,14 @@ func _on_max_fps_value_changed(value:float) -> void:
 func _on_vsync_value_changed(id: int) -> void:
 	DisplayServer.window_set_vsync_mode(id)
 
+func _on_anti_aliasing_value_changed(anti_aliasing_mode: int):
+	var viewport := get_viewport()
+	if viewport != null:
+		match anti_aliasing_mode:
+			0: viewport.msaa_2d = Viewport.MSAA_8X
+			1: viewport.msaa_2d = Viewport.MSAA_4X
+			2: viewport.msaa_2d = Viewport.MSAA_2X
+			_: viewport.msaa_2d = Viewport.MSAA_DISABLED
 
 func _on_window_mode_value_changed(id: int) -> void:
 	if not %"Window Mode".is_node_ready():
