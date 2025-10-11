@@ -4797,10 +4797,9 @@ icon = ExtResource("60_46ckf")
 text_overrun_behavior = 1
 expand_icon = true
 
-[node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit" node_paths=PackedStringArray("EditorCamera")]
+[node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
 layout_mode = 2
 script = ExtResource("202_6b621")
-EditorCamera = NodePath("../../../../../../../EditorCamera")
 metadata/_tab_index = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options"]
