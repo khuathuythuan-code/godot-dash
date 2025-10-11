@@ -554,13 +554,14 @@ game_scene = NodePath("../../../../../../GameScene")
 side_panel = NodePath("../../../../SidePanel")
 bottom_panel = NodePath("../../../VSplitContainer/EditorModes")
 
-[node name="Actions" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
+[node name="Actions" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" node_paths=PackedStringArray("game_scene")]
 size = Vector2i(133, 100)
 hide_on_checkable_item_selection = false
 item_count = 1
 item_0/text = "Menu"
 item_0/id = 0
 script = ExtResource("8_pfb6b")
+game_scene = NodePath("../../../../../../GameScene")
 
 [node name="Help" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar"]
 oversampling_override = 1.0
@@ -4796,9 +4797,10 @@ icon = ExtResource("60_46ckf")
 text_overrun_behavior = 1
 expand_icon = true
 
-[node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
+[node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit" node_paths=PackedStringArray("EditorCamera")]
 layout_mode = 2
 script = ExtResource("202_6b621")
+EditorCamera = NodePath("../../../../../../../EditorCamera")
 metadata/_tab_index = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options"]

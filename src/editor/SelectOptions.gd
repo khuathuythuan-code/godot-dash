@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@onready var EditorCamera := $"../../../../../../../EditorCamera"
+@export var EditorCamera: Node
 
 func _ready() -> void:
 	if not DisplayServer.is_touchscreen_available():
