@@ -379,6 +379,9 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
+	if gizmo != null and gizmo is ScaleGizmo:
+		gizmo.queue_free()
+		return
 	_update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
@@ -425,9 +428,6 @@ func _rotate_selection(angle: float) -> void:
 
 func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale: Vector2, rotation: float, positions_relative_to_pivot: Dictionary[Node2D, Vector2]) -> void:
 	if selection.is_empty():
-		return
-	if gizmo != null and gizmo is ScaleGizmo:
-		gizmo.queue_free()
 		return
 	selection_pivot += position_delta
 	for object in selection:
