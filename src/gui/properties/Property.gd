@@ -5,6 +5,7 @@ class_name Property
 const MIN_HEIGHT: float = 28.0
 
 # Used to serialize the value
+@warning_ignore("unused_private_class_variable")
 var _value: Variant
 var label: Label:
 	set(value):

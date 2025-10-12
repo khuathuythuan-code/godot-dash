@@ -49,7 +49,7 @@ func _ready() -> void:
 	add_child(song_player)
 	setup_color_channel_watchers()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	music_scale = 0.85 + MusicVolume.get_volume()
 
 func start_level() -> void:
