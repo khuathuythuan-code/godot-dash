@@ -5,4 +5,7 @@ var editor_clipboard: Array[NodePath]
 var editor_backup := PackedScene.new()
 var editor_level_backup := PackedScene.new()
 var shortcut_blocker: Node
+
+# MOBILE CONTROLS
 var swipe: bool = false
+var delete: bool = false
