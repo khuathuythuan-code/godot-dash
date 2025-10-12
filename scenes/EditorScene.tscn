@@ -1,4 +1,4 @@
-[gd_scene load_steps=266 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=268 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -220,6 +220,8 @@
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="193_5tfcf"]
 [ext_resource type="Script" uid="uid://cry3286stfmmk" path="res://src/editor/editor_panels/AttributeEditor.gd" id="195_gehis"]
 [ext_resource type="Script" uid="uid://bwu71rlnecn3p" path="res://src/editor/SelectOptions.gd" id="202_6b621"]
+[ext_resource type="Texture2D" uid="uid://mxdagavcvtsp" path="res://assets/textures/guis/editor/edit_panel/EnableSwipe.svg" id="204_w20ac"]
+[ext_resource type="Texture2D" uid="uid://wqyhu03v6w4u" path="res://assets/textures/guis/editor/edit_panel/DeleteMode.svg" id="205_t0p25"]
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
@@ -633,12 +635,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 0
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -2949,6 +2950,7 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -4602,12 +4604,11 @@ icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtR
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
 visible = false
 layout_mode = 2
-current_tab = 2
+current_tab = 0
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 1
 
 [node name="Integer Steps" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -4798,6 +4799,7 @@ text_overrun_behavior = 1
 expand_icon = true
 
 [node name="Select Options" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit"]
+visible = false
 layout_mode = 2
 script = ExtResource("202_6b621")
 metadata/_tab_index = 2
@@ -4812,7 +4814,12 @@ layout_mode = 2
 [node name="Swipe" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-text = "Swipe"
+icon = ExtResource("204_w20ac")
+
+[node name="Delete" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+icon = ExtResource("205_t0p25")
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
 visible = false
@@ -4857,11 +4864,13 @@ alignment = 1
 visible = false
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Groups"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_c6gj0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups"]
+visible = false
 layout_mode = 2
 
 [node name="GroupEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer" instance=ExtResource("55_5vu0v")]
@@ -4977,11 +4986,13 @@ metadata/_custom_type_script = "uid://cry3286stfmmk"
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Colors"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors"]
+visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
@@ -5285,6 +5296,7 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
 [connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Swipe" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_swipe_toggled"]
+[connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Delete" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_delete_toggled"]
 [connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_on_sort_children"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_set_z_index"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_scale_value_changed"]

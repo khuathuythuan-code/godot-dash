@@ -50,7 +50,8 @@ func _physics_process(delta: float) -> void:
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
 				gizmo != null && (
-					gizmo.is_enabled() or gizmo.any_handle_hovered())):
+					gizmo.is_enabled() or gizmo.any_handle_hovered())) and (!Config.config.touch_screen 
+					or gizmo == null):
 			_update_selection()
 		var can_use_actions: bool = (
 				not selection.is_empty() and not (
@@ -118,7 +119,7 @@ func _physics_process(delta: float) -> void:
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
 			object_move_cooldown = 0.0
-		if Input.is_action_just_released(&"editor_add"):
+		if Input.is_action_just_released(&"editor_add") and (!Config.config.touch_screen or gizmo == null):
 			selection.map(add_selection_highlight)
 			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped
@@ -326,8 +327,8 @@ func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> voi
 
 
 func _on_rotate_left_90_pressed() -> void:
-	_update_pivot()
-	_rotate_selection(-90)
+		_update_pivot()
+		_rotate_selection(-90)
 
 
 func _on_rotate_right_90_pressed() -> void:
@@ -359,6 +360,9 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
 	_update_pivot()
+	if gizmo != null and gizmo is RotateGizmo:
+		gizmo.remove_gizmo()
+		return
 	if gizmo != null:
 		gizmo.queue_free()
 	gizmo = RotateGizmo.new()
@@ -374,6 +378,9 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 
 func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
+		return
+	if gizmo != null and gizmo is ScaleGizmo:
+		gizmo.remove_gizmo()
 		return
 	_update_pivot()
 	if gizmo != null:

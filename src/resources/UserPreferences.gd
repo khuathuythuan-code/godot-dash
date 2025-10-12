@@ -46,6 +46,8 @@ class_name UserPreferences extends Resource
 
 @export_group("Debug")
 @export var draw_debug_overlays: bool
+@export var touch_screen_mode: int = 2
+@export var touch_screen: bool # <-- Use this one
 
 @export_group("Easter Eggs")
 @export var enable_easter_eggs: bool
