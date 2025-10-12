@@ -361,7 +361,7 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 		return
 	_update_pivot()
 	if gizmo != null and gizmo is RotateGizmo:
-		gizmo.queue_free()
+		gizmo.remove_gizmo()
 		return
 	if gizmo != null:
 		gizmo.queue_free()
@@ -380,7 +380,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
 	if gizmo != null and gizmo is ScaleGizmo:
-		gizmo.queue_free()
+		gizmo.remove_gizmo()
 		return
 	_update_pivot()
 	if gizmo != null:
