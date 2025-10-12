@@ -4811,15 +4811,19 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 
-[node name="Swipe" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
+[node name="Swipe" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+toggle_mode = true
 icon = ExtResource("204_w20ac")
+script = ExtResource("4_gl2yd")
 
-[node name="Delete" type="CheckBox" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
+[node name="Delete" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+toggle_mode = true
 icon = ExtResource("205_t0p25")
+script = ExtResource("4_gl2yd")
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
 visible = false
