@@ -181,7 +181,7 @@
 [ext_resource type="PackedScene" uid="uid://fo7vbjwc7r60" path="res://scenes/components/level_components/letter_objects/StopJump.tscn" id="136_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://wxnp5voc8u7a" path="res://assets/textures/triggers/StopDash.svg" id="136_mvta7"]
 [ext_resource type="Shader" uid="uid://gfibjmoqpcol" path="res://resources/shaders/FlipUVs.gdshader" id="137_5tfcf"]
-[ext_resource type="PackedScene" uid="uid://bwjxj7jcot0cn" path="res://scenes/StopDash.tscn" id="137_gdkvu"]
+[ext_resource type="PackedScene" uid="uid://bwjxj7jcot0cn" path="res://scenes/components/level_components/letter_objects/StopDash.tscn" id="137_gdkvu"]
 [ext_resource type="PackedScene" uid="uid://bxhdprvq16gwq" path="res://scenes/components/level_components/triggers/AlphaTrigger.tscn" id="138_6fwf3"]
 [ext_resource type="Texture2D" uid="uid://dv0sqs0l30luf" path="res://assets/textures/guis/editor/block_palette/Slopes.svg" id="138_ha8mj"]
 [ext_resource type="PackedScene" uid="uid://bwe063yi8no43" path="res://scenes/components/level_components/triggers/CameraStaticTrigger.tscn" id="140_gdkvu"]
