@@ -16,6 +16,7 @@ signal value_changed(value: Vector2)
 @export var keep_aspect: bool ## Use the monitor's aspect ratio
 @export var expand_to_text_length: bool
 @export var vertical_spinbox: bool = false
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: Vector2SpinBox

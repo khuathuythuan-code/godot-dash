@@ -5,6 +5,7 @@ class_name Node2DProperty
 signal value_changed(value: Node2D)
 
 @export var default: Node2D
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: Button

@@ -6,6 +6,7 @@ signal value_changed(value: Color)
 
 @export var default: Color
 @export var button_width: float = 100.0
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: ColorPickerButton
