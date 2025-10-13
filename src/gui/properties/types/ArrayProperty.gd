@@ -71,7 +71,7 @@ func refresh() -> void:
 		if items.get_child(i) != null:
 			continue
 		add_item(i)
-	item_panel.visible = array_size > 0
+	items.visible = array_size > 0
 
 
 func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
@@ -91,7 +91,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 		_value.append(item.get_value())
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value)
-	item_panel.show()
+	items.show()
 	return item
 
 
@@ -112,7 +112,7 @@ func remove_item(idx: int, options: int = 0) -> void:
 		value_changed.emit(_value)
 	if _value.size() == 0:
 		items.custom_minimum_size.y = 0.0
-		item_panel.hide()
+		items.hide()
 
 
 func set_value(value: Array) -> void:
