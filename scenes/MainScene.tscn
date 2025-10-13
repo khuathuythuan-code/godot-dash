@@ -184,6 +184,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_yqc6o")
+expand_mode = 5
 
 [node name="Control" type="Control" parent="TitleScreen/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
