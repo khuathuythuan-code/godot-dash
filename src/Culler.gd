@@ -22,7 +22,7 @@ func cull(objects: Array[Node]) -> void:
 		var index: int = 0
 		for object in object_dictionary[position]:
 			index += 1
-			if cull_hitboxes:
+			if cull_hitboxes and object.has_node("Hitbox"):
 				if index < hitboxes_cull_limit:
 					object.find_child("Hitbox").set_deferred("disabled", false)
 				else:
