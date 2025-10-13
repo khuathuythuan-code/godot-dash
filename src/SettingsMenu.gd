@@ -65,3 +65,9 @@ func _on_in_level_sfx_volume_value_changed(value:float) -> void:
 
 func _on_close_pressed() -> void:
 	closed.emit()
+
+
+func _on_apply_pressed() -> void:
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+
