@@ -8,25 +8,10 @@ func _ready() -> void:
 	Engine.max_fps = int(Config.config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
-	_on_menu_blur_value_changed(Config.config.menu_blur)
+	RenderingServer.global_shader_parameter_set("menu_blur", Config.config.menu_blur)
 	_on_touch_screen_mode_value_changed(Config.config.touch_screen_mode)
 	_on_window_mode_value_changed(Config.config.window_mode)
 	_on_anti_aliasing_value_changed(Config.config.anti_aliasing)
-
-func get_all_children(in_node, array := []):
-	array.push_back(in_node)
-	for child in in_node.get_children():
-		array = get_all_children(child, array)
-	return array
-
-func _on_menu_blur_value_changed(value: bool) -> void:
-	var menu_blur_shader = preload("res://resources/shaders/BackgroundBlur.gdshader")
-	if value == false:
-		for node in get_all_children($/root):
-			if node is Control:
-				if node.material != null and node.material.shader == menu_blur_shader:
-					node.material = null
-					continue
 
 func _on_touch_screen_mode_value_changed(value: int) -> void:
 	match value:
