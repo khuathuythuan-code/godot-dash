@@ -11,6 +11,7 @@ const NO_SIGNAL = 1
 @export var maximum_size: int = 10
 @export var or_greater: bool
 @export var item_template: PackedScene
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var add: Button

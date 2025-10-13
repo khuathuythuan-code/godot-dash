@@ -6,6 +6,7 @@ extends Node
 @export var object: PackedScene
 @export var textures: Array[TextureOverride]
 
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Generate Buttons") var _generate_buttons = generate_buttons
 
 @onready var parent := get_parent()

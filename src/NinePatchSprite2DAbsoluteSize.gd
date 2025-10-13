@@ -9,7 +9,7 @@ class_name NinePatchSprite2DAbsoluteSize
 func _ready() -> void:
 	_on_size_changed()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if last_scale == parent.global_scale:
 		last_scale = parent.global_scale
 		return

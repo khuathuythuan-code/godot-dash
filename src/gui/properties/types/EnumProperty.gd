@@ -6,6 +6,7 @@ signal value_changed(value: String)
 
 @export var default: int
 @export var fields: PackedStringArray
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: OptionButton

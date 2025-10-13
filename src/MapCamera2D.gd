@@ -60,7 +60,7 @@ func _input(event):
 	elif event is InputEventPanGesture:
 		_change_zoom(1 + (1 / zoom_factor - 1) * event.delta.y / 7.5)
 	elif event is InputEventScreenDrag:
-		if ((not edit_handler.any_gizmo_is_open() and not passthrough_gui) or passthrough_gui) and Editor.swipe == false:
+		if ((not edit_handler.any_gizmo_is_open() and not passthrough_gui) or passthrough_gui) and Editor.swipe == false and Config.config.touch_screen:
 			_dragging = true
 			enable_wrap = false
 	elif event is InputEventScreenTouch:

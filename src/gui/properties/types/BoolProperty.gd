@@ -5,6 +5,7 @@ class_name BoolProperty
 signal value_changed(value: bool)
 
 @export var default: bool
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: CheckBox

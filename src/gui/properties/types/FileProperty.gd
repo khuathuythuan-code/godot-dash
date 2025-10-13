@@ -8,6 +8,7 @@ signal value_changed(value: String)
 @export var filetype_filters: PackedStringArray
 @export var load_root: String
 @export var import_to: String
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: MenuButton

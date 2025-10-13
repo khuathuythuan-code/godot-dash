@@ -14,6 +14,7 @@ signal value_changed(value: float)
 @export var prefix: String
 @export var suffix: String
 @export var expand_to_text_length: bool
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: SpinBox
