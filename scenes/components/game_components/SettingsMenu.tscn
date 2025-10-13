@@ -444,6 +444,19 @@ script = ExtResource("6_p6jor")
 config_property = &"world_enviroment_glow"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
+[node name="Menu Blur" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Menu Blur"]
+script = ExtResource("6_p6jor")
+config_property = &"menu_blur"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
 [node name="MarginContainer" type="MarginContainer" parent="Graphics"]
 layout_mode = 2
 theme_override_constants/margin_top = 0
