@@ -41,6 +41,8 @@ func _ready() -> void:
 
 
 func refresh_item_names(from: int, to: int) -> void:
+	if _value.size() <= 1:
+		return
 	_value.insert(to, _value.pop_at(from))
 	# Avoid duplicate names (e.g. <idx>2)
 	# I'm forced to apply a unique name to every item first,
@@ -72,6 +74,7 @@ func refresh() -> void:
 			continue
 		add_item(i)
 	items.visible = array_size > 0
+	items.reorder_disabled = array_size <= 1
 
 
 func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
@@ -92,6 +95,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value)
 	items.show()
+	items.reorder_disabled = _value.size() <= 1
 	return item
 
 
@@ -113,6 +117,7 @@ func remove_item(idx: int, options: int = 0) -> void:
 	if _value.size() == 0:
 		items.custom_minimum_size.y = 0.0
 		items.hide()
+	items.reorder_disabled = _value.size() <= 1
 
 
 func set_value(value: Array) -> void:
