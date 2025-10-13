@@ -50,11 +50,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_r47on")
-current_tab = 4
+current_tab = 0
 script = ExtResource("3_rvg0e")
 
 [node name="Graphics" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -430,6 +429,19 @@ metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 [node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Anti-Aliasing"]
 script = ExtResource("6_p6jor")
 config_property = &"anti_aliasing"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Glow" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Glow"]
+script = ExtResource("6_p6jor")
+config_property = &"world_enviroment_glow"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="MarginContainer" type="MarginContainer" parent="Graphics"]
@@ -1478,6 +1490,7 @@ layout_mode = 2
 text = " Close "
 
 [node name="Debug" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 

@@ -182,6 +182,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
+texture_filter = 6
 layout_mode = 2
 texture = ExtResource("4_yqc6o")
 expand_mode = 5
