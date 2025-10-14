@@ -151,6 +151,7 @@ var _spider_animation_tree: AnimationTree
 
 
 func _ready() -> void:
+	%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
@@ -165,7 +166,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	%DebugOverlays.visible = Config.config.draw_debug_overlays
+
 
 	if _dead or not LevelManager.level_playing:
 		return
@@ -197,12 +198,13 @@ func _physics_process(delta: float) -> void:
 	# Sprite updates
 	_rotate_sprite_degrees(delta, jump_state)
 	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
-	_update_wave_trail(delta)
 	match displayed_gamemode:
 		Gamemode.SPIDER:
 			_update_spider_state_machine(jump_state)
 		Gamemode.SWING:
 			_update_swing_fire(delta)
+		Gamemode.WAVE:
+			_update_wave_trail(delta)
 	
 	# Instantiate spider trail if needed
 	if _last_spider_trail != null:
@@ -588,7 +590,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 							snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
 							ICON_LERP_FACTOR * delta * 60)
 	#endregion
-		Gamemode.SHIP or Gamemode.SWING:
+		Gamemode.SHIP, Gamemode.SWING:
 			#region ship/swing
 			$Icon/Ship.scale.y = sign(gravity_flip)
 			$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
@@ -664,7 +666,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 				var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
 				$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
 	#endregion
-		Gamemode.SPIDER or Gamemode.ROBOT:
+		Gamemode.SPIDER, Gamemode.ROBOT:
 			#region spider/robot
 			$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
 			$Icon/Spider/SpiderSprites.rotation = lerp_angle(
