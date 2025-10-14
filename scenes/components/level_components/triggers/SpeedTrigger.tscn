@@ -35,14 +35,14 @@ scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_nuarc")
 debug_color = Color(0, 1, 0, 0)
 
+[node name="EasedSpeedChangerComponent" type="Node" parent="."]
+script = ExtResource("5_nhl0g")
+metadata/_custom_type_script = "uid://bs0c2vn2rmq4u"
+
 [node name="EasingComponent" type="Node" parent="."]
 script = ExtResource("5_chw7d")
 duration = 0.0
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
-
-[node name="EasedSpeedChangerComponent" type="Node" parent="."]
-script = ExtResource("5_nhl0g")
-metadata/_custom_type_script = "uid://bs0c2vn2rmq4u"
 
 [node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("6_ofycr")
