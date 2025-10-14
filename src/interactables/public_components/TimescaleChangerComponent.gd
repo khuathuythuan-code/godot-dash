@@ -13,7 +13,7 @@ var initial_time_scale: float
 func _ready() -> void:
 	super()
 	await require([EasingComponent])
-	changed.emit("%.f%%" % (time_scale * 100))
+	set_deferred(&"time_scale", time_scale) # initialize the label
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 

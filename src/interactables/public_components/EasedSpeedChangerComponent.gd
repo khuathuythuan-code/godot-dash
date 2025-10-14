@@ -40,7 +40,7 @@ var initial_speed: float
 func _ready() -> void:
 	super()
 	await require([EasingComponent])
-	set_deferred(&"speed", speed) # force call speed's setter to initialize the label
+	set_deferred(&"speed", speed) # initialize the label
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 
