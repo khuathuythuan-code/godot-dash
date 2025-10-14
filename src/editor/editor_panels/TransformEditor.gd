@@ -83,7 +83,7 @@ func _on_scale_value_changed(value: Vector2) -> void:
 
 func _on_position_value_changed(value: Vector2) -> void:
 	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE)
-	current_selection.map(func(object): object.position = value)
+	current_selection.map(func(object): object.position += value - average_position)
 
 
 func _on_rotation_value_changed(value: float) -> void:
