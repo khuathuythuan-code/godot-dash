@@ -24,3 +24,4 @@ func start(_player: Player) -> void:
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	Engine.time_scale += (time_scale - initial_time_scale) * weight_delta
+	Engine.time_scale = maxf(Engine.time_scale, 0.01)
