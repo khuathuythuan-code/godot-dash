@@ -36,7 +36,7 @@ func _ready() -> void:
 	clipboard_changed.connect(update_global_clipboard)
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	if object_move_cooldown > 0:
