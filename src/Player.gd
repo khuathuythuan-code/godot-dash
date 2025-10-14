@@ -533,10 +533,6 @@ func _ensure_velocity_redirect(delta: float, global_velocity: Vector2) -> bool:
 
 
 func _rotate_sprite_degrees(delta: float, jump_state: int):
-	if last_displayed_gamemode != displayed_gamemode:
-		last_displayed_gamemode = displayed_gamemode
-		if displayed_gamemode == Gamemode.SHIP or displayed_gamemode == Gamemode.SWING:
-			delta = 0.1
 	var local_velocity := velocity.rotated(-gameplay_rotation)
 	var local_velocity_angle_degrees := rad_to_deg(atan2(local_velocity.y * get_direction(), local_velocity.x * get_direction()))
 	var dash_horizontal_direction := horizontal_direction if not LevelManager.platformer or dash_control == null else dash_control.initial_horizontal_direction
@@ -579,114 +575,107 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		return
 	#endregion
 
-	match displayed_gamemode:
-		Gamemode.CUBE:
-			#region cube
-			$Icon/Cube.scale.y = 1.0
-			if horizontal_direction != 0:
-				$Icon/Cube.scale.x = horizontal_direction
-			if not dash_control:
-				if not is_on_floor() and not is_on_ceiling() and speed_multiplier != 0.0:
-					$Icon/Cube.rotation_degrees += delta * gravity_flip * 365 * get_direction() * gravity_multiplier
-				else:
-					$Icon/Cube.rotation = lerp_angle(
-							$Icon/Cube.rotation,
-							snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
-							ICON_LERP_FACTOR * delta * 60)
-	#endregion
-		Gamemode.SHIP, Gamemode.SWING:
-			#region ship/swing
-			$Icon/Ship.scale.y = sign(gravity_flip)
-			$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
-			$Icon/Swing.scale.y = 1.0
-			$Icon/Ship.scale.x = dash_horizontal_direction
-			$Icon/Swing.scale.x = dash_horizontal_direction
-			if not dash_control:
-				if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
-					var target_rotation_degrees := gameplay_rotation_degrees + local_velocity_angle_degrees
-					$Icon/Ship.rotation_degrees = lerpf(
-							$Icon/Ship.rotation_degrees,
-							target_rotation_degrees,
-							SHIP_ROTATION_LERP_FACTOR * delta * 60)
-					$Icon/Swing.rotation_degrees = lerpf(
-							$Icon/Swing.rotation_degrees,
-							target_rotation_degrees,
-							SHIP_ROTATION_LERP_FACTOR * delta * 60)
-				else:
-					$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-					$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-	#endregion
-		Gamemode.WAVE:
-			#region wave
-			$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
-			$Icon/Wave.scale.y = 1.0
-			if get_direction() != 0 or jump_state != 0:
-				_wave_rotation_degrees_goal = rad_to_deg(-pingpong(local_velocity.angle() - PI/2, PI) + PI/2)
-			$Icon/Wave.scale.x = dash_horizontal_direction
-			if not dash_control:
-				$Icon/Wave/Icon.rotation_degrees = lerpf(
-						$Icon/Wave/Icon.rotation_degrees,
-						_wave_rotation_degrees_goal,
-						0.25 * delta * 60)
-	#endregion
-		Gamemode.UFO:
-			#region ufo
-			$Icon/UFO.scale.y = sign(gravity_flip)
-			$Icon/UFO.scale.x = dash_horizontal_direction
-			$Icon/Jetpack.scale.y = sign(gravity_flip)
-			$Icon/Jetpack.scale.x = dash_horizontal_direction
-			$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and jump_state > 0
-			if not dash_control:
-				if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
-					$Icon/UFO.rotation_degrees = lerpf(
-						$Icon/UFO.rotation_degrees,
-						velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5 + gameplay_rotation_degrees,
-						ICON_LERP_FACTOR * delta * 60)
-				else:
-					$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-				$Icon/Jetpack.rotation = lerp_angle(
-						$Icon/Jetpack.rotation,
-						deg_to_rad(velocity.rotated(-gameplay_rotation).x/speed_multiplier * delta * 5) + sprite_floor_angle,
-						ICON_LERP_FACTOR * delta * 60)
-				if jump_state > 0:
-					var ufo_particle := UFO_PARTICLE.instantiate()
-					$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
-	#endregion
-		Gamemode.BALL:
-			#region ball
-			$Icon/Ball.scale.y = 1.0
-			if speed_multiplier > 0.0:
-				var rotation_delta := delta * 0.45 * gravity_multiplier * (velocity.rotated(-gameplay_rotation).x / speed_multiplier)
-				if not dash_control:
-					rotation_delta *= gravity_flip
-				$Icon/Ball.rotation_degrees += rotation_delta
-			if not dash_control:
-				var ball_grounded_look_factor = $Icon/Ball.get_meta("ball_grounded_look_factor", 0.0)
-				if (abs(velocity.rotated(-gameplay_rotation).x) / speed_multiplier) < speed.x * 0.5:
-					ball_grounded_look_factor = lerpf(ball_grounded_look_factor, 1.0, 10 * delta)
-				else:
-					ball_grounded_look_factor = lerpf(ball_grounded_look_factor, 0.0, 10 * delta)
-				$Icon/Ball.set_meta("ball_grounded_look_factor", ball_grounded_look_factor)
-				var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
-				$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
-	#endregion
-		Gamemode.SPIDER, Gamemode.ROBOT:
-			#region spider/robot
-			$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
-			$Icon/Spider/SpiderSprites.rotation = lerp_angle(
-					$Icon/Spider/SpiderSprites.rotation,
-					(sprite_floor_angle - gameplay_rotation) * sign(gravity_flip),
+#region cube
+	$Icon/Cube.scale.y = 1.0
+	if horizontal_direction != 0:
+		$Icon/Cube.scale.x = horizontal_direction
+	if not dash_control:
+		if not is_on_floor() and not is_on_ceiling() and speed_multiplier != 0.0:
+			$Icon/Cube.rotation_degrees += delta * gravity_flip * 365 * get_direction() * gravity_multiplier
+		else:
+			$Icon/Cube.rotation = lerp_angle(
+					$Icon/Cube.rotation,
+					snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
 					ICON_LERP_FACTOR * delta * 60)
-			$Icon/Robot.rotation = lerp_angle(
-					$Icon/Robot.rotation,
-					sprite_floor_angle,
-					ICON_LERP_FACTOR * delta * 60)
-			if get_direction() != 0:
-				$Icon/Spider/SpiderSprites.scale.x = sign(get_direction())
-				$Icon/Robot.scale.x = sign(get_direction())
-			$Icon/Spider.scale.y = sign(gravity_flip)
-			$Icon/Robot.scale.y = sign(gravity_flip)
-	#endregion
+#endregion
+#region ship/swing
+	$Icon/Ship.scale.y = sign(gravity_flip)
+	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
+	$Icon/Swing.scale.y = 1.0
+	$Icon/Ship.scale.x = dash_horizontal_direction
+	$Icon/Swing.scale.x = dash_horizontal_direction
+	if not dash_control:
+		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
+			var target_rotation_degrees := gameplay_rotation_degrees + local_velocity_angle_degrees
+			$Icon/Ship.rotation_degrees = lerpf(
+					$Icon/Ship.rotation_degrees,
+					target_rotation_degrees,
+					SHIP_ROTATION_LERP_FACTOR * delta * 60)
+			$Icon/Swing.rotation_degrees = lerpf(
+					$Icon/Swing.rotation_degrees,
+					target_rotation_degrees,
+					SHIP_ROTATION_LERP_FACTOR * delta * 60)
+		else:
+			$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
+			$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
+#endregion
+#region wave
+	$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
+	$Icon/Wave.scale.y = 1.0
+	if get_direction() != 0 or jump_state != 0:
+		_wave_rotation_degrees_goal = rad_to_deg(-pingpong(local_velocity.angle() - PI/2, PI) + PI/2)
+	$Icon/Wave.scale.x = dash_horizontal_direction
+	if not dash_control:
+		$Icon/Wave/Icon.rotation_degrees = lerpf(
+				$Icon/Wave/Icon.rotation_degrees,
+				_wave_rotation_degrees_goal,
+				0.25 * delta * 60)
+#endregion
+	#region ufo
+	$Icon/UFO.scale.y = sign(gravity_flip)
+	$Icon/UFO.scale.x = dash_horizontal_direction
+	$Icon/Jetpack.scale.y = sign(gravity_flip)
+	$Icon/Jetpack.scale.x = dash_horizontal_direction
+	$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and jump_state > 0
+	if not dash_control:
+		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
+			$Icon/UFO.rotation_degrees = lerpf(
+				$Icon/UFO.rotation_degrees,
+				velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5 + gameplay_rotation_degrees,
+				ICON_LERP_FACTOR * delta * 60)
+		else:
+			$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
+		$Icon/Jetpack.rotation = lerp_angle(
+				$Icon/Jetpack.rotation,
+				deg_to_rad(velocity.rotated(-gameplay_rotation).x/speed_multiplier * delta * 5) + sprite_floor_angle,
+				ICON_LERP_FACTOR * delta * 60)
+		if jump_state > 0:
+			var ufo_particle := UFO_PARTICLE.instantiate()
+			$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
+#endregion
+	#region ball
+	$Icon/Ball.scale.y = 1.0
+	if speed_multiplier > 0.0:
+		var rotation_delta := delta * 0.45 * gravity_multiplier * (velocity.rotated(-gameplay_rotation).x / speed_multiplier)
+		if not dash_control:
+			rotation_delta *= gravity_flip
+		$Icon/Ball.rotation_degrees += rotation_delta
+	if not dash_control:
+		var ball_grounded_look_factor = $Icon/Ball.get_meta("ball_grounded_look_factor", 0.0)
+		if (abs(velocity.rotated(-gameplay_rotation).x) / speed_multiplier) < speed.x * 0.5:
+			ball_grounded_look_factor = lerpf(ball_grounded_look_factor, 1.0, 10 * delta)
+		else:
+			ball_grounded_look_factor = lerpf(ball_grounded_look_factor, 0.0, 10 * delta)
+		$Icon/Ball.set_meta("ball_grounded_look_factor", ball_grounded_look_factor)
+		var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
+		$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
+#endregion
+#region spider/robot
+	$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
+	$Icon/Spider/SpiderSprites.rotation = lerp_angle(
+			$Icon/Spider/SpiderSprites.rotation,
+			(sprite_floor_angle - gameplay_rotation) * sign(gravity_flip),
+			ICON_LERP_FACTOR * delta * 60)
+	$Icon/Robot.rotation = lerp_angle(
+			$Icon/Robot.rotation,
+			sprite_floor_angle,
+			ICON_LERP_FACTOR * delta * 60)
+	if get_direction() != 0:
+		$Icon/Spider/SpiderSprites.scale.x = sign(get_direction())
+		$Icon/Robot.scale.x = sign(get_direction())
+	$Icon/Spider.scale.y = sign(gravity_flip)
+	$Icon/Robot.scale.y = sign(gravity_flip)
+#endregion
 
 
 
