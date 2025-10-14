@@ -7,14 +7,18 @@ class_name FireDashComponent
 var path: Node
 var initial_gameplay_rotation: float
 var initial_horizontal_direction: int
+var initial_speed: float
+
 
 func _ready() -> void:
 	$"../DashOrbPreview".visible = Editor.in_editor
 	parent.interacted.connect(start)
 
+
 func start(player: Player) -> void:
 	player.dash_control = self
 	initial_gameplay_rotation = player.gameplay_rotation
+	initial_speed = player.speed_multiplier
 	if LevelManager.platformer:
 		player.horizontal_direction = sign(cos(parent.global_rotation - initial_gameplay_rotation) * parent.scale.y)
 	initial_horizontal_direction = player.horizontal_direction

@@ -12,7 +12,7 @@ func get_velocity(player: Player) -> Vector2:
 	var velocity: Vector2
 	var dash_orb := parent.parent as Interactable
 	var angle := dash_orb.rotation - parent.initial_gameplay_rotation
-	if player.speed_multiplier == 0.0:
+	if player.speed_multiplier == 0.0 and parent.initial_speed == 0.0:
 		angle -= PI/4
 	var direction := player.horizontal_direction if not LevelManager.platformer else int(sign(cos(dash_orb.rotation - parent.initial_gameplay_rotation)))
 	if (player.is_on_floor() and sin(angle) > 0) or (player.is_on_ceiling() and sin(angle) < 0):
