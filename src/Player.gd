@@ -76,6 +76,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var slope_collider: CircleShape2D
 
 # Public
+var last_displayed_gamemode: Gamemode
 var coyote_time: float
 var rebound_velocity: float
 var gameplay_rotation_degrees: float = 0.0
@@ -166,7 +167,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
 
 	if _dead or not LevelManager.level_playing:
 		return
@@ -533,6 +533,10 @@ func _ensure_velocity_redirect(delta: float, global_velocity: Vector2) -> bool:
 
 
 func _rotate_sprite_degrees(delta: float, jump_state: int):
+	if last_displayed_gamemode != displayed_gamemode:
+		last_displayed_gamemode = displayed_gamemode
+		if displayed_gamemode == Gamemode.SHIP or displayed_gamemode == Gamemode.SWING:
+			delta = 0.1
 	var local_velocity := velocity.rotated(-gameplay_rotation)
 	var local_velocity_angle_degrees := rad_to_deg(atan2(local_velocity.y * get_direction(), local_velocity.x * get_direction()))
 	var dash_horizontal_direction := horizontal_direction if not LevelManager.platformer or dash_control == null else dash_control.initial_horizontal_direction
