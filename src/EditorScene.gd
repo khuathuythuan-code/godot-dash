@@ -59,7 +59,7 @@ func _ready() -> void:
 		LevelManager.game_scene.add_loaded_level(level)
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
