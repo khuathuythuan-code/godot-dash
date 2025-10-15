@@ -182,6 +182,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
+texture_filter = 6
 layout_mode = 2
 texture = ExtResource("4_yqc6o")
 expand_mode = 5
@@ -850,6 +851,7 @@ level_selector_page_container = NodePath("../LevelSelector/PageContainer")
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("16_dgsi1")]
 
 [node name="SettingsLayer" parent="." instance=ExtResource("26_nre0g")]
+visible = false
 
 [connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToIconGarage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
 [connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToLevelSelector" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]

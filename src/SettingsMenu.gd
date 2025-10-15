@@ -8,6 +8,7 @@ func _ready() -> void:
 	Engine.max_fps = int(Config.config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
+	RenderingServer.global_shader_parameter_set("menu_blur", Config.config.menu_blur)
 	_on_touch_screen_mode_value_changed(Config.config.touch_screen_mode)
 	_on_window_mode_value_changed(Config.config.window_mode)
 	_on_anti_aliasing_value_changed(Config.config.anti_aliasing)

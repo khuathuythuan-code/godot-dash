@@ -76,6 +76,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var slope_collider: CircleShape2D
 
 # Public
+var last_displayed_gamemode: Gamemode
 var coyote_time: float
 var rebound_velocity: float
 var gameplay_rotation_degrees: float = 0.0
@@ -151,6 +152,7 @@ var _spider_animation_tree: AnimationTree
 
 
 func _ready() -> void:
+	%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
@@ -165,7 +167,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	%DebugOverlays.visible = Config.config.draw_debug_overlays
 
 	if _dead or not LevelManager.level_playing:
 		return
@@ -197,12 +198,13 @@ func _physics_process(delta: float) -> void:
 	# Sprite updates
 	_rotate_sprite_degrees(delta, jump_state)
 	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
-	_update_wave_trail(delta)
 	match displayed_gamemode:
 		Gamemode.SPIDER:
 			_update_spider_state_machine(jump_state)
 		Gamemode.SWING:
 			_update_swing_fire(delta)
+		Gamemode.WAVE:
+			_update_wave_trail(delta)
 	
 	# Instantiate spider trail if needed
 	if _last_spider_trail != null:
@@ -555,7 +557,25 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 	$GroundParticlesOrigin.scale.x = horizontal_direction
 	$GroundParticlesOrigin.rotation = sprite_floor_angle
 
-	#region cube
+	#region dash
+	if dash_control:
+		var dash_angle: float = dash_control.path.get_velocity(self).angle()
+		var dash_angle_one_sided: float = pingpong(dash_angle - PI/2, PI) - PI/2
+		var dash_angle_one_sided_wave: float = pingpong(-dash_angle - PI/2, PI) - PI/2
+		$DashParticles.rotation = dash_angle
+		$DashParticles.process_material.angle_min = rad_to_deg(dash_angle)
+		$DashParticles.process_material.angle_max = rad_to_deg(dash_angle)
+		$DashFlame.rotation = dash_angle
+		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction
+		$Icon/Ship.rotation = lerpf($Icon/Ship.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
+		$Icon/Swing.rotation = lerpf($Icon/Swing.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
+		$Icon/UFO.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
+		$Icon/Jetpack.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
+		$Icon/Wave/Icon.rotation = lerpf($Icon/Wave/Icon.rotation, dash_angle_one_sided_wave, ICON_LERP_FACTOR * delta * 60)
+		return
+	#endregion
+
+#region cube
 	$Icon/Cube.scale.y = 1.0
 	if horizontal_direction != 0:
 		$Icon/Cube.scale.x = horizontal_direction
@@ -567,9 +587,8 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 					$Icon/Cube.rotation,
 					snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
 					ICON_LERP_FACTOR * delta * 60)
-	#endregion
-
-	#region ship/swing
+#endregion
+#region ship/swing
 	$Icon/Ship.scale.y = sign(gravity_flip)
 	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
 	$Icon/Swing.scale.y = 1.0
@@ -589,9 +608,8 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		else:
 			$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
 			$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-	#endregion
-
-	#region wave
+#endregion
+#region wave
 	$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
 	$Icon/Wave.scale.y = 1.0
 	if get_direction() != 0 or jump_state != 0:
@@ -602,8 +620,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 				$Icon/Wave/Icon.rotation_degrees,
 				_wave_rotation_degrees_goal,
 				0.25 * delta * 60)
-	#endregion
-
+#endregion
 	#region ufo
 	$Icon/UFO.scale.y = sign(gravity_flip)
 	$Icon/UFO.scale.x = dash_horizontal_direction
@@ -625,8 +642,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		if jump_state > 0:
 			var ufo_particle := UFO_PARTICLE.instantiate()
 			$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
-	#endregion
-
+#endregion
 	#region ball
 	$Icon/Ball.scale.y = 1.0
 	if speed_multiplier > 0.0:
@@ -643,9 +659,8 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		$Icon/Ball.set_meta("ball_grounded_look_factor", ball_grounded_look_factor)
 		var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
 		$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
-	#endregion
-
-	#region spider/robot
+#endregion
+#region spider/robot
 	$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
 	$Icon/Spider/SpiderSprites.rotation = lerp_angle(
 			$Icon/Spider/SpiderSprites.rotation,
@@ -660,23 +675,8 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		$Icon/Robot.scale.x = sign(get_direction())
 	$Icon/Spider.scale.y = sign(gravity_flip)
 	$Icon/Robot.scale.y = sign(gravity_flip)
-	#endregion
-	#region dash
-	if dash_control:
-		var dash_angle: float = dash_control.path.get_velocity(self).angle()
-		var dash_angle_one_sided: float = pingpong(dash_angle - PI/2, PI) - PI/2
-		var dash_angle_one_sided_wave: float = pingpong(-dash_angle - PI/2, PI) - PI/2
-		$DashParticles.rotation = dash_angle
-		$DashParticles.process_material.angle_min = rad_to_deg(dash_angle)
-		$DashParticles.process_material.angle_max = rad_to_deg(dash_angle)
-		$DashFlame.rotation = dash_angle
-		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction
-		$Icon/Ship.rotation = lerpf($Icon/Ship.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
-		$Icon/Swing.rotation = lerpf($Icon/Swing.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
-		$Icon/UFO.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
-		$Icon/Jetpack.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
-		$Icon/Wave/Icon.rotation = lerpf($Icon/Wave/Icon.rotation, dash_angle_one_sided_wave, ICON_LERP_FACTOR * delta * 60)
-	#endregion
+#endregion
+
 
 
 func _update_swing_fire(delta: float) -> void:

@@ -5,6 +5,8 @@ class_name UserPreferences extends Resource
 @export var vsync: int
 @export var window_mode: int
 @export var anti_aliasing: int = 0
+@export var world_enviroment_glow: bool = true
+@export var menu_blur: bool = true
 
 @export_group("Performance")
 @export var hide_particles_editor_only: bool = true
