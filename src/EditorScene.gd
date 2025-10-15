@@ -1,5 +1,4 @@
 extends Control
-
 class_name EditorScene
 
 enum EditorAction {
@@ -43,7 +42,7 @@ func _ready() -> void:
 	$GameScene/EditorGridParallax/EditorGrid.queue_redraw()
 	$GameScene/PauseMenuLayer/PauseMenu.leave.connect(_on_leave_pressed)
 
-	Editor.in_editor = true
+	Editor.editor_root = self
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#%MenuBar/View.set_item_submenu(0, 'PanelVisibility') temporarily removed because it causes an  error
 	$EditorCamera.zoom_changed.connect($GameScene/EditorGridParallax/EditorGrid.queue_redraw)
@@ -59,7 +58,7 @@ func _ready() -> void:
 		LevelManager.game_scene.add_loaded_level(level)
 
 
-func _physics_process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
