@@ -73,5 +73,6 @@ func _on_apply_pressed() -> void:
 	if LevelManager.current_level != null:
 		var edit_handler: Node = $/root/LevelEditor/EditHandler
 		edit_handler.selection.map(edit_handler.remove_selection_highlight)
+		edit_handler.selection.clear()
 		Editor.editor_level_backup.pack(LevelManager.current_level)
 	get_tree().reload_current_scene()
