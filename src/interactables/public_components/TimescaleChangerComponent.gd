@@ -13,7 +13,7 @@ var initial_time_scale: float
 func _ready() -> void:
 	super()
 	await require([EasingComponent])
-	changed.emit("%.f%%" % (time_scale * 100))
+	set_deferred(&"time_scale", time_scale) # initialize the label
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 
@@ -24,3 +24,4 @@ func start(_player: Player) -> void:
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	Engine.time_scale += (time_scale - initial_time_scale) * weight_delta
+	Engine.time_scale = maxf(Engine.time_scale, 0.01)

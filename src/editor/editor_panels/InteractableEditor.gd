@@ -69,50 +69,52 @@ func build_ui(interactables: Array[Interactable]) -> void:
 	var displayed_components := first_interactable \
 			.components \
 			.filter(should_component_be_displayed)
-	for i in displayed_components.size():
-		var component = displayed_components[i]
-		NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
-		var fields = component.script.get_script_property_list()
-		# Follow _validate_property
-		if component.has_method(&"_validate_property"):
-			fields.map(func(field): component._validate_property(field))
-		fields = fields \
-				.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
-		var last_section: FoldableContainer = null
-		for field in fields:
-			var field_name: String = field.name
-			if field_name.begins_with("_"):
-				continue
-			if field.usage & PROPERTY_USAGE_GROUP:
+
+	if displayed_components:
+		for i in displayed_components.size():
+			var component = displayed_components[i]
+			NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
+			var fields = component.script.get_script_property_list()
+			# Follow _validate_property
+			if component.has_method(&"_validate_property"):
+				fields.map(func(field): component._validate_property(field))
+			fields = fields \
+					.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
+			var last_section: FoldableContainer = null
+			for field in fields:
+				var field_name: String = field.name
+				if field_name.begins_with("_"):
+					continue
+				if field.usage & PROPERTY_USAGE_GROUP:
+					if last_section:
+						ui_root.add_child(last_section)
+						last_section.show.call_deferred()
+					last_section = FoldableContainer.new()
+					last_section.name = field_name
+					last_section.title = field_name
+					last_section.title_alignment = HORIZONTAL_ALIGNMENT_LEFT
+					last_section.add_child(VBoxContainer.new())
+					last_section.folded = true
+					last_section.hide()
+					continue
+				var property: Property
+				property = generate_property(field.type, field)
+				property.name = field_name.capitalize()
+				property.set_meta("component_name", component.name)
+				property.set_input_state.call_deferred(not field.usage & PROPERTY_USAGE_READ_ONLY)
 				if last_section:
-					ui_root.add_child(last_section)
-					last_section.show.call_deferred()
-				last_section = FoldableContainer.new()
-				last_section.name = field_name
-				last_section.title = field_name
-				last_section.title_alignment = HORIZONTAL_ALIGNMENT_LEFT
-				last_section.add_child(VBoxContainer.new())
-				last_section.folded = true
-				last_section.hide()
-				continue
-			var property: Property
-			property = generate_property(field.type, field)
-			property.name = field_name.capitalize()
-			property.set_meta("component_name", component.name)
-			property.set_input_state.call_deferred(not field.usage & PROPERTY_USAGE_READ_ONLY)
+					var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
+					section_vboxcontainer.add_child(property)
+				else:
+					ui_root.add_child(property)
 			if last_section:
-				var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
-				section_vboxcontainer.add_child(property)
-			else:
-				ui_root.add_child(property)
-		if last_section:
-			ui_root.add_child(last_section)
-			last_section.show.call_deferred()
-		if i < displayed_components.size() - 1:
-			ui_root.add_child(HSeparator.new())
-	components_root.add_child(ui_root)
-	components_root.visible = ui_root.get_child_count() > 0
-	separator.visible = components_root.visible
+				ui_root.add_child(last_section)
+				last_section.show.call_deferred()
+			if i < displayed_components.size() - 1:
+				ui_root.add_child(HSeparator.new())
+		components_root.add_child(ui_root)
+		components_root.visible = ui_root.get_child_count() > 0
+		separator.visible = components_root.visible
 
 	connect_ui(interactables, self)
 	load_properties.call_deferred(first_interactable, self)

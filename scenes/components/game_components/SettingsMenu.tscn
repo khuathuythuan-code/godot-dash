@@ -474,7 +474,13 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Graphics/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = " Close "
+theme_type_variation = &"GroupButton"
+text = "Close"
+
+[node name="Apply" type="Button" parent="Graphics/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"GroupButton"
+text = "Apply and Reload"
 
 [node name="Audio" type="VBoxContainer" parent="."]
 visible = false
@@ -595,7 +601,13 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Audio/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = " Close "
+theme_type_variation = &"GroupButton"
+text = "Close"
+
+[node name="Apply" type="Button" parent="Audio/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"GroupButton"
+text = "Apply and Reload"
 
 [node name="Keybinds" type="VBoxContainer" parent="."]
 visible = false
@@ -1331,7 +1343,13 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Keybinds/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = " Close "
+theme_type_variation = &"GroupButton"
+text = "Close"
+
+[node name="Apply" type="Button" parent="Keybinds/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"GroupButton"
+text = "Apply and Reload"
 
 [node name="Editor" type="VBoxContainer" parent="."]
 visible = false
@@ -1500,7 +1518,13 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Editor/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = " Close "
+theme_type_variation = &"GroupButton"
+text = "Close"
+
+[node name="Apply" type="Button" parent="Editor/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"GroupButton"
+text = "Apply and Reload"
 
 [node name="Debug" type="VBoxContainer" parent="."]
 visible = false
@@ -1587,14 +1611,25 @@ alignment = 1
 
 [node name="Close" type="Button" parent="Debug/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = " Close "
+theme_type_variation = &"GroupButton"
+text = "Close"
+
+[node name="Apply" type="Button" parent="Debug/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"GroupButton"
+text = "Apply and Reload"
 
 [connection signal="pressed" from="Graphics/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Graphics/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Master" to="." method="_on_game_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Music" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" to="." method="_on_game_sfx_volume_value_changed"]
 [connection signal="value_changed" from="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" to="." method="_on_in_level_sfx_volume_value_changed"]
 [connection signal="pressed" from="Audio/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Audio/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="Keybinds/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Keybinds/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="Editor/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Editor/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]
 [connection signal="pressed" from="Debug/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Debug/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]

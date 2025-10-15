@@ -29,6 +29,7 @@ script = ExtResource("1_ikfu3")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 material = ExtResource("1_0trr5")
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 current_tab = 0
 
@@ -37,7 +38,6 @@ layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings"]
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
 [node name="Song" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer"]
@@ -51,6 +51,7 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("11_am3gx")
 filetype_filters = PackedStringArray("*.mp3", "*.wav", "*.ogg")
 load_root = "user://created_levels/songs/"
@@ -65,6 +66,7 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="Start Offset" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Song/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("9_jvsdk")
 allow_greater = true
 suffix = "s"
@@ -85,6 +87,7 @@ layout_mode = 2
 [node name="Platformer" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("10_bo0r5")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
@@ -103,6 +106,7 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="Speed" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("12_am3gx")
 default = 2
 fields = PackedStringArray("0.0x", "0.5x", "1.0x", "2.0x", "3.0x", "4.0x", "5.0x")
@@ -116,6 +120,7 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="Reverse" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("10_bo0r5")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
@@ -127,6 +132,7 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="Gameplay Rotation" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("9_jvsdk")
 min_value = -180.0
 max_value = 180.0

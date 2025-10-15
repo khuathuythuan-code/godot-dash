@@ -1,24 +1,10 @@
 extends GPUParticles2D
 
+@export_storage var saved_preprocess: float = -1.0
+
 
 func _ready() -> void:
-	if Config.config.hide_orb_particles:
-		if Config.config.hide_particles_editor_only:
-			if Editor.in_editor:
-				call_deferred("hide")
-			set_script(null)
-			return
-		else:
-			call_deferred("hide")
-			set_script(null)
-			return
-	if not Config.config.preprocess_orb_particles:
-		if Config.config.preprocess_particles_editor_only:
-			if Editor.in_editor:
-				preprocess = 0.0
-			set_script(null)
-			return
-		else:
-			preprocess = 0.0
-			set_script(null)
-			return
+	if saved_preprocess == -1.0:
+		saved_preprocess = preprocess
+	visible = not (Config.config.hide_orb_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	preprocess = saved_preprocess if Config.config.preprocess_orb_particles or (Config.config.preprocess_particles_editor_only and not Editor.in_editor) else 0.0

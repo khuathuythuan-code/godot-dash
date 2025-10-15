@@ -72,6 +72,8 @@ var scroll_threshold := 30
 @export
 var is_debugging := false
 
+var reorder_disabled: bool
+
 var _scroll_starting_point := 0
 var _is_smooth_scroll := false
 
@@ -105,7 +107,7 @@ func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		for _child in get_children():
 			var child := _child as Control
-			if child.get_rect().has_point(get_local_mouse_position()) and event.is_pressed():
+			if not reorder_disabled and child.get_rect().has_point(get_local_mouse_position()) and event.is_pressed():
 				_focus_child = child
 				_is_press = true
 			elif not event.is_pressed():
@@ -116,6 +118,12 @@ func _gui_input(event):
 func _process(delta):
 	if Engine.is_editor_hint(): return	
 	
+	if _focus_child and get_viewport().gui_get_focus_owner() is OptionButton and get_viewport().gui_get_focus_owner().get_popup().visible:
+		_on_stop_dragging()
+		_is_press = false
+		_is_hold = false
+
+
 	_handle_input(delta)
 	if _current_duration >= hold_duration != _is_hold:
 		_is_hold = _current_duration >= hold_duration
