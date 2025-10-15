@@ -128,6 +128,8 @@ func _on_playtest_pressed() -> void:
 
 func _on_leave_pressed() -> void:
 	if not LevelManager.level_playing:
+		$EditHandler.selection.map($EditHandler.remove_selection_highlight)
+		$EditHandler.selection.clear()
 		Editor.editor_level_backup.pack(level)
 		Editor.editor_backup.pack(self)
 	var _fade_screen = $FadeScreenLayer/FadeScreen
