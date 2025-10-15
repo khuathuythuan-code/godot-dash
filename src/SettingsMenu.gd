@@ -70,5 +70,6 @@ func _on_close_pressed() -> void:
 
 func _on_apply_pressed() -> void:
 	get_tree().paused = false
+	if LevelManager.current_level != null:
+		Editor.editor_level_backup.pack(LevelManager.current_level)
 	get_tree().reload_current_scene()
-
