@@ -71,5 +71,7 @@ func _on_close_pressed() -> void:
 func _on_apply_pressed() -> void:
 	get_tree().paused = false
 	if LevelManager.current_level != null:
+		var edit_handler: Node = $/root/LevelEditor/EditHandler
+		edit_handler.selection.map(edit_handler.remove_selection_highlight)
 		Editor.editor_level_backup.pack(LevelManager.current_level)
 	get_tree().reload_current_scene()
