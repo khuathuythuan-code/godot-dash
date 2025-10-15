@@ -76,7 +76,6 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var slope_collider: CircleShape2D
 
 # Public
-var last_displayed_gamemode: Gamemode
 var coyote_time: float
 var rebound_velocity: float
 var gameplay_rotation_degrees: float = 0.0
