@@ -1,6 +1,9 @@
 extends Node
 
-var in_editor: bool
+var editor_root: EditorScene
+var in_editor: bool:
+	get():
+		return editor_root != null
 var editor_clipboard: Array[NodePath]
 var editor_backup := PackedScene.new()
 var editor_level_backup := PackedScene.new()
