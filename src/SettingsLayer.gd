@@ -14,7 +14,7 @@ func _hide_menu() -> void:
 	if $SettingsContainer.position.y == 0:
 		menu_tween = create_tween()
 		menu_tween.tween_property($SettingsContainer, "position:y", -$SettingsContainer.get_viewport_rect().size.y, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-		await get_tree().create_timer(0.5).timeout
+		await menu_tween.finished
 		hide()
 
 func _on_settings_pressed() -> void:
