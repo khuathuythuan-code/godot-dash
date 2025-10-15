@@ -3,9 +3,8 @@ class_name GameScene
 
 
 func _ready() -> void:
-	LevelManager.game_scene = self
 	Engine.time_scale = 1
-	Editor.in_editor = get_parent() is EditorScene
+	LevelManager.game_scene = self
 	LevelManager.background_sprites.clear()
 	LevelManager.background_sprites.append($BackgroundParallax/Background)
 	LevelManager.background_sprites.append($BackgroundParallax/Background2)
