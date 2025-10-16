@@ -148,6 +148,8 @@ var _wave_rotation_degrees_goal: float
 var _deferred_velocity_redirect: bool
 var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
+var _snap_sprite_rotation: bool
+var _snap_sprite_rotation_frames: int
 
 
 func _ready() -> void:
@@ -166,7 +168,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-
 	if _dead or not LevelManager.level_playing:
 		return
 	
@@ -231,6 +232,13 @@ func _physics_process(delta: float) -> void:
 		).rotated(gameplay_rotation)
 		if is_equal_approx(rotation_local_global_position.x, rotation_local_portal_global_position.x):
 			speed_0_portal_control = null
+	
+	if _snap_sprite_rotation:
+		print(_snap_sprite_rotation_frames)
+		if _snap_sprite_rotation_frames > 0:
+			_snap_sprite_rotation_frames -= 1
+		elif _snap_sprite_rotation_frames == 0:
+			_snap_sprite_rotation = false
 
 
 func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: bool) -> void:
@@ -389,7 +397,6 @@ func _compute_velocity(delta: float,
 				_velocity.y += GRAVITY * delta * gravity_flip * gravity_multiplier * UFO_GRAVITY_MULTIPLIER
 			else:
 				_velocity.y += GRAVITY * delta * gravity_flip * gravity_multiplier
-			# _velocity.y = clamp(_velocity.y, -TERMINAL_VELOCITY.y, TERMINAL_VELOCITY.y)
 	#endregion
 	
 	var flying_gamemode_slope_boost: bool = _is_flying_gamemode and (
@@ -420,6 +427,7 @@ func _compute_velocity(delta: float,
 				component.set_dash_flip_state(self)
 				gravity_flip *= -1
 				position += Vector2.DOWN.rotated(gameplay_rotation) * _get_spider_velocity_delta()
+				defer_snap_sprite_rotation()
 				jump_hold_disabled = true
 				_velocity.y = gravity_multiplier * gravity_flip * 10
 	#endregion
@@ -431,6 +439,7 @@ func _compute_velocity(delta: float,
 		elif internal_gamemode == Gamemode.SPIDER:
 			gravity_flip *= -1
 			position += Vector2.DOWN.rotated(gameplay_rotation) * _get_spider_velocity_delta()
+			defer_snap_sprite_rotation()
 		elif internal_gamemode == Gamemode.BALL:
 			_velocity.y = speed.y * gravity_flip * 0.5
 		elif internal_gamemode == Gamemode.ROBOT:
@@ -487,6 +496,7 @@ func _compute_velocity(delta: float,
 				component.set_dash_flip_state(self)
 				gravity_flip = -sign($Icon/Spider/SpiderCast.scale.y)
 				position += Vector2.DOWN.rotated(gameplay_rotation) * _get_spider_velocity_delta()
+				defer_snap_sprite_rotation()
 				jump_hold_disabled = true
 				_velocity.y = gravity_multiplier * gravity_flip * 10
 		if not colliding_orb.has(SingleUsageComponent):
@@ -548,7 +558,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 			sprite_floor_angle = lerp_angle(
 					sprite_floor_angle,
 					-last_collision.get_normal().angle_to(up_direction) + gameplay_rotation + ceiling_slide_rotation,
-					delta * 60 * ICON_LERP_FACTOR)
+					delta * 60 * ICON_LERP_FACTOR if not _snap_sprite_rotation else 1.0)
 	else:
 		sprite_floor_angle = lerp_angle(sprite_floor_angle, gameplay_rotation, delta * 60 * ICON_LERP_FACTOR)
 
@@ -574,7 +584,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		return
 	#endregion
 
-#region cube
+	#region cube
 	$Icon/Cube.scale.y = 1.0
 	if horizontal_direction != 0:
 		$Icon/Cube.scale.x = horizontal_direction
@@ -585,9 +595,12 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 			$Icon/Cube.rotation = lerp_angle(
 					$Icon/Cube.rotation,
 					snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
-					ICON_LERP_FACTOR * delta * 60)
-#endregion
-#region ship/swing
+					ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
+			if _snap_sprite_rotation:
+				print($Icon/Cube.rotation_degrees)
+	#endregion
+
+	#region ship/swing
 	$Icon/Ship.scale.y = sign(gravity_flip)
 	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
 	$Icon/Swing.scale.y = 1.0
@@ -605,10 +618,11 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 					target_rotation_degrees,
 					SHIP_ROTATION_LERP_FACTOR * delta * 60)
 		else:
-			$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-			$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
-#endregion
-#region wave
+			$Icon/Ship.rotation = lerp_angle($Icon/Ship.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
+			$Icon/Swing.rotation = lerp_angle($Icon/Swing.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
+	#endregion
+
+	#region wave
 	$Icon/Wave.rotation = lerpf($Icon/Wave.rotation, gameplay_rotation, ICON_LERP_FACTOR * delta * 60)
 	$Icon/Wave.scale.y = 1.0
 	if get_direction() != 0 or jump_state != 0:
@@ -619,7 +633,8 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 				$Icon/Wave/Icon.rotation_degrees,
 				_wave_rotation_degrees_goal,
 				0.25 * delta * 60)
-#endregion
+	#endregion
+
 	#region ufo
 	$Icon/UFO.scale.y = sign(gravity_flip)
 	$Icon/UFO.scale.x = dash_horizontal_direction
@@ -633,15 +648,16 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 				velocity.rotated(-gameplay_rotation).y * delta * get_direction() * 0.5 + gameplay_rotation_degrees,
 				ICON_LERP_FACTOR * delta * 60)
 		else:
-			$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60)
+			$Icon/UFO.rotation = lerp_angle($Icon/UFO.rotation, sprite_floor_angle, ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
 		$Icon/Jetpack.rotation = lerp_angle(
 				$Icon/Jetpack.rotation,
 				deg_to_rad(velocity.rotated(-gameplay_rotation).x/speed_multiplier * delta * 5) + sprite_floor_angle,
-				ICON_LERP_FACTOR * delta * 60)
+				ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
 		if jump_state > 0:
 			var ufo_particle := UFO_PARTICLE.instantiate()
 			$Icon/UFO/UFOParticlesOrigin.add_child(ufo_particle)
-#endregion
+	#endregion
+
 	#region ball
 	$Icon/Ball.scale.y = 1.0
 	if speed_multiplier > 0.0:
@@ -658,24 +674,29 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		$Icon/Ball.set_meta("ball_grounded_look_factor", ball_grounded_look_factor)
 		var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72*2)))
 		$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
-#endregion
-#region spider/robot
+	#endregion
+
+	#region spider/robot
 	$Icon/Spider.rotation_degrees = gameplay_rotation_degrees
 	$Icon/Spider/SpiderSprites.rotation = lerp_angle(
 			$Icon/Spider/SpiderSprites.rotation,
 			(sprite_floor_angle - gameplay_rotation) * sign(gravity_flip),
-			ICON_LERP_FACTOR * delta * 60)
+			ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
 	$Icon/Robot.rotation = lerp_angle(
 			$Icon/Robot.rotation,
 			sprite_floor_angle,
-			ICON_LERP_FACTOR * delta * 60)
+			ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
 	if get_direction() != 0:
 		$Icon/Spider/SpiderSprites.scale.x = sign(get_direction())
 		$Icon/Robot.scale.x = sign(get_direction())
 	$Icon/Spider.scale.y = sign(gravity_flip)
 	$Icon/Robot.scale.y = sign(gravity_flip)
-#endregion
+	#endregion
 
+
+func defer_snap_sprite_rotation() -> void:
+	_snap_sprite_rotation = true
+	_snap_sprite_rotation_frames = 16
 
 
 func _update_swing_fire(delta: float) -> void:
