@@ -431,6 +431,19 @@ script = ExtResource("6_p6jor")
 config_property = &"anti_aliasing"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
+[node name="Texture Filtering" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("9_vf3uf")
+fields = PackedStringArray("Linear Mipmap", "Linear", "Nearest")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Texture Filtering"]
+script = ExtResource("6_p6jor")
+config_property = &"texture_filtering"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
 [node name="Glow" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
