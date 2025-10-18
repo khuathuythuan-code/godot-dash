@@ -1,8 +1,8 @@
 ---
 name: Bug report
-about: ''
+about: Report a bug in the game
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
 
 ---
