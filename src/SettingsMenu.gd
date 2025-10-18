@@ -9,9 +9,16 @@ func _ready() -> void:
 	DisplayServer.window_set_vsync_mode(Config.config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	RenderingServer.global_shader_parameter_set("menu_blur", Config.config.menu_blur)
+	_on_texture_filtering_value_changed(Config.config.texture_filtering)
 	_on_touch_screen_mode_value_changed(Config.config.touch_screen_mode)
 	_on_window_mode_value_changed(Config.config.window_mode)
 	_on_anti_aliasing_value_changed(Config.config.anti_aliasing)
+
+func _on_texture_filtering_value_changed(value: int) -> void:
+	match value:
+		0: get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
+		1: get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
+		2: get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 
 func _on_touch_screen_mode_value_changed(value: int) -> void:
 	match value:

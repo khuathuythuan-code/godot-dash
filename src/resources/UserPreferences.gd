@@ -7,6 +7,7 @@ class_name UserPreferences extends Resource
 @export var anti_aliasing: int = 0
 @export var world_enviroment_glow: bool = true
 @export var menu_blur: bool = true
+@export var texture_filtering: int = 0
 
 @export_group("Performance")
 @export var hide_particles_editor_only: bool = true
