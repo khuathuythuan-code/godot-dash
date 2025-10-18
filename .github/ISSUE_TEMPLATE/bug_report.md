@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: ''
 title: ''
 labels: ''
 assignees: ''
@@ -25,7 +25,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. Windows]
- - Game Version [e.g. 2.0.0]
+ - Game Version [e.g. 2.0.0] or commit and branch
 
 **Additional context**
 Add any other context about the problem here.
