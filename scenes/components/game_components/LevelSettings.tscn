@@ -29,7 +29,7 @@ script = ExtResource("1_ikfu3")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 material = ExtResource("1_0trr5")
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 current_tab = 0
 
