@@ -19,7 +19,7 @@ enum Axis {
 	set(value):
 		override_velocity = value
 		notify_property_list_changed()
-@export var new_velocity: Vector2
+@export_custom(PROPERTY_HINT_NONE, "suffix:cells/s") var new_velocity: Vector2
 @export var new_velocity_axes: Axis
 
 
@@ -64,14 +64,14 @@ func teleport(player: Player) -> void:
 	elif override_velocity:
 		match new_velocity_axes:
 			Axis.BOTH:
-				player.velocity = new_velocity.rotated(player.gameplay_rotation)
+				player.set_deferred(&"velocity", (new_velocity * PositionChangerComponent.CELLS_TO_PX).rotated(player.gameplay_rotation))
 			Axis.X:
 				player.velocity = Vector2(
-						new_velocity.x,
+						(new_velocity * PositionChangerComponent.CELLS_TO_PX).x,
 						player.velocity.rotated(-player.gameplay_rotation).y,
 				).rotated(player.gameplay_rotation)
 			Axis.Y:
 				player.velocity = Vector2(
 						player.velocity.rotated(-player.gameplay_rotation).x,
-						new_velocity.y,
+						(new_velocity * PositionChangerComponent.CELLS_TO_PX).y,
 				).rotated(player.gameplay_rotation)
