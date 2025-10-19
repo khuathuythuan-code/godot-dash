@@ -42,9 +42,13 @@ func start(_player: Player) -> void:
 	initial_global_position = LevelManager.player_camera.global_position
 	initial_static_factor = LevelManager.player_camera.static_factor
 	target = parent.query(TargetObjectComponent).target
+	if not target:
+		Toasts.error("In %s: target is unset" % parent.name)
 
 
 func _on_easing_progressed(player: Player, _weight_delta: float) -> void:
+	if not target:
+		return
 	var entering_or_exiting: float
 	match mode:
 		Mode.ENTER:
