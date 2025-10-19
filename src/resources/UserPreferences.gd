@@ -16,7 +16,6 @@ class_name UserPreferences extends Resource
 @export var hide_portal_particles: bool = false
 @export var hide_speedportal_particles: bool = false
 
-
 @export var hide_ground_particles: bool = false
 @export var hide_ship_particles: bool = false
 @export var hide_jetpack_particles: bool = false
