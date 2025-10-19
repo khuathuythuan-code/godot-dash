@@ -79,10 +79,12 @@ size_flags_horizontal = 3
 [node name="Framerate" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Framerate"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate"]
+visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
@@ -118,10 +120,12 @@ config_property = &"vsync"
 [node name="Window" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Window"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window"]
+visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
@@ -256,9 +260,11 @@ config_property = &"hide_particles_editor_only"
 [node name="Options" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Options"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options"]
+visible = false
 layout_mode = 2
 
 [node name="Orb Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
@@ -304,6 +310,17 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Speed Portal Particles"]
 script = ExtResource("6_p6jor")
 config_property = &"hide_speedportal_particles"
+
+[node name="Player Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Player Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_player_particles"
 
 [node name="Performance" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

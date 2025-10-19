@@ -153,6 +153,14 @@ var _snap_sprite_rotation_frames: int
 
 
 func _ready() -> void:
+	%GroundParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%ShipParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%JetpackParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%UFOParticlesOrigin.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	$DashParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	$DeathParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	# Robot???
+
 	%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
@@ -168,6 +176,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	# if $DashParticles.visible:
+	# 	print("grrr")
 	if _dead or not LevelManager.level_playing:
 		return
 	

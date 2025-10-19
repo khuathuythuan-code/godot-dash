@@ -15,6 +15,8 @@ class_name UserPreferences extends Resource
 @export var hide_pad_particles: bool = false
 @export var hide_portal_particles: bool = false
 @export var hide_speedportal_particles: bool = false
+@export var hide_player_particles: bool = false
+
 @export var preprocess_particles_editor_only: bool = true
 @export var preprocess_orb_particles: bool = true
 @export var preprocess_pad_particles: bool = true
