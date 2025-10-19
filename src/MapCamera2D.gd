@@ -15,7 +15,6 @@ signal zoom_changed
 @export var zoom_relative := true
 ## If [code]true[/code], zooming can also be done with the plus and minus keys.
 @export var zoom_keyboard := true
-
 ## Pan speed: adds to [member Camera2D.offset] while the cursor is near the viewport's edges (set to 0 to disable panning).
 @export_range(0, 10000) var pan_speed := 250.0
 ## Maximum number of pixels away from the viewport's edges for the cursor to be considered near.
@@ -32,6 +31,7 @@ signal zoom_changed
 ## If [code]true[/code], the map can be dragged even when GUI is hovered.
 @export var passthrough_gui := false
 
+@export var editor_scene: EditorScene
 @export var editor_viewport: Control
 @export var edit_handler: EditHandler
 var _tween_offset
@@ -40,6 +40,7 @@ var _pan_direction: set = _set_pan_direction
 var _pan_direction_mouse = Vector2.ZERO
 var _dragging = false
 var wrap_offset = null
+
 
 @onready var _target_zoom = zoom
 
@@ -64,8 +65,8 @@ func _input(event):
 			_dragging = true
 			enable_wrap = false
 	elif event is InputEventScreenTouch:
-		if event.pressed:
-			pass # Might be useful later
+		if event.pressed: # Might be useful later
+			editor_scene.placed_objects_collider.global_position = event.position
 		else:
 			_dragging = false
 	elif event is InputEventMouseButton:
