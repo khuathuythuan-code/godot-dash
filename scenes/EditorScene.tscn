@@ -5704,7 +5704,7 @@ metadata/_edit_lock_ = true
 layer = 91
 follow_viewport_enabled = true
 
-[node name="EditorCamera" type="Camera2D" parent="." node_paths=PackedStringArray("editor_viewport", "edit_handler")]
+[node name="EditorCamera" type="Camera2D" parent="." node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
 position = Vector2(640, 256)
 offset = Vector2(640, 413)
@@ -5713,6 +5713,7 @@ position_smoothing_enabled = true
 script = ExtResource("6_wcytj")
 pan_margin = 0.0
 pan_keyboard = false
+editor_scene = NodePath("..")
 editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 edit_handler = NodePath("../EditHandler")
 
