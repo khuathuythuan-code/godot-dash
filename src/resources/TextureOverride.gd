@@ -3,4 +3,6 @@ class_name TextureOverride
 
 @export var base: Texture2D
 @export var detail: Texture2D
-@export var name: String
+@export var base_detail_same_color: bool
+
+@export_storage var name: String
