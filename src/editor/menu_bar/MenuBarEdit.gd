@@ -3,7 +3,6 @@ extends PopupMenu
 @export var edit_handler: EditHandler
 
 func _on_index_pressed(index:int) -> void:
-	print(index)
 	match index:
 		0: # Undo
 			edit_handler.level.version_history.undo()

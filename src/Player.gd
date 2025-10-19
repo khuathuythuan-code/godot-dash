@@ -176,8 +176,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# if $DashParticles.visible:
-	# 	print("grrr")
 	if _dead or not LevelManager.level_playing:
 		return
 	
@@ -244,7 +242,6 @@ func _physics_process(delta: float) -> void:
 			speed_0_portal_control = null
 	
 	if _snap_sprite_rotation:
-		print(_snap_sprite_rotation_frames)
 		if _snap_sprite_rotation_frames > 0:
 			_snap_sprite_rotation_frames -= 1
 		elif _snap_sprite_rotation_frames == 0:
@@ -606,8 +603,6 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 					$Icon/Cube.rotation,
 					snapped($Icon/Cube.rotation - sprite_floor_angle, PI/2) + sprite_floor_angle,
 					ICON_LERP_FACTOR * delta * 60 if not _snap_sprite_rotation else 1.0)
-			if _snap_sprite_rotation:
-				print($Icon/Cube.rotation_degrees)
 	#endregion
 
 	#region ship/swing
