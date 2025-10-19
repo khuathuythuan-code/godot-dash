@@ -12,6 +12,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if not visible:
+		clear_points()
+		return
 	if target_component == null:
 		clear_points()
 		return
@@ -36,5 +39,5 @@ func _process(delta: float) -> void:
 			alpha = 1.0
 		alpha = remap(alpha, 0.0, 1.0, 0.25, 1.0)
 		modulate.a = lerpf(modulate.a, alpha, delta * 12)
-	if not Engine.is_editor_hint() and not (Editor.in_editor or get_tree().is_debugging_collisions_hint()):
+	if LevelManager.level_playing or (not Engine.is_editor_hint() and not (Editor.in_editor or get_tree().is_debugging_collisions_hint())):
 		hide()
