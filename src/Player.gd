@@ -153,12 +153,12 @@ var _snap_sprite_rotation_frames: int
 
 
 func _ready() -> void:
-	%GroundParticles.visible = not (Config.config.hide_ground_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%ShipParticles.visible = not (Config.config.hide_ship_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%JetpackParticles.visible = not (Config.config.hide_jetpack_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%UFOParticlesOrigin.visible = not (Config.config.hide_ufo_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	$DashParticles.visible = not (Config.config.hide_dash_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	$DeathParticles.visible = not (Config.config.hide_death_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%GroundParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%ShipParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%JetpackParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	%UFOParticlesOrigin.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	$DashParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
+	$DeathParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	# Robot???
 
 	%DebugOverlays.visible = Config.config.draw_debug_overlays
