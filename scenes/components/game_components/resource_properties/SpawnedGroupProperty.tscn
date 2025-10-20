@@ -8,8 +8,6 @@
 [sub_resource type="Resource" id="Resource_do8kg"]
 resource_local_to_scene = true
 script = ExtResource("2_lxw1a")
-path = NodePath("")
-time = 0.0
 
 [node name="SpawnedGroupProperty" type="BoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -21,13 +19,13 @@ grow_vertical = 2
 vertical = true
 script = ExtResource("1_do8kg")
 default = SubResource("Resource_do8kg")
-resource_script = ExtResource("2_lxw1a")
 metadata/_custom_type_script = "uid://bcfxiueixkkwq"
 
 [node name="Path" type="BoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("3_thtdk")
 metadata/_custom_type_script = "uid://bm3bhys0ur0ns"
 
@@ -35,6 +33,7 @@ metadata/_custom_type_script = "uid://bm3bhys0ur0ns"
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+vertical = true
 script = ExtResource("4_kxtx3")
 allow_greater = true
 suffix = "s"

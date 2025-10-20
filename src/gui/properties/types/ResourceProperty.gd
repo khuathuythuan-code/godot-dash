@@ -5,14 +5,7 @@ class_name ResourceProperty
 signal value_changed(value: Resource)
 
 @export var default: Resource
-@export var resource_script: Script:
-	set(value):
-		if value.new() is not Resource:
-			resource_script = null
-			push_error("Resource script does not extend Resource")
-		resource_script = value
-		default = value.new()
-		default.resource_local_to_scene = true
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var indentation_container: VBoxContainer
@@ -31,7 +24,8 @@ func _ready() -> void:
 		"VBoxContainer",
 		VBoxContainer,
 		NodeUtils.INTERNAL)
-	resource_properties = resource_script.get_script_property_list()
+	assert(default != null, "Default needs to be a valid Resource")
+	resource_properties = default.get_script().get_script_property_list()
 	resource_properties.remove_at(0)
 	resource_properties = resource_properties \
 			.filter(func(property): return property["usage"] & PROPERTY_USAGE_EDITOR != 0) \
