@@ -22,9 +22,9 @@ func _on_texture_filtering_value_changed(value: int) -> void:
 
 func _on_touch_screen_mode_value_changed(value: int) -> void:
 	match value:
-		0: Config.config.touch_screen = true
-		1: Config.config.touch_screen = false
-		_: Config.config.touch_screen = DisplayServer.is_touchscreen_available()
+		0: Config.config.touch_screen = DisplayServer.is_touchscreen_available()
+		1: Config.config.touch_screen = true
+		2: Config.config.touch_screen = false
 
 func _on_max_fps_value_changed(value:float) -> void:
 	Engine.max_fps = int(value)
