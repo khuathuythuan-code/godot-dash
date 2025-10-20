@@ -28,27 +28,30 @@ func _get_jump_state() -> int:
 
 	jump_state = -1
 
-	if internal_gamemode == Gamemode.CUBE and is_on_floor():
-		if randi_range(0, 2) == 0:
-			jump_state = 1
-	elif internal_gamemode in [Gamemode.SHIP, Gamemode.WAVE]:
-		if randi_range(0, 1) == 0:
-			jump_state = 1
-	elif internal_gamemode == Gamemode.ROBOT:
-		if is_on_floor():
+	match internal_gamemode:
+		Gamemode.CUBE when is_on_floor():
 			if randi_range(0, 2) == 0:
 				jump_state = 1
-				$RobotTimer.start(0.25)
-		else:
-			if randi_range(0, 4) == 0:
-				$RobotTimer.stop()
-	elif internal_gamemode in [Gamemode.UFO, Gamemode.SWING]:
-		if randi_range(0, 1) == 0:
-			jump_state = 1
-	elif internal_gamemode in [Gamemode.BALL, Gamemode.SPIDER]:
-		if randi_range(0, 2) == 0:
-			jump_state = 1
-			push_warning(str(internal_gamemode), "is MenuIcon")
+		Gamemode.SHIP, Gamemode.WAVE:
+			if randi_range(0, 1) == 0:
+				jump_state = 1
+		Gamemode.ROBOT:
+			if is_on_floor():
+				if randi_range(0, 2) == 0:
+					jump_state = 1
+					$RobotTimer.start(0.25)
+			else:
+				if randi_range(0, 4) == 0:
+					$RobotTimer.stop()
+		Gamemode.UFO:
+			if randi_range(0, 1) == 0:
+				jump_state = 1
+		Gamemode.SWING when Time.get_ticks_msec() - _last_jump > 200:
+			if randi_range(0, 1) == 0:
+				jump_state = 1
+		Gamemode.BALL, Gamemode.SPIDER:
+			if randi_range(0, 2) == 0:
+				jump_state = 1
 	if position.y < 256:
 		match internal_gamemode:
 			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
