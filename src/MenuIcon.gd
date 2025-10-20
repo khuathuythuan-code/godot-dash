@@ -1,6 +1,8 @@
 extends Player
-
 class_name MenuIcon
+
+var _last_jump: int = 0
+var _last_jump_state: int = false
 
 
 func _ready() -> void:
@@ -11,6 +13,56 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_position_check()
+
+
+func _get_jump_state() -> int:
+	var jump_state: int
+	
+	if not Time.get_ticks_msec() - _last_jump > randi_range(75, 200):
+		if internal_gamemode == Gamemode.CUBE and not is_on_floor_only():
+			return -1
+		elif internal_gamemode == Gamemode.UFO and _last_jump_state == 1:
+			return -1
+		return _last_jump_state
+	_last_jump = Time.get_ticks_msec()
+
+	jump_state = -1
+
+	if internal_gamemode == Gamemode.CUBE and is_on_floor():
+		if randi_range(0, 2) == 0:
+			jump_state = 1
+	elif internal_gamemode in [Gamemode.SHIP, Gamemode.WAVE]:
+		if randi_range(0, 1) == 0:
+			jump_state = 1
+	elif internal_gamemode == Gamemode.ROBOT:
+		if is_on_floor():
+			if randi_range(0, 2) == 0:
+				jump_state = 1
+				$RobotTimer.start(0.25)
+		else:
+			if randi_range(0, 4) == 0:
+				$RobotTimer.stop()
+	elif internal_gamemode in [Gamemode.UFO, Gamemode.SWING]:
+		if randi_range(0, 1) == 0:
+			jump_state = 1
+	elif internal_gamemode in [Gamemode.BALL, Gamemode.SPIDER]:
+		if randi_range(0, 2) == 0:
+			jump_state = 1
+			push_warning(str(internal_gamemode), "is MenuIcon")
+	if position.y < 256:
+		match internal_gamemode:
+			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
+				jump_state = -1
+			Gamemode.SWING, Gamemode.BALL, Gamemode.SPIDER:
+				gravity_flip = 1
+	elif position.y > 640:
+		match internal_gamemode:
+			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
+				jump_state = 1
+			Gamemode.SWING:
+				gravity_flip = -1
+	_last_jump_state = jump_state
+	return jump_state
 
 
 func _player_death() -> void:
