@@ -859,12 +859,7 @@ collision_mask = 1024
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Jump Cooldown" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
-
 [connection signal="body_entered" from="KillColliderSolid" to="." method="_on_kill_collider_solid_body_entered"]
 [connection signal="body_entered" from="KillColliderRectangularHazard" to="." method="_on_kill_collider_hazard_body_entered"]
 [connection signal="body_entered" from="KillColliderCircularHazard" to="." method="_on_kill_collider_hazard_body_entered"]
 [connection signal="body_exited" from="SolidOverlapCheck" to="." method="_on_solid_overlap_check_body_exited"]
-[connection signal="timeout" from="Jump Cooldown" to="." method="_on_jump_cooldown_timeout"]

@@ -150,10 +150,13 @@ var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
 var _snap_sprite_rotation: bool
 var _snap_sprite_rotation_frames: int
+var _last_jump: int = 0
+var _last_jump_state: int = false
 
 
 func _ready() -> void:
-	%DebugOverlays.visible = Config.config.draw_debug_overlays
+	if self is not MenuIcon: # They are both Player
+		%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
@@ -168,7 +171,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if _dead or not LevelManager.level_playing:
+	if _dead or (not LevelManager.level_playing and not self is MenuIcon):
 		return
 	
 	# Get velocity
@@ -203,8 +206,7 @@ func _physics_process(delta: float) -> void:
 			_update_spider_state_machine(jump_state)
 		Gamemode.SWING:
 			_update_swing_fire(delta)
-		Gamemode.WAVE:
-			_update_wave_trail(delta)
+	_update_wave_trail(delta)
 	
 	# Instantiate spider trail if needed
 	if _last_spider_trail != null:
@@ -340,13 +342,59 @@ func _get_jump_state() -> int:
 			return jump_state
 		else:
 			return 0 if LevelManager.platformer else -1
-	
+	if not self is MenuIcon:
+		return jump_state
+	# region MenuIcon logic
+	if not Time.get_ticks_msec() - _last_jump > randi_range(75, 200):
+		if internal_gamemode == Gamemode.CUBE and not is_on_floor_only():
+			return -1
+		elif internal_gamemode == Gamemode.UFO and _last_jump_state == 1:
+			return -1
+		return _last_jump_state
+	_last_jump = Time.get_ticks_msec()
+
+	jump_state = -1
+
+	if internal_gamemode == Gamemode.CUBE and is_on_floor():
+		if randi_range(0, 2) == 0:
+			jump_state = 1
+	elif internal_gamemode in [Gamemode.SHIP, Gamemode.WAVE]:
+		if randi_range(0, 1) == 0:
+			jump_state = 1
+	elif internal_gamemode == Gamemode.ROBOT:
+		if is_on_floor():
+			if randi_range(0, 2) == 0:
+				jump_state = 1
+				$RobotTimer.start(0.25)
+		else:
+			if randi_range(0, 4) == 0:
+				$RobotTimer.stop()
+	elif internal_gamemode in [Gamemode.UFO, Gamemode.SWING]:
+		if randi_range(0, 1) == 0:
+			jump_state = 1
+	elif internal_gamemode in [Gamemode.BALL, Gamemode.SPIDER]:
+		if randi_range(0, 2) == 0:
+			jump_state = 1
+			push_warning(str(internal_gamemode), "is MenuIcon")
+	if position.y < 256:
+		match internal_gamemode:
+			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
+				jump_state = -1
+			Gamemode.SWING, Gamemode.BALL, Gamemode.SPIDER:
+				gravity_flip = 1
+	elif position.y > 640:
+		match internal_gamemode:
+			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
+				jump_state = 1
+			Gamemode.SWING:
+				gravity_flip = -1
+	_last_jump_state = jump_state
 	return jump_state
-
-
+	
 func _compute_velocity(delta: float,
 		previous_velocity: Vector2,
 		direction: int, jump_state: int) -> Vector2:
+	var is_level_playing: bool = LevelManager.level_playing or self is MenuIcon
 	var _velocity: Vector2 = previous_velocity.rotated(-gameplay_rotation)
 	_is_flying_gamemode = (internal_gamemode == Gamemode.SHIP or internal_gamemode == Gamemode.SWING or internal_gamemode == Gamemode.WAVE)
 	
@@ -452,7 +500,7 @@ func _compute_velocity(delta: float,
 
 	if not LevelManager.platformer or (LevelManager.platformer and internal_gamemode == Gamemode.WAVE):
 		if direction:
-			_velocity.x = direction * speed.x * speed_multiplier * int(LevelManager.level_playing)
+			_velocity.x = direction * speed.x * speed_multiplier * int(is_level_playing)
 		else:
 			_velocity.x = 0
 	else:
@@ -460,21 +508,21 @@ func _compute_velocity(delta: float,
 			_velocity.x = move_toward(
 				_velocity.x,
 				direction * speed.x * speed_multiplier * int(LevelManager.level_playing),
-				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(LevelManager.level_playing))
+				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(is_level_playing))
 		else:
 			_velocity.x = move_toward(
 				_velocity.x,
 				0.0,
-				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(LevelManager.level_playing))
+				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(is_level_playing))
 
-	
-	var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
-	var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
-	var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
+	if not self is MenuIcon:
+		var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
+		var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
+		var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
 
-	if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
-		gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
-		gravity_flip *= -1
+		if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
+			gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
+			gravity_flip *= -1
 	
 	#region Apply orbs velocity
 	if not orb_queue.is_empty() and (
@@ -714,6 +762,11 @@ func _update_swing_fire(delta: float) -> void:
 
 func _update_wave_trail(delta: float) -> void:
 	var wave_trail_width := WAVE_TRAIL_WIDTH
+	var player_camera_zoom_x: float
+	if self is MenuIcon:
+		player_camera_zoom_x = 1
+	else:
+		player_camera_zoom_x = LevelManager.player_camera.zoom.x
 	if player_scale == PlayerScale.MINI:
 		wave_trail_width *= PLAYER_SCALE_MINI.y
 	elif player_scale == PlayerScale.BIG:
@@ -723,8 +776,8 @@ func _update_wave_trail(delta: float) -> void:
 	if displayed_gamemode == Gamemode.WAVE:
 		%WaveTrail.modulate.a = 1.0
 		%WaveTrailInner.modulate.a = 1.0
-		%WaveTrail.length = lerpf(%WaveTrail.length, WAVE_TRAIL_LENGTH / LevelManager.player_camera.zoom.x, delta * 60 * 0.2)
-		%WaveTrailInner.length = lerpf(%WaveTrail.length, WAVE_TRAIL_LENGTH / LevelManager.player_camera.zoom.x, delta * 60 * 0.2)
+		%WaveTrail.length = lerpf(%WaveTrail.length, WAVE_TRAIL_LENGTH / player_camera_zoom_x, delta * 60 * 0.2)
+		%WaveTrailInner.length = lerpf(%WaveTrail.length, WAVE_TRAIL_LENGTH / player_camera_zoom_x, delta * 60 * 0.2)
 	else:
 		%WaveTrail.length = 0
 		%WaveTrailInner.length = 0
@@ -765,15 +818,17 @@ func _update_spider_state_machine(jump_state: int) -> void:
 		_spider_state_machine.travel("walk")
 
 func _player_death() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-	_dead = true
-	$Icon.hide()
-	$DeathEffect.frame = 0
-	$DeathEffect.play()
-	$DeathParticles.restart()
-	$DashParticles.emitting = false
-	%GroundParticles.emitting = false
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	if not self is MenuIcon:
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+		_dead = true
+		$Icon.hide()
+		$DeathEffect.frame = 0
+		$DeathEffect.play()
+		$DeathParticles.restart()
+		$DashParticles.emitting = false
+		%GroundParticles.emitting = false
+		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+		return
 
 
 func _on_death_restart() -> void:
