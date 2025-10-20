@@ -20,6 +20,7 @@ var level: LevelProps:
 var editor_actions: int
 
 func _ready() -> void:
+	Editor.editor_root = self
 	if SceneTransition.from_main():
 		SceneTransition.previous = SceneTransition.Scene.EDITOR
 		var _fade_screen = $FadeScreenLayer/FadeScreen
@@ -42,7 +43,6 @@ func _ready() -> void:
 	$GameScene/EditorGridParallax/EditorGrid.queue_redraw()
 	$GameScene/PauseMenuLayer/PauseMenu.leave.connect(_on_leave_pressed)
 
-	Editor.editor_root = self
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	#%MenuBar/View.set_item_submenu(0, 'PanelVisibility') temporarily removed because it causes an  error
 	$EditorCamera.zoom_changed.connect($GameScene/EditorGridParallax/EditorGrid.queue_redraw)

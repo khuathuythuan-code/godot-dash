@@ -153,13 +153,8 @@ var _snap_sprite_rotation_frames: int
 
 
 func _ready() -> void:
-	%GroundParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%ShipParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%JetpackParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%UFOParticlesOrigin.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	$DashParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	$DeathParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	%DebugOverlays.visible = Config.config.draw_debug_overlays
+	if %DebugOverlays:
+		%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
@@ -171,6 +166,7 @@ func _ready() -> void:
 	else:
 		LevelManager.player_duals.append(self)
 	apply_floor_snap()
+	_set_particles_visibility.call_deferred()
 
 
 func _physics_process(delta: float) -> void:
@@ -740,6 +736,16 @@ func _update_wave_trail(delta: float) -> void:
 			%WaveTrail.clear_points()
 		if is_zero_approx(%WaveTrailInner.modulate.a):
 			%WaveTrailInner.clear_points()
+
+
+func _set_particles_visibility() -> void:
+	var should_hide_particles: bool = Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor)
+	%GroundParticles.visible = not should_hide_particles
+	%ShipParticles.visible = not should_hide_particles
+	%JetpackParticles.visible = not should_hide_particles
+	%UFOParticlesOrigin.visible = not should_hide_particles
+	$DashParticles.visible = not should_hide_particles
+	$DeathParticles.visible = not should_hide_particles
 
 
 func _get_spider_velocity_delta() -> float:
