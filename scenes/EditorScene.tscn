@@ -688,7 +688,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 1
+current_tab = 3
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -2231,6 +2231,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Slopes" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 1
@@ -3487,7 +3488,6 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -5607,10 +5607,12 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
