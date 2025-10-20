@@ -7,7 +7,6 @@ signal value_changed(value: String)
 @export var default: String
 @export var placeholder: String
 @export var select_all_on_focus: bool
-@export var lineedit_width: float = 160.0
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
@@ -48,7 +47,6 @@ func reset() -> void:
 
 func refresh() -> void:
 	label.text = name
-	input.custom_minimum_size.x = lineedit_width
 	input.focus_mode = Control.FOCUS_CLICK
 	input.placeholder_text = placeholder
 	input.select_all_on_focus = select_all_on_focus

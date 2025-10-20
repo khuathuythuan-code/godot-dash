@@ -5620,7 +5620,6 @@ layout_mode = 2
 vertical = true
 script = ExtResource("184_33w7i")
 placeholder = "Color channel name"
-lineedit_width = 200.0
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
 [node name="Detail Color" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
@@ -5629,7 +5628,6 @@ layout_mode = 2
 vertical = true
 script = ExtResource("184_33w7i")
 placeholder = "Color channel name"
-lineedit_width = 200.0
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
 [node name="HSV Shift" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
