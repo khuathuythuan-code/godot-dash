@@ -79,12 +79,10 @@ size_flags_horizontal = 3
 [node name="Framerate" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Framerate"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Framerate"]
-visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
@@ -120,12 +118,10 @@ config_property = &"vsync"
 [node name="Window" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Window"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window"]
-visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
@@ -146,12 +142,10 @@ config_property = &"window_mode"
 [node name="Particles" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Particles"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles"]
-visible = false
 layout_mode = 2
 
 [node name="Preprocess" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer"]
@@ -325,12 +319,10 @@ config_property = &"hide_player_particles"
 [node name="Performance" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Performance"
 title_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance"]
-visible = false
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
