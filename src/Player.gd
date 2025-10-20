@@ -159,11 +159,7 @@ func _ready() -> void:
 	%UFOParticlesOrigin.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	$DashParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	$DeathParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
-	# Robot???
-	if not self is MenuIcon:
-		%DebugOverlays.visible = Config.config.draw_debug_overlays
-	if not self is MenuIcon: # They are both Player
-		%DebugOverlays.visible = Config.config.draw_debug_overlays
+	%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine

@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://b3ucxn5k6iltg"]
+[gd_scene load_steps=111 format=3 uid="uid://b3ucxn5k6iltg"]
 
 [ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="1_0hod8"]
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="2_qvcbc"]
@@ -43,6 +43,12 @@
 [ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect10.png" id="41_4ttf7"]
 [ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect11.png" id="42_qpsik"]
 [ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect12.png" id="43_66m0j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hod8"]
+size = Vector2(126, 126)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlwol"]
+radius = 63.0
 
 [sub_resource type="Gradient" id="Gradient_vov5s"]
 interpolation_mode = 2
@@ -444,7 +450,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3hrq"]
 size = Vector2(128, 128)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="MenuIcon" type="CharacterBody2D"]
 process_mode = 1
 scale = Vector2(0.75, 0.75)
 collision_mask = 123
@@ -456,6 +462,8 @@ platform_on_leave = 2
 platform_floor_layers = 4294901802
 safe_margin = 1.0
 script = ExtResource("1_0hod8")
+default_collider = SubResource("RectangleShape2D_0hod8")
+slope_collider = SubResource("CircleShape2D_vlwol")
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
 modulate = Color(0, 1, 1, 1)
