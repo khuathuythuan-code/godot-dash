@@ -11,9 +11,11 @@ signal send_to_group_display(group_name: String)
 		else:
 			send_to_group_display.emit("")
 
+
 func _ready() -> void:
 	super()
 	parent.interacted.connect(toggle)
+
 
 func toggle(_player: Node) -> void:
 	for toggled_group in toggled_groups:
