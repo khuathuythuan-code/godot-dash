@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=34 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=35 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -183,6 +183,8 @@ bg_color = Color(0, 0, 0, 0.6)
 border_color = Color(0.18, 0.18, 0.18, 1)
 corner_detail = 3
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcyaj"]
+
 [sub_resource type="Gradient" id="Gradient_ostnf"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8)
@@ -271,6 +273,7 @@ TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_8t62t")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_o1vdk")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_jaexg")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_10srq")
+TextEdit/styles/focus = SubResource("StyleBoxEmpty_xcyaj")
 TransButton/base_type = &"Button"
 TransButton/colors/font_color = Color(0, 0, 0, 1)
 TransButton/colors/font_disabled_color = Color(0, 0, 0, 0.870588)
