@@ -1,7 +1,8 @@
-[gd_scene load_steps=55 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=59 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_e44lk"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_dgjna"]
+[ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_fto0a"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="3_r3sjc"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="4_eh0ur"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="4_r3sjc"]
@@ -23,12 +24,19 @@
 [ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="15_7mwgk"]
 [ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="16_btcin"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="16_dgsi1"]
+[ext_resource type="PackedScene" uid="uid://b3ucxn5k6iltg" path="res://scenes/MenuIcon.tscn" id="16_r3sjc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="19_qavw1"]
 [ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="21_i7ifx"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_mekmn"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_l3o4o"]
 [ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="22_r3sjc"]
 [ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="26_nre0g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3sjc"]
+size = Vector2(4356, 240)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fto0a"]
 shader = ExtResource("3_r3sjc")
@@ -138,7 +146,31 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
+[node name="Player" parent="TitleScreen" instance=ExtResource("16_r3sjc")]
+position = Vector2(-128, 816)
+
+[node name="Kill Box" type="StaticBody2D" parent="TitleScreen"]
+physics_interpolation_mode = 1
+collision_layer = 4
+collision_mask = 260
+script = ExtResource("3_fto0a")
+metadata/_edit_group_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
+shape = SubResource("RectangleShape2D_fto0a")
+disabled = true
+debug_color = Color(0.284375, 0, 0.7, 0.42)
+
+[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
+physics_interpolation_mode = 1
+position = Vector2(940, 1005)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_r3sjc")
+
 [node name="BackgroundParallax" type="Parallax2D" parent="TitleScreen"]
+z_index = -2
 repeat_size = Vector2(12800, 0)
 autoscroll = Vector2(-300, 0)
 repeat_times = 2
