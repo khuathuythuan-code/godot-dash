@@ -155,7 +155,6 @@ var _last_jump_state: int = false
 
 
 func _ready() -> void:
-<<<<<<< HEAD
 	%GroundParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	%ShipParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	%JetpackParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
@@ -163,12 +162,10 @@ func _ready() -> void:
 	$DashParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	$DeathParticles.visible = not (Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor))
 	# Robot???
-
-	%DebugOverlays.visible = Config.config.draw_debug_overlays
-=======
-	if self is not MenuIcon: # They are both Player
+	if not self is MenuIcon:
 		%DebugOverlays.visible = Config.config.draw_debug_overlays
->>>>>>> PushSL-menu-icons
+	if not self is MenuIcon: # They are both Player
+		%DebugOverlays.visible = Config.config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine

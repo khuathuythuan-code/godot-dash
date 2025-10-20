@@ -2,7 +2,6 @@ extends Player
 
 class_name MenuIcon
 
-var jumping: bool = false
 
 func _ready() -> void:
 	super()
@@ -32,9 +31,6 @@ func _player_death() -> void:
 	$Icon.show()
 	_position_check()
 
-func _on_death_restart() -> void:
-	pass
-
 
 func _position_check() -> void:
 	if position.x > DisplayServer.screen_get_size().x + 1024:
@@ -47,5 +43,4 @@ func _position_check() -> void:
 			displayed_gamemode = randi_range(0, 7) as Gamemode
 			player_scale = randi_range(0, 1) as PlayerScale
 			gravity_flip = 1
-			jumping = randi_range(0, 1) == 0
 		internal_gamemode = displayed_gamemode

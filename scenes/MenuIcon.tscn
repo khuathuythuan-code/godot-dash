@@ -685,6 +685,7 @@ scale = Vector2(0.188, 0.188)
 texture = ExtResource("26_oun2j")
 
 [node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO"]
+unique_name_in_owner = true
 position = Vector2(0, 64)
 
 [node name="Ship" type="Node2D" parent="Icon"]
@@ -694,6 +695,7 @@ gamemode = 1
 platformer = 1
 
 [node name="ShipParticles" type="GPUParticles2D" parent="Icon/Ship"]
+unique_name_in_owner = true
 position = Vector2(-79, 22)
 amount = 64
 texture = ExtResource("3_iq2ma")
@@ -710,6 +712,7 @@ gamemode = 1
 platformer = 2
 
 [node name="JetpackParticles" type="GPUParticles2D" parent="Icon/Jetpack"]
+unique_name_in_owner = true
 position = Vector2(-43, 57.000008)
 rotation = -1.4522295
 amount = 64
@@ -828,6 +831,7 @@ frame = 12
 frame_progress = 1.0
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
 visible = false
 modulate = Color(0, 1, 1, 1)
 material = ExtResource("2_qvcbc")
