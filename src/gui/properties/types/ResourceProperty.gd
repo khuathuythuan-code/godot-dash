@@ -25,11 +25,15 @@ func _ready() -> void:
 		VBoxContainer,
 		NodeUtils.INTERNAL)
 	assert(default != null, "Default needs to be a valid Resource")
-	resource_properties = default.get_script().get_script_property_list()
+	var resource_is_native_class: bool = default.get_script() == null
+	if resource_is_native_class:
+		resource_properties = default.get_property_list()
+	else:
+		resource_properties = default.get_script().get_script_property_list()
 	resource_properties.remove_at(0)
 	resource_properties = resource_properties \
-			.filter(func(property): return property["usage"] & PROPERTY_USAGE_EDITOR != 0) \
-			.map(func(property): return property["name"])
+			.filter(func(property): return property.usage & PROPERTY_USAGE_EDITOR != 0 and not property.name.contains("resource")) \
+			.map(func(property): return property.name)
 	reset()
 	for child in get_children(false):
 		child.hide()
