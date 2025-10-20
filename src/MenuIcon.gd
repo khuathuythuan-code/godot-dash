@@ -12,6 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_position_check()
 
+
 func _player_death() -> void:
 	if _dead:
 		return
@@ -44,3 +45,7 @@ func _position_check() -> void:
 			player_scale = randi_range(0, 1) as PlayerScale
 			gravity_flip = 1
 		internal_gamemode = displayed_gamemode
+
+
+func _on_death_restart() -> void:
+	pass
