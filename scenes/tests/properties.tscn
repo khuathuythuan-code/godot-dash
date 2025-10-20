@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://3bc5088argko"]
+[gd_scene load_steps=16 format=3 uid="uid://3bc5088argko"]
 
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="1_1q0ts"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_xcvel"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://d3j6obbost55b" path="res://src/gui/properties/types/ArrayProperty.gd" id="10_jpvj5"]
 [ext_resource type="PackedScene" uid="uid://ccy88idi6rrkp" path="res://scenes/components/game_components/resource_properties/SpawnedGroupProperty.tscn" id="12_ostnf"]
 [ext_resource type="Script" uid="uid://s3yc0qgg4nal" path="res://src/resources/SpawnedGroup.gd" id="13_iyxla"]
+[ext_resource type="Script" uid="uid://b77ajx8cop15a" path="res://src/gui/properties/types/MultilineStringProperty.gd" id="14_iyxla"]
 
 [sub_resource type="Resource" id="Resource_iyxla"]
 resource_local_to_scene = true
@@ -60,7 +61,7 @@ script = ExtResource("1_1q0ts")
 default = 50.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="FSProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="FloatSliderProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 tooltip_text = "FloatSliderProperty"
@@ -70,6 +71,7 @@ default = 7.5
 min_value = 5.0
 max_value = 10.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
+metadata/_edit_lock_ = true
 
 [node name="BoolProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -141,6 +143,13 @@ metadata/_custom_type_script = "uid://d3j6obbost55b"
 [node name="ResourceProperty" parent="CenterContainer/VBoxContainer" instance=ExtResource("12_ostnf")]
 layout_mode = 2
 default = SubResource("Resource_iyxla")
+
+[node name="MultilineStringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("14_iyxla")
+metadata/_custom_type_script = "uid://b77ajx8cop15a"
 
 [connection signal="sort_children" from="CenterContainer/VBoxContainer" to="CenterContainer/VBoxContainer" method="_on_sort_children"]
 [connection signal="sort_children" from="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/VBoxContainer/Items" to="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/VBoxContainer/Items" method="_on_sort_children"]
