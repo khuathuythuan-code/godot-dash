@@ -1,4 +1,4 @@
-[gd_scene load_steps=284 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=290 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -143,14 +143,20 @@
 [ext_resource type="PackedScene" uid="uid://dvdjnndhk1ir0" path="res://scenes/components/level_components/portals/other_portals/CountPortalDual.tscn" id="59_d556q"]
 [ext_resource type="Texture2D" uid="uid://bh5xvhek8i1m6" path="res://assets/textures/portals/speed_portals/SpeedPortal05x.svg" id="60_32shx"]
 [ext_resource type="Texture2D" uid="uid://cwm251i41arye" path="res://assets/textures/guis/editor/edit_panel/ScaleObjectFree.svg" id="60_46ckf"]
+[ext_resource type="Texture2D" uid="uid://qhnuoanrd53a" path="res://assets/textures/hazards/sawblade/normal/RegularSawbladeNormal.svg" id="60_iia8k"]
 [ext_resource type="PackedScene" uid="uid://cachxsihpvoep" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal1x.tscn" id="60_kbsrm"]
+[ext_resource type="Texture2D" uid="uid://dw38va1ai5osi" path="res://assets/textures/hazards/sawblade/medium/RegularSawbladeMedium.svg" id="61_5qwq7"]
 [ext_resource type="PackedScene" uid="uid://csu7yo83ohdk3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn" id="61_l48od"]
+[ext_resource type="PackedScene" uid="uid://dyseodr1cc6sr" path="res://scenes/components/level_components/hazards/Sawblade.tscn" id="61_qb4ou"]
+[ext_resource type="Texture2D" uid="uid://bc3mwmxfrxugt" path="res://assets/textures/hazards/sawblade/small/RegularSawbladeSmall.svg" id="62_8f43i"]
 [ext_resource type="PackedScene" uid="uid://dtumn0qc8usca" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal3x.tscn" id="62_n03i7"]
 [ext_resource type="Texture2D" uid="uid://cuaoks3l1edif" path="res://assets/textures/portals/speed_portals/SpeedPortal1x.svg" id="62_n6cnt"]
 [ext_resource type="PackedScene" uid="uid://cf2ads3atrx78" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal4x.tscn" id="63_itagw"]
+[ext_resource type="PackedScene" uid="uid://d3eov8ks0tqhl" path="res://scenes/components/level_components/hazards/SawbladeMedium.tscn" id="63_xoit7"]
 [ext_resource type="Texture2D" uid="uid://ba7uh3fv4d5jq" path="res://assets/textures/portals/speed_portals/SpeedPortal2x.svg" id="64_pd34h"]
 [ext_resource type="Script" uid="uid://bvvp2bquxkha5" path="res://src/editor/BaseDetailHandler.gd" id="64_ycx04"]
 [ext_resource type="PackedScene" uid="uid://bvu6th40mvb3q" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal5x.tscn" id="64_yuboy"]
+[ext_resource type="PackedScene" uid="uid://cwuamvvlwaodm" path="res://scenes/components/level_components/hazards/SawbladeSmall.tscn" id="65_ukctk"]
 [ext_resource type="Texture2D" uid="uid://bxkysp21y32lm" path="res://assets/textures/portals/speed_portals/SpeedPortal3x.svg" id="66_wdba8"]
 [ext_resource type="Texture2D" uid="uid://crgfornwvgker" path="res://assets/textures/portals/speed_portals/SpeedPortal4x.svg" id="68_107fg"]
 [ext_resource type="Texture2D" uid="uid://bifer0ndxb2i0" path="res://assets/textures/orbs/TeleportationOrbOutline.svg" id="70_33w7i"]
@@ -690,7 +696,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 2
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -3382,7 +3388,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Hazards" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = ""
@@ -3508,7 +3513,65 @@ script = ExtResource("7_f0stj")
 type = 5
 object = ExtResource("47_momrj")
 
+[node name="RegularSawbladeNormal" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("60_iia8k")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeNormal"]
+script = ExtResource("7_f0stj")
+type = 1
+object = ExtResource("61_qb4ou")
+
+[node name="RegularSawbladeMedium" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("61_5qwq7")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeMedium"]
+script = ExtResource("7_f0stj")
+type = 3
+object = ExtResource("63_xoit7")
+
+[node name="RegularSawbladeSmall" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("62_8f43i")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeSmall"]
+script = ExtResource("7_f0stj")
+type = 3
+object = ExtResource("65_ukctk")
+
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""

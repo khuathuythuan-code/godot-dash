@@ -796,12 +796,12 @@ func _on_death_restart() -> void:
 		get_tree().reload_current_scene()
 
 
-func _on_kill_collider_solid_body_entered(_body:Node2D) -> void:
+func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:
 	if _spider_jump_invulnerability_frames == 0:
 		$DeathAnimator.play("DeathAnimation")
 
 
-func _on_kill_collider_hazard_body_entered(_body:Node2D) -> void:
+func _on_kill_collider_hazard_area_entered(_area: Area2D) -> void:
 	if _spider_jump_invulnerability_frames == 0:
 		$DeathAnimator.play("DeathAnimation")
 
