@@ -170,7 +170,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if _dead or (not LevelManager.level_playing and not self is MenuIcon):
+	if not _should_process():
 		return
 	
 	# Get velocity
@@ -341,11 +341,11 @@ func _get_jump_state() -> int:
 		else:
 			return 0 if LevelManager.platformer else -1
 	return jump_state
-	
+
+
 func _compute_velocity(delta: float,
 		previous_velocity: Vector2,
 		direction: int, jump_state: int) -> Vector2:
-	var is_level_playing: bool = LevelManager.level_playing or self is MenuIcon
 	var _velocity: Vector2 = previous_velocity.rotated(-gameplay_rotation)
 	_is_flying_gamemode = (internal_gamemode == Gamemode.SHIP or internal_gamemode == Gamemode.SWING or internal_gamemode == Gamemode.WAVE)
 	
@@ -451,29 +451,28 @@ func _compute_velocity(delta: float,
 
 	if not LevelManager.platformer or (LevelManager.platformer and internal_gamemode == Gamemode.WAVE):
 		if direction:
-			_velocity.x = direction * speed.x * speed_multiplier * int(is_level_playing)
+			_velocity.x = direction * speed.x * speed_multiplier
 		else:
 			_velocity.x = 0
 	else:
 		if direction:
 			_velocity.x = move_toward(
 				_velocity.x,
-				direction * speed.x * speed_multiplier * int(LevelManager.level_playing),
-				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(is_level_playing))
+				direction * speed.x * speed_multiplier,
+				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION)
 		else:
 			_velocity.x = move_toward(
 				_velocity.x,
 				0.0,
-				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION * int(is_level_playing))
+				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION)
 
-	if not self is MenuIcon:
-		var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
-		var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
-		var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
+	var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
+	var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
+	var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
 
-		if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
-			gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
-			gravity_flip *= -1
+	if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
+		gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
+		gravity_flip *= -1
 	
 	#region Apply orbs velocity
 	if not orb_queue.is_empty() and (
@@ -521,6 +520,10 @@ func _compute_velocity(delta: float,
 	_deferred_velocity_redirect = _ensure_velocity_redirect(delta, _velocity.rotated(gameplay_rotation))
 
 	return _velocity.rotated(gameplay_rotation)
+
+
+func _should_process() -> bool:
+	return LevelManager.level_playing and not _dead
 
 
 ## Ensure velocity redirection can happen and the vertical velocity isn't reset by hitting the floor.
@@ -600,6 +603,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 	#region ship/swing
 	$Icon/Ship.scale.y = sign(gravity_flip)
 	$Icon/Ship/ShipParticles.emitting = $Icon/Ship.visible and jump_state > 0
+	$Icon/Ship/ShipParticles.interp_to_end = 0.0 if $Icon/Ship.visible else 1.0
 	$Icon/Swing.scale.y = 1.0
 	$Icon/Ship.scale.x = dash_horizontal_direction
 	$Icon/Swing.scale.x = dash_horizontal_direction
@@ -638,6 +642,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 	$Icon/Jetpack.scale.y = sign(gravity_flip)
 	$Icon/Jetpack.scale.x = dash_horizontal_direction
 	$Icon/Jetpack/JetpackParticles.emitting = $Icon/Jetpack.visible and jump_state > 0
+	$Icon/Jetpack/JetpackParticles.interp_to_end = 0.0 if $Icon/Jetpack.visible else 1.0
 	if not dash_control:
 		if not is_on_floor() and not is_on_ceiling() and speed_multiplier > 0.0:
 			$Icon/UFO.rotation_degrees = lerpf(
@@ -697,25 +702,34 @@ func defer_snap_sprite_rotation() -> void:
 
 
 func _update_swing_fire(delta: float) -> void:
-	if gravity_flip < 0.0:
-		$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
-		$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2(-54.0, 63.0), 1-exp(-delta * 12))
+	if displayed_gamemode != Gamemode.SWING:
 		$Icon/Swing/FireBoostTop/FireParticles.emitting = false
-		$Icon/Swing/FireBoostBottom/FireParticles.emitting = true
-	else:
-		$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2(-54.0, -63.0), 1-exp(-delta * 12))
-		$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
-		$Icon/Swing/FireBoostTop/FireParticles.emitting = true
+		$Icon/Swing/FireBoostMiddle/FireParticles.emitting = false
 		$Icon/Swing/FireBoostBottom/FireParticles.emitting = false
+		$Icon/Swing/FireBoostTop/FireParticles.interp_to_end = 1.0
+		$Icon/Swing/FireBoostMiddle/FireParticles.interp_to_end = 1.0
+		$Icon/Swing/FireBoostBottom/FireParticles.interp_to_end = 1.0
+	else:
+		$Icon/Swing/FireBoostMiddle/FireParticles.emitting = true
+		$Icon/Swing/FireBoostTop/FireParticles.interp_to_end = 0.0
+		$Icon/Swing/FireBoostMiddle/FireParticles.interp_to_end = 0.0
+		$Icon/Swing/FireBoostBottom/FireParticles.interp_to_end = 0.0
+		if gravity_flip < 0.0:
+			$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
+			$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2(-54.0, 63.0), 1-exp(-delta * 12))
+			$Icon/Swing/FireBoostTop/FireParticles.emitting = false
+			$Icon/Swing/FireBoostBottom/FireParticles.emitting = true
+		else:
+			$Icon/Swing/FireBoostTop.position = $Icon/Swing/FireBoostTop.position.lerp(Vector2(-54.0, -63.0), 1-exp(-delta * 12))
+			$Icon/Swing/FireBoostBottom.position = $Icon/Swing/FireBoostBottom.position.lerp(Vector2.ZERO, 1-exp(-delta * 12))
+			$Icon/Swing/FireBoostTop/FireParticles.emitting = true
+			$Icon/Swing/FireBoostBottom/FireParticles.emitting = false
 
 
 func _update_wave_trail(delta: float) -> void:
 	var wave_trail_width := WAVE_TRAIL_WIDTH
 	var player_camera_zoom_x: float
-	if self is MenuIcon:
-		player_camera_zoom_x = 1
-	else:
-		player_camera_zoom_x = LevelManager.player_camera.zoom.x
+	player_camera_zoom_x = LevelManager.player_camera.zoom.x if LevelManager.player_camera else 1.0
 	if player_scale == PlayerScale.MINI:
 		wave_trail_width *= PLAYER_SCALE_MINI.y
 	elif player_scale == PlayerScale.BIG:

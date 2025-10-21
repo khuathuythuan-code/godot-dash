@@ -14,6 +14,10 @@ func _process(_delta: float) -> void:
 	_global_position_check()
 
 
+func _should_process() -> bool:
+	return true
+
+
 func _get_jump_state() -> int:
 	var jump_state: int
 	
