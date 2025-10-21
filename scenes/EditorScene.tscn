@@ -1,4 +1,4 @@
-[gd_scene load_steps=290 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=294 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -145,6 +145,7 @@
 [ext_resource type="Texture2D" uid="uid://cwm251i41arye" path="res://assets/textures/guis/editor/edit_panel/ScaleObjectFree.svg" id="60_46ckf"]
 [ext_resource type="Texture2D" uid="uid://qhnuoanrd53a" path="res://assets/textures/hazards/sawblade/normal/RegularSawbladeNormal.svg" id="60_iia8k"]
 [ext_resource type="PackedScene" uid="uid://cachxsihpvoep" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal1x.tscn" id="60_kbsrm"]
+[ext_resource type="Shader" uid="uid://c8fmb7haov3m7" path="res://resources/shaders/Sawblade.gdshader" id="60_xoit7"]
 [ext_resource type="Texture2D" uid="uid://dw38va1ai5osi" path="res://assets/textures/hazards/sawblade/medium/RegularSawbladeMedium.svg" id="61_5qwq7"]
 [ext_resource type="PackedScene" uid="uid://csu7yo83ohdk3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn" id="61_l48od"]
 [ext_resource type="PackedScene" uid="uid://dyseodr1cc6sr" path="res://scenes/components/level_components/hazards/Sawblade.tscn" id="61_qb4ou"]
@@ -448,6 +449,21 @@ script = ExtResource("193_5tfcf")
 
 [sub_resource type="Resource" id="Resource_pfb6b"]
 script = ExtResource("193_5tfcf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ukctk"]
+shader = ExtResource("60_xoit7")
+shader_parameter/gradient_start = 0.0
+shader_parameter/gradient_end = 0.5999999865888
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xoit7"]
+shader = ExtResource("60_xoit7")
+shader_parameter/gradient_start = 0.0
+shader_parameter/gradient_end = 0.3999999910592
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6duda"]
+shader = ExtResource("60_xoit7")
+shader_parameter/gradient_start = 0.0
+shader_parameter/gradient_end = 0.249999994412
 
 [sub_resource type="Resource" id="Resource_5tfcf"]
 script = ExtResource("193_5tfcf")
@@ -3472,7 +3488,7 @@ block_palette_button = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeSmall"]
 script = ExtResource("7_f0stj")
-type = 3
+type = 4
 object = ExtResource("55_vt33b")
 
 [node name="RegularSpikeFlat" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
@@ -3514,6 +3530,7 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="RegularSawbladeNormal" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+material = SubResource("ShaderMaterial_ukctk")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -3533,6 +3550,7 @@ type = 1
 object = ExtResource("61_qb4ou")
 
 [node name="RegularSawbladeMedium" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+material = SubResource("ShaderMaterial_xoit7")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -3552,6 +3570,7 @@ type = 3
 object = ExtResource("63_xoit7")
 
 [node name="RegularSawbladeSmall" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+material = SubResource("ShaderMaterial_6duda")
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
