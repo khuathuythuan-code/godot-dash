@@ -9,7 +9,7 @@ size = Vector2(13.333, 20.667)
 [node name="SpikeMedium" type="StaticBody2D"]
 collision_layer = 4
 
-[node name="RegularSpike01" type="Sprite2D" parent="."]
+[node name="RegularSpikeMedium" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_puv86")
 
