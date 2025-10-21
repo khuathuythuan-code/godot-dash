@@ -466,13 +466,14 @@ func _compute_velocity(delta: float,
 				0.0,
 				speed.x * delta * speed_multiplier * PLATFORMER_ACCELERATION)
 
-	var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
-	var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
-	var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
+	if LevelManager.player_camera:
+		var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
+		var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
+		var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
 
-	if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
-		gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
-		gravity_flip *= -1
+		if LevelManager.platformer and abs(_velocity.x) < 10.0 and (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
+			gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
+			gravity_flip *= -1
 	
 	#region Apply orbs velocity
 	if not orb_queue.is_empty() and (
