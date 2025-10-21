@@ -63,6 +63,7 @@ texture = ExtResource("5_8oo0e")
 
 [node name="JumpBoostComponent" type="Node" parent="."]
 script = ExtResource("7_pd1t2")
+jump_boost = -1.34
 
 [node name="DirectionChangerComponent" type="Node" parent="."]
 script = ExtResource("8_vfbbj")
