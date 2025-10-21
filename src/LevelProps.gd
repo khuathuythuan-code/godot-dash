@@ -1,6 +1,5 @@
 extends Node2D
 class_name LevelProps
-var music_scale: float = 1.0
 
 const START_SPEED: Array[float] = [
 	0.0,   # 0x
@@ -30,7 +29,9 @@ const START_SPEED: Array[float] = [
 @onready var song_player := AudioStreamPlayer.new()
 
 var stopwatch: Stopwatch
+var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
+var required_fonts: Dictionary[String, int] # HashMap<FontPath, FontUsers>
 
 var _pause_manager: Node
 
@@ -49,8 +50,10 @@ func _ready() -> void:
 	add_child(song_player)
 	setup_color_channel_watchers()
 
+
 func _process(_delta: float) -> void:
 	music_scale = 0.85 + MusicVolume.get_volume()
+
 
 func start_level() -> void:
 	if get_tree().paused:
@@ -76,7 +79,6 @@ func stop_level() -> void:
 func stop_timer() -> void:
 	if Editor.in_editor:
 		LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
-		print_debug(LevelManager.current_level_duration)
 
 
 func setup_color_channel_watchers() -> void:
@@ -94,3 +96,14 @@ func register_required_song(old_path: String, new_path: String) -> void:
 		if not required_songs.has(new_path):
 			required_songs[new_path] = 0
 		required_songs[new_path] += 1
+
+
+func register_required_font(old_path: String, new_path: String) -> void:
+	if required_fonts.has(old_path):
+		required_fonts[old_path] -= 1
+		if required_fonts[old_path] <= 0:
+			required_fonts.erase(old_path)
+	if not new_path.is_empty():
+		if not required_fonts.has(new_path):
+			required_fonts[new_path] = 0
+		required_fonts[new_path] += 1

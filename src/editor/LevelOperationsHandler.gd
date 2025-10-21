@@ -130,25 +130,34 @@ func _import_level(path: String, keep_original: bool) -> void:
 	var files := reader.get_files()
 	var level_dir := DirAccess.open("user://created_levels/levels")
 	var song_dir := DirAccess.open("user://created_levels/songs")
+	var font_dir := DirAccess.open("user://created_levels/fonts")
 	var level_path: String
 	if not "tscn" in Array(files).map(func(file): return file.get_extension()):
 		corrupted_level_dialog.show()
 		return
 	for file_path in files:
-		var dir := level_dir if file_path.ends_with(".tscn") else song_dir
+		var dir: DirAccess = (
+				level_dir if file_is_level(file_path) else
+				song_dir if file_is_song(file_path) else
+				font_dir if file_is_font(file_path) else
+				null
+		)
+		if not dir:
+			push_error("Invalid file: %s" % file_path)
 		var buffer := reader.read_file(file_path)
-		if dir == level_dir:
-			level_path = dir.get_current_dir().path_join(file_path)
-			if FileAccess.file_exists(level_path):
-				level_already_exists_dialog.show()
-				level_already_exists_dialog.confirmed.connect(_import_overwrite.bind(level_path, buffer))
-				await level_already_exists_dialog.visibility_changed
-			else:
+		match dir:
+			level_dir:
+				level_path = dir.get_current_dir().path_join(file_path)
+				if FileAccess.file_exists(level_path):
+					level_already_exists_dialog.show()
+					level_already_exists_dialog.confirmed.connect(_import_overwrite.bind(level_path, buffer))
+					await level_already_exists_dialog.visibility_changed
+				else:
+					var file = FileAccess.open(dir.get_current_dir().path_join(file_path), FileAccess.WRITE)
+					file.store_buffer(buffer)
+			_:
 				var file = FileAccess.open(dir.get_current_dir().path_join(file_path), FileAccess.WRITE)
 				file.store_buffer(buffer)
-		else:
-			var file = FileAccess.open(dir.get_current_dir().path_join(file_path), FileAccess.WRITE)
-			file.store_buffer(buffer)
 	reader.close()
 	if not keep_original:
 		OS.move_to_trash(path)
@@ -248,6 +257,7 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 	writer.write_file(level_bytes)
 	writer.close_file()
 	#endsection
+
 	#section Song Pack
 	for song_path in editor.level.required_songs.keys():
 		file_name = song_path.get_file()
@@ -255,6 +265,29 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		var song_bytes := FileAccess.get_file_as_bytes(song_path)
 		writer.write_file(song_bytes)
 		writer.close_file()
+	#endsection
+
+	#section Font Pack
+	for font_path in editor.level.required_fonts.keys():
+		file_name = font_path.get_file()
+		writer.start_file(file_name)
+		var font_bytes := FileAccess.get_file_as_bytes(font_path)
+		writer.write_file(font_bytes)
+		writer.close_file()
+	#endsection
+
 	writer.close()
 	Toasts.new_toast("Exported level " + path.get_file().get_basename() + " in directory " + path.get_base_dir(), 2.0)
 	return OK
+
+
+static func file_is_level(file_path: String) -> bool:
+	return file_path.ends_with(".tscn")
+
+
+static func file_is_song(file_path: String) -> bool:
+	return file_path.ends_with(".mp3") or file_path.ends_with(".wav") or file_path.ends_with(".ogg")
+
+
+static func file_is_font(file_path: String) -> bool:
+	return file_path.ends_with(".ttf") or file_path.ends_with(".ttc") or file_path.ends_with(".otf")
