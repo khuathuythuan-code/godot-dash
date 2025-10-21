@@ -1,8 +1,10 @@
-[gd_scene load_steps=59 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=60 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_e44lk"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_dgjna"]
+[ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_mekmn"]
 [ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_fto0a"]
+[ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="3_l3o4o"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="3_r3sjc"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="4_eh0ur"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="4_r3sjc"]
@@ -24,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="15_7mwgk"]
 [ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="16_btcin"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="16_dgsi1"]
-[ext_resource type="PackedScene" uid="uid://b3ucxn5k6iltg" path="res://scenes/MenuIcon.tscn" id="16_r3sjc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="19_qavw1"]
 [ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="21_i7ifx"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_mekmn"]
@@ -35,12 +36,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
 size = Vector2(2, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3sjc"]
-size = Vector2(4356, 240)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fto0a"]
 shader = ExtResource("3_r3sjc")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mekmn"]
 
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("12_ct30d")
@@ -146,28 +146,26 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Player" parent="TitleScreen" instance=ExtResource("16_r3sjc")]
+[node name="ScaleMenuIcon" type="Node2D" parent="TitleScreen"]
 position = Vector2(-128, 816)
 
-[node name="Kill Box" type="StaticBody2D" parent="TitleScreen"]
+[node name="MenuIcon" parent="TitleScreen/ScaleMenuIcon" instance=ExtResource("2_mekmn")]
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_l3o4o")
+default_collider = null
+slope_collider = null
+
+[node name="Kill Box" type="Area2D" parent="TitleScreen" node_paths=PackedStringArray("hitbox")]
 physics_interpolation_mode = 1
 collision_layer = 4
-collision_mask = 260
 script = ExtResource("3_fto0a")
+hitbox = NodePath("Hitbox")
 metadata/_edit_group_ = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
 shape = SubResource("RectangleShape2D_fto0a")
 disabled = true
 debug_color = Color(0.284375, 0, 0.7, 0.42)
-
-[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
-physics_interpolation_mode = 1
-position = Vector2(940, 1005)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_r3sjc")
 
 [node name="BackgroundParallax" type="Parallax2D" parent="TitleScreen"]
 z_index = -2
@@ -197,6 +195,15 @@ position = Vector2(940, 1005)
 texture = ExtResource("4_r3sjc")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
+
+[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
+physics_interpolation_mode = 1
+position = Vector2(940, 885)
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
+shape = SubResource("WorldBoundaryShape2D_mekmn")
+debug_color = Color(0, 0.60038817, 0.70000815, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
 layout_mode = 1

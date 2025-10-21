@@ -1,15 +1,13 @@
-extends StaticBody2D
+extends Area2D
 class_name MenuIconKiller
 
-@onready var hitbox: CollisionShape2D = get_child(0)
+@export var hitbox: CollisionShape2D
 var grace_period: float = 0.05
 
-func _ready() -> void:
-	if !Config.config.enable_easter_eggs:
-		queue_free()
 
 func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:

@@ -5,8 +5,13 @@ var _last_jump: int = 0
 var _last_jump_state: int = false
 
 
+func _ready() -> void:
+	super()
+	%DebugOverlays.hide()
+
+
 func _process(_delta: float) -> void:
-	_position_check()
+	_global_position_check()
 
 
 func _get_jump_state() -> int:
@@ -46,13 +51,13 @@ func _get_jump_state() -> int:
 		Gamemode.BALL, Gamemode.SPIDER:
 			if randi_range(0, 2) == 0:
 				jump_state = 1
-	if position.y < 256:
+	if global_position.y < 256:
 		match internal_gamemode:
 			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
 				jump_state = -1
 			Gamemode.SWING, Gamemode.BALL, Gamemode.SPIDER:
 				gravity_flip = 1
-	elif position.y > 640:
+	elif global_position.y > 640:
 		match internal_gamemode:
 			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
 				jump_state = 1
@@ -76,16 +81,16 @@ func _player_death() -> void:
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 	await get_tree().create_timer(0.5).timeout
 	speed_multiplier = 1.0
-	position.x = 10000
+	global_position.x = 10000
 	_dead = false
 	$Icon.show()
-	_position_check()
+	_global_position_check()
 
 
-func _position_check() -> void:
-	if position.x > DisplayServer.screen_get_size().x + 1024:
-		position.x = -512.0
-		position.y = randi_range(816, 300)
+func _global_position_check() -> void:
+	if global_position.x > DisplayServer.screen_get_size().x + 1024:
+		global_position.x = -512.0
+		global_position.y = randi_range(816, 300)
 		# Excludes Gamemode.BALL and Gamemode.SPIDER since there is no roof
 		var index: int = 0 # Prevents infinite looping (fallback)
 		while (displayed_gamemode == internal_gamemode or displayed_gamemode == Gamemode.BALL or displayed_gamemode == Gamemode.SPIDER) and index < 100:
