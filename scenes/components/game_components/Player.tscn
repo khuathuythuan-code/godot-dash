@@ -845,7 +845,7 @@ amount = 30
 texture = ExtResource("5_qm8k0")
 lifetime = 0.5
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_uynvo")
 
 [node name="DebugOverlays" type="Node2D" parent="."]
@@ -883,6 +883,6 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [connection signal="body_entered" from="KillColliderSolid" to="." method="_on_kill_collider_solid_body_entered"]
-[connection signal="body_entered" from="KillColliderRectangularHazard" to="." method="_on_kill_collider_hazard_body_entered"]
-[connection signal="body_entered" from="KillColliderCircularHazard" to="." method="_on_kill_collider_hazard_body_entered"]
+[connection signal="area_entered" from="KillColliderRectangularHazard" to="." method="_on_kill_collider_hazard_area_entered"]
+[connection signal="area_entered" from="KillColliderCircularHazard" to="." method="_on_kill_collider_hazard_area_entered"]
 [connection signal="body_exited" from="SolidOverlapCheck" to="." method="_on_solid_overlap_check_body_exited"]

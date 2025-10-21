@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dml882u2e032b"
-path="res://.godot/imported/FillSlope01.svg-3ef1e1efb1040148e4e60078faa1db55.ctex"
+uid="uid://bf8jb2o4drjtd"
+path="res://.godot/imported/GroundSpikeDefault.svg-d98c646710d98caa68aed7e997d2e5ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/solids/fill_blocks/FillSlope01.svg"
-dest_files=["res://.godot/imported/FillSlope01.svg-3ef1e1efb1040148e4e60078faa1db55.ctex"]
+source_file="res://assets/textures/hazards/ground_spike/GroundSpikeDefault.svg"
+dest_files=["res://.godot/imported/GroundSpikeDefault.svg-d98c646710d98caa68aed7e997d2e5ea.ctex"]
 
 [params]
 

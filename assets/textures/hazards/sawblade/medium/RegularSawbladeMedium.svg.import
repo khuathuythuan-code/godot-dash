@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci7wofbd2np4y"
-path="res://.godot/imported/FillSlope02.svg-955421b8f0ba505ef56c3803b7165604.ctex"
+uid="uid://dw38va1ai5osi"
+path="res://.godot/imported/RegularSawbladeMedium.svg-976d807a64c0deb09d2e40f01e3ce3bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/solids/fill_blocks/FillSlope02.svg"
-dest_files=["res://.godot/imported/FillSlope02.svg-955421b8f0ba505ef56c3803b7165604.ctex"]
+source_file="res://assets/textures/hazards/sawblade/medium/RegularSawbladeMedium.svg"
+dest_files=["res://.godot/imported/RegularSawbladeMedium.svg-976d807a64c0deb09d2e40f01e3ce3bb.ctex"]
 
 [params]
 

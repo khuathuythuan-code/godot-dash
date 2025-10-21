@@ -11,7 +11,7 @@ var previous_pressed_button: BaseButton ## Used to detect if the block palette b
 
 
 func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collider: Area2D, level: LevelProps) -> void:
-	if get_viewport().gui_get_hovered_control() == editor_viewport and not edit_handler.gizmo:
+	if not LevelManager.level_playing and get_viewport().gui_get_hovered_control() == editor_viewport and not edit_handler.gizmo:
 		# Handle object placement
 		var pressed_button := block_palette_button_group.get_pressed_button()
 		if previous_pressed_button != pressed_button:

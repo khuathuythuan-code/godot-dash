@@ -4,7 +4,6 @@ class_name ColorChannelItem
 const COLOR_PREVIEW_DISABLED := Color("#00000080")
 const COLOR_CHANNEL_GROUP_PREFIX := "c_"
 
-
 signal selected
 signal unselected
 

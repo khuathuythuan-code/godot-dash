@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccsvf83xarltu"
-path="res://.godot/imported/RegularSlope03.svg-151a19fdb407d8665aa7f2bc583d5ac0.ctex"
+uid="uid://ci7wofbd2np4y"
+path="res://.godot/imported/FillSlopeLarge01.svg-4e0d7201b1bde58e089b10411ec8e8a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/solids/regular_blocks/RegularSlope03.svg"
-dest_files=["res://.godot/imported/RegularSlope03.svg-151a19fdb407d8665aa7f2bc583d5ac0.ctex"]
+source_file="res://assets/textures/solids/fill_blocks/FillSlopeLarge01.svg"
+dest_files=["res://.godot/imported/FillSlopeLarge01.svg-4e0d7201b1bde58e089b10411ec8e8a5.ctex"]
 
 [params]
 

@@ -106,6 +106,7 @@ func _on_playtest_pressed() -> void:
 		if not $EditHandler.selection.is_empty():
 			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
 			$EditHandler.selection.clear()
+		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
 		Editor.editor_level_backup.pack(level)
 		Editor.editor_backup.pack(self)

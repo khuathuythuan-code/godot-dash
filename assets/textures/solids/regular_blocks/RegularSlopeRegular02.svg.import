@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cffqorkpa6ctb"
-path="res://.godot/imported/RegularSpikeMedium.svg-2910a8e53e4408dfb6e92c16624a8c5b.ctex"
+uid="uid://ccsvf83xarltu"
+path="res://.godot/imported/RegularSlopeRegular02.svg-9f5fa5d5a6e32014a30934a5263ab922.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/hazards/RegularSpikeMedium.svg"
-dest_files=["res://.godot/imported/RegularSpikeMedium.svg-2910a8e53e4408dfb6e92c16624a8c5b.ctex"]
+source_file="res://assets/textures/solids/regular_blocks/RegularSlopeRegular02.svg"
+dest_files=["res://.godot/imported/RegularSlopeRegular02.svg-9f5fa5d5a6e32014a30934a5263ab922.ctex"]
 
 [params]
 

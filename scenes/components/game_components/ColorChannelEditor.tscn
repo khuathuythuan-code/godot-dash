@@ -118,15 +118,17 @@ script = ExtResource("7_dv0aw")
 fields = PackedStringArray("Background", "Ground", "Line", "P1", "P2", "Glow")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="FoldableContainer" type="FoldableContainer" parent="VBoxContainer"]
+[node name="HSV Shift" type="FoldableContainer" parent="VBoxContainer"]
 layout_mode = 2
+folded = true
 title = "HSV Shift"
 
-[node name="HSV shift" type="VBoxContainer" parent="VBoxContainer/FoldableContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSV Shift"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Hue" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
+[node name="Hue" type="BoxContainer" parent="VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -137,7 +139,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Saturation" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
+[node name="Saturation" type="BoxContainer" parent="VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -148,7 +150,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Value" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
+[node name="Value" type="BoxContainer" parent="VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -159,7 +161,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Strength" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
+[node name="Strength" type="BoxContainer" parent="VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -170,7 +172,7 @@ max_value = 5.0
 allow_greater = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Alpha" type="BoxContainer" parent="VBoxContainer/FoldableContainer/HSV shift"]
+[node name="Alpha" type="BoxContainer" parent="VBoxContainer/HSV Shift/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -193,8 +195,9 @@ Are you sure you want to delete it?"
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Color" to="." method="_on_color_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Channel" to="." method="_on_channel_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/FoldableContainer/HSV shift/Hue" to="." method="_on_hue_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/FoldableContainer/HSV shift/Saturation" to="." method="_on_saturation_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/FoldableContainer/HSV shift/Value" to="." method="_on_value_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/FoldableContainer/HSV shift/Strength" to="." method="_on_strength_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/FoldableContainer/HSV shift/Alpha" to="." method="_on_alpha_value_changed"]
+[connection signal="folding_changed" from="VBoxContainer/HSV Shift" to="." method="_on_hsv_shift_folding_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSV Shift/VBoxContainer/Hue" to="." method="_on_hue_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSV Shift/VBoxContainer/Saturation" to="." method="_on_saturation_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSV Shift/VBoxContainer/Value" to="." method="_on_value_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSV Shift/VBoxContainer/Strength" to="." method="_on_strength_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HSV Shift/VBoxContainer/Alpha" to="." method="_on_alpha_value_changed"]

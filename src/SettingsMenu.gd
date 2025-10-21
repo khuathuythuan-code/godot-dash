@@ -82,4 +82,5 @@ func _on_apply_pressed() -> void:
 		edit_handler.selection.map(edit_handler.remove_selection_highlight)
 		edit_handler.selection.clear()
 		Editor.editor_level_backup.pack(LevelManager.current_level)
-	get_tree().reload_current_scene()
+	if get_tree().reload_current_scene() != OK and Editor.in_editor:
+		get_tree().change_scene_to_packed(Editor.editor_backup)

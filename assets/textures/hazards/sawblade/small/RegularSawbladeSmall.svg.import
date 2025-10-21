@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgobch7m00i7a"
-path="res://.godot/imported/Search.svg-cf3aa3b183282998a60f663c04d0a4f5.ctex"
+uid="uid://bc3mwmxfrxugt"
+path="res://.godot/imported/RegularSawbladeSmall.svg-7982e1d728c24fc96123672eeece5b99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/Search.svg"
-dest_files=["res://.godot/imported/Search.svg-cf3aa3b183282998a60f663c04d0a4f5.ctex"]
+source_file="res://assets/textures/hazards/sawblade/small/RegularSawbladeSmall.svg"
+dest_files=["res://.godot/imported/RegularSawbladeSmall.svg-7982e1d728c24fc96123672eeece5b99.ctex"]
 
 [params]
 

@@ -8,6 +8,15 @@ class_name ColorChannelEditor
 @onready var color_channel_item := preload("res://scenes/components/game_components/ColorChannelItem.tscn")
 
 
+func _ready() -> void:
+	populate_item_list.call_deferred()
+
+
+func populate_item_list() -> void:
+	for channel in LevelManager.current_level.color_channels:
+		_add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
+
+
 func _on_button_pressed() -> void:
 	_add_channel(%LineEdit.get_text())
 	%LineEdit.clear()
@@ -15,31 +24,33 @@ func _on_button_pressed() -> void:
 	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
 		get_viewport().gui_release_focus()
 
+
 func _on_line_edit_text_submitted(new_text:String) -> void:
 	_add_channel(new_text)
 	%LineEdit.clear()
 	get_viewport().gui_release_focus()
 
 
-func _add_channel(channel_name: String) -> void:
+func _add_channel(channel_name: String, data: ColorChannelData = null) -> void:
 	if channel_name.is_empty() or (channel_name in %ColorChannelContainer.get_children()
 			.map(func(color_channel: ColorChannelItem): return color_channel.channel_name)):
 		return
 	var channel_item := color_channel_item.instantiate() as ColorChannelItem
 	channel_item.channel_name = channel_name
-	channel_item.selected.connect(_show_properties)
-	channel_item.unselected.connect(_hide_properties)
+	channel_item.data = data
+	channel_item.selected.connect(show_properties)
+	channel_item.unselected.connect(hide_properties)
 	channel_item.update()
 	channel_item.register()
 	%ColorChannelContainer.add_child(channel_item)
 
-func _hide_properties() -> void:
-	custom_minimum_size.y = 250
+
+func hide_properties() -> void:
 	separator.hide()
 	properties_container.hide()
 
-func _show_properties() -> void:
-	custom_minimum_size.y = 500
+
+func show_properties() -> void:
 	separator.show()
 	properties_container.show()
 	if button_group.get_pressed_button() == null:
@@ -56,12 +67,14 @@ func _show_properties() -> void:
 	%Channel.visible = channel_item.data.copy
 	%Color.visible = not channel_item.data.copy
 
+
 func _on_color_value_changed(value: Color) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	channel_item.data.set_color(value)
 	channel_item.update()
+
 
 func _on_copy_channel_value_changed(value: bool) -> void:
 	if button_group.get_pressed_button() == null:
@@ -126,3 +139,8 @@ func _on_alpha_value_changed(value: float) -> void:
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	channel_item.data.set_alpha(value)
 	channel_item.update()
+
+
+func _on_hsv_shift_folding_changed(is_folded: bool) -> void:
+	custom_minimum_size.y = 250 if is_folded else 500
+

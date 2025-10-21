@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="6_7ju4w"]
-[ext_resource type="Script" uid="uid://nl1xrhaw0nyb" path="res://src/PositionFollow2D.gd" id="6_kvomc"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="7_fb2li"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_kxqg4"]
 [ext_resource type="PackedScene" uid="uid://dxcgyea560vmr" path="res://scenes/components/game_components/PlayerCamera.tscn" id="9_e8rlm"]
@@ -22,8 +21,10 @@
 shader = ExtResource("9_qitmq")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4i0t"]
-size = Vector2(534.4, 154.4)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_21xg8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_icif4"]
+normal = Vector2(0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fr71x"]
 shader = ExtResource("10_tgbxk")
@@ -129,18 +130,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
 
-[node name="GroundColliderDown" type="StaticBody2D" parent="GroundDownParallax/GroundDownOrigin/Ground" node_paths=PackedStringArray("target")]
+[node name="GroundColliderDown" type="StaticBody2D" parent="GroundDownParallax/GroundDownOrigin/Ground"]
 z_index = 50
 position = Vector2(-120, -120)
 collision_layer = 32
-script = ExtResource("6_kvomc")
-target = NodePath("../../../../Player")
-copy_x = true
 metadata/_edit_group_ = true
 
 [node name="GroundHitbox" type="CollisionShape2D" parent="GroundDownParallax/GroundDownOrigin/Ground/GroundColliderDown"]
-position = Vector2(0, 77.2)
-shape = SubResource("RectangleShape2D_l4i0t")
+position = Vector2(0, 1.5258789e-05)
+shape = SubResource("WorldBoundaryShape2D_21xg8")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
 [node name="GroundUpParallax" type="Parallax2D" parent="."]
@@ -169,18 +167,15 @@ region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
 
-[node name="GroundColliderUp" type="StaticBody2D" parent="GroundUpParallax/GroundUpOrigin/Ground" node_paths=PackedStringArray("target")]
+[node name="GroundColliderUp" type="StaticBody2D" parent="GroundUpParallax/GroundUpOrigin/Ground"]
 z_index = 50
 position = Vector2(-120, 120)
 collision_layer = 32
-script = ExtResource("6_kvomc")
-target = NodePath("../../../../Player")
-copy_x = true
 metadata/_edit_group_ = true
 
 [node name="GroundHitbox" type="CollisionShape2D" parent="GroundUpParallax/GroundUpOrigin/Ground/GroundColliderUp"]
-position = Vector2(0, -77.2)
-shape = SubResource("RectangleShape2D_l4i0t")
+position = Vector2(0, 0.00019836426)
+shape = SubResource("WorldBoundaryShape2D_icif4")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("ground_down", "ground_up") instance=ExtResource("9_e8rlm")]

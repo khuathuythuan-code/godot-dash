@@ -84,6 +84,11 @@ static func transform(array: Array[Variant], transformation: Transformation, at_
 		return null
 
 
+# Filter out `null` elements of an array in `Array.filter`
+static func flatten(val: Variant) -> Variant:
+	return val != null
+
+
 static func bounding_box(collision_objects: Array[CollisionObject2D], center: Vector2, rotation: float) -> Rect2:
 	var collision_shapes: Array[CollisionShape2D]
 	for collision_object in collision_objects:

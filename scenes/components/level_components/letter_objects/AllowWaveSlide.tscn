@@ -36,9 +36,6 @@ metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 type = 9
 
 [node name="NinePatchSprite2DAbsoluteSize" type="Node" parent="." node_paths=PackedStringArray("nine_patch_sprite")]
-process_thread_group = 2
-process_thread_group_order = 0
-process_thread_messages = 0
 script = ExtResource("7_e40vt")
 nine_patch_sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://cjdpf2wcxjfb1"

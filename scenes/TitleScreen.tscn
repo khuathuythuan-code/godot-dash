@@ -1,131 +1,131 @@
-[gd_scene load_steps=59 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=60 format=3 uid="uid://cinyg32n0bonm"]
 
-[ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_e44lk"]
-[ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_dgjna"]
-[ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_fto0a"]
-[ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="3_r3sjc"]
-[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="4_eh0ur"]
-[ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="4_r3sjc"]
-[ext_resource type="Texture2D" uid="uid://bjrdbga1v3vba" path="res://assets/textures/guis/title_screen/PlayButton.png" id="4_tln2n"]
-[ext_resource type="Texture2D" uid="uid://bu2hpb5owl44q" path="res://assets/textures/guis/title_screen/Title.png" id="4_yqc6o"]
-[ext_resource type="Texture2D" uid="uid://cwoultxx6k47" path="res://assets/textures/guis/title_screen/GarageButton.png" id="5_th0n8"]
-[ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="5_wiac2"]
-[ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="6_0wc6k"]
-[ext_resource type="Texture2D" uid="uid://bwxk6tcq5v31v" path="res://assets/textures/guis/title_screen/CreateButton.png" id="6_2eto3"]
-[ext_resource type="AudioStream" uid="uid://c4sjh7a6mxgv3" path="res://assets/sounds/music/game_music/MenuLoop.mp3" id="7_ir7j4"]
-[ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="8_04kr6"]
-[ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="9_iy7r1"]
-[ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="12_ct30d"]
-[ext_resource type="Texture2D" uid="uid://dorpaiw1p6bw0" path="res://assets/textures/guis/shared/CircleButtonBase.svg" id="13_edrxn"]
-[ext_resource type="PackedScene" uid="uid://kwe5xtryavgg" path="res://scenes/components/game_components/LevelSelectorTab.tscn" id="14_ade78"]
-[ext_resource type="Texture2D" uid="uid://bcjmav8hpm0qx" path="res://assets/textures/guis/shared/CloseButton.svg" id="14_qnf4f"]
-[ext_resource type="Texture2D" uid="uid://bf00dudjlkg0q" path="res://assets/textures/guis/shared/BackButton.png" id="14_t3hvn"]
-[ext_resource type="Texture2D" uid="uid://ca7kg07rmvxyl" path="res://assets/textures/guis/shared/SettingsButton.svg" id="15_6brpo"]
-[ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="15_7mwgk"]
-[ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="16_btcin"]
-[ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="16_dgsi1"]
-[ext_resource type="PackedScene" uid="uid://b3ucxn5k6iltg" path="res://scenes/MenuIcon.tscn" id="16_r3sjc"]
-[ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="19_qavw1"]
-[ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="21_i7ifx"]
-[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_mekmn"]
-[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_l3o4o"]
-[ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="22_r3sjc"]
-[ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="26_nre0g"]
+[ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
+[ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
+[ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="3_65pcn"]
+[ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="4_1ska7"]
+[ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="5_507xd"]
+[ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_02qso"]
+[ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_fm4nh"]
+[ext_resource type="Texture2D" uid="uid://bu2hpb5owl44q" path="res://assets/textures/guis/title_screen/Title.png" id="8_3yl86"]
+[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
+[ext_resource type="Texture2D" uid="uid://cwoultxx6k47" path="res://assets/textures/guis/title_screen/GarageButton.png" id="10_o51e6"]
+[ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="11_1dcdf"]
+[ext_resource type="Texture2D" uid="uid://bjrdbga1v3vba" path="res://assets/textures/guis/title_screen/PlayButton.png" id="12_uh5eq"]
+[ext_resource type="Texture2D" uid="uid://bwxk6tcq5v31v" path="res://assets/textures/guis/title_screen/CreateButton.png" id="13_tuyt1"]
+[ext_resource type="Texture2D" uid="uid://dorpaiw1p6bw0" path="res://assets/textures/guis/shared/CircleButtonBase.svg" id="14_hkayi"]
+[ext_resource type="Texture2D" uid="uid://bcjmav8hpm0qx" path="res://assets/textures/guis/shared/CloseButton.svg" id="15_37bcn"]
+[ext_resource type="Texture2D" uid="uid://ca7kg07rmvxyl" path="res://assets/textures/guis/shared/SettingsButton.svg" id="16_ureuc"]
+[ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
+[ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
+[ext_resource type="Texture2D" uid="uid://bf00dudjlkg0q" path="res://assets/textures/guis/shared/BackButton.png" id="19_pe36d"]
+[ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="20_q22b5"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_u3ctg"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_juc6n"]
+[ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="23_20sjm"]
+[ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="24_sn2o6"]
+[ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="25_mp5hy"]
+[ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="26_bhnaj"]
+[ext_resource type="PackedScene" uid="uid://kwe5xtryavgg" path="res://scenes/components/game_components/LevelSelectorTab.tscn" id="27_yieav"]
+[ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_wlgas"]
+[ext_resource type="AudioStream" uid="uid://c4sjh7a6mxgv3" path="res://assets/sounds/music/game_music/MenuLoop.mp3" id="29_5koff"]
+[ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="30_ucf7r"]
+[ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="31_n61qu"]
+[ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="32_c2d88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
 size = Vector2(2, 2)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3sjc"]
-size = Vector2(4356, 240)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fto0a"]
-shader = ExtResource("3_r3sjc")
+shader = ExtResource("6_02qso")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mekmn"]
+
 [sub_resource type="Resource" id="Resource_assks"]
-script = ExtResource("12_ct30d")
+script = ExtResource("18_cr31u")
 transition = 5
 ease = 1
 
 [sub_resource type="Resource" id="Resource_jse1c"]
-script = ExtResource("12_ct30d")
+script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 0
 
 [sub_resource type="Resource" id="Resource_kwqb8"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_y15d6"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_u55b3"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_wsqty"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_oiest"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_f4jp2"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_kik7w"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_4ikpr"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_doyhq"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_2so2y"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_7yh6i"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_pwxld"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_cw1g3"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_yc0gu"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_qnen4"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_q5chl"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_j2mks"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_5ha8j"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_xuwja"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_g8282"]
-script = ExtResource("22_l3o4o")
+script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_m8p16"]
-script = ExtResource("12_ct30d")
+script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 0
 
 [sub_resource type="Resource" id="Resource_7wwop"]
-script = ExtResource("12_ct30d")
+script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 1
 
-[node name="MainScene" type="Control"]
+[node name="TitleScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -135,7 +135,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="FadeScreenLayer" parent="." instance=ExtResource("1_e44lk")]
+[node name="FadeScreenLayer" parent="." instance=ExtResource("1_p8bvb")]
 
 [node name="TitleScreen" type="Control" parent="."]
 layout_mode = 1
@@ -146,28 +146,23 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 
-[node name="Player" parent="TitleScreen" instance=ExtResource("16_r3sjc")]
+[node name="MenuIcon" parent="TitleScreen" instance=ExtResource("2_opvi4")]
 position = Vector2(-128, 816)
+script = ExtResource("3_65pcn")
+default_collider = null
+slope_collider = null
 
-[node name="Kill Box" type="StaticBody2D" parent="TitleScreen"]
+[node name="Kill Box" type="Area2D" parent="TitleScreen" node_paths=PackedStringArray("hitbox")]
 physics_interpolation_mode = 1
 collision_layer = 4
-collision_mask = 260
-script = ExtResource("3_fto0a")
+script = ExtResource("4_1ska7")
+hitbox = NodePath("Hitbox")
 metadata/_edit_group_ = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
 shape = SubResource("RectangleShape2D_fto0a")
 disabled = true
 debug_color = Color(0.284375, 0, 0.7, 0.42)
-
-[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
-physics_interpolation_mode = 1
-position = Vector2(940, 1005)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
-position = Vector2(5, 0)
-shape = SubResource("RectangleShape2D_r3sjc")
 
 [node name="BackgroundParallax" type="Parallax2D" parent="TitleScreen"]
 z_index = -2
@@ -180,7 +175,7 @@ modulate = Color(0.213669, 0.439779, 1, 1)
 texture_repeat = 2
 position = Vector2(973, 3.05176e-05)
 scale = Vector2(1.25, 1.25)
-texture = ExtResource("2_dgjna")
+texture = ExtResource("5_507xd")
 region_enabled = true
 region_rect = Rect2(0, 0, 10240, 2048)
 
@@ -194,9 +189,18 @@ self_modulate = Color(0.1078, 0.295423, 0.77, 1)
 texture_repeat = 2
 material = SubResource("ShaderMaterial_fto0a")
 position = Vector2(940, 1005)
-texture = ExtResource("4_r3sjc")
+texture = ExtResource("7_fm4nh")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
+
+[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
+physics_interpolation_mode = 1
+position = Vector2(940, 885)
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
+shape = SubResource("WorldBoundaryShape2D_mekmn")
+debug_color = Color(0, 0.60038817, 0.70000815, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
 layout_mode = 1
@@ -216,7 +220,7 @@ alignment = 1
 [node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
 texture_filter = 6
 layout_mode = 2
-texture = ExtResource("4_yqc6o")
+texture = ExtResource("8_3yl86")
 expand_mode = 5
 
 [node name="Control" type="Control" parent="TitleScreen/VBoxContainer"]
@@ -231,24 +235,24 @@ metadata/_edit_group_ = true
 
 [node name="GoToIconGarage" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("5_th0n8")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("10_o51e6")
 flat = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="GoToLevelSelector" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("4_tln2n")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("12_uh5eq")
 flat = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="GoToCreatedLevelsList" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("6_2eto3")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("13_tuyt1")
 flat = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="QuitGame" type="Button" parent="TitleScreen"]
 layout_mode = 1
@@ -257,11 +261,11 @@ offset_top = 32.0
 offset_right = 102.0
 offset_bottom = 102.0
 pivot_offset = Vector2(35, 35)
-theme = ExtResource("4_eh0ur")
+theme = ExtResource("9_5h1vy")
 flat = true
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="Base" type="TextureRect" parent="TitleScreen/QuitGame"]
 layout_mode = 1
@@ -270,7 +274,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_edrxn")
+texture = ExtResource("14_hkayi")
 expand_mode = 1
 
 [node name="Close" type="TextureRect" parent="TitleScreen/QuitGame"]
@@ -280,7 +284,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_qnf4f")
+texture = ExtResource("15_37bcn")
 expand_mode = 1
 
 [node name="Settings" type="Button" parent="TitleScreen"]
@@ -294,11 +298,11 @@ offset_right = 192.0
 offset_bottom = -64.0
 grow_vertical = 0
 pivot_offset = Vector2(64, 64)
-theme = ExtResource("4_eh0ur")
+theme = ExtResource("9_5h1vy")
 flat = true
 icon_alignment = 1
 expand_icon = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="Base" type="TextureRect" parent="TitleScreen/Settings"]
 layout_mode = 1
@@ -307,7 +311,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("13_edrxn")
+texture = ExtResource("14_hkayi")
 expand_mode = 1
 
 [node name="Settings" type="TextureRect" parent="TitleScreen/Settings"]
@@ -317,7 +321,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("15_6brpo")
+texture = ExtResource("16_ureuc")
 expand_mode = 1
 
 [node name="CameraCenterParent" type="Control" parent="TitleScreen"]
@@ -331,7 +335,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleScreenCamera" type="Node2D" parent="TitleScreen/CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 2
 zoom = Vector2(1, 1)
@@ -350,7 +354,7 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="QuitGameCamera" type="Node2D" parent="TitleScreen/CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 0
 zoom = Vector2(4, 4)
@@ -397,11 +401,11 @@ offset_top = 32.0
 offset_right = 100.0
 offset_bottom = 101.0
 pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("14_t3hvn")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="CameraCenterParent" type="Control" parent="IconGarage"]
 layout_mode = 1
@@ -414,7 +418,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IconGarageCamera" type="Node2D" parent="IconGarage/CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 0
 zoom = Vector2(1, 1)
@@ -452,7 +456,7 @@ alignment = 1
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("19_qavw1")
+texture = ExtResource("20_q22b5")
 expand_mode = 1
 
 [node name="TabContainer" type="TabContainer" parent="IconGarage/VBoxContainer"]
@@ -464,7 +468,7 @@ current_tab = 0
 
 [node name="Cube" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_kwqb8")
 dragging_scroll_damper = SubResource("Resource_y15d6")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -475,14 +479,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Cube/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 100
 
 [node name="Ship" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_u55b3")
 dragging_scroll_damper = SubResource("Resource_wsqty")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -493,14 +497,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ship/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 50
 
 [node name="Ball" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_oiest")
 dragging_scroll_damper = SubResource("Resource_f4jp2")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -511,14 +515,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ball/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 30
 
 [node name="Ufo" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_kik7w")
 dragging_scroll_damper = SubResource("Resource_4ikpr")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -529,14 +533,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ufo/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 40
 
 [node name="Wave" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_doyhq")
 dragging_scroll_damper = SubResource("Resource_2so2y")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -547,14 +551,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Wave/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 60
 
 [node name="Robot" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_7yh6i")
 dragging_scroll_damper = SubResource("Resource_pwxld")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -565,14 +569,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Robot/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 30
 
 [node name="Spider" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_cw1g3")
 dragging_scroll_damper = SubResource("Resource_yc0gu")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -583,14 +587,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Spider/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 30
 
 [node name="Swing" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_qnen4")
 dragging_scroll_damper = SubResource("Resource_q5chl")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -601,14 +605,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Swing/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 20
 
 [node name="Jetpack" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_j2mks")
 dragging_scroll_damper = SubResource("Resource_5ha8j")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -619,14 +623,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Jetpack/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 20
 
 [node name="Death Effect" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
-script = ExtResource("21_mekmn")
+script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_xuwja")
 dragging_scroll_damper = SubResource("Resource_g8282")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
@@ -637,8 +641,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Death Effect/Buttons"]
-script = ExtResource("21_i7ifx")
-scene = ExtResource("22_r3sjc")
+script = ExtResource("23_20sjm")
+scene = ExtResource("24_sn2o6")
 amount = 5
 
 [node name="CameraCenterParent" type="Control" parent="."]
@@ -652,7 +656,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CreatedLevelsListCamera" type="Node2D" parent="CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 0
 zoom = Vector2(2, 2)
@@ -671,7 +675,7 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="FromEditorCamera" type="Node2D" parent="CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 0
 zoom = Vector2(2, 2)
@@ -718,11 +722,11 @@ offset_top = 32.0
 offset_right = 100.0
 offset_bottom = 101.0
 pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("14_t3hvn")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="LevelSelector" type="Control" parent="."]
 visible = false
@@ -771,10 +775,10 @@ mouse_filter = 2
 
 [node name="PreviousLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("15_7mwgk")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("25_mp5hy")
 flat = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="Spacer" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
@@ -783,10 +787,10 @@ mouse_filter = 2
 
 [node name="NextLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("16_btcin")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("26_bhnaj")
 flat = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="SpacerRight" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 custom_minimum_size = Vector2(15, 0)
@@ -800,11 +804,11 @@ offset_top = 32.0
 offset_right = 100.0
 offset_bottom = 101.0
 pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("4_eh0ur")
-icon = ExtResource("14_t3hvn")
+theme = ExtResource("9_5h1vy")
+icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
-script = ExtResource("5_wiac2")
+script = ExtResource("11_1dcdf")
 
 [node name="PageContainer" type="HBoxContainer" parent="LevelSelector"]
 layout_mode = 1
@@ -816,7 +820,7 @@ grow_vertical = 2
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="Coming soon" parent="LevelSelector/PageContainer" instance=ExtResource("14_ade78")]
+[node name="Coming soon" parent="LevelSelector/PageContainer" instance=ExtResource("27_yieav")]
 layout_mode = 2
 
 [node name="CameraCenterParent" type="Control" parent="LevelSelector"]
@@ -830,7 +834,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LevelSelectorCamera" type="Node2D" parent="LevelSelector/CameraCenterParent"]
-script = ExtResource("8_04kr6")
+script = ExtResource("17_6ogcu")
 priority_override = false
 priority = 0
 zoom = Vector2(1, 1)
@@ -854,14 +858,14 @@ position = Vector2(960, 540)
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
-script = ExtResource("6_0wc6k")
+script = ExtResource("28_wlgas")
 
 [node name="MenuLoop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_ir7j4")
+stream = ExtResource("29_5koff")
 bus = &"Music"
 
 [node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "level_selector_page_container")]
-script = ExtResource("9_iy7r1")
+script = ExtResource("30_ucf7r")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 page_control_container = NodePath("../LevelSelector/CanvasLayer/PageControlContainer")
@@ -880,9 +884,9 @@ title_screen_background = NodePath("../TitleScreen/BackgroundParallax")
 title_screen_ground = NodePath("../TitleScreen/GroundParallax")
 level_selector_page_container = NodePath("../LevelSelector/PageContainer")
 
-[node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("16_dgsi1")]
+[node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("31_n61qu")]
 
-[node name="SettingsLayer" parent="." instance=ExtResource("26_nre0g")]
+[node name="SettingsLayer" parent="." instance=ExtResource("32_c2d88")]
 visible = false
 
 [connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToIconGarage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
