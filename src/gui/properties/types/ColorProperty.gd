@@ -13,8 +13,6 @@ var input: ColorPickerButton
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	var spacer = NodeUtils.get_node_or_add(self, "Spacer", Control, NodeUtils.INTERNAL)
-	spacer.size_flags_horizontal = SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", ColorPickerButton, NodeUtils.INTERNAL)
 	input.color_changed.connect(func(new_value): value_changed.emit(new_value))
 	renamed.connect(refresh)
