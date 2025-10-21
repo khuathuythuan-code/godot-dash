@@ -87,27 +87,29 @@ func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 			if position.y > 816:
 				return 1
 		Gamemode.SHIP:
-			if player_scale == PlayerScale.NORMAL:
-				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
-					return -1
-				if position.y > 532: # Don't do -^ for this one cuz janky movement
-					return 1
-			if player_scale == PlayerScale.MINI:
-				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
-					return - 1
-				if position.y > 512: # miniship accel is kinda slow
-					return 1
+			match player_scale:
+				PlayerScale.NORMAL:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
+						return -1
+					if position.y > 532: # Don't do -^ for this one cuz janky movement
+						return 1
+				PlayerScale.MINI:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
+						return -1
+					if position.y > 512: # miniship accel is kinda slow
+						return 1
 		Gamemode.SWING:
-			if player_scale == PlayerScale.NORMAL:
-				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
-					return 1
-				if position.y > 532 and gravity_flip == 1:
-					return 1
-			if player_scale == PlayerScale.MINI:
-				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
-					return 1
-				if position.y > 512 and gravity_flip == 1: # miniswing accel is kinda slow
-					return 1
+			match player_scale:
+				PlayerScale.NORMAL:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
+						return 1
+					if position.y > 532 and gravity_flip == 1:
+						return 1
+				PlayerScale.MINI:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
+						return 1
+					if position.y > 512 and gravity_flip == 1: # miniswing accel is kinda slow
+						return 1
 
 
 	return original_value
@@ -123,6 +125,7 @@ func _position_check() -> void:
 			displayed_gamemode = randi_range(0, 7) as Gamemode
 			player_scale = randi_range(0, 1) as PlayerScale
 			gravity_flip = 1
+		displayed_gamemode = Gamemode.SWING
 		internal_gamemode = displayed_gamemode
 
 
