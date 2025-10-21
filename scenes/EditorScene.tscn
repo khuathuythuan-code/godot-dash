@@ -1,4 +1,4 @@
-[gd_scene load_steps=282 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=284 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -124,9 +124,11 @@
 [ext_resource type="Texture2D" uid="uid://bmyejgekcl17a" path="res://assets/textures/pads/SpiderPad.svg" id="53_nlcfe"]
 [ext_resource type="Texture2D" uid="uid://c52yyuk8wf0pr" path="res://assets/textures/guis/editor/edit_panel/RotateObjectLeft45.svg" id="54_0gg2o"]
 [ext_resource type="PackedScene" uid="uid://ht60eohfg08" path="res://scenes/components/level_components/pads/SpiderPad.tscn" id="54_lv6tf"]
+[ext_resource type="Texture2D" uid="uid://c7wme8mgm4tvu" path="res://assets/textures/hazards/RegularSpikeSmall.svg" id="54_w44k4"]
 [ext_resource type="Texture2D" uid="uid://cfmq0ydjokwp5" path="res://assets/textures/guis/editor/edit_panel/RotateObjectRight45.svg" id="55_4de2s"]
 [ext_resource type="PackedScene" uid="uid://duj3dae6qcvtm" path="res://scenes/components/level_components/portals/gamemode_portals/SpiderPortal.tscn" id="55_5nc47"]
 [ext_resource type="PackedScene" uid="uid://da4xswy05y0ve" path="res://scenes/components/game_components/GroupEditor.tscn" id="55_5vu0v"]
+[ext_resource type="PackedScene" uid="uid://b6re4iesb8ux4" path="res://scenes/components/level_components/hazards/SpikeSmall.tscn" id="55_vt33b"]
 [ext_resource type="PackedScene" uid="uid://cw15476n2m4we" path="res://scenes/components/game_components/ColorChannelEditor.tscn" id="55_wey7f"]
 [ext_resource type="Texture2D" uid="uid://cj6wk0jtmbbjp" path="res://assets/textures/portals/other_portals/count_portal_single/CountPortalSingleFront.png" id="56_ot2jm"]
 [ext_resource type="PackedScene" uid="uid://ycasm4t3yh3a" path="res://scenes/components/level_components/portals/other_portals/CountPortalSingle.tscn" id="57_1ad2k"]
@@ -688,7 +690,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 2
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
@@ -3380,7 +3382,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Hazards" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = ""
@@ -3449,6 +3450,25 @@ script = ExtResource("7_f0stj")
 type = 3
 object = ExtResource("44_gehis")
 
+[node name="RegularSpikeSmall" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("54_w44k4")
+flat = true
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeSmall"]
+script = ExtResource("7_f0stj")
+type = 3
+object = ExtResource("55_vt33b")
+
 [node name="RegularSpikeFlat" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3488,6 +3508,7 @@ type = 5
 object = ExtResource("47_momrj")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
