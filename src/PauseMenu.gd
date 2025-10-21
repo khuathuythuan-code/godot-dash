@@ -4,7 +4,7 @@ signal paused
 signal unpaused
 signal leave
 
-@onready var main_scene: PackedScene = preload("res://scenes/MainScene.tscn")
+const TITLE_SCREEN: PackedScene = preload("res://scenes/TitleScreen.tscn")
 
 func _ready() -> void:
 	$"../SettingsLayer".visible = visible
@@ -41,7 +41,7 @@ func _on_leave_pressed() -> void:
 	LevelManager.game_scene = null
 	Editor.editor_clipboard.clear()
 	SceneTransition.is_transitioning = false
-	get_tree().change_scene_to_packed(main_scene)
+	get_tree().change_scene_to_packed(TITLE_SCREEN)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 
 func _on_continue_pressed() -> void:
