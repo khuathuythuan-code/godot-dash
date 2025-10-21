@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djlnfy6mugjwc"
-path="res://.godot/imported/RegularSpikeNormal.svg-3546bb26476d126f24759d593f4ef60d.ctex"
+path="res://.godot/imported/RegularSpikeNormal.svg-13919965f2aa3fbafa93215cd9ddd82b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/hazards/Spike/Normal/RegularSpikeNormal.svg"
-dest_files=["res://.godot/imported/RegularSpikeNormal.svg-3546bb26476d126f24759d593f4ef60d.ctex"]
+source_file="res://assets/textures/hazards/spike/normal/RegularSpikeNormal.svg"
+dest_files=["res://.godot/imported/RegularSpikeNormal.svg-13919965f2aa3fbafa93215cd9ddd82b.ctex"]
 
 [params]
 

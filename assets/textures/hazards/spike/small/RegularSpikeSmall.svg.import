@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf8jb2o4drjtd"
-path="res://.godot/imported/GroundSpikeDefault.svg-f3025bec83d2bf5cd66b916241c0d484.ctex"
+uid="uid://c7wme8mgm4tvu"
+path="res://.godot/imported/RegularSpikeSmall.svg-19c8d8868b55f9b1410204e2ef8740b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/hazards/GroundSpike/GroundSpikeDefault.svg"
-dest_files=["res://.godot/imported/GroundSpikeDefault.svg-f3025bec83d2bf5cd66b916241c0d484.ctex"]
+source_file="res://assets/textures/hazards/spike/small/RegularSpikeSmall.svg"
+dest_files=["res://.godot/imported/RegularSpikeSmall.svg-19c8d8868b55f9b1410204e2ef8740b3.ctex"]
 
 [params]
 

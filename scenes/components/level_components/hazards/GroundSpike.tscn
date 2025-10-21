@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://igg2spglq8i1"]
 
-[ext_resource type="Texture2D" uid="uid://bf8jb2o4drjtd" path="res://assets/textures/hazards/GroundSpike/GroundSpikeDefault.svg" id="1_qc78j"]
+[ext_resource type="Texture2D" uid="uid://bf8jb2o4drjtd" path="res://assets/textures/hazards/ground_spike/GroundSpikeDefault.svg" id="1_qc78j"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_idjkk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu62t"]

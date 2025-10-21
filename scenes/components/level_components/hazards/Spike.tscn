@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://calhypvupvj4m"]
 
-[ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/Spike/Normal/RegularSpikeNormal.svg" id="1_yfgdv"]
+[ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/spike/normal/RegularSpikeNormal.svg" id="1_yfgdv"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_l6f50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu62t"]
