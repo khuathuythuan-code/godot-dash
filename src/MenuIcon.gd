@@ -5,12 +5,6 @@ var _last_jump: int = 0
 var _last_jump_state: int = false
 
 
-func _ready() -> void:
-	super()
-	if not Config.config.enable_easter_eggs:
-		queue_free()
-
-
 func _process(_delta: float) -> void:
 	_position_check()
 
