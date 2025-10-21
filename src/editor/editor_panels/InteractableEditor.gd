@@ -12,8 +12,12 @@ var COMPONENT_BLACKLIST: Array[Script] = [
 	# PlayerCountChangerComponent, # we need to be able to set if duals use the same gravity
 	PlayerScaleChangerComponent,
 	TextureRotationPinComponent,
+	# Letter blocks
 	StopHeldJumpComponent,
 	StopDashComponent,
+	FlipGravityComponent,
+	AllowCeilingHitComponent,
+	AllowWaveSlideComponent,
 	HiddenOutsideEditorComponent,
 ]
 
@@ -115,6 +119,9 @@ func build_ui(interactables: Array[Interactable]) -> void:
 		components_root.add_child(ui_root)
 		components_root.visible = ui_root.get_child_count() > 0
 		separator.visible = components_root.visible
+	else:
+		components_root.hide()
+		separator.hide()
 
 	connect_ui(interactables, self)
 	load_properties.call_deferred(first_interactable, self)
