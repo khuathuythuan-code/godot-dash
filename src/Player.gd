@@ -777,17 +777,15 @@ func _update_spider_state_machine(jump_state: int) -> void:
 		_spider_state_machine.travel("walk")
 
 func _player_death() -> void:
-	if not self is MenuIcon:
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-		_dead = true
-		$Icon.hide()
-		$DeathEffect.frame = 0
-		$DeathEffect.play()
-		$DeathParticles.restart()
-		$DashParticles.emitting = false
-		%GroundParticles.emitting = false
-		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
-		return
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	_dead = true
+	$Icon.hide()
+	$DeathEffect.frame = 0
+	$DeathEffect.play()
+	$DeathParticles.restart()
+	$DashParticles.emitting = false
+	%GroundParticles.emitting = false
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 
 
 func _on_death_restart() -> void:
