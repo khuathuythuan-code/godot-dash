@@ -81,7 +81,7 @@ func _player_death() -> void:
 
 func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 	match gamemode:
-		Gamemode.WAVE, Gamemode.UFO: # Wave and UFO accelerate instantly so we can be nicer
+		Gamemode.WAVE: # Wave accelerates instantly so we can be nicer
 			if position.y < 128:
 				return -1
 			if position.y > 816:
@@ -102,10 +102,10 @@ func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
 					return 1
 				if position.y > 532 and gravity_flip == 1:
-					return 1
+					return -1
 			if player_scale == PlayerScale.MINI:
 				if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
-					return 1
+					return - 1
 				if position.y > 512 and gravity_flip == 1: # miniswing accel is kinda slow
 					return 1
 
@@ -123,6 +123,7 @@ func _position_check() -> void:
 			displayed_gamemode = randi_range(0, 7) as Gamemode
 			player_scale = randi_range(0, 1) as PlayerScale
 			gravity_flip = 1
+		displayed_gamemode = Gamemode.SWING
 		internal_gamemode = displayed_gamemode
 
 
