@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://jdhlbkky38ej"]
+[gd_scene load_steps=15 format=3 uid="uid://jdhlbkky38ej"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_6jx6u"]
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_v7vet"]
+[ext_resource type="Script" uid="uid://dqxlkk6473fv0" path="res://src/interactables/private_components/RemoveMaterial.gd" id="3_j8qvu"]
 [ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_q7yot"]
 [ext_resource type="Texture2D" uid="uid://bm4o6qn8mdapu" path="res://assets/textures/portals/speed_portals/SpeedPortal0x.svg" id="4_gln18"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="5_ttkjn"]
@@ -47,6 +48,9 @@ script = ExtResource("1_6jx6u")
 modulate = Color(0.101961, 0.101961, 0.101961, 1)
 material = null
 process_material = SubResource("ParticleProcessMaterial_28a5j")
+
+[node name="RemoveMaterial" type="Node" parent="ParticleEmitter"]
+script = ExtResource("3_j8qvu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3k1gh")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsl2ssfhthw00"]
+[gd_scene load_steps=14 format=3 uid="uid://bsl2ssfhthw00"]
 
 [ext_resource type="Script" uid="uid://bccihwc0pstxx" path="res://src/interactables/PadInteractable.gd" id="1_iomj4"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="2_20xka"]
 [ext_resource type="PackedScene" uid="uid://05h0teol0odp" path="res://scenes/particle_emitter_presets/PadParticles.tscn" id="2_dpxke"]
 [ext_resource type="Texture2D" uid="uid://bvhu2o467ogw3" path="res://assets/textures/pads/BlackPad.svg" id="3_f7m6r"]
+[ext_resource type="Script" uid="uid://dqxlkk6473fv0" path="res://src/interactables/private_components/RemoveMaterial.gd" id="4_3nyie"]
 [ext_resource type="Texture2D" uid="uid://clkd6k2ybkqv5" path="res://assets/textures/Circle.svg" id="5_8oo0e"]
 [ext_resource type="Script" uid="uid://cqkay7r3kwd6f" path="res://src/interactables/public_components/JumpBoostComponent.gd" id="7_pd1t2"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="8_c8vcp"]
@@ -45,6 +46,9 @@ modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
 material = null
 position = Vector2(0, 57)
 process_material = SubResource("ParticleProcessMaterial_c8vcp")
+
+[node name="RemoveMaterial" type="Node" parent="ParticleEmitter"]
+script = ExtResource("4_3nyie")
 
 [node name="BlackPad" type="Sprite2D" parent="."]
 texture = ExtResource("3_f7m6r")
