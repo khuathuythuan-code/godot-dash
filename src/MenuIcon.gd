@@ -3,7 +3,7 @@ class_name MenuIcon
 
 var _last_jump: int = 0
 var _last_jump_state: int = false
-
+var _jump_interval: int = 0
 
 func _ready() -> void:
 	super()
@@ -21,14 +21,15 @@ func _should_process() -> bool:
 func _get_jump_state() -> int:
 	var jump_state: int
 	
-	if not Time.get_ticks_msec() - _last_jump > randi_range(75, 200):
+	if not Time.get_ticks_msec() - _last_jump > _jump_interval:
 		if internal_gamemode == Gamemode.CUBE and not is_on_floor_only():
 			return -1
 		elif internal_gamemode == Gamemode.UFO and _last_jump_state == 1:
 			return -1
+		_last_jump_state = _prevent_leave_screen(internal_gamemode, _last_jump_state)
 		return _last_jump_state
 	_last_jump = Time.get_ticks_msec()
-
+	_jump_interval = randi_range(75, 200)
 	jump_state = -1
 
 	match internal_gamemode:
@@ -55,18 +56,10 @@ func _get_jump_state() -> int:
 		Gamemode.BALL, Gamemode.SPIDER:
 			if randi_range(0, 2) == 0:
 				jump_state = 1
-	if global_position.y < 256:
-		match internal_gamemode:
-			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
-				jump_state = -1
-			Gamemode.SWING, Gamemode.BALL, Gamemode.SPIDER:
-				gravity_flip = 1
-	elif global_position.y > 640:
-		match internal_gamemode:
-			Gamemode.SHIP, Gamemode.WAVE, Gamemode.UFO:
-				jump_state = 1
-			Gamemode.SWING:
-				gravity_flip = -1
+	
+	jump_state = _prevent_leave_screen(internal_gamemode, jump_state)
+
+
 	_last_jump_state = jump_state
 	return jump_state
 
@@ -90,6 +83,40 @@ func _player_death() -> void:
 	$Icon.show()
 	_global_position_check()
 
+func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
+	match gamemode:
+		Gamemode.WAVE, Gamemode.UFO: # Wave and UFO accelerate instantly so we can be nicer
+			if position.y < 128:
+				return -1
+			if position.y > 816:
+				return 1
+		Gamemode.SHIP:
+			match player_scale:
+				PlayerScale.NORMAL:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
+						return -1
+					if position.y > 532: # Don't do -^ for this one cuz janky movement
+						return 1
+				PlayerScale.MINI:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28:
+						return -1
+					if position.y > 512: # miniship accel is kinda slow
+						return 1
+		Gamemode.SWING:
+			match player_scale:
+				PlayerScale.NORMAL:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
+						return 1
+					if position.y > 532 and gravity_flip == 1:
+						return 1
+				PlayerScale.MINI:
+					if position.y < 256 + velocity.y * velocity.y / Engine.physics_ticks_per_second / 28 and gravity_flip == -1:
+						return 1
+					if position.y > 512 and gravity_flip == 1: # miniswing accel is kinda slow
+						return 1
+
+
+	return original_value
 
 func _global_position_check() -> void:
 	if global_position.x > DisplayServer.screen_get_size().x + 1024:
