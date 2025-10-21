@@ -1,5 +1,5 @@
 extends Component
-class_name TextureRotate
+class_name TextureRotateComponent
 
 @export var _sprite: Sprite2D
 @export_range(-360.0, 360.0, 0.01, "or_greater", "or_less", "suffix:°/s") var rotation_rate: float
