@@ -414,7 +414,7 @@ func _compute_velocity(delta: float,
 	#region Apply pads velocity
 	if not pad_queue.is_empty():
 		var colliding_pad: PadInteractable = pad_queue.pop_front()
-		for component in colliding_pad.components:
+		for component in colliding_pad.components.filter(ArrayUtils.flatten):
 			if internal_gamemode != Gamemode.WAVE and (component is JumpBoostComponent or (component is ReboundComponent and (not is_on_floor() or _deferred_velocity_redirect))):
 				if internal_gamemode == Gamemode.SPIDER:
 					_velocity.y = component.get_velocity(self) * SPIDER_BOUNCE_MULTIPLIER
@@ -483,7 +483,7 @@ func _compute_velocity(delta: float,
 		var colliding_orb: OrbInteractable = orb_queue.pop_front()
 		_click_buffer_state = ClickBufferState.BUFFER_USED
 		colliding_orb.interacted.emit(self)
-		for component in colliding_orb.components:
+		for component in colliding_orb.components.filter(ArrayUtils.flatten):
 			if internal_gamemode != Gamemode.WAVE and (component is JumpBoostComponent or component is ReboundComponent):
 				if internal_gamemode == Gamemode.SPIDER:
 					_velocity.y = component.get_velocity(self) * SPIDER_BOUNCE_MULTIPLIER
