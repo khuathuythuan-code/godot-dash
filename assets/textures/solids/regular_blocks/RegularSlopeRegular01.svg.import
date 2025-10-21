@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1a6hsi5b38t8"
-path="res://.godot/imported/OutlineSlope02.svg-36923a484e51012f09b06a4e28eac1e3.ctex"
+uid="uid://b5b8kj1ubkugy"
+path="res://.godot/imported/RegularSlopeRegular01.svg-cf7604cf66093a793cd69da5dde35086.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/solids/outline_blocks/OutlineSlope02.svg"
-dest_files=["res://.godot/imported/OutlineSlope02.svg-36923a484e51012f09b06a4e28eac1e3.ctex"]
+source_file="res://assets/textures/solids/regular_blocks/RegularSlopeRegular01.svg"
+dest_files=["res://.godot/imported/RegularSlopeRegular01.svg-cf7604cf66093a793cd69da5dde35086.ctex"]
 
 [params]
 
