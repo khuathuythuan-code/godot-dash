@@ -32,22 +32,14 @@ func _ready() -> void:
 		resource_properties = default.get_script().get_script_property_list()
 	resource_properties.remove_at(0)
 	resource_properties = resource_properties \
-			.filter(func(property): return property.usage & PROPERTY_USAGE_EDITOR != 0 and not property.name.contains("resource")) \
+			.filter(func(property): return property.usage & PROPERTY_USAGE_EDITOR != 0 and not property.name.contains("resource") and not property.name == "script") \
 			.map(func(property): return property.name)
 	reset()
 	for child in get_children(false):
 		child.hide()
 		var child_duplicate = child.duplicate()
 		child_duplicate.show()
-		child_duplicate.value_changed.connect(func(value):
-			if child_duplicate is Node2DProperty:
-				if LevelManager.current_level == null:
-					value = ^""
-				else:
-					value = LevelManager.current_level.get_path_to(value)
-			_value = _value.duplicate(true)
-			_value.set(resource_properties[child_duplicate.get_index()], value)
-			value_changed.emit(_value))
+		_connect_child_properties(child_duplicate)
 		indentation_container.add_child(child_duplicate)
 	renamed.connect(refresh)
 	refresh()
@@ -89,3 +81,21 @@ func reset() -> void:
 
 func set_input_state(enabled: bool) -> void:
 	indentation_container.get_children().map(func(input): input.set_input_state(enabled))
+
+
+func _connect_child_properties(node: Node, depth: int = 0) -> void:
+	if depth == 4:
+		return
+	if node is Property:
+		node.value_changed.connect(func(value):
+			if node is Node2DProperty:
+				if LevelManager.current_level == null:
+					value = ^""
+				else:
+					value = LevelManager.current_level.get_path_to(value)
+			_value = _value.duplicate(true)
+			_value.set(resource_properties[node.get_index()], value)
+			value_changed.emit(_value))
+	elif node is FoldableContainer and node.get_child(0) is BoxContainer:
+		for child in node.get_child(0).get_children():
+			_connect_child_properties(child, depth + 1)
