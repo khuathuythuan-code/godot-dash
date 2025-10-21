@@ -19,4 +19,4 @@ shape = SubResource("RectangleShape2D_t2m3q")
 debug_color = Color(0.960784, 0, 0, 0)
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("2_8l5l1")]
-type = 1
+type = 3
