@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://df636dbhnu65v" path="res://src/interactables/public_components/GravityFlipChangerComponent.gd" id="11_ihas7"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_opstn"]
 [ext_resource type="Script" uid="uid://cx0n1qip15t20" path="res://src/interactables/private_components/MusicScale.gd" id="11_ysoaw"]
-[ext_resource type="Script" uid="uid://uatxmfuua4wq" path="res://src/interactables/private_components/TextureRotate.gd" id="13_gbohu"]
+[ext_resource type="Script" uid="uid://uatxmfuua4wq" path="res://src/interactables/public_components/TextureRotateComponent.gd" id="13_gbohu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwypc"]
 size = Vector2(128, 128)
@@ -54,10 +54,10 @@ jump_boost = 0.985
 script = ExtResource("11_ihas7")
 flip_state = 2
 
-[node name="TextureRotate" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+[node name="TextureRotateComponent" type="Node" parent="."]
 script = ExtResource("13_gbohu")
-sprite = NodePath("../Sprite")
-rotation_rate_degrees = 180.0
+_sprite = NodePath("../Sprite")
+rotation_rate = 180.0
 
 [node name="DirectionChangerComponent" type="Node" parent="."]
 script = ExtResource("10_ulqwe")
