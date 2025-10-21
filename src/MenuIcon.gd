@@ -125,7 +125,6 @@ func _position_check() -> void:
 			displayed_gamemode = randi_range(0, 7) as Gamemode
 			player_scale = randi_range(0, 1) as PlayerScale
 			gravity_flip = 1
-		displayed_gamemode = Gamemode.SWING
 		internal_gamemode = displayed_gamemode
 
 
