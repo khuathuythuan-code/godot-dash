@@ -51,7 +51,6 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	var now: int = Time.get_ticks_msec()
 	var line_width: Vector2
 	for cell_x in grid_size.x + 1:
 		var line_color_y: Color
