@@ -131,17 +131,23 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 	var property: Property
 	match variant_type:
 		TYPE_INT:
-			if field["hint"] == PROPERTY_HINT_ENUM:
-				property = EnumProperty.new()
-				property.fields = field.hint_string.split(",")
-				for i in property.fields.size():
-					property.fields.set(i, property.fields[i].get_slice(":", 0))
-			else:
-				property = FloatProperty.new()
-				property.allow_lesser = true
-				property.allow_greater = true
-				property.rounded = true
-				property.step = 1.0
+			match field.hint:
+				PROPERTY_HINT_ENUM:
+					property = EnumProperty.new()
+					property.fields = field.hint_string.split(",")
+					for i in property.fields.size():
+						property.fields.set(i, property.fields[i].get_slice(":", 0))
+				PROPERTY_HINT_FLAGS:
+					property = FlagsProperty.new()
+					property.flags = field.hint_string.split(",")
+					for i in property.flags.size():
+						property.flags.set(i, property.flags[i].get_slice(":", 0))
+				_:
+					property = FloatProperty.new()
+					property.allow_lesser = true
+					property.allow_greater = true
+					property.rounded = true
+					property.step = 1.0
 		TYPE_FLOAT:
 			property = FloatProperty.new()
 			if field.hint == PROPERTY_HINT_NONE:
