@@ -30,7 +30,6 @@ func set_value(new_value: Node2D) -> void:
 
 
 func set_value_no_signal(new_value: Node2D) -> void:
-	print_debug(new_value)
 	_value = new_value
 	if _value == null:
 		input.text = "    Assign…    "
