@@ -269,12 +269,14 @@ func set_cursor_shape(active_handle: Handle) -> void:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
 		return
 	match active_handle.axis:
+		Vector2.LEFT, Vector2.RIGHT:
+			mouse_default_cursor_shape = Control.CURSOR_HSIZE
+		Vector2.UP, Vector2.DOWN:
+			mouse_default_cursor_shape = Control.CURSOR_VSIZE
 		(Vector2.UP + Vector2.LEFT), (Vector2.DOWN + Vector2.RIGHT):
 			mouse_default_cursor_shape = Control.CURSOR_FDIAGSIZE
 		(Vector2.UP + Vector2.RIGHT), (Vector2.DOWN + Vector2.LEFT):
 			mouse_default_cursor_shape = Control.CURSOR_BDIAGSIZE
-	print(mouse_default_cursor_shape)
-		
 
 
 func is_enabled() -> bool:
