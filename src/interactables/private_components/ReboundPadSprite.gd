@@ -5,7 +5,7 @@ class_name ReboundPadSprite
 var factor: float:
 	set(value):
 		factor = value
-		var new_factor_smoothed = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
+		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
 		if visible and new_factor_smoothed != _factor_smoothed:
 			_factor_smoothed = new_factor_smoothed # can't add arguments to _draw
 			queue_redraw()
