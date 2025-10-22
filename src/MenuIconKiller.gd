@@ -6,6 +6,11 @@ const GRACE_PERIOD: float = 0.05
 @export var hitbox: CollisionShape2D
 
 
+func _ready() -> void:
+	if not Config.config.enable_title_screen_icons:
+		queue_free()
+
+
 func _process(_delta: float) -> void:
 	global_position = get_global_mouse_position()
 
