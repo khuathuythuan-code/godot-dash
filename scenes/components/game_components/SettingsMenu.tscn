@@ -132,34 +132,50 @@ layout_mode = 2
 vertical = true
 script = ExtResource("9_vf3uf")
 default = 1
-fields = PackedStringArray("Windowed", "Borderless Fullscreen", "Exclusive Fullscreen")
+fields = PackedStringArray("Windowed", "Fullscreen", "Exclusive Fullscreen")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
 [node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Window/VBoxContainer/Window Mode"]
 script = ExtResource("6_p6jor")
 config_property = &"window_mode"
 
-[node name="Particles" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Post-processing" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-title = "Particles"
+title = "Post-processing"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles"]
-layout_mode = 2
-
-[node name="Preprocess" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-folded = true
-title = "Preprocessing"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess"]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Editor Only" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer"]
+[node name="Anti-Aliasing" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("9_vf3uf")
+fields = PackedStringArray("Disabled", "MSAA 2x", "MSAA 4x", "MSAA 8x")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer/Anti-Aliasing"]
+script = ExtResource("6_p6jor")
+config_property = &"anti_aliasing"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Texture Filtering" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("9_vf3uf")
+fields = PackedStringArray("Nearest", "Linear", "Linear Mipmap")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer/Texture Filtering"]
+script = ExtResource("6_p6jor")
+config_property = &"texture_filtering"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Bloom" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -167,19 +183,12 @@ script = ExtResource("11_egxjo")
 default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Editor Only"]
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer/Bloom"]
 script = ExtResource("6_p6jor")
-config_property = &"preprocess_particles_editor_only"
+config_property = &"bloom"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Options" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-title = "Options"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options"]
-layout_mode = 2
-
-[node name="Orb Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
+[node name="Menu Blur" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -187,134 +196,10 @@ script = ExtResource("11_egxjo")
 default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Orb Particles"]
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Post-processing/VBoxContainer/Menu Blur"]
 script = ExtResource("6_p6jor")
-config_property = &"preprocess_orb_particles"
-
-[node name="Pad Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Pad Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"preprocess_pad_particles"
-
-[node name="Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Portal Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"preprocess_portal_particles"
-
-[node name="Speed Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Speed Portal Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"preprocess_speedportal_particles"
-
-[node name="Hide" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "Hides Particles"
-mouse_filter = 1
-folded = true
-title = "Hide"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide"]
-visible = false
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
-
-[node name="Editor Only" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Editor Only"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_particles_editor_only"
-
-[node name="Options" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-folded = true
-title = "Options"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options"]
-visible = false
-layout_mode = 2
-
-[node name="Orb Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Orb Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_orb_particles"
-
-[node name="Pad Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Pad Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_pad_particles"
-
-[node name="Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Portal Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_portal_particles"
-
-[node name="Speed Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Speed Portal Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_speedportal_particles"
-
-[node name="Player Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Player Particles"]
-script = ExtResource("6_p6jor")
-config_property = &"hide_player_particles"
+config_property = &"menu_blur"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="Performance" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -325,6 +210,197 @@ title_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance"]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
+
+[node name="Enable title screen icons" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Enable title screen icons"]
+script = ExtResource("6_p6jor")
+config_property = &"enable_title_screen_icons"
+
+[node name="Particles" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+folded = true
+title = "Particles"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles"]
+visible = false
+layout_mode = 2
+
+[node name="Preprocess" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+folded = true
+title = "Preprocessing"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess"]
+visible = false
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="Editor Only" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Editor Only"]
+script = ExtResource("6_p6jor")
+config_property = &"preprocess_particles_editor_only"
+
+[node name="Options" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+title = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options"]
+layout_mode = 2
+
+[node name="Orb Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Orb Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"preprocess_orb_particles"
+
+[node name="Pad Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Pad Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"preprocess_pad_particles"
+
+[node name="Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Portal Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"preprocess_portal_particles"
+
+[node name="Speed Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Preprocess/VBoxContainer/Options/VBoxContainer/Speed Portal Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"preprocess_speedportal_particles"
+
+[node name="Hide" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Hides Particles"
+mouse_filter = 1
+folded = true
+title = "Hide"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide"]
+visible = false
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+
+[node name="Editor Only" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Editor Only"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_particles_editor_only"
+
+[node name="Options" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+folded = true
+title = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+
+[node name="Orb Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Orb Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_orb_particles"
+
+[node name="Pad Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Pad Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_pad_particles"
+
+[node name="Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Portal Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_portal_particles"
+
+[node name="Speed Portal Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Speed Portal Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_speedportal_particles"
+
+[node name="Player Particles" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Particles/VBoxContainer/Hide/VBoxContainer/Options/VBoxContainer/Player Particles"]
+script = ExtResource("6_p6jor")
+config_property = &"hide_player_particles"
 
 [node name="Culling" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
 layout_mode = 2
@@ -414,70 +490,6 @@ metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 [node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Culling/VBoxContainer/Interval"]
 script = ExtResource("6_p6jor")
 config_property = &"cull_interval"
-
-[node name="Post Processing" type="FoldableContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-folded = true
-title = "Post Processing"
-title_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing"]
-visible = false
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
-
-[node name="Anti-Aliasing" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("9_vf3uf")
-fields = PackedStringArray("MSAA 8x", "MSAA 4x", "MSAA 2x", "Disabled")
-metadata/_custom_type_script = "uid://djfsy06pkw4ju"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Anti-Aliasing"]
-script = ExtResource("6_p6jor")
-config_property = &"anti_aliasing"
-metadata/_custom_type_script = "uid://ckqgnvpbftev7"
-
-[node name="Texture Filtering" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("9_vf3uf")
-fields = PackedStringArray("Linear Mipmap", "Linear", "Nearest")
-metadata/_custom_type_script = "uid://djfsy06pkw4ju"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Texture Filtering"]
-script = ExtResource("6_p6jor")
-config_property = &"texture_filtering"
-metadata/_custom_type_script = "uid://ckqgnvpbftev7"
-
-[node name="Glow" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Glow"]
-script = ExtResource("6_p6jor")
-config_property = &"world_enviroment_glow"
-metadata/_custom_type_script = "uid://ckqgnvpbftev7"
-
-[node name="Menu Blur" type="BoxContainer" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="Graphics/SmoothScrollContainer/MarginContainer/VBoxContainer/Performance/VBoxContainer/Post Processing/VBoxContainer/Menu Blur"]
-script = ExtResource("6_p6jor")
-config_property = &"menu_blur"
-metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="MarginContainer" type="MarginContainer" parent="Graphics"]
 layout_mode = 2
@@ -1584,7 +1596,7 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"draw_debug_overlays"
 
-[node name="Touch Screen Mode" type="BoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Debug/VBoxContainer"]
+[node name="Touchscreen Mode" type="BoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Debug/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -1593,7 +1605,7 @@ default = 2
 fields = PackedStringArray("Follow device", "Force-enabled", "Force-disabled")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Debug/VBoxContainer/Touch Screen Mode"]
+[node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Debug/VBoxContainer/Touchscreen Mode"]
 script = ExtResource("6_p6jor")
 config_property = &"touch_screen_mode"
 

@@ -6,6 +6,9 @@ var _last_jump_state: int = false
 var _jump_interval: int = 0
 
 func _ready() -> void:
+	if not Config.config.enable_title_screen_icons:
+		queue_free()
+		return
 	super()
 	%DebugOverlays.hide()
 

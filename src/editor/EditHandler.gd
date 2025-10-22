@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not (
 				gizmo != null && (
-					gizmo.is_enabled() or gizmo.any_handle_hovered())) and (!Config.config.touch_screen 
+					gizmo.is_enabled() or gizmo.any_handle_hovered())) and (!Config.config.is_touch_screen 
 					or gizmo == null):
 			_update_selection()
 		var can_use_actions: bool = (
@@ -119,7 +119,7 @@ func _physics_process(delta: float) -> void:
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
 			object_move_cooldown = 0.0
-		if Input.is_action_just_released(&"editor_add") and (!Config.config.touch_screen or gizmo == null):
+		if Input.is_action_just_released(&"editor_add") and (!Config.config.is_touch_screen or gizmo == null):
 			selection.map(add_selection_highlight)
 			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped

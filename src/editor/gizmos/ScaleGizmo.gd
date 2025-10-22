@@ -61,7 +61,7 @@ func _init(_bounding_box_size: Vector2) -> void:
 
 
 func _ready() -> void:
-	if Config.config.touch_screen:
+	if Config.config.is_touch_screen:
 		HANDLE_RADIUS = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
@@ -180,6 +180,7 @@ func _process(_delta: float) -> void:
 		previous_position = position
 		previous_scale = handles_scale
 	
+	set_cursor_shape(handles[hovered_handle_idx] if has_hovered_handle else null)
 	scale = Vector2.ONE * gizmo_scale
 	queue_redraw()
 
@@ -261,6 +262,19 @@ func remove_gizmo(reset: bool = false) -> void:
 	if Editor.shortcut_blocker == self:
 		Editor.shortcut_blocker = null
 	queue_free()
+
+
+func set_cursor_shape(active_handle: Handle) -> void:
+	if not active_handle:
+		mouse_default_cursor_shape = Control.CURSOR_ARROW
+		return
+	match active_handle.axis:
+		(Vector2.UP + Vector2.LEFT), (Vector2.DOWN + Vector2.RIGHT):
+			mouse_default_cursor_shape = Control.CURSOR_FDIAGSIZE
+		(Vector2.UP + Vector2.RIGHT), (Vector2.DOWN + Vector2.LEFT):
+			mouse_default_cursor_shape = Control.CURSOR_BDIAGSIZE
+	print(mouse_default_cursor_shape)
+		
 
 
 func is_enabled() -> bool:
