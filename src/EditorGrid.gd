@@ -2,36 +2,6 @@
 extends Node2D
 class_name EditorGrid
 
-@export var grid_size := Vector2i.ONE * LevelManager.CELL_SIZE:
-	set(value):
-		grid_size = value
-		queue_redraw()
-@export var primary_line_every := Vector2i(2, 2):
-	set(value):
-		primary_line_every = value
-		queue_redraw()
-@export var cell_size := Vector2.ONE * LevelManager.CELL_SIZE:
-	set(value):
-		cell_size = value
-		queue_redraw()
-@export_flags("x", "y") var symmetrize = int(Axis.NONE):
-	set(value):
-		symmetrize = value
-		queue_redraw()
-@export_flags("x", "y") var odd = int(Axis.NONE):
-	set(value):
-		odd = value
-		queue_redraw()
-@export_group("Line Thickness")
-@export var primary_line_thickness: float = LINE_WIDTH_PRIMARY:
-	set(value):
-		primary_line_thickness = value
-		queue_redraw()
-@export var secondary_line_thickness: float = LINE_WIDTH_SECONDARY:
-	set(value):
-		secondary_line_thickness = value
-		queue_redraw()
-
 const LINE_COLOR_PRIMARY := Color.WHITE
 const LINE_COLOR_SECONDARY := Color("ffffff", 0.3)
 const LINE_WIDTH_PRIMARY := 4.0
@@ -42,6 +12,43 @@ enum Axis {
 	X = 1 << 0,
 	Y = 1 << 1,
 }
+
+@export var grid_size := Vector2i.ONE * LevelManager.CELL_SIZE:
+	set(value):
+		grid_size = value
+		queue_redraw()
+
+@export var primary_line_every := Vector2i(2, 2):
+	set(value):
+		primary_line_every = value
+		queue_redraw()
+
+@export var cell_size := Vector2.ONE * LevelManager.CELL_SIZE:
+	set(value):
+		cell_size = value
+		queue_redraw()
+
+@export_flags("x", "y") var symmetrize = int(Axis.NONE):
+	set(value):
+		symmetrize = value
+		queue_redraw()
+
+@export_flags("x", "y") var odd = int(Axis.NONE):
+	set(value):
+		odd = value
+		queue_redraw()
+
+@export_group("Line Thickness")
+
+@export var primary_line_thickness: float = LINE_WIDTH_PRIMARY:
+	set(value):
+		primary_line_thickness = value
+		queue_redraw()
+
+@export var secondary_line_thickness: float = LINE_WIDTH_SECONDARY:
+	set(value):
+		secondary_line_thickness = value
+		queue_redraw()
 
 
 func _ready() -> void:
