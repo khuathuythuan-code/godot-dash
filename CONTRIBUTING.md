@@ -39,3 +39,14 @@ Don't include code that's commented out in PRs.
 ### File naming conventions
 
 Name folders in `snake_case` and files and scripts in `PascalCase`.
+
+## New game settings
+
+If your PR adds new settings to the game, ensure the following:
+
+1. The setting is in the same order in the settings menu and in UserPreferences.
+2. If the setting is a boolean, avoid inverted names like "Disabled". Prefer "Enabled" and setting the default to `true`.
+3. If the setting is an enum, make the corresponding variable in UserPreferences an enum too. Create the enum in UserPreferences if it doesn't exist.
+4. If you need to create an enum in UserPreferences, the "Disabled" variant should be the first, and the variants should go from "lowest" to "highest".
+4. If there are multiple related boolean settings, consider grouping them into a bit flag.
+5. If a setting requires an intermediate variable (e.g. `touch_screen_mode` and `is_touchscreen`), make the intermediate variable an `@export_storage` so it's clear that it *isn't* meant to be modified in the settings menu. If the intermediate variable is a boolean, start its name with `is_`
