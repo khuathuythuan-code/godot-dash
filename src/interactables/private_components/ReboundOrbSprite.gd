@@ -7,7 +7,9 @@ class_name ReboundOrbSprite
 var factor: float:
 	set(value):
 		factor = value
-		if visible:
+		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
+		if visible and new_factor_smoothed != _factor_smoothed:
+			_factor_smoothed = new_factor_smoothed
 			queue_redraw()
 
 var _factor_smoothed: float
@@ -17,7 +19,6 @@ func _ready() -> void:
 		$"../ReboundComponent".sprite = self
 
 func _draw() -> void:
-	_factor_smoothed = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
 	var inner_radius := lerpf(32, 52, _factor_smoothed)
 	var color := _rebound_gradient.sample(_factor_smoothed)
 	# Exterior ring
