@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	_factor_smoothed = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
-	var inner_radius := lerpf(62*1.2, 62*0.9, _factor_smoothed)
+	var inner_radius := lerpf(74.4, 55.8, _factor_smoothed)
 	var color := _rebound_gradient.sample(_factor_smoothed)
 	var draw_height := lerpf(60, 30, factor)
 	var draw_position := Vector2(0, draw_height)
