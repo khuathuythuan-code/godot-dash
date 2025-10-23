@@ -4,8 +4,7 @@ class_name ReboundComponent
 var _velocity: float
 var sprite: Node2D
 var player_distance: float
-var player_velocity: Vector2 =  LevelManager.player.velocity.rotated(-LevelManager.player.gameplay_rotation) \
-			* LevelManager.player.gravity_flip
+var player_velocity: Vector2 
 
 
 func _ready() -> void:
@@ -16,6 +15,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	player_distance = (parent.global_position.rotated(-LevelManager.player.gameplay_rotation).y \
 			- LevelManager.player.global_position.rotated(-LevelManager.player.gameplay_rotation).y) \
+			* LevelManager.player.gravity_flip
+	player_velocity = LevelManager.player.velocity.rotated(-LevelManager.player.gameplay_rotation) \
 			* LevelManager.player.gravity_flip
 	if player_distance > Player.TERMINAL_VELOCITY.y * delta:
 		_velocity = player_velocity.y
