@@ -7,11 +7,16 @@ class_name ReboundOrbSprite
 var factor: float:
 	set(value):
 		factor = value
+		camera_rect = LevelManager.current_level.camera_rect
 		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
+		if not (camera_rect.position.x < global_position.x and camera_rect.end.x > global_position.x):
+			_factor_smoothed = new_factor_smoothed
+			return
 		if visible and new_factor_smoothed != _factor_smoothed:
 			_factor_smoothed = new_factor_smoothed
 			queue_redraw()
 
+var camera_rect: Rect2
 var _factor_smoothed: float
 
 func _ready() -> void:
