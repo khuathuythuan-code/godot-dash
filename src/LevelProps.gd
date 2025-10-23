@@ -29,6 +29,7 @@ const START_SPEED: Array[float] = [
 @onready var song_player := AudioStreamPlayer.new()
 
 var stopwatch: Stopwatch
+var camera_rect: Rect2
 var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
 var required_fonts: Dictionary[String, int] # HashMap<FontPath, FontUsers>
