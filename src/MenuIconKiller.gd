@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 		hitbox.disabled = false
 		await get_tree().create_timer(GRACE_PERIOD).timeout
 		hitbox.disabled = true
-	elif event is InputEventMouseButton and event.pressed:
+	elif event.is_pressed() and event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		hitbox.disabled = false
 		await get_tree().create_timer(GRACE_PERIOD).timeout
 		hitbox.disabled = true
