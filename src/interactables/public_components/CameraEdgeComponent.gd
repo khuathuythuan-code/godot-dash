@@ -26,7 +26,7 @@ func _ready() -> void:
 func start(_player: Player):
 	var player_camera: PlayerCamera = LevelManager.player_camera
 	var target: Node2D = parent.query(TargetObjectComponent).target
-	if not target:
+	if mode == Mode.LIMIT and not target:
 		Toasts.error("In %s: target is unset" % parent.name)
 	if edge & Edge.LEFT:
 		match mode:

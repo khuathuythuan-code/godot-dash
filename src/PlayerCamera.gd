@@ -69,6 +69,7 @@ func _process(delta: float) -> void:
 	# Same thing for the top edge of the screen
 	if position.y - half_screen_height / zoom.y < ground_up.DEFAULT_Y - 160:
 		position.y = ground_up.DEFAULT_Y - 160 + half_screen_height / zoom.y
+	
 	LevelManager.current_level.camera_rect = Rect2(global_position - get_viewport_rect().size / 2 / zoom, get_viewport_rect().size / zoom)
 
 
