@@ -12,7 +12,7 @@ signal value_changed(value: String)
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
-var input_container: HFlowContainer
+var input_container: Container
 var inputs: Array[CheckBox]
 
 
@@ -58,7 +58,7 @@ func refresh() -> void:
 		input_container.queue_free()
 		await get_tree().process_frame
 		inputs.clear()
-	input_container = NodeUtils.get_node_or_add(self, "InputContainer", HFlowContainer, NodeUtils.INTERNAL)
+	input_container = NodeUtils.get_node_or_add(self, "InputContainer", VBoxContainer, NodeUtils.INTERNAL)
 	for i in flags.size():
 		var flag_input: CheckBox = NodeUtils.get_node_or_add(input_container, flags[i], CheckBox, NodeUtils.INTERNAL)
 		flag_input.text = flags[i]
