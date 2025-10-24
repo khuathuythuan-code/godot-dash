@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="1_sylsc"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="2_h5quy"]
-[ext_resource type="Script" uid="uid://brw3f0ktntniu" path="res://scenes/particle_emitter_presets/PadParticles.gd" id="3_od10e"]
+[ext_resource type="Script" uid="uid://cjri1ddgq6ig5" path="res://src/interactables/InteractableParticles.gd" id="3_od10e"]
 
 [sub_resource type="Curve" id="Curve_6hqd0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -32,6 +32,8 @@ amount = 30
 texture = ExtResource("2_h5quy")
 preprocess = 1.0
 fixed_fps = 60
+visibility_rect = Rect2(-71.98657, -162.13333, 141.14351, 194.13333)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ctvm8")
 script = ExtResource("3_od10e")
+type = "PAD"

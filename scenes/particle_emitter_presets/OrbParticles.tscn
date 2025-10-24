@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="1_gth05"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="2_ch33w"]
-[ext_resource type="Script" uid="uid://duvxc2nphwhd1" path="res://scenes/particle_emitter_presets/OrbParticles.gd" id="3_0txin"]
+[ext_resource type="Script" uid="uid://cjri1ddgq6ig5" path="res://src/interactables/InteractableParticles.gd" id="3_0txin"]
 
 [sub_resource type="Curve" id="Curve_viky3"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1, 1), 0.0, 0.0, 0, 0, Vector2(0.2, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -41,6 +41,8 @@ lifetime = 2.0
 preprocess = 0.5
 speed_scale = 3.0
 fixed_fps = 60
+visibility_rect = Rect2(-151.20157, -149.88559, 301.46494, 300.7702)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_k58vk")
 script = ExtResource("3_0txin")
+type = "ORB"

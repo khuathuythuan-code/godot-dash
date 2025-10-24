@@ -19,6 +19,23 @@ enum TouchScreenMode {
 	FORCE_DISABLED,
 }
 
+enum ParticleVisibility {
+	PLAYER = 1 << 0,
+	ORB = 1 << 1,
+	PAD = 1 << 2,
+	PORTAL = 1 << 3,
+	SPEED_PORTAL = 1 << 4,
+	MAX = (1 << 5) - 1,
+}
+
+enum ParticlePreprocessing {
+	ORB = 1 << 0,
+	PAD = 1 << 1,
+	PORTAL = 1 << 2,
+	SPEED_PORTAL = 1 << 3,
+	MAX = (1 << 4) - 1,
+}
+
 # Graphics
 @export_group("Graphics")
 
@@ -40,18 +57,10 @@ enum TouchScreenMode {
 @export var enable_title_screen_icons: bool = true
 
 @export_subgroup("Particles")
-@export var hide_particles_editor_only: bool = true
-@export var hide_orb_particles: bool = false
-@export var hide_pad_particles: bool = false
-@export var hide_portal_particles: bool = false
-@export var hide_speedportal_particles: bool = false
-@export var hide_player_particles: bool = false
-
-@export var preprocess_particles_editor_only: bool = true
-@export var preprocess_orb_particles: bool = true
-@export var preprocess_pad_particles: bool = true
-@export var preprocess_portal_particles: bool = true
-@export var preprocess_speedportal_particles: bool = true
+@export var show_particles_in_editor: bool = true
+@export var particles_visibility: int = ParticleVisibility.MAX
+@export var preprocess_particles_in_editor: bool = true
+@export var particles_preprocessing: int = ParticlePreprocessing.MAX
 
 @export_subgroup("Culling")
 @export var cull_hitboxes: bool = false

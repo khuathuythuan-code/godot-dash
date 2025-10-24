@@ -754,7 +754,10 @@ func _update_wave_trail(delta: float) -> void:
 
 
 func _set_particles_visibility() -> void:
-	var should_hide_particles: bool = Config.config.hide_player_particles or (Config.config.hide_particles_editor_only and not Editor.in_editor)
+	var should_hide_particles: bool = (
+			Config.config.particles_visibility & UserPreferences.ParticleVisibility.PLAYER
+			or (Editor.in_editor and not Config.config.show_particles_in_editor)
+	)
 	%GroundParticles.visible = not should_hide_particles
 	%ShipParticles.visible = not should_hide_particles
 	%JetpackParticles.visible = not should_hide_particles

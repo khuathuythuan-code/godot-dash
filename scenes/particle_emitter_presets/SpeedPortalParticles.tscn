@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="1_be10a"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="1_mgydc"]
-[ext_resource type="Script" uid="uid://cjri1ddgq6ig5" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.gd" id="3_krs48"]
+[ext_resource type="Script" uid="uid://cjri1ddgq6ig5" path="res://src/interactables/InteractableParticles.gd" id="3_krs48"]
 
 [sub_resource type="Curve" id="Curve_krs48"]
 _data = [Vector2(0, 0), 0.0, 22.891193, 0, 0, Vector2(0.15226562, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -30,6 +30,8 @@ texture = ExtResource("1_mgydc")
 lifetime = 2.0
 preprocess = 2.0
 fixed_fps = 60
+visibility_rect = Rect2(-149.14046, -94.86522, 304.67944, 178.77129)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_xnnnd")
 script = ExtResource("3_krs48")
+type = "SPEED_PORTAL"
