@@ -38,10 +38,6 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
 color_ramp = SubResource("GradientTexture1D_fruiv")
 alpha_curve = SubResource("CurveTexture_fruiv")
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.0
-collision_use_scale = true
 
 [node name="UFOParticles" type="GPUParticles2D"]
 show_behind_parent = true

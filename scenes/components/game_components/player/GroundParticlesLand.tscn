@@ -29,10 +29,6 @@ scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
 alpha_curve = SubResource("CurveTexture_0fo3v")
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 0.0
-collision_use_scale = true
 
 [node name="GroundParticlesLand" type="GPUParticles2D"]
 z_index = 51
