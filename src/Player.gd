@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 class_name Player
 
 signal hit_ceiling(player: Player)
@@ -754,16 +753,16 @@ func _update_wave_trail(delta: float) -> void:
 
 
 func _set_particles_visibility() -> void:
-	var should_hide_particles: bool = (
+	var particles_visibility: bool = (
 			Config.config.particles_visibility & UserPreferences.ParticleVisibility.PLAYER
 			or (Editor.in_editor and not Config.config.show_particles_in_editor)
 	)
-	%GroundParticles.visible = not should_hide_particles
-	%ShipParticles.visible = not should_hide_particles
-	%JetpackParticles.visible = not should_hide_particles
-	%UFOParticlesOrigin.visible = not should_hide_particles
-	$DashParticles.visible = not should_hide_particles
-	$DeathParticles.visible = not should_hide_particles
+	%GroundParticles.visible = particles_visibility
+	%ShipParticles.visible = particles_visibility
+	%JetpackParticles.visible = particles_visibility
+	%UFOParticlesOrigin.visible = particles_visibility
+	$DashParticles.visible = particles_visibility
+	$DeathParticles.visible = particles_visibility
 
 
 func _get_spider_velocity_delta() -> float:
