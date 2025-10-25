@@ -385,7 +385,6 @@ name = "OutlineSlope03"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wadpq"]
-load_path = "res://.godot/imported/OutlineSlope01.svg-eeb28181f60cb6af7e91072f74043fe4.ctex"
 
 [sub_resource type="Resource" id="Resource_knigi"]
 script = ExtResource("12_egrfm")
@@ -396,7 +395,6 @@ name = "EditorScene"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fa2ga"]
-load_path = "res://.godot/imported/OutlineSlope03.svg-7204ad5f435c17b4720785b2b5af316a.ctex"
 
 [sub_resource type="Resource" id="Resource_s6l44"]
 script = ExtResource("12_egrfm")

@@ -12,6 +12,12 @@ func _ready() -> void:
 			Config.config.particles_visibility & UserPreferences.ParticleVisibility[type]
 			or (Editor.in_editor and not Config.config.show_particles_in_editor)
 	)
+	var music_scale := get_child(0)
+	if music_scale is MusicScale:
+		if visible:
+			music_scale.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			music_scale.process_mode = Node.PROCESS_MODE_DISABLED
 	var should_preprocess = (
 			Config.config.particles_preprocessing & UserPreferences.ParticlePreprocessing[type]
 			or (Editor.in_editor and not Config.config.preprocess_particles_in_editor)
