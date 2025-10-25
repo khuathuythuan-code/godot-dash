@@ -24,6 +24,10 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("2_1u1h2")
 texture = ExtResource("3_42b68")
 size = Vector2(512, 512)
+patch_margin_left = 36.0
+patch_margin_top = 36.0
+patch_margin_right = 36.0
+patch_margin_bottom = 36.0
 metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
 
 [node name="HiddenOutsideEditorComponent" type="Node" parent="."]
