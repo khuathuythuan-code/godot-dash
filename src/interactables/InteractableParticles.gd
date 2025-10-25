@@ -8,17 +8,16 @@ class_name InteractableParticles
 func _ready() -> void:
 	if saved_preprocess == -1.0:
 		saved_preprocess = preprocess
+	
 	visible = (
 			Config.config.particles_visibility & UserPreferences.ParticleVisibility[type]
 			or (Editor.in_editor and not Config.config.show_particles_in_editor)
 	)
-	var music_scale: MusicScale = NodeUtils.get_child_of_type(self, MusicScale)
 
-	if music_scale != null:
-		if visible:
-			music_scale.process_mode = Node.PROCESS_MODE_INHERIT
-		else:
-			music_scale.process_mode = Node.PROCESS_MODE_DISABLED
+	var music_scale: MusicScale = NodeUtils.get_child_of_type(self, MusicScale)
+	if music_scale:
+		music_scale.process_mode = Node.PROCESS_MODE_INHERIT if visible else Node.PROCESS_MODE_DISABLED
+
 	var should_preprocess = (
 			Config.config.particles_preprocessing & UserPreferences.ParticlePreprocessing[type]
 			or (Editor.in_editor and not Config.config.preprocess_particles_in_editor)
