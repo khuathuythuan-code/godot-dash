@@ -777,6 +777,9 @@ func _get_spider_velocity_delta() -> float:
 	_last_spider_trail.scale.x = horizontal_direction
 	_last_spider_trail.trail_rotation = gameplay_rotation
 	$Icon/Spider/SpiderCast.scale.y = 1
+	if _target_position == Vector2.ZERO:
+		$DeathAnimator.play("DeathAnimation")
+		return result * 16
 	return result
 
 
