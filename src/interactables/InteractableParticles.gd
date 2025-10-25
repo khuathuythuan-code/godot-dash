@@ -12,8 +12,9 @@ func _ready() -> void:
 			Config.config.particles_visibility & UserPreferences.ParticleVisibility[type]
 			or (Editor.in_editor and not Config.config.show_particles_in_editor)
 	)
-	var music_scale := get_child(0)
-	if music_scale is MusicScale:
+	var music_scale: MusicScale = NodeUtils.get_child_of_type(self, MusicScale)
+
+	if music_scale != null:
 		if visible:
 			music_scale.process_mode = Node.PROCESS_MODE_INHERIT
 		else:
