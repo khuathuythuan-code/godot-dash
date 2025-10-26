@@ -7,7 +7,7 @@ const GRACE_PERIOD: float = 0.05
 
 
 func _ready() -> void:
-	if not Config.config.enable_title_screen_icons:
+	if not Config.enable_title_screen_icons:
 		queue_free()
 
 

@@ -21,8 +21,8 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		if pressed_button != null:
 			block_palette_ref = NodeUtils.get_child_of_type(pressed_button, BlockPaletteRef) as BlockPaletteRef
 		if block_palette_ref != null and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id) \
-				and (Input.is_action_pressed(&"editor_add", false) or Config.config.is_touch_screen and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !Editor.swipe):
-			if pressed_button != null and (!Config.config.is_touch_screen or Editor.delete == false):
+				and (Input.is_action_pressed(&"editor_add", false) or Config.is_touch_screen and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !Editor.swipe):
+			if pressed_button != null and (!Config.is_touch_screen or Editor.delete == false):
 				# Create object
 				var object: Node2D
 				if block_palette_ref.type == EditorSelectionCollider.Type.TRIGGER:
@@ -71,7 +71,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				edit_handler.selection.map(EditHandler.add_selection_highlight)
 				edit_handler.selection_changed.emit(edit_handler.selection)
 		# Handle object deletion
-		elif (Input.is_action_pressed(&"editor_remove", false) or Config.config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
+		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
 			placed_object_rotation_degrees = 0.0
 			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not Level:
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()

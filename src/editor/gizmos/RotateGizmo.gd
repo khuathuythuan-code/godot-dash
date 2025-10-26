@@ -22,7 +22,7 @@ var quick_rotation_initial_angle: float
 
 func _ready() -> void:
 	# Set handle_radius
-	if Config.config.is_touch_screen:
+	if Config.is_touch_screen:
 		handle_radius = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()

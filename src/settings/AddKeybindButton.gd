@@ -26,6 +26,6 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventKey and (event.keycode == KEY_SHIFT or event.keycode == KEY_CTRL or event.keycode == KEY_ALT):
 			return
 		InputMap.action_add_event(keybind_loader.input_action, event)
-		Config.config.input_map.set(keybind_loader.input_action, InputMap.action_get_events(keybind_loader.input_action))
-		Config.config.save()
+		Config.input_map.set(keybind_loader.input_action, InputMap.action_get_events(keybind_loader.input_action))
+		Config.save()
 		keybind_loader.refresh_inputs()

@@ -121,7 +121,7 @@ func _open_level(path: String) -> void:
 	editor.editor_camera.zoom_factor = 1.25
 	editor.editor_camera.zoom = Vector2.ONE * 0.8
 	$AutosaveTimer.stop()
-	$AutosaveTimer.start(Config.config.autosave_delay * 60)
+	$AutosaveTimer.start(Config.autosave_delay * 60)
 
 
 func _import_level(path: String, keep_original: bool) -> void:
@@ -184,7 +184,7 @@ func _save_level() -> void:
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
 	$AutosaveTimer.stop()
-	$AutosaveTimer.start(Config.config.autosave_delay * 60)
+	$AutosaveTimer.start(Config.autosave_delay * 60)
 	ResourceSaver.save(Editor.editor_level_backup, "user://created_levels/levels/" + file_name)
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 

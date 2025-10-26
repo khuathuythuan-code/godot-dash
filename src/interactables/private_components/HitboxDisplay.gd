@@ -11,9 +11,9 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
-	var color: Color = Config.config.get(color_config_key)
+	var color: Color = Config.get(color_config_key)
 	var fill_color = color
-	fill_color.a = Config.config.get(fill_alpha_config_key)
+	fill_color.a = Config.get(fill_alpha_config_key)
 	match hitbox.shape:
 		var rectangle when hitbox.shape is RectangleShape2D:
 			draw_rect(Rect2(-rectangle.size / 2, rectangle.size), color, false, 4.0)

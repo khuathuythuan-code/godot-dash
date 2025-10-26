@@ -1,10 +1,195 @@
 extends Node
 
-var config := UserPreferences.load_or_create()
+enum WindowMode {
+	WINDOWED,
+	FULLSCREEN,
+	EXCLUSIVE_FULLSCREEN,
+}
+
+enum TextureFilteringMode {
+	NEAREST_NEIGHBOR,
+	LINEAR,
+	LINEAR_WITH_MIPMAPS,
+}
+
+enum TouchScreenMode {
+	FOLLOW_DEVICE,
+	FORCE_ENABLED,
+	FORCE_DISABLED,
+}
+
+enum ParticleVisibility {
+	PLAYER = 1 << 0,
+	ORB = 1 << 1,
+	PAD = 1 << 2,
+	PORTAL = 1 << 3,
+	SPEED_PORTAL = 1 << 4,
+	MAX = (1 << 5) - 1,
+}
+
+enum ParticlePreprocessing {
+	ORB = 1 << 0,
+	PAD = 1 << 1,
+	PORTAL = 1 << 2,
+	SPEED_PORTAL = 1 << 3,
+	MAX = (1 << 4) - 1,
+}
+
+# Graphics
+@export_group("Graphics")
+
+@export_subgroup("Framerate")
+@export_range(0, 60, 1, "or_greater") var max_fps: int = 60
+@export var vsync: int
+
+@export_subgroup("Window")
+@export var window_mode: WindowMode = WindowMode.FULLSCREEN
+
+@export_subgroup("Post-processing")
+@export var anti_aliasing: Viewport.MSAA = Viewport.MSAA.MSAA_8X
+@export var texture_filtering: TextureFilteringMode = TextureFilteringMode.LINEAR_WITH_MIPMAPS
+@export var bloom: bool = true
+@export var menu_blur: bool = true
+
+# Performance
+@export_group("Performance")
+@export var enable_title_screen_icons: bool = true
+
+@export_subgroup("Particles")
+@export var show_particles_in_editor: bool = true
+@export var particles_visibility: int = ParticleVisibility.MAX
+@export var preprocess_particles_in_editor: bool = true
+@export var particles_preprocessing: int = ParticlePreprocessing.MAX
+
+# Audio
+@export_group("Audio")
+@export_range(0, 1, .05) var master_audio_level: float = 1.0
+@export_range(0, 1, .05) var music_audio_level: float = 1.0
+@export_range(0, 1, .05) var game_sfx_audio_level: float = 1.0
+@export_range(0, 1, .05) var in_level_sfx_audio_level: float = 1.0
+@export var mute_game_on_unfocus: bool = true
+
+# Keybinds
+@export_group("Keybinds")
+@export_storage var input_map: Dictionary[StringName, Array] = {} # Dictionary[StringName, Array[InputEvent]]
+
+# Editor
+@export_group("Editor")
+@export var hide_grid_on_playtest: bool = true
+@export var autosave_delay: float
+@export var selection_zone_color := Color.GREEN
+@export_range(0, 1, .05) var selection_zone_fill_alpha := 0.2
+@export var trigger_hitbox_color := Color.CYAN
+@export_range(0, 1, .05) var trigger_hitbox_fill_alpha := 0.2
+
+# Debug
+@export_group("Debug")
+@export var draw_debug_overlays: bool
+@export var touch_screen_mode: TouchScreenMode = TouchScreenMode.FOLLOW_DEVICE
+@export_storage var is_touch_screen: bool = false
+
+# Easter Eggs
+@export_group("Easter Eggs")
+@export var enable_easter_eggs: bool
+
+var config_file: ConfigFile = ConfigFile.new()
+
+
+func _init():
+	config_file.load("user://config.cfg")
+
+	# Graphics
+	max_fps = config_file.get_value("Graphics", "max_fps", max_fps)
+	vsync = config_file.get_value("Graphics", "vsync", vsync)
+	window_mode = config_file.get_value("Graphics", "window_mode", window_mode)
+	anti_aliasing = config_file.get_value("Graphics", "anti_aliasing", anti_aliasing)
+	texture_filtering = config_file.get_value("Graphics", "texture_filtering", texture_filtering)
+	bloom = config_file.get_value("Graphics", "bloom", bloom)
+	menu_blur = config_file.get_value("Graphics", "menu_blur", menu_blur)
+
+	# Performance
+	enable_title_screen_icons = config_file.get_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	show_particles_in_editor = config_file.get_value("Performance", "show_particles_in_editor", show_particles_in_editor)
+	particles_visibility = config_file.get_value("Performance", "particles_visibility", particles_visibility)
+	preprocess_particles_in_editor = config_file.get_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
+	particles_preprocessing = config_file.get_value("Performance", "particles_preprocessing", particles_preprocessing)
+
+	# Audio
+	master_audio_level = config_file.get_value("Audio", "master_audio_level", master_audio_level)
+	music_audio_level = config_file.get_value("Audio", "music_audio_level", music_audio_level)
+	game_sfx_audio_level = config_file.get_value("Audio", "game_sfx_audio_level", game_sfx_audio_level)
+	in_level_sfx_audio_level = config_file.get_value("Audio", "in_level_sfx_audio_level", in_level_sfx_audio_level)
+	mute_game_on_unfocus = config_file.get_value("Audio", "mute_game_on_unfocus", mute_game_on_unfocus)
+
+	# Keybinds
+	input_map = config_file.get_value("Keybinds", "input_map", input_map)
+
+	# Editor
+	hide_grid_on_playtest = config_file.get_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
+	autosave_delay = config_file.get_value("Editor", "autosave_delay", autosave_delay)
+	selection_zone_color = config_file.get_value("Editor", "selection_zone_color", selection_zone_color)
+	selection_zone_fill_alpha = config_file.get_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
+	trigger_hitbox_color = config_file.get_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
+	trigger_hitbox_fill_alpha = config_file.get_value("Editor", "trigger_hitbox_fill_alpha", trigger_hitbox_fill_alpha)
+
+	# Debug
+	draw_debug_overlays = config_file.get_value("Debug", "draw_debug_overlays", draw_debug_overlays)
+	touch_screen_mode = config_file.get_value("Debug", "touch_screen_mode", touch_screen_mode)
+	is_touch_screen = config_file.get_value("Debug", "is_touch_screen", is_touch_screen)
+
+	# Easter Eggs
+	enable_easter_eggs = config_file.get_value("Easter Eggs", "enable_easter_eggs", enable_easter_eggs)
+
 
 func _notification(what):
-	if config.mute_game_on_unfocus:
+	if mute_game_on_unfocus:
 		if what == NOTIFICATION_APPLICATION_FOCUS_IN:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(config.master_audio_level))
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(master_audio_level))
 		elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(0.0))
+
+
+func save() -> void:
+	# Graphics
+	config_file.set_value("Graphics", "max_fps", max_fps)
+	config_file.set_value("Graphics", "vsync", vsync)
+	config_file.set_value("Graphics", "window_mode", window_mode)
+	config_file.set_value("Graphics", "anti_aliasing", anti_aliasing)
+	config_file.set_value("Graphics", "texture_filtering", texture_filtering)
+	config_file.set_value("Graphics", "bloom", bloom)
+	config_file.set_value("Graphics", "menu_blur", menu_blur)
+
+	# Performance
+	config_file.set_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	config_file.set_value("Performance", "show_particles_in_editor", show_particles_in_editor)
+	config_file.set_value("Performance", "particles_visibility", particles_visibility)
+	config_file.set_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
+	config_file.set_value("Performance", "particles_preprocessing", particles_preprocessing)
+
+	# Audio
+	config_file.set_value("Audio", "master_audio_level", master_audio_level)
+	config_file.set_value("Audio", "music_audio_level", music_audio_level)
+	config_file.set_value("Audio", "game_sfx_audio_level", game_sfx_audio_level)
+	config_file.set_value("Audio", "in_level_sfx_audio_level", in_level_sfx_audio_level)
+	config_file.set_value("Audio", "mute_game_on_unfocus", mute_game_on_unfocus)
+
+	# Keybinds
+	config_file.set_value("Keybinds", "input_map", input_map)
+
+	# Editor
+	config_file.set_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
+	config_file.set_value("Editor", "autosave_delay", autosave_delay)
+	config_file.set_value("Editor", "selection_zone_color", selection_zone_color)
+	config_file.set_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
+	config_file.set_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
+	config_file.set_value("Editor", "trigger_hitbox_fill_alpha", trigger_hitbox_fill_alpha)
+
+	# Debug
+	config_file.set_value("Debug", "draw_debug_overlays", draw_debug_overlays)
+	config_file.set_value("Debug", "touch_screen_mode", touch_screen_mode)
+	config_file.set_value("Debug", "is_touch_screen", is_touch_screen)
+
+	# Easter Eggs
+	config_file.set_value("Easter Eggs", "enable_easter_eggs", enable_easter_eggs)
+
+	config_file.save("user://config.cfg")

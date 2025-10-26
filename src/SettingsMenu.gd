@@ -5,24 +5,24 @@ signal closed
 
 func _ready() -> void:
 	self.current_tab = 0
-	Engine.max_fps = int(Config.config.max_fps)
-	DisplayServer.window_set_vsync_mode(Config.config.vsync)
+	Engine.max_fps = int(Config.max_fps)
+	DisplayServer.window_set_vsync_mode(Config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
-	RenderingServer.global_shader_parameter_set("menu_blur", Config.config.menu_blur)
-	_on_texture_filtering_value_changed(Config.config.texture_filtering)
-	_on_touch_screen_mode_value_changed(Config.config.touch_screen_mode)
-	_on_window_mode_value_changed(Config.config.window_mode)
-	_on_anti_aliasing_value_changed(Config.config.anti_aliasing)
+	RenderingServer.global_shader_parameter_set("menu_blur", Config.menu_blur)
+	_on_texture_filtering_value_changed(Config.texture_filtering)
+	_on_touch_screen_mode_value_changed(Config.touch_screen_mode)
+	_on_window_mode_value_changed(Config.window_mode)
+	_on_anti_aliasing_value_changed(Config.anti_aliasing)
 
 
 func _on_touch_screen_mode_value_changed(value: int) -> void:
 	match value:
-		UserPreferences.TouchScreenMode.FOLLOW_DEVICE:
-			Config.config.is_touch_screen = DisplayServer.is_touchscreen_available()
-		UserPreferences.TouchScreenMode.FORCE_ENABLED:
-			Config.config.is_touch_screen = true
-		UserPreferences.TouchScreenMode.FORCE_DISABLED:
-			Config.config.is_touch_screen = false
+		Config.TouchScreenMode.FOLLOW_DEVICE:
+			Config.is_touch_screen = DisplayServer.is_touchscreen_available()
+		Config.TouchScreenMode.FORCE_ENABLED:
+			Config.is_touch_screen = true
+		Config.TouchScreenMode.FORCE_DISABLED:
+			Config.is_touch_screen = false
 
 
 func _on_max_fps_value_changed(value:float) -> void:
@@ -33,16 +33,16 @@ func _on_vsync_value_changed(id: int) -> void:
 	DisplayServer.window_set_vsync_mode(id)
 
 
-func _on_window_mode_value_changed(window_mode: UserPreferences.WindowMode) -> void:
+func _on_window_mode_value_changed(window_mode: Config.WindowMode) -> void:
 	if not %"Window Mode".is_node_ready():
 		return
 	var display_server_window_mode: DisplayServer.WindowMode
 	match window_mode:
-		UserPreferences.WindowMode.WINDOWED:
+		Config.WindowMode.WINDOWED:
 			display_server_window_mode = DisplayServer.WindowMode.WINDOW_MODE_WINDOWED
-		UserPreferences.WindowMode.FULLSCREEN:
+		Config.WindowMode.FULLSCREEN:
 			display_server_window_mode = DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN
-		UserPreferences.WindowMode.EXCLUSIVE_FULLSCREEN:
+		Config.WindowMode.EXCLUSIVE_FULLSCREEN:
 			display_server_window_mode = DisplayServer.WindowMode.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
 	DisplayServer.window_set_mode(display_server_window_mode)
 
@@ -53,13 +53,13 @@ func _on_anti_aliasing_value_changed(anti_aliasing_mode: Viewport.MSAA) -> void:
 		viewport.msaa_2d = anti_aliasing_mode
 
 
-func _on_texture_filtering_value_changed(texture_filtering_mode: UserPreferences.TextureFilteringMode) -> void:
+func _on_texture_filtering_value_changed(texture_filtering_mode: Config.TextureFilteringMode) -> void:
 	match texture_filtering_mode:
-		UserPreferences.TextureFilteringMode.NEAREST_NEIGHBOR:
+		Config.TextureFilteringMode.NEAREST_NEIGHBOR:
 			get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
-		UserPreferences.TextureFilteringMode.LINEAR:
+		Config.TextureFilteringMode.LINEAR:
 			get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
-		UserPreferences.TextureFilteringMode.LINEAR_WITH_MIPMAPS:
+		Config.TextureFilteringMode.LINEAR_WITH_MIPMAPS:
 			get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 
 

@@ -61,7 +61,7 @@ func _init(_bounding_box_size: Vector2) -> void:
 
 
 func _ready() -> void:
-	if Config.config.is_touch_screen:
+	if Config.is_touch_screen:
 		HANDLE_RADIUS = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
@@ -234,7 +234,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		else:
 			draw_circle(handle.displayed_position(handles_scale), displayed_handle_radius, handle_color)
 	
-	if Config.config.draw_debug_overlays:
+	if Config.draw_debug_overlays:
 		draw_line(Vector2.ZERO, handles_scale * Vector2.RIGHT, Color.RED, 6.0)
 		draw_line(Vector2.ZERO, handles_scale * Vector2.DOWN, Color.GREEN, 6.0)
 

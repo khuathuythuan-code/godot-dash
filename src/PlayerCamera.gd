@@ -95,7 +95,7 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 
 
 func _draw() -> void:
-	if not Config.config.draw_debug_overlays:
+	if not Config.draw_debug_overlays:
 		return
 	draw_set_transform(Vector2.ZERO, player.gameplay_rotation)
 	draw_rect(Rect2(-MAX_DISTANCE / zoom, 2 * MAX_DISTANCE / zoom), Color.CYAN, false, 4.0)

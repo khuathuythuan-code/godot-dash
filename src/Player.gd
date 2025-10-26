@@ -153,7 +153,7 @@ var _snap_sprite_rotation_frames: int
 
 func _ready() -> void:
 	if %DebugOverlays:
-		%DebugOverlays.visible = Config.config.draw_debug_overlays
+		%DebugOverlays.visible = Config.draw_debug_overlays
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
@@ -754,8 +754,8 @@ func _update_wave_trail(delta: float) -> void:
 
 func _set_particles_visibility() -> void:
 	var particles_visibility: bool = (
-			Config.config.particles_visibility & UserPreferences.ParticleVisibility.PLAYER
-			or (Editor.in_editor and not Config.config.show_particles_in_editor)
+			Config.particles_visibility & Config.ParticleVisibility.PLAYER
+			or (Editor.in_editor and not Config.show_particles_in_editor)
 	)
 	%GroundParticles.visible = particles_visibility
 	%ShipParticles.visible = particles_visibility
