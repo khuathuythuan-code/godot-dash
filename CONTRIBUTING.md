@@ -44,7 +44,7 @@ Name folders in `snake_case` and files and scripts in `PascalCase`.
 
 If your PR adds new settings to the game, ensure the following:
 
-1. The setting is in the same order in the settings menu and in Config.
+1. The setting is in the same order in the settings menu and in Config. **Don't forget to add saving and loading in `Config.save` and `Config._init` for your new setting.**
 2. If the setting is a boolean, avoid inverted names like "Disabled". Prefer "Enabled" and setting the default to `true`.
 3. If the setting is an enum, make the corresponding variable in Config an enum too. Create the enum in Config if it doesn't exist.
 4. If you need to create an enum in Config, the "Disabled" variant should be the first, and the variants should go from "lowest" to "highest".
