@@ -62,13 +62,6 @@ enum ParticlePreprocessing {
 @export var preprocess_particles_in_editor: bool = true
 @export var particles_preprocessing: int = ParticlePreprocessing.MAX
 
-@export_subgroup("Culling")
-@export var cull_hitboxes: bool = false
-@export var cull_sprites: bool = false
-@export var hitboxes_cull_limit: int = 4
-@export var sprites_cull_limit: int = 32
-@export var cull_interval: float = 0.1
-
 # Audio
 @export_group("Audio")
 @export_range(0, 1, .05) var master_audio_level: float = 1.0
