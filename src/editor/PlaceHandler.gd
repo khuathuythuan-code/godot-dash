@@ -10,7 +10,7 @@ var placed_object_rotation_degrees: float
 var previous_pressed_button: BaseButton ## Used to detect if the block palette button changed, to reset the placed object rotation.
 
 
-func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collider: Area2D, level: LevelProps) -> void:
+func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collider: Area2D, level: Level) -> void:
 	if not LevelManager.level_playing and get_viewport().gui_get_hovered_control() == editor_viewport and not edit_handler.gizmo:
 		# Handle object placement
 		var pressed_button := block_palette_button_group.get_pressed_button()
@@ -73,7 +73,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		# Handle object deletion
 		elif (Input.is_action_pressed(&"editor_remove", false) or Config.config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
 			placed_object_rotation_degrees = 0.0
-			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not LevelProps:
+			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not Level:
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
 				object_deleted.emit(overlapping_areas[-1])
 				var object := get_area(overlapping_areas[-1])

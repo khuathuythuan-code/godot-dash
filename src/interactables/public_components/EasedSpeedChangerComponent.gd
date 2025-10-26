@@ -19,7 +19,7 @@ const SPEED_PRESET_LABELS: PackedStringArray = ["x0.0", "x0.5", "x1.0", "x2.0", 
 @export_enum("x0.0", "x0.5", "x1.0", "x2.0", "x3.0", "x4.0", "x5.0", "Custom") var speed_preset: int = SpeedPreset.x1:
 	set(value):
 		speed_preset = value
-		speed = LevelProps.START_SPEED[speed_preset] if speed_preset != SpeedPreset.CUSTOM else _manual_speed
+		speed = Level.START_SPEED[speed_preset] if speed_preset != SpeedPreset.CUSTOM else _manual_speed
 		notify_property_list_changed()
 
 @export_range(0.0, 2.0, 0.01, "or_greater") var speed: float = 1.0:

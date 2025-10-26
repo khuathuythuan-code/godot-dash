@@ -16,7 +16,7 @@ enum TransformPivot {
 @export var keychord_display: Label
 @export var transform_pivot_button: OptionButton
 
-var level: LevelProps
+var level: Level
 var selection: Array[Node2D]
 var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2

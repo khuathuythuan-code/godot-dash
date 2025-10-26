@@ -1,5 +1,5 @@
 extends Node2D
-class_name LevelProps
+class_name Level
 
 const START_SPEED: Array[float] = [
 	0.0,   # 0x
@@ -35,6 +35,7 @@ var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
 var required_fonts: Dictionary[String, int] # HashMap<FontPath, FontUsers>
 
 var _pause_manager: Node
+
 
 func _ready() -> void:
 	if version_history == null:

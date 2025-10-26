@@ -5,7 +5,7 @@ const CELL_SIZE: int = 128
 @onready var game_scene_packed := preload("res://scenes/GameScene.tscn")
 
 var game_scene: GameScene
-var current_level: LevelProps
+var current_level: Level
 var current_level_path: String
 var current_level_name: String
 var current_level_duration: float = INF

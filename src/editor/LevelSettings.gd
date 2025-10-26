@@ -14,7 +14,7 @@ func _ready() -> void:
 	%"Song Path".import_to = "user://created_levels/songs/"
 
 
-func _on_menu_bar_handler_level_loaded(level: LevelProps) -> void:
+func _on_menu_bar_handler_level_loaded(level: Level) -> void:
 	var refresh_saveloads := func(saveload: PropertySaveLoad):
 		saveload.property_owner = level
 		saveload.load_value()

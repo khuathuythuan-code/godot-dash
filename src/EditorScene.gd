@@ -11,7 +11,7 @@ enum EditorAction {
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 
-var level: LevelProps:
+var level: Level:
 	set(value):
 		level = value
 		$EditHandler.level = value
@@ -52,7 +52,7 @@ func _ready() -> void:
 	if Editor.editor_level_backup.can_instantiate():
 		level = LevelManager.game_scene.add_loaded_level(Editor.editor_level_backup.instantiate()) 
 	elif not $GameScene/Level.get_child_count():
-		level = LevelProps.new()
+		level = Level.new()
 		level.name = "New level"
 		level.version_history = UndoRedo.new()
 		LevelManager.game_scene.add_loaded_level(level)

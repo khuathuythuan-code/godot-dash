@@ -1,7 +1,7 @@
 extends Node
 class_name LevelOperationsHandler
 
-signal level_loaded(level: LevelProps)
+signal level_loaded(level: Level)
 
 @export var edit_handler: EditHandler
 @export var level_settings: LevelSettings
@@ -79,7 +79,7 @@ func _on_level_index_pressed(index:int) -> void:
 
 
 func _new_level() -> void:
-	var new_level := LevelProps.new()
+	var new_level := Level.new()
 	editor.level.name = "tempname"
 	editor.level.queue_free()
 	new_level.name = "New level"
@@ -102,7 +102,7 @@ func _open_level(path: String) -> void:
 	editor.level.name = str(hash(editor.level))
 	ResourceLoader.load_threaded_request(path, "PackedScene")
 	var level_packed := ResourceLoader.load_threaded_get(path) as PackedScene
-	var level = level_packed.instantiate() as LevelProps
+	var level = level_packed.instantiate() as Level
 	var song_file_path: String
 	if level.song_path.begins_with("uid"):
 		song_file_path = ResourceUID.get_id_path(ResourceUID.text_to_id(level.song_path)).get_file()

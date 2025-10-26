@@ -30,7 +30,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 
 
-func add_loaded_level(level: LevelProps) -> LevelProps:
+func add_loaded_level(level: Level) -> Level:
 	LevelManager.current_level = level
 	$Level.add_child(level)
 	return level
