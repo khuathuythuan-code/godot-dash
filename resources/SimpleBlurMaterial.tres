@@ -5,5 +5,4 @@
 [resource]
 shader = ExtResource("1_72leu")
 shader_parameter/lod = 3.0
-shader_parameter/gui_color = Color(0, 0, 0, 1)
-shader_parameter/mix_factor = 0.5
+shader_parameter/lightness = 0.5
