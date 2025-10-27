@@ -136,6 +136,7 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 
 func to_json() -> String:
 	var data: Dictionary = {
+		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
 		"song_path": song_path,
 		"start_speed": start_speed,
