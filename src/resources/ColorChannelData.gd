@@ -57,7 +57,7 @@ func set_alpha(new_alpha: float) -> ColorChannelData:
 	return self
 
 
-static func to_dictionary(channel: ColorChannelData) -> Dictionary:
+static func serialize(channel: ColorChannelData) -> Dictionary:
 	var data: Dictionary
 	data.copy = channel.copy
 	data.color = channel.color

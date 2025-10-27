@@ -29,11 +29,18 @@ func _process(_delta: float) -> void:
 	_update_color.call_deferred()
 
 
+func serialize() -> Dictionary:
+	return {
+		"hsv_shift": hsv_shift,
+		"strength": strength,
+		"alpha": alpha,
+	}
+
+
 func _update_color() -> void:
 	var shifted_modulate: Color = modulate
 	# FIXME: This field won't change and I can't figure out why
 	shifted_modulate.h = fposmod(shifted_modulate.h + hsv_shift[0], 1.0)
-	print(shifted_modulate.h)
 	shifted_modulate.s += hsv_shift[1]
 	shifted_modulate.v += hsv_shift[2]
 	match selection_highlight:

@@ -111,6 +111,29 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		required_fonts[new_path] += 1
 
 
+func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
+	if object.has_node(^"Base"):
+		object_data.color_channels.base = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Base")).get_groups().front()
+		if not object_data.color_channels.base:
+			object_data.color_channels.erase("base")
+	else:
+		# Color channel groups might be attached to the object directly
+		# if it doesn't have a Base.
+		var object_color_channels: Array = (
+				BaseDetailHandler.use_hsv_watcher(object)
+				.get_groups()
+				.filter(func(group: String): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+		)
+		if not object_color_channels.is_empty():
+			object_data.color_channels = object_color_channels.front()
+		# If the object doesn't have a Base, it can't have a Detail either.
+		return
+	if object.has_node(^"Detail"):
+		object_data.color_channels.detail = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Detail")).get_groups().front()
+		if not object_data.color_channels.detail:
+			object_data.color_channels.erase("detail")
+
+
 func to_json() -> String:
 	var data: Dictionary = {
 		"name": name,
@@ -118,7 +141,7 @@ func to_json() -> String:
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
-		"color_channels": color_channels.map(ColorChannelData.to_dictionary),
+		"color_channels": color_channels.map(ColorChannelData.serialize),
 		"duration": duration,
 		"objects": [],
 	}
@@ -130,9 +153,12 @@ func to_json() -> String:
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
 			"global_transform": object.global_transform,
 			"groups": object.get_groups(),
+			"color_channels": {},
+			"hsv": object.get_node(^"HSVWatcher").serialize(),
 		}
 		if object.has_meta(&"texture_override"):
 			object_data.texture_override = object.get_meta(&"texture_override")
+		_set_object_color_channel_data(object, object_data)
 		if object is Interactable:
 			object_data.components = object.serialize_components()
 			object_data.markers = object.serialize_markers()

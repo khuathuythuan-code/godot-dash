@@ -1,5 +1,5 @@
 extends Node
-class_name ColorChannelSetter
+class_name BaseDetailHandler
 
 @export var base: StringProperty
 @export var detail: StringProperty
@@ -23,7 +23,7 @@ func _on_base_color_value_changed(base_channel: String) -> void:
 		return
 	var objects_base: Array
 	for object in $"../EditHandler".selection:
-		objects_base.append(object.get_node("Base") if object.has_node("Base") else object)
+		objects_base.append(object.get_node(^"Base") if object.has_node(^"Base") else object)
 	objects_base.assign(objects_base.map(use_hsv_watcher))
 	clear_color_channels(objects_base)
 	if base_channel == "":
@@ -42,7 +42,7 @@ func _on_detail_color_value_changed(value:Variant) -> void:
 		return
 	var objects_detail: Array = (
 		$"../EditHandler".selection
-			.map(func(object): return object.get_node_or_null("Detail") as Node2D)
+			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
 			.filter(func(object): return object != null)
 			.map(use_hsv_watcher)
 	)
@@ -66,7 +66,7 @@ func _on_edit_handler_selection_changed(selection:Array[Node2D]) -> void:
 	# Base
 	var objects_base: Array[Node2D]
 	for object in selection:
-		objects_base.append(object.get_node("Base") if object.has_node("Base") else object)
+		objects_base.append(object.get_node("Base") if object.has_node(^"Base") else object)
 	objects_base.assign(objects_base.map(use_hsv_watcher))
 	var base_channel_array: Array = objects_base[-1].get_groups().filter(func(group): return ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX in group)
 	var base_channel: String
@@ -80,7 +80,7 @@ func _on_edit_handler_selection_changed(selection:Array[Node2D]) -> void:
 	# Detail
 	var objects_detail: Array = (
 		$"../EditHandler".selection
-			.map(func(object): return object.get_node_or_null("Detail") as Node2D)
+			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
 			.filter(func(object): return object != null)
 			.map(use_hsv_watcher)
 	)
@@ -99,11 +99,9 @@ func _on_edit_handler_selection_changed(selection:Array[Node2D]) -> void:
 
 func _reset_color(object: Node) -> void:
 	object = use_hsv_watcher(object)
-	if object.has_node("SelectionHighlight"):
-		object = object.get_node("SelectionHighlight")
 	object.modulate = Color.WHITE
 
 
 static func use_hsv_watcher(object: Node) -> Node:
-	var hsv_watcher = object.get_node_or_null("HSVWatcher")
+	var hsv_watcher = object.get_node_or_null(^"HSVWatcher")
 	return hsv_watcher if hsv_watcher != null else object
