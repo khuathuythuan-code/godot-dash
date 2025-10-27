@@ -156,9 +156,11 @@ func to_json() -> String:
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").serialize(),
 		}
+		_set_object_color_channel_data(object, object_data)
 		if object.has_meta(&"texture_override"):
 			object_data.texture_override = object.get_meta(&"texture_override")
-		_set_object_color_channel_data(object, object_data)
+		if object.has_meta(&"attributes"):
+			object_data.attributes = object.get_meta(&"attributes")
 		if object is Interactable:
 			object_data.components = object.serialize_components()
 			object_data.markers = object.serialize_markers()
