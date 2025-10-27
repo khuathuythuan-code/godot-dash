@@ -111,29 +111,6 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		required_fonts[new_path] += 1
 
 
-func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
-	if object.has_node(^"Base"):
-		object_data.color_channels.base = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Base")).get_groups().front()
-		if not object_data.color_channels.base:
-			object_data.color_channels.erase("base")
-	else:
-		# Color channel groups might be attached to the object directly
-		# if it doesn't have a Base.
-		var object_color_channels: Array = (
-				BaseDetailHandler.use_hsv_watcher(object)
-				.get_groups()
-				.filter(func(group: String): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
-		)
-		if not object_color_channels.is_empty():
-			object_data.color_channels = object_color_channels.front()
-		# If the object doesn't have a Base, it can't have a Detail either.
-		return
-	if object.has_node(^"Detail"):
-		object_data.color_channels.detail = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Detail")).get_groups().front()
-		if not object_data.color_channels.detail:
-			object_data.color_channels.erase("detail")
-
-
 func to_json() -> String:
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
@@ -170,6 +147,29 @@ func to_json() -> String:
 	return JSON.stringify(data, "\t")
 
 
+func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
+	if object.has_node(^"Base"):
+		object_data.color_channels.base = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Base")).get_groups().front()
+		if not object_data.color_channels.base:
+			object_data.color_channels.erase("base")
+	else:
+		# Color channel groups might be attached to the object directly
+		# if it doesn't have a Base.
+		var object_color_channels: Array = (
+				BaseDetailHandler.use_hsv_watcher(object)
+				.get_groups()
+				.filter(func(group: String): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+		)
+		if not object_color_channels.is_empty():
+			object_data.color_channels = object_color_channels.front()
+		# If the object doesn't have a Base, it can't have a Detail either.
+		return
+	if object.has_node(^"Detail"):
+		object_data.color_channels.detail = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Detail")).get_groups().front()
+		if not object_data.color_channels.detail:
+			object_data.color_channels.erase("detail")
+
+
 static func from_json(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
@@ -179,6 +179,61 @@ static func from_json(data: Dictionary) -> Level:
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
 	level.color_channels = data.color_channels
 	level.duration = data.duration
+	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
-		print(object_data.name)
+		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
+		var object: Node2D = prefab.instantiate()
+		object.name = object_data.name
+		object.global_transform = object_data.global_transform
+		# Groups
+		for group: String in object_data.groups:
+			object.add_to_group(group)
+		# Color channels
+		var base: Node2D = object.get_node_or_null(^"Base")
+		var detail: Node2D = object.get_node_or_null(^"Detail")
+		PlaceHandler.add_hsv_watchers(object, level)
+		if object_data.color_channels is String:
+			BaseDetailHandler.use_hsv_watcher(object).add_to_group(object_data.color_channels)
+		elif object_data.color_channels is Dictionary and not object_data.color_channels.is_empty():
+			if object_data.color_channels.has("base"):
+				BaseDetailHandler.use_hsv_watcher(base).add_to_group(object_data.color_channels.base)
+			if object_data.color_channels.has("detail"):
+				BaseDetailHandler.use_hsv_watcher(detail).add_to_group(object_data.color_channels.detail)
+		# HSV
+		object.get_node(^"HSVWatcher").use_data(object_data.hsv)
+		# Texture Override
+		if object_data.has("texture_override"):
+			var override_data: Dictionary = object_data.texture_override
+			if override_data.has("base"):
+				base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
+			if override_data.has("detail"):
+				detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
+			object.get_node(^"EditorSelectionCollider").id = override_data.id
+		# Attributes
+		if object_data.has("attributes"):
+			var attributes: Array[String] = object_data.attributes
+			for attribute: String in attributes:
+				var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
+				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+		# Interactables
+		if object is Interactable:
+			load_interactable_data(object, object_data)
+	resource_cache.free()
 	return level
+
+
+static func load_interactable_data(object: Interactable, object_data: Dictionary) -> void:
+	if object_data.has("components"):
+		var components: Dictionary[String, Dictionary] = object_data.components
+		for component_name in components:
+			var component_instance: Component = object.get_node(component_name)
+			var component_data: Dictionary = components[component_name]
+			for field_name in components[component_name]:
+				component_instance.set(field_name, component_data[field_name])
+	if object_data.has("markers"):
+		var markers: Array[String] = object_data.markers
+		var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
+		for marker_name in markers:
+			var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()
+			NodeUtils.get_node_or_add(object, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+

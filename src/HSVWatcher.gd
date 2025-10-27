@@ -37,6 +37,12 @@ func serialize() -> Dictionary:
 	}
 
 
+func use_data(data: Dictionary) -> void:
+	hsv_shift = data.hsv_shift
+	strength = data.strength
+	alpha = data.alpha
+
+
 func _update_color() -> void:
 	var shifted_modulate: Color = modulate
 	# FIXME: This field won't change and I can't figure out why
