@@ -74,9 +74,9 @@ func _on_edit_handler_selection_changed(selection:Array[Node2D]) -> void:
 		base_channel = base_channel_array[0]
 	base_channel = base_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX)
 	if base_channel != null or base_channel != "":
-		base.set_value(base_channel)
+		base.set_value_no_signal(base_channel)
 	else:
-		base.set_value("")
+		base.set_value_no_signal("")
 	# Detail
 	var objects_detail: Array = (
 		$"../EditHandler".selection
@@ -92,9 +92,9 @@ func _on_edit_handler_selection_changed(selection:Array[Node2D]) -> void:
 		detail_channel = detail_channel_array[0]
 	detail_channel = detail_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX)
 	if detail_channel != null or base_channel != "":
-		detail.set_value(detail_channel)
+		detail.set_value_no_signal(detail_channel)
 	else:
-		detail.set_value("")
+		detail.set_value_no_signal("")
 
 
 func _reset_color(object: Node) -> void:
