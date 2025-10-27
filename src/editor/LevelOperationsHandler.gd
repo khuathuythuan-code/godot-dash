@@ -70,8 +70,8 @@ func _on_level_index_pressed(index:int) -> void:
 		4: # Save As
 			save_as_dialog.show()
 		5: # Export
-			if editor.level.has_meta("packed_file_name"):
-				export_dialog.set_current_file(editor.level.get_meta("packed_file_name").get_basename())
+			if editor.level.has_meta("file_name"):
+				export_dialog.set_current_file(editor.level.get_meta("file_name").get_basename())
 			export_dialog.show()
 		7: # Level Options
 			level_settings.show()
@@ -170,21 +170,23 @@ func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
 
 
 func _save_level() -> void:
-	if not editor.level.has_meta("packed_file_name"):
+	if not editor.level.has_meta("file_name"):
 		save_as_dialog.show()
 		return # _save_level will get called again by the dialog
-	var file_name = editor.level.get_meta("packed_file_name")
+	var file_name = editor.level.get_meta("file_name")
 	editor.level.name = file_name.get_basename()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
-		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
 		Editor.editor_level_backup.pack(editor.level)
 		edit_handler.selection = selection_backup
-		edit_handler.selection.map(EditHandler.add_selection_highlight)
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
+	var file := FileAccess.open("user://created_levels/levels/%s.json" % file_name, FileAccess.WRITE)
+	print(file)
+	file.store_line(editor.level.to_json())
+	file.close()
 	ResourceSaver.save(Editor.editor_level_backup, "user://created_levels/levels/" + file_name)
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 
@@ -209,7 +211,7 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 
 
 func _on_save_level_as_dialog_file_selected(path:String) -> void:
-	editor.level.set_meta("packed_file_name", path.get_file())
+	editor.level.set_meta("file_name", path.get_file())
 	editor.level.name = path.get_file().get_basename()
 	_save_level()
 

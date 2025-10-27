@@ -30,13 +30,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					object.name = block_palette_ref.trigger_script.get_global_name()
 				else:
 					object = block_palette_ref.object.instantiate()
+
 				if pressed_button.has_meta("texture_override"):
 					var override = pressed_button.get_meta("texture_override") as TextureOverride
-					object.get_node("Base").texture = override.base
+					if override.base != null:
+						object.get_node("Base").texture = override.base
 					if override.detail != null:
 						object.get_node("Detail").texture = override.detail
 					object.name = override.name
-					object.get_node("EditorSelectionCollider").id = block_palette_ref.id
+					var id: int = block_palette_ref.id
+					object.get_node("EditorSelectionCollider").id = id
+					_set_texture_override_metadata(object, override, id)
+
 				var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 				var grid_offset_to_level_origin := Vector2(0, 64)
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
@@ -51,20 +56,10 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				level.version_history.add_do_method(add_object.bind(object))
 				level.version_history.add_undo_method(remove_object.bind(object))
 				level.version_history.commit_action()
-
-				object.scene_file_path = ""
-				var to_be_colored: Array
-				to_be_colored.append(object.get_node("Base") if object.has_node("Base") else object)
-				if object.has_node("Detail"):
-					to_be_colored.append(object.get_node("Detail"))
-				for to_be_colored_object in to_be_colored:
-					var hsv_watcher := HSVWatcher.new()
-					hsv_watcher.name = "HSVWatcher"
-					to_be_colored_object.add_child(hsv_watcher)
-					hsv_watcher.set_owner(LevelManager.current_level)
+				
+				_add_hsv_watchers(object)
 				object.rotation_degrees = placed_object_rotation_degrees
 
-	
 				# Change selection
 				edit_handler.clear_selection()
 				edit_handler.selection.append(object)
@@ -104,6 +99,32 @@ func texture_variation_overlapping(placed_objects_collider: Area2D, type: Editor
 	if placed_objects_collider.get_overlapping_areas()[-1].type == type:
 		return placed_objects_collider.get_overlapping_areas()[-1].id == id
 	return false
+
+
+func _add_hsv_watchers(object: Node2D) -> void:
+	var to_be_colored: Array = [object]
+	var base: Node2D = object.get_node_or_null(^"Base")
+	var detail: Node2D = object.get_node_or_null(^"Detail")
+	if base:
+		to_be_colored.append(base)
+	if detail:
+		to_be_colored.append(detail)
+	for object_to_be_colored in to_be_colored:
+		var hsv_watcher := HSVWatcher.new()
+		hsv_watcher.name = "HSVWatcher"
+		object_to_be_colored.add_child(hsv_watcher)
+		hsv_watcher.set_owner(LevelManager.current_level)
+
+
+func _set_texture_override_metadata(object: Node2D, override: TextureOverride, id: int) -> void:
+	var texture_override_data: Dictionary = {
+		"id": id,
+	}
+	if override.base:
+		texture_override_data.base = override.base.resource_path.trim_prefix("res://")
+	if override.detail:
+		texture_override_data.detail = override.detail.resource_path.trim_prefix("res://")
+	object.set_meta(&"texture_override", texture_override_data)
 
 
 func _on_edit_handler_rotated_object_degrees(rotation_degrees:float) -> void:

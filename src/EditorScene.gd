@@ -15,9 +15,10 @@ var level: Level:
 	set(value):
 		level = value
 		$EditHandler.level = value
+var editor_actions: int
+
 @onready var placed_objects_collider := $PlacedObjectsCollider as Area2D
 
-var editor_actions: int
 
 func _ready() -> void:
 	Editor.editor_root = self

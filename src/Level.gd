@@ -24,7 +24,7 @@ const START_SPEED: Array[float] = [
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
 @export var color_channels: Array[ColorChannelData]
-@export_storage var level_duration: float
+@export_storage var duration: float
 
 @onready var song_player := AudioStreamPlayer.new()
 
@@ -42,14 +42,14 @@ func _ready() -> void:
 		version_history = UndoRedo.new()
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
-	add_child(stopwatch)
+	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
 	SongManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus("Music")
 	LevelManager.level_song_player = song_player
-	if LevelManager.current_level_duration != INF and level_duration != LevelManager.current_level_duration:
-		level_duration = LevelManager.current_level_duration
-	add_child(song_player)
+	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
+		duration = LevelManager.current_level_duration
+	add_child(song_player, false, INTERNAL_MODE_FRONT)
 	setup_color_channel_watchers()
 
 
@@ -109,3 +109,47 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		if not required_fonts.has(new_path):
 			required_fonts[new_path] = 0
 		required_fonts[new_path] += 1
+
+
+func to_json() -> String:
+	var data: Dictionary = {
+		"name": name,
+		"song_path": song_path,
+		"start_speed": start_speed,
+		"start_reverse": start_reverse,
+		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
+		"color_channels": color_channels.map(ColorChannelData.to_dictionary),
+		"duration": duration,
+		"objects": [],
+	}
+	for object in get_children():
+		if object is not Node2D:
+			continue
+		var object_data: Dictionary = {
+			"name": object.name,
+			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
+			"global_transform": object.global_transform,
+			"groups": object.get_groups(),
+		}
+		if object.has_meta(&"texture_override"):
+			object_data.texture_override = object.get_meta(&"texture_override")
+		if object is Interactable:
+			object_data.components = object.serialize_components()
+			object_data.markers = object.serialize_markers()
+		data.objects.append(object_data)
+	# TODO: remove the indent character (only there for debugging)
+	return JSON.stringify(data, "\t")
+
+
+static func from_json(data: Dictionary) -> Level:
+	var level := Level.new()
+	level.name = data.name
+	level.song_path = data.song_path
+	level.start_speed = data.start_speed
+	level.start_reverse = data.start_reverse
+	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
+	level.color_channels = data.color_channels
+	level.duration = data.duration
+	for object_data: Dictionary in data.objects:
+		print(object_data.name)
+	return level

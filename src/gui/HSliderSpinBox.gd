@@ -40,7 +40,7 @@ var value: float:
 			return 1.0 # Default value
 	set(value):
 		value_changed.emit(value)
-		call_deferred("_update_value", value)
+		call_deferred("set_value", value)
 
 
 func _ready() -> void:
@@ -52,7 +52,7 @@ func _ready() -> void:
 	spinbox = NodeUtils.get_node_or_add(self, "SpinBox", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
 	update_internals()
 	spinbox.share(hslider)
-	spinbox.value_changed.connect(_update_value)
+	spinbox.value_changed.connect(set_value)
 
 
 func update_internals() -> void:
@@ -69,9 +69,10 @@ func update_internals() -> void:
 	spinbox.get_line_edit().expand_to_text_length = expand_to_text_length
 
 
-func _update_value(new_value: float) -> void:
-	spinbox.value = new_value
+func set_value(new_value: float) -> void:
+	set_value_no_signal(new_value)
 	value_changed.emit(value)
+
 
 func set_value_no_signal(new_value: float) -> void:
 	spinbox.value = new_value
