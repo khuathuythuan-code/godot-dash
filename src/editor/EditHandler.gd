@@ -143,8 +143,6 @@ func _update_selection() -> void:
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			for object in selection:
-				if object.has_node("HSVWatcher"):
-					object = object.get_node("HSVWatcher")
 				remove_selection_highlight(object)
 			selection.clear()
 			selection_index += 1
@@ -219,9 +217,8 @@ func _clone(object: Node) -> Node:
 func duplicate_selection() -> void:
 	selection = Array(selection.map(_clone), TYPE_OBJECT, "Node2D", null)
 	for object in selection:
-		if object.has_node("HSVWatcher"):
-			object = object.get_node("HSVWatcher")
-		object.get_node("SelectionHighlight")._set_duplicate()
+		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
+		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
 	selection_changed.emit(selection)
 
 
@@ -438,22 +435,13 @@ func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale
 
 
 static func add_selection_highlight(object: Node2D) -> void:
-	if object.has_node("HSVWatcher"):
-		object = object.get_node("HSVWatcher")
-	if not object.has_node("SelectionHighlight"):
-		var selection_highlight = SelectionHighlight.new()
-		object.add_child(selection_highlight)
+	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
+	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL
 
 
 static func remove_selection_highlight(object: Node2D) -> void:
-	if object.has_node("HSVWatcher"):
-		object = object.get_node("HSVWatcher")
-	if not object.has_node("SelectionHighlight"):
-		return
-	object.modulate = object.get_node("SelectionHighlight").modulate
-	if object is HSVWatcher:
-		object.get_parent().modulate = object.modulate
-	object.get_node("SelectionHighlight").queue_free()
+	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
+	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NONE
 
 
 static func get_object_parent(object: Node) -> Node2D:

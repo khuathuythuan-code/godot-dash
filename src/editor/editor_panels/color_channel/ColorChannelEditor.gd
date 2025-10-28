@@ -17,6 +17,21 @@ func populate_item_list() -> void:
 		_add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
 
 
+func clear_item_list() -> void:
+	%ColorChannelContainer.get_children().map(func(child: Node): child.queue_free())
+	hide_properties()
+	%"Copy channel".reset()
+	%Channel.reset()
+	%Color.reset()
+	%Hue.reset()
+	%Saturation.reset()
+	%Value.reset()
+	%Strength.reset()
+	%Alpha.reset()
+	%Channel.hide()
+	%Color.show()
+
+
 func _on_button_pressed() -> void:
 	_add_channel(%LineEdit.get_text())
 	%LineEdit.clear()
