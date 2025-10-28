@@ -35,5 +35,7 @@ func import_and_load(filters: PackedStringArray, root: String, import_to: String
 
 func _import(file_paths: PackedStringArray, import_to: String) -> void:
 	for path in file_paths:
+		if not DirAccess.dir_exists_absolute(import_to):
+			DirAccess.make_dir_absolute(import_to)
 		DirAccess.copy_absolute(path, import_to + path.get_file())
 
