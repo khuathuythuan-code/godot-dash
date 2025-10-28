@@ -49,11 +49,10 @@ func _ready() -> void:
 	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
 	if editor_grid.visible:
 		editor_grid.queue_redraw()
-	$GameScene/PauseMenuLayer/PauseMenu.leave.connect(_on_leave_pressed)
+	NodeUtils.connect_once($GameScene/PauseMenuLayer/PauseMenu.leave, _on_leave_pressed)
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#%MenuBar/View.set_item_submenu(0, 'PanelVisibility') temporarily removed because it causes an  error
-	$EditorCamera.zoom_changed.connect($GameScene/EditorGridParallax/EditorGrid.queue_redraw)
+	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
@@ -71,7 +70,7 @@ func _physics_process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
-	if get_viewport().gui_get_focus_owner() is not LineEdit and not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
+	if not Editor.is_text_input_focused() and not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
 		if Input.is_action_just_pressed(&"editor_place_mode"):
 			%EditorModes.current_tab = 0
 		elif Input.is_action_just_pressed(&"editor_edit_mode"):
@@ -140,6 +139,7 @@ func _on_playtest_pressed() -> void:
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player
 		_ready()
+		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 
 
 func _on_leave_pressed() -> void:

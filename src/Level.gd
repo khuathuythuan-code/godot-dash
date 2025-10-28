@@ -116,6 +116,8 @@ func to_data() -> Dictionary:
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
 		"song_path": song_path,
+		"song_start_time": song_start_time,
+		"platformer": platformer,
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
@@ -173,6 +175,8 @@ static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
 	level.song_path = data.song_path
+	level.song_start_time = data.song_start_time
+	level.platformer = data.platformer
 	level.start_speed = data.start_speed
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees

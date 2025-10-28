@@ -20,7 +20,7 @@ func load_value() -> void:
 	else:
 		_property_owner = Config
 	if config_property in _property_owner:
-		parent.call_deferred("set_value", _property_owner.get(config_property))
+		parent.set_value.call_deferred(_property_owner.get(config_property))
 
 func save(value: Variant) -> void:
 	if property_owner != null:

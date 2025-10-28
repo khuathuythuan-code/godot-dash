@@ -100,4 +100,4 @@ script = ExtResource("12_fu0o5")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("13_ck578")]
-type = 9
+type = 8

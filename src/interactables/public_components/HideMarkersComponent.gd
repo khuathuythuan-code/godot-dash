@@ -1,0 +1,2 @@
+extends Marker
+class_name HideMarkersComponent
