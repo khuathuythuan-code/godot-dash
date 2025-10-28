@@ -167,6 +167,8 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 					property.load_root = split_hint_string[split_hint_string.find("import_to")].trim_prefix("import_to:")
 					# split_hint_string.pop_at(split_hint_string.find("import_to"))
 				property.filetype_filters = PackedStringArray(split_hint_string)
+			elif field.hint == PROPERTY_HINT_MULTILINE_TEXT:
+				property = MultilineStringProperty.new()
 			else:
 				property = StringProperty.new()
 				property.placeholder = field.hint_string
