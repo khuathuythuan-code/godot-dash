@@ -120,7 +120,7 @@ func _open_level(path: String) -> void:
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	editor.level.queue_free()
 	editor.level = LevelManager.game_scene.add_loaded_level(level)
-	edit_handler.selection.clear()
+	edit_handler.clear_selection()
 	color_channel_editor.clear_item_list()
 	# Add new level
 	await get_tree().process_frame
