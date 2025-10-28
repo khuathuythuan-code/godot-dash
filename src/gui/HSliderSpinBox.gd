@@ -75,4 +75,4 @@ func set_value(new_value: float) -> void:
 
 
 func set_value_no_signal(new_value: float) -> void:
-	spinbox.value = new_value
+	spinbox.set_value_no_signal(new_value)
