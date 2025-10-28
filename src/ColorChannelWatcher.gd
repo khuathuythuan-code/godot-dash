@@ -8,6 +8,7 @@ var data: ColorChannelData
 
 func _init(new_data: ColorChannelData) -> void:
 	data = new_data
+	data.watcher = self
 	add_to_group(WATCHER_GROUP_PREFIX + data.associated_group)
 	data.changed.connect(refresh_objects_color)
 
@@ -32,12 +33,8 @@ func _ready() -> void:
 func refresh_objects_color(objects: Array = []) -> void:
 	if objects.is_empty():
 		objects = get_tree().get_nodes_in_group(data.associated_group)
-	for object in objects:
-		if object.has_node("HSVWatcher"):
-			object = object.get_node("HSVWatcher")
-		# If the object has an HSVWatcher, the SelectionHighlight will be parented to it to work correctly.
-		if object.has_node("SelectionHighlight"):
-			object = object.get_node("SelectionHighlight")
+	for object: Node2D in objects:
+		object = BaseDetailHandler.use_hsv_watcher(object)
 		if data.copy:
 			match data.copied_channel:
 				ColorChannelData.CopyColor.BACKGROUND:
@@ -58,8 +55,8 @@ func refresh_objects_color(objects: Array = []) -> void:
 		object.modulate.s += data.hsv_shift[1]
 		object.modulate.v += data.hsv_shift[2]
 		if object is HSVWatcher:
-			object.strength = data.strength
-			object.alpha = data.alpha
+			object.base_strength = data.strength
+			object.base_alpha = data.alpha
 		else:
 			object.modulate *= data.strength
 			object.modulate.a = data.alpha

@@ -47,7 +47,7 @@ static func get_node_or_add(caller: Node, path: NodePath, script, options: int =
 		node.name = str(path)
 		caller.add_child(node, options & FORCE_READABLE_NAME == FORCE_READABLE_NAME, options & INTERNAL)
 		if options & SET_OWNER:
-			set_child_owner(caller, node)
+			set_child_owner.call_deferred(caller, node)
 	return node
 
 

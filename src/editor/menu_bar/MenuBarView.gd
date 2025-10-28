@@ -1,4 +1,12 @@
 extends PopupMenu
+class_name MenuBarView
+
+enum {
+	GRID,
+	SIDE_PANEL,
+	BOTTOM_PANEL,
+	TOGGLE_MAXIMIZE_VIEWPORT,
+}
 
 @export var game_scene: Node2D
 @export var side_panel: Container
@@ -7,13 +15,13 @@ extends PopupMenu
 
 func _on_index_pressed(index:int) -> void:
 	match index:
-		0: # Grid
+		GRID:
 			game_scene.get_node("EditorGridParallax/EditorGrid").visible = not is_item_checked(index)
-		1: # Side Panel
+		SIDE_PANEL:
 			side_panel.visible = not is_item_checked(index)
-		2: # Bottom Panel
+		BOTTOM_PANEL:
 			bottom_panel.visible = not is_item_checked(index)
-		3: # Toggle maximize viewport
+		TOGGLE_MAXIMIZE_VIEWPORT:
 			toggle_maximize_viewport()
 	set_item_checked(index, not is_item_checked(index))
 

@@ -91,8 +91,8 @@ func _on_apply_pressed() -> void:
 	get_tree().paused = false
 	if LevelManager.current_level != null and Editor.editor_root:
 		var edit_handler: EditHandler = Editor.editor_root.get_node("EditHandler")
-		edit_handler.selection.map(edit_handler.remove_selection_highlight)
+		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		Editor.editor_level_backup.pack(LevelManager.current_level)
+		Editor.editor_level_backup = LevelManager.current_level.to_data()
 	if get_tree().reload_current_scene() != OK and Editor.in_editor:
 		get_tree().change_scene_to_packed(Editor.editor_backup)

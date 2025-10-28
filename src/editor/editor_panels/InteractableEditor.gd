@@ -2,7 +2,7 @@ extends Control
 class_name InteractableEditor
 
 # Scripts aren't constants but the array shouldn't be modified nontheless.
-var COMPONENT_BLACKLIST: Array[Script] = [
+static var COMPONENT_BLACKLIST: Array[Script] = [
 	JumpBoostComponent,
 	GravityFlipChangerComponent,
 	ReboundComponent,
@@ -22,7 +22,7 @@ var COMPONENT_BLACKLIST: Array[Script] = [
 ]
 
 # Querying this at runtime is overkill
-var MARKER_COMPONENTS: Array[Script] = [
+static var MARKER_COMPONENTS: Array[Script] = [
 	SingleUsageComponent,
 	NoEffectsComponent,
 ]
@@ -35,6 +35,7 @@ var marker_properties: Dictionary[Script, BoolProperty]
 
 
 func _init() -> void:
+	COMPONENT_BLACKLIST.append_array(MARKER_COMPONENTS)
 	COMPONENT_BLACKLIST.make_read_only()
 	MARKER_COMPONENTS.make_read_only()
 
@@ -78,14 +79,14 @@ func build_ui(interactables: Array[Interactable]) -> void:
 		for i in displayed_components.size():
 			var component = displayed_components[i]
 			NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
-			var fields = component.script.get_script_property_list()
+			var fields: Array[Dictionary] = component.script.get_script_property_list()
 			# Follow _validate_property
 			if component.has_method(&"_validate_property"):
 				fields.map(func(field): component._validate_property(field))
 			fields = fields \
 					.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
 			var last_section: FoldableContainer = null
-			for field in fields:
+			for field: Dictionary in fields:
 				var field_name: String = field.name
 				if field_name.begins_with("_"):
 					continue

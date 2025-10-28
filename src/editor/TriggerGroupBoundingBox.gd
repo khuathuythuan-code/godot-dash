@@ -13,9 +13,8 @@ class GroupBoundingBox:
 		rect = _rect
 		position = _position
 	
-
 	func _to_string() -> String:
-		return "R: %s P: %s" % [rect, position]
+		return "[R: %s P: %s]" % [rect, position]
 
 
 func _process(_delta: float) -> void:
