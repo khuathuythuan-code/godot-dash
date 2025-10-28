@@ -50,8 +50,8 @@ func _ready() -> void:
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
 
-	if Editor.editor_level_backup.can_instantiate():
-		level = LevelManager.game_scene.add_loaded_level(Editor.editor_level_backup.instantiate()) 
+	if not Editor.editor_level_backup.is_empty():
+		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.editor_level_backup)) 
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
@@ -109,7 +109,7 @@ func _on_playtest_pressed() -> void:
 			$EditHandler.selection.clear()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
-		Editor.editor_level_backup.pack(level)
+		Editor.editor_level_backup = level.to_data()
 		Editor.editor_backup.pack(self)
 		%MenuBarContainer.hide()
 		%EditorModes.hide()
@@ -124,15 +124,13 @@ func _on_playtest_pressed() -> void:
 	else:
 		LevelManager.player_duals.clear()
 		get_tree().change_scene_to_packed(Editor.editor_backup)
-		if level.has_meta(&"packed_file_name"):
-			$LevelOperationsHandler._save_level()
 
 
 func _on_leave_pressed() -> void:
 	if not LevelManager.level_playing:
 		$EditHandler.selection.map($EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
-		Editor.editor_level_backup.pack(level)
+		Editor.editor_level_backup = level.to_data()
 		Editor.editor_backup.pack(self)
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()

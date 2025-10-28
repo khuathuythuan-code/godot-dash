@@ -25,7 +25,7 @@ func query(component_type: Script) -> Component:
 	return components[component_idx] if component_idx >= 0 else null
 
 
-func serialize_components() -> Dictionary[String, Dictionary]:
+func components_to_data() -> Dictionary[String, Dictionary]:
 	assert(Editor.in_editor, "Cannot serialize outside the editor")
 	var data: Dictionary[String, Dictionary]
 	var should_serialize_component := func(component: Component): return not component.get_script() in InteractableEditor.COMPONENT_BLACKLIST
@@ -46,7 +46,7 @@ func serialize_components() -> Dictionary[String, Dictionary]:
 	return data
 
 
-func serialize_markers() -> Array:
+func markers_to_data() -> Array:
 	var serialized_markers: Array[Marker]
 	var is_marker := func(component: Component): return component is Marker
 	var to_name := func(marker: Marker): return marker.get_script().get_global_name()

@@ -13,7 +13,7 @@ signal level_loaded(level: Level)
 @export var corrupted_level_dialog: AcceptDialog
 @export var level_already_exists_dialog: ConfirmationDialog
 
-@onready var editor := get_parent() as EditorScene
+@onready var editor: EditorScene = get_parent()
 
 var autosave_toast: Toast
 
@@ -187,19 +187,18 @@ func _save_level() -> void:
 		return # _save_level will get called again by the dialog
 	var file_name = editor.level.get_meta("file_name")
 	editor.level.name = file_name.get_basename()
+	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.clear()
-		Editor.editor_level_backup.pack(editor.level)
+		Editor.editor_level_backup = level_data
 		edit_handler.selection = selection_backup
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
 	var file := FileAccess.open("user://created_levels/levels/%s" % file_name, FileAccess.WRITE)
-	print(file)
-	file.store_line(editor.level.to_json())
+	file.store_line(JSON.stringify(level_data))
 	file.close()
-	ResourceSaver.save(Editor.editor_level_backup, "user://created_levels/levels/" + file_name)
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 
 
@@ -260,15 +259,16 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 	#section Level Pack
 	file_name = path.get_file().get_basename() + ".json"
 	writer.start_file(file_name)
+	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		Editor.editor_level_backup.pack(editor.level)
+		Editor.editor_level_backup = level_data
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
-	var level_bytes := var_to_bytes(editor.level.to_json())
+	var level_bytes := var_to_bytes(JSON.stringify(level_data))
 	writer.write_file(level_bytes)
 	writer.close_file()
 	#endsection

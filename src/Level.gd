@@ -111,7 +111,7 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		required_fonts[new_path] += 1
 
 
-func to_json() -> String:
+func to_data() -> Dictionary:
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
@@ -119,7 +119,7 @@ func to_json() -> String:
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
-		"color_channels": color_channels.map(ColorChannelData.serialize),
+		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"objects": [],
 	}
@@ -132,7 +132,7 @@ func to_json() -> String:
 			"transform": var_to_str(object.transform),
 			"groups": object.get_groups(),
 			"color_channels": {},
-			"hsv": object.get_node(^"HSVWatcher").serialize(),
+			"hsv": object.get_node(^"HSVWatcher").to_data(),
 		}
 		_set_object_color_channel_data(object, object_data)
 		if object.has_meta(&"texture_override"):
@@ -140,11 +140,10 @@ func to_json() -> String:
 		if object.has_meta(&"attributes"):
 			object_data.attributes = object.get_meta(&"attributes")
 		if object is Interactable:
-			object_data.components = object.serialize_components()
-			object_data.markers = object.serialize_markers()
+			object_data.components = object.components_to_data()
+			object_data.markers = object.markers_to_data()
 		data.objects.append(object_data)
-	# TODO: remove the indent character (only there for debugging)
-	return JSON.stringify(data, "\t")
+	return data
 
 
 func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:

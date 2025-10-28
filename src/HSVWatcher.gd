@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 	_update_color.call_deferred()
 
 
-func serialize() -> Dictionary:
+func to_data() -> Dictionary:
 	return {
 		"hsv_shift": hsv_shift,
 		"strength": strength,
@@ -43,7 +43,6 @@ func serialize() -> Dictionary:
 func use_data(data: Dictionary) -> void:
 	hsv_shift.assign(data.hsv_shift)
 	strength = data.strength
-	print_debug(strength)
 	alpha = data.alpha
 
 

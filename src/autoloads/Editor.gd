@@ -6,7 +6,7 @@ var in_editor: bool:
 		return editor_root != null
 var editor_clipboard: Array[NodePath]
 var editor_backup := PackedScene.new()
-var editor_level_backup := PackedScene.new()
+var editor_level_backup: Dictionary
 var shortcut_blocker: Node
 
 # MOBILE CONTROLS
