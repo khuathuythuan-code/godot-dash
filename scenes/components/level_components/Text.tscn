@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkym7bd812awu"]
+[gd_scene load_steps=6 format=3 uid="uid://bkym7bd812awu"]
 
 [ext_resource type="Script" uid="uid://c13bd47nn7q63" path="res://src/interactables/Interactable.gd" id="1_x0b3l"]
 [ext_resource type="Script" uid="uid://b72wbrtgs1sem" path="res://src/interactables/public_components/TextComponent.gd" id="2_02egi"]
 [ext_resource type="LabelSettings" uid="uid://q7pj7ddru24w" path="res://resources/DefaultTextLabelSettings.tres" id="2_im5uj"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="3_t3fxq"]
+[ext_resource type="Script" uid="uid://47xeeg7uqvmj" path="res://src/interactables/public_components/HideMarkersComponent.gd" id="5_4odos"]
 
 [node name="Text" type="Area2D"]
 script = ExtResource("1_x0b3l")
@@ -37,3 +38,7 @@ metadata/_custom_type_script = "uid://b72wbrtgs1sem"
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("3_t3fxq")]
 type = 8
+
+[node name="HideMarkersComponent" type="Node" parent="."]
+script = ExtResource("5_4odos")
+metadata/_custom_type_script = "uid://47xeeg7uqvmj"
