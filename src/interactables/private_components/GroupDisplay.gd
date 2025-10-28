@@ -1,4 +1,5 @@
 extends Control
+class_name GroupDisplay
 
 # HACK: Workaround for the label text not being serialized
 @export_storage var displayed_group: String
