@@ -8,8 +8,12 @@ enum EditorAction {
 	SNAP      = 1 << 3,
 }
 
+const PLAYER_PREFAB: PackedScene = preload("res://scenes/components/game_components/Player.tscn")
+const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
+
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
+@export var view_menu: MenuBarView
 
 var level: Level:
 	set(value):
@@ -36,12 +40,15 @@ func _ready() -> void:
 	LevelManager.attempt = 1
 	LevelManager.level_playing = false
 	$EditorCamera.enabled = true
-	%EditorModes.show()
-	%SidePanel.show()
+	%EditorModes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
+	%SidePanel.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
 	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameScene/PlayerCamera.enabled = false
-	$GameScene/EditorGridParallax/EditorGrid.show()
-	$GameScene/EditorGridParallax/EditorGrid.queue_redraw()
+	$GameScene/PercentageLayer.hide()
+	var editor_grid: EditorGrid = $GameScene/EditorGridParallax/EditorGrid
+	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
+	if editor_grid.visible:
+		editor_grid.queue_redraw()
 	$GameScene/PauseMenuLayer/PauseMenu.leave.connect(_on_leave_pressed)
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -49,6 +56,7 @@ func _ready() -> void:
 	$EditorCamera.zoom_changed.connect($GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
+	%MenuBarContainer.show()
 
 	if not Editor.editor_level_backup.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.editor_level_backup)) 
@@ -120,10 +128,18 @@ func _on_playtest_pressed() -> void:
 		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 		$LevelOperationsHandler.pause_autosave()
-		$GameScene._start_level()
+		$GameScene.start_level()
 	else:
+		LevelManager.player.queue_free()
+		LevelManager.player_duals.map(func(player_instance: Player): player_instance.queue_free())
 		LevelManager.player_duals.clear()
-		get_tree().change_scene_to_packed(Editor.editor_backup)
+		level.queue_free()
+		await get_tree().process_frame
+		var new_player: Player = PLAYER_PREFAB.instantiate()
+		new_player.position = DEFAULT_PLAYER_POSITION
+		$GameScene.add_child(new_player)
+		LevelManager.player_camera.player = new_player
+		_ready()
 
 
 func _on_leave_pressed() -> void:

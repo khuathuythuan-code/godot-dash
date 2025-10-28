@@ -26,7 +26,7 @@ func _ready() -> void:
 		LevelManager.platformer = current_level.platformer
 		add_loaded_level(current_level)
 		SceneTransition.previous = SceneTransition.Scene.LEVEL
-		_start_level()
+		start_level()
 	await get_tree().create_timer(0.1).timeout
 
 
@@ -36,7 +36,7 @@ func add_loaded_level(level: Level) -> Level:
 	return level
 
 
-func _start_level() -> void:
+func start_level() -> void:
 	if LevelManager.attempt == 0:
 		await get_tree().create_timer(0.2).timeout
 		$FadeScreenLayer/FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
