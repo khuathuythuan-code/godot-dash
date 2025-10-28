@@ -256,6 +256,8 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 			property.set_value_no_signal(interactable.has(marker_properties.find_key(property)))
 			continue
 		var property_name := property.name.to_snake_case()
+		if not property.has_meta(&"component_name"):
+			continue
 		var component := interactable.get_node(str(property.get_meta(&"component_name")))
 		if component == null or component.get(property_name) == null:
 			printerr("Can't load property ", property_name, " on ", interactable)
