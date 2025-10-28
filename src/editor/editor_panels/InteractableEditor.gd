@@ -135,9 +135,11 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 			match field.hint:
 				PROPERTY_HINT_ENUM:
 					property = EnumProperty.new()
+					var prefix: String = "%s " % field.class_name.capitalize()
 					property.fields = field.hint_string.split(",")
 					for i in property.fields.size():
-						property.fields.set(i, property.fields[i].get_slice(":", 0))
+						var enum_variant_name: String = property.fields[i].get_slice(":", 0).trim_prefix(prefix)
+						property.fields.set(i, enum_variant_name)
 				PROPERTY_HINT_FLAGS:
 					property = FlagsProperty.new()
 					property.flags = field.hint_string.split(",")
