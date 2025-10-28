@@ -127,6 +127,7 @@ func _open_level(path: String) -> void:
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	color_channel_editor.populate_item_list()
+	level.color_channels.map(func(channel_data: ColorChannelData): channel_data.watcher.refresh_objects_color())
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
