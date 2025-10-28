@@ -9,8 +9,9 @@ signal finished(player: Player)
 @export var easing_transition: Tween.TransitionType
 @export_group("Activation")
 @export var keep_active: bool ## Keep the easing active after it completes.
-@export var trigger_for_one_player := true
-@export var ignore_time_scale := false
+@export var trigger_for_one_player: bool = true
+@export var ignore_time_scale: bool = false
+@export var _use_physics_process: bool = false
 
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
@@ -45,6 +46,7 @@ func start(player: Player) -> void:
 	tweens.set(player, create_tween())
 	reset(player)
 	var tween_weight := func(value: float): weights[player] = value
+	tweens[player].set_process_mode(Tween.TWEEN_PROCESS_PHYSICS if _use_physics_process else Tween.TWEEN_PROCESS_IDLE)
 	tweens[player].set_ignore_time_scale(ignore_time_scale)
 	tweens[player].tween_method(tween_weight, 0.0, 1.0, duration) \
 		.set_trans(easing_transition) \

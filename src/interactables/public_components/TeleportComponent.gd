@@ -45,7 +45,7 @@ func _ready() -> void:
 
 func teleport(player: Player) -> void:
 	var target_component: TargetObjectComponent = parent.query(TargetObjectComponent)
-	var target := target_component.target
+	var target := target_component.target_to_node()
 	if not target:
 		Toasts.error("In %s: target is unset" % parent.name)
 		return

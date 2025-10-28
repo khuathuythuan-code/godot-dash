@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	if target_component == null:
 		clear_points()
 		return
-	target = target_component.target
+	target = target_component.target_to_node()
 	if target == null:
 		clear_points()
 		return

@@ -56,7 +56,7 @@ func refresh() -> void:
 		var field_input: Property = fields[i]
 		var field_name: String = resource_properties[i]
 		var field_value: Variant = default.get(field_name)
-		if field_value == null and field_input is not Node2DProperty:
+		if field_value == null and field_input is not NodeProperty:
 			continue
 		field_input.default = field_value
 	vertical = true
@@ -76,9 +76,9 @@ func set_value_no_signal(new_value: Resource) -> void:
 		var field_input = fields[i]
 		var field_name = resource_properties[i]
 		var field_value = _value.get(field_name)
-		if field_value == null and field_input is not Node2DProperty:
+		if field_value == null and field_input is not NodeProperty:
 			continue
-		if field_input is Node2DProperty:
+		if field_input is NodeProperty:
 			field_value = LevelManager.current_level.get_node(field_value)
 		field_input.set_value_no_signal(field_value)
 
@@ -100,7 +100,7 @@ func _connect_child_properties(node: Node, index: int, depth: int = 0) -> int:
 		return index
 	if node is Property:
 		node.value_changed.connect(func(value):
-			if node is Node2DProperty:
+			if node is NodeProperty:
 				if LevelManager.current_level == null:
 					value = ^""
 				else:

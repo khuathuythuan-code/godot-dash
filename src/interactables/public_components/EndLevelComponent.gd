@@ -28,11 +28,11 @@ func _ready() -> void:
 
 
 func start(player: Player) -> void:
-	if parent.query(TargetObjectComponent).target == null:
+	if parent.query(TargetObjectComponent).target.is_empty():
 		Toasts.error("In %s: target object is unset" % parent.name)
 		return
 	var static_target: TargetObjectComponent = static_trigger.query(TargetObjectComponent)
-	static_target.target = parent.query(TargetObjectComponent).target
+	static_target.target = parent.query(TargetObjectComponent).target_to_node()
 	static_trigger.interacted.emit(player)
 	# Disable player collision
 	player.process_mode = Node.PROCESS_MODE_DISABLED
@@ -44,7 +44,7 @@ func start(player: Player) -> void:
 # so it doesn't appear in the UI and it avoids duplication.
 func _on_static_easing_progressed(player: Player, weight_delta: float) -> void:
 	var initial_player_position := initial_player_positions[player]
-	var target: Node2D = parent.query(TargetObjectComponent).target
+	var target: Node2D = parent.query(TargetObjectComponent).target_to_node()
 	var weight: float = static_trigger.query(EasingComponent).weights[player]
 	var rotation_direction = 1 if player.global_position < target.global_position else -1
 	player.global_position = initial_player_position.lerp(target.global_position, weight)

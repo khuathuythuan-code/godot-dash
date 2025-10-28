@@ -180,6 +180,8 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 			else:
 				property = StringProperty.new()
 				property.placeholder = field.hint_string
+		TYPE_NODE_PATH:
+			property = NodeProperty.new()
 		TYPE_COLOR:
 			property = ColorProperty.new()
 		TYPE_VECTOR2:
@@ -194,8 +196,6 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 		TYPE_BOOL:
 			property = BoolProperty.new()
 		TYPE_OBJECT:
-			if field.hint == PROPERTY_HINT_NODE_TYPE and field.hint_string == "Node2D":
-				property = Node2DProperty.new()
 			if field.hint == PROPERTY_HINT_RESOURCE_TYPE:
 				property = load("res://scenes/components/game_components/resource_properties/" + field.hint_string + "Property.tscn").instantiate()
 		TYPE_ARRAY:
