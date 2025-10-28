@@ -240,6 +240,7 @@ theme = ExtResource("9_5h1vy")
 icon = ExtResource("10_o51e6")
 flat = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="GoToLevelSelector" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -247,6 +248,7 @@ theme = ExtResource("9_5h1vy")
 icon = ExtResource("12_uh5eq")
 flat = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="GoToCreatedLevelsList" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -254,6 +256,7 @@ theme = ExtResource("9_5h1vy")
 icon = ExtResource("13_tuyt1")
 flat = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="QuitGame" type="Button" parent="TitleScreen"]
 layout_mode = 1
@@ -267,6 +270,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="Base" type="TextureRect" parent="TitleScreen/QuitGame"]
 layout_mode = 1
@@ -304,6 +308,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="Base" type="TextureRect" parent="TitleScreen/Settings"]
 layout_mode = 1
@@ -375,7 +380,6 @@ inactive_update_mode = 0
 metadata/_edit_lock_ = true
 
 [node name="IconGarage" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -397,16 +401,23 @@ color = Color(0, 0, 0, 0.5)
 
 [node name="BackButton" type="Button" parent="IconGarage"]
 layout_mode = 1
-offset_left = 32.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
 offset_top = 32.0
-offset_right = 100.0
+offset_right = -32.0
 offset_bottom = 101.0
+grow_horizontal = 0
+scale = Vector2(-1, 1)
 pivot_offset = Vector2(34, 34.5)
 theme = ExtResource("9_5h1vy")
 icon = ExtResource("19_pe36d")
 flat = true
+icon_alignment = 2
 expand_icon = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="CameraCenterParent" type="Control" parent="IconGarage"]
 layout_mode = 1
@@ -676,7 +687,6 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="CreatedLevelsList" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -709,6 +719,7 @@ icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="CameraCenterParent" type="Control" parent="CreatedLevelsList"]
 layout_mode = 1
@@ -781,6 +792,7 @@ icon = ExtResource("25_opvi4")
 icon_alignment = 1
 vertical_icon_alignment = 0
 script = ExtResource("11_1dcdf")
+reset_scale = null
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
 [node name="LevelSelector" type="Control" parent="."]
@@ -834,6 +846,7 @@ theme = ExtResource("9_5h1vy")
 icon = ExtResource("25_mp5hy")
 flat = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="Spacer" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 layout_mode = 2
@@ -846,6 +859,7 @@ theme = ExtResource("9_5h1vy")
 icon = ExtResource("26_bhnaj")
 flat = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="SpacerRight" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
 custom_minimum_size = Vector2(15, 0)
@@ -864,6 +878,7 @@ icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
 script = ExtResource("11_1dcdf")
+reset_scale = null
 
 [node name="PageContainer" type="HBoxContainer" parent="LevelSelector"]
 layout_mode = 1

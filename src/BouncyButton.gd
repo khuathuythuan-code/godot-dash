@@ -4,11 +4,13 @@ class_name BouncyButton
 
 # @export var selected_level: PackedScene
 @export var block_palette_button: bool
+@export var reset_scale_on_ready: bool = false
 var saved_position: Vector2
 var absolute_position: Vector2
 
 func _ready() -> void:
-	scale = Vector2.ONE
+	if reset_scale_on_ready:
+		scale = Vector2.ONE
 	connect("button_down", Callable(self, "_button_held"))
 	connect("button_up", Callable(self, "_button_unheld"))
 
@@ -26,7 +28,7 @@ func _button_held() -> void:
 		var scale_tween = create_tween()
 		scale_tween.set_ease(Tween.EASE_OUT)
 		scale_tween.set_trans(Tween.TRANS_BOUNCE)
-		scale_tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.2)
+		scale_tween.tween_property(self, "scale", scale * 1.1, 0.2)
 		if get_parent() is Container:
 			if not top_level:
 				saved_position = position
@@ -38,7 +40,7 @@ func _button_unheld() -> void:
 		var scale_tween = create_tween()
 		scale_tween.set_ease(Tween.EASE_OUT)
 		scale_tween.set_trans(Tween.TRANS_BOUNCE)
-		scale_tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.2)
+		scale_tween.tween_property(self, "scale", scale / 1.1, 0.2)
 		release_focus()
 		await scale_tween.finished
 		if get_parent() is Container:
