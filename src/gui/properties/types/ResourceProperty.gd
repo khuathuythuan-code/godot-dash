@@ -34,7 +34,7 @@ func _ready() -> void:
 	resource_properties = resource_properties \
 			.filter(func(property): return property.usage & PROPERTY_USAGE_EDITOR != 0 and not property.name.contains("resource") and not property.name == "script") \
 			.map(func(property): return property.name)
-	reset()
+	set_value_no_signal(default)
 	var index: int
 	for child in get_children(false):
 		child.hide()
@@ -56,7 +56,7 @@ func refresh() -> void:
 		var field_input: Property = fields[i]
 		var field_name: String = resource_properties[i]
 		var field_value: Variant = default.get(field_name)
-		if field_value == null and field_input is not Node2DProperty:
+		if field_value == null and field_input is not NodeProperty:
 			continue
 		field_input.default = field_value
 	vertical = true
@@ -73,12 +73,12 @@ func set_value_no_signal(new_value: Resource) -> void:
 	_value = new_value.duplicate(true)
 	var fields: Array = NodeUtils.get_children_of_type(indentation_container, Property, true)
 	for i in fields.size():
-		var field_input = fields[i]
-		var field_name = resource_properties[i]
-		var field_value = _value.get(field_name)
-		if field_value == null and field_input is not Node2DProperty:
+		var field_input: Property = fields[i]
+		var field_name: StringName = resource_properties[i]
+		var field_value: Variant = _value.get(field_name)
+		if field_value == null:
 			continue
-		if field_input is Node2DProperty:
+		if field_input is NodeProperty:
 			field_value = LevelManager.current_level.get_node(field_value)
 		field_input.set_value_no_signal(field_value)
 
@@ -100,7 +100,7 @@ func _connect_child_properties(node: Node, index: int, depth: int = 0) -> int:
 		return index
 	if node is Property:
 		node.value_changed.connect(func(value):
-			if node is Node2DProperty:
+			if node is NodeProperty:
 				if LevelManager.current_level == null:
 					value = ^""
 				else:

@@ -1,10 +1,10 @@
 @tool
 extends Property
-class_name Node2DProperty
+class_name NodeProperty
 
-signal value_changed(value: Node2D)
+signal value_changed(value: NodePath)
 
-@export var default: Node2D
+@export var default: NodePath
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
@@ -24,23 +24,23 @@ func _ready() -> void:
 		.set_input(input)
 
 
-func set_value(new_value: Node2D) -> void:
+func set_value(new_value: NodePath) -> void:
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
 
 
-func set_value_no_signal(new_value: Node2D) -> void:
+func set_value_no_signal(new_value: NodePath) -> void:
 	_value = new_value
-	if _value == null:
+	if _value.is_empty():
 		input.text = "    Assign…    "
 	else:
-		input.text = LevelManager.current_level.get_path_to(new_value)
+		input.text = new_value
 		# Remove trailing dots for special nodes, e.g. LevelManager.player
 		if input.text.contains(".."):
 			input.text = input.text.get_file()
 
 
-func get_value() -> Node2D:
+func get_value() -> NodePath:
 	return _value
 
 
@@ -67,4 +67,4 @@ func _on_input_pressed() -> void:
 	if clipboard.is_empty() or Engine.is_editor_hint():
 		reset()
 	else:
-		set_value(LevelManager.current_level.get_node(clipboard[0]))
+		set_value(clipboard[0])

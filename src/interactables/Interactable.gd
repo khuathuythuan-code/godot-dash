@@ -40,7 +40,10 @@ func components_to_data() -> Dictionary[String, Dictionary]:
 		for field_name: String in field_names:
 			if serialized_component.get(field_name) == null:
 				continue
-			serialized_component_data[field_name] = serialized_component.get(field_name)
+			elif serialized_component.get(field_name) is Resource:
+				serialized_component_data[field_name] = var_to_str(serialized_component.get(field_name))
+			else:
+				serialized_component_data[field_name] = serialized_component.get(field_name)
 		var serialized_component_name: String = serialized_component.get_script().get_global_name()
 		data[serialized_component_name] = serialized_component_data
 	return data

@@ -5,7 +5,9 @@ class_name PropertyValueThemeDefaultFont
 
 
 func _ready() -> void:
+	if not parent.is_node_ready():
+		await parent.ready
 	var font_path: String = parent.get_theme_default_font().resource_path
-	parent.set_deferred(&"default", font_path)
-	parent.set_value.call_deferred(font_path)
-	parent.refresh.call_deferred()
+	parent.default = font_path
+	if parent.get_value().is_empty():
+		parent.set_value_no_signal(font_path)

@@ -180,6 +180,8 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 			else:
 				property = StringProperty.new()
 				property.placeholder = field.hint_string
+		TYPE_NODE_PATH:
+			property = NodeProperty.new()
 		TYPE_COLOR:
 			property = ColorProperty.new()
 		TYPE_VECTOR2:
@@ -194,8 +196,6 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 		TYPE_BOOL:
 			property = BoolProperty.new()
 		TYPE_OBJECT:
-			if field.hint == PROPERTY_HINT_NODE_TYPE and field.hint_string == "Node2D":
-				property = Node2DProperty.new()
 			if field.hint == PROPERTY_HINT_RESOURCE_TYPE:
 				property = load("res://scenes/components/game_components/resource_properties/" + field.hint_string + "Property.tscn").instantiate()
 		TYPE_ARRAY:
@@ -225,7 +225,8 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 		if property is BoolProperty and property in marker_properties.values():
 			property.value_changed.connect(refresh_marker.bind(marker_properties.find_key(property), interactables))
 			continue
-		property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
+		if property.has_meta(&"component_name"):
+			property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
 
 
 func save_property(value: Variant, component_name: String, property: String, interactables: Array[Interactable]) -> void:
@@ -256,6 +257,8 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 			property.set_value_no_signal(interactable.has(marker_properties.find_key(property)))
 			continue
 		var property_name := property.name.to_snake_case()
+		if not property.has_meta(&"component_name"):
+			continue
 		var component := interactable.get_node(str(property.get_meta(&"component_name")))
 		if component == null or component.get(property_name) == null:
 			printerr("Can't load property ", property_name, " on ", interactable)

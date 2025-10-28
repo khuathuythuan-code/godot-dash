@@ -21,9 +21,9 @@ enum Axis {
 			await ready
 		match mode:
 			Mode.ENTER:
-				parent.query(TargetObjectComponent).override = null
+				parent.query(TargetObjectComponent).override = ^""
 			Mode.EXIT:
-				parent.query(TargetObjectComponent).override = LevelManager.player
+				parent.query(TargetObjectComponent).override = LevelManager.current_level.get_path_to(LevelManager.player)
 @export var axis: Axis = Axis.BOTH
 
 var initial_global_position: Vector2
@@ -41,7 +41,7 @@ func _ready() -> void:
 func start(_player: Player) -> void:
 	initial_global_position = LevelManager.player_camera.global_position
 	initial_static_factor = LevelManager.player_camera.static_factor
-	target = parent.query(TargetObjectComponent).target
+	target = parent.query(TargetObjectComponent).target_to_node()
 	if not target:
 		Toasts.error("In %s: target is unset" % parent.name)
 
