@@ -683,6 +683,7 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="CreatedLevelsList" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
