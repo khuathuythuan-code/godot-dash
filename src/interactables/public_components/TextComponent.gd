@@ -21,16 +21,18 @@ const DEFAULT_LABEL_SETTINGS: LabelSettings = preload("res://resources/DefaultTe
 			_label.vertical_alignment = value
 @export var settings: LabelSettings:
 	set(value):
-		settings = value
+		settings = value if value else DEFAULT_LABEL_SETTINGS
 		if _label:
 			_label.label_settings = value if value else DEFAULT_LABEL_SETTINGS
 			if not text.is_empty():
 				update_label_size.call_deferred()
 @export var _label: Label
+@export var _selection_collider: EditorSelectionCollider
 
 
 func update_label_size() -> void:
 	if not _label:
 		return
 	_label.size = _label.get_minimum_size()
-	_label.position = -_label.size / 2
+	_label.position = -_label.size / 2.0
+	_selection_collider.scale = _label.size / (Vector2.ONE * LevelManager.CELL_SIZE)
