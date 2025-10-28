@@ -129,7 +129,7 @@ func to_json() -> String:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
-			"global_transform": var_to_str(object.global_transform),
+			"transform": var_to_str(object.transform),
 			"groups": object.get_groups(),
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").serialize(),
@@ -184,7 +184,7 @@ static func from_data(data: Dictionary) -> Level:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
-		object.global_transform = str_to_var(object_data.global_transform)
+		object.transform = str_to_var(object_data.transform)
 		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
