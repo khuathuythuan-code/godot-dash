@@ -19,6 +19,7 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	AllowCeilingHitComponent,
 	AllowWaveSlideComponent,
 	HiddenOutsideEditorComponent,
+	HideMarkersComponent,
 ]
 
 # Querying this at runtime is overkill
@@ -67,7 +68,7 @@ func rebuild_ui(interactables: Array[Interactable]) -> void:
 
 
 func build_ui(interactables: Array[Interactable]) -> void:
-	var first_interactable := interactables[0]
+	var first_interactable: Interactable = interactables[0]
 	var ui_root := VBoxContainer.new()
 	var should_component_be_displayed := func(component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
@@ -119,7 +120,12 @@ func build_ui(interactables: Array[Interactable]) -> void:
 				ui_root.add_child(HSeparator.new())
 		components_root.add_child(ui_root)
 		components_root.visible = ui_root.get_child_count() > 0
-		separator.visible = components_root.visible
+		if first_interactable.has(HideMarkersComponent):
+			separator.hide()
+			markers_root.hide()
+		else:
+			separator.visible = components_root.visible
+			markers_root.show()
 	else:
 		components_root.hide()
 		separator.hide()
