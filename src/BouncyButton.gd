@@ -1,5 +1,5 @@
 @tool
-extends BaseButton
+extends Button
 class_name BouncyButton
 
 # @export var selected_level: PackedScene
