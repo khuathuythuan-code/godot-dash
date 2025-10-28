@@ -79,6 +79,9 @@ func _on_level_index_pressed(index:int) -> void:
 
 
 func _new_level() -> void:
+	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
+	color_channel_editor.clear_item_list()
+	edit_handler.clear_selection()
 	var new_level := Level.new()
 	editor.level.name = "tempname"
 	editor.level.queue_free()
@@ -87,8 +90,6 @@ func _new_level() -> void:
 	new_level.version_history = UndoRedo.new()
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(new_level)
-	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
-	color_channel_editor.clear_item_list()
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
