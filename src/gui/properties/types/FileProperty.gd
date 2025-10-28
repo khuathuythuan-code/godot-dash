@@ -25,7 +25,7 @@ func _ready() -> void:
 	popup.index_pressed.connect(_on_input_pressed)
 	renamed.connect(refresh)
 	refresh()
-	if _value == "":
+	if _value == null or _value == "":
 		reset()
 	NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
@@ -33,9 +33,7 @@ func _ready() -> void:
 
 
 func set_value(new_value: String) -> void:
-	_value = new_value
-	input.text = "    Load…    " if new_value.is_empty() or Engine.is_editor_hint() \
-			else new_value.get_file()
+	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 
 

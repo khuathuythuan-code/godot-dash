@@ -225,7 +225,8 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 		if property is BoolProperty and property in marker_properties.values():
 			property.value_changed.connect(refresh_marker.bind(marker_properties.find_key(property), interactables))
 			continue
-		property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
+		if property.has_meta(&"component_name"):
+			property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
 
 
 func save_property(value: Variant, component_name: String, property: String, interactables: Array[Interactable]) -> void:
