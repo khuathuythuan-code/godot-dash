@@ -80,7 +80,7 @@ func reset() -> void:
 
 
 func set_input_state(enabled: bool) -> void:
-	indentation_container.get_children().map(func(input): input.set_input_state(enabled))
+	NodeUtils.get_children_of_type(indentation_container, Property, true).map(func(input): input.set_input_state(enabled))
 
 
 func _connect_child_properties(node: Node, depth: int = 0) -> void:

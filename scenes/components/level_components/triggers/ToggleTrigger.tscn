@@ -65,6 +65,6 @@ script = ExtResource("9_iid00")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("10_wy7cv")]
-type = 9
+type = 8
 
 [connection signal="send_to_group_display" from="ToggleComponent" to="Sprite/GroupDisplay" method="_on_target_group_component_changed"]

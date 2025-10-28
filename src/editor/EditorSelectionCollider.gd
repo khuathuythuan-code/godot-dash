@@ -11,7 +11,6 @@ enum Type {
 	SLOPE,
 	SLOPE_LARGE,
 	INTERACTABLE,
-	TRIGGER,
 }
 
 @export var type: Type
