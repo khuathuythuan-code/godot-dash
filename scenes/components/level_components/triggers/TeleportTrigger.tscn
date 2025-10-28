@@ -60,7 +60,7 @@ script = ExtResource("7_58lld")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("8_rw08a")]
-type = 9
+type = 8
 
 [node name="TargetLink" parent="." instance=ExtResource("10_4tqqs")]
 z_index = -50
