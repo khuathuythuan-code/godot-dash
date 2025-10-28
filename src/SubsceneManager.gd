@@ -23,6 +23,7 @@ enum SubScene {
 
 @export_group("PhantomCameras")
 @export var created_levels_list_camera: PhantomCamera2D
+@export var editor_camera: PhantomCamera2D
 @export var icon_garage_camera: PhantomCamera2D
 @export var quit_game_camera: PhantomCamera2D
 @export var title_screen_camera: PhantomCamera2D
@@ -133,14 +134,24 @@ func _on_go_to_level_selector_pressed() -> void:
 	_hide_page_control = false
 	_toggle_background_sprites_autoscroll(false)
 
+
 func _on_go_to_created_levels_list_pressed() -> void:
+	created_levels_list.show()
+	level_selector.hide()
+	icon_garage.hide()
+	_current_subscene = SubScene.CREATED_LEVELS_LIST
+	history._change_phantomcamera(active_pcam, created_levels_list_camera)
+	_toggle_background_sprites_autoscroll(false)
+
+
+func _on_editor_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
 	if not _fade_screen.is_fading:
 		var editor_scene: PackedScene = load("res://scenes/EditorScene.tscn")
 		$"../MenuLoop".playing = false
 		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-		history._change_phantomcamera(active_pcam, created_levels_list_camera)
+		history._change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
 		if Editor.editor_backup.can_instantiate():
