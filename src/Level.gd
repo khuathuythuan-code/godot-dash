@@ -178,6 +178,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
+	level.color_channels.map(func(channel_data: ColorChannelData): level.add_child(ColorChannelWatcher.new(channel_data)))
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:

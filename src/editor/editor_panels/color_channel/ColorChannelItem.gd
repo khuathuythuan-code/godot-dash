@@ -40,19 +40,19 @@ func update() -> void:
 				_disable_color_preview()._show_color_preview_text("GL")
 
 
-func register():
+func register() -> void:
 	var level := LevelManager.current_level
 	var has_same_group := func(channel: ColorChannelData, group: String): return channel.associated_group == group
-	# Overwrite existing channels with same group
-	var duplicates: Array = level.color_channels.filter(has_same_group.bind(data.associated_group))
-	for channel: ColorChannelData in duplicates:
-		level.color_channels.erase(channel)
-		channel.watcher.queue_free()
-	level.color_channels.append(data)
-	level.add_child(ColorChannelWatcher.new(data))
+	var duplicates: Array[ColorChannelData]
+	duplicates.assign(level.color_channels.filter(has_same_group.bind(data.associated_group)))
+	if duplicates.is_empty():
+		level.color_channels.append(data)
+		level.add_child(ColorChannelWatcher.new(data))
+		return
+	data = duplicates.front()
 
 
-func unregister():
+func unregister() -> void:
 	var level := LevelManager.current_level
 	level.color_channels.erase(data)
 	var watcher := get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + data.associated_group) as ColorChannelWatcher
