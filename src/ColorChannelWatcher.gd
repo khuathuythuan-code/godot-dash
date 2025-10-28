@@ -8,6 +8,7 @@ var data: ColorChannelData
 
 func _init(new_data: ColorChannelData) -> void:
 	data = new_data
+	data.watcher = self
 	add_to_group(WATCHER_GROUP_PREFIX + data.associated_group)
 	data.changed.connect(refresh_objects_color)
 

@@ -5948,7 +5948,7 @@ mode_overrides_title = false
 file_mode = 0
 access = 1
 root_subfolder = "created_levels/levels"
-filters = PackedStringArray("*.tscn")
+filters = PackedStringArray("*.json")
 use_native_dialog = true
 
 [node name="ImportAndOpenLevelDialog" type="FileDialog" parent="."]
@@ -5976,7 +5976,7 @@ size = Vector2i(1088, 720)
 mode_overrides_title = false
 access = 1
 root_subfolder = "created_levels/levels"
-filters = PackedStringArray("*.tscn")
+filters = PackedStringArray("*.json")
 use_native_dialog = true
 
 [node name="ExportLevelDialog" type="FileDialog" parent="."]
@@ -6001,8 +6001,10 @@ dialog_text = "Save changes before opening level?"
 oversampling_override = 1.0
 title = "Warning!"
 initial_position = 2
-size = Vector2i(588, 100)
-dialog_text = "This exported level doesn't contain a valid .tscn file and can't be imported."
+size = Vector2i(586, 120)
+dialog_text = "This exported level doesn't contain a valid JSON file and can't be imported.
+Error:
+"
 
 [node name="LevelAlreadyExists" type="ConfirmationDialog" parent="."]
 oversampling_override = 1.0

@@ -38,7 +38,7 @@ func serialize() -> Dictionary:
 
 
 func use_data(data: Dictionary) -> void:
-	hsv_shift = data.hsv_shift
+	hsv_shift.assign(data.hsv_shift)
 	strength = data.strength
 	alpha = data.alpha
 

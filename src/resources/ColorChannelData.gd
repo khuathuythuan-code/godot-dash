@@ -1,7 +1,6 @@
 extends Resource
 class_name ColorChannelData
 
-
 enum CopyColor {
 	BACKGROUND,
 	GROUND,
@@ -19,6 +18,8 @@ enum CopyColor {
 @export var strength: float = 1.0
 @export var alpha: float = 1.0
 @export var associated_group: String
+
+var watcher: ColorChannelWatcher
 
 
 func set_copy(should_copy: bool = false) -> ColorChannelData:
@@ -60,10 +61,22 @@ func set_alpha(new_alpha: float) -> ColorChannelData:
 static func serialize(channel: ColorChannelData) -> Dictionary:
 	var data: Dictionary
 	data.copy = channel.copy
-	data.color = channel.color
+	data.color = var_to_str(channel.color)
 	data.copied_channel = channel.copied_channel
 	data.hsv_shift = channel.hsv_shift
 	data.strength = channel.strength
 	data.alpha = channel.alpha
 	data.associated_group = channel.associated_group
 	return data
+
+
+static func from_data(data: Dictionary) -> ColorChannelData:
+	var channel := ColorChannelData.new()
+	channel.copy = data.copy
+	channel.color = str_to_var(data.color)
+	channel.copied_channel = data.copied_channel
+	channel.hsv_shift.assign(data.hsv_shift)
+	channel.strength = data.strength
+	channel.alpha = data.alpha
+	channel.associated_group = data.associated_group
+	return channel

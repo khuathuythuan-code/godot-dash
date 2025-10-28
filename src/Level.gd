@@ -129,7 +129,7 @@ func to_json() -> String:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
-			"global_transform": object.global_transform,
+			"global_transform": var_to_str(object.global_transform),
 			"groups": object.get_groups(),
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").serialize(),
@@ -170,21 +170,22 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 			object_data.color_channels.erase("detail")
 
 
-static func from_json(data: Dictionary) -> Level:
+static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
 	level.song_path = data.song_path
 	level.start_speed = data.start_speed
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
-	level.color_channels = data.color_channels
+	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
-		object.global_transform = object_data.global_transform
+		object.global_transform = str_to_var(object_data.global_transform)
+		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
 			object.add_to_group(group)
@@ -209,29 +210,32 @@ static func from_json(data: Dictionary) -> Level:
 			if override_data.has("detail"):
 				detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
 			object.get_node(^"EditorSelectionCollider").id = override_data.id
+			object.set_meta(&"texture_override", override_data)
 		# Attributes
 		if object_data.has("attributes"):
-			var attributes: Array[String] = object_data.attributes
+			var attributes: Array[String]
+			attributes.assign(object_data.attributes)
 			for attribute: String in attributes:
 				var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
 				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 		# Interactables
 		if object is Interactable:
 			load_interactable_data(object, object_data)
-	resource_cache.free()
 	return level
 
 
 static func load_interactable_data(object: Interactable, object_data: Dictionary) -> void:
 	if object_data.has("components"):
-		var components: Dictionary[String, Dictionary] = object_data.components
+		var components: Dictionary[String, Dictionary]
+		components.assign(object_data.components)
 		for component_name in components:
 			var component_instance: Component = object.get_node(component_name)
 			var component_data: Dictionary = components[component_name]
 			for field_name in components[component_name]:
 				component_instance.set(field_name, component_data[field_name])
 	if object_data.has("markers"):
-		var markers: Array[String] = object_data.markers
+		var markers: Array[String]
+		markers.assign(object_data.markers)
 		var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
 		for marker_name in markers:
 			var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()

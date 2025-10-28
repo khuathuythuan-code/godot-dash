@@ -87,10 +87,13 @@ func _new_level() -> void:
 	new_level.version_history = UndoRedo.new()
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(new_level)
+	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
+	color_channel_editor.clear_item_list()
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
 	editor.editor_camera.zoom = Vector2.ONE * 0.8
+	$AutosaveTimer.stop()
 
 
 func _open_level(path: String) -> void:
@@ -100,9 +103,11 @@ func _open_level(path: String) -> void:
 		return
 	# Avoid name conflicts
 	editor.level.name = str(hash(editor.level))
-	ResourceLoader.load_threaded_request(path, "PackedScene")
-	var level_packed := ResourceLoader.load_threaded_get(path) as PackedScene
-	var level = level_packed.instantiate() as Level
+	# Load level
+	var level: Level = _load_level(path)
+	if not level:
+		return
+	# Load song
 	var song_file_path: String
 	if level.song_path.begins_with("uid"):
 		song_file_path = ResourceUID.get_id_path(ResourceUID.text_to_id(level.song_path)).get_file()
@@ -110,12 +115,18 @@ func _open_level(path: String) -> void:
 		song_file_path = level.song_path.get_file()
 	level.song_path = "" if song_file_path.is_empty() else "user://created_levels/songs/" + song_file_path
 	level.set_meta("packed_file_path", path)
+	# Remove current editor level
+	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	editor.level.queue_free()
 	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	edit_handler.selection.clear()
+	color_channel_editor.clear_item_list()
+	# Add new level
+	await get_tree().process_frame
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
+	color_channel_editor.populate_item_list()
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
@@ -132,7 +143,7 @@ func _import_level(path: String, keep_original: bool) -> void:
 	var song_dir := DirAccess.open("user://created_levels/songs")
 	var font_dir := DirAccess.open("user://created_levels/fonts")
 	var level_path: String
-	if not "tscn" in Array(files).map(func(file): return file.get_extension()):
+	if not "json" in Array(files).map(func(file): return file.get_extension()):
 		corrupted_level_dialog.show()
 		return
 	for file_path in files:
@@ -183,7 +194,7 @@ func _save_level() -> void:
 		edit_handler.selection = selection_backup
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
-	var file := FileAccess.open("user://created_levels/levels/%s.json" % file_name, FileAccess.WRITE)
+	var file := FileAccess.open("user://created_levels/levels/%s" % file_name, FileAccess.WRITE)
 	print(file)
 	file.store_line(editor.level.to_json())
 	file.close()
@@ -243,8 +254,10 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 	var err = writer.open(path)
 	if err != OK:
 		return err
-	var file_name := path.get_file().get_basename() + ".tscn"
+	var file_name: String
+
 	#section Level Pack
+	file_name = path.get_file().get_basename() + ".json"
 	writer.start_file(file_name)
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
@@ -254,8 +267,7 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		Editor.editor_level_backup.pack(editor.level)
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
-	ResourceSaver.save(Editor.editor_level_backup, OS.get_temp_dir().path_join(file_name)) # We don't care about overwriting a tempfile.
-	var level_bytes := FileAccess.get_file_as_bytes(OS.get_temp_dir().path_join(file_name))
+	var level_bytes := var_to_bytes(editor.level.to_json())
 	writer.write_file(level_bytes)
 	writer.close_file()
 	#endsection
@@ -283,8 +295,30 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 	return OK
 
 
+func _load_level(path: String) -> Level:
+	var file := FileAccess.open(path, FileAccess.READ)
+	var json_string: String = file.get_as_text()
+	file.close()
+	var json := JSON.new()
+	var error: Error = json.parse(json_string)
+	if error != OK:
+		var error_message: String = "JSON Parse Error: %s in %s at line %s" % [json.get_error_message(), json_string, json.get_error_line()]
+		push_error(error_message)
+		corrupted_level_dialog.dialog_text = """This exported level doesn't contain a valid JSON file and can't be imported.
+Error:
+%s""" % error_message
+		corrupted_level_dialog.show()
+		return null
+	if json.data is not Dictionary:
+		push_error("Unexpected data")
+		return null
+	var level: Level = Level.from_data(json.data)
+	level.set_meta(&"file_name", path.get_file())
+	return level
+
+
 static func file_is_level(file_path: String) -> bool:
-	return file_path.ends_with(".tscn")
+	return file_path.ends_with(".json")
 
 
 static func file_is_song(file_path: String) -> bool:

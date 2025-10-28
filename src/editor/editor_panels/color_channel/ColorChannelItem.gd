@@ -42,9 +42,14 @@ func update() -> void:
 
 func register():
 	var level := LevelManager.current_level
-	if data not in level.color_channels:
-		level.color_channels.append(data)
-		level.add_child(ColorChannelWatcher.new(data))
+	var has_same_group := func(channel: ColorChannelData, group: String): return channel.associated_group == group
+	# Overwrite existing channels with same group
+	var duplicates: Array = level.color_channels.filter(has_same_group.bind(data.associated_group))
+	for channel: ColorChannelData in duplicates:
+		level.color_channels.erase(channel)
+		channel.watcher.queue_free()
+	level.color_channels.append(data)
+	level.add_child(ColorChannelWatcher.new(data))
 
 
 func unregister():
