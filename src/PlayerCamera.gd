@@ -20,6 +20,7 @@ var player: Player
 var freefly := true
 ## Value in pixels of the gameplay offset. Smoothed over time.
 var gameplay_offset: Vector2
+var is_snapping_view: bool
 
 var _smoothed_gameplay_rotation: float
 
@@ -35,7 +36,7 @@ func _process(delta: float) -> void:
 		return
 	queue_redraw()
 	var framerate_compensation := delta * 60.0
-	_smoothed_gameplay_rotation = lerpf(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation)
+	_smoothed_gameplay_rotation = lerpf(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
 
 	var player_distance = player.position - position
 	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI/2) * GroundData.offset
@@ -54,7 +55,7 @@ func _process(delta: float) -> void:
 			framerate_compensation)
 	
 	# Apply distance
-	var added_distance = local_added_distance.rotated(player.gameplay_rotation)
+	var added_distance: Vector2 = local_added_distance.rotated(player.gameplay_rotation)
 	if static_factor.x == 0:
 		position.x += added_distance.x
 	if static_factor.y == 0:
@@ -84,14 +85,20 @@ func local_target_distance_axis(distance: float, max_distance: float, framerate_
 
 func get_offset_target(framerate_compensation: float) -> Vector2:
 	if LevelManager.platformer:
-		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation)
+		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation if not is_snapping_view else 1.0)
 	else:
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
 				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
 				DEFAULT_OFFSET.y / zoom.y),
-			0.125 * framerate_compensation)
+			0.125 * framerate_compensation if not is_snapping_view else 1.0)
 	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset
+
+
+func snap_view() -> void:
+	is_snapping_view = true
+	await get_tree().process_frame
+	is_snapping_view = false
 
 
 func _draw() -> void:
