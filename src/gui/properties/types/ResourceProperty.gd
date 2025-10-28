@@ -49,6 +49,16 @@ func _ready() -> void:
 func refresh() -> void:
 	label.text = name
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	# Set defaults for individual fields
+	var fields: Array[Property]
+	fields.assign(NodeUtils.get_children_of_type(indentation_container, Property, true))
+	for i in fields.size():
+		var field_input: Property = fields[i]
+		var field_name: String = resource_properties[i]
+		var field_value: Variant = default.get(field_name)
+		if field_value == null and field_input is not Node2DProperty:
+			continue
+		field_input.default = field_value
 	vertical = true
 	if Engine.is_editor_hint():
 		reset()
