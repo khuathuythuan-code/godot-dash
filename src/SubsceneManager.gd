@@ -32,6 +32,8 @@ static var editor_scene: PackedScene
 @export_group("Title Screen Components")
 @export var title_screen_background: Parallax2D
 @export var title_screen_ground: Parallax2D
+@export var menu_icon: MenuIcon
+@export var menu_icon_killer: MenuIconKiller
 
 @export_group("Level Selector Components")
 @export var level_selector_page_container: Control
@@ -42,6 +44,7 @@ var _current_subscene: SubScene = SubScene.TITLE_SCREEN
 var _level_selector_tab_idx: int
 var _hide_page_control: bool = true
 var _lerp_rate := 0.3 * 60
+
 
 func _ready() -> void:
 	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
@@ -78,18 +81,6 @@ func _ready() -> void:
 		active_pcam.set_priority(PhantomCameraHistory.PhantomCameraStatus.CURRENT_ACTIVE)
 
 
-func _return_to_title_screen() -> void:
-	history._previous_phantomcamera(active_pcam)
-	_toggle_background_sprites_autoscroll(true)
-	if page_control_container.modulate != Color("ffffff00"):
-		_hide_page_control = true
-	if active_pcam == title_screen_camera: _current_subscene = SubScene.TITLE_SCREEN
-	_change_background_color(_base_background_color)
-	await title_screen_camera.tween_completed
-	created_levels_list.hide()
-	icon_garage.hide()
-	level_selector.hide()
-
 func _process(delta: float) -> void:
 	if _current_subscene == SubScene.LEVEL_SELECTOR:
 		if Input.is_action_just_pressed("ui_left"): _on_previous_level_pressed()
@@ -116,6 +107,38 @@ func _process(delta: float) -> void:
 		page_control_container.modulate.a = lerpf(page_control_container.modulate.a, 1.0, 1-exp(-delta * _lerp_rate))
 		quit_game_button.modulate.a = lerpf(quit_game_button.modulate.a, 0.0, 1-exp(-delta * _lerp_rate))
 
+
+func _return_to_title_screen() -> void:
+	history._previous_phantomcamera(active_pcam)
+	_toggle_background_sprites_autoscroll(true)
+	if page_control_container.modulate != Color("ffffff00"):
+		_hide_page_control = true
+	if active_pcam == title_screen_camera: _current_subscene = SubScene.TITLE_SCREEN
+	_change_background_color(_base_background_color)
+	await title_screen_camera.tween_completed
+	created_levels_list.hide()
+	icon_garage.hide()
+	level_selector.hide()
+	
+
+func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
+	menu_icon.visible = enabled
+	menu_icon_killer.process_mode = Node.PROCESS_MODE_INHERIT if enabled else Node.PROCESS_MODE_DISABLED
+	# HACK: autoscroll can't be interpolated
+	if enabled:
+		title_screen_background.autoscroll.x = -300
+		title_screen_ground.autoscroll.x = -800
+	else:
+		title_screen_background.autoscroll.x = 0
+		title_screen_ground.autoscroll.x = 0
+
+func _change_background_color(new_color: Color) -> void:
+	create_tween() \
+			.tween_property(title_screen_background.get_node("Background"), "modulate", new_color, 1.0) \
+			.set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_EXPO)
+
+
 func _on_go_to_level_selector_pressed() -> void:
 	level_selector.show()
 	created_levels_list.hide()
@@ -134,6 +157,7 @@ func _on_go_to_level_selector_pressed() -> void:
 	)
 	_hide_page_control = false
 	_toggle_background_sprites_autoscroll(false)
+
 
 func _on_go_to_created_levels_list_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
@@ -157,21 +181,6 @@ func _on_go_to_icon_garage_pressed() -> void:
 	_current_subscene = SubScene.ICON_GARAGE
 	history._change_phantomcamera(active_pcam, icon_garage_camera)
 	_toggle_background_sprites_autoscroll(false)
-
-func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
-	# HACK: autoscroll can't be interpolated
-	if enabled:
-		title_screen_background.autoscroll.x = -300
-		title_screen_ground.autoscroll.x = -800
-	else:
-		title_screen_background.autoscroll.x = 0
-		title_screen_ground.autoscroll.x = 0
-
-func _change_background_color(new_color: Color) -> void:
-	create_tween() \
-			.tween_property(title_screen_background.get_node("Background"), "modulate", new_color, 1.0) \
-			.set_ease(Tween.EASE_OUT) \
-			.set_trans(Tween.TRANS_EXPO)
 
 
 func _on_previous_level_pressed() -> void:
@@ -213,6 +222,7 @@ func _on_quit_game_pressed() -> void:
 		history._change_phantomcamera(active_pcam, quit_game_camera)
 		await _fade_screen.fade_finished
 		get_tree().quit()
+
 
 func _on_back_button_pressed() -> void:
 	_return_to_title_screen()
