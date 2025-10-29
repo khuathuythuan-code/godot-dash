@@ -9,7 +9,7 @@ enum LoopState {
 }
 
 # TODO in editor, refresh timer duration if a spawned trigger's duration is changed
-@export var spawned_triggers: Array[SpawnedGroup]:
+@export var spawned_triggers: Array[SpawnedTrigger]:
 	set(value):
 		if not is_node_ready():
 			await ready
@@ -70,6 +70,19 @@ func restart(player: Player) -> void:
 	if loop == LoopState.INFINITE or (loop == LoopState.COUNT and _current_loop < loop_count):
 		_current_loop += 1
 		parent.interacted.emit(player)
+
+
+func _field_to_data(field_name: String) -> Variant:
+	if field_name == "spawned_triggers":
+		return spawned_triggers.map(func(spawned_trigger: SpawnedTrigger): return spawned_trigger.to_data())
+	return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	if field_name == "spawned_triggers":
+		spawned_triggers.assign(field_data.map(func(spawned_trigger_data: Dictionary): SpawnedTrigger.from_data(spawned_trigger_data)))
+		return
+	set(field_name, field_data)
 
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:

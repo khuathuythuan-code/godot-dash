@@ -224,30 +224,12 @@ static func from_data(data: Dictionary) -> Level:
 				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 		# Interactables
 		if object is Interactable:
-			load_interactable_data(object, object_data)
+			if object_data.has("components"):
+				var components: Dictionary[String, Dictionary]
+				components.assign(object_data.components)
+				object.use_component_data(components)
+			if object_data.has("markers"):
+				var markers: Array[String]
+				markers.assign(object_data.markers)
+				object.markers_from_data(markers)
 	return level
-
-
-static func load_interactable_data(object: Interactable, object_data: Dictionary) -> void:
-	if object_data.has("components"):
-		var components: Dictionary[String, Dictionary]
-		components.assign(object_data.components)
-		for component_name in components:
-			var component_instance: Component = object.get_node(component_name)
-			var component_data: Dictionary = components[component_name]
-			for field_name in components[component_name]:
-				var field_is_resource: bool = component_data[field_name] is String and component_data[field_name].match("Object(*)\n")
-				if field_is_resource:
-					component_instance.set(field_name, str_to_var(component_data[field_name]))
-				else:
-					component_instance.set(field_name, component_data[field_name])
-	if object_data.has("markers"):
-		var markers: Array[String]
-		markers.assign(object_data.markers)
-		var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
-		for marker_name in markers:
-			var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()
-			if not marker_script:
-				continue
-			NodeUtils.get_node_or_add(object, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
-

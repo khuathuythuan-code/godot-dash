@@ -32,21 +32,16 @@ func components_to_data() -> Dictionary[String, Dictionary]:
 	var serialized_components: Array[Component]
 	serialized_components.assign(components.filter(should_serialize_component))
 	for serialized_component: Component in serialized_components:
-		var fields: Array[Dictionary] = serialized_component.script.get_script_property_list()
-		var is_field_serialized := func(field: Dictionary): return field.usage & PROPERTY_USAGE_STORAGE and not field.name.begins_with("_")
-		var get_field_name := func(field: Dictionary): return field.name
-		var field_names := PackedStringArray(fields.filter(is_field_serialized).map(get_field_name))
-		var serialized_component_data: Dictionary
-		for field_name: String in field_names:
-			if serialized_component.get(field_name) == null:
-				continue
-			elif serialized_component.get(field_name) is Resource:
-				serialized_component_data[field_name] = var_to_str(serialized_component.get(field_name))
-			else:
-				serialized_component_data[field_name] = serialized_component.get(field_name)
 		var serialized_component_name: String = serialized_component.get_script().get_global_name()
-		data[serialized_component_name] = serialized_component_data
+		data[serialized_component_name] = serialized_component.to_data()
 	return data
+
+
+func use_component_data(data: Dictionary[String, Dictionary]) -> void:
+	for component_name in data:
+		var component_instance: Component = get_node(component_name)
+		var component_data: Dictionary = data[component_name]
+		component_instance.use_data(component_data)
 
 
 func markers_to_data() -> Array:
@@ -55,3 +50,12 @@ func markers_to_data() -> Array:
 	var to_name := func(marker: Marker): return marker.get_script().get_global_name()
 	serialized_markers.assign(ArrayUtils.to_set(components.filter(is_marker)))
 	return serialized_markers.map(to_name)
+
+
+func markers_from_data(data: Array[String]) -> void:
+	var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
+	for marker_name: String in data:
+		var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()
+		if not marker_script:
+			continue
+		NodeUtils.get_node_or_add(self, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
