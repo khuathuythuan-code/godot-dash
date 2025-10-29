@@ -42,6 +42,7 @@ func _ready() -> void:
 	renamed.connect(refresh)
 	refresh()
 	reset()
+	_value.changed.connect(func(): set_value(_value))
 
 
 func refresh() -> void:

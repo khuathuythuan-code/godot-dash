@@ -1,6 +1,9 @@
 extends Node2D
 class_name Level
 
+@warning_ignore("unused_signal")
+signal default_font_changed
+
 const START_SPEED: Array[float] = [
 	0.0,   # 0x
 	0.807, # 0.5x
@@ -23,6 +26,7 @@ const START_SPEED: Array[float] = [
 	set(value):
 		register_required_font(default_font, value)
 		default_font = value
+		default_font_changed.emit()
 @export var platformer: bool
 @export var start_speed: int = 2
 @export var start_reverse: bool
@@ -113,7 +117,6 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		if not required_fonts.has(new_path):
 			required_fonts[new_path] = 0
 		required_fonts[new_path] += 1
-	prints(required_fonts)
 
 
 func to_data() -> Dictionary:

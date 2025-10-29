@@ -1,19 +1,23 @@
 extends LabelSettings
 class_name TextSettings
 
-@export var _font_path: String:
-	set(value):
-		if not value.begins_with("res://") and LevelManager.current_level:
-			LevelManager.current_level.register_required_font(_font_path, value)
-		_font_path = value
-		if LevelManager.current_level and _font_path.is_empty():
-			font = LevelAssetManager.load_font(LevelManager.current_level.default_font)
-		else:
-			font = LevelAssetManager.load_font(_font_path)
+@export var _font_path: String: set = set_font_path
 
 
-func _init() -> void:
-	_font_path = _font_path
+func _init(path: String = "") -> void:
+	set_font_path(path)
+
+
+func set_font_path(path: String = "") -> void:
+	if LevelManager.current_level and path.is_empty():
+		font = LevelAssetManager.load_font(LevelManager.current_level.default_font)
+		NodeUtils.connect_once(LevelManager.current_level.default_font_changed, set_font_path)
+	else:
+		if not (path.is_empty() or path.begins_with("res://")) and LevelManager.current_level:
+			LevelManager.current_level.register_required_font(_font_path, path)
+			LevelManager.current_level.default_font_changed.disconnect(set_font_path)
+		font = LevelAssetManager.load_font(path)
+	_font_path = path
 
 
 func to_data() -> Dictionary:
@@ -32,7 +36,7 @@ func to_data() -> Dictionary:
 
 
 static func from_data(data: Dictionary) -> TextSettings:
-	var text_settings := TextSettings.new()
+	var text_settings := TextSettings.new(data._font_path)
 	text_settings.line_spacing = data.line_spacing
 	text_settings.paragraph_spacing = data.paragraph_spacing
 	text_settings.font_size = data.font_size
@@ -42,5 +46,4 @@ static func from_data(data: Dictionary) -> TextSettings:
 	text_settings.shadow_size = data.shadow_size
 	text_settings.shadow_color = Color.hex(data.shadow_color)
 	text_settings.shadow_offset = Deserialize.Vector2(data.shadow_offset)
-	text_settings._font_path = data._font_path
 	return text_settings
