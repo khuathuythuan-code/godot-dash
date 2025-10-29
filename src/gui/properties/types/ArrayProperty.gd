@@ -126,7 +126,7 @@ func set_value(value: Array) -> void:
 
 
 func set_value_no_signal(value: Array) -> void:
-	items.get_children().map(func(item): item.queue_free())
+	NodeUtils.free_children(items)
 	await get_tree().process_frame
 	if value.size() < minimum_size:
 		for i in range(minimum_size):

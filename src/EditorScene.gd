@@ -132,7 +132,7 @@ func _on_playtest_pressed() -> void:
 		$GameScene.start_level()
 	else:
 		LevelManager.player.queue_free()
-		LevelManager.player_duals.map(func(player_instance: Player): player_instance.queue_free())
+		LevelManager.player_duals.map(NodeUtils.free_node)
 		LevelManager.player_duals.clear()
 		level.queue_free()
 		await get_tree().process_frame

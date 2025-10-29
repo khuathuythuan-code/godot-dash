@@ -246,7 +246,7 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	selection.map(func(object): object.queue_free())
+	selection.map(NodeUtils.free_node)
 	selection.clear()
 	rotated_object_degrees.emit(0.0) # Reset
 	_reset_selection_zone()

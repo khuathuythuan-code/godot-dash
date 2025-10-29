@@ -71,7 +71,7 @@ func save_bool_attribute(enabled: bool, attribute_script: Script, selection: Arr
 				NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME
 			)
 		else:
-			NodeUtils.get_children_of_type(object, attribute_script).map(func(attribute_instance): attribute_instance.queue_free())
+			NodeUtils.get_children_of_type(object, attribute_script).map(NodeUtils.free_node)
 
 
 func save_flag_attribute(flags: int, attribute_scripts: Array, selection: Array[Node2D]) -> void:
@@ -86,7 +86,7 @@ func save_flag_attribute(flags: int, attribute_scripts: Array, selection: Array[
 					NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME
 				)
 			else:
-				NodeUtils.get_children_of_type(object, attribute_script).map(func(attribute_instance): attribute_instance.queue_free())
+				NodeUtils.get_children_of_type(object, attribute_script).map(NodeUtils.free_node)
 
 
 func load_bool_properties(object: Node2D) -> void:
