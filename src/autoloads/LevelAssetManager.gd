@@ -3,6 +3,7 @@ extends Node
 var thread: Thread
 
 var loaded_songs: Dictionary[String, AudioStream]
+var loaded_fonts: Dictionary[String, Font]
 
 
 func load_song(path: String) -> AudioStream:
@@ -43,17 +44,24 @@ func load_song_threaded_get(path: String) -> AudioStream:
 
 func unload_all() -> void:
 	loaded_songs.clear()
+	loaded_fonts.clear()
 
 
 func load_font(path: String) -> FontFile:
+	if path in loaded_fonts:
+		return loaded_fonts[path]
 	var loaded_font := FontFile.new()
-	var error: Error = loaded_font.load_dynamic_font(path)
-	if error != OK:
-		push_error("Error while loading font at %s: %s" % [path, error])
-		return null
+	if path.is_empty():
+		loaded_font = ThemeDB.get_project_theme().default_font.duplicate()
+	else:
+		var error: Error = loaded_font.load_dynamic_font(path)
+		if error != OK:
+			push_error("Error while loading font at %s: %s" % [path, error])
+			return null
 	loaded_font.multichannel_signed_distance_field = true
 	loaded_font.msdf_pixel_range = 64
 	loaded_font.msdf_size = 128
+	loaded_fonts[path] = loaded_font
 	return loaded_font
 
 
