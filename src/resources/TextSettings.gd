@@ -6,7 +6,14 @@ class_name TextSettings
 		if not value.begins_with("res://") and LevelManager.current_level:
 			LevelManager.current_level.register_required_font(_font_path, value)
 		_font_path = value
-		font = LevelAssetManager.load_font(_font_path)
+		if LevelManager.current_level and _font_path.is_empty():
+			font = LevelAssetManager.load_font(LevelManager.current_level.default_font)
+		else:
+			font = LevelAssetManager.load_font(_font_path)
+
+
+func _init() -> void:
+	_font_path = _font_path
 
 
 func to_data() -> Dictionary:
