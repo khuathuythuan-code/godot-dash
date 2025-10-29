@@ -61,7 +61,7 @@ func set_input_state(enabled: bool) -> void:
 
 
 func _on_input_pressed() -> void:
-	var clipboard := Editor.editor_clipboard
+	var clipboard := Editor.clipboard
 	if len(clipboard) > 1:
 		return
 	if clipboard.is_empty() or Engine.is_editor_hint():

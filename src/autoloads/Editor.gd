@@ -1,12 +1,12 @@
 extends Node
 
-var editor_root: EditorScene
+var root: EditorScene
 var in_editor: bool:
 	get():
-		return editor_root != null
-var editor_clipboard: Array[NodePath]
-var editor_backup := PackedScene.new()
-var editor_level_backup: Dictionary
+		return root != null
+var clipboard: Array[NodePath]
+var snapshot := PackedScene.new()
+var level_data_snapshot: Dictionary
 var shortcut_blocker: Node
 
 # MOBILE CONTROLS

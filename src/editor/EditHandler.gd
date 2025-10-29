@@ -32,7 +32,7 @@ var gizmo: Gizmo
 
 func _ready() -> void:
 	_reset_selection_zone(true)
-	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
+	var update_global_clipboard := func(new_clipboard): Editor.clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
 

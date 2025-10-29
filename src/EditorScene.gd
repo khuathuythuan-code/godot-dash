@@ -27,7 +27,7 @@ var editor_actions: int
 
 func _ready() -> void:
 	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
-	Editor.editor_root = self
+	Editor.root = self
 	if SceneTransition.from_main():
 		SceneTransition.previous = SceneTransition.Scene.EDITOR
 		var _fade_screen = $FadeScreenLayer/FadeScreen
@@ -59,8 +59,8 @@ func _ready() -> void:
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
 
-	if not Editor.editor_level_backup.is_empty():
-		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.editor_level_backup)) 
+	if not Editor.level_data_snapshot.is_empty():
+		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot)) 
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
@@ -118,8 +118,8 @@ func _on_playtest_pressed() -> void:
 			$EditHandler.selection.clear()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
-		Editor.editor_level_backup = level.to_data()
-		Editor.editor_backup.pack(self)
+		Editor.level_data_snapshot = level.to_data()
+		Editor.snapshot.pack(self)
 		%MenuBarContainer.hide()
 		%EditorModes.hide()
 		%SidePanel.hide()
@@ -150,8 +150,8 @@ func _on_leave_pressed() -> void:
 	if not LevelManager.level_playing:
 		$EditHandler.selection.map($EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
-		Editor.editor_level_backup = level.to_data()
-		Editor.editor_backup.pack(self)
+		Editor.level_data_snapshot = level.to_data()
+		Editor.snapshot.pack(self)
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)

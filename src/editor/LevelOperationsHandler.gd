@@ -128,7 +128,6 @@ func _open_level(path: String) -> void:
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	color_channel_editor.populate_item_list()
-	level.color_channels.map(func(channel_data: ColorChannelData): channel_data.watcher.refresh_objects_color())
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
@@ -193,12 +192,12 @@ func _save_level() -> void:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.clear()
-		Editor.editor_level_backup = level_data
+		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
 	var file := FileAccess.open("user://created_levels/levels/%s" % file_name, FileAccess.WRITE)
-	file.store_line(JSON.stringify(level_data))
+	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 
@@ -266,7 +265,7 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		Editor.editor_level_backup = level_data
+		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
 	var level_bytes := var_to_bytes(JSON.stringify(level_data))

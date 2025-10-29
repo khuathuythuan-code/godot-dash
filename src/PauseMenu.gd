@@ -44,7 +44,7 @@ func _on_leave_pressed() -> void:
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.game_scene = null
-	Editor.editor_clipboard.clear()
+	Editor.clipboard.clear()
 	SceneTransition.is_transitioning = false
 	title_screen = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 	get_tree().change_scene_to_packed(title_screen)
