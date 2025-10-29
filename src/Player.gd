@@ -61,6 +61,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var displayed_gamemode: Gamemode:
 	set(value):
 		displayed_gamemode = value
+		player_scale = player_scale # set wave scale
 		for icon in $Icon.get_children():
 			if icon.gamemode != value:
 				icon.hide()
@@ -158,8 +159,6 @@ func _ready() -> void:
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
 	_spider_state_machine = _spider_animation_tree["parameters/playback"]
-	internal_gamemode = Gamemode.CUBE
-	displayed_gamemode = Gamemode.CUBE
 	if dual_index == 0:
 		LevelManager.player = self
 	else:
