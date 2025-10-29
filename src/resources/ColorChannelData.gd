@@ -61,7 +61,7 @@ func set_alpha(new_alpha: float) -> ColorChannelData:
 static func to_data(channel: ColorChannelData) -> Dictionary:
 	var data: Dictionary
 	data.copy = channel.copy
-	data.color = var_to_str(channel.color)
+	data.color = channel.color.to_rgba32()
 	data.copied_channel = channel.copied_channel
 	data.hsv_shift = channel.hsv_shift
 	data.strength = channel.strength
@@ -73,7 +73,7 @@ static func to_data(channel: ColorChannelData) -> Dictionary:
 static func from_data(data: Dictionary) -> ColorChannelData:
 	var channel := ColorChannelData.new()
 	channel.copy = data.copy
-	channel.color = str_to_var(data.color)
+	channel.color = Color.hex(data.color)
 	channel.copied_channel = data.copied_channel
 	channel.hsv_shift.assign(data.hsv_shift)
 	channel.strength = data.strength
