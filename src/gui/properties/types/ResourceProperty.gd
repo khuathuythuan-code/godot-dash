@@ -74,7 +74,6 @@ func set_value_no_signal(new_value: Resource) -> void:
 		var field_input: Property = fields[i]
 		var field_name: StringName = field_input.get_meta(&"field_name", resource_properties[i])
 		var field_value: Variant = _value.get(field_name)
-		prints(field_name, field_value)
 		if field_value == null:
 			continue
 		if field_input is NodeProperty:
