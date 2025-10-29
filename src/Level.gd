@@ -131,7 +131,7 @@ func to_data() -> Dictionary:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
-			"transform": var_to_str(object.transform),
+			"transform": transform_to_data(object.transform),
 			"groups": object.get_groups(),
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
@@ -188,7 +188,7 @@ static func from_data(data: Dictionary) -> Level:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
-		object.transform = str_to_var(object_data.transform)
+		object.transform = transform_from_data(object_data.transform)
 		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
@@ -233,3 +233,19 @@ static func from_data(data: Dictionary) -> Level:
 				markers.assign(object_data.markers)
 				object.markers_from_data(markers)
 	return level
+
+
+static func transform_to_data(_transform: Transform2D) -> Dictionary:
+	return {
+		"x": [_transform.x.x, _transform.x.y],
+		"y": [_transform.y.x, _transform.y.y],
+		"origin": [_transform.origin.x, _transform.origin.y],
+	}
+
+
+static func transform_from_data(data: Dictionary) -> Transform2D:
+	return Transform2D(
+		Vector2(data.x[0], data.x[1]),
+		Vector2(data.y[0], data.y[1]),
+		Vector2(data.origin[0], data.origin[1])
+	)
