@@ -70,8 +70,8 @@ func _on_level_index_pressed(index:int) -> void:
 		4: # Save As
 			save_as_dialog.show()
 		5: # Export
-			if editor.level.has_meta("file_name"):
-				export_dialog.set_current_file(editor.level.get_meta("file_name").get_basename())
+			if not Editor.level_file_name.is_empty():
+				export_dialog.set_current_file(Editor.level_file_name.get_basename())
 			export_dialog.show()
 		7: # Level Options
 			level_settings.show()
@@ -89,6 +89,7 @@ func _new_level() -> void:
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	new_level.version_history = UndoRedo.new()
 	LevelManager.current_level_duration = INF
+	Editor.level_file_name = ""
 	level_loaded.emit(new_level)
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
@@ -182,10 +183,10 @@ func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
 
 
 func _save_level() -> void:
-	if not editor.level.has_meta("file_name"):
+	if Editor.level_file_name.is_empty():
 		save_as_dialog.show()
 		return # _save_level will get called again by the dialog
-	var file_name = editor.level.get_meta("file_name")
+	var file_name = Editor.level_file_name
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
@@ -222,7 +223,7 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 
 
 func _on_save_level_as_dialog_file_selected(path:String) -> void:
-	editor.level.set_meta("file_name", path.get_file())
+	Editor.level_file_name = path.get_file()
 	editor.level.name = path.get_file().get_basename()
 	_save_level()
 
@@ -314,7 +315,7 @@ Error:
 		push_error("Unexpected data")
 		return null
 	var level: Level = Level.from_data(json.data)
-	level.set_meta(&"file_name", path.get_file())
+	Editor.level_file_name = path.get_file()
 	return level
 
 
