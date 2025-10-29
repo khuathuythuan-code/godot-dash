@@ -6,12 +6,7 @@ class_name TextSettings
 		if not value.begins_with("res://") and LevelManager.current_level:
 			LevelManager.current_level.register_required_font(_font_path, value)
 		_font_path = value
-		var loaded_font := FontFile.new()
-		if loaded_font.load_dynamic_font(_font_path) == OK:
-			loaded_font.multichannel_signed_distance_field = true
-			loaded_font.msdf_pixel_range = 64
-			loaded_font.msdf_size = 128
-			font = loaded_font
+		font = LevelAssetManager.load_font(_font_path)
 
 
 func to_data() -> Dictionary:

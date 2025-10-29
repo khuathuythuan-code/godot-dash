@@ -45,6 +45,18 @@ func unload_all() -> void:
 	loaded_songs.clear()
 
 
+func load_font(path: String) -> FontFile:
+	var loaded_font := FontFile.new()
+	var error: Error = loaded_font.load_dynamic_font(path)
+	if error != OK:
+		push_error("Error while loading font at %s: %s" % [path, error])
+		return null
+	loaded_font.multichannel_signed_distance_field = true
+	loaded_font.msdf_pixel_range = 64
+	loaded_font.msdf_size = 128
+	return loaded_font
+
+
 func _exit_tree() -> void:
 	if thread == null:
 		return

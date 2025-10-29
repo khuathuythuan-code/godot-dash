@@ -17,8 +17,12 @@ const START_SPEED: Array[float] = [
 	set(value):
 		register_required_song(song_path, value)
 		song_path = value
-		SongManager.load_song_threaded_request(value)
+		LevelAssetManager.load_song_threaded_request(value)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start_time: float
+@export var default_font: String:
+	set(value):
+		register_required_font(default_font, value)
+		default_font = value
 @export var platformer: bool
 @export var start_speed: int = 2
 @export var start_reverse: bool
@@ -43,7 +47,7 @@ func _ready() -> void:
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
-	SongManager.load_song_threaded_request(song_path)
+	LevelAssetManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus("Music")
 	LevelManager.level_song_player = song_player
@@ -60,7 +64,7 @@ func _process(_delta: float) -> void:
 func start_level() -> void:
 	if get_tree().paused:
 		await _pause_manager.unpaused
-	song_player.stream = SongManager.load_song_threaded_get(song_path)
+	song_player.stream = LevelAssetManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer
 	LevelManager.player.speed_multiplier = START_SPEED[start_speed]
@@ -109,6 +113,7 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		if not required_fonts.has(new_path):
 			required_fonts[new_path] = 0
 		required_fonts[new_path] += 1
+	prints(required_fonts)
 
 
 func to_data() -> Dictionary:

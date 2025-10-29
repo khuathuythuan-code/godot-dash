@@ -12,7 +12,7 @@ class_name SongChangerComponent
 		if LevelManager.current_level:
 			LevelManager.current_level.register_required_song(song_path, value)
 		song_path = value
-		SongManager.load_song_threaded_request(value)
+		LevelAssetManager.load_song_threaded_request(value)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start: float
 
 
@@ -24,5 +24,5 @@ func _ready() -> void:
 
 
 func start(_player: Player) -> void:
-	LevelManager.level_song_player.stream = SongManager.load_song_threaded_get(song_path)
+	LevelManager.level_song_player.stream = LevelAssetManager.load_song_threaded_get(song_path)
 	LevelManager.level_song_player.play(song_start)

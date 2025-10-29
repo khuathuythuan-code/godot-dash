@@ -31,7 +31,7 @@ func _on_leave_pressed() -> void:
 	leave.emit()
 	LevelManager.platformer = false
 	LevelManager.level_playing = false
-	SongManager.unload_all()
+	LevelAssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
 	SceneTransition.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
