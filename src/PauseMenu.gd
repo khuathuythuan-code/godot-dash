@@ -4,12 +4,15 @@ signal paused
 signal unpaused
 signal leave
 
-const TITLE_SCREEN: PackedScene = preload("res://scenes/TitleScreen.tscn")
+static var title_screen: PackedScene
+
 
 func _ready() -> void:
+	ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
 	$"../SettingsLayer".visible = visible
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed("restart_level"):
@@ -19,11 +22,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hide_pause_menu"):
 		visible = not visible
 
+
 func _notification(what):
 	if not is_inside_tree():
 		return
 	if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		_on_continue_pressed()
+
 
 func _on_leave_pressed() -> void:
 	get_tree().paused = false
@@ -31,7 +36,7 @@ func _on_leave_pressed() -> void:
 	leave.emit()
 	LevelManager.platformer = false
 	LevelManager.level_playing = false
-	SongManager.unload_all()
+	LevelAssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
 	SceneTransition.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
@@ -39,10 +44,12 @@ func _on_leave_pressed() -> void:
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.game_scene = null
-	Editor.editor_clipboard.clear()
+	Editor.clipboard.clear()
 	SceneTransition.is_transitioning = false
-	get_tree().change_scene_to_packed(TITLE_SCREEN)
+	title_screen = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
+	get_tree().change_scene_to_packed(title_screen)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
+
 
 func _on_continue_pressed() -> void:
 	$VBoxContainer/LevelName.text = LevelManager.current_level.name
@@ -62,6 +69,7 @@ func _on_continue_pressed() -> void:
 				Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 			get_parent().hide()
 			$"../SettingsLayer".hide()
+
 
 func _on_restart_pressed() -> void:
 	LevelManager.player_duals.clear()

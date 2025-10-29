@@ -3,7 +3,10 @@ extends Node
 signal file_loaded(path: String)
 signal files_loaded(paths: PackedStringArray)
 
-const SINGLE_FILE := 1
+enum {
+	NONE = 0,
+	SINGLE_FILE = 1 << 0,
+}
 
 @export var load_dialog: FileDialog
 @export var import_and_load_dialog: FileDialog
@@ -35,5 +38,7 @@ func import_and_load(filters: PackedStringArray, root: String, import_to: String
 
 func _import(file_paths: PackedStringArray, import_to: String) -> void:
 	for path in file_paths:
+		if not DirAccess.dir_exists_absolute(import_to):
+			DirAccess.make_dir_absolute(import_to)
 		DirAccess.copy_absolute(path, import_to + path.get_file())
 

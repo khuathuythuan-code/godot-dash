@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ylswfd45fw38"]
+[gd_scene load_steps=13 format=3 uid="uid://ylswfd45fw38"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_0trr5"]
 [ext_resource type="Script" uid="uid://bhqj6dqkejl2k" path="res://src/editor/LevelSettings.gd" id="1_ikfu3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="6_ikfu3"]
+[ext_resource type="Script" uid="uid://dd8enor6efbjp" path="res://src/gui/properties/components/PropertyValueThemeDefaultFont.gd" id="7_2dtee"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="9_jvsdk"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="10_2dtee"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="10_bo0r5"]
@@ -40,15 +41,21 @@ metadata/_tab_index = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings"]
 layout_mode = 2
 
-[node name="Song" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer"]
+[node name="Assets" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer"]
+layout_mode = 2
+title = "Assets"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets"]
+layout_mode = 2
+
+[node name="Song" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer"]
 layout_mode = 2
 title = "Song"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Song"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Song"]
 layout_mode = 2
 
-[node name="Song Path" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Song/VBoxContainer"]
-unique_name_in_owner = true
+[node name="Song" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -58,12 +65,12 @@ load_root = "user://created_levels/songs/"
 import_to = "user://created_levels/songs/"
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Song/VBoxContainer/Song Path"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Song"]
 script = ExtResource("10_2dtee")
 config_property = &"song_path"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Start Offset" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Song/VBoxContainer"]
+[node name="Start Offset" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -72,10 +79,30 @@ allow_greater = true
 suffix = "s"
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Song/VBoxContainer/Start Offset"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Start Offset"]
 script = ExtResource("10_2dtee")
 config_property = &"song_start_time"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Default Font" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_am3gx")
+filetype_filters = PackedStringArray("*.ttf", "*.ttc", "*.otf")
+load_root = "user://created_levels/fonts/"
+import_to = "user://created_levels/fonts/"
+metadata/_custom_type_script = "uid://3na5h1vigpxe"
+metadata/field_name = &"_font_path"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Default Font"]
+script = ExtResource("10_2dtee")
+config_property = &"default_font"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="PropertyValueThemeDefaultFont" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Assets/VBoxContainer/Default Font"]
+script = ExtResource("7_2dtee")
+metadata/_custom_type_script = "uid://dd8enor6efbjp"
 
 [node name="Player" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer"]
 layout_mode = 2
@@ -101,6 +128,19 @@ metadata/_custom_type_script = "uid://dewr6g2sliqsr"
 [node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Platformer"]
 script = ExtResource("10_2dtee")
 config_property = &"platformer"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Gamemode" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("12_am3gx")
+fields = PackedStringArray("Cube", "Ship", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Gamemode"]
+script = ExtResource("10_2dtee")
+config_property = &"start_gamemode"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="Speed" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]

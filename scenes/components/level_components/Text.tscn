@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c13bd47nn7q63" path="res://src/interactables/Interactable.gd" id="1_x0b3l"]
 [ext_resource type="Script" uid="uid://b72wbrtgs1sem" path="res://src/interactables/public_components/TextComponent.gd" id="2_02egi"]
-[ext_resource type="LabelSettings" uid="uid://q7pj7ddru24w" path="res://resources/DefaultTextLabelSettings.tres" id="2_im5uj"]
+[ext_resource type="LabelSettings" uid="uid://cwxr4wnehp2wc" path="res://resources/DefaultTextSettings.tres" id="2_4odos"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="3_t3fxq"]
 [ext_resource type="Script" uid="uid://47xeeg7uqvmj" path="res://src/interactables/public_components/HideMarkersComponent.gd" id="5_4odos"]
 
@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Aa"
-label_settings = ExtResource("2_im5uj")
+label_settings = ExtResource("2_4odos")
 horizontal_alignment = 1
 vertical_alignment = 1
 

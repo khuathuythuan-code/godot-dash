@@ -1,6 +1,9 @@
 extends Node2D
 class_name Level
 
+@warning_ignore("unused_signal")
+signal default_font_changed
+
 const START_SPEED: Array[float] = [
 	0.0,   # 0x
 	0.807, # 0.5x
@@ -17,9 +20,21 @@ const START_SPEED: Array[float] = [
 	set(value):
 		register_required_song(song_path, value)
 		song_path = value
-		SongManager.load_song_threaded_request(value)
+		LevelAssetManager.load_song_threaded_request(value)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start_time: float
+@export var default_font: String:
+	set(value):
+		register_required_font(default_font, value)
+		default_font = value
+		default_font_changed.emit()
 @export var platformer: bool
+@export var start_gamemode: Player.Gamemode:
+	set(value):
+		start_gamemode = value
+		if LevelManager.player:
+			LevelManager.player.internal_gamemode = start_gamemode
+			LevelManager.player.displayed_gamemode = start_gamemode
+			LevelManager.player.scale = Vector2.ONE if start_gamemode != Player.Gamemode.WAVE else Vector2.ONE * Player.PLAYER_SCALE_WAVE
 @export var start_speed: int = 2
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
@@ -43,14 +58,15 @@ func _ready() -> void:
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
-	SongManager.load_song_threaded_request(song_path)
+	LevelAssetManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus("Music")
 	LevelManager.level_song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
 	add_child(song_player, false, INTERNAL_MODE_FRONT)
-	setup_color_channel_watchers()
+	await ready
+	setup_color_channel_watchers.call_deferred()
 
 
 func _process(_delta: float) -> void:
@@ -60,9 +76,12 @@ func _process(_delta: float) -> void:
 func start_level() -> void:
 	if get_tree().paused:
 		await _pause_manager.unpaused
-	song_player.stream = SongManager.load_song_threaded_get(song_path)
+	song_player.stream = LevelAssetManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer
+	LevelManager.player.internal_gamemode = start_gamemode
+	LevelManager.player.displayed_gamemode = start_gamemode
+	LevelManager.player.scale = Vector2.ONE
 	LevelManager.player.speed_multiplier = START_SPEED[start_speed]
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
@@ -118,6 +137,7 @@ func to_data() -> Dictionary:
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
+		"start_gamemode": start_gamemode,
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
@@ -131,7 +151,7 @@ func to_data() -> Dictionary:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
-			"transform": var_to_str(object.transform),
+			"transform": Serialize.Transform2D(object.transform),
 			"groups": object.get_groups(),
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
@@ -177,18 +197,18 @@ static func from_data(data: Dictionary) -> Level:
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer
+	level.start_gamemode = data.start_gamemode
 	level.start_speed = data.start_speed
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
-	level.color_channels.map(func(channel_data: ColorChannelData): level.add_child(ColorChannelWatcher.new(channel_data)))
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
-		object.transform = str_to_var(object_data.transform)
+		object.transform = Deserialize.Transform2D(object_data.transform)
 		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
@@ -197,7 +217,7 @@ static func from_data(data: Dictionary) -> Level:
 		var base: Node2D = object.get_node_or_null(^"Base")
 		var detail: Node2D = object.get_node_or_null(^"Detail")
 		PlaceHandler.add_hsv_watchers(object, level)
-		if object_data.color_channels is String:
+		if object_data.color_channels is String or object_data.color_channels is StringName:
 			BaseDetailHandler.use_hsv_watcher(object).add_to_group(object_data.color_channels)
 		elif object_data.color_channels is Dictionary and not object_data.color_channels.is_empty():
 			if object_data.color_channels.has("base"):
@@ -224,30 +244,12 @@ static func from_data(data: Dictionary) -> Level:
 				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 		# Interactables
 		if object is Interactable:
-			load_interactable_data(object, object_data)
+			if object_data.has("components"):
+				var components: Dictionary[String, Dictionary]
+				components.assign(object_data.components)
+				object.use_component_data(components)
+			if object_data.has("markers"):
+				var markers: Array[String]
+				markers.assign(object_data.markers)
+				object.markers_from_data(markers)
 	return level
-
-
-static func load_interactable_data(object: Interactable, object_data: Dictionary) -> void:
-	if object_data.has("components"):
-		var components: Dictionary[String, Dictionary]
-		components.assign(object_data.components)
-		for component_name in components:
-			var component_instance: Component = object.get_node(component_name)
-			var component_data: Dictionary = components[component_name]
-			for field_name in components[component_name]:
-				var field_is_resource: bool = component_data[field_name] is String and component_data[field_name].match("Object(*)\n")
-				if field_is_resource:
-					component_instance.set(field_name, str_to_var(component_data[field_name]))
-				else:
-					component_instance.set(field_name, component_data[field_name])
-	if object_data.has("markers"):
-		var markers: Array[String]
-		markers.assign(object_data.markers)
-		var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
-		for marker_name in markers:
-			var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()
-			if not marker_script:
-				continue
-			NodeUtils.get_node_or_add(object, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
-

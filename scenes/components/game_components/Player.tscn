@@ -681,14 +681,14 @@ visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 2
 
+[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO"]
+unique_name_in_owner = true
+position = Vector2(0, 64)
+
 [node name="UFOIcon" type="Sprite2D" parent="Icon/UFO"]
 position = Vector2(0, -3)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("18_nmour")
-
-[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO"]
-unique_name_in_owner = true
-position = Vector2(0, 64)
 
 [node name="Ship" type="Node2D" parent="Icon"]
 visible = false

@@ -32,7 +32,7 @@ var gizmo: Gizmo
 
 func _ready() -> void:
 	_reset_selection_zone(true)
-	var update_global_clipboard := func(new_clipboard): Editor.editor_clipboard = new_clipboard
+	var update_global_clipboard := func(new_clipboard): Editor.clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
 
 
@@ -246,7 +246,7 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	selection.map(func(object): object.queue_free())
+	selection.map(NodeUtils.free_node)
 	selection.clear()
 	rotated_object_degrees.emit(0.0) # Reset
 	_reset_selection_zone()

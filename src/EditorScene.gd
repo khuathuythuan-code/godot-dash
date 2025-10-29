@@ -8,8 +8,9 @@ enum EditorAction {
 	SNAP      = 1 << 3,
 }
 
-const PLAYER_PREFAB: PackedScene = preload("res://scenes/components/game_components/Player.tscn")
 const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
+
+static var player_prefab: PackedScene
 
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
@@ -25,7 +26,8 @@ var editor_actions: int
 
 
 func _ready() -> void:
-	Editor.editor_root = self
+	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
+	Editor.root = self
 	if SceneTransition.from_main():
 		SceneTransition.previous = SceneTransition.Scene.EDITOR
 		var _fade_screen = $FadeScreenLayer/FadeScreen
@@ -57,8 +59,8 @@ func _ready() -> void:
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
 
-	if not Editor.editor_level_backup.is_empty():
-		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.editor_level_backup)) 
+	if not Editor.level_data_snapshot.is_empty():
+		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot)) 
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
@@ -111,13 +113,11 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
-		if not $EditHandler.selection.is_empty():
-			$EditHandler.selection.map(EditHandler.remove_selection_highlight)
-			$EditHandler.selection.clear()
+		$EditHandler.clear_selection()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
-		Editor.editor_level_backup = level.to_data()
-		Editor.editor_backup.pack(self)
+		Editor.level_data_snapshot = level.to_data()
+		Editor.snapshot.pack(self)
 		%MenuBarContainer.hide()
 		%EditorModes.hide()
 		%SidePanel.hide()
@@ -130,11 +130,12 @@ func _on_playtest_pressed() -> void:
 		$GameScene.start_level()
 	else:
 		LevelManager.player.queue_free()
-		LevelManager.player_duals.map(func(player_instance: Player): player_instance.queue_free())
+		LevelManager.player_duals.map(NodeUtils.free_node)
 		LevelManager.player_duals.clear()
 		level.queue_free()
 		await get_tree().process_frame
-		var new_player: Player = PLAYER_PREFAB.instantiate()
+		player_prefab = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
+		var new_player: Player = player_prefab.instantiate()
 		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player
@@ -147,8 +148,8 @@ func _on_leave_pressed() -> void:
 	if not LevelManager.level_playing:
 		$EditHandler.selection.map($EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
-		Editor.editor_level_backup = level.to_data()
-		Editor.editor_backup.pack(self)
+		Editor.level_data_snapshot = level.to_data()
+		Editor.snapshot.pack(self)
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)

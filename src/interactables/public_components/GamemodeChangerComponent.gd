@@ -21,9 +21,7 @@ func set_gamemode(player: Player) -> void:
 		GamemodeChange.BOTH:
 			player.internal_gamemode = _gamemode
 			player.displayed_gamemode = _gamemode
-			player.player_scale = player.player_scale # Run setter to make sure the wave has the right scale
 		GamemodeChange.ONLY_INTERNAL:
 			player.internal_gamemode = _gamemode
-			player.player_scale = player.player_scale # Run setter to make sure the wave has the right scale
 		GamemodeChange.ONLY_DISPLAYED:
 			player.displayed_gamemode = _gamemode

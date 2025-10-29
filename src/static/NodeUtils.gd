@@ -56,6 +56,14 @@ static func connect_once(_signal: Signal, callable: Callable) -> void:
 		_signal.connect(callable)
 
 
-static func disconnect_all(_signal: Signal):
+static func disconnect_all(_signal: Signal) -> void:
 	for connection in _signal.get_connections():
 		_signal.disconnect(connection.callable)
+
+
+static func free_children(caller: Node) -> void:
+	caller.get_children().map(free_node)
+
+
+static func free_node(node: Node) -> void:
+	node.queue_free()

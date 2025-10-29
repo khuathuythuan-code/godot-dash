@@ -10,8 +10,6 @@ func _ready() -> void:
 		saveload.property_owner = LevelManager.current_level
 		saveload.load_value()
 	saveloads.map.call_deferred(refresh_saveloads)
-	%"Song Path".load_root = "created_levels/songs"
-	%"Song Path".import_to = "user://created_levels/songs/"
 
 
 func _on_menu_bar_handler_level_loaded(level: Level) -> void:

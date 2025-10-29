@@ -46,6 +46,7 @@ metadata/_custom_type_script = "uid://ds4yyoya8ma0"
 
 [node name="EasingComponent" type="Node" parent="."]
 script = ExtResource("6_u37kq")
+_use_physics_process = true
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
 [node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]

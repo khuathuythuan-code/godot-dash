@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-**Describe the feature**
-A clear and concise description of what the feature does.
+**Description**
+<!-- A clear and concise description of what the feature does. -->
 
-**(Optional) Link media**
+**Illustration**
 
-Include an image or a video to help understand the feature.
+<!-- Include an image or a video to help understand the feature. -->

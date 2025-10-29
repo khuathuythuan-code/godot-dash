@@ -59,7 +59,7 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 
 
 func clear_ui() -> void:
-	components_root.get_children().map(func(child): child.queue_free())
+	NodeUtils.free_children(components_root)
 
 
 func rebuild_ui(interactables: Array[Interactable]) -> void:

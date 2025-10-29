@@ -70,8 +70,8 @@ func _on_level_index_pressed(index:int) -> void:
 		4: # Save As
 			save_as_dialog.show()
 		5: # Export
-			if editor.level.has_meta("file_name"):
-				export_dialog.set_current_file(editor.level.get_meta("file_name").get_basename())
+			if not Editor.level_file_name.is_empty():
+				export_dialog.set_current_file(Editor.level_file_name.get_basename())
 			export_dialog.show()
 		7: # Level Options
 			level_settings.show()
@@ -89,6 +89,7 @@ func _new_level() -> void:
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	new_level.version_history = UndoRedo.new()
 	LevelManager.current_level_duration = INF
+	Editor.level_file_name = ""
 	level_loaded.emit(new_level)
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
@@ -119,16 +120,15 @@ func _open_level(path: String) -> void:
 	# Remove current editor level
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	editor.level.queue_free()
-	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	edit_handler.clear_selection()
 	color_channel_editor.clear_item_list()
 	# Add new level
+	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	await get_tree().process_frame
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	color_channel_editor.populate_item_list()
-	level.color_channels.map(func(channel_data: ColorChannelData): channel_data.watcher.refresh_objects_color())
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
@@ -183,22 +183,22 @@ func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
 
 
 func _save_level() -> void:
-	if not editor.level.has_meta("file_name"):
+	if Editor.level_file_name.is_empty():
 		save_as_dialog.show()
 		return # _save_level will get called again by the dialog
-	var file_name = editor.level.get_meta("file_name")
+	var file_name = Editor.level_file_name
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.clear()
-		Editor.editor_level_backup = level_data
+		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
 	var file := FileAccess.open("user://created_levels/levels/%s" % file_name, FileAccess.WRITE)
-	file.store_line(JSON.stringify(level_data))
+	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 
@@ -223,7 +223,7 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 
 
 func _on_save_level_as_dialog_file_selected(path:String) -> void:
-	editor.level.set_meta("file_name", path.get_file())
+	Editor.level_file_name = path.get_file()
 	editor.level.name = path.get_file().get_basename()
 	_save_level()
 
@@ -266,7 +266,7 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		var selection_backup := edit_handler.selection.duplicate()
 		edit_handler.selection.map(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		Editor.editor_level_backup = level_data
+		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
 	var level_bytes := var_to_bytes(JSON.stringify(level_data))
@@ -315,7 +315,7 @@ Error:
 		push_error("Unexpected data")
 		return null
 	var level: Level = Level.from_data(json.data)
-	level.set_meta(&"file_name", path.get_file())
+	Editor.level_file_name = path.get_file()
 	return level
 
 
