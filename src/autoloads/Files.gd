@@ -3,7 +3,10 @@ extends Node
 signal file_loaded(path: String)
 signal files_loaded(paths: PackedStringArray)
 
-const SINGLE_FILE := 1
+enum {
+	NONE = 0,
+	SINGLE_FILE = 1 << 0,
+}
 
 @export var load_dialog: FileDialog
 @export var import_and_load_dialog: FileDialog

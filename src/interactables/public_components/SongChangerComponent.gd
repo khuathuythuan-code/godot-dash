@@ -9,7 +9,7 @@ class_name SongChangerComponent
 	"import_to:user://created_levels/songs/"  # Custom data
 ) var song_path: String:
 	set(value):
-		if LevelManager.current_level != null:
+		if LevelManager.current_level:
 			LevelManager.current_level.register_required_song(song_path, value)
 		song_path = value
 		SongManager.load_song_threaded_request(value)
