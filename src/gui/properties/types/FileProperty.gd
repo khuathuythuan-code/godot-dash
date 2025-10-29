@@ -26,7 +26,7 @@ func _ready() -> void:
 	renamed.connect(refresh)
 	refresh()
 	if _value == null or _value == "":
-		reset()
+		set_value_no_signal("")
 	NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
@@ -38,9 +38,11 @@ func set_value(new_value: String) -> void:
 
 
 func set_value_no_signal(new_value: String) -> void:
-	_value = new_value
-	input.text = "    Load…    " if new_value.is_empty() or Engine.is_editor_hint() \
-			else new_value.get_file()
+	_value = default if new_value.is_empty() else new_value
+	if new_value.is_empty() or Engine.is_editor_hint():
+		input.text = "    Load…    " if default.is_empty() else default.get_file()
+	else:
+		input.text = new_value.get_file()
 
 
 func get_value() -> String:

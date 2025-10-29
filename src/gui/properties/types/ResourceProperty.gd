@@ -25,16 +25,14 @@ func _ready() -> void:
 		VBoxContainer,
 		NodeUtils.INTERNAL)
 	assert(default != null, "Default needs to be a valid Resource")
-	var resource_is_native_class: bool = default.get_script() == null
-	if resource_is_native_class:
-		resource_properties = default.get_property_list()
-	else:
-		resource_properties = default.get_script().get_script_property_list()
+	resource_properties = default.get_property_list()
+	if default.get_script():
+		resource_properties.append_array(default.get_script().get_script_property_list())
 	resource_properties.remove_at(0)
 	resource_properties = resource_properties \
-			.filter(func(property): return property.usage & PROPERTY_USAGE_EDITOR != 0 and not property.name.contains("resource") and not property.name == "script") \
+			.filter(_is_property_exported) \
 			.map(func(property): return property.name)
-	set_value_no_signal(default)
+	reset()
 	var index: int
 	for child in get_children(false):
 		child.hide()
@@ -54,7 +52,7 @@ func refresh() -> void:
 	fields.assign(NodeUtils.get_children_of_type(indentation_container, Property, true))
 	for i in fields.size():
 		var field_input: Property = fields[i]
-		var field_name: String = resource_properties[i]
+		var field_name: StringName = field_input.get_meta(&"field_name", resource_properties[i])
 		var field_value: Variant = default.get(field_name)
 		if field_value == null and field_input is not NodeProperty:
 			continue
@@ -74,8 +72,9 @@ func set_value_no_signal(new_value: Resource) -> void:
 	var fields: Array = NodeUtils.get_children_of_type(indentation_container, Property, true)
 	for i in fields.size():
 		var field_input: Property = fields[i]
-		var field_name: StringName = resource_properties[i]
+		var field_name: StringName = field_input.get_meta(&"field_name", resource_properties[i])
 		var field_value: Variant = _value.get(field_name)
+		prints(field_name, field_value)
 		if field_value == null:
 			continue
 		if field_input is NodeProperty:
@@ -106,10 +105,19 @@ func _connect_child_properties(node: Node, index: int, depth: int = 0) -> int:
 				else:
 					value = LevelManager.current_level.get_path_to(value)
 			_value = _value.duplicate(true)
-			_value.set(resource_properties[index], value)
+			_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
 			value_changed.emit(_value))
 		index += 1
 	elif node is FoldableContainer and node.get_child(0) is BoxContainer:
 		for child in node.get_child(0).get_children():
 			index = _connect_child_properties(child, index, depth + 1)
 	return index
+
+
+func _is_property_exported(property: Dictionary) -> bool:
+	return (
+		property.usage & PROPERTY_USAGE_EDITOR != 0
+		and not property.name.contains("resource")
+		and not property.name == "script"
+		and not property.name.begins_with("_")
+	)
