@@ -32,7 +32,6 @@ func _ready() -> void:
 	resource_properties = resource_properties \
 			.filter(_is_property_exported) \
 			.map(func(property): return property.name)
-	reset()
 	var index: int
 	for child in get_children(false):
 		child.hide()
@@ -42,6 +41,7 @@ func _ready() -> void:
 		indentation_container.add_child(child_duplicate)
 	renamed.connect(refresh)
 	refresh()
+	reset()
 
 
 func refresh() -> void:
