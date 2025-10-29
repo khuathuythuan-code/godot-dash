@@ -58,7 +58,8 @@ func _ready() -> void:
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
 	add_child(song_player, false, INTERNAL_MODE_FRONT)
-	setup_color_channel_watchers()
+	await ready
+	setup_color_channel_watchers.call_deferred()
 
 
 func _process(_delta: float) -> void:
@@ -189,7 +190,6 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
-	level.color_channels.map(func(channel_data: ColorChannelData): level.add_child(ColorChannelWatcher.new(channel_data)))
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
@@ -205,7 +205,7 @@ static func from_data(data: Dictionary) -> Level:
 		var base: Node2D = object.get_node_or_null(^"Base")
 		var detail: Node2D = object.get_node_or_null(^"Detail")
 		PlaceHandler.add_hsv_watchers(object, level)
-		if object_data.color_channels is String:
+		if object_data.color_channels is String or object_data.color_channels is StringName:
 			BaseDetailHandler.use_hsv_watcher(object).add_to_group(object_data.color_channels)
 		elif object_data.color_channels is Dictionary and not object_data.color_channels.is_empty():
 			if object_data.color_channels.has("base"):
