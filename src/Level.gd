@@ -28,6 +28,13 @@ const START_SPEED: Array[float] = [
 		default_font = value
 		default_font_changed.emit()
 @export var platformer: bool
+@export var start_gamemode: Player.Gamemode:
+	set(value):
+		start_gamemode = value
+		if LevelManager.player:
+			LevelManager.player.internal_gamemode = start_gamemode
+			LevelManager.player.displayed_gamemode = start_gamemode
+			LevelManager.player.scale = Vector2.ONE if start_gamemode != Player.Gamemode.WAVE else Vector2.ONE * Player.PLAYER_SCALE_WAVE
 @export var start_speed: int = 2
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
@@ -72,6 +79,9 @@ func start_level() -> void:
 	song_player.stream = LevelAssetManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer
+	LevelManager.player.internal_gamemode = start_gamemode
+	LevelManager.player.displayed_gamemode = start_gamemode
+	LevelManager.player.scale = Vector2.ONE
 	LevelManager.player.speed_multiplier = START_SPEED[start_speed]
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
@@ -127,6 +137,7 @@ func to_data() -> Dictionary:
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
+		"start_gamemode": start_gamemode,
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
@@ -186,6 +197,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer
+	level.start_gamemode = data.start_gamemode
 	level.start_speed = data.start_speed
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
