@@ -8,8 +8,9 @@ enum EditorAction {
 	SNAP      = 1 << 3,
 }
 
-const PLAYER_PREFAB: PackedScene = preload("res://scenes/components/game_components/Player.tscn")
 const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
+
+static var player_prefab: PackedScene
 
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
@@ -25,6 +26,7 @@ var editor_actions: int
 
 
 func _ready() -> void:
+	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
 	Editor.editor_root = self
 	if SceneTransition.from_main():
 		SceneTransition.previous = SceneTransition.Scene.EDITOR
@@ -134,7 +136,8 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_duals.clear()
 		level.queue_free()
 		await get_tree().process_frame
-		var new_player: Player = PLAYER_PREFAB.instantiate()
+		player_prefab = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
+		var new_player: Player = player_prefab.instantiate()
 		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player

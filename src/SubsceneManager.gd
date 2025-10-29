@@ -8,6 +8,8 @@ enum SubScene {
 	CREATED_LEVELS_LIST,
 }
 
+static var editor_scene: PackedScene
+
 @export var active_pcam: PhantomCamera2D # Active PhantomCamera2D when the scene enters the tree
 @export var history: PhantomCameraHistory
 @export var page_control_container: Control
@@ -35,7 +37,6 @@ enum SubScene {
 @export var level_selector_page_container: Control
 
 @onready var _base_background_color: Color = title_screen_background.get_node("Background").modulate
-@onready var level_editor := ResourceLoader.load("res://scenes/EditorScene.tscn", "PackedScene", ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 
 var _current_subscene: SubScene = SubScene.TITLE_SCREEN
 var _level_selector_tab_idx: int
@@ -43,6 +44,7 @@ var _hide_page_control: bool = true
 var _lerp_rate := 0.3 * 60
 
 func _ready() -> void:
+	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
 	Engine.time_scale = 1.0
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	icon_garage.position.x = -icon_garage.size.x
@@ -136,7 +138,7 @@ func _on_go_to_level_selector_pressed() -> void:
 func _on_go_to_created_levels_list_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
 	if not _fade_screen.is_fading:
-		var editor_scene: PackedScene = load("res://scenes/EditorScene.tscn")
+		editor_scene = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
 		$"../MenuLoop".playing = false
 		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)

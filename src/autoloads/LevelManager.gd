@@ -2,7 +2,9 @@ extends Node
 
 const CELL_SIZE: int = 128
 
-@onready var game_scene_packed := preload("res://scenes/GameScene.tscn")
+static var game_scene_packed: PackedScene:
+	get():
+		return ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
 
 var game_scene: GameScene
 var current_level: Level
@@ -20,9 +22,13 @@ var ground_sprites: Array[GroundObject]
 var level_song_player: AudioStreamPlayer
 var platformer := false
 
+
 func _ready() -> void:
+	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	if not DirAccess.dir_exists_absolute("user://created_levels/levels"):
 		DirAccess.make_dir_recursive_absolute("user://created_levels/levels")
 	if not DirAccess.dir_exists_absolute("user://created_levels/songs"):
 		DirAccess.make_dir_recursive_absolute("user://created_levels/songs")
+	if not DirAccess.dir_exists_absolute("user://created_levels/fonts"):
+		DirAccess.make_dir_recursive_absolute("user://created_levels/fonts")
