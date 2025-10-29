@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ccy88idi6rrkp"]
 
 [ext_resource type="Script" uid="uid://bcfxiueixkkwq" path="res://src/gui/properties/types/ResourceProperty.gd" id="1_do8kg"]
-[ext_resource type="Script" uid="uid://s3yc0qgg4nal" path="res://src/resources/SpawnedGroup.gd" id="2_lxw1a"]
+[ext_resource type="Script" uid="uid://s3yc0qgg4nal" path="res://src/resources/SpawnedTrigger.gd" id="2_lxw1a"]
 [ext_resource type="Script" uid="uid://bm3bhys0ur0ns" path="res://src/gui/properties/types/NodeProperty.gd" id="3_thtdk"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="4_kxtx3"]
 
@@ -9,7 +9,7 @@
 resource_local_to_scene = true
 script = ExtResource("2_lxw1a")
 
-[node name="SpawnedGroupProperty" type="BoxContainer"]
+[node name="SpawnedTriggerProperty" type="BoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 anchors_preset = 15
 anchor_right = 1.0

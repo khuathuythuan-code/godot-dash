@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name SpawnedGroup
+class_name SpawnedTrigger
 
 
 @export var path: NodePath:
