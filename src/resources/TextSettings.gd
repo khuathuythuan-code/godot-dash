@@ -15,7 +15,8 @@ func set_font_path(path: String = "") -> void:
 	else:
 		if not (path.is_empty() or path.begins_with("res://")) and LevelManager.current_level:
 			LevelManager.current_level.register_required_font(_font_path, path)
-			LevelManager.current_level.default_font_changed.disconnect(set_font_path)
+			if LevelManager.current_level.default_font_changed.is_connected(set_font_path):
+				LevelManager.current_level.default_font_changed.disconnect(set_font_path)
 		font = LevelAssetManager.load_font(path)
 	_font_path = path
 

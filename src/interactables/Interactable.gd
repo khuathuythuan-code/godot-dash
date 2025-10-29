@@ -55,7 +55,8 @@ func markers_to_data() -> Array:
 func markers_from_data(data: Array[String]) -> void:
 	var has_name := func(marker_script: Script, marker_name: String): return marker_script.get_global_name() == marker_name
 	for marker_name: String in data:
-		var marker_script: Script = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name)).front()
-		if not marker_script:
+		var marker_scripts: Array = InteractableEditor.MARKER_COMPONENTS.filter(has_name.bind(marker_name))
+		if marker_scripts.is_empty():
 			continue
+		var marker_script: Script = marker_scripts.front()
 		NodeUtils.get_node_or_add(self, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
