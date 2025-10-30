@@ -699,6 +699,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
+reset_scale_on_ready = true
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
@@ -821,7 +822,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_aofxv")
 metadata/_edit_group_ = true
 
@@ -908,7 +908,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_lvhj5")
 metadata/_edit_group_ = true
 
@@ -996,7 +995,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_fa2ga")
 metadata/_edit_group_ = true
 
@@ -1092,7 +1090,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_sl8yb")
 metadata/_edit_group_ = true
 
@@ -1180,7 +1177,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_37pxl")
 metadata/_edit_group_ = true
 
@@ -1268,7 +1264,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_6ukik")
 metadata/_edit_group_ = true
 
@@ -1356,7 +1351,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_bs2up")
 metadata/_edit_group_ = true
 
@@ -1444,7 +1438,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_3clt4")
 metadata/_edit_group_ = true
 
@@ -1532,7 +1525,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_e0lml")
 metadata/_edit_group_ = true
 
@@ -1620,7 +1612,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_momrj")
 metadata/_edit_group_ = true
 
@@ -1708,7 +1699,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_6fwf3")
 metadata/_edit_group_ = true
 
@@ -1796,7 +1786,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_gdkvu")
 metadata/_edit_group_ = true
 
@@ -1884,7 +1873,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_vtwef")
 metadata/_edit_group_ = true
 
@@ -1972,7 +1960,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_7k2uw")
 metadata/_edit_group_ = true
 
@@ -2060,7 +2047,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_tkktq")
 metadata/_edit_group_ = true
 
@@ -2148,7 +2134,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_mvta7")
 metadata/_edit_group_ = true
 
@@ -2236,7 +2221,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_wiub1")
 metadata/_edit_group_ = true
 
@@ -2364,7 +2348,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_ao6md")
 metadata/_edit_group_ = true
 
@@ -2452,7 +2435,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_nk067")
 metadata/_edit_group_ = true
 
@@ -2541,7 +2523,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_wkjme")
 metadata/_edit_group_ = true
 
@@ -2630,7 +2611,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_rke8t")
 metadata/_edit_group_ = true
 
@@ -2719,7 +2699,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_knigi")
 metadata/_edit_group_ = true
 
@@ -2816,7 +2795,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_s6l44")
 metadata/_edit_group_ = true
 
@@ -2924,7 +2902,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_5ik7l")
 metadata/_edit_group_ = true
 
@@ -3012,7 +2989,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_0v0om")
 metadata/_edit_group_ = true
 
@@ -3101,7 +3077,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_33w7i")
 metadata/_edit_group_ = true
 
@@ -3190,7 +3165,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_t7625")
 metadata/_edit_group_ = true
 
@@ -3279,7 +3253,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_w44k4")
 metadata/_edit_group_ = true
 
@@ -3376,7 +3349,6 @@ shortcut = null
 shortcut_feedback = true
 shortcut_in_tooltip = true
 script = ExtResource("4_gl2yd")
-block_palette_button = true
 metadata/texture_override = SubResource("Resource_vt33b")
 metadata/_edit_group_ = true
 
@@ -3451,6 +3423,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeNormal"]
 script = ExtResource("7_f0stj")
@@ -3470,6 +3443,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeMedium"]
 script = ExtResource("7_f0stj")
@@ -3489,6 +3463,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeSmall"]
 script = ExtResource("7_f0stj")
@@ -3508,6 +3483,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSpikeFlat"]
 script = ExtResource("7_f0stj")
@@ -3527,6 +3503,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/GroundSpike"]
 script = ExtResource("7_f0stj")
@@ -3547,6 +3524,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeNormal"]
 script = ExtResource("7_f0stj")
@@ -3567,6 +3545,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeMedium"]
 script = ExtResource("7_f0stj")
@@ -3587,6 +3566,7 @@ flat = true
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Hazards/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularSawbladeSmall"]
 script = ExtResource("7_f0stj")
@@ -3639,6 +3619,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/YellowOrb"]
 script = ExtResource("7_f0stj")
@@ -3659,6 +3640,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/RedOrb"]
 script = ExtResource("7_f0stj")
@@ -3679,6 +3661,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/PinkOrb"]
 script = ExtResource("7_f0stj")
@@ -3699,6 +3682,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/ReboundOrb"]
 script = ExtResource("7_f0stj")
@@ -3719,6 +3703,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/BlackOrb"]
 script = ExtResource("7_f0stj")
@@ -3739,6 +3724,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/BlueOrb"]
 script = ExtResource("7_f0stj")
@@ -3759,6 +3745,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/GreenOrb"]
 script = ExtResource("7_f0stj")
@@ -3779,6 +3766,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/SpiderOrb"]
 script = ExtResource("7_f0stj")
@@ -3799,6 +3787,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/DashOrbGreen"]
 script = ExtResource("7_f0stj")
@@ -3819,6 +3808,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/DashOrbMagenta"]
 script = ExtResource("7_f0stj")
@@ -3839,6 +3829,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/DashOrbCyan"]
 script = ExtResource("7_f0stj")
@@ -3859,6 +3850,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/ToggleOrb"]
 script = ExtResource("7_f0stj")
@@ -3879,6 +3871,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/TeleportOrb"]
 script = ExtResource("7_f0stj")
@@ -3902,6 +3895,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/YellowPad"]
 script = ExtResource("7_f0stj")
@@ -3922,6 +3916,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/RedPad"]
 script = ExtResource("7_f0stj")
@@ -3942,6 +3937,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/PinkPad"]
 script = ExtResource("7_f0stj")
@@ -3962,6 +3958,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/ReboundPad"]
 script = ExtResource("7_f0stj")
@@ -3982,6 +3979,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/BlackPad"]
 script = ExtResource("7_f0stj")
@@ -4002,6 +4000,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/BluePad"]
 script = ExtResource("7_f0stj")
@@ -4022,6 +4021,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Pads/SpiderPad"]
 script = ExtResource("7_f0stj")
@@ -4045,6 +4045,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/CountPortals/CountPortalSingle"]
 script = ExtResource("7_f0stj")
@@ -4065,6 +4066,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/CountPortals/CountPortalDual"]
 script = ExtResource("7_f0stj")
@@ -4088,6 +4090,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/CubePortal"]
 script = ExtResource("7_f0stj")
@@ -4108,6 +4111,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/RobotPortal"]
 script = ExtResource("7_f0stj")
@@ -4128,6 +4132,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/ShipPortal"]
 script = ExtResource("7_f0stj")
@@ -4148,6 +4153,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/UFOPortal"]
 script = ExtResource("7_f0stj")
@@ -4168,6 +4174,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/WavePortal"]
 script = ExtResource("7_f0stj")
@@ -4188,6 +4195,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/SwingPortal"]
 script = ExtResource("7_f0stj")
@@ -4208,6 +4216,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/BallPortal"]
 script = ExtResource("7_f0stj")
@@ -4228,6 +4237,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GamemodePortals/SpiderPortal"]
 script = ExtResource("7_f0stj")
@@ -4251,6 +4261,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal0x"]
 script = ExtResource("7_f0stj")
@@ -4271,6 +4282,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal05x"]
 script = ExtResource("7_f0stj")
@@ -4291,6 +4303,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal1x"]
 script = ExtResource("7_f0stj")
@@ -4311,6 +4324,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal2x"]
 script = ExtResource("7_f0stj")
@@ -4331,6 +4345,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal3x"]
 script = ExtResource("7_f0stj")
@@ -4351,6 +4366,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal4x"]
 script = ExtResource("7_f0stj")
@@ -4371,6 +4387,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/SpeedPortals/SpeedPortal5x"]
 script = ExtResource("7_f0stj")
@@ -4394,6 +4411,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GravityPortals/GravityPortalNormal"]
 script = ExtResource("7_f0stj")
@@ -4414,6 +4432,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GravityPortals/GravityPortalFlipped"]
 script = ExtResource("7_f0stj")
@@ -4434,6 +4453,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/GravityPortals/GravityPortalToggle"]
 script = ExtResource("7_f0stj")
@@ -4457,6 +4477,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/ScalePortals/ScalePortalNormal"]
 script = ExtResource("7_f0stj")
@@ -4477,6 +4498,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/ScalePortals/ScalePortalSmall"]
 script = ExtResource("7_f0stj")
@@ -4500,6 +4522,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Teleportals/TeleportalIn"]
 script = ExtResource("7_f0stj")
@@ -4521,6 +4544,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Teleportals/TeleportalOut"]
 script = ExtResource("7_f0stj")
@@ -4544,6 +4568,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/AllowCeilingHit"]
 script = ExtResource("7_f0stj")
@@ -4564,6 +4589,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/AllowWaveSlide"]
 script = ExtResource("7_f0stj")
@@ -4584,6 +4610,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopDash"]
 script = ExtResource("7_f0stj")
@@ -4604,6 +4631,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/StopJump"]
 script = ExtResource("7_f0stj")
@@ -4624,6 +4652,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/FlipGravity"]
 script = ExtResource("7_f0stj")
@@ -4695,6 +4724,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Alpha"]
 script = ExtResource("7_f0stj")
@@ -4729,6 +4759,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraStatic"]
 script = ExtResource("7_f0stj")
@@ -4763,6 +4794,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraZoom"]
 script = ExtResource("7_f0stj")
@@ -4797,6 +4829,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraOffset"]
 script = ExtResource("7_f0stj")
@@ -4831,6 +4864,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraGameplayOffset"]
 script = ExtResource("7_f0stj")
@@ -4865,6 +4899,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraEdge"]
 script = ExtResource("7_f0stj")
@@ -4899,6 +4934,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraRotate"]
 script = ExtResource("7_f0stj")
@@ -4933,6 +4969,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/CameraShake"]
 script = ExtResource("7_f0stj")
@@ -4967,6 +5004,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/GameplayRotate"]
 script = ExtResource("7_f0stj")
@@ -5001,6 +5039,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Gravity"]
 script = ExtResource("7_f0stj")
@@ -5035,6 +5074,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Speed"]
 script = ExtResource("7_f0stj")
@@ -5069,6 +5109,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Teleport"]
 script = ExtResource("7_f0stj")
@@ -5103,6 +5144,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Move"]
 script = ExtResource("7_f0stj")
@@ -5137,6 +5179,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Rotate"]
 script = ExtResource("7_f0stj")
@@ -5171,6 +5214,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Scale"]
 script = ExtResource("7_f0stj")
@@ -5205,6 +5249,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Song"]
 script = ExtResource("7_f0stj")
@@ -5239,6 +5284,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Timewarp"]
 script = ExtResource("7_f0stj")
@@ -5273,6 +5319,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Spawn"]
 script = ExtResource("7_f0stj")
@@ -5307,6 +5354,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Toggle"]
 script = ExtResource("7_f0stj")
@@ -5341,6 +5389,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
+reset_scale_on_ready = null
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/EndLevel"]
 script = ExtResource("7_f0stj")
@@ -5582,6 +5631,7 @@ layout_mode = 2
 toggle_mode = true
 icon = ExtResource("204_w20ac")
 script = ExtResource("4_gl2yd")
+reset_scale_on_ready = null
 
 [node name="Delete" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft"]
 custom_minimum_size = Vector2(0, 48)
@@ -5589,6 +5639,7 @@ layout_mode = 2
 toggle_mode = true
 icon = ExtResource("205_t0p25")
 script = ExtResource("4_gl2yd")
+reset_scale_on_ready = null
 
 [node name="Selection Filters" type="MarginContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes"]
 visible = false
