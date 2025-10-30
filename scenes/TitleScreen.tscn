@@ -30,9 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="26_bhnaj"]
 [ext_resource type="PackedScene" uid="uid://kwe5xtryavgg" path="res://scenes/components/game_components/LevelSelectorTab.tscn" id="27_yieav"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_wlgas"]
-[ext_resource type="AudioStream" uid="uid://c4sjh7a6mxgv3" path="res://assets/sounds/music/game_music/MenuLoop.mp3" id="29_5koff"]
 [ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="30_ucf7r"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="31_n61qu"]
+[ext_resource type="Script" uid="uid://c5cp2fpyr262x" path="res://src/MenuLoop.gd" id="32_1ska7"]
 [ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="32_c2d88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
@@ -944,8 +944,8 @@ editor_draw_limits = true
 script = ExtResource("28_wlgas")
 
 [node name="MenuLoop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_5koff")
 bus = &"Music"
+script = ExtResource("32_1ska7")
 
 [node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
 script = ExtResource("30_ucf7r")
