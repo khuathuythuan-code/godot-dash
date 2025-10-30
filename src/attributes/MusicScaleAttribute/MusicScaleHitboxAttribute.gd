@@ -5,12 +5,14 @@ class_name MusicScaleHitboxAttribute
 
 func _ready() -> void:
 	var hitbox := parent.get_node_or_null(^"Hitbox")
-	if hitbox:
-		NodeUtils.get_node_or_add(hitbox, "MusicScale", MusicScale)
+	if not hitbox:
+		return
+	NodeUtils.get_node_or_add(hitbox, "MusicScale", MusicScale)
 
 
 func _exit_tree() -> void:
 	var hitbox := parent.get_node_or_null(^"Hitbox")
-	if hitbox:
-		hitbox.get_node_or_null(^"MusicScale").queue_free()
+	if not hitbox:
+		return
+	hitbox.get_node_or_null(^"MusicScale").queue_free()
 
