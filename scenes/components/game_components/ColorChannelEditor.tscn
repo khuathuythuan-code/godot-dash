@@ -134,7 +134,6 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("13_xmx11")
-default = 1.0
 min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
@@ -145,7 +144,6 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("13_xmx11")
-default = 1.0
 min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
@@ -156,12 +154,11 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("13_xmx11")
-default = 1.0
 min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Strength" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Intensity" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -193,11 +190,12 @@ Are you sure you want to delete it?"
 
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Copy channel" to="." method="_on_copy_channel_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Color" to="." method="_on_color_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Channel" to="." method="_on_channel_value_changed"]
 [connection signal="folding_changed" from="VBoxContainer/Modulation" to="." method="_on_hsv_shift_folding_changed"]
 [connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Hue" to="." method="_on_hue_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Saturation" to="." method="_on_saturation_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Value" to="." method="_on_value_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Strength" to="." method="_on_strength_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Intensity" to="." method="_on_intensity_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Alpha" to="." method="_on_alpha_value_changed"]

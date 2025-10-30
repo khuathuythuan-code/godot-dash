@@ -1,5 +1,7 @@
 extends Node
 
+signal menu_loop_changed(menu_loop: String)
+
 enum WindowMode {
 	WINDOWED,
 	FULLSCREEN,
@@ -63,11 +65,23 @@ enum ParticlePreprocessing {
 
 # Audio
 @export_group("Audio")
+
+@export_subgroup("Volume")
 @export_range(0, 1, .05) var master_audio_level: float = 1.0
 @export_range(0, 1, .05) var music_audio_level: float = 1.0
 @export_range(0, 1, .05) var game_sfx_audio_level: float = 1.0
 @export_range(0, 1, .05) var in_level_sfx_audio_level: float = 1.0
 @export var mute_game_on_unfocus: bool = true
+
+@export_subgroup("Music")
+@export_global_file(
+	"*.mp3",
+	"*.ogg",
+	"*.wav"
+) var menu_loop: String:
+	set(value):
+		menu_loop = value
+		menu_loop_changed.emit(value)
 
 # Keybinds
 @export_group("Keybinds")
@@ -120,6 +134,7 @@ func _init():
 	game_sfx_audio_level = config_file.get_value("Audio", "game_sfx_audio_level", game_sfx_audio_level)
 	in_level_sfx_audio_level = config_file.get_value("Audio", "in_level_sfx_audio_level", in_level_sfx_audio_level)
 	mute_game_on_unfocus = config_file.get_value("Audio", "mute_game_on_unfocus", mute_game_on_unfocus)
+	menu_loop = config_file.get_value("Audio", "menu_loop", menu_loop)
 
 	# Keybinds
 	input_map = config_file.get_value("Keybinds", "input_map", input_map)
@@ -172,6 +187,7 @@ func save() -> void:
 	config_file.set_value("Audio", "game_sfx_audio_level", game_sfx_audio_level)
 	config_file.set_value("Audio", "in_level_sfx_audio_level", in_level_sfx_audio_level)
 	config_file.set_value("Audio", "mute_game_on_unfocus", mute_game_on_unfocus)
+	config_file.set_value("Audio", "menu_loop", menu_loop)
 
 	# Keybinds
 	config_file.set_value("Keybinds", "input_map", input_map)

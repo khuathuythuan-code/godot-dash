@@ -8,10 +8,10 @@ enum SelectionHighlight {
 }
 
 @export_storage var hsv_shift: Array[float]
-@export_storage var strength: float = 1.0
+@export_storage var intensity: float = 1.0
 @export_storage var alpha: float = 1.0
 # Set by ColorChannelWatchers
-@export_storage var base_strength: float = 1.0
+@export_storage var base_intensity: float = 1.0
 @export_storage var base_alpha: float = 1.0
 
 var selection_highlight: SelectionHighlight
@@ -35,14 +35,14 @@ func _process(_delta: float) -> void:
 func to_data() -> Dictionary:
 	return {
 		"hsv_shift": hsv_shift,
-		"strength": strength,
+		"intensity": intensity,
 		"alpha": alpha,
 	}
 
 
 func use_data(data: Dictionary) -> void:
 	hsv_shift.assign(data.hsv_shift)
-	strength = data.strength
+	intensity = data.intensity
 	alpha = data.alpha
 
 
@@ -55,7 +55,7 @@ func _update_color() -> void:
 	shifted_modulate.v += hsv_shift[2]
 	match selection_highlight:
 		SelectionHighlight.NONE:
-			parent.modulate = shifted_modulate * strength * base_strength
+			parent.modulate = shifted_modulate * intensity * base_intensity
 			parent.modulate.a = modulate.a * alpha * base_alpha
 		SelectionHighlight.NORMAL:
 			parent.modulate = Color.GREEN

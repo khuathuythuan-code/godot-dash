@@ -810,7 +810,7 @@ func _player_death() -> void:
 func _on_death_restart() -> void:
 	LevelManager.player_duals.clear()
 	if Editor.in_editor:
-		get_tree().change_scene_to_packed(Editor.snapshot)
+		Editor.root._on_playtest_pressed()
 	else:
 		get_tree().reload_current_scene()
 
