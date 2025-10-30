@@ -683,7 +683,6 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="CreatedLevelsList" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -693,7 +692,6 @@ offset_right = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CreatedLevelsList"]
 layout_mode = 1
@@ -783,19 +781,15 @@ alignment = 1
 
 [node name="Create" type="Button" parent="CreatedLevelsList/MarginContainer/FlowContainer"]
 layout_mode = 2
-text = "Create"
 icon = ExtResource("25_opvi4")
-icon_alignment = 1
-vertical_icon_alignment = 0
+flat = true
 script = ExtResource("11_1dcdf")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
 [node name="Saved" type="Button" parent="CreatedLevelsList/MarginContainer/FlowContainer"]
 layout_mode = 2
-text = "Saved"
 icon = ExtResource("26_65pcn")
-icon_alignment = 1
-vertical_icon_alignment = 0
+flat = true
 script = ExtResource("11_1dcdf")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
