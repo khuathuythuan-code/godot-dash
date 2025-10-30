@@ -190,6 +190,7 @@ Are you sure you want to delete it?"
 
 [connection signal="text_submitted" from="HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="VBoxContainer/Copy channel" to="." method="_on_copy_channel_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Color" to="." method="_on_color_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Channel" to="." method="_on_channel_value_changed"]
 [connection signal="folding_changed" from="VBoxContainer/Modulation" to="." method="_on_hsv_shift_folding_changed"]
