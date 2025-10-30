@@ -83,9 +83,9 @@ func _on_scale_value_changed(value: Vector2) -> void:
 
 func _on_position_value_changed(_value: Vector2) -> void:
 	var value = Vector2(_value.x * LevelManager.CELL_SIZE, (-_value.y - 0.5) * LevelManager.CELL_SIZE) - average_position
-	var move_object := func(_object: Node):
+	var move_object := func(_object: Node2D):
 		_object.position += value
-	var unmove_object := func(_object: Node):
+	var unmove_object := func(_object: Node2D):
 		_object.position -= value
 
 	Editor.root.level.version_history.create_action("Moved object " + str(_value) + " units")
@@ -98,9 +98,9 @@ func _on_rotation_value_changed(value: float) -> void:
 	if selection_size == 1 or same_rotation:
 		value -= current_selection[0].rotation_degrees
 
-	var rotate_object := func(_object: Node):
+	var rotate_object := func(_object: Node2D):
 		_object.rotation_degrees += value
-	var unrotate_object := func(_object: Node):
+	var unrotate_object := func(_object: Node2D):
 		_object.rotation_degrees -= value
 
 	Editor.root.level.version_history.create_action("Rotated object " + str(value) + "°")
@@ -111,5 +111,5 @@ func _on_rotation_value_changed(value: float) -> void:
 
 
 func _set_z_index(value: float):
-	value = int(value)
+	value = int(value) 
 	current_selection.map(func(object): object.z_index = value)
