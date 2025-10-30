@@ -156,7 +156,6 @@ func to_data() -> Dictionary:
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
 		}
-		print(object_data["hsv"])
 		_set_object_color_channel_data(object, object_data)
 		if object.has_meta(&"texture_override"):
 			object_data.texture_override = object.get_meta(&"texture_override")
