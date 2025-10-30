@@ -428,7 +428,7 @@ func _scale_selection(position_delta: Vector2, scale_delta: Vector2, total_scale
 	selection_pivot += position_delta
 	for object in selection:
 		object.global_position += position_delta
-		object.scale *= scale_delta
+		object.set_deferred(&"scale", object.scale * scale_delta)
 		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 			var position_relative_to_pivot: Vector2 = positions_relative_to_pivot[object]
 			object.global_position = selection_pivot + (position_relative_to_pivot.rotated(-rotation) * total_scale).rotated(rotation)
