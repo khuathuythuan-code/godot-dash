@@ -2,7 +2,7 @@
 extends Property
 class_name EnumProperty
 
-signal value_changed(value: String)
+signal value_changed(value: int)
 
 @export var default: int
 @export var fields: PackedStringArray
