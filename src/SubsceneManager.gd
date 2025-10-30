@@ -79,7 +79,7 @@ func _ready() -> void:
 		await camera_tween.finished
 		$"../Camera".add_child(PhantomCameraHost.new())
 	else:
-		active_pcam.set_priority(PhantomCameraHistory.PhantomCameraStatus.CURRENT_ACTIVE)
+		active_pcam.set_priority(PhantomCameraHistory.Status.CURRENT_ACTIVE)
 
 
 func _process(delta: float) -> void:
@@ -110,7 +110,7 @@ func _process(delta: float) -> void:
 
 
 func _return_to_title_screen() -> void:
-	history._previous_phantomcamera(active_pcam)
+	history.previous_phantomcamera(active_pcam)
 	_toggle_background_sprites_autoscroll(true)
 	if page_control_container.modulate != Color("ffffff00"):
 		_hide_page_control = true
@@ -150,7 +150,7 @@ func _on_go_to_level_selector_pressed() -> void:
 				.get_child(_level_selector_tab_idx) \
 				.self_modulate
 	)
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -165,7 +165,7 @@ func _on_go_to_created_levels_list_pressed() -> void:
 	level_selector.hide()
 	icon_garage.hide()
 	_current_subscene = SubScene.CREATED_LEVELS_LIST
-	history._change_phantomcamera(active_pcam, created_levels_list_camera)
+	history.change_phantomcamera(active_pcam, created_levels_list_camera)
 	_toggle_background_sprites_autoscroll(false)
 
 
@@ -176,7 +176,7 @@ func _on_editor_pressed() -> void:
 		$"../MenuLoop".playing = false
 		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-		history._change_phantomcamera(active_pcam, editor_camera)
+		history.change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
 		if Editor.snapshot.can_instantiate():
@@ -189,14 +189,14 @@ func _on_go_to_icon_garage_pressed() -> void:
 	created_levels_list.hide()
 	icon_garage.show()
 	_current_subscene = SubScene.ICON_GARAGE
-	history._change_phantomcamera(active_pcam, icon_garage_camera)
+	history.change_phantomcamera(active_pcam, icon_garage_camera)
 	_toggle_background_sprites_autoscroll(false)
 
 
 func _on_previous_level_pressed() -> void:
 	_level_selector_tab_idx -= 1
 	_level_selector_tab_idx %= level_selector_page_container.get_child_count()
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -212,7 +212,7 @@ func _on_previous_level_pressed() -> void:
 func _on_next_level_pressed() -> void:
 	_level_selector_tab_idx += 1
 	_level_selector_tab_idx %= level_selector_page_container.get_child_count()
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -229,7 +229,7 @@ func _on_quit_game_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
 	if not _fade_screen.is_fading:
 		_fade_screen.fade_in(0.5, Tween.EASE_IN_OUT, Tween.TRANS_EXPO)
-		history._change_phantomcamera(active_pcam, quit_game_camera)
+		history.change_phantomcamera(active_pcam, quit_game_camera)
 		await _fade_screen.fade_finished
 		get_tree().quit()
 
