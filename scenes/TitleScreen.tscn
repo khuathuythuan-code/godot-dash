@@ -775,23 +775,34 @@ offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FlowContainer" type="FlowContainer" parent="CreatedLevelsList/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CreatedLevelsList/MarginContainer"]
+layout_mode = 2
+
+[node name="SpacerTop" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FlowContainer" type="FlowContainer" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Create" type="Button" parent="CreatedLevelsList/MarginContainer/FlowContainer"]
+[node name="Create" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
 layout_mode = 2
 icon = ExtResource("25_opvi4")
 flat = true
 script = ExtResource("11_1dcdf")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
-[node name="Saved" type="Button" parent="CreatedLevelsList/MarginContainer/FlowContainer"]
+[node name="Saved" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
 layout_mode = 2
 icon = ExtResource("26_65pcn")
 flat = true
 script = ExtResource("11_1dcdf")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
+
+[node name="SpacerBottom" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="LevelSelector" type="Control" parent="."]
 visible = false
@@ -964,7 +975,7 @@ visible = false
 [connection signal="pressed" from="TitleScreen/Settings" to="SettingsLayer" method="_on_settings_pressed"]
 [connection signal="pressed" from="IconGarage/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
 [connection signal="pressed" from="CreatedLevelsList/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
-[connection signal="pressed" from="CreatedLevelsList/MarginContainer/FlowContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/PreviousLevel" to="Subscene Manager" method="_on_previous_level_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/NextLevel" to="Subscene Manager" method="_on_next_level_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
