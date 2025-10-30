@@ -73,12 +73,25 @@ func _process(_delta: float) -> void:
 
 
 func _on_scale_value_changed(value: Vector2) -> void:
+	var scale_object
+	var unscale_object
+
 	if selection_size == 1 or same_scale:
-		current_selection.map(func(object): object.scale = value)
-		if selection_size == 1:
-			return
+		value -= current_selection[0].scale
+		scale_object = func(_object: Node2D):
+			_object.scale += value
+		unscale_object = func(_object: Node2D):
+			_object.scale -= value
 	else:
-		current_selection.map(func(object): object.scale *= value)
+		scale_object = func(_object: Node2D):
+			_object.scale *= value
+		unscale_object = func(_object: Node2D):
+			_object.scale /= value
+	Editor.root.level.version_history.create_action("Scaled object " + str(value))
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(scale_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unscale_object.bind(object))
+	Editor.root.level.version_history.commit_action()
 
 
 func _on_position_value_changed(_value: Vector2) -> void:
