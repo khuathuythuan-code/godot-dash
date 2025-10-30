@@ -67,3 +67,6 @@ static func free_children(caller: Node) -> void:
 
 static func free_node(node: Node) -> void:
 	node.queue_free()
+
+static func is_valid_sprite(node: Node) -> bool:
+	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
