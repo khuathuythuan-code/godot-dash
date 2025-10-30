@@ -15,7 +15,7 @@ enum CopyColor {
 @export var color := Color.WHITE
 @export var copied_channel: CopyColor
 @export var hsv_shift: Array[float] = [0.0, 0.0, 0.0]
-@export var strength: float = 1.0
+@export var intensity: float = 1.0
 @export var alpha: float = 1.0
 @export var associated_group: String
 
@@ -46,8 +46,8 @@ func set_hsv_shift(new_hsv_shift: Array[float]) -> ColorChannelData:
 	return self
 
 
-func set_strength(new_strength: float) -> ColorChannelData:
-	strength = new_strength
+func set_intensity(new_intensity: float) -> ColorChannelData:
+	intensity = new_intensity
 	changed.emit()
 	return self
 
@@ -64,7 +64,7 @@ static func to_data(channel: ColorChannelData) -> Dictionary:
 	data.color = channel.color.to_rgba32()
 	data.copied_channel = channel.copied_channel
 	data.hsv_shift = channel.hsv_shift
-	data.strength = channel.strength
+	data.intensity = channel.intensity
 	data.alpha = channel.alpha
 	data.associated_group = channel.associated_group
 	return data
@@ -76,7 +76,7 @@ static func from_data(data: Dictionary) -> ColorChannelData:
 	channel.color = Color.hex(data.color)
 	channel.copied_channel = data.copied_channel
 	channel.hsv_shift.assign(data.hsv_shift)
-	channel.strength = data.strength
+	channel.intensity = data.intensity
 	channel.alpha = data.alpha
 	channel.associated_group = data.associated_group
 	return channel
