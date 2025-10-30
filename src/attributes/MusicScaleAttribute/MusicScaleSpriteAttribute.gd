@@ -6,7 +6,7 @@ class_name MusicScaleSpriteAttribute
 
 func _ready() -> void:
 	for child in parent.get_children():
-		if _is_valid_sprite(child):
+		if NodeUtils.is_valid_sprite(child):
 			NodeUtils.get_node_or_add(child, "MusicScale", MusicScale)
 			if child is NinePatchSprite2D:
 				var absolute := parent.get_node_or_null("NinePatchSprite2DAbsoluteSize")
@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	for child in parent.get_children():
-		if _is_valid_sprite(child):
+		if NodeUtils.is_valid_sprite(child):
 			var attribute := child.get_node_or_null(^"MusicScaleSpriteAttribute")
 			if attribute: attribute.queue_free()
 			if child is NinePatchSprite2D:
@@ -25,5 +25,3 @@ func _exit_tree() -> void:
 					absolute.process_mode = Node.PROCESS_MODE_INHERIT				
 	
 
-func _is_valid_sprite(node: Node) -> bool:
-	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
