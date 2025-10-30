@@ -935,7 +935,7 @@ script = ExtResource("28_wlgas")
 stream = ExtResource("29_5koff")
 bus = &"Music"
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "level_selector_page_container")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
 script = ExtResource("30_ucf7r")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
@@ -954,6 +954,8 @@ quit_game_camera = NodePath("../TitleScreen/CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 title_screen_background = NodePath("../TitleScreen/BackgroundParallax")
 title_screen_ground = NodePath("../TitleScreen/GroundParallax")
+menu_icon = NodePath("../TitleScreen/MenuIcon")
+menu_icon_killer = NodePath("../TitleScreen/Kill Box")
 level_selector_page_container = NodePath("../LevelSelector/PageContainer")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("31_n61qu")]

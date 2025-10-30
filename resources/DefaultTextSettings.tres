@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" script_class="TextSettings" load_steps=2 format=3 uid="uid://cwxr4wnehp2wc"]
 
-[ext_resource type="Script" uid="uid://u6bg45iwy21r" path="res://src/resources/TextSettings.gd" id="1_h1g5p"]
+[ext_resource type="Script" path="res://src/resources/TextSettings.gd" id="1_h1g5p"]
 
 [resource]
 font_size = 64
