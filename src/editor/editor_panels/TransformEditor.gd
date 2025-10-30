@@ -82,9 +82,17 @@ func _on_scale_value_changed(value: Vector2) -> void:
 
 
 func _on_position_value_changed(value: Vector2) -> void:
-	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE)
-	current_selection.map(func(object): object.position += value - average_position)
+	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE) - average_position
+	var move_object := func(_object: Node):
+		_object.position += value
+	var unmove_object := func(_object: Node):
+		_object.position -= value
 
+	for object in current_selection:
+		Editor.root.level.version_history.create_action("Moved object " + object.name)
+		Editor.root.level.version_history.add_do_method(move_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object))
+		Editor.root.level.version_history.commit_action()
 
 func _on_rotation_value_changed(value: float) -> void:
 	if selection_size == 1 or same_rotation:
