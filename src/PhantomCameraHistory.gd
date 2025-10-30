@@ -20,5 +20,8 @@ func change_phantomcamera(current_phantomcamera: PhantomCamera2D, new_phantomcam
 
 
 func previous_phantomcamera(current_phantomcamera: PhantomCamera2D):
+	var previous_camera: PhantomCamera2D = _history.pop_back()
+	if not previous_camera:
+		return
 	current_phantomcamera.set_priority(Status.INACTIVE)
-	_history.pop_back().set_priority(Status.CURRENT_ACTIVE)
+	previous_camera.set_priority(Status.CURRENT_ACTIVE)

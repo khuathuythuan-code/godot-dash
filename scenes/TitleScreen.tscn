@@ -159,7 +159,7 @@ physics_interpolation_mode = 1
 collision_layer = 4
 script = ExtResource("4_1ska7")
 hitbox = NodePath("Hitbox")
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
 shape = SubResource("RectangleShape2D_fto0a")
@@ -171,6 +171,8 @@ z_index = -2
 repeat_size = Vector2(12800, 0)
 autoscroll = Vector2(-300, 0)
 repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Background" type="Sprite2D" parent="TitleScreen/BackgroundParallax"]
 modulate = Color(0.213669, 0.439779, 1, 1)
@@ -185,6 +187,8 @@ region_rect = Rect2(0, 0, 10240, 2048)
 repeat_size = Vector2(9600, 0)
 autoscroll = Vector2(-800, 0)
 repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Ground" type="Sprite2D" parent="TitleScreen/GroundParallax"]
 self_modulate = Color(0.1078, 0.295423, 0.77, 1)
@@ -199,6 +203,8 @@ region_rect = Rect2(0, 0, 9600, 240)
 physics_interpolation_mode = 1
 position = Vector2(940, 885)
 collision_layer = 32
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
 shape = SubResource("WorldBoundaryShape2D_mekmn")
@@ -683,6 +689,7 @@ tween_on_load = true
 inactive_update_mode = 0
 
 [node name="CreatedLevelsList" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -940,8 +947,9 @@ script = ExtResource("28_wlgas")
 stream = ExtResource("29_5koff")
 bus = &"Music"
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
 script = ExtResource("30_ucf7r")
+camera = NodePath("../Camera")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 page_control_container = NodePath("../LevelSelector/CanvasLayer/PageControlContainer")
