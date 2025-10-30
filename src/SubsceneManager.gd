@@ -10,6 +10,7 @@ enum SubScene {
 
 static var editor_scene: PackedScene
 
+@export var camera: Camera2D
 @export var active_pcam: PhantomCamera2D # Active PhantomCamera2D when the scene enters the tree
 @export var history: PhantomCameraHistory
 @export var page_control_container: Control
@@ -25,6 +26,7 @@ static var editor_scene: PackedScene
 
 @export_group("PhantomCameras")
 @export var created_levels_list_camera: PhantomCamera2D
+@export var editor_camera: PhantomCamera2D
 @export var icon_garage_camera: PhantomCamera2D
 @export var quit_game_camera: PhantomCamera2D
 @export var title_screen_camera: PhantomCamera2D
@@ -44,6 +46,7 @@ var _current_subscene: SubScene = SubScene.TITLE_SCREEN
 var _level_selector_tab_idx: int
 var _hide_page_control: bool = true
 var _lerp_rate := 0.3 * 60
+var _camera_tween: Tween
 
 
 func _ready() -> void:
@@ -62,36 +65,30 @@ func _ready() -> void:
 	await settings_layer.get_node("%SettingsMenu").ready
 	if not Engine.is_editor_hint():
 		menu_loop.play()
+	if SceneTransition.from_editor():
+		_on_go_to_created_levels_list_pressed()
+		active_pcam = created_levels_list_camera
 	if not SceneTransition.from_main():
 		# HACK: Manual animation because PhantomCamera gets in the way
-		$"../Camera/PhantomCameraHost".queue_free()
+		camera.global_position = active_pcam.global_position
+		camera.get_node(^"PhantomCameraHost").queue_free()
 		var _fade_screen = fade_screen_layer.get_child(0)
 		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
-		var camera_tween := create_tween()
+		_camera_tween = create_tween()
 		(
-			camera_tween
-				.tween_property($"../Camera", "zoom", Vector2.ONE, 0.5)
+			_camera_tween
+				.tween_property(camera, "zoom", Vector2.ONE, 0.5)
 				.from(Vector2.ONE * 2)
 				.set_ease(Tween.EASE_OUT)
 				.set_trans(Tween.TRANS_EXPO)
 		)
-		await camera_tween.finished
-		$"../Camera".add_child(PhantomCameraHost.new())
+		await _camera_tween.finished
+		camera.add_child(PhantomCameraHost.new())
 	else:
-		active_pcam.set_priority(PhantomCameraHistory.PhantomCameraStatus.CURRENT_ACTIVE)
+		active_pcam.set_priority(PhantomCameraHistory.Status.CURRENT_ACTIVE)
 
 
 func _process(delta: float) -> void:
-	if _current_subscene == SubScene.LEVEL_SELECTOR:
-		if Input.is_action_just_pressed("ui_left"): _on_previous_level_pressed()
-		if Input.is_action_just_pressed("ui_right"): _on_next_level_pressed()
-	if _current_subscene == SubScene.TITLE_SCREEN \
-			&& settings_layer.get_node("SettingsContainer").position.y == -settings_layer.get_node("SettingsContainer").get_viewport_rect().size.y \
-			&& Input.is_action_just_pressed("ui_cancel"):
-		_on_quit_game_pressed()
-	if _current_subscene != SubScene.TITLE_SCREEN && Input.is_action_just_pressed("ui_cancel"):
-		_return_to_title_screen()
-
 	if _hide_page_control:
 		page_control_container.modulate.a = lerpf(page_control_container.modulate.a, 0.0, 1-exp(-delta * _lerp_rate))
 		quit_game_button.modulate.a = lerpf(quit_game_button.modulate.a, 1.0, 1-exp(-delta * _lerp_rate))
@@ -108,12 +105,25 @@ func _process(delta: float) -> void:
 		quit_game_button.modulate.a = lerpf(quit_game_button.modulate.a, 0.0, 1-exp(-delta * _lerp_rate))
 
 
+func _input(event: InputEvent) -> void:
+	if _current_subscene == SubScene.LEVEL_SELECTOR:
+		if event.is_action_pressed("ui_left"):
+			_on_previous_level_pressed()
+		if event.is_action_pressed("ui_right"):
+			_on_next_level_pressed()
+	if event.is_action_pressed("ui_cancel") and not (_camera_tween and _camera_tween.is_running()):
+		if _current_subscene == SubScene.TITLE_SCREEN and not settings_layer.is_menu_visible():
+			_on_quit_game_pressed()
+		else:
+			_return_to_title_screen()
+
+
 func _return_to_title_screen() -> void:
-	history._previous_phantomcamera(active_pcam)
+	history.previous_phantomcamera(active_pcam)
 	_toggle_background_sprites_autoscroll(true)
 	if page_control_container.modulate != Color("ffffff00"):
 		_hide_page_control = true
-	if active_pcam == title_screen_camera: _current_subscene = SubScene.TITLE_SCREEN
+	_current_subscene = SubScene.TITLE_SCREEN
 	_change_background_color(_base_background_color)
 	await title_screen_camera.tween_completed
 	created_levels_list.hide()
@@ -149,7 +159,7 @@ func _on_go_to_level_selector_pressed() -> void:
 				.get_child(_level_selector_tab_idx) \
 				.self_modulate
 	)
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -160,13 +170,22 @@ func _on_go_to_level_selector_pressed() -> void:
 
 
 func _on_go_to_created_levels_list_pressed() -> void:
+	created_levels_list.show()
+	level_selector.hide()
+	icon_garage.hide()
+	_current_subscene = SubScene.CREATED_LEVELS_LIST
+	history.change_phantomcamera(active_pcam, created_levels_list_camera)
+	_toggle_background_sprites_autoscroll(false)
+
+
+func _on_editor_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
 	if not _fade_screen.is_fading:
 		editor_scene = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
 		$"../MenuLoop".playing = false
 		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-		history._change_phantomcamera(active_pcam, created_levels_list_camera)
+		history.change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
 		if Editor.snapshot.can_instantiate():
@@ -174,19 +193,20 @@ func _on_go_to_created_levels_list_pressed() -> void:
 		else:
 			get_tree().change_scene_to_packed(editor_scene)
 
+
 func _on_go_to_icon_garage_pressed() -> void:
 	level_selector.hide()
 	created_levels_list.hide()
 	icon_garage.show()
 	_current_subscene = SubScene.ICON_GARAGE
-	history._change_phantomcamera(active_pcam, icon_garage_camera)
+	history.change_phantomcamera(active_pcam, icon_garage_camera)
 	_toggle_background_sprites_autoscroll(false)
 
 
 func _on_previous_level_pressed() -> void:
 	_level_selector_tab_idx -= 1
 	_level_selector_tab_idx %= level_selector_page_container.get_child_count()
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -202,7 +222,7 @@ func _on_previous_level_pressed() -> void:
 func _on_next_level_pressed() -> void:
 	_level_selector_tab_idx += 1
 	_level_selector_tab_idx %= level_selector_page_container.get_child_count()
-	history._change_phantomcamera(
+	history.change_phantomcamera(
 		active_pcam, \
 		level_selector_page_container \
 				.get_child(_level_selector_tab_idx) \
@@ -219,7 +239,7 @@ func _on_quit_game_pressed() -> void:
 	var _fade_screen = fade_screen_layer.get_child(0)
 	if not _fade_screen.is_fading:
 		_fade_screen.fade_in(0.5, Tween.EASE_IN_OUT, Tween.TRANS_EXPO)
-		history._change_phantomcamera(active_pcam, quit_game_camera)
+		history.change_phantomcamera(active_pcam, quit_game_camera)
 		await _fade_screen.fade_finished
 		get_tree().quit()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=62 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cwoultxx6k47" path="res://assets/textures/guis/title_screen/GarageButton.png" id="10_o51e6"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="11_1dcdf"]
 [ext_resource type="Texture2D" uid="uid://bjrdbga1v3vba" path="res://assets/textures/guis/title_screen/PlayButton.png" id="12_uh5eq"]
-[ext_resource type="Texture2D" uid="uid://bwxk6tcq5v31v" path="res://assets/textures/guis/title_screen/CreateButton.png" id="13_tuyt1"]
+[ext_resource type="Texture2D" uid="uid://bwxk6tcq5v31v" path="res://assets/textures/guis/title_screen/CreatedLevelListButton.png" id="13_tuyt1"]
 [ext_resource type="Texture2D" uid="uid://dorpaiw1p6bw0" path="res://assets/textures/guis/shared/CircleButtonBase.svg" id="14_hkayi"]
 [ext_resource type="Texture2D" uid="uid://bcjmav8hpm0qx" path="res://assets/textures/guis/shared/CloseButton.svg" id="15_37bcn"]
 [ext_resource type="Texture2D" uid="uid://ca7kg07rmvxyl" path="res://assets/textures/guis/shared/SettingsButton.svg" id="16_ureuc"]
@@ -25,12 +25,14 @@
 [ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="23_20sjm"]
 [ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="24_sn2o6"]
 [ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="25_mp5hy"]
+[ext_resource type="Texture2D" uid="uid://dhe6160dl268c" path="res://assets/textures/guis/title_screen/CreateButton.svg" id="25_opvi4"]
+[ext_resource type="Texture2D" uid="uid://cmbwn4bs0ksie" path="res://assets/textures/guis/title_screen/SavedButton.svg" id="26_65pcn"]
 [ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="26_bhnaj"]
 [ext_resource type="PackedScene" uid="uid://kwe5xtryavgg" path="res://scenes/components/game_components/LevelSelectorTab.tscn" id="27_yieav"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_wlgas"]
-[ext_resource type="AudioStream" uid="uid://c4sjh7a6mxgv3" path="res://assets/sounds/music/game_music/MenuLoop.mp3" id="29_5koff"]
 [ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="30_ucf7r"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="31_n61qu"]
+[ext_resource type="Script" uid="uid://c5cp2fpyr262x" path="res://src/MenuLoop.gd" id="32_1ska7"]
 [ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="32_c2d88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
@@ -113,17 +115,17 @@ script = ExtResource("22_juc6n")
 [sub_resource type="Resource" id="Resource_g8282"]
 script = ExtResource("22_juc6n")
 
-[sub_resource type="Resource" id="Resource_m8p16"]
-script = ExtResource("18_cr31u")
-duration = 0.5
-transition = 5
-ease = 0
-
 [sub_resource type="Resource" id="Resource_7wwop"]
 script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 1
+
+[sub_resource type="Resource" id="Resource_opvi4"]
+script = ExtResource("18_cr31u")
+duration = 0.5
+transition = 5
+ease = 0
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -157,7 +159,7 @@ physics_interpolation_mode = 1
 collision_layer = 4
 script = ExtResource("4_1ska7")
 hitbox = NodePath("Hitbox")
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
 shape = SubResource("RectangleShape2D_fto0a")
@@ -169,6 +171,8 @@ z_index = -2
 repeat_size = Vector2(12800, 0)
 autoscroll = Vector2(-300, 0)
 repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Background" type="Sprite2D" parent="TitleScreen/BackgroundParallax"]
 modulate = Color(0.213669, 0.439779, 1, 1)
@@ -183,6 +187,8 @@ region_rect = Rect2(0, 0, 10240, 2048)
 repeat_size = Vector2(9600, 0)
 autoscroll = Vector2(-800, 0)
 repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Ground" type="Sprite2D" parent="TitleScreen/GroundParallax"]
 self_modulate = Color(0.1078, 0.295423, 0.77, 1)
@@ -197,6 +203,8 @@ region_rect = Rect2(0, 0, 9600, 240)
 physics_interpolation_mode = 1
 position = Vector2(940, 885)
 collision_layer = 32
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
 shape = SubResource("WorldBoundaryShape2D_mekmn")
@@ -396,14 +404,20 @@ color = Color(0, 0, 0, 0.5)
 
 [node name="BackButton" type="Button" parent="IconGarage"]
 layout_mode = 1
-offset_left = 32.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
 offset_top = 32.0
-offset_right = 100.0
+offset_right = -32.0
 offset_bottom = 101.0
+grow_horizontal = 0
+scale = Vector2(-1, 1)
 pivot_offset = Vector2(34, 34.5)
 theme = ExtResource("9_5h1vy")
 icon = ExtResource("19_pe36d")
 flat = true
+icon_alignment = 2
 expand_icon = true
 script = ExtResource("11_1dcdf")
 
@@ -655,25 +669,6 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CreatedLevelsListCamera" type="Node2D" parent="CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(2, 2)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_m8p16")
-tween_on_load = true
-inactive_update_mode = 0
-
 [node name="FromEditorCamera" type="Node2D" parent="CameraCenterParent"]
 script = ExtResource("17_6ogcu")
 priority_override = false
@@ -704,7 +699,6 @@ offset_right = 1920.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CreatedLevelsList"]
 layout_mode = 1
@@ -713,7 +707,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.164706, 0.278431, 0.721569, 1)
+color = Color(0, 0, 0, 0.5019608)
 
 [node name="BackButton" type="Button" parent="CreatedLevelsList"]
 layout_mode = 1
@@ -727,6 +721,95 @@ icon = ExtResource("19_pe36d")
 flat = true
 expand_icon = true
 script = ExtResource("11_1dcdf")
+
+[node name="CameraCenterParent" type="Control" parent="CreatedLevelsList"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreatedLevelsListCamera" type="Node2D" parent="CreatedLevelsList/CameraCenterParent"]
+script = ExtResource("17_6ogcu")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_assks")
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="EditorCamera" type="Node2D" parent="CreatedLevelsList/CameraCenterParent"]
+script = ExtResource("17_6ogcu")
+priority_override = false
+priority = 0
+zoom = Vector2(2, 2)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_opvi4")
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CreatedLevelsList"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 128.0
+offset_right = -128.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreatedLevelsList/MarginContainer"]
+layout_mode = 2
+
+[node name="SpacerTop" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FlowContainer" type="FlowContainer" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Create" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+icon = ExtResource("25_opvi4")
+flat = true
+script = ExtResource("11_1dcdf")
+metadata/_custom_type_script = "uid://doei3yc3rs41t"
+
+[node name="Saved" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
+layout_mode = 2
+icon = ExtResource("26_65pcn")
+flat = true
+script = ExtResource("11_1dcdf")
+metadata/_custom_type_script = "uid://doei3yc3rs41t"
+
+[node name="SpacerBottom" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="LevelSelector" type="Control" parent="."]
 visible = false
@@ -861,11 +944,12 @@ editor_draw_limits = true
 script = ExtResource("28_wlgas")
 
 [node name="MenuLoop" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("29_5koff")
 bus = &"Music"
+script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
 script = ExtResource("30_ucf7r")
+camera = NodePath("../Camera")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 page_control_container = NodePath("../LevelSelector/CanvasLayer/PageControlContainer")
@@ -876,7 +960,8 @@ menu_loop = NodePath("../MenuLoop")
 created_levels_list = NodePath("../CreatedLevelsList")
 icon_garage = NodePath("../IconGarage")
 level_selector = NodePath("../LevelSelector")
-created_levels_list_camera = NodePath("../CameraCenterParent/CreatedLevelsListCamera")
+created_levels_list_camera = NodePath("../CreatedLevelsList/CameraCenterParent/CreatedLevelsListCamera")
+editor_camera = NodePath("../CreatedLevelsList/CameraCenterParent/EditorCamera")
 icon_garage_camera = NodePath("../IconGarage/CameraCenterParent/IconGarageCamera")
 quit_game_camera = NodePath("../TitleScreen/CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
@@ -898,6 +983,7 @@ visible = false
 [connection signal="pressed" from="TitleScreen/Settings" to="SettingsLayer" method="_on_settings_pressed"]
 [connection signal="pressed" from="IconGarage/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
 [connection signal="pressed" from="CreatedLevelsList/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
+[connection signal="pressed" from="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/PreviousLevel" to="Subscene Manager" method="_on_previous_level_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/NextLevel" to="Subscene Manager" method="_on_next_level_pressed"]
 [connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]

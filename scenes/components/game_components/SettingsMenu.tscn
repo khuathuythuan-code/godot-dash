@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b6gonom0s5k1n"]
+[gd_scene load_steps=25 format=3 uid="uid://b6gonom0s5k1n"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_olkne"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="11_bi686"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
+[ext_resource type="Script" uid="uid://3na5h1vigpxe" path="res://src/gui/properties/types/FileProperty.gd" id="12_c7um1"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="12_fl6v2"]
 [ext_resource type="Script" uid="uid://co733tkf77uuu" path="res://src/settings/KeybindLoader.gd" id="12_vf3uf"]
 
@@ -425,6 +426,30 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Volume/VBoxContainer/Mute game on unfocus"]
 script = ExtResource("6_p6jor")
 config_property = &"mute_game_on_unfocus"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Music" type="FoldableContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+title = "Music"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Music"]
+layout_mode = 2
+
+[node name="Menu Loop" type="BoxContainer" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Music/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("12_c7um1")
+filetype_filters = PackedStringArray("*.mp3", "*.wav", "*.ogg")
+load_root = "user://created_levels/songs/"
+import_to = "user://created_levels/songs/"
+metadata/_custom_type_script = "uid://3na5h1vigpxe"
+
+[node name="PropertySaveLoad" type="Node" parent="Audio/SmoothScrollContainer/MarginContainer/VBoxContainer/Music/VBoxContainer/Menu Loop"]
+script = ExtResource("6_p6jor")
+config_property = &"menu_loop"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="MarginContainer" type="MarginContainer" parent="Audio"]

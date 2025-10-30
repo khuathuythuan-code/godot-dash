@@ -61,7 +61,7 @@ func clear_color_channels(selection: Array) -> void:
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	if selection.is_empty():
 		return
-	var group_is_color_channel := func(group: StringName): print(group); return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX)
+	var group_is_color_channel := func(group: StringName): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX)
 	# Base
 	var objects_base: Array[Node2D]
 	objects_base.assign(selection.map(into_base).map(use_hsv_watcher))

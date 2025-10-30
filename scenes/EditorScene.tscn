@@ -1,4 +1,4 @@
-[gd_scene load_steps=298 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=299 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -264,6 +264,12 @@ base = ExtResource("22_wadpq")
 name = "OutlineBlock01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
+[sub_resource type="Resource" id="Resource_w5ynp"]
+script = ExtResource("12_egrfm")
+base = ExtResource("22_fa2ga")
+name = "FillBlock01"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
 [sub_resource type="Resource" id="Resource_fa2ga"]
 script = ExtResource("12_egrfm")
 base = ExtResource("22_wadpq")
@@ -365,69 +371,77 @@ script = ExtResource("193_5tfcf")
 [sub_resource type="Resource" id="Resource_ao6md"]
 script = ExtResource("12_egrfm")
 base = ExtResource("14_ccqvw")
-name = "RegularSlope01"
+name = "RegularSlopeRegular01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_nk067"]
 script = ExtResource("12_egrfm")
 base = ExtResource("33_6ukik")
-name = "RegularSlope03"
+name = "RegularSlopeRegular02"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_wkjme"]
 script = ExtResource("12_egrfm")
 base = ExtResource("42_fa2ga")
-name = "OutlineSlope01"
+name = "OutlineSlopeRegular01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_rke8t"]
 script = ExtResource("12_egrfm")
 base = ExtResource("19_mf7h4")
-name = "OutlineSlope03"
+name = "OutlineSlopeRegular02"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wadpq"]
+[sub_resource type="Resource" id="Resource_mesjt"]
+script = ExtResource("12_egrfm")
+base = ExtResource("41_wadpq")
+name = "FillSlopeRegular01"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_knigi"]
 script = ExtResource("12_egrfm")
-base = SubResource("CompressedTexture2D_wadpq")
+base = ExtResource("42_fa2ga")
 detail = ExtResource("41_wadpq")
 base_detail_same_color = true
-name = "EditorScene"
+name = "OutlineSlopeRegular01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fa2ga"]
 
 [sub_resource type="Resource" id="Resource_s6l44"]
 script = ExtResource("12_egrfm")
-base = SubResource("CompressedTexture2D_fa2ga")
+base = ExtResource("19_mf7h4")
 detail = ExtResource("41_wadpq")
 base_detail_same_color = true
-name = "EditorScene"
+name = "OutlineSlopeRegular02"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_5ik7l"]
 script = ExtResource("12_egrfm")
 base = ExtResource("16_pmc7a")
-name = "RegularSlope02"
+name = "RegularSlopeLarge01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_0v0om"]
 script = ExtResource("12_egrfm")
 base = ExtResource("38_wkjme")
-name = "RegularSlope04"
+name = "RegularSlopeLarge02"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_33w7i"]
 script = ExtResource("12_egrfm")
 base = ExtResource("19_p2ypn")
-name = "OutlineSlope02"
+name = "OutlineSlopeLarge01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_t7625"]
 script = ExtResource("12_egrfm")
 base = ExtResource("20_hgbal")
-name = "OutlineSlope04"
+name = "OutlineSlopeLarge02"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_cwcew"]
+script = ExtResource("12_egrfm")
+base = ExtResource("49_knigi")
+name = "FillSlopeLarge01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_w44k4"]
@@ -435,7 +449,7 @@ script = ExtResource("12_egrfm")
 base = ExtResource("19_p2ypn")
 detail = ExtResource("49_knigi")
 base_detail_same_color = true
-name = "OutlineSlope02"
+name = "OutlineSlopeLarge01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_vt33b"]
@@ -443,7 +457,7 @@ script = ExtResource("12_egrfm")
 base = ExtResource("20_hgbal")
 detail = ExtResource("49_knigi")
 base_detail_same_color = true
-name = "OutlineSlope04"
+name = "OutlineSlopeLarge02"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_c6gj0"]
@@ -699,6 +713,7 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
+reset_scale_on_ready = true
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
@@ -715,12 +730,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 0
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -752,7 +766,7 @@ theme_override_constants/v_separation = 10
 script = ExtResource("12_lvhj5")
 button_group = ExtResource("3_0vcbd")
 object = ExtResource("7_ii36d")
-textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_aofxv"), SubResource("Resource_lvhj5"), SubResource("Resource_fa2ga"), SubResource("Resource_sl8yb"), SubResource("Resource_37pxl"), SubResource("Resource_6ukik"), SubResource("Resource_bs2up"), SubResource("Resource_3clt4"), SubResource("Resource_e0lml"), SubResource("Resource_momrj"), SubResource("Resource_6fwf3"), SubResource("Resource_gdkvu"), SubResource("Resource_vtwef"), SubResource("Resource_7k2uw"), SubResource("Resource_tkktq"), SubResource("Resource_mvta7"), SubResource("Resource_wiub1")])
+textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_aofxv"), SubResource("Resource_lvhj5"), SubResource("Resource_w5ynp"), SubResource("Resource_fa2ga"), SubResource("Resource_sl8yb"), SubResource("Resource_37pxl"), SubResource("Resource_6ukik"), SubResource("Resource_bs2up"), SubResource("Resource_3clt4"), SubResource("Resource_e0lml"), SubResource("Resource_momrj"), SubResource("Resource_6fwf3"), SubResource("Resource_gdkvu"), SubResource("Resource_vtwef"), SubResource("Resource_7k2uw"), SubResource("Resource_tkktq"), SubResource("Resource_mvta7"), SubResource("Resource_wiub1")])
 
 [node name="RegularBlock01" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer"]
 _import_path = NodePath("")
@@ -829,12 +843,12 @@ metadata/_edit_group_ = true
 script = ExtResource("7_f0stj")
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73219" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularBlock01"]
+[node name="@CenterContainer@41958" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularBlock01"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularBlock01/@CenterContainer@73219"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/RegularBlock01/@CenterContainer@41958"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_u8igg")
@@ -917,15 +931,103 @@ script = ExtResource("7_f0stj")
 id = 1
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73221" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock01"]
+[node name="@CenterContainer@41960" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock01"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock01/@CenterContainer@73221"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock01/@CenterContainer@41960"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_wadpq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FillBlock02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_w5ynp")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/FillBlock02"]
+script = ExtResource("7_f0stj")
+id = 2
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@41962" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/FillBlock02"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/FillBlock02/@CenterContainer@41962"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("22_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
@@ -1002,15 +1104,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02"]
 script = ExtResource("7_f0stj")
-id = 2
+id = 3
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73223" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02"]
+[node name="@CenterContainer@41964" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02/@CenterContainer@73223"]
+[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02/@CenterContainer@41964"]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -1018,7 +1120,7 @@ texture = ExtResource("22_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02/@CenterContainer@73223"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/OutlineBlock02/@CenterContainer@41964"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_wadpq")
@@ -1098,15 +1200,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock01"]
 script = ExtResource("7_f0stj")
-id = 3
+id = 4
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73225" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock01"]
+[node name="@CenterContainer@41966" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock01"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock01/@CenterContainer@73225"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock01/@CenterContainer@41966"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("13_fa2pl")
@@ -1186,15 +1288,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock02"]
 script = ExtResource("7_f0stj")
-id = 4
+id = 5
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73227" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock02"]
+[node name="@CenterContainer@41968" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock02"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock02/@CenterContainer@73227"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock02/@CenterContainer@41968"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("14_ajdcu")
@@ -1274,15 +1376,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock03"]
 script = ExtResource("7_f0stj")
-id = 5
+id = 6
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73229" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock03"]
+[node name="@CenterContainer@41970" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock03"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock03/@CenterContainer@73229"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock03/@CenterContainer@41970"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("15_e8m1b")
@@ -1362,15 +1464,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock04"]
 script = ExtResource("7_f0stj")
-id = 6
+id = 7
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73231" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock04"]
+[node name="@CenterContainer@41972" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock04"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock04/@CenterContainer@73231"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock04/@CenterContainer@41972"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("16_cbmyc")
@@ -1450,15 +1552,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock05"]
 script = ExtResource("7_f0stj")
-id = 7
+id = 8
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73233" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock05"]
+[node name="@CenterContainer@41974" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock05"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock05/@CenterContainer@73233"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock05/@CenterContainer@41974"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("17_4a8ke")
@@ -1538,15 +1640,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock06"]
 script = ExtResource("7_f0stj")
-id = 8
+id = 9
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73235" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock06"]
+[node name="@CenterContainer@41976" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock06"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock06/@CenterContainer@73235"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock06/@CenterContainer@41976"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("18_3clt4")
@@ -1626,15 +1728,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock07"]
 script = ExtResource("7_f0stj")
-id = 9
+id = 10
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73237" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock07"]
+[node name="@CenterContainer@41978" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock07"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock07/@CenterContainer@73237"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock07/@CenterContainer@41978"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("19_ao6md")
@@ -1714,15 +1816,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock08"]
 script = ExtResource("7_f0stj")
-id = 10
+id = 11
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73239" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock08"]
+[node name="@CenterContainer@41980" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock08"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock08/@CenterContainer@73239"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock08/@CenterContainer@41980"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("20_nk067")
@@ -1802,15 +1904,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock09"]
 script = ExtResource("7_f0stj")
-id = 11
+id = 12
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73241" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock09"]
+[node name="@CenterContainer@41982" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock09"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock09/@CenterContainer@73241"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock09/@CenterContainer@41982"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("21_wkjme")
@@ -1890,15 +1992,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock10"]
 script = ExtResource("7_f0stj")
-id = 12
+id = 13
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73243" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock10"]
+[node name="@CenterContainer@41984" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock10"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock10/@CenterContainer@73243"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock10/@CenterContainer@41984"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_rke8t")
@@ -1978,15 +2080,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock11"]
 script = ExtResource("7_f0stj")
-id = 13
+id = 14
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73245" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock11"]
+[node name="@CenterContainer@41986" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock11"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock11/@CenterContainer@73245"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock11/@CenterContainer@41986"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("23_5ik7l")
@@ -2066,15 +2168,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock12"]
 script = ExtResource("7_f0stj")
-id = 14
+id = 15
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73247" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock12"]
+[node name="@CenterContainer@41988" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock12"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock12/@CenterContainer@73247"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock12/@CenterContainer@41988"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("24_0v0om")
@@ -2154,15 +2256,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock15"]
 script = ExtResource("7_f0stj")
-id = 15
+id = 16
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73249" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock15"]
+[node name="@CenterContainer@41990" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock15"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock15/@CenterContainer@73249"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock15/@CenterContainer@41990"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("25_33w7i")
@@ -2242,15 +2344,15 @@ metadata/_edit_group_ = true
 
 [node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock16"]
 script = ExtResource("7_f0stj")
-id = 16
+id = 17
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@73251" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock16"]
+[node name="@CenterContainer@41992" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock16"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock16/@CenterContainer@73251"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Blocks/MarginContainer/SmoothScrollContainer/ButtonContainer/GridBlock16/@CenterContainer@41992"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("26_t7625")
@@ -2295,9 +2397,9 @@ script = ExtResource("12_lvhj5")
 button_group = ExtResource("3_0vcbd")
 type = 6
 object = ExtResource("15_lojhq")
-textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_ao6md"), SubResource("Resource_nk067"), SubResource("Resource_wkjme"), SubResource("Resource_rke8t"), SubResource("Resource_knigi"), SubResource("Resource_s6l44")])
+textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_ao6md"), SubResource("Resource_nk067"), SubResource("Resource_wkjme"), SubResource("Resource_rke8t"), SubResource("Resource_mesjt"), SubResource("Resource_knigi"), SubResource("Resource_s6l44")])
 
-[node name="RegularSlope02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="RegularSlopeRegular03" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2368,24 +2470,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_ao6md")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope02"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular03"]
 script = ExtResource("7_f0stj")
 type = 6
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77654" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope02"]
+[node name="@CenterContainer@38649" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular03"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope02/@CenterContainer@77654"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular03/@CenterContainer@38649"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("14_ccqvw")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RegularSlope04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="RegularSlopeRegular04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2456,25 +2558,25 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_nk067")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope04"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular04"]
 script = ExtResource("7_f0stj")
 type = 6
 id = 1
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77656" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope04"]
+[node name="@CenterContainer@38651" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular04"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlope04/@CenterContainer@77656"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/RegularSlopeRegular04/@CenterContainer@38651"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("33_6ukik")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="OutlineSlopeRegular03" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2545,25 +2647,25 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_wkjme")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope02"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular03"]
 script = ExtResource("7_f0stj")
 type = 6
 id = 2
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77658" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope02"]
+[node name="@CenterContainer@38653" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular03"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope02/@CenterContainer@77658"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular03/@CenterContainer@38653"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("42_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="OutlineSlopeRegular04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2634,25 +2736,114 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_rke8t")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope04"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular04"]
 script = ExtResource("7_f0stj")
 type = 6
 id = 3
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77660" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope04"]
+[node name="@CenterContainer@38655" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular04"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlope04/@CenterContainer@77660"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular04/@CenterContainer@38655"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("19_mf7h4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EditorScene" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="FillSlopeRegular01" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_mesjt")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/FillSlopeRegular01"]
+script = ExtResource("7_f0stj")
+type = 6
+id = 4
+object = ExtResource("15_lojhq")
+
+[node name="@CenterContainer@38657" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/FillSlopeRegular01"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/FillSlopeRegular01/@CenterContainer@38657"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("41_wadpq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OutlineSlopeRegular07" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2723,18 +2914,18 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_knigi")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular07"]
 script = ExtResource("7_f0stj")
 type = 6
-id = 4
+id = 5
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77662" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene"]
+[node name="@CenterContainer@38659" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular07"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene/@CenterContainer@77662"]
+[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular07/@CenterContainer@38659"]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -2742,14 +2933,14 @@ texture = ExtResource("41_wadpq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene/@CenterContainer@77662"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular07/@CenterContainer@38659"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_wadpq")
+texture = ExtResource("42_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EditorScene2" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
+[node name="OutlineSlopeRegular08" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2820,18 +3011,18 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_s6l44")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene2"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular08"]
 script = ExtResource("7_f0stj")
 type = 6
-id = 5
+id = 6
 object = ExtResource("15_lojhq")
 
-[node name="@CenterContainer@77664" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene2"]
+[node name="@CenterContainer@38661" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular08"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene2/@CenterContainer@77664"]
+[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular08/@CenterContainer@38661"]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -2839,10 +3030,10 @@ texture = ExtResource("41_wadpq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/EditorScene2/@CenterContainer@77664"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeNormal/OutlineSlopeRegular08/@CenterContainer@38661"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture = SubResource("CompressedTexture2D_fa2ga")
+texture = ExtResource("19_mf7h4")
 expand_mode = 1
 stretch_mode = 5
 
@@ -2855,9 +3046,9 @@ script = ExtResource("12_lvhj5")
 button_group = ExtResource("3_0vcbd")
 type = 7
 object = ExtResource("16_lojhq")
-textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_5ik7l"), SubResource("Resource_0v0om"), SubResource("Resource_33w7i"), SubResource("Resource_t7625"), SubResource("Resource_w44k4"), SubResource("Resource_vt33b")])
+textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_5ik7l"), SubResource("Resource_0v0om"), SubResource("Resource_33w7i"), SubResource("Resource_t7625"), SubResource("Resource_cwcew"), SubResource("Resource_w44k4"), SubResource("Resource_vt33b")])
 
-[node name="RegularSlope02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="RegularSlopeLarge01" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -2928,24 +3119,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_5ik7l")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope02"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge01"]
 script = ExtResource("7_f0stj")
 type = 7
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79165" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope02"]
+[node name="@CenterContainer@38970" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge01"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope02/@CenterContainer@79165"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge01/@CenterContainer@38970"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("16_pmc7a")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RegularSlope04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="RegularSlopeLarge02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -3016,25 +3207,25 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_0v0om")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope04"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge02"]
 script = ExtResource("7_f0stj")
 type = 7
 id = 1
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79167" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope04"]
+[node name="@CenterContainer@38972" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge02"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlope04/@CenterContainer@79167"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/RegularSlopeLarge02/@CenterContainer@38972"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("38_wkjme")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="OutlineSlopeLarge01" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -3105,25 +3296,25 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_33w7i")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope02"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge01"]
 script = ExtResource("7_f0stj")
 type = 7
 id = 2
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79169" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope02"]
+[node name="@CenterContainer@38974" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge01"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope02/@CenterContainer@79169"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge01/@CenterContainer@38974"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("19_p2ypn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="OutlineSlopeLarge02" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -3194,25 +3385,114 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_t7625")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope04"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge02"]
 script = ExtResource("7_f0stj")
 type = 7
 id = 3
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79171" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope04"]
+[node name="@CenterContainer@38976" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge02"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope04/@CenterContainer@79171"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge02/@CenterContainer@38976"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("20_hgbal")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope03" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="FillSlopeLarge01" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_cwcew")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/FillSlopeLarge01"]
+script = ExtResource("7_f0stj")
+type = 7
+id = 4
+object = ExtResource("16_lojhq")
+
+[node name="@CenterContainer@38978" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/FillSlopeLarge01"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/FillSlopeLarge01/@CenterContainer@38978"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("49_knigi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OutlineSlopeLarge03" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -3283,18 +3563,18 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_w44k4")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope03"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge03"]
 script = ExtResource("7_f0stj")
 type = 7
-id = 4
+id = 5
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79173" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope03"]
+[node name="@CenterContainer@38980" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge03"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope03/@CenterContainer@79173"]
+[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge03/@CenterContainer@38980"]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3302,14 +3582,14 @@ texture = ExtResource("49_knigi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope03/@CenterContainer@79173"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge03/@CenterContainer@38980"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("19_p2ypn")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineSlope05" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
+[node name="OutlineSlopeLarge04" type="BaseButton" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge"]
 _import_path = NodePath("")
 unique_name_in_owner = false
 process_mode = 0
@@ -3380,18 +3660,18 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_vt33b")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope05"]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge04"]
 script = ExtResource("7_f0stj")
 type = 7
-id = 5
+id = 6
 object = ExtResource("16_lojhq")
 
-[node name="@CenterContainer@79175" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope05"]
+[node name="@CenterContainer@38982" type="CenterContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge04"]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope05/@CenterContainer@79175"]
+[node name="Detail" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge04/@CenterContainer@38982"]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -3399,7 +3679,7 @@ texture = ExtResource("49_knigi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlope05/@CenterContainer@79175"]
+[node name="Base" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Slopes/MarginContainer/SmoothScrollContainer/ButtonContainer/SlopeLarge/OutlineSlopeLarge04/@CenterContainer@38982"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("20_hgbal")
@@ -3594,6 +3874,7 @@ type = 3
 object = ExtResource("65_ukctk")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -5832,7 +6113,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Strength" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer"]
+[node name="Intensity" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -5930,12 +6211,12 @@ base = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/Mar
 detail = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color")
 hsv_shift = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation")
 
-[node name="HSVHandler" type="Node" parent="." node_paths=PackedStringArray("hue", "saturation", "value", "strength", "alpha", "editor_viewport")]
+[node name="HSVHandler" type="Node" parent="." node_paths=PackedStringArray("hue", "saturation", "value", "intensity", "alpha", "editor_viewport")]
 script = ExtResource("73_s77jp")
 hue = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Hue")
 saturation = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation")
 value = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Value")
-strength = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Strength")
+intensity = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity")
 alpha = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha")
 editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 
@@ -6078,7 +6359,7 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation" to="HSVHandler" method="_on_saturation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Strength" to="HSVHandler" method="_on_strength_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity" to="HSVHandler" method="_on_intensity_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
 [connection signal="rotated_object_degrees" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_rotated_object_degrees"]
 [connection signal="selection_changed" from="EditHandler" to="TriggerGroupBoundingBox" method="_on_edit_handler_selection_changed"]
