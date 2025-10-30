@@ -7,6 +7,7 @@ static var BOOL_ATTRIBUTES: Array[Script] = [
 
 static var FLAG_ATTRIBUTES: Dictionary[String, Array] = {
 	"Hide": [HideSpriteAttribute, HideBaseAttribute, HideDetailAttribute, HideParticlesAttribute],
+	"MusicScale": [MusicScaleSpriteAttribute, MusicScaleBaseAttribute, MusicScaleDetailAttribute, MusicScaleParticlesAttribute, MusicScaleHitboxAttribute]
 }
 
 var bool_properties: Dictionary[Script, BoolProperty]
