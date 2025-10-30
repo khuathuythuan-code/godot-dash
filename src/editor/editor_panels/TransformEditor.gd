@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 
 	var scales: Array[Vector2]
 	current_selection.map(func(object): scales.append(object.scale))
-	same_scale = true # always 1 when not all the same
+	same_scale = true
 	var first_value = scales[0]
 	@warning_ignore("shadowed_variable_base_class")
 	for scale in scales:
@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 
 	var rotations: Array[float]
 	current_selection.map(func(object): rotations.append(object.rotation_degrees))
-	same_rotation = true # always 0 when not all the same
+	same_rotation = true
 	first_value = rotations[0]
 	@warning_ignore("shadowed_variable_base_class")
 	for rotation in rotations:
@@ -123,6 +123,15 @@ func _on_rotation_value_changed(value: float) -> void:
 	Editor.root.level.version_history.commit_action()
 
 
-func _set_z_index(value: float):
-	value = int(value) 
-	current_selection.map(func(object): object.z_index = value)
+func _set_z_index(_value: float):
+	var value: int = int(_value)
+	var move_object := func(_object: Node2D):
+		_object.z_index = value
+	var unmove_object := func(_object: Node2D, last_z_index):
+		_object.z_index = last_z_index
+	
+	Editor.root.level.version_history.create_action("Changed object z index to " + str(value))
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(move_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object, object.z_index))
+	Editor.root.level.version_history.commit_action()
