@@ -404,9 +404,8 @@ func _on_scale_pressed(quick: bool = false) -> void:
 		pivot_relative_transforms[collision_object] = pivot_relative_transform
 
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
-	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
-	var bounding_box_transform: Transform2D = Transform2D.IDENTITY.scaled(selection_bounding_box.size/2)
-	gizmo = ScaleGizmo.new(bounding_box_transform)
+	var selection_bounding_box: Transform2D = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
+	gizmo = ScaleGizmo.new(selection_bounding_box)
 	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
 		get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
