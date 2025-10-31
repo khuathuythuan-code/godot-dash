@@ -73,8 +73,8 @@ func _process(_delta: float) -> void:
 
 
 func _on_scale_value_changed(value: Vector2) -> void:
-	var scale_object
-	var unscale_object
+	var scale_object: Callable
+	var unscale_object: Callable
 
 	if selection_size == 1 or same_scale:
 		value -= current_selection[0].scale
