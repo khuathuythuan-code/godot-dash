@@ -10,6 +10,5 @@ func _process(_delta: float) -> void:
 
 
 func _on_size_changed() -> void:
-	nine_patch_sprite.set_deferred(&"global_scale", Vector2.ONE/4)
-	nine_patch_sprite.set_deferred(&"size", abs(parent.global_scale) * 512)
-
+	nine_patch_sprite.global_scale = Vector2.ONE/4
+	nine_patch_sprite.size = abs(parent.global_scale) * 512
