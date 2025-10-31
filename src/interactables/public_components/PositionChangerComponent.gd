@@ -76,14 +76,17 @@ func start(_player: Player) -> void:
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float, group_objects: Array[Node2D]) -> void:
-	for group_object in group_objects:
-		var initial_global_position = initial_global_positions[group_object]
-		match mode:
-			Mode.ADD:
+	match mode:
+		Mode.ADD:
+			for group_object in group_objects:
 				group_object.global_position += position * CELLS_TO_PX * weight_delta
-			Mode.SET:
+		Mode.SET:
+			for group_object in group_objects:
+				var initial_global_position = initial_global_positions[group_object]
 				group_object.global_position += (parent.to_global(position * CELLS_TO_PX) - initial_global_position) * weight_delta
-			Mode.MOVE_TOWARDS when move_towards != null:
+		Mode.MOVE_TOWARDS when move_towards != null:
+			for group_object in group_objects:
+				var initial_global_position = initial_global_positions[group_object]
 				var initial_distance := initial_distances[group_object]
 				# FIXME: doesn't work when `move_towards` is moving
 				group_object.global_position += (move_towards.global_position - initial_global_position
