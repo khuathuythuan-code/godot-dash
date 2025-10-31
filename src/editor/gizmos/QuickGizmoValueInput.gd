@@ -2,10 +2,13 @@ extends Node
 class_name QuickGizmoValueInput
 
 signal value_changed(value: float)
+signal axis_constraint_changed(axis_constraint: AxisConstraint)
 
 enum AxisConstraint {
 	NONE,
+	GLOBAL_X,
 	LOCAL_X,
+	GLOBAL_Y,
 	LOCAL_Y,
 	DISABLED,
 }
@@ -27,9 +30,12 @@ var displayed_gizmo_unit: String
 ## The Label that will display the gizmo action and the expression. Required.
 var keychord_display: Label
 var axis_constraint: AxisConstraint:
-	set(value):
+	set(new_axis_constraint):
 		previous_axis_constraint = axis_constraint
-		axis_constraint = value
+		axis_constraint = new_axis_constraint
+		axis_constraint_changed.emit(new_axis_constraint)
+		if is_finite(value):
+			value_changed.emit(value)
 var previous_axis_constraint: AxisConstraint
 
 var _expression: String:
@@ -112,6 +118,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_X:
 				match axis_constraint:
 					AxisConstraint.NONE:
+						axis_constraint = AxisConstraint.GLOBAL_X
+					AxisConstraint.GLOBAL_X:
 						axis_constraint = AxisConstraint.LOCAL_X
 					AxisConstraint.LOCAL_X:
 						axis_constraint = AxisConstraint.NONE
@@ -119,6 +127,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_Y:
 				match axis_constraint:
 					AxisConstraint.NONE:
+						axis_constraint = AxisConstraint.GLOBAL_Y
+					AxisConstraint.GLOBAL_Y:
 						axis_constraint = AxisConstraint.LOCAL_Y
 					AxisConstraint.LOCAL_Y:
 						axis_constraint = AxisConstraint.NONE
@@ -131,8 +141,12 @@ func update_keychord_display(new_expression: String) -> void:
 	keychord_display.visible = not new_expression.is_empty()
 	keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 	match axis_constraint:
+		AxisConstraint.GLOBAL_X:
+			keychord_display.text += " along global X"
 		AxisConstraint.LOCAL_X:
 			keychord_display.text += " along local X"
+		AxisConstraint.GLOBAL_Y:
+			keychord_display.text += " along global Y"
 		AxisConstraint.LOCAL_Y:
 			keychord_display.text += " along local Y"
 
@@ -141,8 +155,12 @@ func has_value() -> bool:
 	return not _expression.is_empty()
 
 
-func get_axis_constraints() -> AxisConstraint:
+func get_axis_constraint() -> AxisConstraint:
 	return axis_constraint
+
+
+func is_global_axis() -> bool:
+	return axis_constraint == AxisConstraint.GLOBAL_X or axis_constraint == AxisConstraint.GLOBAL_Y
 
 
 func _make_expression_evaluate_to_float(expression: String) -> String:

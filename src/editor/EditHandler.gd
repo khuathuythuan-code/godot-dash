@@ -273,8 +273,10 @@ func remove_gizmo(_selection = null) -> void:
 	if not gizmo:
 		return
 	gizmo.remove_gizmo()
-	selection_changed.disconnect(remove_gizmo)
-	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	if selection_changed.is_connected(remove_gizmo):
+		selection_changed.disconnect(remove_gizmo)
+	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
+		get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	gizmo = null
 
 
@@ -397,13 +399,16 @@ func _on_scale_pressed(quick: bool = false) -> void:
 
 	var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 	for collision_object in selection_collision_objects:
-		pivot_relative_transforms[collision_object] = collision_object.global_transform
-		pivot_relative_transforms[collision_object].origin -= selection_pivot
+		var pivot_relative_transform: Transform2D = collision_object.global_transform
+		pivot_relative_transform.origin -= selection_pivot
+		pivot_relative_transforms[collision_object] = pivot_relative_transform
 
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
 	var selection_bounding_box: Rect2 = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
-	gizmo = ScaleGizmo.new(selection_bounding_box.size)
-	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	var bounding_box_transform: Transform2D = Transform2D.IDENTITY.scaled(selection_bounding_box.size/2)
+	gizmo = ScaleGizmo.new(bounding_box_transform)
+	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
+		get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
 		gizmo.quick(keychord_display, "Scaling", "×", false)
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
@@ -411,7 +416,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
 	gizmo.scale_changed.connect(_scale_selection.bind(pivot_relative_transforms))
-	selection_changed.connect(remove_gizmo)
+	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
 func _rotate_selection(angle: float) -> void:
@@ -426,26 +431,44 @@ func _rotate_selection(angle: float) -> void:
 
 
 func _scale_selection(
-			position_delta: Vector2,
-			total_scale: Vector2,
+			position: Vector2,
+			transform: Transform2D,
 			rotation: float,
+			is_global: bool,
 			pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 		) -> void:
 	if selection.is_empty():
 		return
-	selection_pivot += position_delta
-	selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, selection_pivot, total_scale, rotation))
+	selection_pivot = position
+	if is_global:
+		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+	else:
+		selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 
 
 static func scale_transform(
 			object: Node2D,
 			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
 			pivot: Vector2,
-			scale: Vector2,
-			rotation: float
+			transform: Transform2D,
 		):
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
-	object.global_transform = pivot_relative_transform.rotated(-rotation).scaled(scale).rotated(rotation).translated(pivot)
+	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
+
+
+static func scale_transform_local(
+			object: Node2D,
+			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot: Vector2,
+			transform: Transform2D,
+			rotation: float,
+		):
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
+	object.global_transform = (
+		(transform * pivot_relative_transform.rotated(-rotation))
+		.rotated(rotation)
+		.translated(pivot)
+	)
 
 
 static func add_selection_highlight(object: Node2D) -> void:
