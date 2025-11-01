@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 				var move_multiplier := 1.0
 				if Input.is_key_pressed(KEY_SHIFT):
 					move_multiplier = 0.5
-				selection.map(func(object): object.global_position += move_vector * LevelManager.CELL_SIZE * move_multiplier)
+				move_objects(move_vector * move_multiplier)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
 				_update_pivot()
@@ -122,6 +122,18 @@ func _physics_process(delta: float) -> void:
 			selection.map(add_selection_highlight)
 			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped
+
+
+func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
+	var move_object := func(_object):
+		_object.global_position += distance * LevelManager.CELL_SIZE
+	var unmove_object := func(_object):
+		_object.global_position -= distance * LevelManager.CELL_SIZE
+	level.version_history.create_action("Moved objects " + str(distance))
+	for object in objects:
+		level.version_history.add_do_method(move_object.bind(object))
+		level.version_history.add_undo_method(unmove_object.bind(object))
+	level.version_history.commit_action()
 
 
 func increase_z_index(objects: Array[Node2D]):
