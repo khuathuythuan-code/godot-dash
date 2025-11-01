@@ -89,21 +89,6 @@ static func flatten(val: Variant) -> Variant:
 	return val != null
 
 
-static func bounding_box(collision_objects: Array[CollisionObject2D], center: Vector2, rotation: float) -> Rect2:
-	var collision_shapes: Array[CollisionShape2D]
-	for collision_object in collision_objects:
-		for shape_owner: int in collision_object.get_shape_owners():
-			collision_shapes.append(collision_object.shape_owner_get_owner(shape_owner))
-	var extents: Rect2
-	for collision_shape: CollisionShape2D in collision_shapes:
-		var shape_rect: Rect2 = collision_shape.shape.get_rect()
-		shape_rect.position *= collision_shape.global_scale
-		shape_rect.size *= collision_shape.global_scale
-		shape_rect.position += (collision_shape.global_position - center).rotated(-rotation)
-		extents = extents.merge(shape_rect)
-	return extents
-
-
 static func _median_float(array: Array) -> float:
 	array.sort()
 	if len(array) % 2 == 1:

@@ -50,7 +50,7 @@ func update_bounding_boxes(selection: Array[Node2D]) -> void:
 			if objects_in_group.is_empty():
 				continue
 			var objects_center: Vector2 = ArrayUtils.transform(objects_in_group.map(func(group_object: Node2D): return group_object.global_position), ArrayUtils.Transformation.MEAN, true)
-			bounding_boxes[interactable] = GroupBoundingBox.new(ArrayUtils.bounding_box(objects_in_group, objects_center, 0.0).grow(64.0), objects_center)
+			bounding_boxes[interactable] = GroupBoundingBox.new(BoundingBox.new(objects_in_group, objects_center, 0.0).as_rect().grow(64.0), objects_center)
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:

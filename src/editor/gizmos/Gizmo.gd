@@ -34,6 +34,10 @@ func get_gizmo_local_mouse_position() -> Vector2:
 	return (get_global_mouse_position() - global_position).rotated(-rotation)
 
 
+func has_quick_value() -> bool:
+	return quick_gizmo_value_input and quick_gizmo_value_input.has_value()
+
+
 @abstract func remove_gizmo(reset: bool = false) -> void
 
 @abstract func is_enabled() -> bool
