@@ -159,12 +159,6 @@ func decrease_z_index(objects: Array[Node2D]):
 	if warns > 0:
 		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
 
-#func decrease_z_index(object: Node):
-	#if object.z_index > -100:
-		#object.z_index -= 1
-		#return
-	#Toasts.warning("Minimum z-index is -100")
-
 
 func _update_selection() -> void:
 	if get_viewport().gui_get_hovered_control() == editor_viewport and Input.is_action_just_pressed(&"editor_add", false):
