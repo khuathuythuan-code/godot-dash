@@ -141,8 +141,7 @@ func _update_selection() -> void:
 	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
-			for object in selection:
-				remove_selection_highlight(object)
+			selection.map(remove_selection_highlight)
 			selection.clear()
 			selection_index += 1
 			selection_changed.emit(selection)

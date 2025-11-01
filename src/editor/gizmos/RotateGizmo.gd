@@ -174,7 +174,9 @@ func is_enabled() -> bool:
 
 
 func any_handle_hovered() -> bool:
-	return handle_hovered
+	var snap_interval_hovered: bool = snap_interval_input.input.get_global_rect().has_point(get_global_mouse_position())
+	var angle_hovered: bool = angle_input.get_global_rect().has_point(get_global_mouse_position())
+	return handle_hovered or snap_interval_hovered or angle_hovered
 
 
 func force_inputs_focus() -> void:
