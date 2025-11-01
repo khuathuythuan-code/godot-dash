@@ -149,6 +149,8 @@ func update_keychord_display(new_expression: String) -> void:
 			keychord_display.text += " along global Y"
 		AxisConstraint.LOCAL_Y:
 			keychord_display.text += " along local Y"
+	# FIX: the text it too close to the edge of the screen when the inspector is hidden
+	keychord_display.text += " "
 
 
 func has_value() -> bool:

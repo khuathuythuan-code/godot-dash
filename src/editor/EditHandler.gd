@@ -11,7 +11,6 @@ enum TransformPivot {
 	INDIVIDUAL_ORIGINS,
 }
 
-@export var editor_viewport: Control
 @export var gizmo_layer: CanvasLayer
 @export var keychord_display: Label
 @export var transform_pivot_button: OptionButton
@@ -49,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		select_all()
 
 	var gizmo_in_use: bool = gizmo and (gizmo.is_enabled() or gizmo.any_handle_hovered())
-	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == editor_viewport:
+	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == Editor.viewport:
 		if editor_mode.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or gizmo == null):
 			_update_selection()
 		var can_use_actions: bool = (
@@ -173,11 +172,10 @@ func decrease_z_index(objects: Array[Node2D]):
 
 
 func _update_selection() -> void:
-	if get_viewport().gui_get_hovered_control() == editor_viewport and Input.is_action_just_pressed(&"editor_add", false):
+	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
-			for object in selection:
-				remove_selection_highlight(object)
+			selection.map(remove_selection_highlight)
 			selection.clear()
 			selection_index += 1
 			selection_changed.emit(selection)
@@ -401,11 +399,6 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
 	_update_pivot()
-	if gizmo != null and gizmo is RotateGizmo:
-		gizmo.remove_gizmo()
-		return
-	if gizmo != null:
-		gizmo.queue_free()
 	gizmo = RotateGizmo.new()
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
@@ -419,9 +412,6 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 
 func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
-		return
-	if gizmo != null and gizmo is ScaleGizmo:
-		gizmo.remove_gizmo()
 		return
 	_update_pivot()
 	if gizmo != null:
