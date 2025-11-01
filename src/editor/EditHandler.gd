@@ -390,9 +390,9 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	)
 
 	var first_object_rotation: float = selection[0].global_rotation
-	var mean_objects_rotation: float
-	var same_rotation := func(object: CollisionObject2D, rotation: float): return is_zero_approx(fposmod(object.global_rotation - rotation, PI/2))
-	mean_objects_rotation = first_object_rotation if selection_collision_objects.all(same_rotation.bind(first_object_rotation)) else 0.0
+	var mean_objects_rotation: float = first_object_rotation
+	#var same_rotation := func(object: CollisionObject2D, rotation: float): return is_zero_approx(fposmod(object.global_rotation - rotation, PI/2))
+	#mean_objects_rotation = first_object_rotation if selection_collision_objects.all(same_rotation.bind(first_object_rotation)) else 0.0
 	var gizmo_center: Vector2 = ArrayUtils.transform(
 			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 			ArrayUtils.Transformation.MEAN,
