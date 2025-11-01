@@ -293,16 +293,17 @@ func remove_gizmo(reset: bool = false) -> void:
 func set_cursor_shape(active_handle: Handle) -> void:
 	if not active_handle:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
+		Editor.viewport.remove_cursor_shape_override()
 		return
 	match active_handle.axis:
 		Vector2.LEFT, Vector2.RIGHT:
-			mouse_default_cursor_shape = Control.CURSOR_HSIZE
+			Editor.viewport.override_cursor_shape(Control.CURSOR_HSIZE)
 		Vector2.UP, Vector2.DOWN:
-			mouse_default_cursor_shape = Control.CURSOR_VSIZE
+			Editor.viewport.override_cursor_shape(Control.CURSOR_VSIZE)
 		(Vector2.UP + Vector2.LEFT), (Vector2.DOWN + Vector2.RIGHT):
-			mouse_default_cursor_shape = Control.CURSOR_FDIAGSIZE
+			Editor.viewport.override_cursor_shape(Control.CURSOR_FDIAGSIZE)
 		(Vector2.UP + Vector2.RIGHT), (Vector2.DOWN + Vector2.LEFT):
-			mouse_default_cursor_shape = Control.CURSOR_BDIAGSIZE
+			Editor.viewport.override_cursor_shape(Control.CURSOR_BDIAGSIZE)
 
 
 func is_enabled() -> bool:

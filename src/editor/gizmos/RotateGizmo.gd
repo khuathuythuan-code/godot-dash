@@ -73,6 +73,7 @@ func _process(_delta: float) -> void:
 			state = State.ENABLED
 		if state == State.FORCED:
 			state = State.DISABLED
+	force_inputs_focus()
 	if state == State.FORCED:
 		snap_interval_input.set_value_no_signal(45.0 if Input.is_key_pressed(KEY_CTRL) else 0.001)
 	if state and not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
@@ -174,6 +175,26 @@ func is_enabled() -> bool:
 
 func any_handle_hovered() -> bool:
 	return handle_hovered
+
+
+func force_inputs_focus() -> void:
+	var snap_interval_hovered: bool = snap_interval_input.input.get_global_rect().has_point(get_global_mouse_position())
+	var angle_hovered: bool = angle_input.get_global_rect().has_point(get_global_mouse_position())
+	if state != State.DISABLED:
+		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_CAN_DROP)
+	elif handle_hovered:
+		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_DRAG)
+	elif snap_interval_hovered or angle_hovered:
+		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_IBEAM)
+	else:
+		Editor.viewport.remove_cursor_shape_override()
+	if Input.is_action_just_pressed(&"editor_focus_input"):
+		if snap_interval_hovered:
+			snap_interval_input.input.grab_click_focus()
+			snap_interval_input.input.get_line_edit().select_all()
+		if angle_hovered:
+			angle_input.grab_click_focus()
+			angle_input.get_line_edit().select_all()
 
 
 func _on_angle_input_value_changed(degrees: float) -> void:

@@ -28,6 +28,7 @@ var editor_actions: int
 func _ready() -> void:
 	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
 	Editor.root = self
+	Editor.viewport = %EditorViewport
 	if SceneTransition.from_main():
 		SceneTransition.previous = SceneTransition.Scene.EDITOR
 		var _fade_screen = $FadeScreenLayer/FadeScreen
@@ -68,7 +69,7 @@ func _ready() -> void:
 		LevelManager.game_scene.add_loaded_level(level)
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()

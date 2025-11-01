@@ -9,6 +9,7 @@ var snapshot := PackedScene.new()
 var level_data_snapshot: Dictionary
 var level_file_name: String
 var shortcut_blocker: Node
+var viewport: EditorViewport
 
 # MOBILE CONTROLS
 var swipe: bool = false

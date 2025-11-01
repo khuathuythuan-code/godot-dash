@@ -1,4 +1,4 @@
-[gd_scene load_steps=299 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=300 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://bq33ebf402ci7" path="res://assets/textures/guis/editor/block_palette/Triggers.svg" id="7_m16em"]
 [ext_resource type="Script" uid="uid://demkbf7ghqc82" path="res://src/editor/menu_bar/MenuBarHelp.gd" id="8_dl3g1"]
 [ext_resource type="Script" uid="uid://dwe55gg8wscaq" path="res://src/editor/menu_bar/Actions.gd" id="8_pfb6b"]
+[ext_resource type="Script" uid="uid://cojib1y45txgj" path="res://src/editor/EditorViewport.gd" id="11_cwcew"]
 [ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/spike/normal/RegularSpikeNormal.svg" id="11_xeik2"]
 [ext_resource type="PackedScene" uid="uid://calhypvupvj4m" path="res://scenes/components/level_components/hazards/Spike.tscn" id="12_18txt"]
 [ext_resource type="Script" uid="uid://co2f1y4xv7viv" path="res://src/resources/TextureOverride.gd" id="12_egrfm"]
@@ -533,6 +534,10 @@ metadata/_custom_type_script = "uid://bmcfx1nuxqejh"
 
 [node name="GameScene" parent="." instance=ExtResource("1_ql4al")]
 
+[node name="Gizmos" type="CanvasLayer" parent="."]
+layer = 89
+follow_viewport_enabled = true
+
 [node name="EditorUI" type="CanvasLayer" parent="."]
 layer = 90
 
@@ -697,6 +702,7 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 1
 mouse_filter = 1
+script = ExtResource("11_cwcew")
 
 [node name="Playtest" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport"]
 custom_minimum_size = Vector2(128, 128)
@@ -6140,10 +6146,6 @@ visible = false
 theme = null
 metadata/_edit_lock_ = true
 
-[node name="Gizmos" type="CanvasLayer" parent="."]
-layer = 91
-follow_viewport_enabled = true
-
 [node name="EditorCamera" type="Camera2D" parent="." node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
 position = Vector2(640, 256)
@@ -6176,9 +6178,8 @@ game_scene = NodePath("../GameScene")
 editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 edit_handler = NodePath("../EditHandler")
 
-[node name="EditHandler" type="Node" parent="." node_paths=PackedStringArray("editor_viewport", "gizmo_layer", "keychord_display", "transform_pivot_button")]
+[node name="EditHandler" type="Node" parent="." node_paths=PackedStringArray("gizmo_layer", "keychord_display", "transform_pivot_button")]
 script = ExtResource("34_7dx3o")
-editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 gizmo_layer = NodePath("../Gizmos")
 keychord_display = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/KeychordDisplay")
 transform_pivot_button = NodePath("../EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/CenterContainer/TransformPivot")
