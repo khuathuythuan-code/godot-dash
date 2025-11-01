@@ -36,7 +36,7 @@ func _process(_delta: float) -> void:
 
 	var scales: Array[Vector2]
 	current_selection.map(func(object): scales.append(object.scale))
-	same_scale = true # always 1 when not all the same
+	same_scale = true
 	var first_value = scales[0]
 	@warning_ignore("shadowed_variable_base_class")
 	for scale in scales:
@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 
 	var rotations: Array[float]
 	current_selection.map(func(object): rotations.append(object.rotation_degrees))
-	same_rotation = true # always 0 when not all the same
+	same_rotation = true
 	first_value = rotations[0]
 	@warning_ignore("shadowed_variable_base_class")
 	for rotation in rotations:
@@ -73,25 +73,65 @@ func _process(_delta: float) -> void:
 
 
 func _on_scale_value_changed(value: Vector2) -> void:
+	var scale_object: Callable
+	var unscale_object: Callable
+
 	if selection_size == 1 or same_scale:
-		current_selection.map(func(object): object.scale = value)
-		if selection_size == 1:
-			return
+		value -= current_selection[0].scale
+		scale_object = func(_object: Node2D):
+			_object.scale += value
+		unscale_object = func(_object: Node2D):
+			_object.scale -= value
 	else:
-		current_selection.map(func(object): object.scale *= value)
+		scale_object = func(_object: Node2D):
+			_object.scale *= value
+		unscale_object = func(_object: Node2D):
+			_object.scale /= value
+	Editor.root.level.version_history.create_action("Scaled object " + str(value))
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(scale_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unscale_object.bind(object))
+	Editor.root.level.version_history.commit_action()
 
 
-func _on_position_value_changed(value: Vector2) -> void:
-	value = Vector2(value.x * LevelManager.CELL_SIZE, (-value.y - 0.5) * LevelManager.CELL_SIZE)
-	current_selection.map(func(object): object.position += value - average_position)
+func _on_position_value_changed(_value: Vector2) -> void:
+	var value = Vector2(_value.x * LevelManager.CELL_SIZE, (-_value.y - 0.5) * LevelManager.CELL_SIZE) - average_position
+	var move_object := func(_object: Node2D):
+		_object.position += value
+	var unmove_object := func(_object: Node2D):
+		_object.position -= value
 
+	Editor.root.level.version_history.create_action("Moved object " + str(_value) + " units")
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(move_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object))
+	Editor.root.level.version_history.commit_action()
 
 func _on_rotation_value_changed(value: float) -> void:
 	if selection_size == 1 or same_rotation:
-		current_selection.map(func(object): object.rotation_degrees = value)
-		return
-	current_selection.map(func(object): object.rotation_degrees += value)
+		value -= current_selection[0].rotation_degrees
 
-func _set_z_index(value: float):
-	value = int(value)
-	current_selection.map(func(object): object.z_index = value)
+	var rotate_object := func(_object: Node2D):
+		_object.rotation_degrees += value
+	var unrotate_object := func(_object: Node2D):
+		_object.rotation_degrees -= value
+
+	Editor.root.level.version_history.create_action("Rotated object " + str(value) + "°")
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(rotate_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unrotate_object.bind(object))
+	Editor.root.level.version_history.commit_action()
+
+
+func _set_z_index(_value: float):
+	var value: int = int(_value)
+	var move_object := func(_object: Node2D):
+		_object.z_index = value
+	var unmove_object := func(_object: Node2D, last_z_index):
+		_object.z_index = last_z_index
+	
+	Editor.root.level.version_history.create_action("Changed object z index to " + str(value))
+	for object in current_selection:
+		Editor.root.level.version_history.add_do_method(move_object.bind(object))
+		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object, object.z_index))
+	Editor.root.level.version_history.commit_action()
