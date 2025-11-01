@@ -280,11 +280,17 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	selection.map(NodeUtils.free_node)
-	selection.clear()
-	rotated_object_degrees.emit(0.0) # Reset
-	_reset_selection_zone()
-	selection_changed.emit(selection)
+	var delete_object := func(_object):
+		_object.get_parent().remove_child(_object)
+	var restore_object := func(_object):
+		level.add_child(_object, true)
+		NodeUtils.change_owner_recursive(_object, level)
+	level.version_history.create_action("Deleted objects")
+	for object in selection:
+		level.version_history.add_do_method(delete_object.bind(object))
+		level.version_history.add_undo_method(restore_object.bind(object))
+	level.version_history.add_do_method(clear_selection)
+	level.version_history.commit_action()
 
 
 func clear_selection() -> void:
