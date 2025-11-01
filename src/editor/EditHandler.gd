@@ -486,14 +486,6 @@ func _rotate_selection(angle: float) -> void:
 			level.version_history.add_do_method(pivot.bind(object, selection_pivot))
 			level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
 	level.version_history.commit_action()
-	
-	
-	#for object in selection:
-		#object.global_rotation_degrees += angle
-		#if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-			#var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-			#var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-			#object.global_position += position_delta
 
 
 func _scale_selection(
