@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 				increase_z_index(selection)
 				object_move_cooldown = 0.0
 			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
-				selection.map(decrease_z_index)
+				decrease_z_index(selection)
 				object_move_cooldown = 0.0
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
@@ -142,11 +142,28 @@ func increase_z_index(objects: Array[Node2D]):
 		Toasts.warning("Maximum z-index is 4096 (x" + str(warns) + ")")
 
 
-func decrease_z_index(object: Node):
-	if object.z_index > -100:
-		object.z_index -= 1
-		return
-	Toasts.warning("Minimum z-index is -100")
+func decrease_z_index(objects: Array[Node2D]):
+	var increase_object_z_index := func(_object):
+		_object.z_index += 1
+	var decrease_object_z_index := func(_object):
+		_object.z_index -= 1
+	level.version_history.create_action("Decreased Z Index")
+	var warns: int = 0
+	for object in objects:
+		if object.z_index <= -100:
+			warns += 1
+		else:
+			level.version_history.add_do_method(decrease_object_z_index.bind(object))
+			level.version_history.add_undo_method(increase_object_z_index.bind(object))
+	level.version_history.commit_action()
+	if warns > 0:
+		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
+
+#func decrease_z_index(object: Node):
+	#if object.z_index > -100:
+		#object.z_index -= 1
+		#return
+	#Toasts.warning("Minimum z-index is -100")
 
 
 func _update_selection() -> void:
