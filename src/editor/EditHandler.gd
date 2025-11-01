@@ -340,17 +340,26 @@ func _update_pivot() -> void:
 func _flip_selection(axis: int):
 	if selection.is_empty():
 		return
+	var flip: Callable
+	var unflip := func(_object, _scale, _position):
+		_object.scale = _scale
+		_object.global_position = _position
 	match axis:
 		Vector2.AXIS_X:
-			for object in selection:
-				object.scale.x *= -1
-				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
+			flip = func(_object):
+				_object.scale.x *= -1
+				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
+				_object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
 		Vector2.AXIS_Y:
-			for object in selection:
-				object.scale.y *= -1
-				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
+			flip = func(_object):
+				_object.scale.y *= -1
+				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
+				_object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
+	level.version_history.create_action("Flipped objects")
+	for object in selection:
+		level.version_history.add_do_method(flip.bind(object))
+		level.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
+	level.version_history.commit_action()
 
 
 func _on_place_handler_object_deleted(object:Node) -> void:
