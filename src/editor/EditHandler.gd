@@ -389,7 +389,10 @@ func _on_scale_pressed(quick: bool = false) -> void:
 			.filter(func(object: Node2D): return object is CollisionObject2D)
 	)
 
-	var mean_objects_rotation: float = selection[0].global_rotation
+	var first_object_rotation: float = selection[0].global_rotation
+	var mean_objects_rotation: float
+	var same_rotation := func(object: CollisionObject2D, rotation: float): return is_zero_approx(fposmod(object.global_rotation - rotation, PI/2))
+	mean_objects_rotation = first_object_rotation if selection_collision_objects.all(same_rotation.bind(first_object_rotation)) else 0.0
 	var gizmo_center: Vector2 = ArrayUtils.transform(
 			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 			ArrayUtils.Transformation.MEAN,
@@ -404,7 +407,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 		pivot_relative_transforms[collision_object] = pivot_relative_transform
 
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
-	var selection_bounding_box: Transform2D = ArrayUtils.bounding_box(selection_collision_objects, selection_pivot, mean_objects_rotation)
+	var selection_bounding_box: Transform2D = BoundingBox.new(selection_collision_objects, selection_pivot, mean_objects_rotation).as_transform()
 	gizmo = ScaleGizmo.new(selection_bounding_box)
 	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
 		get_viewport().gui_focus_changed.disconnect(remove_gizmo)
