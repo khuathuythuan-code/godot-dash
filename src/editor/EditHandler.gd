@@ -109,7 +109,7 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
-				selection.map(increase_z_index)
+				increase_z_index(selection)
 				object_move_cooldown = 0.0
 			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
 				selection.map(decrease_z_index)
@@ -124,11 +124,22 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func increase_z_index(object: Node):
-	if object.z_index < 4096:
-		object.z_index += 1
-		return
-	Toasts.warning("Maximum z-index is 4096")
+func increase_z_index(objects: Array[Node2D]):
+	var increase_object_z_index := func(_object):
+		_object.z_index += 1
+	var decrease_object_z_index := func(_object):
+		_object.z_index -= 1
+	level.version_history.create_action("Increased Z Index")
+	var warns: int = 0
+	for object in objects:
+		if object.z_index >= 4096:
+			warns += 1
+		else:
+			level.version_history.add_do_method(increase_object_z_index.bind(object))
+			level.version_history.add_undo_method(decrease_object_z_index.bind(object))
+	level.version_history.commit_action()
+	if warns > 0:
+		Toasts.warning("Maximum z-index is 4096 (x" + str(warns) + ")")
 
 
 func decrease_z_index(object: Node):
