@@ -98,8 +98,7 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 
 
 func level_was_modified() -> bool:
-	# TODO: Create action history using UndoRedo
-	return level.get_child_count() > 1
+	return level.version_history.get_history_count() > 0
 
 
 func any_dialog_is_open() -> bool:
