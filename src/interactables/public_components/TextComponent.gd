@@ -14,11 +14,13 @@ const DEFAULT_TEXT_SETTINGS: TextSettings = preload("res://resources/DefaultText
 		horizontal_alignment = value
 		if _label:
 			_label.horizontal_alignment = value
+			update_label_size.call_deferred()
 @export var vertical_alignment: VerticalAlignment:
 	set(value):
 		vertical_alignment = value
 		if _label:
 			_label.vertical_alignment = value
+			update_label_size.call_deferred()
 @export var settings: TextSettings:
 	set(value):
 		settings = value if value else DEFAULT_TEXT_SETTINGS
@@ -34,7 +36,20 @@ func update_label_size() -> void:
 	if not _label:
 		return
 	_label.size = _label.get_minimum_size()
-	_label.position = -_label.size / 2.0
+	match horizontal_alignment:
+		HORIZONTAL_ALIGNMENT_LEFT:
+			_label.position.x = 0.0
+		HORIZONTAL_ALIGNMENT_CENTER, HORIZONTAL_ALIGNMENT_FILL:
+			_label.position.x = -_label.size.x / 2.0
+		HORIZONTAL_ALIGNMENT_RIGHT:
+			_label.position.x = -_label.size.x
+	match vertical_alignment:
+		VERTICAL_ALIGNMENT_TOP:
+			_label.position.y = 0.0
+		VERTICAL_ALIGNMENT_CENTER, VERTICAL_ALIGNMENT_FILL:
+			_label.position.y = -_label.size.y / 2.0
+		VERTICAL_ALIGNMENT_BOTTOM:
+			_label.position.y = -_label.size.y
 	_selection_collider.scale = _label.size / (Vector2.ONE * LevelManager.CELL_SIZE)
 
 
