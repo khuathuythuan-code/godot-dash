@@ -205,6 +205,7 @@ func _save_level() -> void:
 
 func _on_open_level_dialog_file_selected(path:String) -> void:
 	if editor.level_was_modified():
+		save_changes_before_opening_dialog.dialog_text = "Save changes before opening level?"
 		save_changes_before_opening_dialog.show()
 		save_changes_before_opening_dialog.set_meta("next", _open_level)
 		save_changes_before_opening_dialog.set_meta("next_path", path)
@@ -214,6 +215,7 @@ func _on_open_level_dialog_file_selected(path:String) -> void:
 
 func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 	if editor.level_was_modified():
+		save_changes_before_opening_dialog.dialog_text = "Save changes before opening level?"
 		save_changes_before_opening_dialog.show()
 		save_changes_before_opening_dialog.set_meta("next", _import_level)
 		save_changes_before_opening_dialog.set_meta("next_path", path)
@@ -230,24 +232,25 @@ func _on_save_level_as_dialog_file_selected(path:String) -> void:
 
 func _on_save_changes_before_opening_confirmed() -> void:
 	_save_level()
-	if save_changes_before_opening_dialog.get_meta("next") == _import_level:
-		save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
-	elif save_changes_before_opening_dialog.get_meta("next") != _new_level:
-		save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"))
-	else:
-		save_changes_before_opening_dialog.get_meta("next").call()
+	match save_changes_before_opening_dialog.get_meta("next"):
+		_import_level:
+			save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
+		_open_level:
+			save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"))
+		_:
+			save_changes_before_opening_dialog.get_meta("next").call()
 
 
 func _on_save_changes_before_opening_custom_action(action:StringName) -> void:
-	match action:
-		&"dontsave":
-			if save_changes_before_opening_dialog.get_meta("next") == _import_level:
+	if action == &"dontsave":
+		match save_changes_before_opening_dialog.get_meta("next"):
+			_import_level:
 				save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
-			elif save_changes_before_opening_dialog.get_meta("next") != _new_level:
+			_open_level:
 				save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"))
-			else:
+			_:
 				save_changes_before_opening_dialog.get_meta("next").call()
-			save_changes_before_opening_dialog.hide()
+		save_changes_before_opening_dialog.hide()
 
 
 func _on_export_level_dialog_file_selected(path:String) -> Error:

@@ -81,11 +81,20 @@ func _process(_delta: float) -> void:
 		elif Input.is_action_just_pressed(&"editor_selection_filters_mode"):
 			%EditorModes.current_tab = 2
 
+	get_tree().auto_accept_quit = not level_was_modified()
+
 	if %EditorModes.get_current_tab_control().name == "Place" \
 			and (Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true) \
 			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true)):
 		$PlaceHandler.handle_place(block_palette_button_group, placed_objects_collider, level)
 
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
+		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
+		$SaveChangesBeforeOpening.show()
+		$SaveChangesBeforeOpening.set_meta(&"next", get_tree().quit)
+		
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
@@ -107,6 +116,15 @@ func any_dialog_is_open() -> bool:
 		if dialog.visible:
 			return true
 	return false
+
+
+func _fade_leave(_action: Variant = null) -> void:
+	var _fade_screen = $FadeScreenLayer/FadeScreen
+	_fade_screen.show()
+	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
+			.set_ease(Tween.EASE_IN) \
+			.set_trans(Tween.TRANS_EXPO)
 
 
 func _on_playtest_pressed() -> void:
@@ -150,12 +168,7 @@ func _on_leave_pressed() -> void:
 		$EditHandler.selection.clear()
 		Editor.level_data_snapshot = level.to_data()
 		Editor.snapshot.pack(self)
-	var _fade_screen = $FadeScreenLayer/FadeScreen
-	_fade_screen.show()
-	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
-			.set_ease(Tween.EASE_IN) \
-			.set_trans(Tween.TRANS_EXPO)
+	_fade_leave()
 
 
 func _unhandled_input(event: InputEvent) -> void:
