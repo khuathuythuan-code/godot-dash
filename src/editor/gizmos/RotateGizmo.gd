@@ -161,6 +161,8 @@ func remove_gizmo(reset_angle: bool = false) -> void:
 	tween.tween_property(self, ^"modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	if reset_angle:
 		tween.tween_method(do_reset_angle, handle_position.angle(), 0.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	else:
+		confirmed.emit(rad_to_deg(handle_position.angle()))
 	if quick_gizmo_value_input:
 		quick_gizmo_value_input.keychord_display.text = ""
 	await tween.finished

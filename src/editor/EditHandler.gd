@@ -83,7 +83,7 @@ func _physics_process(delta: float) -> void:
 				var move_multiplier := 1.0
 				if Input.is_key_pressed(KEY_SHIFT):
 					move_multiplier = 0.5
-				selection.map(func(object): object.global_position += move_vector * LevelManager.CELL_SIZE * move_multiplier)
+				move_objects(move_vector * move_multiplier)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
 				_update_pivot()
@@ -108,10 +108,10 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
-				selection.map(increase_z_index)
+				increase_z_index(selection)
 				object_move_cooldown = 0.0
 			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
-				selection.map(decrease_z_index)
+				decrease_z_index(selection)
 				object_move_cooldown = 0.0
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
@@ -123,18 +123,52 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func increase_z_index(object: Node):
-	if object.z_index < 4096:
-		object.z_index += 1
-		return
-	Toasts.warning("Maximum z-index is 4096")
+func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
+	var move_object := func(_object):
+		_object.global_position += distance * LevelManager.CELL_SIZE
+	var unmove_object := func(_object):
+		_object.global_position -= distance * LevelManager.CELL_SIZE
+	level.version_history.create_action("Moved objects " + str(distance))
+	for object in objects:
+		level.version_history.add_do_method(move_object.bind(object))
+		level.version_history.add_undo_method(unmove_object.bind(object))
+	level.version_history.commit_action()
 
 
-func decrease_z_index(object: Node):
-	if object.z_index > -100:
-		object.z_index -= 1
-		return
-	Toasts.warning("Minimum z-index is -100")
+func increase_z_index(objects: Array[Node2D]):
+	var increase_object_z_index := func(_object):
+		_object.z_index += 1
+	var decrease_object_z_index := func(_object):
+		_object.z_index -= 1
+	level.version_history.create_action("Increased Z Index")
+	var warns: int = 0
+	for object in objects:
+		if object.z_index >= 4096:
+			warns += 1
+		else:
+			level.version_history.add_do_method(increase_object_z_index.bind(object))
+			level.version_history.add_undo_method(decrease_object_z_index.bind(object))
+	level.version_history.commit_action()
+	if warns > 0:
+		Toasts.warning("Maximum z-index is 4096 (x" + str(warns) + ")")
+
+
+func decrease_z_index(objects: Array[Node2D]):
+	var increase_object_z_index := func(_object):
+		_object.z_index += 1
+	var decrease_object_z_index := func(_object):
+		_object.z_index -= 1
+	level.version_history.create_action("Decreased Z Index")
+	var warns: int = 0
+	for object in objects:
+		if object.z_index <= -100:
+			warns += 1
+		else:
+			level.version_history.add_do_method(decrease_object_z_index.bind(object))
+			level.version_history.add_undo_method(increase_object_z_index.bind(object))
+	level.version_history.commit_action()
+	if warns > 0:
+		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
 
 
 func _update_selection() -> void:
@@ -244,11 +278,20 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	selection.map(NodeUtils.free_node)
-	selection.clear()
-	rotated_object_degrees.emit(0.0) # Reset
-	_reset_selection_zone()
-	selection_changed.emit(selection)
+	if selection.is_empty():
+		return
+
+	var delete_object := func(_object):
+		_object.get_parent().remove_child(_object)
+	var restore_object := func(_object):
+		level.add_child(_object, true)
+		NodeUtils.change_owner_recursive(_object, level)
+	level.version_history.create_action("Deleted objects")
+	for object in selection:
+		level.version_history.add_do_method(delete_object.bind(object))
+		level.version_history.add_undo_method(restore_object.bind(object))
+	level.version_history.add_do_method(clear_selection)
+	level.version_history.commit_action()
 
 
 func clear_selection() -> void:
@@ -297,17 +340,26 @@ func _update_pivot() -> void:
 func _flip_selection(axis: int):
 	if selection.is_empty():
 		return
+	var flip: Callable
+	var unflip := func(_object, _scale, _position):
+		_object.scale = _scale
+		_object.global_position = _position
 	match axis:
 		Vector2.AXIS_X:
-			for object in selection:
-				object.scale.x *= -1
-				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
+			flip = func(_object):
+				_object.scale.x *= -1
+				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
+				_object.global_position.x = selection_pivot.x - position_relative_to_pivot.x
 		Vector2.AXIS_Y:
-			for object in selection:
-				object.scale.y *= -1
-				var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-				object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
+			flip = func(_object):
+				_object.scale.y *= -1
+				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
+				_object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
+	level.version_history.create_action("Flipped objects")
+	for object in selection:
+		level.version_history.add_do_method(flip.bind(object))
+		level.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
+	level.version_history.commit_action()
 
 
 func _on_place_handler_object_deleted(object:Node) -> void:
@@ -323,8 +375,8 @@ func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> voi
 
 
 func _on_rotate_left_90_pressed() -> void:
-		_update_pivot()
-		_rotate_selection(-90)
+	_update_pivot()
+	_rotate_selection(-90)
 
 
 func _on_rotate_right_90_pressed() -> void:
@@ -363,7 +415,12 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
-	gizmo.angle_changed.connect(_rotate_selection)
+	gizmo.angle_changed.connect(_rotate_selection.bind(true))
+	var _on_rotate_gizmo_confirmed := func(angle: float):
+		# Undo untracked rotation
+		_rotate_selection(-angle, true)
+		_rotate_selection(angle)
+	gizmo.confirmed.connect(_on_rotate_gizmo_confirmed)
 	selection_changed.connect(remove_gizmo)
 
 
@@ -408,18 +465,39 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
 	gizmo.scale_changed.connect(_scale_selection.bind(pivot_relative_transforms))
+	gizmo.confirmed.connect(_scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
-func _rotate_selection(angle: float) -> void:
+func _rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if selection.is_empty():
 		return
+	var rotate_object := func(_object):
+		_object.global_rotation_degrees += angle
+	var unrotate_object := func(_object):
+		_object.global_rotation_degrees -= angle
+	var pivot := func(_object, _selection_pivot):
+		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
+		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
+		_object.global_position += position_delta
+	var unpivot := func(_object, _original_position):
+		_object.global_position = _original_position
+	# Avoid firing signals for RotateGizmo rotations
+	# RotateGizmo fires a signal every frame its angle changes
+	# This would clog the history with small rotations.
+	if is_gizmo:
+		selection.map(rotate_object)
+		selection.map(pivot.bind(selection_pivot))
+		return
+	level.version_history.create_action("Rotated objects %s°" % angle)
 	for object in selection:
-		object.global_rotation_degrees += angle
-		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-			var position_relative_to_pivot: Vector2 = object.global_position - selection_pivot
-			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-			object.global_position += position_delta
+		level.version_history.add_do_method(rotate_object.bind(object))
+		level.version_history.add_undo_method(unrotate_object.bind(object))
+	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+		for object in selection:
+			level.version_history.add_do_method(pivot.bind(object, selection_pivot))
+			level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
+	level.version_history.commit_action()
 
 
 func _scale_selection(
@@ -427,11 +505,31 @@ func _scale_selection(
 			transform: Transform2D,
 			rotation: float,
 			is_global: bool,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D]
+			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			register_history: bool = false,
+			initial_pivot: Vector2 = Vector2.ZERO,
 		) -> void:
 	if selection.is_empty():
 		return
 	selection_pivot = position
+	if register_history:
+		var do_scale: Callable
+		var undo_scale: Callable
+		if is_global:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
+		else:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
+		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
+		level.version_history.add_do_method(do_scale)
+		level.version_history.add_undo_method(undo_scale)
+		level.version_history.commit_action()
+		return
 	if is_global:
 		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
 	else:

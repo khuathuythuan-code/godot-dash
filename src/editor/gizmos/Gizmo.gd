@@ -2,6 +2,9 @@
 extends Control
 class_name Gizmo
 
+@warning_ignore("unused_signal")
+signal confirmed(final_value: Variant)
+
 enum State {
 	DISABLED,
 	ENABLED,
@@ -11,7 +14,6 @@ enum State {
 var quick_gizmo_value_input: QuickGizmoValueInput
 var gizmo_scale: float
 var state: State
-
 var is_quick: bool
 
 
