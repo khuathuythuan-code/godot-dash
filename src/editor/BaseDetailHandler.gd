@@ -41,7 +41,7 @@ func _on_detail_color_value_changed(value:Variant) -> void:
 	var objects_detail: Array = (
 		$"../EditHandler".selection
 			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
-			.filter(func(object): return object != null)
+			.filter(ArrayUtils.flatten)
 			.map(use_hsv_watcher)
 	)
 	clear_color_channels(objects_detail)
@@ -58,42 +58,49 @@ func clear_color_channels(selection: Array) -> void:
 		selection.map(func(object): object.remove_from_group(color_channel.associated_group))
 
 
+func _load_base(objects_base: Array[HSVWatcher]) -> void:
+	var base_groups: Array[StringName] = objects_base.back().get_groups()
+	if base_groups.is_empty():
+		return
+	var base_channel: StringName = base_groups[0]
+	if base_channel.is_empty():
+		base.set_value_no_signal("")
+		return
+	base.set_value_no_signal(base_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	var base_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + base_channel)
+	base_watcher.refresh_objects_color(objects_base)
+
+
+func _load_detail(objects_detail: Array[HSVWatcher]) -> void:
+	if objects_detail.is_empty():
+		return
+	var detail_groups: Array[StringName] = objects_detail.back().get_groups()
+	if detail_groups.is_empty():
+		return
+	var detail_channel: StringName = detail_groups[0]
+	if detail_channel.is_empty():
+		detail.set_value_no_signal("")
+		return
+	detail.set_value_no_signal(detail_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	var detail_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + detail_channel)
+	detail_watcher.refresh_objects_color(objects_detail)
+
+
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	if selection.is_empty():
 		return
-	var group_is_color_channel := func(group: StringName): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX)
 	# Base
-	var objects_base: Array[Node2D]
+	var objects_base: Array[HSVWatcher]
 	objects_base.assign(selection.map(into_base).map(use_hsv_watcher))
-	var base_channel_opt: Variant = objects_base.back().get_groups().front()
-	var base_channel: String
-	if base_channel_opt:
-		base_channel = base_channel_opt
-	if base_channel.is_empty():
-		base.set_value_no_signal("")
-	else:
-		base.set_value_no_signal(base_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
-		var base_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + base_channel)
-		base_watcher.refresh_objects_color(objects_base)
+	_load_base(objects_base)
 	# Detail
-	var objects_detail: Array = (
+	var objects_detail: Array[HSVWatcher]
+	objects_detail.assign(
 		selection
 			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
-			.filter(func(object): return object != null)
+			.filter(ArrayUtils.flatten)
 			.map(use_hsv_watcher)
 	)
-	if objects_detail.is_empty():
-		return
-	var detail_channel_opt: Variant = objects_detail.back().get_groups().filter(group_is_color_channel).front()
-	var detail_channel: String
-	if detail_channel_opt:
-		detail_channel = detail_channel_opt
-	if detail_channel.is_empty():
-		detail.set_value_no_signal("")
-	else:
-		detail.set_value_no_signal(detail_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
-		var detail_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + detail_channel)
-		detail_watcher.refresh_objects_color(objects_detail)
 
 
 func _reset_color(object: Node) -> void:
@@ -101,9 +108,8 @@ func _reset_color(object: Node) -> void:
 	object.modulate = Color.WHITE
 
 
-static func use_hsv_watcher(object: Node) -> Node:
-	var hsv_watcher: HSVWatcher = object.get_node_or_null(^"HSVWatcher")
-	return hsv_watcher if hsv_watcher else object
+static func use_hsv_watcher(object: Node) -> HSVWatcher:
+	return object.get_node(^"HSVWatcher")
 
 
 static func into_base(object: Node2D) -> Node2D:

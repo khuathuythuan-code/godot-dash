@@ -33,8 +33,7 @@ func _ready() -> void:
 func refresh_objects_color(objects: Array = []) -> void:
 	if objects.is_empty():
 		objects = get_tree().get_nodes_in_group(data.associated_group)
-	for object: Node2D in objects:
-		object = BaseDetailHandler.use_hsv_watcher(object)
+	for object: HSVWatcher in objects:
 		if data.copy:
 			match data.copied_channel:
 				ColorChannelData.CopyColor.BACKGROUND:
@@ -54,9 +53,5 @@ func refresh_objects_color(objects: Array = []) -> void:
 		object.modulate.h += data.hsv_shift[0]
 		object.modulate.s += data.hsv_shift[1]
 		object.modulate.v += data.hsv_shift[2]
-		if object is HSVWatcher:
-			object.base_intensity = data.intensity
-			object.base_alpha = data.alpha
-		else:
-			object.modulate *= data.intensity
-			object.modulate.a = data.alpha
+		object.base_intensity = data.intensity
+		object.base_alpha = data.alpha
