@@ -302,7 +302,23 @@ func set_cursor_shape(active_handle: Handle) -> void:
 		mouse_default_cursor_shape = Control.CURSOR_ARROW
 		Editor.viewport.remove_cursor_shape_override()
 		return
-	match active_handle.axis:
+	const AXES: PackedVector2Array = [
+		Vector2.LEFT,
+		Vector2.RIGHT,
+		Vector2.UP,
+		Vector2.DOWN,
+		Vector2.UP + Vector2.LEFT,
+		Vector2.DOWN + Vector2.LEFT,
+		Vector2.UP + Vector2.RIGHT,
+		Vector2.DOWN + Vector2.RIGHT,
+	]
+	var axis_to_dot: Dictionary[Vector2, float]
+	var handle_axis: Vector2 = active_handle.axis.rotated(rotation).normalized()
+	for axis: Vector2 in AXES:
+		axis_to_dot[axis] = absf(axis.normalized().dot(handle_axis) - 1.0)
+	var closest_axis_dot: float = axis_to_dot.values().min()
+	var closest_axis: Vector2 = axis_to_dot.find_key(closest_axis_dot)
+	match closest_axis:
 		Vector2.LEFT, Vector2.RIGHT:
 			Editor.viewport.override_cursor_shape(Control.CURSOR_HSIZE)
 		Vector2.UP, Vector2.DOWN:
