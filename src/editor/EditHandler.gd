@@ -371,7 +371,7 @@ func _on_place_handler_object_deleted(object:Node) -> void:
 func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> void:
 	if selection.is_empty():
 		return
-	selection.map(func(object): object.position += LevelManager.CELL_SIZE * direction * step)
+	move_objects(LevelManager.CELL_SIZE * direction * step)
 
 
 func _on_rotate_left_90_pressed() -> void:
