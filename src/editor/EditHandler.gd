@@ -415,7 +415,12 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
-	gizmo.angle_changed.connect(_rotate_selection)
+	gizmo.angle_changed.connect(_rotate_selection.bind(true))
+	var _on_rotate_gizmo_confirmed := func(angle: float):
+		# Undo untracked rotation
+		_rotate_selection(-angle, true)
+		_rotate_selection(angle)
+	gizmo.confirmed.connect(_on_rotate_gizmo_confirmed)
 	selection_changed.connect(remove_gizmo)
 
 
@@ -463,7 +468,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
-func _rotate_selection(angle: float) -> void:
+func _rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if selection.is_empty():
 		return
 	var rotate_object := func(_object):
@@ -476,7 +481,14 @@ func _rotate_selection(angle: float) -> void:
 		_object.global_position += position_delta
 	var unpivot := func(_object, _original_position):
 		_object.global_position = _original_position
-	level.version_history.create_action("Rotated objects " + str(angle))
+	# Avoid firing signals for RotateGizmo rotations
+	# RotateGizmo fires a signal every frame its angle changes
+	# This would clog the history with small rotations.
+	if is_gizmo:
+		selection.map(rotate_object)
+		selection.map(pivot.bind(selection_pivot))
+		return
+	level.version_history.create_action("Rotated objects %s°" % angle)
 	for object in selection:
 		level.version_history.add_do_method(rotate_object.bind(object))
 		level.version_history.add_undo_method(unrotate_object.bind(object))
