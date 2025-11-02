@@ -93,7 +93,8 @@ func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
-		$SaveChangesBeforeOpening.set_meta(&"next", get_tree().quit)
+		$SaveChangesBeforeOpening.custom_action.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
+		$LevelOperationsHandler.level_saved.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
 		
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:

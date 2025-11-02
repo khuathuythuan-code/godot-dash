@@ -2,6 +2,7 @@ extends Node
 class_name LevelOperationsHandler
 
 signal level_loaded(level: Level)
+signal level_saved
 
 @export var edit_handler: EditHandler
 @export var level_settings: LevelSettings
@@ -22,7 +23,7 @@ func _ready() -> void:
 	save_changes_before_opening_dialog.add_button("Don't Save", false, "dontsave")
 	save_as_dialog.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
 	export_dialog.root_subfolder = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP)
-	NodeUtils.connect_once($AutosaveTimer.timeout, _save_level)
+	NodeUtils.connect_once($AutosaveTimer.timeout, save_level)
 
 
 func _process(_delta: float) -> void:
@@ -66,7 +67,7 @@ func _on_level_index_pressed(index:int) -> void:
 		2: # Import
 			import_dialog.show()
 		3: # Save
-			_save_level()
+			save_level()
 		4: # Save As
 			save_as_dialog.show()
 		5: # Export
@@ -182,10 +183,10 @@ func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
 	file.store_buffer(buffer)
 
 
-func _save_level() -> void:
+func save_level() -> void:
 	if Editor.level_file_name.is_empty():
 		save_as_dialog.show()
-		return # _save_level will get called again by the dialog
+		return # save_level will get called again by the dialog
 	var file_name = Editor.level_file_name
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()
@@ -201,6 +202,7 @@ func _save_level() -> void:
 	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
+	level_saved.emit()
 
 
 func _on_open_level_dialog_file_selected(path:String) -> void:
@@ -227,16 +229,18 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 func _on_save_level_as_dialog_file_selected(path:String) -> void:
 	Editor.level_file_name = path.get_file()
 	editor.level.name = path.get_file().get_basename()
-	_save_level()
+	save_level()
 
 
 func _on_save_changes_before_opening_confirmed() -> void:
-	_save_level()
+	save_level()
 	match save_changes_before_opening_dialog.get_meta("next"):
 		_import_level:
 			save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
 		_open_level:
 			save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"))
+		null:
+			pass
 		_:
 			save_changes_before_opening_dialog.get_meta("next").call()
 
@@ -248,6 +252,8 @@ func _on_save_changes_before_opening_custom_action(action:StringName) -> void:
 				save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
 			_open_level:
 				save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"))
+			null:
+				pass
 			_:
 				save_changes_before_opening_dialog.get_meta("next").call()
 		save_changes_before_opening_dialog.hide()
