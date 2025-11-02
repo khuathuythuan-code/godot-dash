@@ -282,6 +282,13 @@ func remove_gizmo(reset: bool = false) -> void:
 		)
 	if reset:
 		tween.tween_method(do_reset_scale.bind(position, transform), 0.0, 1.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	else:
+		confirmed.emit(
+			position,
+			transform,
+			rotation,
+			quick_and_global,
+		)
 	if quick_gizmo_value_input:
 		quick_gizmo_value_input.keychord_display.text = ""
 	await tween.finished

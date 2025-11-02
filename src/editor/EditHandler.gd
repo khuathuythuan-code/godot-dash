@@ -465,6 +465,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
 	gizmo.scale_changed.connect(_scale_selection.bind(pivot_relative_transforms))
+	gizmo.confirmed.connect(_scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
@@ -504,11 +505,31 @@ func _scale_selection(
 			transform: Transform2D,
 			rotation: float,
 			is_global: bool,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D]
+			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			register_history: bool = false,
+			initial_pivot: Vector2 = Vector2.ZERO,
 		) -> void:
 	if selection.is_empty():
 		return
 	selection_pivot = position
+	if register_history:
+		var do_scale: Callable
+		var undo_scale: Callable
+		if is_global:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
+		else:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
+		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
+		level.version_history.add_do_method(do_scale)
+		level.version_history.add_undo_method(undo_scale)
+		level.version_history.commit_action()
+		return
 	if is_global:
 		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
 	else:
