@@ -26,7 +26,7 @@ func clear_item_list() -> void:
 	%Hue.reset()
 	%Saturation.reset()
 	%Value.reset()
-	%intensity.reset()
+	%Intensity.reset()
 	%Alpha.reset()
 	%Channel.hide()
 	%Color.show()
