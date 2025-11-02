@@ -51,6 +51,7 @@ func update_label_size() -> void:
 		VERTICAL_ALIGNMENT_BOTTOM:
 			_label.position.y = -_label.size.y
 	_selection_collider.scale = _label.size / (Vector2.ONE * LevelManager.CELL_SIZE)
+	_selection_collider.position = _label.get_rect().get_center()
 
 
 func _field_to_data(field_name: String) -> Variant:
