@@ -10,8 +10,6 @@ enum EditorAction {
 
 const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
 
-static var player_prefab: PackedScene
-
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
@@ -26,7 +24,6 @@ var editor_actions: int
 
 
 func _ready() -> void:
-	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
 	Editor.root = self
 	Editor.viewport = %EditorViewport
 	if SceneTransition.from_main():
@@ -67,9 +64,6 @@ func _ready() -> void:
 		level.name = "New level"
 		level.version_history = UndoRedo.new()
 		LevelManager.game_scene.add_loaded_level(level)
-
-	if not player_prefab:
-		player_prefab = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
 
 
 func _physics_process(_delta: float) -> void:
@@ -162,7 +156,7 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_duals.clear()
 		level.queue_free()
 		await get_tree().process_frame
-		var new_player: Player = player_prefab.instantiate()
+		var new_player: Player = AssetManager.player_packed.instantiate()
 		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player

@@ -5,6 +5,23 @@ var thread: Thread
 var loaded_songs: Dictionary[String, AudioStream]
 var loaded_fonts: Dictionary[String, Font]
 
+var player_packed: PackedScene
+var title_screen_packed: PackedScene
+var editor_packed: PackedScene
+var game_scene_packed: PackedScene
+var menu_loop: AudioStream
+
+
+func _ready() -> void:
+	ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
+	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
+	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
+	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
+	title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
+	editor_packed = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
+	game_scene_packed = ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
+	player_packed = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
+
 
 func load_song(path: String) -> AudioStream:
 	var audio_stream: AudioStream

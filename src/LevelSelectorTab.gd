@@ -22,4 +22,4 @@ func _on_button_pressed() -> void:
 		LevelManager.current_level_name = name
 		LevelManager.attempt = 0
 		LevelManager.current_level_path = selected_level
-		get_tree().change_scene_to_packed(LevelManager.game_scene_packed)
+		get_tree().change_scene_to_packed(AssetManager.game_scene_packed)

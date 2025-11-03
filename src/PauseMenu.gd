@@ -5,18 +5,13 @@ signal unpaused
 signal leave
 signal unsuspended
 
-static var title_screen: PackedScene
-
 var suspended: bool
 
 
 func _ready() -> void:
-	ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
 	$"../SettingsLayer".visible = visible
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
-	if not title_screen:
-		title_screen = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -58,7 +53,7 @@ func _on_leave_pressed() -> void:
 	LevelManager.game_scene = null
 	Editor.clipboard.clear()
 	SceneTransition.is_transitioning = false
-	get_tree().change_scene_to_packed(title_screen)
+	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 
 

@@ -2,10 +2,6 @@ extends Node
 
 const CELL_SIZE: int = 128
 
-static var game_scene_packed: PackedScene:
-	get():
-		return ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
-
 var game_scene: GameScene
 var current_level: Level
 var current_level_path: String
@@ -24,7 +20,6 @@ var platformer := false
 
 
 func _ready() -> void:
-	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	if not DirAccess.dir_exists_absolute("user://created_levels/levels"):
 		DirAccess.make_dir_recursive_absolute("user://created_levels/levels")
