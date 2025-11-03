@@ -19,7 +19,7 @@ func _on_config_menu_loop_changed(menu_loop: String) -> void:
 		playing = was_playing
 		seek(seek_to)
 		return
-	LevelAssetManager.load_song_threaded_request(menu_loop)
-	stream = LevelAssetManager.load_song_threaded_get(menu_loop)
+	AssetManager.load_song_threaded_request(menu_loop)
+	stream = AssetManager.load_song_threaded_get(menu_loop)
 	playing = was_playing
 	seek(seek_to)

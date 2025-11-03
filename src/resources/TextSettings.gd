@@ -10,14 +10,14 @@ func _init(path: String = "") -> void:
 
 func set_font_path(path: String = "") -> void:
 	if LevelManager.current_level and path.is_empty():
-		font = LevelAssetManager.load_font(LevelManager.current_level.default_font)
+		font = AssetManager.load_font(LevelManager.current_level.default_font)
 		NodeUtils.connect_once(LevelManager.current_level.default_font_changed, set_font_path)
 	else:
 		if not (path.is_empty() or path.begins_with("res://")) and LevelManager.current_level:
 			LevelManager.current_level.register_required_font(_font_path, path)
 			if LevelManager.current_level.default_font_changed.is_connected(set_font_path):
 				LevelManager.current_level.default_font_changed.disconnect(set_font_path)
-		font = LevelAssetManager.load_font(path)
+		font = AssetManager.load_font(path)
 	_font_path = path
 
 

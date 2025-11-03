@@ -20,7 +20,7 @@ const START_SPEED: Array[float] = [
 	set(value):
 		register_required_song(song_path, value)
 		song_path = value
-		LevelAssetManager.load_song_threaded_request(value)
+		AssetManager.load_song_threaded_request(value)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start_time: float
 @export var default_font: String:
 	set(value):
@@ -58,7 +58,7 @@ func _ready() -> void:
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
-	LevelAssetManager.load_song_threaded_request(song_path)
+	AssetManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus("Music")
 	LevelManager.level_song_player = song_player
@@ -76,7 +76,7 @@ func _process(_delta: float) -> void:
 func start_level() -> void:
 	if get_tree().paused:
 		await _pause_manager.unpaused
-	song_player.stream = LevelAssetManager.load_song_threaded_get(song_path)
+	song_player.stream = AssetManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer
 	LevelManager.player.internal_gamemode = start_gamemode
