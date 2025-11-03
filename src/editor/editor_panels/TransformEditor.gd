@@ -103,8 +103,8 @@ func _on_position_value_changed(new_position: Vector2) -> void:
 
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
-	edit_handler._update_pivot()
-	edit_handler._rotate_selection(new_rotation - previous_rotation)
+	edit_handler.update_pivot()
+	edit_handler.rotate_selection(new_rotation - previous_rotation)
 	previous_rotation = new_rotation
 
 
