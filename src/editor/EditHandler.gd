@@ -371,7 +371,6 @@ func _on_place_handler_object_deleted(object:Node) -> void:
 func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> void:
 	if selection.is_empty():
 		return
-	print(direction * step)
 	move_objects(direction * step)
 
 
