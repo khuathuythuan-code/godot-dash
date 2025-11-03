@@ -49,6 +49,9 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					NodeUtils.change_owner_recursive(_object, level)
 				var remove_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
+					EditHandler.remove_selection_highlight(_object)
+					edit_handler.selection.remove_at(edit_handler.selection.find(_object))
+					edit_handler.selection_changed.emit(edit_handler.selection)
 				level.version_history.create_action("Placed object " + object.name)
 				level.version_history.add_do_method(add_object.bind(object))
 				level.version_history.add_undo_method(remove_object.bind(object))
@@ -73,6 +76,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				# Version history
 				var delete_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
+					edit_handler.clear_selection()
 				var restore_object := func(_object: Node):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, level)

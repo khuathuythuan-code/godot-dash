@@ -86,13 +86,13 @@ func _physics_process(delta: float) -> void:
 				move_objects(move_vector * move_multiplier)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
-				_update_pivot()
-				_rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
+				update_pivot()
+				rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
-				_update_pivot()
-				_rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
+				update_pivot()
+				rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				object_move_cooldown = 0.2
 			if Input.is_action_just_pressed(&"editor_flip_h", true):
@@ -128,7 +128,7 @@ func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
 		_object.global_position += distance * LevelManager.CELL_SIZE
 	var unmove_object := func(_object):
 		_object.global_position -= distance * LevelManager.CELL_SIZE
-	level.version_history.create_action("Moved objects " + str(distance))
+	level.version_history.create_action("Moved objects %s units")
 	for object in objects:
 		level.version_history.add_do_method(move_object.bind(object))
 		level.version_history.add_undo_method(unmove_object.bind(object))
@@ -325,7 +325,7 @@ func any_gizmo_is_open() -> bool:
 	return gizmo != null
 
 
-func _update_pivot() -> void:
+func update_pivot() -> void:
 	if selection.is_empty():
 		return
 	var group_parents := selection.filter(func(object): return object.has_meta("group_parent"))
@@ -375,39 +375,39 @@ func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> voi
 
 
 func _on_rotate_left_90_pressed() -> void:
-	_update_pivot()
-	_rotate_selection(-90)
+	update_pivot()
+	rotate_selection(-90)
 
 
 func _on_rotate_right_90_pressed() -> void:
-	_update_pivot()
-	_rotate_selection(90)
+	update_pivot()
+	rotate_selection(90)
 
 
 func _on_rotate_left_45_pressed() -> void:
-	_update_pivot()
-	_rotate_selection(-45)
+	update_pivot()
+	rotate_selection(-45)
 
 
 func _on_rotate_right_45_pressed() -> void:
-	_update_pivot()
-	_rotate_selection(45)
+	update_pivot()
+	rotate_selection(45)
 
 
 func _on_flip_h_pressed() -> void:
-	_update_pivot()
+	update_pivot()
 	_flip_selection(Vector2.AXIS_X)
 
 
 func _on_flip_v_pressed() -> void:
-	_update_pivot()
+	update_pivot()
 	_flip_selection(Vector2.AXIS_Y)
 
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
-	_update_pivot()
+	update_pivot()
 	gizmo = RotateGizmo.new()
 	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
@@ -415,11 +415,11 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
 	gizmo_layer.add_child(gizmo)
 	gizmo.global_position = selection_pivot
-	gizmo.angle_changed.connect(_rotate_selection.bind(true))
+	gizmo.angle_changed.connect(rotate_selection.bind(true))
 	var _on_rotate_gizmo_confirmed := func(angle: float):
 		# Undo untracked rotation
-		_rotate_selection(-angle, true)
-		_rotate_selection(angle)
+		rotate_selection(-angle, true)
+		rotate_selection(angle)
 	gizmo.confirmed.connect(_on_rotate_gizmo_confirmed)
 	selection_changed.connect(remove_gizmo)
 
@@ -427,9 +427,10 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty():
 		return
-	_update_pivot()
+	update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
+	
 	var selection_collision_objects: Array[CollisionObject2D]
 	selection_collision_objects.assign(
 			selection
@@ -462,12 +463,12 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.global_position = gizmo_center
 	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
-	gizmo.scale_changed.connect(_scale_selection.bind(pivot_relative_transforms))
-	gizmo.confirmed.connect(_scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
+	gizmo.scale_changed.connect(scale_selection.bind(pivot_relative_transforms))
+	gizmo.confirmed.connect(scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
-func _rotate_selection(angle: float, is_gizmo: bool = false) -> void:
+func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if selection.is_empty():
 		return
 	var rotate_object := func(_object):
@@ -498,7 +499,7 @@ func _rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	level.version_history.commit_action()
 
 
-func _scale_selection(
+func scale_selection(
 			position: Vector2,
 			transform: Transform2D,
 			rotation: float,
