@@ -96,16 +96,7 @@ func _on_scale_value_changed(value: Vector2) -> void:
 
 func _on_position_value_changed(new_position: Vector2) -> void:
 	var distance := Vector2(new_position.x * LevelManager.CELL_SIZE, (-new_position.y - 0.5) * LevelManager.CELL_SIZE) - average_position
-	var move_object := func(_object: Node2D):
-		_object.position += distance
-	var unmove_object := func(_object: Node2D):
-		_object.position -= distance
-
-	Editor.root.level.version_history.create_action("Moved object " + str(new_position) + " units")
-	for object in current_selection:
-		Editor.root.level.version_history.add_do_method(move_object.bind(object))
-		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object))
-	Editor.root.level.version_history.commit_action()
+	edit_handler.move_objects(distance, current_selection)
 
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
