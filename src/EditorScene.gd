@@ -68,8 +68,11 @@ func _ready() -> void:
 		level.version_history = UndoRedo.new()
 		LevelManager.game_scene.add_loaded_level(level)
 
+	if not player_prefab:
+		player_prefab = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
 
-func _process(_delta: float) -> void:
+
+func _physics_process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
@@ -82,6 +85,7 @@ func _process(_delta: float) -> void:
 			%EditorModes.current_tab = 2
 
 	get_tree().auto_accept_quit = not level_was_modified()
+	$GameScene/PauseMenuLayer/PauseMenu.suspended = level_was_modified()
 
 	if %EditorModes.get_current_tab_control().name == "Place" \
 			and (Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true) \
@@ -91,10 +95,13 @@ func _process(_delta: float) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
+		var fade_quit: Callable = func():
+			await _fade_leave()
+			get_tree().quit()
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
 		$SaveChangesBeforeOpening.custom_action.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
-		$LevelOperationsHandler.level_saved.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
+		$LevelOperationsHandler.level_saved.connect(fade_quit, ConnectFlags.CONNECT_ONE_SHOT)
 		
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
@@ -108,7 +115,7 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 
 
 func level_was_modified() -> bool:
-	return level.version_history.get_history_count() > 0
+	return level.version_history.get_version() > Editor.level_history_version
 
 
 func any_dialog_is_open() -> bool:
@@ -120,12 +127,14 @@ func any_dialog_is_open() -> bool:
 
 
 func _fade_leave(_action: Variant = null) -> void:
+	$GameScene/PauseMenuLayer/PauseMenu.unsuspend()
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
+	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
 			.set_ease(Tween.EASE_IN) \
-			.set_trans(Tween.TRANS_EXPO)
+			.set_trans(Tween.TRANS_EXPO) \
+			.finished
 
 
 func _on_playtest_pressed() -> void:
@@ -153,7 +162,6 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_duals.clear()
 		level.queue_free()
 		await get_tree().process_frame
-		player_prefab = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
 		var new_player: Player = player_prefab.instantiate()
 		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
@@ -169,6 +177,12 @@ func _on_leave_pressed() -> void:
 		$EditHandler.selection.clear()
 		Editor.level_data_snapshot = level.to_data()
 		Editor.snapshot.pack(self)
+	if level_was_modified():
+		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
+		$SaveChangesBeforeOpening.show()
+		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
+		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
+		return
 	_fade_leave()
 
 

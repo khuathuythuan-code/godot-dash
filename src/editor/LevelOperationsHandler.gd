@@ -202,6 +202,8 @@ func save_level() -> void:
 	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
+	Editor.level_history_version = editor.level.version_history.get_version()
+	Editor.level_saved_before_leaving = true
 	level_saved.emit()
 
 

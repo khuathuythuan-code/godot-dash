@@ -3,8 +3,11 @@ extends Control
 signal paused
 signal unpaused
 signal leave
+signal unsuspended
 
 static var title_screen: PackedScene
+
+var suspended: bool
 
 
 func _ready() -> void:
@@ -12,6 +15,8 @@ func _ready() -> void:
 	$"../SettingsLayer".visible = visible
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
+	if not title_screen:
+		title_screen = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,10 +35,17 @@ func _notification(what):
 		_on_continue_pressed()
 
 
+func unsuspend() -> void:
+	suspended = false
+	unsuspended.emit()
+
+
 func _on_leave_pressed() -> void:
 	get_tree().paused = false
-	get_parent().hide()
 	leave.emit()
+	if suspended:
+		await unsuspended
+	get_parent().hide()
 	LevelManager.platformer = false
 	LevelManager.level_playing = false
 	LevelAssetManager.unload_all()
@@ -46,7 +58,6 @@ func _on_leave_pressed() -> void:
 	LevelManager.game_scene = null
 	Editor.clipboard.clear()
 	SceneTransition.is_transitioning = false
-	title_screen = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 	get_tree().change_scene_to_packed(title_screen)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 
