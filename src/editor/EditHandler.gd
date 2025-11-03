@@ -128,7 +128,7 @@ func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
 		_object.global_position += distance * LevelManager.CELL_SIZE
 	var unmove_object := func(_object):
 		_object.global_position -= distance * LevelManager.CELL_SIZE
-	level.version_history.create_action("Moved objects " + str(distance))
+	level.version_history.create_action("Moved objects %s units")
 	for object in objects:
 		level.version_history.add_do_method(move_object.bind(object))
 		level.version_history.add_undo_method(unmove_object.bind(object))
