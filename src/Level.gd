@@ -155,6 +155,7 @@ func to_data() -> Dictionary:
 			"groups": object.get_groups(),
 			"color_channels": {},
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
+			"z_index": object.z_index,
 		}
 		_set_object_color_channel_data(object, object_data)
 		if object.has_meta(&"texture_override"):
@@ -209,6 +210,7 @@ static func from_data(data: Dictionary) -> Level:
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
+		object.z_index = object_data.z_index
 		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
