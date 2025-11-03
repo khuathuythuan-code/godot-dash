@@ -12,6 +12,7 @@ var current_selection: Array[Node2D]
 var selection_size: int
 var first_object: Node2D
 var average_position: Vector2
+var previous_rotation: float
 var same_scale: bool = true
 var same_rotation: bool = true
 
@@ -60,8 +61,10 @@ func _process(_delta: float) -> void:
 			break
 	if same_rotation:
 		rotation_node.set_value_no_signal(object_rotations[1])
+		previous_rotation = object_rotations[1]
 	else:
 		rotation_node.set_value_no_signal(0.0)
+		previous_rotation = 0.0
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
@@ -101,27 +104,8 @@ func _on_position_value_changed(new_position: Vector2) -> void:
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
 	edit_handler._update_pivot()
-	if selection_size == 1 or same_rotation:
-		new_rotation -= current_selection[0].rotation_degrees
-	var rotate_object := func(_object):
-		_object.global_rotation_degrees += new_rotation
-	var unrotate_object := func(_object):
-		_object.global_rotation_degrees -= new_rotation
-	var pivot := func(_object, _selection_pivot):
-		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
-		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(new_rotation)) - position_relative_to_pivot
-		_object.global_position += position_delta
-	var unpivot := func(_object, _original_position):
-		_object.global_position = _original_position
-	edit_handler.level.version_history.create_action("Rotated objects %s°" % new_rotation)
-	for object in current_selection:
-		edit_handler.level.version_history.add_do_method(rotate_object.bind(object))
-		edit_handler.level.version_history.add_undo_method(unrotate_object.bind(object))
-	if edit_handler.transform_pivot_button.selected != edit_handler.TransformPivot.INDIVIDUAL_ORIGINS:
-		for object in current_selection:
-			edit_handler.level.version_history.add_do_method(pivot.bind(object, edit_handler.selection_pivot))
-			edit_handler.level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
-	edit_handler.level.version_history.commit_action()
+	edit_handler._rotate_selection(new_rotation - previous_rotation)
+	previous_rotation = new_rotation
 
 
 func _set_z_index(_value: float):
