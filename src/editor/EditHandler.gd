@@ -430,6 +430,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
+	
 	var selection_collision_objects: Array[CollisionObject2D]
 	selection_collision_objects.assign(
 			selection
@@ -462,8 +463,8 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.global_position = gizmo_center
 	gizmo.rotation = mean_objects_rotation
 	gizmo_layer.add_child(gizmo)
-	gizmo.scale_changed.connect(_scale_selection.bind(pivot_relative_transforms))
-	gizmo.confirmed.connect(_scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
+	gizmo.scale_changed.connect(scale_selection.bind(pivot_relative_transforms))
+	gizmo.confirmed.connect(scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
@@ -498,7 +499,7 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	level.version_history.commit_action()
 
 
-func _scale_selection(
+func scale_selection(
 			position: Vector2,
 			transform: Transform2D,
 			rotation: float,

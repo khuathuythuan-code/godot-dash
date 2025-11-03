@@ -12,7 +12,8 @@ var current_selection: Array[Node2D]
 var selection_size: int
 var first_object: Node2D
 var average_position: Vector2
-var previous_rotation: float
+var current_rotation: float
+var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
@@ -61,10 +62,10 @@ func _process(_delta: float) -> void:
 			break
 	if same_rotation:
 		rotation_node.set_value_no_signal(object_rotations[1])
-		previous_rotation = object_rotations[1]
+		current_rotation = object_rotations[1]
 	else:
 		rotation_node.set_value_no_signal(0.0)
-		previous_rotation = 0.0
+		current_rotation = 0.0
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
@@ -73,28 +74,19 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 		return
 	first_object = current_selection.get(0)
 	selection_size = selection.size()
+	edit_handler.update_pivot()
 
 
-func _on_scale_value_changed(value: Vector2) -> void:
-	var scale_object: Callable
-	var unscale_object: Callable
-
-	if selection_size == 1 or same_scale:
-		value -= current_selection[0].scale
-		scale_object = func(_object: Node2D):
-			_object.scale += value
-		unscale_object = func(_object: Node2D):
-			_object.scale -= value
-	else:
-		scale_object = func(_object: Node2D):
-			_object.scale *= value
-		unscale_object = func(_object: Node2D):
-			_object.scale /= value
-	Editor.root.level.version_history.create_action("Scaled object " + str(value))
-	for object in current_selection:
-		Editor.root.level.version_history.add_do_method(scale_object.bind(object))
-		Editor.root.level.version_history.add_undo_method(unscale_object.bind(object))
-	Editor.root.level.version_history.commit_action()
+func _on_scale_value_changed(new_scale: Vector2) -> void:
+	edit_handler.scale_selection(
+		edit_handler.selection_pivot,
+		Transform2D.IDENTITY.scaled(new_scale),
+		deg_to_rad(current_rotation),
+		false,
+		pivot_relative_transforms,
+		true,
+		edit_handler.selection_pivot
+	)
 
 
 func _on_position_value_changed(new_position: Vector2) -> void:
@@ -103,9 +95,12 @@ func _on_position_value_changed(new_position: Vector2) -> void:
 
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
-	edit_handler.update_pivot()
-	edit_handler.rotate_selection(new_rotation - previous_rotation)
-	previous_rotation = new_rotation
+	edit_handler.rotate_selection(new_rotation - current_rotation)
+	current_rotation = new_rotation
+	for collision_object in current_selection:
+		var pivot_relative_transform: Transform2D = collision_object.global_transform
+		pivot_relative_transform.origin -= edit_handler.selection_pivot
+		pivot_relative_transforms[collision_object] = pivot_relative_transform
 
 
 func _set_z_index(_value: float):
