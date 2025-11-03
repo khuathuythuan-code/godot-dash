@@ -89,13 +89,11 @@ func _physics_process(_delta: float) -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
-		var fade_quit: Callable = func():
-			await _fade_leave()
-			get_tree().quit()
+		process_mode = Node.PROCESS_MODE_ALWAYS
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
 		$SaveChangesBeforeOpening.custom_action.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
-		$LevelOperationsHandler.level_saved.connect(fade_quit, ConnectFlags.CONNECT_ONE_SHOT)
+		$LevelOperationsHandler.level_saved.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
 		
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
