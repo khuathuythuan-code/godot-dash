@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+@export var edit_handler: EditHandler
 @export var z_index_node: FloatProperty
 @export var scale_node: Vector2Property
 @export var position_node: Vector2Property
@@ -107,20 +108,30 @@ func _on_position_value_changed(_value: Vector2) -> void:
 		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object))
 	Editor.root.level.version_history.commit_action()
 
+
 func _on_rotation_value_changed(value: float) -> void:
+	edit_handler._update_pivot()
 	if selection_size == 1 or same_rotation:
 		value -= current_selection[0].rotation_degrees
-
-	var rotate_object := func(_object: Node2D):
-		_object.rotation_degrees += value
-	var unrotate_object := func(_object: Node2D):
-		_object.rotation_degrees -= value
-
-	Editor.root.level.version_history.create_action("Rotated object " + str(value) + "°")
+	var rotate_object := func(_object):
+		_object.global_rotation_degrees += value
+	var unrotate_object := func(_object):
+		_object.global_rotation_degrees -= value
+	var pivot := func(_object, _selection_pivot):
+		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
+		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(value)) - position_relative_to_pivot
+		_object.global_position += position_delta
+	var unpivot := func(_object, _original_position):
+		_object.global_position = _original_position
+	edit_handler.level.version_history.create_action("Rotated objects %s°" % value)
 	for object in current_selection:
-		Editor.root.level.version_history.add_do_method(rotate_object.bind(object))
-		Editor.root.level.version_history.add_undo_method(unrotate_object.bind(object))
-	Editor.root.level.version_history.commit_action()
+		edit_handler.level.version_history.add_do_method(rotate_object.bind(object))
+		edit_handler.level.version_history.add_undo_method(unrotate_object.bind(object))
+	if edit_handler.transform_pivot_button.selected != edit_handler.TransformPivot.INDIVIDUAL_ORIGINS:
+		for object in current_selection:
+			edit_handler.level.version_history.add_do_method(pivot.bind(object, edit_handler.selection_pivot))
+			edit_handler.level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
+	edit_handler.level.version_history.commit_action()
 
 
 func _set_z_index(_value: float):
