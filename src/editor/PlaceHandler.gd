@@ -73,10 +73,11 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object_deleted.emit(overlapping_areas[-1])
 				var object := get_area(overlapping_areas[-1])
 
+				edit_handler.clear_selection()
+
 				# Version history
 				var delete_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
-					edit_handler.clear_selection()
 				var restore_object := func(_object: Node):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, level)
