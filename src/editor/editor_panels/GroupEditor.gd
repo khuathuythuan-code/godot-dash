@@ -1,15 +1,15 @@
 extends Control
 class_name GroupEditor
 
+const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
+const GROUP_PREFIX: String = "g_"
+
 @export var line_edit: LineEdit
 @export var confirm_button: Button
 @export var group_container: Container
 
 var selected_objects: Array[Node2D]
 var group_buttons: Dictionary[String, Button]
-
-const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
-const GROUP_PREFIX: String = "g_"
 
 
 func _populate_group_list(selection: Array[Node2D]) -> void:
@@ -45,12 +45,9 @@ func _populate_group_list(selection: Array[Node2D]) -> void:
 		group_buttons[group].modulate = Color.WHITE if group in shared_groups else NONSHARED_GROUP_COLOR
 
 
-func _update_groups(selection: Array[Node2D], group: String, add: bool) -> void:
-	if not add:
-		selection.map(func(object): object.remove_from_group(group))
-		group_buttons.erase(group)
-		return
-	if not group in group_buttons.keys():
+func _add_selection_to_group(selection: Array[Node2D], group: String) -> void:
+	var has_group: bool = group in group_buttons.keys()
+	if not has_group:
 		if group == GROUP_PREFIX:
 			return
 		selection.map(func(object): object.add_to_group(group, true))
@@ -61,14 +58,19 @@ func _update_groups(selection: Array[Node2D], group: String, add: bool) -> void:
 		group_container.add_child(group_button)
 		group_buttons[group] = group_button
 	elif group_buttons[group].modulate == NONSHARED_GROUP_COLOR:
-		selection.map(func(object): object.add_to_group(group, true))
+		selection.map(func(object: Node2D): object.add_to_group(group, true))
 		group_buttons[group].modulate = Color.WHITE
+
+
+func _remove_group_from_selection(selection: Array[Node2D], group: String):
+	selection.map(func(object: Node2D): object.remove_from_group(group))
+	group_buttons.erase(group)
 
 
 func _remove_group() -> void:
 	var selected_group_button: Button = get_viewport().gui_get_focus_owner()
 	var group: String = GROUP_PREFIX + selected_group_button.text
-	_update_groups(selected_objects, group, false)
+	_remove_group_from_selection(selected_objects, group)
 	get_viewport().gui_release_focus()
 	selected_group_button.queue_free()
 
@@ -79,7 +81,7 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 
 
 func _on_line_edit_text_submitted(new_text:String) -> void:
-	_update_groups(selected_objects, GROUP_PREFIX + new_text, true)
+	_add_selection_to_group(selected_objects, GROUP_PREFIX + new_text)
 	# TODO "keep focus" doesn't work
 	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
 		get_viewport().gui_release_focus()
@@ -87,7 +89,7 @@ func _on_line_edit_text_submitted(new_text:String) -> void:
 
 
 func _on_button_pressed() -> void:
-	_update_groups(selected_objects, GROUP_PREFIX + line_edit.get_text(), true)
+	_add_selection_to_group(selected_objects, GROUP_PREFIX + line_edit.get_text())
 	get_viewport().gui_release_focus()
 	line_edit.clear()
 
