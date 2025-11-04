@@ -6,7 +6,7 @@ class_name GroupEditor
 @export var group_container: Container
 
 var selected_objects: Array[Node2D]
-var group_buttons: Dictionary
+var group_buttons: Dictionary[String, Button]
 
 const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
 const GROUP_PREFIX: String = "g_"
@@ -15,19 +15,18 @@ const GROUP_PREFIX: String = "g_"
 func _populate_group_list(selection: Array[Node2D]) -> void:
 	if selection.is_empty():
 		return
-	var new_groups: Array
-	# Groups that all objects are in.
-	var shared_groups: Array
+	# Groups of all objects
+	var all_groups: Array[StringName]
 	for object in selection:
-		if new_groups.is_empty():
-			new_groups = object.get_groups() if not object.get_groups().is_empty() else [null]
-			shared_groups = object.get_groups()
-		elif not object.get_groups().is_empty():
-			new_groups = ArrayUtils.union(new_groups, object.get_groups())
-			shared_groups = ArrayUtils.intersect(shared_groups, object.get_groups())
-	new_groups = new_groups.filter(_godot_group_is_trigger_group)
+		if object.get_groups().is_empty():
+			continue
+		all_groups.append_array(object.get_groups())
+	all_groups.assign(ArrayUtils.to_set(all_groups).filter(is_godot_group))
+	# Groups that all objects are in
+	var shared_groups: Array[StringName]
+	shared_groups.assign(selection.reduce(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
 	# Additive pass
-	for new_group in new_groups:
+	for new_group in all_groups:
 		if not new_group or new_group in group_buttons.keys():
 			continue
 		group_buttons[new_group] = Button.new()
@@ -37,7 +36,7 @@ func _populate_group_list(selection: Array[Node2D]) -> void:
 		group_container.add_child(group_buttons[new_group])
 	# Substractive pass
 	for old_group in group_buttons:
-		if not old_group or old_group in new_groups:
+		if not old_group or old_group in all_groups:
 			continue
 		group_buttons[old_group].queue_free()
 		group_buttons.erase(old_group)
@@ -51,7 +50,7 @@ func _update_groups(selection: Array[Node2D], group: String, add: bool) -> void:
 		selection.map(func(object): object.remove_from_group(group))
 		group_buttons.erase(group)
 		return
-	if group not in group_buttons.keys():
+	if not group in group_buttons.keys():
 		if group == GROUP_PREFIX:
 			return
 		selection.map(func(object): object.add_to_group(group, true))
@@ -74,13 +73,6 @@ func _remove_group() -> void:
 	selected_group_button.queue_free()
 
 
-func _godot_group_is_trigger_group(group) -> bool:
-	if group == null:
-		return false
-	group = group as String
-	return group.begins_with(GROUP_PREFIX)
-
-
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	selected_objects = selection
 	_populate_group_list(selection)
@@ -100,3 +92,5 @@ func _on_button_pressed() -> void:
 	line_edit.clear()
 
 
+static func is_godot_group(group: StringName) -> bool:
+	return group.begins_with(GROUP_PREFIX)

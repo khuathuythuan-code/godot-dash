@@ -38,7 +38,7 @@ static func intersect(a: Array, b: Array) -> Array:
 static func to_set(array: Array) -> Array:
 	var result: Array
 	for element in array:
-		if not result.has(element):
+		if not element in result:
 			result.append(element)
 	return result
 
