@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 
 	var gizmo_in_use: bool = gizmo and (gizmo.is_enabled() or gizmo.any_handle_hovered())
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == Editor.viewport:
-		if editor_mode.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or gizmo == null):
+		if editor_mode.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or not any_gizmo_is_open()):
 			_update_selection()
 		var can_use_actions: bool = (
 				not selection.is_empty() and not (
@@ -74,9 +74,11 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed(&"ui_paste", true):
 				paste_selection()
 				object_move_cooldown = 5
-			if Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")\
-			and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")\
-			and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index"):
+			if (
+					Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+					and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")
+					and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index")
+			):
 				var move_vector: Vector2
 				move_vector.x = Input.get_axis(&"ui_left", &"ui_right")
 				move_vector.y = Input.get_axis(&"ui_up", &"ui_down")
@@ -117,7 +119,7 @@ func _physics_process(delta: float) -> void:
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
 			object_move_cooldown = 0.0
-		if Input.is_action_just_released(&"editor_add") and (!Config.is_touch_screen or gizmo == null):
+		if Input.is_action_just_released(&"editor_add") and (not Config.is_touch_screen or not any_gizmo_is_open()):
 			selection.map(add_selection_highlight)
 			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped
@@ -133,6 +135,73 @@ func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
 		level.version_history.add_do_method(move_object.bind(object))
 		level.version_history.add_undo_method(unmove_object.bind(object))
 	level.version_history.commit_action()
+
+
+func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
+	if selection.is_empty():
+		return
+	var rotate_object := func(_object):
+		_object.global_rotation_degrees += angle
+	var unrotate_object := func(_object):
+		_object.global_rotation_degrees -= angle
+	var pivot := func(_object, _selection_pivot):
+		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
+		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
+		_object.global_position += position_delta
+	var unpivot := func(_object, _original_position):
+		_object.global_position = _original_position
+	# Avoid firing signals for RotateGizmo rotations
+	# RotateGizmo fires a signal every frame its angle changes
+	# This would clog the history with small rotations.
+	if is_gizmo:
+		selection.map(rotate_object)
+		selection.map(pivot.bind(selection_pivot))
+		return
+	level.version_history.create_action("Rotated objects %s°" % angle)
+	for object in selection:
+		level.version_history.add_do_method(rotate_object.bind(object))
+		level.version_history.add_undo_method(unrotate_object.bind(object))
+	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+		for object in selection:
+			level.version_history.add_do_method(pivot.bind(object, selection_pivot))
+			level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
+	level.version_history.commit_action()
+
+
+func scale_selection(
+			position: Vector2,
+			transform: Transform2D,
+			rotation: float,
+			is_global: bool,
+			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			register_history: bool = false,
+			initial_pivot: Vector2 = Vector2.ZERO,
+		) -> void:
+	if selection.is_empty():
+		return
+	selection_pivot = position
+	if register_history:
+		var do_scale: Callable
+		var undo_scale: Callable
+		if is_global:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
+		else:
+			do_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+			undo_scale = func():
+				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
+		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
+		level.version_history.add_do_method(do_scale)
+		level.version_history.add_undo_method(undo_scale)
+		level.version_history.commit_action()
+		return
+	if is_global:
+		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+	else:
+		selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 
 
 func increase_z_index(objects: Array[Node2D]):
@@ -169,81 +238,6 @@ func decrease_z_index(objects: Array[Node2D]):
 	level.version_history.commit_action()
 	if warns > 0:
 		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
-
-
-func _update_selection() -> void:
-	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
-		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
-				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
-			selection.map(remove_selection_highlight)
-			selection.clear()
-			selection_index += 1
-			selection_changed.emit(selection)
-		_reset_selection_zone(false)
-		if placed_objects_collider.has_overlapping_areas() and not (Input.is_action_just_pressed(&"editor_add_swipe", false) or Input.is_action_just_pressed(&"editor_selection_remove", false)):
-			selection = [
-				get_object_parent(
-					placed_objects_collider.get_overlapping_areas()[
-						selection_index%len(placed_objects_collider.get_overlapping_areas())
-					]
-				)
-			]
-			selection_changed.emit(selection)
-	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
-		_swipe_selection_zone()
-	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
-	if Input.is_action_just_released(&"editor_selection_remove", true):
-		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
-		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
-		selection_changed.emit(selection)
-	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
-		selection_changed.emit(selection)
-	selection.erase(level)
-
-
-func _reset_selection_zone(unreachable: bool = true) -> void:
-	$SelectionZone.position = Vector2.ONE * INF if unreachable else get_parent().get_local_mouse_position()
-	$SelectionZone/Hitbox.shape.size = Vector2.ZERO
-	$SelectionZone/Hitbox.position = Vector2.ZERO
-	selection_zone_changed.emit(Rect2(Vector2.ZERO, Vector2.ZERO))
-
-
-func _swipe_selection_zone() -> void:
-	var mouse_position := get_parent().get_local_mouse_position() as Vector2
-	var hitbox := $SelectionZone/Hitbox as CollisionShape2D
-	
-	hitbox.shape.size = abs(mouse_position - $SelectionZone.position)
-	# Right Down
-	if mouse_position.x >= $SelectionZone.position.x and mouse_position.y >= $SelectionZone.position.y:
-		hitbox.position = hitbox.shape.size * 0.5
-	# Right Up
-	elif mouse_position.x >= $SelectionZone.position.x and mouse_position.y < $SelectionZone.position.y:
-		hitbox.position.x = hitbox.shape.size.x * 0.5
-		hitbox.position.y = -hitbox.shape.size.y * 0.5
-	# Left Down
-	elif mouse_position.x < $SelectionZone.position.x and mouse_position.y >= $SelectionZone.position.y:
-		hitbox.position.x = -hitbox.shape.size.x * 0.5
-		hitbox.position.y = hitbox.shape.size.y * 0.5
-	# Left Up
-	elif mouse_position.x < $SelectionZone.position.x and mouse_position.y < $SelectionZone.position.y:
-		hitbox.position = -hitbox.shape.size * 0.5
-	
-	selection_zone_changed.emit(Rect2($SelectionZone/Hitbox.position - $SelectionZone/Hitbox.shape.size * 0.5, $SelectionZone/Hitbox.shape.size))
-
-
-func _clone(object: Node) -> Node:
-	remove_selection_highlight(object)
-	NodeUtils.change_owner_recursive(object, object)
-	var packer := PackedScene.new()
-	packer.pack(object)
-	var clone := packer.instantiate()
-	object.get_parent().add_child(clone, true)
-	clone.owner = object.owner
-	add_selection_highlight(clone)
-	NodeUtils.change_owner_recursive(object, level)
-	NodeUtils.change_owner_recursive(clone, level)
-	return clone
 
 
 func duplicate_selection() -> void:
@@ -337,6 +331,73 @@ func update_pivot() -> void:
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
+func _update_selection() -> void:
+	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
+		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
+				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
+			selection.map(remove_selection_highlight)
+			selection.clear()
+			selection_index += 1
+			selection_changed.emit(selection)
+		_reset_selection_zone(false)
+		if (
+				placed_objects_collider.has_overlapping_areas()
+				and not (
+					Input.is_action_just_pressed(&"editor_add_swipe", false)
+					or Input.is_action_just_pressed(&"editor_selection_remove", false)
+				)
+		):
+			selection = [
+				get_object_parent(
+					placed_objects_collider.get_overlapping_areas()[
+						selection_index%len(placed_objects_collider.get_overlapping_areas())
+					]
+				)
+			]
+			selection_changed.emit(selection)
+	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
+		_swipe_selection_zone()
+	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
+	if Input.is_action_just_released(&"editor_selection_remove", true):
+		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
+		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
+		selection_changed.emit(selection)
+	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
+		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
+		selection_changed.emit(selection)
+	selection.erase(level)
+
+
+func _reset_selection_zone(unreachable: bool = true) -> void:
+	$SelectionZone.position = Vector2.ONE * INF if unreachable else get_parent().get_local_mouse_position()
+	$SelectionZone/Hitbox.shape.size = Vector2.ZERO
+	$SelectionZone/Hitbox.position = Vector2.ZERO
+	selection_zone_changed.emit(Rect2(Vector2.ZERO, Vector2.ZERO))
+
+
+func _swipe_selection_zone() -> void:
+	var mouse_position := get_parent().get_local_mouse_position() as Vector2
+	var hitbox := $SelectionZone/Hitbox as CollisionShape2D
+	
+	hitbox.shape.size = abs(mouse_position - $SelectionZone.position)
+	# Right Down
+	if mouse_position.x >= $SelectionZone.position.x and mouse_position.y >= $SelectionZone.position.y:
+		hitbox.position = hitbox.shape.size * 0.5
+	# Right Up
+	elif mouse_position.x >= $SelectionZone.position.x and mouse_position.y < $SelectionZone.position.y:
+		hitbox.position.x = hitbox.shape.size.x * 0.5
+		hitbox.position.y = -hitbox.shape.size.y * 0.5
+	# Left Down
+	elif mouse_position.x < $SelectionZone.position.x and mouse_position.y >= $SelectionZone.position.y:
+		hitbox.position.x = -hitbox.shape.size.x * 0.5
+		hitbox.position.y = hitbox.shape.size.y * 0.5
+	# Left Up
+	elif mouse_position.x < $SelectionZone.position.x and mouse_position.y < $SelectionZone.position.y:
+		hitbox.position = -hitbox.shape.size * 0.5
+	
+	selection_zone_changed.emit(Rect2($SelectionZone/Hitbox.position - $SelectionZone/Hitbox.shape.size * 0.5, $SelectionZone/Hitbox.shape.size))
+
+
 func _flip_selection(axis: int):
 	if selection.is_empty():
 		return
@@ -360,6 +421,20 @@ func _flip_selection(axis: int):
 		level.version_history.add_do_method(flip.bind(object))
 		level.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
 	level.version_history.commit_action()
+
+
+func _clone(object: Node) -> Node:
+	remove_selection_highlight(object)
+	NodeUtils.change_owner_recursive(object, object)
+	var packer := PackedScene.new()
+	packer.pack(object)
+	var clone := packer.instantiate()
+	object.get_parent().add_child(clone, true)
+	clone.owner = object.owner
+	add_selection_highlight(clone)
+	NodeUtils.change_owner_recursive(object, level)
+	NodeUtils.change_owner_recursive(clone, level)
+	return clone
 
 
 func _on_place_handler_object_deleted(object:Node) -> void:
@@ -466,73 +541,6 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	gizmo.scale_changed.connect(scale_selection.bind(pivot_relative_transforms))
 	gizmo.confirmed.connect(scale_selection.bind(pivot_relative_transforms, true, gizmo.initial_position))
 	NodeUtils.connect_once(selection_changed, remove_gizmo)
-
-
-func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
-	if selection.is_empty():
-		return
-	var rotate_object := func(_object):
-		_object.global_rotation_degrees += angle
-	var unrotate_object := func(_object):
-		_object.global_rotation_degrees -= angle
-	var pivot := func(_object, _selection_pivot):
-		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
-		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-		_object.global_position += position_delta
-	var unpivot := func(_object, _original_position):
-		_object.global_position = _original_position
-	# Avoid firing signals for RotateGizmo rotations
-	# RotateGizmo fires a signal every frame its angle changes
-	# This would clog the history with small rotations.
-	if is_gizmo:
-		selection.map(rotate_object)
-		selection.map(pivot.bind(selection_pivot))
-		return
-	level.version_history.create_action("Rotated objects %s°" % angle)
-	for object in selection:
-		level.version_history.add_do_method(rotate_object.bind(object))
-		level.version_history.add_undo_method(unrotate_object.bind(object))
-	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-		for object in selection:
-			level.version_history.add_do_method(pivot.bind(object, selection_pivot))
-			level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
-	level.version_history.commit_action()
-
-
-func scale_selection(
-			position: Vector2,
-			transform: Transform2D,
-			rotation: float,
-			is_global: bool,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
-			register_history: bool = false,
-			initial_pivot: Vector2 = Vector2.ZERO,
-		) -> void:
-	if selection.is_empty():
-		return
-	selection_pivot = position
-	if register_history:
-		var do_scale: Callable
-		var undo_scale: Callable
-		if is_global:
-			do_scale = func():
-				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
-			undo_scale = func():
-				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
-		else:
-			do_scale = func():
-				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
-			undo_scale = func():
-				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
-		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
-		level.version_history.add_do_method(do_scale)
-		level.version_history.add_undo_method(undo_scale)
-		level.version_history.commit_action()
-		return
-	if is_global:
-		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
-	else:
-		selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 
 
 static func scale_transform(
