@@ -41,7 +41,7 @@ func _populate_group_list(selection: Array[Node2D]) -> void:
 		group_buttons[group].modulate = Color.WHITE if group in shared_groups else NONSHARED_GROUP_COLOR
 
 
-func _create_group_button(group: String) -> void:
+func _create_group_button(group: String) -> Button:
 	var group_button_already_exists: bool = group_buttons.has(group) and group_buttons[group] != null
 	if group_button_already_exists:
 		return
@@ -51,6 +51,7 @@ func _create_group_button(group: String) -> void:
 	group_button.theme_type_variation = &"GroupButton"
 	group_container.add_child(group_button)
 	group_buttons[group] = group_button
+	return group_button
 
 
 func _add_selection_to_group(selection: Array[Node2D], group: String) -> void:
@@ -86,25 +87,37 @@ func _remove_group(group_button: Button) -> void:
 	version_history.commit_action()
 
 
+func _add_group(group: String) -> void:
+	var group_button: Button = _create_group_button(group)
+	var do_add_group := func(_selected_objects: Array[Node2D], _group: String):
+		_add_selection_to_group(_selected_objects, _group)
+		group_container.add_child(group_button)
+	var undo_add_group := func(_selected_objects: Array[Node2D], _group: String):
+		_remove_group_from_selection(_selected_objects, _group)
+		group_container.remove_child(group_button)
+	var selected_objects_snapshot := selected_objects.duplicate()
+	var version_history: UndoRedo = LevelManager.current_level.version_history
+	version_history.create_action("Added group %s to %s objects" % [group, selected_objects.size()])
+	version_history.add_do_method(do_add_group.bind(selected_objects_snapshot, group))
+	version_history.add_undo_method(undo_add_group.bind(selected_objects_snapshot, group))
+	version_history.commit_action()
+
+
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	selected_objects = selection
 	_populate_group_list(selection)
 
 
-func _on_line_edit_text_submitted(new_text:String) -> void:
-	_add_selection_to_group(selected_objects, GROUP_PREFIX + new_text)
-	_create_group_button(GROUP_PREFIX + new_text)
-	# TODO "keep focus" doesn't work
-	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
-		get_viewport().gui_release_focus()
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	_add_group(GROUP_PREFIX + new_text)
 	line_edit.clear()
+	get_viewport().gui_release_focus()
 
 
 func _on_button_pressed() -> void:
-	_add_selection_to_group(selected_objects, GROUP_PREFIX + line_edit.get_text())
-	_create_group_button(GROUP_PREFIX + line_edit.get_text())
-	get_viewport().gui_release_focus()
+	_add_group(GROUP_PREFIX + line_edit.get_text())
 	line_edit.clear()
+	get_viewport().gui_release_focus()
 
 
 static func is_godot_group(group: StringName) -> bool:
