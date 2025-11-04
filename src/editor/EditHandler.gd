@@ -349,7 +349,7 @@ func deselect(objects: Array[Node2D], merge_with_previous: bool = false) -> void
 		return
 	var do_deselection := func(negative_selection: Array):
 		selection.map(remove_selection_highlight)
-		selection.assign(ArrayUtils.difference(selection, negative_selection, TYPE_OBJECT, &"Node2D"))
+		selection.assign(ArrayUtils.difference(selection, negative_selection))
 		selection.map(add_selection_highlight)
 		selection_changed.emit(selection)
 	var undo_deselection := func(new_selection: Array):
@@ -400,7 +400,7 @@ func _update_selection() -> void:
 		deselect(selection_buffer)
 		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		select(ArrayUtils.union(selection.duplicate(), selection_buffer, TYPE_OBJECT, "Node2D"))
+		select(ArrayUtils.union(selection.duplicate(), selection_buffer))
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		_reset_selection_zone(true)
