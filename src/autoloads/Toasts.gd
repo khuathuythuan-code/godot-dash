@@ -19,7 +19,7 @@ func new_toast(text: String, duration: float = 1.0, options: int = NONE) -> Toas
 	else:
 		toast_layer = get_tree().root.get_node("ToastLayer") as CanvasLayer
 	toast_container = toast_layer.get_node(^"ToastContainer")
-	var toast := TOAST_PACKED.instantiate() as PanelContainer
+	var toast := TOAST_PACKED.instantiate() as Toast
 	toast.text = text
 	toast.lifetime = duration
 	toast.persistent = options & PERSISTENT
