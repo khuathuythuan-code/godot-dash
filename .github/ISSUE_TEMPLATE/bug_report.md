@@ -29,5 +29,14 @@ Steps to reproduce the behavior:
  - OS: <!-- [e.g. Windows] -->
  - Game Version/Commit and branch: <!-- [e.g. 2.0.0] -->
 
+**Game config**
+<!--
+Upload your game config here.
+The config can be found at:
+- Linux: ~/.local/share/godot-dash
+- Windows: %APPDATA%\godot-dash
+- macOS: ~/Library/Application Support/godot-dash
+-->
+
 **Additional context**
 <!-- Add any other context about the problem here. -->
