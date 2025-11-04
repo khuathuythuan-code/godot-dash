@@ -323,6 +323,9 @@ func update_pivot() -> void:
 
 
 func select(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+	# Avoid creating unnecessary actions
+	if ArrayUtils.are_equivalent(selection, objects):
+		return
 	var change_selection := func(new_selection: Array):
 		selection.map(remove_selection_highlight)
 		if new_selection.is_empty():
@@ -341,11 +344,13 @@ func select(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
 
 
 func deselect(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+	# Avoid creating unnecessary actions
+	if objects.is_empty() or ArrayUtils.are_equivalent(selection, objects):
+		return
 	var do_deselection := func(negative_selection: Array):
 		selection.map(remove_selection_highlight)
-		if not negative_selection.is_empty():
-			selection.assign(ArrayUtils.difference(selection, negative_selection, TYPE_OBJECT, &"Node2D"))
-			selection.map(add_selection_highlight)
+		selection.assign(ArrayUtils.difference(selection, negative_selection, TYPE_OBJECT, &"Node2D"))
+		selection.map(add_selection_highlight)
 		selection_changed.emit(selection)
 	var undo_deselection := func(new_selection: Array):
 		selection.map(remove_selection_highlight)
@@ -365,38 +370,37 @@ func deselect(objects: Array[Node2D], merge_with_previous: bool = false) -> void
 
 
 func _update_selection() -> void:
+	if Input.is_action_just_pressed(&"editor_add") or Input.is_action_just_pressed(&"editor_selection_remove"):
+		_reset_selection_zone(false)
 	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			selection_index += 1
-		_reset_selection_zone(false)
 		if (
-				placed_objects_collider.has_overlapping_areas()
-				and not (
-					Input.is_action_just_pressed(&"editor_add_swipe", false)
-					or Input.is_action_just_pressed(&"editor_selection_remove", false)
-				)
-		):
-			var cycled_object: Node2D = (
-				get_object_parent(
-					placed_objects_collider.get_overlapping_areas()[
-						selection_index%len(placed_objects_collider.get_overlapping_areas())
-					]
-				)
+			not (
+				Input.is_action_just_pressed(&"editor_add_swipe", false)
+				or Input.is_action_just_pressed(&"editor_selection_remove", false)
 			)
-			select([cycled_object])
+		):
+			if placed_objects_collider.has_overlapping_areas():
+				var cycled_object: Node2D = (
+					get_object_parent(
+						placed_objects_collider.get_overlapping_areas()[
+							selection_index%len(placed_objects_collider.get_overlapping_areas())
+						]
+					)
+				)
+				select([cycled_object])
+			else:
+				select([])
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
 	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
 	if Input.is_action_just_released(&"editor_selection_remove", true):
-		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
-		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
-		selection_changed.emit(selection)
+		deselect(selection_buffer)
 		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
-		selection.map(add_selection_highlight)
-		selection_changed.emit(selection)
+		select(ArrayUtils.union(selection.duplicate(), selection_buffer, TYPE_OBJECT, "Node2D"))
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		_reset_selection_zone(true)

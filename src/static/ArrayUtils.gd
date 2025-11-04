@@ -42,6 +42,10 @@ static func to_set(array: Array) -> Array:
 	return result
 
 
+static func are_equivalent(a: Array, b: Array) -> bool:
+	return a.all(func(element): return element in b) and b.all(func(element): return element in a)
+
+
 ## Get an array of the median of a float array or a [Vector2] with the median of the x and y components.
 static func transform(array: Array[Variant], transformation: Transformation, at_edges: bool = false) -> Variant:
 	if array[0] is float or array[0] is int:

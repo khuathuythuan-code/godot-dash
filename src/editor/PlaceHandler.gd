@@ -42,20 +42,19 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 				var grid_offset_to_level_origin := Vector2(0, 64)
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
-				
-				add_hsv_watchers(object, LevelManager.current_level)
 				object.rotation_degrees = placed_object_rotation_degrees
 
 				# Version history
-				var add_object := func(_object: Node):
+				var add_object := func(_object: Node, _level: Level):
 					level.add_child(_object, true)
-					NodeUtils.change_owner_recursive(_object, level)
+					NodeUtils.change_owner_recursive(_object, _level)
 				var remove_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
 				level.version_history.create_action("Placed object " + object.name)
-				level.version_history.add_do_method(add_object.bind(object))
+				level.version_history.add_do_method(add_object.bind(object, level))
 				level.version_history.add_undo_method(remove_object.bind(object))
 				level.version_history.commit_action()
+				add_hsv_watchers(object, level)
 				edit_handler.select([object], true)
 		# Handle object deletion
 		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
