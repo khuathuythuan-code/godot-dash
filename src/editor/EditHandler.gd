@@ -119,9 +119,6 @@ func _physics_process(delta: float) -> void:
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
 			object_move_cooldown = 0.0
-		if Input.is_action_just_released(&"editor_add") and (not Config.is_touch_screen or not any_gizmo_is_open()):
-			selection.map(add_selection_highlight)
-			_reset_selection_zone()
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
@@ -289,19 +286,13 @@ func delete_selection() -> void:
 
 
 func clear_selection() -> void:
-	selection.map(remove_selection_highlight)
-	selection.clear()
+	select([])
 	_reset_selection_zone()
-	selection_changed.emit(selection)
 
 
 func select_all() -> void:
-	clear_selection()
-	await get_tree().process_frame
 	var only_node_2ds := func(object): return object is Node2D
-	selection.assign(level.get_children().duplicate().filter(only_node_2ds))
-	selection.map(add_selection_highlight)
-	selection_changed.emit(selection)
+	select(level.get_children().duplicate().filter(only_node_2ds))
 
 
 func remove_gizmo(_selection = null) -> void:
@@ -331,14 +322,53 @@ func update_pivot() -> void:
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
+func select(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+	var change_selection := func(new_selection: Array):
+		selection.map(remove_selection_highlight)
+		if new_selection.is_empty():
+			selection.clear()
+		else:
+			selection.assign(new_selection)
+			selection.map(add_selection_highlight)
+		selection_changed.emit(selection)
+	if merge_with_previous:
+		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
+	else:
+		level.version_history.create_action("Selected %s objects" % objects.size())
+	level.version_history.add_do_method(change_selection.bind(objects))
+	level.version_history.add_undo_method(change_selection.bind(selection.duplicate()))
+	level.version_history.commit_action()
+
+
+func deselect(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+	var do_deselection := func(negative_selection: Array):
+		selection.map(remove_selection_highlight)
+		if not negative_selection.is_empty():
+			selection.assign(ArrayUtils.difference(selection, negative_selection, TYPE_OBJECT, &"Node2D"))
+			selection.map(add_selection_highlight)
+		selection_changed.emit(selection)
+	var undo_deselection := func(new_selection: Array):
+		selection.map(remove_selection_highlight)
+		if new_selection.is_empty():
+			selection.clear()
+		else:
+			selection.assign(new_selection)
+			selection.map(add_selection_highlight)
+		selection_changed.emit(selection)
+	if merge_with_previous:
+		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
+	else:
+		level.version_history.create_action("Deselected %s objects" % objects.size())
+	level.version_history.add_do_method(do_deselection.bind(objects))
+	level.version_history.add_undo_method(undo_deselection.bind(selection.duplicate()))
+	level.version_history.commit_action()
+
+
 func _update_selection() -> void:
 	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
-			selection.map(remove_selection_highlight)
-			selection.clear()
 			selection_index += 1
-			selection_changed.emit(selection)
 		_reset_selection_zone(false)
 		if (
 				placed_objects_collider.has_overlapping_areas()
@@ -347,14 +377,14 @@ func _update_selection() -> void:
 					or Input.is_action_just_pressed(&"editor_selection_remove", false)
 				)
 		):
-			selection = [
+			var cycled_object: Node2D = (
 				get_object_parent(
 					placed_objects_collider.get_overlapping_areas()[
 						selection_index%len(placed_objects_collider.get_overlapping_areas())
 					]
 				)
-			]
-			selection_changed.emit(selection)
+			)
+			select([cycled_object])
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
 	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
@@ -362,9 +392,14 @@ func _update_selection() -> void:
 		ArrayUtils.intersect(selection, selection_buffer, TYPE_OBJECT, "Node2D").map(remove_selection_highlight)
 		selection = ArrayUtils.difference(selection, selection_buffer, TYPE_OBJECT, "Node2D")
 		selection_changed.emit(selection)
+		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
 		selection = ArrayUtils.union(selection, selection_buffer, TYPE_OBJECT, "Node2D")
+		selection.map(add_selection_highlight)
 		selection_changed.emit(selection)
+		_reset_selection_zone(true)
+	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
+		_reset_selection_zone(true)
 	selection.erase(level)
 
 
