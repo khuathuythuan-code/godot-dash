@@ -87,6 +87,15 @@ func _physics_process(_delta: float) -> void:
 		$PlaceHandler.handle_place(block_palette_button_group, placed_objects_collider, level)
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"ui_redo", true):
+		level.version_history.redo()
+	elif event.is_action_pressed(&"ui_undo", true):
+		level.version_history.undo()
+	elif event.is_action_pressed(&"editor_hide_panels"):
+		%View.toggle_maximize_viewport()
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
 		process_mode = Node.PROCESS_MODE_ALWAYS
@@ -176,12 +185,3 @@ func _on_leave_pressed() -> void:
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
 	_fade_leave()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"ui_redo", true):
-		level.version_history.redo()
-	elif event.is_action_pressed(&"ui_undo", true):
-		level.version_history.undo()
-	elif event.is_action_pressed(&"editor_hide_panels"):
-		%View.toggle_maximize_viewport()
