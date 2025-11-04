@@ -19,6 +19,8 @@ var same_rotation: bool = true
 
 
 func _process(_delta: float) -> void:
+	if not LevelManager.current_level:
+		return
 	if current_selection.is_empty():
 		return
 	z_index_node.set_value_no_signal(float(first_object.z_index))
@@ -28,7 +30,7 @@ func _process(_delta: float) -> void:
 		rotation_node.set_value_no_signal(first_object.rotation_degrees)
 		same_scale = true
 		same_rotation = true
-		current_selection.map(func(object): average_position = object.position)
+		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
 		return
 
 	var object_scales: Array[Vector2]
@@ -45,7 +47,7 @@ func _process(_delta: float) -> void:
 		scale_node.set_value_no_signal(Vector2(1, 1))
 
 	var object_positions: Array[Vector2]
-	object_positions.assign(current_selection.map(func(object: Node2D): return object.position))
+	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
 	average_position = Vector2.ZERO
 	for object_position: Vector2 in object_positions:
 		average_position += object_position
