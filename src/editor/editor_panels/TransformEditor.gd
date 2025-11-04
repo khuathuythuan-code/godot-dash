@@ -68,6 +68,13 @@ func _process(_delta: float) -> void:
 		current_rotation = 0.0
 
 
+func update_pivot_relative_transform() -> void:
+	for collision_object in current_selection:
+		var pivot_relative_transform: Transform2D = collision_object.global_transform
+		pivot_relative_transform.origin -= edit_handler.selection_pivot
+		pivot_relative_transforms[collision_object] = pivot_relative_transform
+
+
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	current_selection = selection
 	if selection.is_empty():
@@ -75,6 +82,7 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	first_object = current_selection.get(0)
 	selection_size = selection.size()
 	edit_handler.update_pivot()
+	update_pivot_relative_transform()
 
 
 func _on_scale_value_changed(new_scale: Vector2) -> void:
@@ -90,17 +98,16 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 
 
 func _on_position_value_changed(new_position: Vector2) -> void:
-	var distance := Vector2(new_position.x * LevelManager.CELL_SIZE, (-new_position.y - 0.5) * LevelManager.CELL_SIZE) - average_position
+	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
+	edit_handler.selection_pivot += distance
 	edit_handler.move_objects(distance, current_selection)
+	update_pivot_relative_transform()
 
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
 	edit_handler.rotate_selection(new_rotation - current_rotation)
 	current_rotation = new_rotation
-	for collision_object in current_selection:
-		var pivot_relative_transform: Transform2D = collision_object.global_transform
-		pivot_relative_transform.origin -= edit_handler.selection_pivot
-		pivot_relative_transforms[collision_object] = pivot_relative_transform
+	update_pivot_relative_transform()
 
 
 func _set_z_index(_value: float):
