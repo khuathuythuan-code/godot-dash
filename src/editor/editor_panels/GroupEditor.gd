@@ -42,7 +42,7 @@ func _populate_group_list(selection: Array[Node2D]) -> void:
 
 
 func _create_group_button(group: String) -> Button:
-	var group_button_already_exists: bool = group_buttons.has(group) and group_buttons[group] != null
+	var group_button_already_exists: bool = group_container.get_children().any(func(child: Button): return child.text == group.trim_prefix(GROUP_PREFIX))
 	if group_button_already_exists:
 		return
 	var group_button := Button.new()
