@@ -158,7 +158,10 @@ func generate_property(variant_type: int, field: Dictionary) -> Property:
 					property.rounded = true
 					property.step = 1.0
 		TYPE_FLOAT:
-			property = FloatProperty.new()
+			if "slider" in field.hint_string:
+				property = FloatSliderProperty.new()
+			else:
+				property = FloatProperty.new()
 			if field.hint == PROPERTY_HINT_NONE:
 				property.allow_lesser = true
 				property.allow_greater = true
