@@ -10,6 +10,7 @@ signal deleted_selection
 signal moved_selection_cells(distance: Vector2)
 signal rotated_selection_degrees(angle_degrees: float)
 signal resized_selection(new_scale: Vector2)
+signal z_index_changed(z_index_delta: int)
 
 enum TransformPivot {
 	MEDIAN_POINT,
@@ -113,11 +114,9 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
-				increase_z_index(selection)
-				object_move_cooldown = 0.0
-			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
-				decrease_z_index(selection)
-				object_move_cooldown = 0.0
+				shift_z_index(true)
+			elif Input.is_action_just_pressed(&"editor_decrease_z_index"):
+				shift_z_index(false)
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
@@ -224,40 +223,42 @@ func scale_selection(
 		resized_selection.emit(transform.get_scale())
 
 
-func increase_z_index(objects: Array[Node2D]):
-	var increase_object_z_index := func(_object):
-		_object.z_index += 1
-	var decrease_object_z_index := func(_object):
-		_object.z_index -= 1
-	level.version_history.create_action("Increased Z Index")
-	var warns: int = 0
-	for object in objects:
-		if object.z_index >= 4096:
-			warns += 1
-		else:
-			level.version_history.add_do_method(increase_object_z_index.bind(object))
-			level.version_history.add_undo_method(decrease_object_z_index.bind(object))
+func shift_z_index(increase: bool):
+	var increase_object_z_index := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index += 1
+		z_index_changed.emit(1)
+	var decrease_object_z_index := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index -= 1
+		z_index_changed.emit(-1)
+	# Bulk checks
+	# Increase
+	var can_increase_z_index := func(_object: Node2D):
+		return _object.z_index < RenderingServer.CANVAS_ITEM_Z_MAX
+	var increase_z_index_warns := func(_warns: int, _object: Node2D):
+		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MAX else 0)
+	# Decrease
+	var can_decrease_z_index := func(_object: Node2D):
+		return _object.z_index > RenderingServer.CANVAS_ITEM_Z_MIN
+	var decrease_z_index_warns := func(_warns: int, _object: Node2D):
+		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
+	# Commit
+	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var warns: int = selection_snapshot.reduce(increase_z_index_warns if increase else decrease_z_index_warns, 0)
+	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
+	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
+	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
+	level.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
+	level.version_history.add_do_method(do_shift.bind(selection_snapshot))
+	level.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
 	level.version_history.commit_action()
 	if warns > 0:
-		Toasts.warning("Maximum z-index is 4096 (x" + str(warns) + ")")
-
-
-func decrease_z_index(objects: Array[Node2D]):
-	var increase_object_z_index := func(_object):
-		_object.z_index += 1
-	var decrease_object_z_index := func(_object):
-		_object.z_index -= 1
-	level.version_history.create_action("Decreased Z Index")
-	var warns: int = 0
-	for object in objects:
-		if object.z_index <= -100:
-			warns += 1
-		else:
-			level.version_history.add_do_method(decrease_object_z_index.bind(object))
-			level.version_history.add_undo_method(increase_object_z_index.bind(object))
-	level.version_history.commit_action()
-	if warns > 0:
-		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
+		Toasts.warning("%s Z index is %s (%s affected objects)" % [
+			"Maximum" if increase else "Minimum",
+			RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
+			warns,
+		])
 
 
 func duplicate_selection() -> void:

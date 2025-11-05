@@ -94,6 +94,10 @@ func _on_edit_handler_resized_selection(new_scale: Vector2) -> void:
 	scale_property.set_value_no_signal(new_scale)
 
 
+func _on_edit_handler_z_index_changed(z_index_delta: int) -> void:
+	z_index_property.set_value_no_signal(z_index_property.get_value() + z_index_delta)
+
+
 func _on_position_value_changed(new_position: Vector2) -> void:
 	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
 	edit_handler.move_selection(distance)
@@ -120,13 +124,18 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 
 func _set_z_index(_value: float):
 	var new_z_index: int = int(_value)
-	var move_object := func(_object: Node2D):
-		_object.z_index = new_z_index
-	var unmove_object := func(_object: Node2D, last_z_index):
-		_object.z_index = last_z_index
+	var do_z_index_shift := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index = new_z_index
+	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[Node2D, int]):
+		for _object: Node2D in _selection_to_z_index:
+			_object.z_index = _selection_to_z_index[_object]
 	
-	Editor.root.level.version_history.create_action("Changed object z index to " + str(new_z_index))
-	for object in current_selection:
-		Editor.root.level.version_history.add_do_method(move_object.bind(object))
-		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object, object.z_index))
-	Editor.root.level.version_history.commit_action()
+	var selection_snapshot: Array[Node2D] = current_selection.duplicate()
+	var map_object_to_z_index := func(accum: Dictionary[Node2D, int], object: Node2D): accum[object] = object.z_index
+	var selection_to_z_index: Dictionary[Node2D, int] = selection_snapshot.reduce(map_object_to_z_index, {})
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Changed object z index to %s" % new_z_index)
+	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
+	version_history.add_undo_method(undo_z_index_shift.bind(selection_to_z_index))
+	version_history.commit_action()

@@ -80,7 +80,7 @@ func _remove_group(group_button: Button) -> void:
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
 	var selected_objects_snapshot := selected_objects.duplicate()
-	var version_history: UndoRedo = LevelManager.current_level.version_history
+	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Removed group %s from %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_remove_group.bind(selected_objects_snapshot, group))
 	version_history.add_undo_method(undo_remove_group.bind(selected_objects_snapshot, group))
@@ -96,7 +96,7 @@ func _add_group(group: String) -> void:
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
 	var selected_objects_snapshot := selected_objects.duplicate()
-	var version_history: UndoRedo = LevelManager.current_level.version_history
+	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Added group %s to %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_add_group.bind(selected_objects_snapshot, group))
 	version_history.add_undo_method(undo_add_group.bind(selected_objects_snapshot, group))
