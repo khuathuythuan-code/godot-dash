@@ -237,14 +237,14 @@ func save_property(value: Variant, component_name: String, property: String, int
 		for _interactable: Interactable in _interactables:
 			var _value: Variant = new_value
 			if _interactable.get_node(component_name) is TargetGroupComponent:
-				_value = GroupEditor.GROUP_PREFIX + value
+				_value = GroupEditor.GROUP_PREFIX + new_value
 			_interactable.get_node(component_name).set(property, _value)
 		load_properties(_interactables[0], self)
 	var undo_save_property := func(_interactables_to_initial_values: Dictionary[Interactable, Variant]):
 		for _interactable: Interactable in _interactables_to_initial_values:
 			var _value = _interactables_to_initial_values[_interactable]
 			if _interactable.get_node(component_name) is TargetGroupComponent:
-				_value = GroupEditor.GROUP_PREFIX + value
+				_value = GroupEditor.GROUP_PREFIX + _interactables_to_initial_values[_interactable]
 			_interactable.get_node(component_name).set(property, _value)
 		load_properties(_interactables_to_initial_values.keys()[0], self)
 	
