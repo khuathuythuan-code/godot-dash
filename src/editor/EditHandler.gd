@@ -180,6 +180,7 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 		var combine_refs_and_positions := func(accum: Dictionary[Node2D, Vector2], object: Node2D):
 			accum[object] = object.global_position
+			return accum
 		level.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
 		level.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.reduce(combine_refs_and_positions, {})))
 	level.version_history.commit_action()
