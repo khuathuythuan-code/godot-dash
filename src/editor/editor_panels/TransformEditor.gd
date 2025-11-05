@@ -37,9 +37,9 @@ func _process(_delta: float) -> void:
 	var object_scales: Array[Vector2]
 	object_scales.assign(current_selection.map(func(object: Node2D): return object.scale))
 	same_scale = true
-	var first_value = object_scales[0]
+	var first_scale: Vector2 = object_scales[0]
 	for object_scale: Vector2 in object_scales:
-		if object_scale != first_value:
+		if object_scale != first_scale:
 			same_scale = false
 			break
 	if same_scale:
@@ -55,9 +55,9 @@ func _process(_delta: float) -> void:
 	var object_rotations: Array[float]
 	object_rotations.assign(current_selection.map(func(object: Node2D): return object.rotation_degrees))
 	same_rotation = true
-	first_value = object_rotations[0]
+	var first_rotation: float = object_rotations[0]
 	for object_rotation: float in object_rotations:
-		if object_rotation != first_value:
+		if object_rotation != first_rotation:
 			same_rotation = false
 			break
 	if same_rotation:
