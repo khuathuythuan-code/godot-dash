@@ -42,29 +42,20 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 				var grid_offset_to_level_origin := Vector2(0, 64)
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
-
-				# Version history
-				var add_object := func(_object: Node):
-					level.add_child(_object, true)
-					NodeUtils.change_owner_recursive(_object, level)
-				var remove_object := func(_object: Node):
-					_object.get_parent().remove_child(_object)
-					EditHandler.remove_selection_highlight(_object)
-					edit_handler.selection.remove_at(edit_handler.selection.find(_object))
-					edit_handler.selection_changed.emit(edit_handler.selection)
-				level.version_history.create_action("Placed object " + object.name)
-				level.version_history.add_do_method(add_object.bind(object))
-				level.version_history.add_undo_method(remove_object.bind(object))
-				level.version_history.commit_action()
-				
-				add_hsv_watchers(object, LevelManager.current_level)
 				object.rotation_degrees = placed_object_rotation_degrees
 
-				# Change selection
-				edit_handler.clear_selection()
-				edit_handler.selection.append(object)
-				edit_handler.selection.map(EditHandler.add_selection_highlight)
-				edit_handler.selection_changed.emit(edit_handler.selection)
+				# Version history
+				var add_object := func(_object: Node, _level: Level):
+					level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, _level)
+				var remove_object := func(_object: Node):
+					_object.get_parent().remove_child(_object)
+				level.version_history.create_action("Placed object " + object.name)
+				level.version_history.add_do_method(add_object.bind(object, level))
+				level.version_history.add_undo_method(remove_object.bind(object))
+				level.version_history.commit_action()
+				add_hsv_watchers(object, level)
+				edit_handler.select([object], true)
 		# Handle object deletion
 		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
 			placed_object_rotation_degrees = 0.0
@@ -76,7 +67,6 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				# Version history
 				var delete_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
-					edit_handler.clear_selection()
 				var restore_object := func(_object: Node):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, level)
@@ -84,6 +74,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				level.version_history.add_do_method(delete_object.bind(object))
 				level.version_history.add_undo_method(restore_object.bind(object))
 				level.version_history.commit_action()
+				edit_handler.deselect([object], true)
 
 
 func get_area(area: Area2D) -> Node:

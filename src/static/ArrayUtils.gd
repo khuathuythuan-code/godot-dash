@@ -8,38 +8,43 @@ enum Transformation {
 
 
 ## Appends an array to another and removes the duplicates between the two.
-static func union(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
+static func union(a: Array, b: Array) -> Array:
+	var result: Array = a.duplicate()
 	for element in b:
-		if element not in a:
-			a.append(element)
-	return Array(a, type, hint, null)
+		if not element in a:
+			result.append(element)
+	return result
 
 
 ## Get an array of the elements only in the first array.
-static func difference(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
+static func difference(a: Array, b: Array) -> Array:
 	var result: Array
 	for element in a:
-		if element not in b:
+		if not element in b:
 			result.append(element)
-	return Array(result, type, hint, null)
+	return result
 
 
 ## Get an array of the elements only in both arrays.
-static func intersect(a: Array, b: Array, type: Variant.Type, hint: StringName) -> Array[Variant]:
+static func intersect(a: Array, b: Array) -> Array:
 	var result: Array
 	for element in b:
 		if element in a:
 			result.append(element)
-	return Array(result, type, hint, null)
+	return result
 
 
 ## Get an array with only unique elements from the source array (removes duplicates).
 static func to_set(array: Array) -> Array:
 	var result: Array
 	for element in array:
-		if not result.has(element):
+		if not element in result:
 			result.append(element)
 	return result
+
+
+static func are_equivalent(a: Array, b: Array) -> bool:
+	return a.all(func(element): return element in b) and b.all(func(element): return element in a)
 
 
 ## Get an array of the median of a float array or a [Vector2] with the median of the x and y components.

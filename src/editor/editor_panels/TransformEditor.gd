@@ -48,10 +48,7 @@ func _process(_delta: float) -> void:
 
 	var object_positions: Array[Vector2]
 	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
-	average_position = Vector2.ZERO
-	for object_position: Vector2 in object_positions:
-		average_position += object_position
-	average_position /= selection_size
+	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 	position_node.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 	var object_rotations: Array[float]

@@ -171,9 +171,9 @@ func to_data() -> Dictionary:
 
 func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
 	if object.has_node(^"Base"):
-		object_data.color_channels.base = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Base")).get_groups().front()
-		if not object_data.color_channels.base:
-			object_data.color_channels.erase("base")
+		var base_color_channel: Array[StringName] = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Base")).get_groups()
+		if not base_color_channel.is_empty():
+			object_data.color_channels.base = base_color_channel[0]
 	else:
 		# Color channel groups might be attached to the object directly
 		# if it doesn't have a Base.
@@ -187,9 +187,9 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 		# If the object doesn't have a Base, it can't have a Detail either.
 		return
 	if object.has_node(^"Detail"):
-		object_data.color_channels.detail = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Detail")).get_groups().front()
-		if not object_data.color_channels.detail:
-			object_data.color_channels.erase("detail")
+		var detail_color_channel: Array[StringName] = BaseDetailHandler.use_hsv_watcher(object.get_node(^"Detail")).get_groups()
+		if not detail_color_channel.is_empty():
+			object_data.color_channels.detail = detail_color_channel[0]
 
 
 static func from_data(data: Dictionary) -> Level:
