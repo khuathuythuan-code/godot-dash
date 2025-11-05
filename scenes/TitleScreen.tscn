@@ -386,14 +386,7 @@ tween_on_load = true
 inactive_update_mode = 0
 metadata/_edit_lock_ = true
 
-[node name="UpdateChecker" type="Button" parent="TitleScreen" node_paths=PackedStringArray("http")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.01
-anchor_right = 0.5
-anchor_bottom = 0.01
-grow_horizontal = 2
+[node name="UpdateChecker" type="Node" parent="TitleScreen" node_paths=PackedStringArray("http")]
 script = ExtResource("19_1ska7")
 http = NodePath("../../HTTPRequest")
 
@@ -997,7 +990,6 @@ visible = false
 [connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToCreatedLevelsList" to="Subscene Manager" method="_on_go_to_created_levels_list_pressed"]
 [connection signal="pressed" from="TitleScreen/QuitGame" to="Subscene Manager" method="_on_quit_game_pressed"]
 [connection signal="pressed" from="TitleScreen/Settings" to="SettingsLayer" method="_on_settings_pressed"]
-[connection signal="pressed" from="TitleScreen/UpdateChecker" to="TitleScreen/UpdateChecker" method="_on_pressed"]
 [connection signal="pressed" from="IconGarage/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
 [connection signal="pressed" from="CreatedLevelsList/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
 [connection signal="pressed" from="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]

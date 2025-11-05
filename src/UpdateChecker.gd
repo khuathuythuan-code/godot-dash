@@ -1,35 +1,44 @@
-extends Button
+extends Node
 
 @export var http: HTTPRequest
+var toast: Toast
 var out_of_date: bool = false
 
 
 func _ready() -> void:
 	http.connect("request_completed", _on_request_completed)
 	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
-	text = "Checking for updates..."
+	toast = Toasts.new_toast("Checking for updates...", INF)
 
 
 func _on_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
+	var text: String
 	if body.get_string_from_utf8().containsn('config/version="%s"' % ProjectSettings.get_setting("application/config/version")):
 		text = "Up to date (version %s)." % ProjectSettings.get_setting("application/config/version")
+		if toast:
+			toast.text = text
+		else:
+			Toasts.new_toast(text, INF)
 		await get_tree().create_timer(1.0).timeout
-		await create_tween().tween_property(self, "modulate:a", 0, 1).set_trans(Tween.TRANS_QUINT).finished
-		hide()
+		if toast:
+			toast.dismiss()
 		return
-	var new_version: String
 	for line in body.get_string_from_utf8().split("\n"):
 		if line.begins_with("config/version="):
-			new_version = line.replacen("config/version=", "").remove_chars('"')
+			text = line.replacen("config/version=", "").remove_chars('"')
 			break
-	text = "New update available (version %s)! Click to download." %  new_version
+	text = "New update available (version %s)! Click to download." % text
+	if toast:
+		toast.text = text
+	else:
+		Toasts.new_toast(text, INF)
 	out_of_date = true
+	toast.connect("pressed", _on_toast_pressed)
 
 
-func _on_pressed() -> void:
+func _on_toast_pressed() -> void:
 	if out_of_date:
+		toast.text = "Link opened."
 		OS.shell_open("https://codeberg.org/godot-dash/godot-dash/")
-		text = "Link opened."
-		await get_tree().create_timer(5.0).timeout
-		await create_tween().tween_property(self, "modulate:a", 0, 1).set_trans(Tween.TRANS_QUINT).finished
-		hide()
+		await get_tree().create_timer(0.2).timeout
+		queue_free()
