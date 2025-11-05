@@ -30,7 +30,7 @@ func _ready() -> void:
 		var property := FlagsProperty.new()
 		property.name = category_name
 		for attribute in FLAG_ATTRIBUTES[category_name]:
-			property.flags.append(attribute.get_global_name().trim_prefix(category_name).trim_suffix("Attribute").capitalize())
+			property.flags.append(attribute.get_global_name().trim_prefix(category_name.to_pascal_case()).trim_suffix("Attribute").capitalize())
 		flag_properties[category_name] = property
 		add_child(property)
 
