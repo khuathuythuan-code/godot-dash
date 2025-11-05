@@ -106,6 +106,10 @@ enum ParticlePreprocessing {
 @export_group("Easter Eggs")
 @export var enable_easter_eggs: bool
 
+# Internet
+@export_group("Internet")
+@export var check_for_updates: bool = true
+
 var config_file: ConfigFile = ConfigFile.new()
 
 
