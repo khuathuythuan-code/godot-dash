@@ -105,10 +105,11 @@ func _set_texture_override_metadata(object: Node2D, override: TextureOverride, i
 
 
 func _on_edit_handler_rotated_object_degrees(rotation_degrees:float) -> void:
-	if rotation_degrees == 0.0:
-		placed_object_rotation_degrees = 0.0
-	else:
-		placed_object_rotation_degrees += rotation_degrees
+	placed_object_rotation_degrees += rotation_degrees
+
+
+func _on_edit_handler_deleted_selection() -> void:
+	placed_object_rotation_degrees = 0.0
 
 
 static func add_hsv_watchers(object: Node2D, level: Level) -> void:

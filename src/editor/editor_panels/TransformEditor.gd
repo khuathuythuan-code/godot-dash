@@ -19,18 +19,30 @@ var same_rotation: bool = true
 @onready var parent: Node = get_parent()
 
 
-func _process(_delta: float) -> void:
-	if not LevelManager.current_level:
+func update_pivot_relative_transform() -> void:
+	for collision_object in current_selection:
+		var pivot_relative_transform: Transform2D = collision_object.global_transform
+		pivot_relative_transform.origin -= edit_handler.selection_pivot
+		pivot_relative_transforms[collision_object] = pivot_relative_transform
+
+
+func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+	current_selection = selection
+	if selection.is_empty():
 		return
-	if current_selection.is_empty():
-		return
+	first_object = current_selection.get(0)
+	selection_size = selection.size()
+	edit_handler.update_pivot()
+	update_pivot_relative_transform()
+
 	z_index_property.set_value_no_signal(float(first_object.z_index))
 	if selection_size == 1:
 		scale_property.set_value_no_signal(first_object.scale)
 		position_property.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-		rotation_property.set_value_no_signal(first_object.rotation_degrees)
+		rotation_property.set_value_no_signal(first_object.global_rotation_degrees)
 		same_scale = true
 		same_rotation = true
+		current_rotation = first_object.global_rotation_degrees
 		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
 		return
 
@@ -68,20 +80,29 @@ func _process(_delta: float) -> void:
 		current_rotation = 0.0
 
 
-func update_pivot_relative_transform() -> void:
-	for collision_object in current_selection:
-		var pivot_relative_transform: Transform2D = collision_object.global_transform
-		pivot_relative_transform.origin -= edit_handler.selection_pivot
-		pivot_relative_transforms[collision_object] = pivot_relative_transform
+func _on_edit_handler_moved_selection_cells(distance: Vector2) -> void:
+	average_position += distance * LevelManager.CELL_SIZE
+	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
-	current_selection = selection
-	if selection.is_empty():
-		return
-	first_object = current_selection.get(0)
-	selection_size = selection.size()
-	edit_handler.update_pivot()
+func _on_edit_handler_rotated_selection_degrees(angle_degrees: float) -> void:
+	current_rotation += angle_degrees
+	rotation_property.set_value_no_signal(current_rotation)
+
+
+func _on_edit_handler_resized_selection(new_scale: Vector2) -> void:
+	scale_property.set_value_no_signal(new_scale)
+
+
+func _on_position_value_changed(new_position: Vector2) -> void:
+	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
+	edit_handler.move_selection(distance)
+	# No need to update the relative transforms since the pivot and objects move the same amount
+
+
+func _on_rotation_value_changed(new_rotation: float) -> void:
+	edit_handler.rotate_selection(new_rotation - current_rotation, false)
+	current_rotation = new_rotation
 	update_pivot_relative_transform()
 
 
@@ -93,21 +114,8 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 		false,
 		pivot_relative_transforms,
 		true,
-		edit_handler.selection_pivot
+		edit_handler.selection_pivot,
 	)
-
-
-func _on_position_value_changed(new_position: Vector2) -> void:
-	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
-	edit_handler.selection_pivot += distance
-	edit_handler.move_objects(distance, current_selection)
-	update_pivot_relative_transform()
-
-
-func _on_rotation_value_changed(new_rotation: float) -> void:
-	edit_handler.rotate_selection(new_rotation - current_rotation)
-	current_rotation = new_rotation
-	update_pivot_relative_transform()
 
 
 func _set_z_index(_value: float):
