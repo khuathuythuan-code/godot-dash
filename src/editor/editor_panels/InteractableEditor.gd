@@ -226,7 +226,7 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 		property.value_changed.get_connections().map(remove_connections)
 		var property_name := property.name.to_snake_case()
 		if property is BoolProperty and property in marker_properties.values():
-			property.value_changed.connect(refresh_marker.bind(marker_properties.find_key(property), interactables))
+			property.value_changed.connect(refresh_marker.bind(property, marker_properties.find_key(property), interactables))
 			continue
 		if property.has_meta(&"component_name"):
 			property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
@@ -262,15 +262,25 @@ func save_property(value: Variant, component_name: String, property: String, int
 	version_history.commit_action()
 
 
-func refresh_marker(enabled: bool, marker_script: Script, interactables: Array[Interactable]) -> void:
-	for interactable in	interactables:
-		if enabled:
-			var marker: Marker = NodeUtils.get_node_or_add(interactable, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
-			interactable.register_public(marker)
-		else:
-			NodeUtils.get_children_of_type(interactable, marker_script).map(func(marker):
-				interactable.components.erase(marker)
+func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script, interactables: Array[Interactable]) -> void:
+	var add_marker := func(_interactables: Array[Interactable]):
+		for _interactable: Interactable in _interactables:
+			var marker: Marker = NodeUtils.get_node_or_add(_interactable, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+			_interactable.register_public(marker)
+		property.set_value_no_signal(true)
+	var remove_marker := func(_interactables: Array[Interactable]):
+		for _interactable: Interactable in _interactables:
+			NodeUtils.get_children_of_type(_interactable, marker_script).map(func(marker):
+				_interactable.components.erase(marker)
 				marker.queue_free())
+		property.set_value_no_signal(false)
+	
+	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set '%s' to %s on %s interactables" % [marker_script.get_global_name(), enabled, interactables_snapshot.size()])
+	version_history.add_do_method(add_marker.bind(interactables_snapshot) if enabled else remove_marker.bind(interactables_snapshot))
+	version_history.add_undo_method(remove_marker.bind(interactables_snapshot) if enabled else add_marker.bind(interactables_snapshot))
+	version_history.commit_action()
 
 
 func load_properties(interactable: Interactable, ui_root: Control) -> void:
