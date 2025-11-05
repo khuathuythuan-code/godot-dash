@@ -2,11 +2,10 @@ extends VBoxContainer
 class_name TransformEditor
 
 @export var edit_handler: EditHandler
-@export var z_index_node: FloatProperty
-@export var scale_node: Vector2Property
-@export var position_node: Vector2Property
-@export var rotation_node: FloatProperty
-@onready var parent: Node = get_parent()
+@export var position_property: Vector2Property
+@export var rotation_property: FloatProperty
+@export var scale_property: Vector2Property
+@export var z_index_property: FloatProperty
 
 var current_selection: Array[Node2D]
 var selection_size: int
@@ -17,17 +16,19 @@ var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
+@onready var parent: Node = get_parent()
+
 
 func _process(_delta: float) -> void:
 	if not LevelManager.current_level:
 		return
 	if current_selection.is_empty():
 		return
-	z_index_node.set_value_no_signal(float(first_object.z_index))
+	z_index_property.set_value_no_signal(float(first_object.z_index))
 	if selection_size == 1:
-		scale_node.set_value_no_signal(first_object.scale)
-		position_node.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-		rotation_node.set_value_no_signal(first_object.rotation_degrees)
+		scale_property.set_value_no_signal(first_object.scale)
+		position_property.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+		rotation_property.set_value_no_signal(first_object.rotation_degrees)
 		same_scale = true
 		same_rotation = true
 		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
@@ -42,14 +43,14 @@ func _process(_delta: float) -> void:
 			same_scale = false
 			break
 	if same_scale:
-		scale_node.set_value_no_signal(object_scales[0])
+		scale_property.set_value_no_signal(object_scales[0])
 	else:
-		scale_node.set_value_no_signal(Vector2(1, 1))
+		scale_property.set_value_no_signal(Vector2(1, 1))
 
 	var object_positions: Array[Vector2]
 	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
 	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
-	position_node.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 	var object_rotations: Array[float]
 	object_rotations.assign(current_selection.map(func(object: Node2D): return object.rotation_degrees))
@@ -60,10 +61,10 @@ func _process(_delta: float) -> void:
 			same_rotation = false
 			break
 	if same_rotation:
-		rotation_node.set_value_no_signal(object_rotations[1])
+		rotation_property.set_value_no_signal(object_rotations[1])
 		current_rotation = object_rotations[1]
 	else:
-		rotation_node.set_value_no_signal(0.0)
+		rotation_property.set_value_no_signal(0.0)
 		current_rotation = 0.0
 
 

@@ -5952,15 +5952,15 @@ title = "Transform"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_c6gj0")
 
-[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("edit_handler", "z_index_node", "scale_node", "position_node", "rotation_node")]
+[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property", "z_index_property")]
 visible = false
 layout_mode = 2
 script = ExtResource("208_5qr8h")
 edit_handler = NodePath("../../../../../../../../EditHandler")
-z_index_node = NodePath("Z Index")
-scale_node = NodePath("Scale")
-position_node = NodePath("Position")
-rotation_node = NodePath("Rotation")
+position_property = NodePath("Position")
+rotation_property = NodePath("Rotation")
+scale_property = NodePath("Scale")
+z_index_property = NodePath("Z Index")
 
 [node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
 custom_minimum_size = Vector2(0, 32)
