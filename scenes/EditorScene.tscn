@@ -5952,15 +5952,15 @@ title = "Transform"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_c6gj0")
 
-[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("edit_handler", "z_index_node", "scale_node", "position_node", "rotation_node")]
+[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform" node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property", "z_index_property")]
 visible = false
 layout_mode = 2
 script = ExtResource("208_5qr8h")
 edit_handler = NodePath("../../../../../../../../EditHandler")
-z_index_node = NodePath("Z Index")
-scale_node = NodePath("Scale")
-position_node = NodePath("Position")
-rotation_node = NodePath("Rotation")
+position_property = NodePath("Position")
+rotation_property = NodePath("Rotation")
+scale_property = NodePath("Scale")
+z_index_property = NodePath("Z Index")
 
 [node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor"]
 custom_minimum_size = Vector2(0, 32)
@@ -6363,7 +6363,11 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity" to="HSVHandler" method="_on_intensity_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
+[connection signal="deleted_selection" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_deleted_selection"]
+[connection signal="moved_selection_cells" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_moved_selection_cells"]
+[connection signal="resized_selection" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_resized_selection"]
 [connection signal="rotated_object_degrees" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_rotated_object_degrees"]
+[connection signal="rotated_selection_degrees" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_rotated_selection_degrees"]
 [connection signal="selection_changed" from="EditHandler" to="TriggerGroupBoundingBox" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Groups/VBoxContainer/GroupEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
@@ -6373,6 +6377,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
+[connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="_on_menu_bar_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
