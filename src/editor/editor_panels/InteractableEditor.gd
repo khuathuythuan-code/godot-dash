@@ -230,11 +230,33 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 
 
 func save_property(value: Variant, component_name: String, property: String, interactables: Array[Interactable]) -> void:
-	interactables.map(func(interactable):
-		var _value = value
-		if interactable.get_node(component_name) is TargetGroupComponent:
-			_value = GroupEditor.GROUP_PREFIX + value
-		interactable.get_node(component_name).set(property, _value))
+	var do_save_property := func(_interactables: Array[Interactable], new_value: Variant):
+		for _interactable: Interactable in _interactables:
+			var _value: Variant = new_value
+			if _interactable.get_node(component_name) is TargetGroupComponent:
+				_value = GroupEditor.GROUP_PREFIX + value
+			_interactable.get_node(component_name).set(property, _value)
+		load_properties(_interactables[0], self)
+	var undo_save_property := func(_interactables_to_initial_values: Dictionary[Interactable, Variant]):
+		for _interactable: Interactable in _interactables_to_initial_values:
+			var _value = _interactables_to_initial_values[_interactable]
+			if _interactable.get_node(component_name) is TargetGroupComponent:
+				_value = GroupEditor.GROUP_PREFIX + value
+			_interactable.get_node(component_name).set(property, _value)
+		load_properties(_interactables_to_initial_values.keys()[0], self)
+	
+	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
+	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
+		accum[interactable] = interactable.get_node(component_name).get(property)
+		return accum
+	var interactables_to_initial_values: Dictionary[Interactable, Variant]
+	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, {}))
+
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set '%s' to %s on %s interactables" % [property, value, interactables_snapshot.size()])
+	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
+	version_history.add_undo_method(undo_save_property.bind(interactables_to_initial_values))
+	version_history.commit_action()
 
 
 func refresh_marker(enabled: bool, marker_script: Script, interactables: Array[Interactable]) -> void:
