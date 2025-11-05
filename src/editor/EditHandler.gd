@@ -95,14 +95,10 @@ func _physics_process(delta: float) -> void:
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
 				update_pivot()
 				rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
-				if selection.size() == 1:
-					rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
 				update_pivot()
 				rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
-				if selection.size() == 1:
-					rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				object_move_cooldown = 0.2
 			if Input.is_action_just_pressed(&"editor_flip_h", true):
 				_flip_selection(Vector2.AXIS_X)
@@ -154,10 +150,14 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 		for _object in _selection:
 			_object.global_rotation_degrees += angle
 		rotated_selection_degrees.emit(angle)
+		if _selection.size() == 1 and not is_gizmo:
+			rotated_object_degrees.emit(angle)
 	var undo_rotate_selection := func(_selection: Array[Node2D]):
 		for _object in _selection:
 			_object.global_rotation_degrees -= angle
 		rotated_selection_degrees.emit(-angle)
+		if _selection.size() == 1 and not is_gizmo:
+			rotated_object_degrees.emit(-angle)
 	var do_pivot := func(_selection: Array[Node2D], _selection_pivot: Vector2):
 		for _object in _selection:
 			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
