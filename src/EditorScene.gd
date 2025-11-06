@@ -163,6 +163,7 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_duals.map(NodeUtils.free_node)
 		LevelManager.player_duals.clear()
 		level.queue_free()
+		%Playtest.disabled = true
 		await get_tree().process_frame
 		var new_player: Player = AssetManager.player_packed.instantiate()
 		new_player.position = DEFAULT_PLAYER_POSITION
@@ -171,6 +172,7 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_camera.static_factor = Vector2.ZERO
 		_ready()
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
+		%Playtest.disabled = false
 
 
 func _on_leave_pressed() -> void:
