@@ -1,4 +1,4 @@
-@tool extends Node
+extends Node
 class_name SubsceneManager
 
 enum SubScene {
@@ -85,6 +85,8 @@ func _ready() -> void:
 		camera.add_child(PhantomCameraHost.new())
 	else:
 		active_pcam.set_priority(PhantomCameraHistory.Status.CURRENT_ACTIVE)
+	DiscordRPC.state = "Title Screen"
+	DiscordRPC.refresh()
 
 
 func _process(delta: float) -> void:
@@ -186,6 +188,8 @@ func _on_editor_pressed() -> void:
 		history.change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
 		SceneTransition.previous = SceneTransition.Scene.MAIN
+		DiscordRPC.state = "Creating a level"
+		DiscordRPC.refresh()
 		if Editor.snapshot.can_instantiate():
 			get_tree().change_scene_to_packed(Editor.snapshot)
 		else:

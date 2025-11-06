@@ -185,4 +185,6 @@ func _on_leave_pressed() -> void:
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
+	DiscordRPC.state = "Title Screen"
+	DiscordRPC.refresh()
 	_fade_leave()
