@@ -15,7 +15,7 @@ var toast_container: VBoxContainer
 func new_toast(text: String, duration: float = 1.0, options: int = NONE) -> Toast:
 	if not get_tree().root.has_node("ToastLayer"):
 		toast_layer = TOAST_LAYER_PACKED.instantiate() as CanvasLayer
-		get_tree().root.add_child(toast_layer, true)
+		get_tree().root.add_child.call_deferred(toast_layer, true)
 	else:
 		toast_layer = get_tree().root.get_node("ToastLayer") as CanvasLayer
 	toast_container = toast_layer.get_node(^"ToastContainer")
