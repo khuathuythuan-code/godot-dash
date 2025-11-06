@@ -6,7 +6,6 @@ var sprite: Node2D
 var player_distance: float
 var player_velocity: Vector2 
 
-
 func _ready() -> void:
 	super()
 	if parent is PadInteractable:
@@ -16,8 +15,10 @@ func _physics_process(delta: float) -> void:
 	player_distance = (parent.global_position.rotated(-LevelManager.player.gameplay_rotation).y \
 			- LevelManager.player.global_position.rotated(-LevelManager.player.gameplay_rotation).y) \
 			* LevelManager.player.gravity_flip
-	player_velocity = LevelManager.player.velocity.rotated(-LevelManager.player.gameplay_rotation) \
+	var new_player_velocity = LevelManager.player.velocity.rotated(-LevelManager.player.gameplay_rotation) \
 			* LevelManager.player.gravity_flip
+	if not parent.get_overlapping_bodies().has(LevelManager.player):
+		player_velocity = new_player_velocity
 	if player_distance > Player.TERMINAL_VELOCITY.y * delta:
 		_velocity = player_velocity.y
 
