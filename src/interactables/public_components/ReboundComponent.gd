@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 			* LevelManager.player.gravity_flip
 	var new_player_velocity = LevelManager.player.velocity.rotated(-LevelManager.player.gameplay_rotation) \
 			* LevelManager.player.gravity_flip
-	if not parent.get_overlapping_bodies().has(LevelManager.player):
+	if parent.get_overlapping_bodies().is_empty():
 		player_velocity = new_player_velocity
 	if player_distance > Player.TERMINAL_VELOCITY.y * delta:
 		_velocity = player_velocity.y

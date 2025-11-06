@@ -207,6 +207,9 @@ static func from_data(data: Dictionary) -> Level:
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
+		if prefab == null:
+			push_error("resource not loaded: " + "res://%s" % object_data.scene_file_path)
+			continue
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
