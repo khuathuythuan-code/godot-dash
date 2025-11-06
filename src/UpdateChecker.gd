@@ -1,11 +1,13 @@
 extends Node
 
-@export var http: HTTPRequest
+var http: HTTPRequest
 var toast: Toast
 var out_of_date: bool = false
 
 
 func _ready() -> void:
+	http = HTTPRequest.new()
+	add_child(http)
 	http.connect("request_completed", _on_request_completed)
 	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
 	toast = Toasts.new_toast("Checking for updates...", INF)
@@ -22,6 +24,7 @@ func _on_request_completed(_result: int, _response_code: int, _headers: PackedSt
 		await get_tree().create_timer(1.0).timeout
 		if toast:
 			toast.dismiss()
+		queue_free()
 		return
 	for line in body.get_string_from_utf8().split("\n"):
 		if line.begins_with("config/version="):
