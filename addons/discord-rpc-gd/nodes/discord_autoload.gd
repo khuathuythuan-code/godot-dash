@@ -8,9 +8,8 @@ extends Node
 
 
 func _ready() -> void:
-	DiscordRPC.app_id = 1436096124636365042
-	DiscordRPC.details = "A Geometry Dash Remake made in Godot Engine"
-	DiscordRPC.large_image = "logo"
+	DiscordRPC.app_id = 1434298571733078136
+	DiscordRPC.large_image = "large_image"
 	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
 
 
