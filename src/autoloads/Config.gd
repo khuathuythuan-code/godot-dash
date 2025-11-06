@@ -108,7 +108,7 @@ enum ParticlePreprocessing {
 
 # Internet
 @export_group("Internet")
-@export var check_for_updates: bool = true
+@export var check_for_updates: bool
 
 var config_file: ConfigFile = ConfigFile.new()
 
@@ -158,6 +158,9 @@ func _init():
 
 	# Easter Eggs
 	enable_easter_eggs = config_file.get_value("Easter Eggs", "enable_easter_eggs", enable_easter_eggs)
+
+	# Internet
+	check_for_updates = config_file.get_value("Internet", "check_for_updates", check_for_updates)
 
 
 func _notification(what):
@@ -211,5 +214,8 @@ func save() -> void:
 
 	# Easter Eggs
 	config_file.set_value("Easter Eggs", "enable_easter_eggs", enable_easter_eggs)
+
+	# Internet
+	config_file.set_value("Internet", "check_for_updates", check_for_updates)
 
 	config_file.save("user://config.cfg")

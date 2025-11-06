@@ -6,6 +6,9 @@ var out_of_date: bool = false
 
 
 func _ready() -> void:
+	if !Config.check_for_updates:
+		queue_free()
+		return
 	http = HTTPRequest.new()
 	add_child(http)
 	http.connect("request_completed", _on_request_completed)
