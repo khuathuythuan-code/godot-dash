@@ -11,7 +11,7 @@ func _ready() -> void:
 		return
 	http = HTTPRequest.new()
 	add_child(http)
-	http.connect("request_completed", _on_request_completed)
+	http.request_completed.connect(_on_request_completed)
 	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
 	toast = Toasts.new_toast("Checking for updates...", INF)
 
@@ -39,7 +39,7 @@ func _on_request_completed(_result: int, _response_code: int, _headers: PackedSt
 	else:
 		Toasts.new_toast(text, INF)
 	out_of_date = true
-	toast.connect("pressed", _on_toast_pressed)
+	toast.pressed.connect(_on_toast_pressed)
 
 
 func _on_toast_pressed() -> void:
