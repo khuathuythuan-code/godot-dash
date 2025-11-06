@@ -705,6 +705,7 @@ mouse_filter = 1
 script = ExtResource("11_cwcew")
 
 [node name="Playtest" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
 offset_left = 64.0
@@ -6378,7 +6379,6 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
-[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="_on_menu_bar_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
 [connection signal="file_selected" from="ImportAndOpenLevelDialog" to="LevelOperationsHandler" method="_on_import_and_open_level_dialog_file_selected"]
