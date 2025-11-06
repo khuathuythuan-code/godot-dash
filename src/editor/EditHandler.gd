@@ -5,6 +5,12 @@ signal selection_zone_changed(new_zone: Rect2)
 signal selection_changed(selection: Array[Node2D])
 signal clipboard_changed(clipboard: Array[NodePath])
 signal rotated_object_degrees(rotation_degrees: float)
+signal deleted_selection
+# Selection transform
+signal moved_selection_cells(distance: Vector2)
+signal rotated_selection_degrees(angle_degrees: float)
+signal resized_selection(new_scale: Vector2)
+signal z_index_changed(z_index_delta: int)
 
 enum TransformPivot {
 	MEDIAN_POINT,
@@ -85,17 +91,15 @@ func _physics_process(delta: float) -> void:
 				var move_multiplier := 1.0
 				if Input.is_key_pressed(KEY_SHIFT):
 					move_multiplier = 0.5
-				move_objects(move_vector * move_multiplier)
+				move_selection(move_vector * move_multiplier)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") and object_move_cooldown <= 0:
 				update_pivot()
 				rotate_selection(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
-				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45") * 45.0)
 				object_move_cooldown = 0.2
 			if Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") and object_move_cooldown <= 0:
 				update_pivot()
 				rotate_selection(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
-				rotated_object_degrees.emit(Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") * 90.0)
 				object_move_cooldown = 0.2
 			if Input.is_action_just_pressed(&"editor_flip_h", true):
 				_flip_selection(Vector2.AXIS_X)
@@ -110,11 +114,9 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
-				increase_z_index(selection)
-				object_move_cooldown = 0.0
-			if Input.is_action_just_pressed(&"editor_decrease_z_index"):
-				decrease_z_index(selection)
-				object_move_cooldown = 0.0
+				shift_z_index(true)
+			elif Input.is_action_just_pressed(&"editor_decrease_z_index"):
+				shift_z_index(false)
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
 				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
 				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
@@ -122,46 +124,65 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func move_objects(distance: Vector2, objects: Array[Node2D] = selection):
-	var move_object := func(_object):
-		_object.global_position += distance * LevelManager.CELL_SIZE
-	var unmove_object := func(_object):
-		_object.global_position -= distance * LevelManager.CELL_SIZE
+func move_selection(distance: Vector2):
+	var move_object := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.global_position += distance * LevelManager.CELL_SIZE
+		selection_pivot += distance * LevelManager.CELL_SIZE
+		moved_selection_cells.emit(distance)
+	var unmove_object := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.global_position -= distance * LevelManager.CELL_SIZE
+		selection_pivot -= distance * LevelManager.CELL_SIZE
+		moved_selection_cells.emit(-distance)
+	var selection_snapshot: Array[Node2D] = selection.duplicate()
 	level.version_history.create_action("Moved objects %s units")
-	for object in objects:
-		level.version_history.add_do_method(move_object.bind(object))
-		level.version_history.add_undo_method(unmove_object.bind(object))
+	level.version_history.add_do_method(move_object.bind(selection_snapshot))
+	level.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
 	level.version_history.commit_action()
 
 
 func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if selection.is_empty():
 		return
-	var rotate_object := func(_object):
-		_object.global_rotation_degrees += angle
-	var unrotate_object := func(_object):
-		_object.global_rotation_degrees -= angle
-	var pivot := func(_object, _selection_pivot):
-		var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
-		var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
-		_object.global_position += position_delta
-	var unpivot := func(_object, _original_position):
-		_object.global_position = _original_position
+	var do_rotate_selection := func(_selection: Array[Node2D]):
+		for _object in _selection:
+			_object.global_rotation_degrees += angle
+		rotated_selection_degrees.emit(angle)
+		if _selection.size() == 1 and not is_gizmo:
+			rotated_object_degrees.emit(angle)
+	var undo_rotate_selection := func(_selection: Array[Node2D]):
+		for _object in _selection:
+			_object.global_rotation_degrees -= angle
+		rotated_selection_degrees.emit(-angle)
+		if _selection.size() == 1 and not is_gizmo:
+			rotated_object_degrees.emit(-angle)
+	var do_pivot := func(_selection: Array[Node2D], _selection_pivot: Vector2):
+		for _object in _selection:
+			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
+			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
+			_object.global_position += position_delta
+	var undo_pivot := func(_selection_original_positions: Dictionary[Node2D, Vector2]):
+		for _object in _selection_original_positions:
+			_object.global_position = _selection_original_positions[_object]
+	
+	var selection_snapshot: Array[Node2D] = selection.duplicate() 
 	# Avoid firing signals for RotateGizmo rotations
 	# RotateGizmo fires a signal every frame its angle changes
 	# This would clog the history with small rotations.
 	if is_gizmo:
-		selection.map(rotate_object)
-		selection.map(pivot.bind(selection_pivot))
+		do_rotate_selection.call(selection_snapshot)
+		do_pivot.call(selection_snapshot, selection_pivot)
 		return
 	level.version_history.create_action("Rotated objects %s°" % angle)
-	for object in selection:
-		level.version_history.add_do_method(rotate_object.bind(object))
-		level.version_history.add_undo_method(unrotate_object.bind(object))
+	level.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
+	level.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
 	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-		for object in selection:
-			level.version_history.add_do_method(pivot.bind(object, selection_pivot))
-			level.version_history.add_undo_method(unpivot.bind(object, object.global_position))
+		var combine_refs_and_positions := func(accum: Dictionary[Node2D, Vector2], object: Node2D):
+			accum[object] = object.global_position
+			return accum
+		level.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
+		level.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.reduce(combine_refs_and_positions, {})))
 	level.version_history.commit_action()
 
 
@@ -197,44 +218,48 @@ func scale_selection(
 		return
 	if is_global:
 		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+		resized_selection.emit(transform.get_scale())
 	else:
 		selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+		resized_selection.emit(transform.get_scale())
 
 
-func increase_z_index(objects: Array[Node2D]):
-	var increase_object_z_index := func(_object):
-		_object.z_index += 1
-	var decrease_object_z_index := func(_object):
-		_object.z_index -= 1
-	level.version_history.create_action("Increased Z Index")
-	var warns: int = 0
-	for object in objects:
-		if object.z_index >= 4096:
-			warns += 1
-		else:
-			level.version_history.add_do_method(increase_object_z_index.bind(object))
-			level.version_history.add_undo_method(decrease_object_z_index.bind(object))
+func shift_z_index(increase: bool):
+	var increase_object_z_index := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index += 1
+		z_index_changed.emit(1)
+	var decrease_object_z_index := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index -= 1
+		z_index_changed.emit(-1)
+	# Bulk checks
+	# Increase
+	var can_increase_z_index := func(_object: Node2D):
+		return _object.z_index < RenderingServer.CANVAS_ITEM_Z_MAX
+	var increase_z_index_warns := func(_warns: int, _object: Node2D):
+		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MAX else 0)
+	# Decrease
+	var can_decrease_z_index := func(_object: Node2D):
+		return _object.z_index > RenderingServer.CANVAS_ITEM_Z_MIN
+	var decrease_z_index_warns := func(_warns: int, _object: Node2D):
+		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
+	# Commit
+	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var warns: int = selection_snapshot.reduce(increase_z_index_warns if increase else decrease_z_index_warns, 0)
+	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
+	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
+	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
+	level.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
+	level.version_history.add_do_method(do_shift.bind(selection_snapshot))
+	level.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
 	level.version_history.commit_action()
 	if warns > 0:
-		Toasts.warning("Maximum z-index is 4096 (x" + str(warns) + ")")
-
-
-func decrease_z_index(objects: Array[Node2D]):
-	var increase_object_z_index := func(_object):
-		_object.z_index += 1
-	var decrease_object_z_index := func(_object):
-		_object.z_index -= 1
-	level.version_history.create_action("Decreased Z Index")
-	var warns: int = 0
-	for object in objects:
-		if object.z_index <= -100:
-			warns += 1
-		else:
-			level.version_history.add_do_method(decrease_object_z_index.bind(object))
-			level.version_history.add_undo_method(increase_object_z_index.bind(object))
-	level.version_history.commit_action()
-	if warns > 0:
-		Toasts.warning("Minimum z-index is -100 (x" + str(warns) + ")")
+		Toasts.warning("%s Z index is %s (%s affected objects)" % [
+			"Maximum" if increase else "Minimum",
+			RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
+			warns,
+		])
 
 
 func duplicate_selection() -> void:
@@ -283,6 +308,7 @@ func delete_selection() -> void:
 		level.version_history.add_undo_method(restore_object.bind(object))
 	level.version_history.add_do_method(clear_selection)
 	level.version_history.commit_action()
+	deleted_selection.emit()
 
 
 func clear_selection() -> void:
@@ -485,7 +511,7 @@ func _on_place_handler_object_deleted(object:Node) -> void:
 func _on_move_controls_direction_pressed(direction: Vector2, step: float) -> void:
 	if selection.is_empty():
 		return
-	move_objects(direction * step)
+	move_selection(direction * step)
 
 
 func _on_rotate_left_90_pressed() -> void:
