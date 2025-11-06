@@ -45,6 +45,7 @@ func _ready() -> void:
 	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameScene/PlayerCamera.enabled = false
 	$GameScene/PercentageLayer.hide()
+	$PlaceHandler.placed_object_rotation_degrees = 0.0
 	var editor_grid: EditorGrid = $GameScene/EditorGridParallax/EditorGrid
 	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
 	if editor_grid.visible:

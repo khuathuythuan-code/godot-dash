@@ -2,7 +2,8 @@
 extends Property
 class_name FlagsProperty
 
-signal value_changed(value: String)
+signal value_changed(value: int)
+signal value_changed_with_previous(value: int, old_value: int)
 
 @export var default: int
 @export var flags: PackedStringArray:
@@ -34,8 +35,10 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func set_value(new_value: int) -> void:
+	var old_value: int = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
+	value_changed_with_previous.emit(new_value, old_value)
 
 
 func set_value_no_signal(new_value: int) -> void:
@@ -64,11 +67,13 @@ func refresh() -> void:
 		flag_input.text = flags[i]
 		flag_input.toggled.connect(
 				func(pressed: bool):
+					var old_value: int = _value
 					if pressed:
 						_value |= 1 << i
 					else:
 						_value &= ~(1 << i)
 					value_changed.emit(_value)
+					value_changed_with_previous.emit(_value, old_value)
 		)
 		inputs.append(flag_input)
 	if Engine.is_editor_hint():

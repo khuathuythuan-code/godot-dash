@@ -2,11 +2,10 @@ extends VBoxContainer
 class_name TransformEditor
 
 @export var edit_handler: EditHandler
-@export var z_index_node: FloatProperty
-@export var scale_node: Vector2Property
-@export var position_node: Vector2Property
-@export var rotation_node: FloatProperty
-@onready var parent: Node = get_parent()
+@export var position_property: Vector2Property
+@export var rotation_property: FloatProperty
+@export var scale_property: Vector2Property
+@export var z_index_property: FloatProperty
 
 var current_selection: Array[Node2D]
 var selection_size: int
@@ -17,54 +16,7 @@ var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
-
-func _process(_delta: float) -> void:
-	if not LevelManager.current_level:
-		return
-	if current_selection.is_empty():
-		return
-	z_index_node.set_value_no_signal(float(first_object.z_index))
-	if selection_size == 1:
-		scale_node.set_value_no_signal(first_object.scale)
-		position_node.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-		rotation_node.set_value_no_signal(first_object.rotation_degrees)
-		same_scale = true
-		same_rotation = true
-		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
-		return
-
-	var object_scales: Array[Vector2]
-	object_scales.assign(current_selection.map(func(object: Node2D): return object.scale))
-	same_scale = true
-	var first_value = object_scales[0]
-	for object_scale: Vector2 in object_scales:
-		if object_scale != first_value:
-			same_scale = false
-			break
-	if same_scale:
-		scale_node.set_value_no_signal(object_scales[0])
-	else:
-		scale_node.set_value_no_signal(Vector2(1, 1))
-
-	var object_positions: Array[Vector2]
-	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
-	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
-	position_node.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-
-	var object_rotations: Array[float]
-	object_rotations.assign(current_selection.map(func(object: Node2D): return object.rotation_degrees))
-	same_rotation = true
-	first_value = object_rotations[0]
-	for object_rotation: float in object_rotations:
-		if object_rotation != first_value:
-			same_rotation = false
-			break
-	if same_rotation:
-		rotation_node.set_value_no_signal(object_rotations[1])
-		current_rotation = object_rotations[1]
-	else:
-		rotation_node.set_value_no_signal(0.0)
-		current_rotation = 0.0
+@onready var parent: Node = get_parent()
 
 
 func update_pivot_relative_transform() -> void:
@@ -83,6 +35,80 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
 
+	z_index_property.set_value_no_signal(float(first_object.z_index))
+	if selection_size == 1:
+		scale_property.set_value_no_signal(first_object.scale)
+		position_property.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+		rotation_property.set_value_no_signal(first_object.global_rotation_degrees)
+		same_scale = true
+		same_rotation = true
+		current_rotation = first_object.global_rotation_degrees
+		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
+		return
+
+	var object_scales: Array[Vector2]
+	object_scales.assign(current_selection.map(func(object: Node2D): return object.scale))
+	same_scale = true
+	var first_scale: Vector2 = object_scales[0]
+	for object_scale: Vector2 in object_scales:
+		if object_scale != first_scale:
+			same_scale = false
+			break
+	if same_scale:
+		scale_property.set_value_no_signal(object_scales[0])
+	else:
+		scale_property.set_value_no_signal(Vector2(1, 1))
+
+	var object_positions: Array[Vector2]
+	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
+	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
+	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+
+	var object_rotations: Array[float]
+	object_rotations.assign(current_selection.map(func(object: Node2D): return object.rotation_degrees))
+	same_rotation = true
+	var first_rotation: float = object_rotations[0]
+	for object_rotation: float in object_rotations:
+		if object_rotation != first_rotation:
+			same_rotation = false
+			break
+	if same_rotation:
+		rotation_property.set_value_no_signal(object_rotations[1])
+		current_rotation = object_rotations[1]
+	else:
+		rotation_property.set_value_no_signal(0.0)
+		current_rotation = 0.0
+
+
+func _on_edit_handler_moved_selection_cells(distance: Vector2) -> void:
+	average_position += distance * LevelManager.CELL_SIZE
+	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+
+
+func _on_edit_handler_rotated_selection_degrees(angle_degrees: float) -> void:
+	current_rotation += angle_degrees
+	rotation_property.set_value_no_signal(current_rotation)
+
+
+func _on_edit_handler_resized_selection(new_scale: Vector2) -> void:
+	scale_property.set_value_no_signal(new_scale)
+
+
+func _on_edit_handler_z_index_changed(z_index_delta: int) -> void:
+	z_index_property.set_value_no_signal(z_index_property.get_value() + z_index_delta)
+
+
+func _on_position_value_changed(new_position: Vector2) -> void:
+	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
+	edit_handler.move_selection(distance)
+	# No need to update the relative transforms since the pivot and objects move the same amount
+
+
+func _on_rotation_value_changed(new_rotation: float) -> void:
+	edit_handler.rotate_selection(new_rotation - current_rotation, false)
+	current_rotation = new_rotation
+	update_pivot_relative_transform()
+
 
 func _on_scale_value_changed(new_scale: Vector2) -> void:
 	edit_handler.scale_selection(
@@ -92,32 +118,26 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 		false,
 		pivot_relative_transforms,
 		true,
-		edit_handler.selection_pivot
+		edit_handler.selection_pivot,
 	)
 
 
-func _on_position_value_changed(new_position: Vector2) -> void:
-	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
-	edit_handler.selection_pivot += distance
-	edit_handler.move_objects(distance, current_selection)
-	update_pivot_relative_transform()
-
-
-func _on_rotation_value_changed(new_rotation: float) -> void:
-	edit_handler.rotate_selection(new_rotation - current_rotation)
-	current_rotation = new_rotation
-	update_pivot_relative_transform()
-
-
-func _set_z_index(_value: float):
-	var new_z_index: int = int(_value)
-	var move_object := func(_object: Node2D):
-		_object.z_index = new_z_index
-	var unmove_object := func(_object: Node2D, last_z_index):
-		_object.z_index = last_z_index
+func _set_z_index(new_z_index: int):
+	var do_z_index_shift := func(_selection: Array[Node2D]):
+		for _object: Node2D in _selection:
+			_object.z_index = new_z_index
+	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[Node2D, int]):
+		for _object: Node2D in _selection_to_z_index:
+			_object.z_index = _selection_to_z_index[_object]
 	
-	Editor.root.level.version_history.create_action("Changed object z index to " + str(new_z_index))
-	for object in current_selection:
-		Editor.root.level.version_history.add_do_method(move_object.bind(object))
-		Editor.root.level.version_history.add_undo_method(unmove_object.bind(object, object.z_index))
-	Editor.root.level.version_history.commit_action()
+	var selection_snapshot: Array[Node2D] = current_selection.duplicate()
+	var map_object_to_z_index := func(accum: Dictionary, object: Node2D):
+		accum[object] = object.z_index
+		return accum
+	var selection_to_z_index: Dictionary[Node2D, int]
+	selection_to_z_index.assign(selection_snapshot.reduce(map_object_to_z_index, {}))
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Changed object z index to %s" % new_z_index)
+	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
+	version_history.add_undo_method(undo_z_index_shift.bind(selection_to_z_index))
+	version_history.commit_action()

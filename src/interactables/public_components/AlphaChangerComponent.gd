@@ -12,7 +12,7 @@ enum Mode {
 	set(value):
 		mode = value
 		notify_property_list_changed()
-@export_range(0.0, 1.0, 0.01) var alpha: float = 1.0
+@export_range(0.0, 1.0, 0.01, "slider") var alpha: float = 1.0
 @export var copy_target: Node2D
 @export_range(0.0, 1.0, 0.01, "or_greater") var copy_multiplier: float
 

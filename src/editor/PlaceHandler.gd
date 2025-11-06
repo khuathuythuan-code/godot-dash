@@ -42,7 +42,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 				var grid_offset_to_level_origin := Vector2(0, 64)
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
-				object.rotation_degrees = placed_object_rotation_degrees
+				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
 				# Version history
 				var add_object := func(_object: Node, _level: Level):
@@ -105,10 +105,11 @@ func _set_texture_override_metadata(object: Node2D, override: TextureOverride, i
 
 
 func _on_edit_handler_rotated_object_degrees(rotation_degrees:float) -> void:
-	if rotation_degrees == 0.0:
-		placed_object_rotation_degrees = 0.0
-	else:
-		placed_object_rotation_degrees += rotation_degrees
+	placed_object_rotation_degrees += rotation_degrees
+
+
+func _on_edit_handler_deleted_selection() -> void:
+	placed_object_rotation_degrees = 0.0
 
 
 static func add_hsv_watchers(object: Node2D, level: Level) -> void:
