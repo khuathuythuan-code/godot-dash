@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=63 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ca7kg07rmvxyl" path="res://assets/textures/guis/shared/SettingsButton.svg" id="16_ureuc"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
+[ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="19_1ska7"]
 [ext_resource type="Texture2D" uid="uid://bf00dudjlkg0q" path="res://assets/textures/guis/shared/BackButton.png" id="19_pe36d"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="20_q22b5"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_u3ctg"]
@@ -381,6 +382,9 @@ tween_parameters = SubResource("Resource_jse1c")
 tween_on_load = true
 inactive_update_mode = 0
 metadata/_edit_lock_ = true
+
+[node name="UpdateChecker" type="Node" parent="TitleScreen"]
+script = ExtResource("19_1ska7")
 
 [node name="IconGarage" type="Control" parent="."]
 visible = false

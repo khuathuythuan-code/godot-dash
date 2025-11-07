@@ -52,10 +52,11 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_r47on")
-current_tab = 0
+current_tab = 4
 script = ExtResource("3_rvg0e")
 
 [node name="Graphics" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -1395,7 +1396,6 @@ theme_type_variation = &"GroupButton"
 text = "Apply and Reload"
 
 [node name="Debug" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 
@@ -1461,6 +1461,38 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Easter Eggs/VBoxContainer/Enable easter eggs"]
 script = ExtResource("6_p6jor")
 config_property = &"enable_easter_eggs"
+
+[node name="Internet" type="FoldableContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+title = "Internet"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet"]
+layout_mode = 2
+
+[node name="Check for updates" type="BoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer/Check for updates"]
+script = ExtResource("6_p6jor")
+config_property = &"check_for_updates"
+
+[node name="Discord Rich Presence" type="BoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer/Discord Rich Presence"]
+script = ExtResource("6_p6jor")
+config_property = &"discord_rich_presence"
 
 [node name="MarginContainer" type="MarginContainer" parent="Debug"]
 layout_mode = 2
