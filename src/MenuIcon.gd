@@ -18,12 +18,11 @@ func _process(_delta: float) -> void:
 
 
 func _should_process() -> bool:
-	return true
+	return not _dead
 
 
 func _get_jump_state() -> int:
 	var jump_state: int
-	
 	if not Time.get_ticks_msec() - _last_jump > _jump_interval:
 		if internal_gamemode == Gamemode.CUBE and not is_on_floor_only():
 			return -1
@@ -72,6 +71,7 @@ func _player_death() -> void:
 		return
 	_dead = true
 	speed_multiplier = 0.0
+	velocity = Vector2.ZERO
 	$Icon.hide()
 	$DeathEffect.frame = 0
 	$DeathEffect.play()

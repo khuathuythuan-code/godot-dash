@@ -22,5 +22,7 @@ void fragment() {
 		float use_original_color = step(rgb2hsv(COLOR.xyz).z, 0.3);
 		COLOR.rgb = mix(COLOR.rgb, blurred.rgb, use_original_color);
 		COLOR.a = mix(COLOR.a, 1.0, use_original_color);
+	} else {
+		COLOR.a = COLOR.a * 1.1;
 	}
 }
