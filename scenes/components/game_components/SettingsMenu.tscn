@@ -1482,6 +1482,18 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"check_for_updates"
 
+[node name="Discord Rich Presence" type="BoxContainer" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="Debug/VBoxContainer/MarginContainer/VBoxContainer/Internet/VBoxContainer/Discord Rich Presence"]
+script = ExtResource("6_p6jor")
+config_property = &"discord_rich_presence"
+
 [node name="MarginContainer" type="MarginContainer" parent="Debug"]
 layout_mode = 2
 theme_override_constants/margin_top = 0
