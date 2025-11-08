@@ -208,7 +208,7 @@ static func from_data(data: Dictionary) -> Level:
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		if prefab == null:
-			push_error("Resource not found at path: " + "res://%s" % object_data.scene_file_path)
+			push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
 			continue
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
