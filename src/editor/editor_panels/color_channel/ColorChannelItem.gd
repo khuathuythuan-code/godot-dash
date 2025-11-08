@@ -21,6 +21,7 @@ func update() -> void:
 	channel_name_label.text = channel_name
 	if data == null:
 		data = ColorChannelData.new()
+	NodeUtils.connect_once(data.changed, update)
 	data.associated_group = COLOR_CHANNEL_GROUP_PREFIX + channel_name
 	if not data.copy:
 		_set_color_preview_color(data.color)._hide_color_preview_text()

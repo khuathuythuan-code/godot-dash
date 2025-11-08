@@ -24,37 +24,37 @@ var watcher: ColorChannelWatcher
 
 func set_copy(should_copy: bool = false) -> ColorChannelData:
 	copy = should_copy
-	changed.emit()
+	emit_changed()
 	return self
 
 
 func set_color(new_color: Color) -> ColorChannelData:
 	color = new_color
-	changed.emit()
+	emit_changed()
 	return self
 
 
 func set_copied_channel(new_copied_channel: CopyColor) -> ColorChannelData:
 	copied_channel = new_copied_channel
-	changed.emit()
+	emit_changed()
 	return self
 
 
 func set_hsv_shift(new_hsv_shift: Array[float]) -> ColorChannelData:
 	hsv_shift = new_hsv_shift
-	changed.emit()
+	emit_changed()
 	return self
 
 
 func set_intensity(new_intensity: float) -> ColorChannelData:
 	intensity = new_intensity
-	changed.emit()
+	emit_changed()
 	return self
 
 
 func set_alpha(new_alpha: float) -> ColorChannelData:
 	alpha = new_alpha
-	changed.emit()
+	emit_changed()
 	return self
 
 

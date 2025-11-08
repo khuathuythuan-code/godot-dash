@@ -87,27 +87,38 @@ func _on_color_value_changed(value: Color) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_color(value)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set color of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_color.bind(value))
+	version_history.add_undo_method(channel_item.data.set_color.bind(channel_item.data.color))
+	version_history.commit_action()
 
 
 func _on_copy_channel_value_changed(value: bool) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_copy(value)
-	channel_item.update()
-	%Color.visible = not value
-	%Channel.visible = value
+	var change_property_visibility := func(_value: bool):
+		%Color.visible = not _value
+		%Channel.visible = _value
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("%s copy color of color channel %s" % ["Enabled" if value else "Disabled", channel_item.channel_name])
+	version_history.add_do_method(channel_item.data.set_copy.bind(value))
+	version_history.add_do_method(change_property_visibility.bind(value))
+	version_history.add_undo_method(channel_item.data.set_copy.bind(channel_item.data.color))
+	version_history.add_undo_method(change_property_visibility.bind(channel_item.data.copy))
+	version_history.commit_action()
 
 
-func _on_channel_value_changed(value: int) -> void:
-	var new_channel := value as ColorChannelData.CopyColor
+func _on_channel_value_changed(value: ColorChannelData.CopyColor) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_copied_channel(new_channel)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set copied channel of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_copied_channel.bind(value))
+	version_history.add_undo_method(channel_item.data.set_copied_channel.bind(channel_item.data.copied_channel))
+	version_history.commit_action()
 
 
 func _on_hue_value_changed(value: float) -> void:
@@ -116,8 +127,11 @@ func _on_hue_value_changed(value: float) -> void:
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[0] = value
-	channel_item.data.set_hsv_shift(new_hsv_shift)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set modulation hue of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
+	version_history.add_undo_method(channel_item.data.set_hsv_shift.bind(channel_item.data.hsv_shift))
+	version_history.commit_action()
 
 
 func _on_saturation_value_changed(value: float) -> void:
@@ -126,8 +140,11 @@ func _on_saturation_value_changed(value: float) -> void:
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[1] = value
-	channel_item.data.set_hsv_shift(new_hsv_shift)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set modulation saturation of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
+	version_history.add_undo_method(channel_item.data.set_hsv_shift.bind(channel_item.data.hsv_shift))
+	version_history.commit_action()
 
 
 func _on_value_value_changed(value: float) -> void:
@@ -136,24 +153,33 @@ func _on_value_value_changed(value: float) -> void:
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[2] = value
-	channel_item.data.set_hsv_shift(new_hsv_shift)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set modulation value of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
+	version_history.add_undo_method(channel_item.data.set_hsv_shift.bind(channel_item.data.hsv_shift))
+	version_history.commit_action()
 
 
 func _on_intensity_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_intensity(value)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set modulation intensity of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_intensity.bind(value))
+	version_history.add_undo_method(channel_item.data.set_intensity.bind(channel_item.data.intensity))
+	version_history.commit_action()
 
 
 func _on_alpha_value_changed(value: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	channel_item.data.set_alpha(value)
-	channel_item.update()
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Set modulation alpha of color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.data.set_alpha.bind(value))
+	version_history.add_undo_method(channel_item.data.set_alpha.bind(channel_item.data.alpha))
+	version_history.commit_action()
 
 
 func _on_hsv_shift_folding_changed(is_folded: bool) -> void:
