@@ -72,7 +72,7 @@ label_settings = SubResource("LabelSettings_cj6jc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer"]
 texture_filter = 4
 layout_mode = 2
 theme_override_constants/icon_max_width = 15
@@ -80,4 +80,3 @@ icon = ExtResource("3_8fjmm")
 icon_alignment = 2
 
 [connection signal="toggled" from="EditButton" to="." method="_on_edit_button_toggled"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

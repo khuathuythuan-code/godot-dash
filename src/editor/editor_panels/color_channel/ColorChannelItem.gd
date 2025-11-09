@@ -87,7 +87,7 @@ func _hide_color_preview_text() -> ColorChannelItem:
 	return self
 
 
-func _on_button_pressed() -> void:
+func _on_delete_button_pressed() -> void:
 	if $EditButton.button_pressed:
 		unselected.emit()
 	unregister()
