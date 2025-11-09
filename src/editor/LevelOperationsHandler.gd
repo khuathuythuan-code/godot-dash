@@ -261,7 +261,7 @@ func _on_save_changes_before_opening_custom_action(action:StringName) -> void:
 		save_changes_before_opening_dialog.hide()
 
 
-func _on_export_level_dialog_file_selected(path:String) -> Error:
+func _on_export_level_dialog_file_selected(path: String) -> Error:
 	var writer = ZIPPacker.new()
 	var err = writer.open(path)
 	if err != OK:
@@ -280,7 +280,7 @@ func _on_export_level_dialog_file_selected(path:String) -> Error:
 		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
 		edit_handler.selection.map(EditHandler.add_selection_highlight)
-	var level_bytes := var_to_bytes(JSON.stringify(level_data))
+	var level_bytes := JSON.stringify(level_data).to_utf8_buffer()
 	writer.write_file(level_bytes)
 	writer.close_file()
 	#endsection
