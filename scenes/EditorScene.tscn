@@ -6056,11 +6056,13 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
@@ -6357,8 +6359,8 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_scale_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_set_z_index"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_value_changed"]
+[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_interaction_ended"]
+[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_interaction_ended"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation" to="HSVHandler" method="_on_saturation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]

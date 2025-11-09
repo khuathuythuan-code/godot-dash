@@ -3,6 +3,7 @@ extends Property
 class_name StringProperty
 
 signal value_changed(value: String)
+signal interaction_ended(value: String, previous: String)
 
 @export var default: String
 @export var placeholder: String
@@ -11,14 +12,17 @@ signal value_changed(value: String)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: LineEdit
+var _previous_text: String
 
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", LineEdit, NodeUtils.INTERNAL)
-	input.text_submitted.connect(func(new_value): value_changed.emit(new_value))
+	input.text_submitted.connect(func(new_value: String): value_changed.emit(new_value))
+	input.text_submitted.connect(func(new_value: String): interaction_ended.emit(new_value, _previous_text))
 	input.text_submitted.connect(submitted_release_focus)
 	input.editing_toggled.connect(unedit_release_focus)
+	input.editing_toggled.connect(func(toggled_on: bool): if toggled_on: _previous_text = input.text)
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \
