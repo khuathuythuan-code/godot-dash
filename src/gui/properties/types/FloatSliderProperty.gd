@@ -3,6 +3,7 @@ extends Property
 class_name FloatSliderProperty
 
 signal value_changed(value: float)
+signal interaction_ended(value: float, previous: float)
 
 @export var default: float
 @export var min_value: float
@@ -24,7 +25,8 @@ var input: HSliderSpinBox
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", HSliderSpinBox, NodeUtils.INTERNAL)
-	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
+	input.value_changed.connect(func(new_value: float): value_changed.emit(new_value))
+	input.interaction_ended.connect(func(new_value: float, previous: float): interaction_ended.emit(new_value, previous))
 	renamed.connect(refresh)
 	var line_edit = input.spinbox.get_line_edit()
 	line_edit.text_submitted.connect(submitted_release_focus)

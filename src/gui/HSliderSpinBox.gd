@@ -3,6 +3,7 @@ extends HBoxContainer
 class_name HSliderSpinBox
 
 signal value_changed(value: float)
+signal interaction_ended(value: float, previous: float)
 
 @export var min_value: float
 @export var max_value: float = 1.0
@@ -31,6 +32,9 @@ var hslider: HSlider
 var spinbox: SpinBox
 
 var value: float:
+	set(value):
+		value_changed.emit(value)
+		set_value.call_deferred(value)
 	get:
 		if hslider != null:
 			return hslider.value
@@ -38,9 +42,9 @@ var value: float:
 			return spinbox.value
 		else:
 			return 1.0 # Default value
-	set(value):
-		value_changed.emit(value)
-		call_deferred("set_value", value)
+
+var _spinbox_previous_value: float
+var _slider_previous_value: float
 
 
 func _ready() -> void:
@@ -51,8 +55,15 @@ func _ready() -> void:
 	hslider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	spinbox = NodeUtils.get_node_or_add(self, "SpinBox", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
 	update_internals()
-	spinbox.share(hslider)
 	spinbox.value_changed.connect(set_value)
+	spinbox.get_line_edit().editing_toggled.connect(func(toggled_on: bool):
+		if toggled_on:
+			_spinbox_previous_value = spinbox.value
+		else:
+			interaction_ended.emit(spinbox.value, _spinbox_previous_value))
+	hslider.value_changed.connect(set_value)
+	hslider.drag_started.connect(func(): _slider_previous_value = hslider.value)
+	hslider.drag_ended.connect(func(slider_value_changed: bool): if slider_value_changed: interaction_ended.emit(hslider.value, _slider_previous_value))
 
 
 func update_internals() -> void:
@@ -76,3 +87,4 @@ func set_value(new_value: float) -> void:
 
 func set_value_no_signal(new_value: float) -> void:
 	spinbox.set_value_no_signal(new_value)
+	hslider.set_value_no_signal(new_value)
