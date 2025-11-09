@@ -1,52 +1,100 @@
 extends Node
 class_name HSVHandler
 
-
 @export var hue: FloatSliderProperty
 @export var saturation: FloatSliderProperty
 @export var value: FloatSliderProperty
 @export var intensity: FloatSliderProperty
 @export var alpha: FloatSliderProperty
-@export var editor_viewport: Control
+
+var hsv_watchers: Array[HSVWatcher]
+var selected_object_count: int
 
 
-func _has_hsv_watcher(object) -> bool:
-	return object.has_node("HSVWatcher")
-
-
-func _on_hue_value_changed(new_value: float) -> void:
-	$"../EditHandler".selection.filter(_has_hsv_watcher).map(func(object): object.get_node(^"HSVWatcher").hsv_shift[0] = new_value)
-
-
-func _on_saturation_value_changed(new_value: float) -> void:
-	$"../EditHandler".selection.filter(_has_hsv_watcher).map(func(object): object.get_node(^"HSVWatcher").hsv_shift[1] = new_value)
-
-
-func _on_value_value_changed(new_value: float) -> void:
-	$"../EditHandler".selection.filter(_has_hsv_watcher).map(func(object): object.get_node(^"HSVWatcher").hsv_shift[2] = new_value)
-
-
-func _on_intensity_value_changed(new_value: float) -> void:
-	$"../EditHandler".selection.filter(_has_hsv_watcher).map(func(object): object.get_node(^"HSVWatcher").intensity = new_value)
-
-
-func _on_alpha_value_changed(new_value: float) -> void:
-	$"../EditHandler".selection.filter(_has_hsv_watcher).map(func(object): object.get_node(^"HSVWatcher").alpha = new_value)
+func _ready() -> void:
+	var connections: Dictionary[FloatSliderProperty, Callable]
+	connections.assign({
+		hue: set_hue,
+		saturation: set_saturation,
+		value: set_value,
+		intensity: set_intensity,
+		alpha: set_alpha,
+	})
+	for property: FloatSliderProperty in connections:
+		property.interaction_ended.connect(_on_property_interaction_ended.bind(property, connections[property]))
 
 
 func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+	selected_object_count = selection.size()
 	if selection.is_empty():
+		hsv_watchers.clear()
 		return
-	var objects_with_hsv_watcher: Array[Node2D] = selection.filter(_has_hsv_watcher)
-	if objects_with_hsv_watcher.is_empty():
-		for property in [hue, saturation, value]:
-			property.set_value_no_signal(0.0)
-		intensity.set_value_no_signal(1.0)
-		alpha.set_value_no_signal(1.0)
-	else:
-		var last_hsv_watcher = BaseDetailHandler.use_hsv_watcher(objects_with_hsv_watcher.back())
-		hue.set_value_no_signal(last_hsv_watcher.hsv_shift[0])
-		saturation.set_value_no_signal(last_hsv_watcher.hsv_shift[1])
-		value.set_value_no_signal(last_hsv_watcher.hsv_shift[2])
-		intensity.set_value_no_signal(last_hsv_watcher.intensity)
-		alpha.set_value_no_signal(last_hsv_watcher.alpha)
+	hsv_watchers.assign(
+		selection
+			.map(BaseDetailHandler.into_base)
+			.map(BaseDetailHandler.use_hsv_watcher)
+	)
+	hsv_watchers.append_array(
+		selection
+			.map(func(object: Node2D): return object.get_node_or_null(^"Detail"))
+			.filter(ArrayUtils.flatten)
+			.map(BaseDetailHandler.use_hsv_watcher)
+	)
+	var last_hsv_watcher: HSVWatcher = hsv_watchers[-1]
+	hue.set_value_no_signal(last_hsv_watcher.hsv_shift[0])
+	saturation.set_value_no_signal(last_hsv_watcher.hsv_shift[1])
+	value.set_value_no_signal(last_hsv_watcher.hsv_shift[2])
+	intensity.set_value_no_signal(last_hsv_watcher.intensity)
+	alpha.set_value_no_signal(last_hsv_watcher.alpha)
+
+
+func set_hue(_hsv_watchers: Array[HSVWatcher], new_hue: float) -> void:
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[0] = new_hue)
+
+
+func set_saturation(_hsv_watchers: Array[HSVWatcher], new_saturation: float) -> void:
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[1] = new_saturation)
+
+
+func set_value(_hsv_watchers: Array[HSVWatcher], new_value: float) -> void:
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[2] = new_value)
+
+
+func set_intensity(_hsv_watchers: Array[HSVWatcher], new_intensity: float) -> void:
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.intensity = new_intensity)
+
+
+func set_alpha(_hsv_watchers: Array[HSVWatcher], new_alpha: float) -> void:
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.alpha = new_alpha)
+
+
+func _on_hue_value_changed(new_value: float) -> void:
+	set_hue(hsv_watchers, new_value)
+
+
+func _on_saturation_value_changed(new_value: float) -> void:
+	set_saturation(hsv_watchers, new_value)
+
+
+func _on_value_value_changed(new_value: float) -> void:
+	set_value(hsv_watchers, new_value)
+
+
+func _on_intensity_value_changed(new_value: float) -> void:
+	set_intensity(hsv_watchers, new_value)
+
+
+func _on_alpha_value_changed(new_value: float) -> void:
+	set_alpha(hsv_watchers, new_value)
+
+
+func _on_property_interaction_ended(new_value: float, previous_value: float, property: FloatSliderProperty, action: Callable) -> void:
+	var set_property := func(_value: float):
+		action.call(hsv_watchers.duplicate(), _value)
+		property.set_value_no_signal(_value)
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Changed %s on %s objects" % [property.name.capitalize().to_lower(), selected_object_count])
+	version_history.add_do_method(set_property.bind(new_value))
+	version_history.add_undo_method(set_property.bind(previous_value))
+	version_history.commit_action()
+

@@ -6216,14 +6216,13 @@ base = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/Mar
 detail = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Detail Color")
 hsv_shift = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation")
 
-[node name="HSVHandler" type="Node" parent="." node_paths=PackedStringArray("hue", "saturation", "value", "intensity", "alpha", "editor_viewport")]
+[node name="HSVHandler" type="Node" parent="." node_paths=PackedStringArray("hue", "saturation", "value", "intensity", "alpha")]
 script = ExtResource("73_s77jp")
 hue = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Hue")
 saturation = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation")
 value = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Value")
 intensity = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity")
 alpha = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha")
-editor_viewport = NodePath("../EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport")
 
 [node name="BaseDetailHandler" type="Node" parent="." node_paths=PackedStringArray("base", "detail", "color_channel_editor")]
 script = ExtResource("64_ycx04")
