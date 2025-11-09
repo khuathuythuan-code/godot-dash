@@ -3,6 +3,8 @@ class_name ColorChannelWatcher
 
 const WATCHER_GROUP_PREFIX := "watcher_"
 
+static var DEFAULT_DATA := ColorChannelData.new()
+
 var data: ColorChannelData
 
 
@@ -15,27 +17,19 @@ func _init(new_data: ColorChannelData) -> void:
 
 func _exit_tree() -> void:
 	if is_queued_for_deletion():
-		data.set_color(Color.WHITE)
-		data.set_copy(false)
-		var hsv_shift_default: Array[float] = [0.0, 0.0, 0.0]
-		data.set_hsv_shift(hsv_shift_default)
-		data.set_intensity(1.0)
-		data.set_alpha(1.0)
-		refresh_objects_color()
-		# Remove from group
-		get_tree().get_nodes_in_group(data.associated_group).map(func(object): object.remove_from_group(data.associated_group))
+		reset_objects_color()
 
 
 func _ready() -> void:
 	refresh_objects_color()
 
 
-func refresh_objects_color(objects: Array = []) -> void:
+func refresh_objects_color(objects: Array = [], _data: ColorChannelData = data) -> void:
 	if objects.is_empty():
-		objects = get_tree().get_nodes_in_group(data.associated_group)
+		objects = get_tree().get_nodes_in_group(_data.associated_group)
 	for object: HSVWatcher in objects:
-		if data.copy:
-			match data.copied_channel:
+		if _data.copy:
+			match _data.copied_channel:
 				ColorChannelData.CopyColor.BACKGROUND:
 					object.modulate = LevelManager.background_sprites[0].modulate
 				ColorChannelData.CopyColor.GROUND:
@@ -49,9 +43,19 @@ func refresh_objects_color(objects: Array = []) -> void:
 				ColorChannelData.CopyColor.GLOW:
 					pass
 		else:
-			object.modulate = data.color
-		object.modulate.h += data.hsv_shift[0]
-		object.modulate.s += data.hsv_shift[1]
-		object.modulate.v += data.hsv_shift[2]
-		object.base_intensity = data.intensity
-		object.base_alpha = data.alpha
+			object.modulate = _data.color
+		object.modulate.h += _data.hsv_shift[0]
+		object.modulate.s += _data.hsv_shift[1]
+		object.modulate.v += _data.hsv_shift[2]
+		object.base_intensity = _data.intensity
+		object.base_alpha = _data.alpha
+
+
+func remove_objects_from_group(group_objects: Array[Node]) -> void:
+	group_objects.map(func(object: Node): object.remove_from_group(data.associated_group))
+
+
+func reset_objects_color() -> void:
+	var group_objects: Array[Node] = get_tree().get_nodes_in_group(data.associated_group)
+	refresh_objects_color(group_objects, DEFAULT_DATA)
+	remove_objects_from_group(group_objects)

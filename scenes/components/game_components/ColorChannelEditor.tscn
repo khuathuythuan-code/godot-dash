@@ -194,7 +194,7 @@ Are you sure you want to delete it?"
 [connection signal="interaction_ended" from="VBoxContainer/Color" to="." method="_on_color_interaction_ended"]
 [connection signal="value_changed" from="VBoxContainer/Color" to="." method="_on_color_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Channel" to="." method="_on_channel_value_changed"]
-[connection signal="folding_changed" from="VBoxContainer/Modulation" to="." method="_on_hsv_shift_folding_changed"]
+[connection signal="folding_changed" from="VBoxContainer/Modulation" to="." method="_on_modulation_folding_changed"]
 [connection signal="interaction_ended" from="VBoxContainer/Modulation/VBoxContainer/Hue" to="." method="_on_hue_interaction_ended"]
 [connection signal="value_changed" from="VBoxContainer/Modulation/VBoxContainer/Hue" to="." method="_on_hue_value_changed"]
 [connection signal="interaction_ended" from="VBoxContainer/Modulation/VBoxContainer/Saturation" to="." method="_on_saturation_interaction_ended"]

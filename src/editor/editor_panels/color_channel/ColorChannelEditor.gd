@@ -14,11 +14,11 @@ func _ready() -> void:
 
 func populate_item_list() -> void:
 	for channel in LevelManager.current_level.color_channels:
-		_add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
+		add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
 
 
 func clear_item_list() -> void:
-	%ColorChannelContainer.get_children().map(func(child: Node): child.queue_free())
+	NodeUtils.free_children(%ColorChannelContainer)
 	hide_properties()
 	%"Copy channel".reset()
 	%Channel.reset()
@@ -32,21 +32,7 @@ func clear_item_list() -> void:
 	%Color.show()
 
 
-func _on_button_pressed() -> void:
-	_add_channel(%LineEdit.get_text())
-	%LineEdit.clear()
-	# TODO "keep focus" doesn't work
-	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
-		get_viewport().gui_release_focus()
-
-
-func _on_line_edit_text_submitted(new_text:String) -> void:
-	_add_channel(new_text)
-	%LineEdit.clear()
-	get_viewport().gui_release_focus()
-
-
-func _add_channel(channel_name: String, data: ColorChannelData = null) -> void:
+func add_channel(channel_name: String, data: ColorChannelData = null) -> void:
 	if channel_name.is_empty() or (channel_name in %ColorChannelContainer.get_children()
 			.map(func(color_channel: ColorChannelItem): return color_channel.channel_name)):
 		return
@@ -55,14 +41,25 @@ func _add_channel(channel_name: String, data: ColorChannelData = null) -> void:
 	channel_item.data = data
 	channel_item.selected.connect(show_properties)
 	channel_item.unselected.connect(hide_properties)
+	channel_item.deleted.connect(_on_channel_item_deleted.bind(channel_item))
 	channel_item.update()
-	channel_item.register()
-	%ColorChannelContainer.add_child(channel_item)
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Created color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(%ColorChannelContainer.add_child.bind(channel_item))
+	version_history.add_do_method(channel_item.register)
+	version_history.add_undo_method(channel_item.unregister)
+	version_history.add_undo_method(channel_item.set_pressed.bind(false))
+	version_history.add_undo_method(%ColorChannelContainer.remove_child.bind(channel_item))
+	version_history.commit_action()
 
 
 func hide_properties() -> void:
+	if button_group.get_pressed_button():
+		var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
+		channel_item.set_pressed(false)
 	separator.hide()
 	properties_container.hide()
+	custom_minimum_size.y = 250
 
 
 func show_properties() -> void:
@@ -71,16 +68,44 @@ func show_properties() -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	%"Copy channel".set_value(channel_item.data.copy)
-	%Channel.set_value(channel_item.data.copied_channel)
-	%Color.set_value(channel_item.data.color)
-	%Hue.set_value(channel_item.data.hsv_shift[0])
-	%Saturation.set_value(channel_item.data.hsv_shift[1])
-	%Value.set_value(channel_item.data.hsv_shift[2])
-	%Intensity.set_value(channel_item.data.intensity)
-	%Alpha.set_value(channel_item.data.intensity)
+	%"Copy channel".set_value_no_signal(channel_item.data.copy)
+	%Channel.set_value_no_signal(channel_item.data.copied_channel)
+	%Color.set_value_no_signal(channel_item.data.color)
+	%Hue.set_value_no_signal(channel_item.data.hsv_shift[0])
+	%Saturation.set_value_no_signal(channel_item.data.hsv_shift[1])
+	%Value.set_value_no_signal(channel_item.data.hsv_shift[2])
+	%Intensity.set_value_no_signal(channel_item.data.intensity)
+	%Alpha.set_value_no_signal(channel_item.data.alpha)
 	%Channel.visible = channel_item.data.copy
 	%Color.visible = not channel_item.data.copy
+	_on_modulation_folding_changed($VBoxContainer/Modulation.folded)
+
+
+func _on_button_pressed() -> void:
+	add_channel(%LineEdit.get_text())
+	%LineEdit.clear()
+
+
+func _on_line_edit_text_submitted(new_text:String) -> void:
+	add_channel(new_text)
+	%LineEdit.clear()
+	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
+		get_viewport().gui_release_focus()
+
+
+func _on_channel_item_deleted(channel_item: ColorChannelItem) -> void:
+	var group_objects: Array[Node] = get_tree().get_nodes_in_group(channel_item.data.associated_group)
+	var add_objects_back_to_group := func(): group_objects.map(func(object: Node): object.add_to_group(channel_item.data.associated_group))
+	var version_history: UndoRedo = Editor.root.level.version_history
+	version_history.create_action("Deleted color channel %s" % channel_item.channel_name)
+	version_history.add_do_method(channel_item.unregister)
+	version_history.add_do_method(%ColorChannelContainer.remove_child.bind(channel_item))
+	version_history.add_do_method(channel_item.set_pressed.bind(false))
+	version_history.add_undo_method(add_objects_back_to_group)
+	version_history.add_undo_method(%ColorChannelContainer.add_child.bind(channel_item))
+	version_history.add_undo_method(channel_item.register)
+	version_history.add_undo_method(channel_item.set_pressed.bind(channel_item.is_pressed()))
+	version_history.commit_action()
 
 
 func _on_color_value_changed(value: Color) -> void:
@@ -115,7 +140,9 @@ func _on_channel_value_changed(value: ColorChannelData.CopyColor) -> void:
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Set copied channel of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_copied_channel.bind(value))
+	version_history.add_do_method(%Channel.set_value_no_signal.bind(value))
 	version_history.add_undo_method(channel_item.data.set_copied_channel.bind(channel_item.data.copied_channel))
+	version_history.add_undo_method(%Channel.set_value_no_signal.bind(channel_item.data.copied_channel))
 	version_history.commit_action()
 
 
@@ -160,7 +187,7 @@ func _on_alpha_value_changed(value: float) -> void:
 	channel_item.data.set_alpha(value)
 
 
-func _on_hsv_shift_folding_changed(is_folded: bool) -> void:
+func _on_modulation_folding_changed(is_folded: bool) -> void:
 	custom_minimum_size.y = 250 if is_folded else 500
 
 

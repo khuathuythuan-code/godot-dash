@@ -6,6 +6,7 @@ const COLOR_CHANNEL_GROUP_PREFIX := "c_"
 
 signal selected
 signal unselected
+signal deleted
 
 @export var channel_name: String
 
@@ -60,6 +61,18 @@ func unregister() -> void:
 	watcher.queue_free()
 
 
+func set_pressed(pressed: bool) -> void:
+	$EditButton.set_pressed(pressed)
+
+
+func set_pressed_no_signal(pressed: bool) -> void:
+	$EditButton.set_pressed_no_signal(pressed)
+
+
+func is_pressed() -> bool:
+	return $EditButton.button_pressed
+
+
 func _set_color_preview_color(_color: Color) -> ColorChannelItem:
 	var color_preview := %ColorPreview as PanelContainer
 	var color_preview_stylebox := color_preview.get_theme_stylebox("panel") as StyleBoxFlat
@@ -90,8 +103,8 @@ func _hide_color_preview_text() -> ColorChannelItem:
 func _on_delete_button_pressed() -> void:
 	if $EditButton.button_pressed:
 		unselected.emit()
-	unregister()
-	queue_free()
+	set_pressed_no_signal(false)
+	deleted.emit()
 
 
 func _on_edit_button_toggled(toggled_on:bool) -> void:
