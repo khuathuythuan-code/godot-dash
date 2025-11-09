@@ -304,7 +304,7 @@ func _on_export_level_dialog_file_selected(path: String) -> Error:
 	#endsection
 
 	writer.close()
-	Toasts.new_toast("Exported level " + path.get_file().get_basename() + " in directory " + path.get_base_dir(), 2.0)
+	Toasts.new_toast("Exported level %s in directory %s" % [path.get_file().get_basename(), path.get_base_dir()], 2.0)
 	return OK
 
 
