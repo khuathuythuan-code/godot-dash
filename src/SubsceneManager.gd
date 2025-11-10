@@ -120,6 +120,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _return_to_title_screen() -> void:
+	active_pcam = title_screen_camera
 	history.previous_phantomcamera(active_pcam)
 	_toggle_background_sprites_autoscroll(true)
 	if page_control_container.modulate != Color("ffffff00"):
