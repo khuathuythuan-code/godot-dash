@@ -91,6 +91,22 @@ impl Selection {
         self.first.clone()
     }
     #[func]
+    fn is_empty(&self) -> bool {
+        self.inner.is_empty()
+    }
+    #[func]
+    fn is_identical(&self, rhs: Gd<Self>) -> bool {
+        self.inner == rhs.bind().inner
+    }
+    #[func]
+    fn is_superset(&self, rhs: Gd<Self>) -> bool {
+        self.inner.is_superset(&rhs.bind().inner)
+    }
+    #[func]
+    fn is_subset(&self, rhs: Gd<Self>) -> bool {
+        self.inner.is_subset(&rhs.bind().inner)
+    }
+    #[func]
     fn map(&mut self, method: Callable) -> Gd<Self> {
         let inner: HashSet<Gd<Node2D>> = self
             .inner
@@ -110,6 +126,20 @@ impl Selection {
             .iter()
             .map(|node_ref| method.call(vslice![node_ref]))
             .collect()
+    }
+    #[func]
+    fn filter(&mut self, method: Callable) -> Gd<Self> {
+        let inner: HashSet<Gd<Node2D>> = self
+            .inner
+            .clone()
+            .iter()
+            .filter(|node_ref| method.call(vslice![node_ref]).to::<bool>())
+            .cloned()
+            .collect();
+        Gd::from_object(Self {
+            inner,
+            first: self.first.clone(),
+        })
     }
     #[func]
     fn for_each(&mut self, method: Callable) {
