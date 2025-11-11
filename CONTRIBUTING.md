@@ -48,10 +48,12 @@ Use [format strings](https://docs.godotengine.org/en/stable/tutorials/scripting/
 <tbody>
   <tr>
     <td>
-    <pre lang="gdscript"><code>object_name.text = "%s objects" % selection.size()</code></pre>
+    		```gdscript
+    		object_name.text = "%s objects" % selection.size()
+    		```
     </td>
     <td>
-    <pre lang="gdscript"><code>object_name.text = str(selection.size()) + " objects"</code></pre>
+    <pre><code>object_name.text = str(selection.size()) + " objects"</code></pre>
     </td>
   </tr>
 </tbody>
