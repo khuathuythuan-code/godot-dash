@@ -90,4 +90,21 @@ impl Selection {
     fn first(&self) -> Option<Gd<Node2D>> {
         self.first.clone()
     }
+    #[func]
+    fn for_each(&mut self, method: Callable) {
+        self.inner = self
+            .inner
+            .clone()
+            .iter()
+            .map(|node_ref| method.call(vslice![node_ref]).to::<Gd<Node2D>>())
+            .collect();
+    }
+    #[func]
+    fn map(&mut self, method: Callable) -> Array<Variant> {
+        self.inner
+            .clone()
+            .iter()
+            .map(|node_ref| method.call(vslice![node_ref]))
+            .collect()
+    }
 }
