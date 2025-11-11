@@ -6,9 +6,6 @@ const DEFAULT_ZOOM: Vector2 = Vector2(0.8, 0.8)
 const DEFAULT_OFFSET: Vector2 = Vector2(400.0, 0.0)
 const MAX_DISTANCE := Vector2(400.0, 300.0)
 
-@export var ground_down: GroundObject
-@export var ground_up: GroundObject
-
 @export var position_smoothing: float = 0.1
 @export var offset_smoothing: float = 0.125
 @export var gameplay_offset_factor := Vector2.ONE
@@ -65,11 +62,11 @@ func _process(delta: float) -> void:
 
 	# Clamp bottom edge of the screen to the ground
 	var half_screen_height = get_viewport_rect().size.y / 2
-	if position.y + half_screen_height / zoom.y > ground_down.DEFAULT_Y + 160:
-		position.y = ground_down.DEFAULT_Y + 160 - half_screen_height / zoom.y
+	if position.y + half_screen_height / zoom.y > LevelManager.ground_down.DEFAULT_Y + 160:
+		position.y = LevelManager.ground_down.DEFAULT_Y + 160 - half_screen_height / zoom.y
 	# Same thing for the top edge of the screen
-	if position.y - half_screen_height / zoom.y < ground_up.DEFAULT_Y - 160:
-		position.y = ground_up.DEFAULT_Y - 160 + half_screen_height / zoom.y
+	if position.y - half_screen_height / zoom.y < LevelManager.ground_up.DEFAULT_Y - 160:
+		position.y = LevelManager.ground_up.DEFAULT_Y - 160 + half_screen_height / zoom.y
 	
 	LevelManager.current_level.camera_rect = Rect2(global_position - get_viewport_rect().size / 2 / zoom, get_viewport_rect().size / zoom)
 

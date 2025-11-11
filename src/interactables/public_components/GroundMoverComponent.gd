@@ -17,9 +17,11 @@ const LOCKEDFLY_GAMEMODE_GRID_HEIGHTS: Dictionary = {
 
 @export var freefly := true
 
+
 func _ready() -> void:
 	super()
 	parent.body_entered.connect(_move_grounds)
+
 
 func _move_grounds(_player: Player) -> void:
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
@@ -32,6 +34,7 @@ func _move_grounds(_player: Player) -> void:
 		GroundData.offset = (parent.global_position.y + GroundData.distance) - LevelManager.ground_sprites[0].DEFAULT_Y
 	else:
 		GroundData.offset = 0
+
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if not parent.has_node("GamemodeChangerComponent"):

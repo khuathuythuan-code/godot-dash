@@ -159,6 +159,8 @@ func _on_playtest_pressed() -> void:
 		$LevelOperationsHandler.pause_autosave()
 		$GameScene.start_level()
 	else:
+		LevelManager.ground_up.hide()
+		LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 		LevelManager.player.queue_free()
 		LevelManager.player_duals.map(NodeUtils.free_node)
 		LevelManager.player_duals.clear()
