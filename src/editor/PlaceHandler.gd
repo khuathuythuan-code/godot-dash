@@ -1,7 +1,7 @@
 extends Node
 class_name PlaceHandler
 
-signal object_deleted(object: Node)
+signal object_deleted(object: Node2D)
 
 @export var game_scene: Node2D
 @export var editor_viewport: Control
@@ -55,7 +55,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				level.version_history.add_undo_method(remove_object.bind(object))
 				level.version_history.commit_action()
 				add_hsv_watchers(object, level)
-				edit_handler.select([object], true)
+				edit_handler.select(Selection.from_object(object), true)
 		# Handle object deletion
 		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
 			placed_object_rotation_degrees = 0.0
@@ -74,7 +74,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				level.version_history.add_do_method(delete_object.bind(object))
 				level.version_history.add_undo_method(restore_object.bind(object))
 				level.version_history.commit_action()
-				edit_handler.deselect([object], true)
+				edit_handler.deselect(Selection.from_object(object), true)
 
 
 func get_area(area: Area2D) -> Node:

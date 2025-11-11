@@ -2,7 +2,7 @@ extends Node
 class_name EditHandler
 
 signal selection_zone_changed(new_zone: Rect2)
-signal selection_changed(selection: Array[Node2D])
+signal selection_changed(selection: Selection)
 signal clipboard_changed(clipboard: Array[NodePath])
 signal rotated_object_degrees(rotation_degrees: float)
 signal deleted_selection
@@ -312,13 +312,13 @@ func delete_selection() -> void:
 
 
 func clear_selection() -> void:
-	select([])
+	select(Selection.new())
 	_reset_selection_zone()
 
 
 func select_all() -> void:
 	var only_node_2ds := func(object): return object is Node2D
-	select(level.get_children().duplicate().filter(only_node_2ds))
+	select(Selection.from_array(level.get_children().duplicate().filter(only_node_2ds)))
 
 
 func remove_gizmo(_selection = null) -> void:
@@ -341,24 +341,24 @@ func update_pivot() -> void:
 		return
 	var group_parents := selection.filter(func(object): return object.has_meta("group_parent"))
 	if not group_parents.is_empty():
-		selection_pivot = group_parents[0].global_position
+		selection_pivot = group_parents.first().global_position
 	else:
 		# Take the mean of the position of all objects
 		var object_positions := selection.map(func(object): return object.global_position)
-		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
+		selection_pivot = ArrayUtils.transform(object_positions.to_array(), ArrayUtils.Transformation.MEAN, true)
 
 
-func select(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+func select(objects: Selection, merge_with_previous: bool = false) -> void:
 	# Avoid creating unnecessary actions
-	if ArrayUtils.are_equivalent(selection, objects):
+	if selection.is_identical(objects):
 		return
-	var change_selection := func(new_selection: Array):
-		selection.map(remove_selection_highlight)
+	var change_selection := func(new_selection: Selection):
+		selection.for_each(remove_selection_highlight)
 		if new_selection.is_empty():
 			selection.clear()
 		else:
-			selection.assign(new_selection)
-			selection.map(add_selection_highlight)
+			selection = new_selection
+			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
 	if merge_with_previous:
 		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
@@ -369,29 +369,29 @@ func select(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
 	level.version_history.commit_action()
 
 
-func deselect(objects: Array[Node2D], merge_with_previous: bool = false) -> void:
+func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
 	# Avoid creating unnecessary actions
-	if objects.is_empty() or ArrayUtils.are_equivalent(selection, objects):
+	if objects.is_empty() or selection.is_identical(objects):
 		return
-	var do_deselection := func(negative_selection: Array):
-		selection.map(remove_selection_highlight)
-		selection.assign(ArrayUtils.difference(selection, negative_selection))
-		selection.map(add_selection_highlight)
+	var do_deselection := func(negative_selection: Selection):
+		selection.for_each(remove_selection_highlight)
+		selection = selection.difference(negative_selection)
+		selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	var undo_deselection := func(new_selection: Array):
-		selection.map(remove_selection_highlight)
+	var undo_deselection := func(new_selection: Selection):
+		selection.for_each(remove_selection_highlight)
 		if new_selection.is_empty():
 			selection.clear()
 		else:
-			selection.assign(new_selection)
-			selection.map(add_selection_highlight)
+			selection = new_selection
+			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
 	if merge_with_previous:
 		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		level.version_history.create_action("Deselected %s objects" % objects.size())
 	level.version_history.add_do_method(do_deselection.bind(objects))
-	level.version_history.add_undo_method(undo_deselection.bind(selection.duplicate()))
+	level.version_history.add_undo_method(undo_deselection.bind(selection))
 	level.version_history.commit_action()
 
 
@@ -416,21 +416,21 @@ func _update_selection() -> void:
 						]
 					)
 				)
-				select([cycled_object])
+				select(Selection.from_object(cycled_object))
 			else:
-				select([])
+				select(Selection.new())
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
-	var selection_buffer := Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null)
+	var selection_buffer: Selection = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 	if Input.is_action_just_released(&"editor_selection_remove", true):
 		deselect(selection_buffer)
 		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		select(ArrayUtils.union(selection.duplicate(), selection_buffer))
+		select(selection.union(selection_buffer))
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		_reset_selection_zone(true)
-	selection.erase(level)
+	selection.remove(level)
 
 
 func _reset_selection_zone(unreachable: bool = true) -> void:
@@ -502,8 +502,8 @@ func _clone(object: Node) -> Node:
 	return clone
 
 
-func _on_place_handler_object_deleted(object:Node) -> void:
-	if object in selection:
+func _on_place_handler_object_deleted(object: Node2D) -> void:
+	if selection.contains(object):
 		selection.erase(object)
 		selection_changed.emit(selection)
 
@@ -575,12 +575,13 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	selection_collision_objects.assign(
 			selection
 			.filter(func(object: Node2D): return object is CollisionObject2D)
+			.to_array()
 	)
 
-	var first_object_rotation: float = selection[0].global_rotation
+	var first_object_rotation: float = selection.first().global_rotation
 	var mean_objects_rotation: float = first_object_rotation
 	var gizmo_center: Vector2 = ArrayUtils.transform(
-			selection.map(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
+			selection.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 			ArrayUtils.Transformation.MEAN,
 			true
 	).rotated(mean_objects_rotation)
