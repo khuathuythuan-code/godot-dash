@@ -23,11 +23,14 @@ var editor_actions: int
 @onready var placed_objects_collider := $PlacedObjectsCollider as Area2D
 
 
+func _enter_tree() -> void:
+	SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
+
+
 func _ready() -> void:
 	Editor.root = self
 	Editor.viewport = %EditorViewport
-	if SceneTransition.from_main():
-		SceneTransition.previous = SceneTransition.Scene.EDITOR
+	if SceneManager.from_title_screen():
 		var _fade_screen = $FadeScreenLayer/FadeScreen
 		_fade_screen.show()
 		_fade_screen.modulate = Color("000000ff")
@@ -159,6 +162,8 @@ func _on_playtest_pressed() -> void:
 		$LevelOperationsHandler.pause_autosave()
 		$GameScene.start_level()
 	else:
+		# Avoid multiple scene transitions
+		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 		LevelManager.player.queue_free()
 		LevelManager.player_duals.map(NodeUtils.free_node)
 		LevelManager.player_duals.clear()

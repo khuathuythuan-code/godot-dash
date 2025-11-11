@@ -14,7 +14,7 @@ func _ready() -> void:
 	LevelManager.ground_sprites.append($GroundUpParallax/GroundUpOrigin)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-	if not get_parent() is EditorScene:
+	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		$PauseMenuLayer/PauseMenu.leave.connect(_leave_level)
 		if LevelManager.attempt == 0:
@@ -23,9 +23,9 @@ func _ready() -> void:
 		$EditorGridParallax/EditorGrid.hide()
 		ResourceLoader.load_threaded_request(LevelManager.current_level_path, "PackedScene", false, ResourceLoader.CACHE_MODE_IGNORE_DEEP)
 		var current_level: Node = ResourceLoader.load_threaded_get(LevelManager.current_level_path).instantiate()
+		SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
 		LevelManager.platformer = current_level.platformer
 		add_loaded_level(current_level)
-		SceneTransition.previous = SceneTransition.Scene.LEVEL
 		start_level()
 	await get_tree().create_timer(0.1).timeout
 

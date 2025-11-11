@@ -49,6 +49,10 @@ var _lerp_rate := 0.3 * 60
 var _camera_tween: Tween
 
 
+func _enter_tree() -> void:
+	SceneManager.set_current_scene(SceneManager.Scene.TITLE_SCREEN)
+
+
 func _ready() -> void:
 	Engine.time_scale = 1.0
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -64,10 +68,10 @@ func _ready() -> void:
 	await settings_layer.get_node("%SettingsMenu").ready
 	if not Engine.is_editor_hint():
 		menu_loop.play()
-	if SceneTransition.from_editor():
+	if SceneManager.from_editor():
 		_on_go_to_created_levels_list_pressed()
 		active_pcam = created_levels_list_camera
-	if not SceneTransition.from_main():
+	if not SceneManager.from_title_screen():
 		# HACK: Manual animation because PhantomCamera gets in the way
 		camera.global_position = active_pcam.global_position
 		camera.get_node(^"PhantomCameraHost").queue_free()
@@ -188,7 +192,6 @@ func _on_editor_pressed() -> void:
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 		history.change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
-		SceneTransition.previous = SceneTransition.Scene.MAIN
 		DiscordRPC.details = "Creating a level"
 		DiscordRPC.refresh()
 		if Editor.snapshot.can_instantiate():

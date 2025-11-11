@@ -70,13 +70,14 @@ GroundData="*res://src/autoloads/GroundData.gd"
 MusicVolume="*res://src/autoloads/MusicVolume.gd"
 Config="*res://src/autoloads/Config.gd"
 Toasts="*res://src/autoloads/Toasts.gd"
-SceneTransition="*res://src/autoloads/SceneTransition.gd"
+SceneManager="*res://src/autoloads/SceneManager.gd"
 Files="*res://scenes/autoloads/Files.tscn"
 AssetManager="*res://src/autoloads/AssetManager.gd"
 Editor="*res://src/autoloads/Editor.gd"
 KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+ModLoader="*res://src/autoloads/ModLoader.gd"
 
 [display]
 
