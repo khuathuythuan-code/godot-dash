@@ -40,16 +40,22 @@ Connect signals from code using `signal.connect(function)` (`Signal.connect()`) 
 
 Use [format strings](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html) instead of concatenation (for readability), e.g.
 
-```gdscript
-object_name.text = "%s objects" % selection.size()
-```
-
-instead of 
-
-```gdscript
-object_name.text = str(selection.size()) + " objects"
-```
-
+<table><thead>
+  <tr>
+    <th>Good</th>
+    <th>Bad</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>
+    <pre lang="gdscript"><code>object_name.text = "%s objects" % selection.size()</code></pre>
+    </td>
+    <td>
+    <pre lang="gdscript"><code>object_name.text = str(selection.size()) + " objects"</code></pre>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ### Commented-out code
 
