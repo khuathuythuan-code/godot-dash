@@ -312,7 +312,7 @@ func delete_selection() -> void:
 
 
 func clear_selection() -> void:
-	select(Selection.new())
+	select(Selection.EMPTY())
 	_reset_selection_zone()
 
 
@@ -418,7 +418,7 @@ func _update_selection() -> void:
 				)
 				select(Selection.from_object(cycled_object))
 			else:
-				select(Selection.new())
+				select(Selection.EMPTY())
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
 	var selection_buffer: Selection = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))

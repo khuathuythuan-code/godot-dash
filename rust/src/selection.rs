@@ -24,6 +24,10 @@ impl IRefCounted for Selection {
 
 #[godot_api]
 impl Selection {
+    #[func(rename = EMPTY)]
+    fn empty() -> Gd<Self> {
+        Selection::new_gd()
+    }
     #[func]
     fn from_array(array: Array<Gd<Node2D>>) -> Gd<Self> {
         Gd::from_object(Self {
