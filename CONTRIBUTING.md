@@ -48,9 +48,7 @@ Use [format strings](https://docs.godotengine.org/en/stable/tutorials/scripting/
 <tbody>
   <tr>
     <td>
-    		```gdscript
-    		object_name.text = "%s objects" % selection.size()
-    		```
+    <pre><code>object_name.text = "%s objects" % selection.size()</code></pre>
     </td>
     <td>
     <pre><code>object_name.text = str(selection.size()) + " objects"</code></pre>
