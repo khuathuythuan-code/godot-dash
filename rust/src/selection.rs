@@ -95,6 +95,13 @@ impl Selection {
         self.inner.clear()
     }
     #[func]
+    fn clone(&self) -> Gd<Self> {
+        Gd::from_object(Self {
+            inner: self.inner.clone(),
+            first: self.first.clone(),
+        })
+    }
+    #[func]
     fn is_empty(&self) -> bool {
         self.inner.is_empty()
     }
