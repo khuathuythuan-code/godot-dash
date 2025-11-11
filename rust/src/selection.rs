@@ -48,6 +48,10 @@ impl Selection {
         Array::from_iter(self.inner.iter().cloned())
     }
     #[func]
+    fn size(&self) -> i64 {
+        self.inner.len() as i64
+    }
+    #[func]
     fn union(&self, rhs: Gd<Self>) -> Gd<Self> {
         let inner: HashSet<Gd<Node2D>> = self
             .inner
