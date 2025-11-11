@@ -77,7 +77,6 @@ Editor="*res://src/autoloads/Editor.gd"
 KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-ModLoader="*res://src/autoloads/ModLoader.gd"
 
 [display]
 
