@@ -37,40 +37,40 @@ impl Selection {
     }
     #[func]
     fn union(&self, rhs: Gd<Self>) -> Gd<Self> {
-        let new_inner: HashSet<Gd<Node2D>> = self
+        let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
             .union(&rhs.bind().inner)
             .cloned()
             .collect();
         Gd::from_object(Self {
-            inner: new_inner,
+            inner,
             first: self.first.clone(),
         })
     }
     #[func]
     fn intersection(&self, rhs: Gd<Self>) -> Gd<Self> {
-        let new_inner: HashSet<Gd<Node2D>> = self
+        let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
             .intersection(&rhs.bind().inner)
             .cloned()
             .collect();
         Gd::from_object(Self {
-            inner: new_inner,
+            inner,
             first: self.first.clone(),
         })
     }
     #[func]
     fn difference(&mut self, rhs: Gd<Self>) -> Gd<Self> {
-        let new_inner: HashSet<Gd<Node2D>> = self
+        let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
             .difference(&rhs.bind().inner)
             .cloned()
             .collect();
         Gd::from_object(Self {
-            inner: new_inner,
+            inner,
             first: self.first.clone(),
         })
     }
@@ -91,20 +91,30 @@ impl Selection {
         self.first.clone()
     }
     #[func]
-    fn for_each(&mut self, method: Callable) {
-        self.inner = self
+    fn map(&mut self, method: Callable) -> Gd<Self> {
+        let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
             .iter()
             .map(|node_ref| method.call(vslice![node_ref]).to::<Gd<Node2D>>())
             .collect();
+        Gd::from_object(Self {
+            inner,
+            first: self.first.clone(),
+        })
     }
     #[func]
-    fn map(&mut self, method: Callable) -> Array<Variant> {
+    fn map_generic(&mut self, method: Callable) -> Array<Variant> {
         self.inner
             .clone()
             .iter()
             .map(|node_ref| method.call(vslice![node_ref]))
             .collect()
+    }
+    #[func]
+    fn for_each(&mut self, method: Callable) {
+        self.inner.iter().for_each(|node_ref| {
+            method.call(vslice![node_ref]);
+        });
     }
 }
