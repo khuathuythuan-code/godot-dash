@@ -13,7 +13,11 @@ Group PRs by topic, e.g. a single feature or a fix.
 Follow [Godot's GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html).
 Unfortunately, Godot doesn't come with a formatter or a linter, so if you see code that isn't formatted correctly, feel free to open a PR.
 
-Give scripts class names unless you're sure you won't need to refer to it and it won't have more than 1 instance.
+**Make variable types explicit everywhere in your code.** If a variable's type needs to change (which should never happen except rare cases), set its type to `Variant`.
+
+Give classes names (`class_name`) so you can refer to instances of that class in other parts of the code.
+
+#### Node paths
 
 Avoid node paths that go up in the hierarchy, e.g. `^"../../Node"` (the worst offender is a "grandparent" path like `^"../.."` which doesn't tell anything about what the referred node actually is).
 Instead, use references stored in exported variables, e.g. `@export var side_panel: PanelContainer`.
@@ -31,6 +35,27 @@ func _init(_keybind_loader: KeybindLoader) -> void:
 If the class is only there to categorize subclasses, [mark it as `@abstract`](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html#abstract-classes-and-methods).
 
 Connect signals from code using `signal.connect(function)` (`Signal.connect()`) instead of `connect("signal", function)` (`Node.connect()`).
+
+#### Strings
+
+Use [format strings](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_format_string.html) instead of concatenation (for readability), e.g.
+
+<table><thead>
+  <tr>
+    <th>Good</th>
+    <th>Bad</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>
+    <pre><code>object_name.text = "%s objects" % selection.size()</code></pre>
+    </td>
+    <td>
+    <pre><code>object_name.text = str(selection.size()) + " objects"</code></pre>
+    </td>
+  </tr>
+</tbody>
+</table>
 
 ### Commented-out code
 
