@@ -14,7 +14,7 @@ var player: Player
 var player_duals: Array[Player]
 var player_camera: PlayerCamera
 var background_sprites: Array[Sprite2D]
-var ground_sprites: Array[GroundObject]
+# var ground_sprites: Array[GroundObject]
 var ground_up: GroundObject
 var ground_down: GroundObject
 var level_song_player: AudioStreamPlayer
