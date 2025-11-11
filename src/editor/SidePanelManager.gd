@@ -29,15 +29,15 @@ func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
 	color_section.folded = false
-	_on_edit_handler_selection_changed([])
+	_on_edit_handler_selection_changed(Selection.EMPTY())
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	object_name.visible = not selection.is_empty()
 	if selection.size() == 1:
-		object_name.text = selection[0].name
+		object_name.text = selection.first().name
 		object_name.editable = true
-		group_parent.set_value_no_signal(selection[0].has_meta("group_parent"))
+		group_parent.set_value_no_signal(selection.first().has_meta("group_parent"))
 		group_parent.set_input_state(true)
 	elif selection.size() > 1:
 		object_name.text = "%s objects" % selection.size()

@@ -145,14 +145,14 @@ func move_selection(distance: Vector2):
 func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	if selection.is_empty():
 		return
-	var do_rotate_selection := func(_selection: Array[Node2D]):
-		for _object in _selection:
+	var do_rotate_selection := func(_selection: Selection):
+		for _object in _selection.to_array():
 			_object.global_rotation_degrees += angle
 		rotated_selection_degrees.emit(angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(angle)
-	var undo_rotate_selection := func(_selection: Array[Node2D]):
-		for _object in _selection:
+	var undo_rotate_selection := func(_selection: Selection):
+		for _object in _selection.to_array():
 			_object.global_rotation_degrees -= angle
 		rotated_selection_degrees.emit(-angle)
 		if _selection.size() == 1 and not is_gizmo:
@@ -166,7 +166,7 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 		for _object in _selection_original_positions:
 			_object.global_position = _selection_original_positions[_object]
 	
-	var selection_snapshot: Array[Node2D] = selection.duplicate() 
+	var selection_snapshot: Selection = selection.clone() 
 	# Avoid firing signals for RotateGizmo rotations
 	# RotateGizmo fires a signal every frame its angle changes
 	# This would clog the history with small rotations.
@@ -203,34 +203,34 @@ func scale_selection(
 		var undo_scale: Callable
 		if is_global:
 			do_scale = func():
-				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+				selection.for_each.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
 			undo_scale = func():
-				selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
+				selection.for_each.call_deferred(scale_transform.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY))
 		else:
 			do_scale = func():
-				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+				selection.for_each.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 			undo_scale = func():
-				selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
+				selection.for_each.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
 		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
 		level.version_history.add_do_method(do_scale)
 		level.version_history.add_undo_method(undo_scale)
 		level.version_history.commit_action()
 		return
 	if is_global:
-		selection.map.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
+		selection.for_each.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
 		resized_selection.emit(transform.get_scale())
 	else:
-		selection.map.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
+		selection.for_each.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 		resized_selection.emit(transform.get_scale())
 
 
 func shift_z_index(increase: bool):
-	var increase_object_z_index := func(_selection: Array[Node2D]):
-		for _object: Node2D in _selection:
+	var increase_object_z_index := func(_selection: Selection):
+		for _object: Node2D in _selection.to_array():
 			_object.z_index += 1
 		z_index_changed.emit(1)
-	var decrease_object_z_index := func(_selection: Array[Node2D]):
-		for _object: Node2D in _selection:
+	var decrease_object_z_index := func(_selection: Selection):
+		for _object: Node2D in _selection.to_array():
 			_object.z_index -= 1
 		z_index_changed.emit(-1)
 	# Bulk checks
@@ -245,7 +245,7 @@ func shift_z_index(increase: bool):
 	var decrease_z_index_warns := func(_warns: int, _object: Node2D):
 		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
 	# Commit
-	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var selection_snapshot: Selection = selection.clone()
 	var warns: int = selection_snapshot.reduce(increase_z_index_warns if increase else decrease_z_index_warns, 0)
 	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
 	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
@@ -285,10 +285,10 @@ func paste_selection() -> void:
 	selection.for_each(remove_selection_highlight)
 	selection.clear()
 	for path in clipboard:
-		selection.append(level.get_node(path))
+		selection.insert(level.get_node(path))
 	selection = selection.map(_clone)
 	selection_changed.emit(selection)
-	var move_objects_to_new_screen_center = func(object):
+	var move_objects_to_new_screen_center = func(object: Node2D):
 		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
 	selection.for_each(move_objects_to_new_screen_center)
 
@@ -339,12 +339,12 @@ func any_gizmo_is_open() -> bool:
 func update_pivot() -> void:
 	if selection.is_empty():
 		return
-	var group_parents := selection.filter(func(object): return object.has_meta("group_parent"))
+	var group_parents: Selection = selection.filter(func(object): return object.has_meta("group_parent"))
 	if not group_parents.is_empty():
 		selection_pivot = group_parents.first().global_position
 	else:
 		# Take the mean of the position of all objects
-		var object_positions := selection.map(func(object): return object.global_position)
+		var object_positions := selection.map_generic(func(object): return object.global_position)
 		selection_pivot = ArrayUtils.transform(object_positions.to_array(), ArrayUtils.Transformation.MEAN, true)
 
 
@@ -504,7 +504,7 @@ func _clone(object: Node) -> Node:
 
 func _on_place_handler_object_deleted(object: Node2D) -> void:
 	if selection.contains(object):
-		selection.erase(object)
+		selection.remove(object)
 		selection_changed.emit(selection)
 
 

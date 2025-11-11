@@ -184,7 +184,7 @@ func _on_playtest_pressed() -> void:
 
 func _on_leave_pressed() -> void:
 	if not LevelManager.level_playing:
-		$EditHandler.selection.map($EditHandler.remove_selection_highlight)
+		$EditHandler.selection.for_each($EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
 		Editor.level_data_snapshot = level.to_data()
 		Editor.snapshot.pack(self)

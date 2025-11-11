@@ -24,19 +24,19 @@ func _ready() -> void:
 		property.interaction_ended.connect(_on_property_interaction_ended.bind(property, connections[property]))
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	selected_object_count = selection.size()
 	if selection.is_empty():
 		hsv_watchers.clear()
 		return
 	hsv_watchers.assign(
 		selection
-			.map(BaseDetailHandler.into_base)
+			.map_generic(BaseDetailHandler.into_base)
 			.map(BaseDetailHandler.use_hsv_watcher)
 	)
 	hsv_watchers.append_array(
 		selection
-			.map(func(object: Node2D): return object.get_node_or_null(^"Detail"))
+			.map_generic(func(object: Node2D): return object.get_node_or_null(^"Detail"))
 			.filter(ArrayUtils.flatten)
 			.map(BaseDetailHandler.use_hsv_watcher)
 	)

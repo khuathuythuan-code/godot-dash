@@ -7,7 +7,7 @@ class_name TransformEditor
 @export var scale_property: Vector2Property
 @export var z_index_property: FloatProperty
 
-var current_selection: Array[Node2D]
+var current_selection: Selection
 var selection_size: int
 var first_object: Node2D
 var average_position: Vector2
@@ -26,11 +26,11 @@ func update_pivot_relative_transform() -> void:
 		pivot_relative_transforms[collision_object] = pivot_relative_transform
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	current_selection = selection
 	if selection.is_empty():
 		return
-	first_object = current_selection.get(0)
+	first_object = current_selection.first()
 	selection_size = selection.size()
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
@@ -43,11 +43,11 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 		same_scale = true
 		same_rotation = true
 		current_rotation = first_object.global_rotation_degrees
-		average_position = LevelManager.current_level.to_local(current_selection[0].global_position)
+		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
 		return
 
 	var object_scales: Array[Vector2]
-	object_scales.assign(current_selection.map(func(object: Node2D): return object.scale))
+	object_scales.assign(current_selection.map_generic(func(object: Node2D): return object.scale))
 	same_scale = true
 	var first_scale: Vector2 = object_scales[0]
 	for object_scale: Vector2 in object_scales:
@@ -60,12 +60,12 @@ func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
 		scale_property.set_value_no_signal(Vector2(1, 1))
 
 	var object_positions: Array[Vector2]
-	object_positions.assign(current_selection.map(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
+	object_positions.assign(current_selection.map_generic(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
 	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 	var object_rotations: Array[float]
-	object_rotations.assign(current_selection.map(func(object: Node2D): return object.rotation_degrees))
+	object_rotations.assign(current_selection.map_generic(func(object: Node2D): return object.rotation_degrees))
 	same_rotation = true
 	var first_rotation: float = object_rotations[0]
 	for object_rotation: float in object_rotations:
@@ -130,7 +130,7 @@ func _set_z_index(new_z_index: int):
 		for _object: Node2D in _selection_to_z_index:
 			_object.z_index = _selection_to_z_index[_object]
 	
-	var selection_snapshot: Array[Node2D] = current_selection.duplicate()
+	var selection_snapshot: Selection = current_selection.clone()
 	var map_object_to_z_index := func(accum: Dictionary, object: Node2D):
 		accum[object] = object.z_index
 		return accum

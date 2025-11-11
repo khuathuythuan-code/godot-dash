@@ -192,7 +192,7 @@ func save_level() -> void:
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
-		var selection_backup := edit_handler.selection.duplicate()
+		var selection_backup := edit_handler.selection.clone()
 		edit_handler.selection.clear()
 		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
@@ -274,12 +274,12 @@ func _on_export_level_dialog_file_selected(path: String) -> Error:
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
 		# The level is saved before starting playtest, but here the creator isn't playtesting.
-		var selection_backup := edit_handler.selection.duplicate()
-		edit_handler.selection.map(EditHandler.remove_selection_highlight)
+		var selection_backup := edit_handler.selection.clone()
+		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
 		Editor.level_data_snapshot = level_data
 		edit_handler.selection = selection_backup
-		edit_handler.selection.map(EditHandler.add_selection_highlight)
+		edit_handler.selection.for_each(EditHandler.add_selection_highlight)
 	var level_bytes := JSON.stringify(level_data).to_utf8_buffer()
 	writer.write_file(level_bytes)
 	writer.close_file()

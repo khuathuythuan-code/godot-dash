@@ -2,7 +2,7 @@ extends Node2D
 class_name TriggerGroupBoundingBox
 
 var bounding_boxes: Dictionary[Interactable, GroupBoundingBox]
-var saved_selection: Array[Node2D]
+var saved_selection: Selection
 
 
 class GroupBoundingBox:
@@ -34,9 +34,9 @@ func _draw() -> void:
 		draw_line(interactable.global_position - bounding_box.position, closest_point_on_rect, Color.GREEN, 4.0)
 
 
-func update_bounding_boxes(selection: Array[Node2D]) -> void:
+func update_bounding_boxes(selection: Selection) -> void:
 	bounding_boxes.clear()
-	for object: Node2D in selection:
+	for object: Node2D in selection.to_array():
 		if object is Interactable and object.has(TargetGroupComponent):
 			var interactable: Interactable = object
 			var target_group: String = interactable.query(TargetGroupComponent).target_group
@@ -53,7 +53,7 @@ func update_bounding_boxes(selection: Array[Node2D]) -> void:
 			bounding_boxes[interactable] = GroupBoundingBox.new(BoundingBox.new(objects_in_group, objects_center, 0.0).as_rect().grow(64.0), objects_center)
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	saved_selection = selection
 	# Clear the displayed bounding boxes
 	if selection.is_empty():
