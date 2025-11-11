@@ -134,6 +134,20 @@ impl Selection {
         self.inner.is_subset(&rhs.bind().inner)
     }
     #[func]
+    fn any(&self, method: Callable) -> bool {
+        self.inner
+            .clone()
+            .iter()
+            .any(|node_ref| method.call(vslice![node_ref]).to::<bool>())
+    }
+    #[func]
+    fn all(&self, method: Callable) -> bool {
+        self.inner
+            .clone()
+            .iter()
+            .all(|node_ref| method.call(vslice![node_ref]).to::<bool>())
+    }
+    #[func]
     fn map(&mut self, method: Callable) -> Gd<Self> {
         let inner: HashSet<Gd<Node2D>> = self
             .inner
