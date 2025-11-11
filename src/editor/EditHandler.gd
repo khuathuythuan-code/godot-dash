@@ -22,7 +22,7 @@ enum TransformPivot {
 @export var transform_pivot_button: OptionButton
 
 var level: Level
-var selection: Array[Node2D]
+var selection: Selection
 var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
@@ -263,7 +263,7 @@ func shift_z_index(increase: bool):
 
 
 func duplicate_selection() -> void:
-	selection = Array(selection.map(_clone), TYPE_OBJECT, "Node2D", null)
+	selection = selection.map(_clone)
 	for object in selection:
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
@@ -282,15 +282,15 @@ func copy_selection() -> void:
 
 
 func paste_selection() -> void:
-	selection.map(remove_selection_highlight)
+	selection.for_each(remove_selection_highlight)
 	selection.clear()
 	for path in clipboard:
 		selection.append(level.get_node(path))
-	selection = Array(selection.map(_clone), TYPE_OBJECT, "Node2D", null)
+	selection = selection.map(_clone)
 	selection_changed.emit(selection)
 	var move_objects_to_new_screen_center = func(object):
 		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
-	selection.map(move_objects_to_new_screen_center)
+	selection.for_each(move_objects_to_new_screen_center)
 
 
 func delete_selection() -> void:
