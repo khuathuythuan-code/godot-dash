@@ -32,6 +32,14 @@ impl Selection {
         })
     }
     #[func]
+    fn from_object(object: Gd<Node2D>) -> Gd<Self> {
+        let inner: HashSet<Gd<Node2D>> = HashSet::from([object.clone()]);
+        Gd::from_object(Self {
+            inner,
+            first: Some(object),
+        })
+    }
+    #[func]
     fn to_array(&self) -> Array<Gd<Node2D>> {
         Array::from_iter(self.inner.iter().cloned())
     }
