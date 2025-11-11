@@ -91,6 +91,10 @@ impl Selection {
         self.first.clone()
     }
     #[func]
+    fn clear(&mut self) {
+        self.inner.clear()
+    }
+    #[func]
     fn is_empty(&self) -> bool {
         self.inner.is_empty()
     }
