@@ -162,6 +162,8 @@ func _on_playtest_pressed() -> void:
 		$LevelOperationsHandler.pause_autosave()
 		$GameScene.start_level()
 	else:
+		LevelManager.ground_up.hide()
+		LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 		# Avoid multiple scene transitions
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 		LevelManager.player.queue_free()

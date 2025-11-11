@@ -10,6 +10,12 @@ const LERP_FACTOR: float = 30
 var _previous_camera_rotation: float
 
 
+func _ready() -> void:
+	match ground_position:
+		1: LevelManager.ground_down = self
+		-1: LevelManager.ground_up = self
+
+
 func _physics_process(delta: float) -> void:
 	if LevelManager.player_camera == null:
 		return

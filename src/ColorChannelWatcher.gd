@@ -33,9 +33,9 @@ func refresh_objects_color(objects: Array = [], _data: ColorChannelData = data) 
 				ColorChannelData.CopyColor.BACKGROUND:
 					object.modulate = LevelManager.background_sprites[0].modulate
 				ColorChannelData.CopyColor.GROUND:
-					object.modulate = LevelManager.ground_sprites[0].get_node("Ground").self_modulate
+					object.modulate = LevelManager.ground_down.get_node("Ground").self_modulate
 				ColorChannelData.CopyColor.LINE:
-					object.modulate = LevelManager.ground_sprites[0].get_node("Ground/Line").modulate
+					object.modulate = LevelManager.ground_down.get_node("Ground/Line").modulate
 				ColorChannelData.CopyColor.P1:
 					pass
 				ColorChannelData.CopyColor.P2: 

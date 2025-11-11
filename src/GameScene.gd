@@ -8,10 +8,11 @@ func _ready() -> void:
 	LevelManager.background_sprites.clear()
 	LevelManager.background_sprites.append($BackgroundParallax/Background)
 	LevelManager.background_sprites.append($BackgroundParallax/Background2)
-	LevelManager.ground_sprites.clear()
+	LevelManager.ground_up = null
+	LevelManager.ground_down = null
 	LevelManager.level_playing = false
-	LevelManager.ground_sprites.append($GroundDownParallax/GroundDownOrigin)
-	LevelManager.ground_sprites.append($GroundUpParallax/GroundUpOrigin)
+	LevelManager.ground_down = $GroundDownParallax/GroundDownOrigin
+	LevelManager.ground_up = $GroundUpParallax/GroundUpOrigin
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 	if not SceneManager.in_editor():

@@ -130,7 +130,7 @@ script = ExtResource("10_2dtee")
 config_property = &"platformer"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Gamemode" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
+[node name="Internal Gamemode" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -138,9 +138,35 @@ script = ExtResource("12_am3gx")
 fields = PackedStringArray("Cube", "Ship", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Gamemode"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Internal Gamemode"]
 script = ExtResource("10_2dtee")
-config_property = &"start_gamemode"
+config_property = &"start_internal_gamemode"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Displayed Gamemode" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("12_am3gx")
+fields = PackedStringArray("Cube", "Ship", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Displayed Gamemode"]
+script = ExtResource("10_2dtee")
+config_property = &"start_displayed_gamemode"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Freefly" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("10_bo0r5")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/Player/Player/Freefly"]
+script = ExtResource("10_2dtee")
+config_property = &"start_freefly"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="Speed" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/Player/Player"]
