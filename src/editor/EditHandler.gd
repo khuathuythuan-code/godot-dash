@@ -317,7 +317,9 @@ func clear_selection() -> void:
 
 func select_all() -> void:
 	var only_node_2ds := func(object): return object is Node2D
-	select(Selection.from_array(level.get_children().duplicate().filter(only_node_2ds)))
+	var objects: Array[Node2D]
+	objects.assign(level.get_children().filter(only_node_2ds))
+	select(Selection.from_array(objects))
 
 
 func remove_gizmo(_selection = null) -> void:
