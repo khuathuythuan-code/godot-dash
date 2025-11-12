@@ -345,7 +345,7 @@ func update_pivot() -> void:
 	else:
 		# Take the mean of the position of all objects
 		var object_positions := selection.map_generic(func(object): return object.global_position)
-		selection_pivot = ArrayUtils.transform(object_positions.to_array(), ArrayUtils.Transformation.MEAN, true)
+		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
 func select(objects: Selection, merge_with_previous: bool = false) -> void:
