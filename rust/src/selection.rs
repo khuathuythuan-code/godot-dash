@@ -130,7 +130,8 @@ impl Selection {
     #[func]
     /// Removes all elements from the selection.
     fn clear(&mut self) {
-        self.inner.clear()
+        self.inner.clear();
+        self.first = None;
     }
     #[func]
     /// Creates a copy of the selection. The elements are unchanged.
