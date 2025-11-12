@@ -24,7 +24,7 @@ func _populate_group_list(selection: Selection) -> void:
 	all_groups.assign(ArrayUtils.to_set(all_groups).filter(is_godot_group))
 	# Groups that all objects are in
 	var shared_groups: Array[StringName]
-	shared_groups.assign(selection.reduce(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
+	shared_groups.assign(selection.fold_generic(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
 	# Additive pass
 	for group in all_groups:
 		if not group or group in group_buttons.keys():
