@@ -31,8 +31,7 @@ func _input(event: InputEvent) -> void:
 
 
 func set_value(new_value: String) -> void:
-	_value = new_value
-	input.set_text(new_value)
+	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 
 
