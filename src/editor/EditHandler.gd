@@ -125,17 +125,17 @@ func _physics_process(delta: float) -> void:
 
 
 func move_selection(distance: Vector2):
-	var move_object := func(_selection: Array[Node2D]):
-		for _object: Node2D in _selection:
+	var move_object := func(_selection: Selection):
+		for _object: Node2D in _selection.to_array():
 			_object.global_position += distance * LevelManager.CELL_SIZE
 		selection_pivot += distance * LevelManager.CELL_SIZE
 		moved_selection_cells.emit(distance)
-	var unmove_object := func(_selection: Array[Node2D]):
-		for _object: Node2D in _selection:
+	var unmove_object := func(_selection: Selection):
+		for _object: Node2D in _selection.to_array():
 			_object.global_position -= distance * LevelManager.CELL_SIZE
 		selection_pivot -= distance * LevelManager.CELL_SIZE
 		moved_selection_cells.emit(-distance)
-	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var selection_snapshot: Selection = selection.clone()
 	level.version_history.create_action("Moved objects %s units")
 	level.version_history.add_do_method(move_object.bind(selection_snapshot))
 	level.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
@@ -365,7 +365,7 @@ func select(objects: Selection, merge_with_previous: bool = false) -> void:
 	else:
 		level.version_history.create_action("Selected %s objects" % objects.size())
 	level.version_history.add_do_method(change_selection.bind(objects))
-	level.version_history.add_undo_method(change_selection.bind(selection.duplicate()))
+	level.version_history.add_undo_method(change_selection.bind(selection.clone()))
 	level.version_history.commit_action()
 
 

@@ -123,19 +123,18 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 
 
 func _set_z_index(new_z_index: int):
-	var do_z_index_shift := func(_selection: Array[Node2D]):
-		for _object: Node2D in _selection:
+	var do_z_index_shift := func(_selection: Selection):
+		for _object: Node2D in _selection.to_array():
 			_object.z_index = new_z_index
 	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[Node2D, int]):
 		for _object: Node2D in _selection_to_z_index:
 			_object.z_index = _selection_to_z_index[_object]
 	
 	var selection_snapshot: Selection = current_selection.clone()
-	var map_object_to_z_index := func(accum: Dictionary, object: Node2D):
-		accum[object] = object.z_index
-		return accum
+	var object_to_z_index := func(object: Node2D):
+		return object.z_index
 	var selection_to_z_index: Dictionary[Node2D, int]
-	selection_to_z_index.assign(selection_snapshot.reduce(map_object_to_z_index, {}))
+	selection_to_z_index.assign(selection_snapshot.map_generic_dict(object_to_z_index))
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Changed object z index to %s" % new_z_index)
 	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
