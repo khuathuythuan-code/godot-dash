@@ -20,7 +20,7 @@ var same_rotation: bool = true
 
 
 func update_pivot_relative_transform() -> void:
-	for collision_object in current_selection:
+	for collision_object in current_selection.to_array():
 		var pivot_relative_transform: Transform2D = collision_object.global_transform
 		pivot_relative_transform.origin -= edit_handler.selection_pivot
 		pivot_relative_transforms[collision_object] = pivot_relative_transform

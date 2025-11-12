@@ -264,7 +264,7 @@ func shift_z_index(increase: bool):
 
 func duplicate_selection() -> void:
 	selection = selection.map(_clone)
-	for object in selection:
+	for object in selection.to_array():
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
 	selection_changed.emit(selection)
@@ -274,7 +274,7 @@ func copy_selection() -> void:
 	# Using map returns an array filled with `null` instead of NodePaths.
 	# Go figure.
 	clipboard.clear()
-	for object in selection:
+	for object in selection.to_array():
 		clipboard.append(level.get_path_to(object))
 	clipboard_camera_position = get_viewport().get_camera_2d().get_screen_center_position()
 	clipboard_changed.emit(clipboard)
@@ -303,7 +303,7 @@ func delete_selection() -> void:
 		level.add_child(_object, true)
 		NodeUtils.change_owner_recursive(_object, level)
 	level.version_history.create_action("Deleted objects")
-	for object in selection:
+	for object in selection.to_array():
 		level.version_history.add_do_method(delete_object.bind(object))
 		level.version_history.add_undo_method(restore_object.bind(object))
 	level.version_history.add_do_method(clear_selection)
@@ -482,7 +482,7 @@ func _flip_selection(axis: int):
 				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
 				_object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
 	level.version_history.create_action("Flipped objects")
-	for object in selection:
+	for object in selection.to_array():
 		level.version_history.add_do_method(flip.bind(object))
 		level.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
 	level.version_history.commit_action()
