@@ -8,7 +8,7 @@ const GROUP_PREFIX: String = "g_"
 @export var confirm_button: Button
 @export var group_container: Container
 
-var selected_objects: Selection
+var selected_objects := Selection.new()
 var group_buttons: Dictionary[String, Button]
 
 

@@ -7,7 +7,7 @@ class_name TransformEditor
 @export var scale_property: Vector2Property
 @export var z_index_property: FloatProperty
 
-var current_selection: Selection
+var current_selection := Selection.new()
 var selection_size: int
 var first_object: Node2D
 var average_position: Vector2
