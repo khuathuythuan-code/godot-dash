@@ -122,24 +122,25 @@ func remove_item(idx: int, options: int = 0) -> void:
 
 func set_value(value: Array) -> void:
 	set_value_no_signal(value)
-	value_changed.emit(value)
+	value_changed.emit(_value)
 
 
 func set_value_no_signal(value: Array) -> void:
+	var new_value = value.duplicate()
 	NodeUtils.free_children(items)
 	await get_tree().process_frame
-	if value.size() < minimum_size:
+	if new_value.size() < minimum_size:
 		for i in range(minimum_size):
 			add_item(i, NO_SIGNAL)
-	if value.size() > maximum_size and not or_greater:
-		value.resize(maximum_size)
-	for i in range(len(value)):
-		add_item(i, NO_SIGNAL).set_value_no_signal(value[i])
-	_value = value
+	if new_value.size() > maximum_size and not or_greater:
+		new_value.resize(maximum_size)
+	for i in (new_value.size() if new_value.size() >= minimum_size else maxi(new_value.size() - minimum_size, 0)):
+		add_item(i, NO_SIGNAL).set_value_no_signal(new_value[i])
+	_value = new_value
 
 
 func get_value() -> Array:
-	return _value
+	return _value.duplicate()
 
 func reset() -> void:
 	pass # unimplemented, there is no easy way to change the type of an inspector typed array
