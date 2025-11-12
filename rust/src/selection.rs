@@ -232,6 +232,16 @@ impl Selection {
         })
     }
     #[func]
+    /// See [method Array.reduce].
+    fn fold_generic(&self, method: Callable, accum: Variant) -> Variant {
+        self.inner
+            .clone()
+            .iter()
+            .fold(accum, |accum: Variant, node_ref| {
+                method.call(vslice![accum, node_ref])
+            })
+    }
+    #[func]
     /// Runs `method` on each element in the selection.
     fn for_each(&mut self, method: Callable) {
         self.inner.iter().for_each(|node_ref| {
