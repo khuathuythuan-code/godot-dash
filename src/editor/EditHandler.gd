@@ -157,8 +157,8 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 		rotated_selection_degrees.emit(-angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(-angle)
-	var do_pivot := func(_selection: Array[Node2D], _selection_pivot: Vector2):
-		for _object in _selection:
+	var do_pivot := func(_selection: Selection, _selection_pivot: Vector2):
+		for _object in _selection.to_array():
 			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
 			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
 			_object.global_position += position_delta
@@ -178,11 +178,10 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	level.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
 	level.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
 	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-		var combine_refs_and_positions := func(accum: Dictionary[Node2D, Vector2], object: Node2D):
-			accum[object] = object.global_position
-			return accum
+		var object_to_position := func(object: Node2D):
+			return object.global_position
 		level.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
-		level.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.reduce(combine_refs_and_positions, {})))
+		level.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.map_generic_dict(object_to_position)))
 	level.version_history.commit_action()
 
 
