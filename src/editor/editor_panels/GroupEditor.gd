@@ -27,12 +27,12 @@ func _populate_group_list(selection: Selection) -> void:
 	shared_groups.assign(selection.fold_generic(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
 	# Additive pass
 	for group in all_groups:
-		if not group or group in group_buttons.keys():
+		if group in group_buttons.keys():
 			continue
-		_create_group_button(group)
+		group_container.add_child(_create_group_button(group))
 	# Substractive pass
 	for old_group in group_buttons:
-		if not old_group or old_group in all_groups:
+		if old_group in all_groups:
 			continue
 		group_buttons[old_group].queue_free()
 		group_buttons.erase(old_group)
@@ -49,18 +49,17 @@ func _create_group_button(group: String) -> Button:
 	group_button.text = group.trim_prefix(GROUP_PREFIX)
 	group_button.pressed.connect(_remove_group.bind(group_button))
 	group_button.theme_type_variation = &"GroupButton"
-	group_container.add_child(group_button)
 	group_buttons[group] = group_button
 	return group_button
 
 
 func _add_selection_to_group(selection: Selection, group: String) -> void:
-	var has_group: bool = group in group_buttons.keys()
-	if not has_group:
+	var in_group := func(object: Node2D, _group: StringName): return _group in object.get_groups()
+	if not selection.any(in_group):
 		if group == GROUP_PREFIX:
 			return
-		selection.for_each(func(object): object.add_to_group(group, true))
-	elif group_buttons[group].modulate == NONSHARED_GROUP_COLOR:
+		selection.for_each(func(object: Node2D): object.add_to_group(group, true); push_warning(object.get_groups()))
+	elif not selection.all(in_group):
 		selection.for_each(func(object: Node2D): object.add_to_group(group, true))
 		group_buttons[group].modulate = Color.WHITE
 
@@ -104,8 +103,8 @@ func _add_group(group: String) -> void:
 
 
 func _on_edit_handler_selection_changed(selection: Selection) -> void:
-	selected_objects = selection
-	_populate_group_list(selection)
+	selected_objects = selection.clone()
+	_populate_group_list(selected_objects)
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
