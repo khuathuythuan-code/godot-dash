@@ -19,18 +19,37 @@ As of right now, the game doesn't have any releases.
 This is because it doesn't have any playable levels (the levels the game currently has are for testing purposes), and because the editor isn't finished.
 Godot Dash V2 will start getting pre-releases as soon as the editor is completely usable (even if most objects from Geometry Dash are missing).
 
-## Contributing
-
-- **Read [CONTRIBUTING.md](./CONTRIBUTING.md).**
-- Clone the repo and import it in Godot.
-- Open a PR with your changes.
-
 ## Compilation
 
 **⚠️ Make sure to use Godot 4.5. ⚠️**
 
+### Dependencies
+
+- [`cargo`](https://rustup.rs/)
+
+### Instructions
+
 - Clone the repo locally or download the source code as a zip from the releases.
 - Import the project.godot file (if you cloned the repo) or the source code zip (if you downloaded it from the releases).
+- Navigate to `<repo>/rust/` and run `cargo build`.
+- Do `Project → Reload current project` to load the Rust extensions.
 - Go to `Project → Export` and select the export preset you want.
 - Choose an export path.
 - Hit `Export Project`.
+
+
+## Contributing
+
+**⚠️ Make sure to use Godot 4.5. ⚠️**
+
+### Dependencies
+
+- [`cargo`](https://rustup.rs/)
+
+### Instructions
+
+- **Read [CONTRIBUTING.md](./CONTRIBUTING.md).**
+- Clone the repo and import it in Godot.
+- Run `cargo build` in `<repo>/rust/`.
+- Do `Project → Reload current project` to load the Rust extensions.
+- Open a PR with your changes.

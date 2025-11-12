@@ -1,0 +1,10 @@
+[package]
+name = "godot-rust-utils"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"] # Compile this crate to a dynamic C library.
+
+[dependencies]
+godot = { version = "0.4.2", features = ["register-docs"] }

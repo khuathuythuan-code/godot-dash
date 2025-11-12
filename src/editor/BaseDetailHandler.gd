@@ -19,6 +19,7 @@ func clear_color_channels(selection: Array) -> void:
 func _load_base(objects_base: Array[HSVWatcher]) -> void:
 	var base_groups: Array[StringName] = objects_base.back().get_groups()
 	if base_groups.is_empty():
+		base.set_value_no_signal("")
 		return
 	var base_channel: StringName = base_groups[0]
 	if base_channel.is_empty():
@@ -34,6 +35,7 @@ func _load_detail(objects_detail: Array[HSVWatcher]) -> void:
 		return
 	var detail_groups: Array[StringName] = objects_detail.back().get_groups()
 	if detail_groups.is_empty():
+		detail.set_value_no_signal("")
 		return
 	var detail_channel: StringName = detail_groups[0]
 	if detail_channel.is_empty():
@@ -44,21 +46,22 @@ func _load_detail(objects_detail: Array[HSVWatcher]) -> void:
 	detail_watcher.refresh_objects_color(objects_detail)
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	if selection.is_empty():
 		return
 	# Base
 	var objects_base: Array[HSVWatcher]
-	objects_base.assign(selection.map(into_base).map(use_hsv_watcher))
+	objects_base.assign(selection.map_generic(into_base).map(use_hsv_watcher))
 	_load_base(objects_base)
 	# Detail
 	var objects_detail: Array[HSVWatcher]
 	objects_detail.assign(
 		selection
-			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
+			.map_generic(func(object): return object.get_node_or_null(^"Detail") as Node2D)
 			.filter(ArrayUtils.flatten)
 			.map(use_hsv_watcher)
 	)
+	_load_detail(objects_detail)
 
 
 func _on_property_focus_entered() -> void:
@@ -72,7 +75,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 		base.set_value_no_signal("")
 		return
 	var objects_base: Array[HSVWatcher]
-	objects_base.assign($"../EditHandler".selection.map(into_base).map(use_hsv_watcher))
+	objects_base.assign($"../EditHandler".selection.map_generic(into_base).map(use_hsv_watcher))
 	var map_object_base_to_channel := func(accum: Dictionary, hsv_watcher: HSVWatcher):
 		var groups: Array[StringName] = hsv_watcher.get_groups()
 		accum[hsv_watcher] = groups[0] if groups.size() > 0 else &""
@@ -118,7 +121,7 @@ func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_
 	var objects_detail: Array[HSVWatcher]
 	objects_detail.assign(
 		$"../EditHandler".selection
-			.map(func(object): return object.get_node_or_null(^"Detail") as Node2D)
+			.map_generic(func(object): return object.get_node_or_null(^"Detail") as Node2D)
 			.filter(ArrayUtils.flatten)
 			.map(use_hsv_watcher)
 	)

@@ -49,12 +49,12 @@ func _ready() -> void:
 		markers_root.add_child(property)
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	clear_ui()
 	if selection.is_empty() or not selection.all(is_interactable):
 		return
 	var interactables: Array[Interactable]
-	interactables.assign(selection)
+	interactables.assign(selection.to_array())
 	build_ui(interactables)
 
 

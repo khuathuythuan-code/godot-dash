@@ -35,17 +35,17 @@ func _ready() -> void:
 		add_child(property)
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	if selection.is_empty():
 		return
-	var first_object: Node2D = selection.get(0)
+	var first_object: Node2D = selection.first()
 	if not first_object:
 		return
 	connect_ui(selection)
 	load_bool_properties(first_object)
 
 
-func connect_ui(selection: Array[Node2D]) -> void:
+func connect_ui(selection: Selection) -> void:
 	for attribute in bool_properties:
 		var property: BoolProperty = bool_properties[attribute]
 		var remove_connections := func(connection):
@@ -62,9 +62,9 @@ func connect_ui(selection: Array[Node2D]) -> void:
 		property.value_changed_with_previous.connect(save_flag_attribute.bind(property, FLAG_ATTRIBUTES[category_name], selection))
 		
 
-func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script: Script, selection: Array[Node2D]) -> void:
-	var add_attribute := func(_selection: Array[Node2D]):
-		for _object in _selection:
+func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script: Script, selection: Selection) -> void:
+	var add_attribute := func(_selection: Selection):
+		for _object in _selection.to_array():
 			NodeUtils.get_node_or_add(
 				_object,
 				str(attribute_script.get_global_name()),
@@ -72,12 +72,12 @@ func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script
 				NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME
 			)
 		property.set_value_no_signal(true)
-	var remove_attribute := func(_selection: Array[Node2D]):
-		for _object in _selection:
+	var remove_attribute := func(_selection: Selection):
+		for _object in _selection.to_array():
 			NodeUtils.get_children_of_type(_object, attribute_script).map(NodeUtils.free_node)
 		property.set_value_no_signal(false)
 	
-	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var selection_snapshot: Selection = selection.clone()
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Set '%s' to %s on %s objects" % [attribute_script.get_global_name(), enabled, selection_snapshot.size()])
 	version_history.add_do_method(add_attribute.bind(selection_snapshot) if enabled else remove_attribute.bind(selection_snapshot))
@@ -85,9 +85,9 @@ func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script
 	version_history.commit_action()
 
 
-func save_flag_attribute(flags: int, previous_flags: int, property: FlagsProperty, attribute_scripts: Array, selection: Array[Node2D]) -> void:
-	var set_flags := func(_selection: Array[Node2D], _flags: int):
-		for _object in _selection:
+func save_flag_attribute(flags: int, previous_flags: int, property: FlagsProperty, attribute_scripts: Array, selection: Selection) -> void:
+	var set_flags := func(_selection: Selection, _flags: int):
+		for _object in _selection.to_array():
 			for i in attribute_scripts.size():
 				var attribute_script: Script = attribute_scripts[i]
 				if _flags & 1 << i:
@@ -101,7 +101,7 @@ func save_flag_attribute(flags: int, previous_flags: int, property: FlagsPropert
 					NodeUtils.get_children_of_type(_object, attribute_script).map(NodeUtils.free_node)
 		property.set_value_no_signal(_flags)
 	
-	var selection_snapshot: Array[Node2D] = selection.duplicate()
+	var selection_snapshot: Selection = selection.clone()
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Changed '%s' flags on %s objects" % [property.name, selection_snapshot.size()])
 	version_history.add_do_method(set_flags.bind(selection_snapshot, flags))

@@ -95,7 +95,7 @@ func _on_apply_pressed() -> void:
 		DiscordRPC.unclear()
 	if LevelManager.current_level != null and Editor.root:
 		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
-		edit_handler.selection.map(EditHandler.remove_selection_highlight)
+		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
 		Editor.level_data_snapshot = LevelManager.current_level.to_data()
 	if get_tree().reload_current_scene() != OK and Editor.in_editor:

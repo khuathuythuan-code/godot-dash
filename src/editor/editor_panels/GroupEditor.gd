@@ -8,31 +8,31 @@ const GROUP_PREFIX: String = "g_"
 @export var confirm_button: Button
 @export var group_container: Container
 
-var selected_objects: Array[Node2D]
+var selected_objects := Selection.new()
 var group_buttons: Dictionary[String, Button]
 
 
-func _populate_group_list(selection: Array[Node2D]) -> void:
+func _populate_group_list(selection: Selection) -> void:
 	if selection.is_empty():
 		return
 	# Groups of all objects
 	var all_groups: Array[StringName]
-	for object in selection:
+	for object in selection.to_array():
 		if object.get_groups().is_empty():
 			continue
 		all_groups.append_array(object.get_groups())
 	all_groups.assign(ArrayUtils.to_set(all_groups).filter(is_godot_group))
 	# Groups that all objects are in
 	var shared_groups: Array[StringName]
-	shared_groups.assign(selection.reduce(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
+	shared_groups.assign(selection.fold_generic(func(accum: Array, object: Node2D): return ArrayUtils.intersect(accum, object.get_groups()), all_groups))
 	# Additive pass
 	for group in all_groups:
-		if not group or group in group_buttons.keys():
+		if group in group_buttons.keys():
 			continue
-		_create_group_button(group)
+		group_container.add_child(_create_group_button(group))
 	# Substractive pass
 	for old_group in group_buttons:
-		if not old_group or old_group in all_groups:
+		if old_group in all_groups:
 			continue
 		group_buttons[old_group].queue_free()
 		group_buttons.erase(old_group)
@@ -49,37 +49,36 @@ func _create_group_button(group: String) -> Button:
 	group_button.text = group.trim_prefix(GROUP_PREFIX)
 	group_button.pressed.connect(_remove_group.bind(group_button))
 	group_button.theme_type_variation = &"GroupButton"
-	group_container.add_child(group_button)
 	group_buttons[group] = group_button
 	return group_button
 
 
-func _add_selection_to_group(selection: Array[Node2D], group: String) -> void:
-	var has_group: bool = group in group_buttons.keys()
-	if not has_group:
+func _add_selection_to_group(selection: Selection, group: String) -> void:
+	var in_group := func(object: Node2D, _group: StringName): return _group in object.get_groups()
+	if not selection.any(in_group):
 		if group == GROUP_PREFIX:
 			return
-		selection.map(func(object): object.add_to_group(group, true))
-	elif group_buttons[group].modulate == NONSHARED_GROUP_COLOR:
-		selection.map(func(object: Node2D): object.add_to_group(group, true))
+		selection.for_each(func(object: Node2D): object.add_to_group(group, true); push_warning(object.get_groups()))
+	elif not selection.all(in_group):
+		selection.for_each(func(object: Node2D): object.add_to_group(group, true))
 		group_buttons[group].modulate = Color.WHITE
 
 
-func _remove_group_from_selection(selection: Array[Node2D], group: String):
-	selection.map(func(object: Node2D): object.remove_from_group(group))
+func _remove_group_from_selection(selection: Selection, group: String):
+	selection.for_each(func(object: Node2D): object.remove_from_group(group))
 	group_buttons.erase(group)
 
 
 func _remove_group(group_button: Button) -> void:
 	get_viewport().gui_release_focus()
 	var group: String = GROUP_PREFIX + group_button.text
-	var do_remove_group := func(_selected_objects: Array[Node2D], _group: String):
+	var do_remove_group := func(_selected_objects: Selection, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
-	var undo_remove_group := func(_selected_objects: Array[Node2D], _group: String):
+	var undo_remove_group := func(_selected_objects: Selection, _group: String):
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
-	var selected_objects_snapshot := selected_objects.duplicate()
+	var selected_objects_snapshot := selected_objects.clone()
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Removed group %s from %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_remove_group.bind(selected_objects_snapshot, group))
@@ -89,13 +88,13 @@ func _remove_group(group_button: Button) -> void:
 
 func _add_group(group: String) -> void:
 	var group_button: Button = _create_group_button(group)
-	var do_add_group := func(_selected_objects: Array[Node2D], _group: String):
+	var do_add_group := func(_selected_objects: Selection, _group: String):
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
-	var undo_add_group := func(_selected_objects: Array[Node2D], _group: String):
+	var undo_add_group := func(_selected_objects: Selection, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
-	var selected_objects_snapshot := selected_objects.duplicate()
+	var selected_objects_snapshot := selected_objects.clone()
 	var version_history: UndoRedo = Editor.root.level.version_history
 	version_history.create_action("Added group %s to %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_add_group.bind(selected_objects_snapshot, group))
@@ -103,9 +102,9 @@ func _add_group(group: String) -> void:
 	version_history.commit_action()
 
 
-func _on_edit_handler_selection_changed(selection: Array[Node2D]) -> void:
-	selected_objects = selection
-	_populate_group_list(selection)
+func _on_edit_handler_selection_changed(selection: Selection) -> void:
+	selected_objects = selection.clone()
+	_populate_group_list(selected_objects)
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
