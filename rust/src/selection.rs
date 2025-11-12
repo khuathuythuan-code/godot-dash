@@ -75,7 +75,7 @@ impl Selection {
             .collect();
         Gd::from_object(Self {
             inner,
-            first: self.first.clone(),
+            first: self.first.clone().or(other.bind().first.clone()),
         })
     }
     #[func]
@@ -89,7 +89,7 @@ impl Selection {
             .collect();
         Gd::from_object(Self {
             inner,
-            first: self.first.clone(),
+            first: self.first.clone().or(other.bind().first.clone()),
         })
     }
     #[func]
@@ -103,7 +103,7 @@ impl Selection {
             .collect();
         Gd::from_object(Self {
             inner,
-            first: self.first.clone(),
+            first: self.first.clone().or(other.bind().first.clone()),
         })
     }
     #[func]
