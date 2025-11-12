@@ -25,7 +25,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- `cargo`
+- [`cargo`](https://rustup.rs/)
 
 ### Instructions
 
@@ -44,7 +44,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- `cargo`
+- [`cargo`](https://rustup.rs/)
 
 ### Instructions
 
