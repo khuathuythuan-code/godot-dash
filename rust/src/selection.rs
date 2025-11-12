@@ -148,7 +148,7 @@ impl Selection {
             .all(|node_ref| method.call(vslice![node_ref]).to::<bool>())
     }
     #[func]
-    fn map(&mut self, method: Callable) -> Gd<Self> {
+    fn map(&self, method: Callable) -> Gd<Self> {
         let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
@@ -161,11 +161,21 @@ impl Selection {
         })
     }
     #[func]
-    fn map_generic(&mut self, method: Callable) -> Array<Variant> {
+    fn map_generic(&self, method: Callable) -> Array<Variant> {
         self.inner
             .clone()
             .iter()
             .map(|node_ref| method.call(vslice![node_ref]))
+            .collect()
+    }
+    #[func]
+    fn map_generic_dict(&self, method: Callable) -> Dictionary {
+        // Typed dictioaries aren't
+        // supported in godot-rust yet
+        self.inner
+            .clone()
+            .iter()
+            .map(|node_ref| (self.clone(), method.call(vslice![node_ref])))
             .collect()
     }
     #[func]
