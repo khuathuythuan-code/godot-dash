@@ -299,9 +299,9 @@ func delete_selection() -> void:
 		return
 
 	var do_delete_selection := func(_selection: Selection):
-		selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
+		_selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
 	var undo_delete_selection := func(_selection: Selection):
-		selection.for_each(func(_object: Node2D): 
+		_selection.for_each(func(_object: Node2D):
 			level.add_child(_object, true)
 			NodeUtils.change_owner_recursive(_object, level))
 	var selection_snapshot: Selection = selection.clone()
@@ -309,6 +309,7 @@ func delete_selection() -> void:
 	level.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
 	level.version_history.add_undo_method(undo_delete_selection.bind(selection_snapshot))
 	level.version_history.commit_action()
+	clear_selection(true)
 	deleted_selection.emit()
 
 
