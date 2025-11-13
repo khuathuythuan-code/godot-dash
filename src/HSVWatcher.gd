@@ -27,10 +27,6 @@ func _ready() -> void:
 	parent.set_meta("_has_hsvwatcher", true)
 	hsv_shift.resize(3)
 
-#
-# func _process(_delta: float) -> void:
-# 	_update_color.call_deferred()
-#
 
 func to_data() -> Dictionary:
 	return {
