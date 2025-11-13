@@ -82,6 +82,7 @@ func _physics_process(delta: float) -> void:
 				object_move_cooldown = 5
 			if (
 					Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+					and not Input.is_key_pressed(KEY_ALT)
 					and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")
 					and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index")
 			):
@@ -136,7 +137,7 @@ func move_selection(distance: Vector2):
 		selection_pivot -= distance * LevelManager.CELL_SIZE
 		moved_selection_cells.emit(-distance)
 	var selection_snapshot: Selection = selection.clone()
-	level.version_history.create_action("Moved objects %s units")
+	level.version_history.create_action("Moved objects %s units" % distance)
 	level.version_history.add_do_method(move_object.bind(selection_snapshot))
 	level.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
 	level.version_history.commit_action()
@@ -297,30 +298,30 @@ func delete_selection() -> void:
 	if selection.is_empty():
 		return
 
-	var delete_object := func(_object):
-		_object.get_parent().remove_child(_object)
-	var restore_object := func(_object):
-		level.add_child(_object, true)
-		NodeUtils.change_owner_recursive(_object, level)
+	var do_delete_selection := func(_selection: Selection):
+		selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
+	var undo_delete_selection := func(_selection: Selection):
+		selection.for_each(func(_object: Node2D): 
+			level.add_child(_object, true)
+			NodeUtils.change_owner_recursive(_object, level))
+	var selection_snapshot: Selection = selection.clone()
 	level.version_history.create_action("Deleted objects")
-	for object in selection.to_array():
-		level.version_history.add_do_method(delete_object.bind(object))
-		level.version_history.add_undo_method(restore_object.bind(object))
-	level.version_history.add_do_method(clear_selection)
+	level.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
+	level.version_history.add_undo_method(undo_delete_selection.bind(selection_snapshot))
 	level.version_history.commit_action()
 	deleted_selection.emit()
 
 
-func clear_selection() -> void:
-	select(Selection.EMPTY())
+func clear_selection(merge_with_previous: bool = false) -> void:
+	select(Selection.EMPTY(), merge_with_previous)
 	_reset_selection_zone()
 
 
-func select_all() -> void:
+func select_all(merge_with_previous: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
 	objects.assign(level.get_children().filter(only_node_2ds))
-	select(Selection.from_array(objects))
+	select(Selection.from_array(objects), merge_with_previous)
 
 
 func remove_gizmo(_selection = null) -> void:
@@ -356,10 +357,8 @@ func select(objects: Selection, merge_with_previous: bool = false) -> void:
 		return
 	var change_selection := func(new_selection: Selection):
 		selection.for_each(remove_selection_highlight)
-		if new_selection.is_empty():
-			selection.clear()
-		else:
-			selection = new_selection
+		selection = new_selection
+		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
 	if merge_with_previous:
@@ -382,10 +381,8 @@ func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
 		selection_changed.emit(selection)
 	var undo_deselection := func(new_selection: Selection):
 		selection.for_each(remove_selection_highlight)
-		if new_selection.is_empty():
-			selection.clear()
-		else:
-			selection = new_selection
+		selection = new_selection
+		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
 	if merge_with_previous:
@@ -393,7 +390,7 @@ func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
 	else:
 		level.version_history.create_action("Deselected %s objects" % objects.size())
 	level.version_history.add_do_method(do_deselection.bind(objects))
-	level.version_history.add_undo_method(undo_deselection.bind(selection))
+	level.version_history.add_undo_method(undo_deselection.bind(selection.clone()))
 	level.version_history.commit_action()
 
 
