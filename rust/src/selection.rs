@@ -26,8 +26,8 @@ impl IRefCounted for Selection {
 
 #[godot_api]
 impl Selection {
-    /// Empty [Selection] constant (GDExtension doesn't yet support registering constants that
-    /// aren't [int]s)
+    /// Empty [Selection] constant (GDExtension doesn't yet support
+    /// registering constants that aren't [int]s)
     #[func(rename = EMPTY)]
     fn empty() -> Gd<Self> {
         Selection::new_gd()
@@ -109,7 +109,10 @@ impl Selection {
     #[func]
     /// Adds an element to the selection.
     fn insert(&mut self, object: Gd<Node2D>) {
-        self.inner.insert(object);
+        self.inner.insert(object.clone());
+        if self.first == None {
+            self.first = Some(object)
+        }
     }
     #[func]
     /// Check if an element exists in the selection.
@@ -206,10 +209,10 @@ impl Selection {
             .collect()
     }
     #[func]
-    /// Like [method Selection.map_generic], but it produces a [Dictionary] with, for each element, keys and values being `element` and `method.call(element)`.
+    /// Like [method Selection.map_generic], but it produces a [Dictionary] with,
+    /// for each element, keys and values being `element` and `method.call(element)`.
     fn map_generic_dict(&self, method: Callable) -> Dictionary {
-        // Typed dictioaries aren't
-        // supported in godot-rust yet
+        // Typed dictionaries aren't supported in godot-rust yet
         self.inner
             .clone()
             .iter()
