@@ -49,6 +49,7 @@ func refresh_objects_color(objects: Array = [], _data: ColorChannelData = data) 
 		object.modulate.v += _data.hsv_shift[2]
 		object.base_intensity = _data.intensity
 		object.base_alpha = _data.alpha
+		object.update_color()
 
 
 func remove_objects_from_group(group_objects: Array[Node]) -> void:

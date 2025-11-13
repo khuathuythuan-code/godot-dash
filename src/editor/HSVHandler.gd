@@ -50,22 +50,27 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 
 func set_hue(_hsv_watchers: Array[HSVWatcher], new_hue: float) -> void:
 	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[0] = new_hue)
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.update_color())
 
 
 func set_saturation(_hsv_watchers: Array[HSVWatcher], new_saturation: float) -> void:
 	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[1] = new_saturation)
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.update_color())
 
 
 func set_value(_hsv_watchers: Array[HSVWatcher], new_value: float) -> void:
 	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.hsv_shift[2] = new_value)
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.update_color())
 
 
 func set_intensity(_hsv_watchers: Array[HSVWatcher], new_intensity: float) -> void:
 	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.intensity = new_intensity)
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.update_color())
 
 
 func set_alpha(_hsv_watchers: Array[HSVWatcher], new_alpha: float) -> void:
 	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.alpha = new_alpha)
+	_hsv_watchers.map(func(hsv_watcher: HSVWatcher): hsv_watcher.update_color())
 
 
 func _on_hue_value_changed(new_value: float) -> void:
@@ -97,4 +102,3 @@ func _on_property_interaction_ended(new_value: float, previous_value: float, pro
 	version_history.add_do_method(set_property.bind(new_value))
 	version_history.add_undo_method(set_property.bind(previous_value))
 	version_history.commit_action()
-

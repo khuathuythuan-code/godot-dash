@@ -266,6 +266,7 @@ func duplicate_selection() -> void:
 	for object in selection.to_array():
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
+		hsv_watcher.update_color()
 	selection_changed.emit(selection)
 
 
@@ -641,11 +642,13 @@ static func scale_transform_local(
 static func add_selection_highlight(object: Node2D) -> void:
 	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL
+	hsv_watcher.update_color()
 
 
 static func remove_selection_highlight(object: Node2D) -> void:
 	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NONE
+	hsv_watcher.update_color()
 
 
 static func get_object_parent(object: Node) -> Node2D:
