@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://xovha8la5tx5"]
+
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_ccm76"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="2_6ll0r"]
+
+[sub_resource type="Resource" id="Resource_tysv4"]
+script = ExtResource("2_6ll0r")
+
+[sub_resource type="Resource" id="Resource_n3e2o"]
+script = ExtResource("2_6ll0r")
+
+[node name="Console" type="Node"]
+
+[node name="Console" type="Panel" parent="."]
+z_index = 100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="Console"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ccm76")
+wheel_scroll_damper = SubResource("Resource_tysv4")
+dragging_scroll_damper = SubResource("Resource_n3e2o")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Console/SmoothScrollContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Console/SmoothScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+text = "bbbbbbbbbbbbbbbbbbbbbbbb"
