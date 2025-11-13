@@ -85,7 +85,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 	item.value_changed.connect(func(value):
 		_value = _value.duplicate()
 		_value[item.get_index()] = value
-		value_changed.emit(_value))
+		value_changed.emit(_value.duplicate()))
 	item.name = str(idx if idx > 0 else items.get_child_count())
 	items.add_child(item)
 	if idx > 0:
@@ -93,7 +93,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 	else:
 		_value.append(item.get_value())
 	if not options & NO_SIGNAL:
-		value_changed.emit(_value)
+		value_changed.emit(_value.duplicate())
 	items.show()
 	items.reorder_disabled = _value.size() <= 1
 	return item
@@ -115,7 +115,6 @@ func remove_item(idx: int, options: int = 0) -> void:
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value)
 	if _value.size() == 0:
-		items.custom_minimum_size.y = 0.0
 		items.hide()
 	items.reorder_disabled = _value.size() <= 1
 
@@ -137,6 +136,7 @@ func set_value_no_signal(value: Array) -> void:
 	for i in (new_value.size() if new_value.size() >= minimum_size else maxi(new_value.size() - minimum_size, 0)):
 		add_item(i, NO_SIGNAL).set_value_no_signal(new_value[i])
 	_value = new_value
+	items.visible = _value.size() > 0
 
 
 func get_value() -> Array:

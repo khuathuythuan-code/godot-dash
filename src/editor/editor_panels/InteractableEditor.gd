@@ -169,7 +169,10 @@ func save_property(value: Variant, component_name: String, property: String, int
 	
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
 	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
-		accum[interactable] = interactable.get_node(component_name).get(property)
+		var initial_value: Variant = interactable.get_node(component_name).get(property)
+		if initial_value is Array:
+			initial_value = initial_value.duplicate()
+		accum[interactable] = initial_value
 		return accum
 	var interactables_to_initial_values: Dictionary[Interactable, Variant]
 	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, {}))
