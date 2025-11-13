@@ -28,10 +28,6 @@ func _ready() -> void:
 	hsv_shift.resize(3)
 
 
-func _process(_delta: float) -> void:
-	_update_color.call_deferred()
-
-
 func to_data() -> Dictionary:
 	return {
 		"hsv_shift": hsv_shift,
@@ -46,7 +42,7 @@ func use_data(data: Dictionary) -> void:
 	alpha = data.alpha
 
 
-func _update_color() -> void:
+func update_color() -> void:
 	var shifted_modulate: Color = modulate
 	# FIXME: This field won't change and I can't figure out why.
 	#        It works fine when the object has a color channel…
