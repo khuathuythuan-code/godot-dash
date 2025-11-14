@@ -176,6 +176,7 @@ func _on_playtest_pressed() -> void:
 		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player
+		LevelManager.player_camera.center_on_player_at_0x_speed = true
 		LevelManager.player_camera.static_factor = Vector2.ZERO
 		_ready()
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)

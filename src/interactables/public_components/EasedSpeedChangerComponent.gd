@@ -51,6 +51,12 @@ func _validate_property(property: Dictionary) -> void:
 
 func start(player: Player) -> void:
 	initial_speed = player.speed_multiplier
+	var duration: float = parent.query(EasingComponent).duration
+	if player == LevelManager.player_camera.player:
+		var center_on_player_at_0x_speed: bool = speed > 0.0 or (speed == 0.0 and duration == 0.0)
+		LevelManager.player_camera.center_on_player_at_0x_speed = center_on_player_at_0x_speed
+	if speed == 0.0 and duration == 0.0:
+		player.speed_0_portal_control = parent
 
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:

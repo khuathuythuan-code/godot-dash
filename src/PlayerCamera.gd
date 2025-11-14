@@ -12,12 +12,14 @@ const MAX_DISTANCE := Vector2(400.0, 300.0)
 @export var additional_offset := Vector2.ZERO
 @export var static_factor := Vector2.ZERO
 @export var shake_offset := Vector2.ZERO
+@export var center_on_player_at_0x_speed: bool = true
 
 var player: Player
 var freefly := true
 ## Value in pixels of the gameplay offset. Smoothed over time.
 var gameplay_offset: Vector2
 var is_snapping_view: bool
+var player_speed_sign: int
 
 var _smoothed_gameplay_rotation: float
 
@@ -84,9 +86,11 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 	if LevelManager.platformer:
 		gameplay_offset = gameplay_offset.lerp(Vector2.ZERO, offset_smoothing * framerate_compensation if not is_snapping_view else 1.0)
 	else:
+		if center_on_player_at_0x_speed or not is_zero_approx(player.speed_multiplier):
+			player_speed_sign = sign(player.speed_multiplier)
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
-				(DEFAULT_OFFSET.x * player.get_direction() * sign(player.speed_multiplier)) / zoom.x,
+				(DEFAULT_OFFSET.x * player.get_direction() * player_speed_sign) / zoom.x,
 				DEFAULT_OFFSET.y / zoom.y),
 			0.125 * framerate_compensation if not is_snapping_view else 1.0)
 	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset

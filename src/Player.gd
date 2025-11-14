@@ -118,7 +118,7 @@ var speed: Vector2:
 			_:
 				return SPEED
 var dash_control: FireDashComponent = null
-var speed_0_portal_control: SpeedChangerComponent = null
+var speed_0_portal_control: Interactable = null
 var last_collision: KinematicCollision2D
 var floor_angle_history: Array[float]
 var floor_angle_average: float
@@ -217,7 +217,7 @@ func _physics_process(delta: float) -> void:
 	# 0x speed portal position nudge
 	if speed_0_portal_control:
 		var rotation_local_global_position = global_position.rotated(-gameplay_rotation)
-		var rotation_local_portal_global_position = speed_0_portal_control.parent.global_position.rotated(-gameplay_rotation)
+		var rotation_local_portal_global_position = speed_0_portal_control.global_position.rotated(-gameplay_rotation)
 		var rotation_local_velocity = velocity.rotated(-gameplay_rotation)
 		# Update ship icon by running `displayed_gamemode` setter
 		displayed_gamemode = displayed_gamemode
