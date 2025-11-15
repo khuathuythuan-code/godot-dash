@@ -32,7 +32,7 @@ func start(player: Player) -> void:
 		Toasts.error("In %s: target object is unset" % parent.name)
 		return
 	var static_target: TargetObjectComponent = static_trigger.query(TargetObjectComponent)
-	static_target.target = parent.query(TargetObjectComponent).target_to_node()
+	static_target.target = parent.query(TargetObjectComponent).target
 	static_trigger.interacted.emit(player)
 	# Disable player collision
 	player.process_mode = Node.PROCESS_MODE_DISABLED

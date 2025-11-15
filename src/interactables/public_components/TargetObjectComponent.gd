@@ -31,4 +31,6 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func target_to_node() -> Node2D:
+	if not LevelManager.current_level:
+		return null
 	return LevelManager.current_level.get_node(target)

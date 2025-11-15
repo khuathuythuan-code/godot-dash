@@ -120,6 +120,8 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 
 
 func level_was_modified() -> bool:
+	if not level:
+		return false
 	return level.version_history.get_version() > Editor.level_history_version
 
 
