@@ -57,9 +57,9 @@ func connect_ui(selection: Selection) -> void:
 		var property: FlagsProperty = flag_properties[category_name]
 		var remove_connections := func(connection):
 			if not "watcher" in connection.callable.get_method():
-				property.value_changed_with_previous.disconnect(connection.callable)
-		property.value_changed_with_previous.get_connections().map(remove_connections)
-		property.value_changed_with_previous.connect(save_flag_attribute.bind(property, FLAG_ATTRIBUTES[category_name], selection))
+				property.interaction_ended.disconnect(connection.callable)
+		property.interaction_ended.get_connections().map(remove_connections)
+		property.interaction_ended.connect(save_flag_attribute.bind(property, FLAG_ATTRIBUTES[category_name], selection))
 		
 
 func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script: Script, selection: Selection) -> void:

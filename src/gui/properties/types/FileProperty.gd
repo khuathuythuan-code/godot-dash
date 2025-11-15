@@ -3,6 +3,7 @@ extends Property
 class_name FileProperty
 
 signal value_changed(value: String)
+signal interaction_ended(value: String, previous: String)
 
 @export var default: String
 @export var filetype_filters: PackedStringArray
@@ -12,7 +13,6 @@ signal value_changed(value: String)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: MenuButton
-
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
@@ -33,8 +33,10 @@ func _ready() -> void:
 
 
 func set_value(new_value: String) -> void:
+	var previous: String = _value
 	set_value_no_signal(new_value)
-	value_changed.emit(new_value)
+	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func set_value_no_signal(new_value: String) -> void:

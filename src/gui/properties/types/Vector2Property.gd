@@ -3,6 +3,7 @@ extends Property
 class_name Vector2Property
 
 signal value_changed(value: Vector2)
+signal interaction_ended(value: Vector2, previous: Vector2)
 
 @export var default: Vector2
 @export var min_value: float
@@ -27,7 +28,8 @@ func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", Vector2SpinBox, NodeUtils.INTERNAL)
 	input.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
+	input.value_changed.connect(func(new_value: float): value_changed.emit(new_value))
+	input.interaction_ended.connect(func(new_value: float, previous_value: float): interaction_ended.emit(new_value, previous_value))
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \

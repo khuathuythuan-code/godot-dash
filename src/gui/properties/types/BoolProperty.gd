@@ -3,6 +3,7 @@ extends Property
 class_name BoolProperty
 
 signal value_changed(value: bool)
+signal interaction_ended(value: bool, previous: bool)
 
 @export var default: bool
 @warning_ignore("unused_private_class_variable")
@@ -13,7 +14,8 @@ var input: CheckBox
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", CheckBox, NodeUtils.INTERNAL) as CheckBox
-	input.toggled.connect(func(new_value): value_changed.emit(new_value))
+	input.toggled.connect(func(new_value: bool): value_changed.emit(new_value))
+	input.toggled.connect(func(new_value: bool): interaction_ended.emit(new_value, not new_value))
 	input.text = "Enabled"
 	input.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	input.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER

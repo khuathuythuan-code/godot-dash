@@ -3,6 +3,7 @@ extends BoxContainer
 class_name Vector2SpinBox
 
 signal value_changed(new_value: Vector2)
+signal interaction_ended(value: Vector2, previous: Vector2)
 
 @export var keep_aspect: bool
 @export var rounded: bool
@@ -67,8 +68,10 @@ func update_internals() -> void:
 
 
 func set_value(new_value: Vector2) -> void:
+	var previous: Vector2 = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func set_value_no_signal(new_value: Vector2):
@@ -78,19 +81,23 @@ func set_value_no_signal(new_value: Vector2):
 
 
 func _set_x(new_value: float) -> void:
+	var previous: Vector2 = _value
 	_value.x = new_value
 	if keep_aspect:
 		_value.y = new_value * 1/aspect_ratio
 		spinbox_y.set_value_no_signal(_value.y)
 	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func _set_y(new_value: float) -> void:
+	var previous: Vector2 = _value
 	_value.y = new_value
 	if keep_aspect:
 		_value.x = new_value * aspect_ratio
 		spinbox_x.set_value_no_signal(_value.x)
 	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func get_value() -> Vector2:

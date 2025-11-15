@@ -3,6 +3,7 @@ extends Property
 class_name ResourceProperty
 
 signal value_changed(value: Resource)
+signal interaction_ended(value: Resource, previous: Resource)
 
 @export var default: Resource
 @warning_ignore("unused_private_class_variable")
@@ -64,8 +65,10 @@ func refresh() -> void:
 
 
 func set_value(new_value: Resource) -> void:
+	var previous: Resource = _value.duplicate() if _value else new_value.duplicate()
 	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
+	interaction_ended.emit(new_value, previous)
 
 
 func set_value_no_signal(new_value: Resource) -> void:
@@ -107,6 +110,19 @@ func _connect_child_properties(node: Node, index: int, depth: int = 0) -> int:
 			_value = _value.duplicate(true)
 			_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
 			value_changed.emit(_value))
+		node.interaction_ended.connect(func(value, previous):
+			var _previous: Resource = _value.duplicate()
+			if node is NodeProperty:
+				if LevelManager.current_level == null:
+					value = ^""
+					previous = ^""
+				else:
+					value = LevelManager.current_level.get_path_to(value)
+					previous = LevelManager.current_level.get_path_to(previous)
+			_value = _value.duplicate(true)
+			_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
+			_previous.set(node.get_meta(&"field_name", resource_properties[index]), previous)
+			interaction_ended.emit(_value, _previous))
 		index += 1
 	elif node is FoldableContainer and node.get_child(0) is BoxContainer:
 		for child in node.get_child(0).get_children():

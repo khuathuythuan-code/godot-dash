@@ -3,6 +3,7 @@ extends Property
 class_name ArrayProperty
 
 signal value_changed(value: Array)
+signal interaction_ended(value: Array, previous: Array)
 
 const NO_SIGNAL = 1
 
@@ -86,14 +87,22 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 		_value = _value.duplicate()
 		_value[item.get_index()] = value
 		value_changed.emit(_value.duplicate()))
+	item.interaction_ended.connect(func(value, previous):
+		var _previous: Array = _value.duplicate()
+		_value = _value.duplicate()
+		_value[item.get_index()] = value
+		_previous[item.get_index()] = previous
+		interaction_ended.emit(_value, _previous))
 	item.name = str(idx if idx > 0 else items.get_child_count())
 	items.add_child(item)
+	var previous_value: Array = _value.duplicate()
 	if idx > 0:
 		_value.insert(idx, item.get_value())
 	else:
 		_value.append(item.get_value())
 	if not options & NO_SIGNAL:
 		value_changed.emit(_value.duplicate())
+		interaction_ended.emit(_value.duplicate(), previous_value)
 	items.show()
 	items.reorder_disabled = _value.size() <= 1
 	return item
@@ -111,17 +120,22 @@ func remove_item(idx: int, options: int = 0) -> void:
 		# Removing the suffix afterwards doesn't introduce the issue back.
 		item.name = (str(i - 1) + "​").trim_prefix("​")
 	items.get_child(idx).queue_free()
+	var _previous_value: Array = _value.duplicate()
 	_value.remove_at(idx)
 	if not options & NO_SIGNAL:
-		value_changed.emit(_value)
+		value_changed.emit(_value.duplicate())
+		interaction_ended.emit(_value.duplicate(), _previous_value)
 	if _value.size() == 0:
 		items.hide()
 	items.reorder_disabled = _value.size() <= 1
 
 
 func set_value(value: Array) -> void:
+	var _previous_value: Array = _value.duplicate()
 	set_value_no_signal(value)
 	value_changed.emit(_value)
+	interaction_ended.emit(_value.duplicate(), _previous_value)
+
 
 
 func set_value_no_signal(value: Array) -> void:

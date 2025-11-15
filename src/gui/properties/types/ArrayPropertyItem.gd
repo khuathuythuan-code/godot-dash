@@ -3,6 +3,7 @@ extends Property
 class_name ArrayPropertyItem
 
 signal value_changed(value: Variant)
+signal interaction_ended(value: Variant, previous: Variant)
 
 var property: Property
 var delete_button: Button
@@ -17,6 +18,7 @@ func _ready() -> void:
 	property.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	property.name = name
 	property.value_changed.connect(func(value): value_changed.emit(value))
+	property.interaction_ended.connect(func(value, previous): interaction_ended.emit(value, previous))
 
 	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
 	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")

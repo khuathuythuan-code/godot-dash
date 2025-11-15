@@ -3,6 +3,7 @@ extends Property
 class_name EnumProperty
 
 signal value_changed(value: int)
+signal interaction_ended(value: int, previous: int)
 
 @export var default: int
 @export var fields: PackedStringArray
@@ -10,12 +11,14 @@ signal value_changed(value: int)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: OptionButton
-
+var _previous_variant: int
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", OptionButton, NodeUtils.INTERNAL)
-	input.item_selected.connect(func(new_value): value_changed.emit(new_value))
+	input.pressed.connect(func(): _previous_variant = input.selected)
+	input.item_selected.connect(func(new_value: int): value_changed.emit(new_value))
+	input.item_selected.connect(func(new_value: int): interaction_ended.emit(new_value, _previous_variant))
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \

@@ -3,6 +3,7 @@ extends Property
 class_name FloatProperty
 
 signal value_changed(value: float)
+signal interaction_ended(value: float, previous: float)
 
 @export var default: float
 @export var min_value: float
@@ -18,12 +19,18 @@ signal value_changed(value: float)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: SpinBox
+var _previous_value: float
 
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", SpinBox, NodeUtils.INTERNAL)
 	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
+	input.get_line_edit().editing_toggled.connect(func(toggled_on: bool):
+		if toggled_on:
+			_previous_value = input.value
+		else:
+			interaction_ended.emit(input.value, _previous_value))
 	renamed.connect(refresh)
 	var line_edit = input.get_line_edit()
 	line_edit.text_submitted.connect(submitted_release_focus)

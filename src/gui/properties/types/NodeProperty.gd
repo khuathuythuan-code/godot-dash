@@ -3,13 +3,13 @@ extends Property
 class_name NodeProperty
 
 signal value_changed(value: NodePath)
+signal interaction_ended(value: NodePath, previous: NodePath)
 
 @export var default: NodePath
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: Button
-
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
@@ -25,19 +25,21 @@ func _ready() -> void:
 
 
 func set_value(new_value: NodePath) -> void:
+	var previous: NodePath = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func set_value_no_signal(new_value: NodePath) -> void:
-	_value = new_value
-	if _value.is_empty():
+	if new_value.is_empty():
 		input.text = "    Assign…    "
 	else:
 		input.text = new_value
 		# Remove trailing dots for special nodes, e.g. LevelManager.player
 		if input.text.contains(".."):
 			input.text = input.text.get_file()
+	_value = new_value
 
 
 func get_value() -> NodePath:

@@ -3,6 +3,7 @@ extends Property
 class_name MultilineStringProperty
 
 signal value_changed(value: String)
+signal interaction_ended(value: String, previous: String)
 
 @export var default: String
 @export var placeholder: String
@@ -10,14 +11,20 @@ signal value_changed(value: String)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: TextEdit
+var _previous_text: String
 
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", TextEdit, NodeUtils.INTERNAL)
 	input.text_changed.connect(func(): value_changed.emit(input.get_text()))
-	input.focus_entered.connect(func(): Editor.shortcut_blocker = input)
-	input.focus_exited.connect(func(): Editor.shortcut_blocker = null)
+	input.focus_entered.connect(func(): 
+		Editor.shortcut_blocker = input
+		_previous_text = input.get_text())
+	input.focus_exited.connect(func():
+		Editor.shortcut_blocker = null
+		_value = input.get_text()
+		interaction_ended.emit(input.get_text(), _previous_text))
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \
@@ -31,8 +38,10 @@ func _input(event: InputEvent) -> void:
 
 
 func set_value(new_value: String) -> void:
+	var previous: String = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
+	interaction_ended.emit(new_value, previous)
 
 
 func set_value_no_signal(new_value: String) -> void:

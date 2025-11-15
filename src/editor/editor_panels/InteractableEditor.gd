@@ -33,6 +33,7 @@ static var MARKER_COMPONENTS: Array[Script] = [
 @export var markers_root: Container
 
 var marker_properties: Dictionary[Script, BoolProperty]
+var initial_values: Dictionary[Component, Variant]
 
 
 func _init() -> void:
@@ -143,33 +144,59 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 			if not "watcher" in connection.callable.get_method():
 				property.value_changed.disconnect(connection.callable)
 		property.value_changed.get_connections().map(remove_connections)
+		NodeUtils.disconnect_all(property.interaction_ended)
 		var property_name := property.name.to_snake_case()
 		if property is BoolProperty and property in marker_properties.values():
 			property.value_changed.connect(refresh_marker.bind(property, marker_properties.find_key(property), interactables))
 			continue
 		if property.has_meta(&"component_name"):
-			property.value_changed.connect(save_property.bind(property.get_meta(&"component_name"), property_name, interactables))
+			var component_name: String = property.get_meta(&"component_name")
+			for interactable: Interactable in interactables:
+				var component: Component = interactable.get_node(component_name)
+				if component not in initial_values:
+					var _value: Variant = component.get(property_name)
+					if component is TargetGroupComponent:
+						_value = GroupEditor.GROUP_PREFIX + _value
+					initial_values[component] = _value
+			property.value_changed.connect(save_property.bind(component_name, property_name, interactables))
+			property.interaction_ended.connect(save_property_register.bind(component_name, property_name, interactables))
 
 
-func save_property(value: Variant, component_name: String, property: String, interactables: Array[Interactable]) -> void:
+func save_property(value: Variant, component_name: String, property_name: String, interactables: Array[Interactable]) -> void:
+	for interactable: Interactable in interactables:
+		var component: Component = interactable.get_node(component_name)
+		var _value: Variant = value
+		if component is TargetGroupComponent:
+			_value = GroupEditor.GROUP_PREFIX + value
+		if component not in initial_values:
+			initial_values[component] = _value
+		component.set(property_name, _value)
+
+
+func save_property_register(value: Variant, _previous: Variant, component_name: String, property_name: String, interactables: Array[Interactable]) -> void:
 	var do_save_property := func(_interactables: Array[Interactable], new_value: Variant):
 		for _interactable: Interactable in _interactables:
+			var component: Component = _interactable.get_node(component_name)
 			var _value: Variant = new_value
-			if _interactable.get_node(component_name) is TargetGroupComponent:
+			if component is TargetGroupComponent:
 				_value = GroupEditor.GROUP_PREFIX + new_value
-			_interactable.get_node(component_name).set(property, _value)
+			component.set(property_name, _value)
+			if component not in initial_values:
+				initial_values[component] = _value
 		load_properties(_interactables[0], self)
 	var undo_save_property := func(_interactables_to_initial_values: Dictionary[Interactable, Variant]):
 		for _interactable: Interactable in _interactables_to_initial_values:
 			var _value = _interactables_to_initial_values[_interactable]
 			if _interactable.get_node(component_name) is TargetGroupComponent:
 				_value = GroupEditor.GROUP_PREFIX + _interactables_to_initial_values[_interactable]
-			_interactable.get_node(component_name).set(property, _value)
+			_interactable.get_node(component_name).set(property_name, _value)
 		load_properties(_interactables_to_initial_values.keys()[0], self)
 	
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
 	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
-		var initial_value: Variant = interactable.get_node(component_name).get(property)
+		var component: Component = interactable.get_node(component_name)
+		var initial_value: Variant = initial_values[component]
+		initial_values.erase(component)
 		if initial_value is Array:
 			initial_value = initial_value.duplicate()
 		accum[interactable] = initial_value
@@ -178,7 +205,7 @@ func save_property(value: Variant, component_name: String, property: String, int
 	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, {}))
 
 	var version_history: UndoRedo = Editor.root.level.version_history
-	version_history.create_action("Set '%s' to %s on %s interactables" % [property, value, interactables_snapshot.size()])
+	version_history.create_action("Set '%s' on %s interactables" % [property_name, interactables_snapshot.size()])
 	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
 	version_history.add_undo_method(undo_save_property.bind(interactables_to_initial_values))
 	version_history.commit_action()
