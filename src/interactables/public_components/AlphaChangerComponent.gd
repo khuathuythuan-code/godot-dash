@@ -34,10 +34,12 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(_player: Player) -> void:
-	group_objects.assign(get_tree() \
-			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
-			.filter(func(object): return object is Node2D) \
-			.map(BaseDetailHandler.use_hsv_watcher))
+	group_objects.assign(
+		get_tree()
+			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group)
+			.filter(func(object): return object is Node2D)
+			.map(BaseDetailHandler.use_hsv_watcher)
+	)
 	group_objects.map(func(object): inital_alphas.set(object, object.modulate.a))
 	if group_objects.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
