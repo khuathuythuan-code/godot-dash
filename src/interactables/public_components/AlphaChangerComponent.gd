@@ -37,7 +37,7 @@ func start(_player: Player) -> void:
 	group_objects.assign(get_tree() \
 			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
 			.filter(func(object): return object is Node2D) \
-			.map(into_hsv_watcher))
+			.map(BaseDetailHandler.use_hsv_watcher))
 	group_objects.map(func(object): inital_alphas.set(object, object.modulate.a))
 	if group_objects.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
@@ -56,8 +56,3 @@ func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 			Mode.COPY:
 				if copy_target != null:
 					group_object.modulate.a += (copy_target.modulate.a * copy_multiplier - initial_alpha) * weight_delta
-
-
-static func into_hsv_watcher(object: Node) -> Node:
-	var hsv_watcher := object.get_node_or_null(^"HSVWatcher")
-	return hsv_watcher if hsv_watcher != null else object
