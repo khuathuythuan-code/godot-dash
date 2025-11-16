@@ -77,7 +77,7 @@ func build_ui(interactables: Array[Interactable]) -> void:
 			.components \
 			.filter(should_component_be_displayed)
 
-	if displayed_components:
+	if displayed_components and same_ui(interactables):
 		for i in displayed_components.size():
 			var component = displayed_components[i]
 			NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
@@ -130,6 +130,8 @@ func build_ui(interactables: Array[Interactable]) -> void:
 	else:
 		components_root.hide()
 		separator.hide()
+
+	await get_tree().process_frame
 
 	connect_ui(interactables, self)
 	load_properties.call_deferred(first_interactable, self)
@@ -277,5 +279,15 @@ static func same_script(object: Interactable, reference: Interactable) -> bool:
 	return object.get_script() == reference.get_script()
 
 
-static func same_components(object: Interactable, reference: Interactable) -> bool:
-	return object.components == reference.components
+static func same_ui(interactables: Array[Interactable]) -> bool:
+	if interactables.size() == 1:
+		return true
+	for interactable_idx in interactables.size():
+		var object: Interactable = interactables[interactable_idx]
+		var reference: Interactable = interactables[wrapi(interactable_idx + 1, 0, interactables.size())]
+		if object.components.size() != reference.components.size():
+			return false
+		for component_idx in object.components.size():
+			if object.components[component_idx].get_script() != reference.components[component_idx].get_script():
+				return false
+	return true
