@@ -8,7 +8,10 @@ enum ColorSpace {
 
 @export var color: Color = Color.WHITE
 @export_enum("sRGB", "Oklab") var color_space: int
-@export var reset_color: bool = false
+@export var reset_color: bool = false:
+	set(value):
+		reset_color = value
+		notify_property_list_changed()
 @export_group("Modulation")
 @export_range(-1.0, 1.0, 0.01, "slider") var hue: float = 0.0
 @export_range(-1.0, 1.0, 0.01, "slider") var saturation: float = 0.0
@@ -41,6 +44,8 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if _type != Type.LEVEL and property.name == "reset_color":
 		property.usage = PROPERTY_USAGE_NO_EDITOR
+	if reset_color and property.name == "color":
+		property.usage |= PROPERTY_USAGE_READ_ONLY
 
 
 func start(_player: Player) -> void:
