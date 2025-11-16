@@ -21,9 +21,12 @@ enum Type {
 		notify_property_list_changed()
 @export_placeholder("Color channel name") var target_color_channel: String:
 	set(value):
-		target_color_channel = value
+		if not is_node_ready():
+			await ready
+		var color_channel_exists: bool = value in LevelManager.current_level.color_channels.map(func(data: ColorChannelData): return data.associated_group)
+		target_color_channel = value if color_channel_exists else ""
 		if channel_type == Type.CUSTOM:
-			changed.emit(value)
+			changed.emit(target_color_channel)
 @export var	target_level_channel: Constants.SpecialColorChannel:
 	set(value):
 		target_level_channel = value
