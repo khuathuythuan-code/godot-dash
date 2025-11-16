@@ -2,13 +2,7 @@
 extends Component
 class_name TeleportComponent
 
-enum Axis {
-	BOTH,
-	X,
-	Y,
-}
-
-@export var axis: Axis
+@export var axis: Constants.Axis
 @export var redirect_velocity: bool:
 	set(value):
 		redirect_velocity = value
@@ -20,7 +14,7 @@ enum Axis {
 		override_velocity = value
 		notify_property_list_changed()
 @export_custom(PROPERTY_HINT_NONE, "suffix:cells/s") var new_velocity: Vector2
-@export var new_velocity_axes: Axis
+@export var new_velocity_axes: Constants.Axis
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -50,11 +44,11 @@ func teleport(player: Player) -> void:
 		Toasts.error("In %s: target is unset" % parent.name)
 		return
 	match axis:
-		Axis.BOTH:
+		Constants.Axis.BOTH:
 			player.global_position = target.global_position
-		Axis.X:
+		Constants.Axis.X:
 			player.global_position.x = target.global_position.x
-		Axis.Y:
+		Constants.Axis.Y:
 			player.global_position.y = target.global_position.y
 	if redirect_velocity:
 		var local_velocity_to_entrance := player.velocity.rotated(-parent.global_rotation)
@@ -63,14 +57,14 @@ func teleport(player: Player) -> void:
 		player.velocity = local_velocity_to_exit
 	elif override_velocity:
 		match new_velocity_axes:
-			Axis.BOTH:
+			Constants.Axis.BOTH:
 				player.set_deferred(&"velocity", (new_velocity * PositionChangerComponent.CELLS_TO_PX).rotated(player.gameplay_rotation))
-			Axis.X:
+			Constants.Axis.X:
 				player.velocity = Vector2(
 						(new_velocity * PositionChangerComponent.CELLS_TO_PX).x,
 						player.velocity.rotated(-player.gameplay_rotation).y,
 				).rotated(player.gameplay_rotation)
-			Axis.Y:
+			Constants.Axis.Y:
 				player.velocity = Vector2(
 						player.velocity.rotated(-player.gameplay_rotation).x,
 						(new_velocity * PositionChangerComponent.CELLS_TO_PX).y,

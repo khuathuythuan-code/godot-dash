@@ -1,6 +1,18 @@
 @abstract
 class_name Constants
 
+enum Axis {
+	BOTH,
+	X,
+	Y,
+}
+
+enum AxisBitflag {
+	NONE = 0,
+	X = 1 << 0,
+	Y = 1 << 1,
+}
+
 enum SpecialColorChannel {
 	BACKGROUND,
 	GROUND,
