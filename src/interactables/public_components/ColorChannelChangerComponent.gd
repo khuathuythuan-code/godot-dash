@@ -57,6 +57,9 @@ func start(_player: Player) -> void:
 		Type.CUSTOM:
 			var with_channel := func(element: ColorChannelData, channel: String): return element.associated_group == channel
 			var idx: int = LevelManager.current_level.color_channels.find_custom(with_channel.bind(target_color_channel_component.target_color_channel))
+			if idx == -1:
+				Toasts.error("In %s: color channel is unset" % parent.name)
+				return
 			color_channel = LevelManager.current_level.color_channels[idx]
 			initial_color_channel = color_channel.duplicate()
 			gradient.colors = PackedColorArray([initial_color_channel.color, color])
@@ -86,6 +89,8 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 	var Type = TargetColorChannelComponent.Type
 	match _type:
 		Type.CUSTOM:
+			if not color_channel:
+				return
 			color_channel.color = gradient.sample(weight)
 			color_channel.hsv_shift[0] += (hue - initial_color_channel.hsv_shift[0]) * weight_delta
 			color_channel.hsv_shift[1] += (saturation - initial_color_channel.hsv_shift[1]) * weight_delta
