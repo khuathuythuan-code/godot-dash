@@ -25,7 +25,7 @@ func _load_base(objects_base: Array[HSVWatcher]) -> void:
 	if base_channel.is_empty():
 		base.set_value_no_signal("")
 		return
-	base.set_value_no_signal(base_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	base.set_value_no_signal(base_channel.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 	var base_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + base_channel)
 	base_watcher.refresh_objects_color(objects_base)
 
@@ -41,7 +41,7 @@ func _load_detail(objects_detail: Array[HSVWatcher]) -> void:
 	if detail_channel.is_empty():
 		detail.set_value_no_signal("")
 		return
-	detail.set_value_no_signal(detail_channel.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	detail.set_value_no_signal(detail_channel.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 	var detail_watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + detail_channel)
 	detail_watcher.refresh_objects_color(objects_detail)
 
@@ -70,7 +70,7 @@ func _on_property_focus_entered() -> void:
 
 
 func _on_base_color_interaction_ended(base_channel: String, previous_base_channel: String) -> void:
-	var existing_color_channels := LevelManager.current_level.color_channels.map(func(channel): return channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	var existing_color_channels := LevelManager.current_level.color_channels.map(func(channel): return channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 	if not base_channel.is_empty() and not base_channel in existing_color_channels:
 		base.set_value_no_signal("")
 		return
@@ -82,7 +82,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 		return accum
 	var objects_base_to_channel: Dictionary[HSVWatcher, StringName]
 	objects_base_to_channel.assign(objects_base.reduce(map_object_base_to_channel, {}))
-	var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + base_channel)
+	var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + Constants.COLOR_CHANNEL_GROUP_PREFIX + base_channel)
 
 	var do_set_base_channel := func(_objects_base: Array[HSVWatcher]):
 		base.set_value_no_signal(base_channel)
@@ -90,7 +90,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 		if base_channel.is_empty():
 			_objects_base.map(reset_color)
 			return
-		_objects_base.map(func(object): object.add_to_group(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + base_channel, true))
+		_objects_base.map(func(object): object.add_to_group(Constants.COLOR_CHANNEL_GROUP_PREFIX + base_channel, true))
 		watcher.refresh_objects_color(_objects_base)
 	var undo_set_base_channel := func(_objects_base_to_channel: Dictionary[HSVWatcher, StringName]):
 		base.set_value_no_signal(previous_base_channel)
@@ -103,7 +103,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 				_objects_base.erase(hsv_watcher)
 				continue
 			hsv_watcher.add_to_group(hsv_watcher_previous_channel)
-		_objects_base.map(func(object): object.add_to_group(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + base_channel, true))
+		_objects_base.map(func(object): object.add_to_group(Constants.COLOR_CHANNEL_GROUP_PREFIX + base_channel, true))
 		watcher.refresh_objects_color(_objects_base)
 	
 	var version_history: UndoRedo = Editor.root.level.version_history
@@ -114,7 +114,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 
 
 func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_channel: String) -> void:
-	var existing_color_channels := LevelManager.current_level.color_channels.map(func(channel): return channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+	var existing_color_channels := LevelManager.current_level.color_channels.map(func(channel): return channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 	if not detail_channel in existing_color_channels:
 		detail.set_value_no_signal("")
 		return
@@ -131,7 +131,7 @@ func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_
 		return accum
 	var objects_detail_to_channel: Dictionary[HSVWatcher, StringName]
 	objects_detail_to_channel.assign(objects_detail.reduce(map_object_detail_to_channel, {}))
-	var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + detail_channel)
+	var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + Constants.COLOR_CHANNEL_GROUP_PREFIX + detail_channel)
 
 	var do_set_detail_channel := func(_objects_detail: Array[HSVWatcher]):
 		detail.set_value_no_signal(detail_channel)
@@ -139,7 +139,7 @@ func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_
 		if detail_channel.is_empty():
 			_objects_detail.map(reset_color)
 			return
-		_objects_detail.map(func(object): object.add_to_group(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + detail_channel, true))
+		_objects_detail.map(func(object): object.add_to_group(Constants.COLOR_CHANNEL_GROUP_PREFIX + detail_channel, true))
 		watcher.refresh_objects_color(_objects_detail)
 	var undo_set_detail_channel := func(_objects_detail_to_channel: Dictionary[HSVWatcher, StringName]):
 		detail.set_value_no_signal(previous_detail_channel)
@@ -152,7 +152,7 @@ func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_
 				_objects_detail.erase(hsv_watcher)
 				continue
 			hsv_watcher.add_to_group(hsv_watcher_previous_channel)
-		_objects_detail.map(func(object): object.add_to_group(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX + detail_channel, true))
+		_objects_detail.map(func(object): object.add_to_group(Constants.COLOR_CHANNEL_GROUP_PREFIX + detail_channel, true))
 		watcher.refresh_objects_color(_objects_detail)
 	
 	var version_history: UndoRedo = Editor.root.level.version_history

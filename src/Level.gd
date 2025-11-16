@@ -199,7 +199,7 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 		var object_color_channels: Array = (
 				BaseDetailHandler.use_hsv_watcher(object)
 				.get_groups()
-				.filter(func(group: String): return group.begins_with(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX))
+				.filter(func(group: String): return group.begins_with(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 		)
 		if not object_color_channels.is_empty():
 			object_data.color_channels = object_color_channels.front()

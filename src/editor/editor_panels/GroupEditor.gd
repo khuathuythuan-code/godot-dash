@@ -2,7 +2,6 @@ extends Control
 class_name GroupEditor
 
 const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
-const GROUP_PREFIX: String = "g_"
 
 @export var line_edit: LineEdit
 @export var confirm_button: Button
@@ -42,11 +41,11 @@ func _populate_group_list(selection: Selection) -> void:
 
 
 func _create_group_button(group: String) -> Button:
-	var group_button_already_exists: bool = group_container.get_children().any(func(child: Button): return child.text == group.trim_prefix(GROUP_PREFIX))
+	var group_button_already_exists: bool = group_container.get_children().any(func(child: Button): return child.text == group.trim_prefix(Constants.GROUP_PREFIX))
 	if group_button_already_exists:
 		return
 	var group_button := Button.new()
-	group_button.text = group.trim_prefix(GROUP_PREFIX)
+	group_button.text = group.trim_prefix(Constants.GROUP_PREFIX)
 	group_button.pressed.connect(_remove_group.bind(group_button))
 	group_button.theme_type_variation = &"GroupButton"
 	group_buttons[group] = group_button
@@ -56,7 +55,7 @@ func _create_group_button(group: String) -> Button:
 func _add_selection_to_group(selection: Selection, group: String) -> void:
 	var in_group := func(object: Node2D, _group: StringName): return _group in object.get_groups()
 	if not selection.any(in_group):
-		if group == GROUP_PREFIX:
+		if group == Constants.GROUP_PREFIX:
 			return
 		selection.for_each(func(object: Node2D): object.add_to_group(group, true); push_warning(object.get_groups()))
 	elif not selection.all(in_group):
@@ -71,7 +70,7 @@ func _remove_group_from_selection(selection: Selection, group: String):
 
 func _remove_group(group_button: Button) -> void:
 	get_viewport().gui_release_focus()
-	var group: String = GROUP_PREFIX + group_button.text
+	var group: String = Constants.GROUP_PREFIX + group_button.text
 	var do_remove_group := func(_selected_objects: Selection, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
@@ -108,16 +107,16 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	_add_group(GROUP_PREFIX + new_text)
+	_add_group(Constants.GROUP_PREFIX + new_text)
 	line_edit.clear()
 	get_viewport().gui_release_focus()
 
 
 func _on_button_pressed() -> void:
-	_add_group(GROUP_PREFIX + line_edit.get_text())
+	_add_group(Constants.GROUP_PREFIX + line_edit.get_text())
 	line_edit.clear()
 	get_viewport().gui_release_focus()
 
 
 static func is_godot_group(group: StringName) -> bool:
-	return group.begins_with(GROUP_PREFIX)
+	return group.begins_with(Constants.GROUP_PREFIX)

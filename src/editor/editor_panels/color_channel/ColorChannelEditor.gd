@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func populate_item_list() -> void:
 	for channel in LevelManager.current_level.color_channels:
-		add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
+		add_channel(channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX), channel)
 
 
 func clear_item_list() -> void:

@@ -2,7 +2,6 @@ extends PanelContainer
 class_name ColorChannelItem
 
 const COLOR_PREVIEW_DISABLED := Color("#00000080")
-const COLOR_CHANNEL_GROUP_PREFIX := "c_"
 
 signal selected
 signal unselected
@@ -23,7 +22,7 @@ func update() -> void:
 	if data == null:
 		data = ColorChannelData.new()
 	NodeUtils.connect_once(data.changed, update)
-	data.associated_group = COLOR_CHANNEL_GROUP_PREFIX + channel_name
+	data.associated_group = Constants.COLOR_CHANNEL_GROUP_PREFIX + channel_name
 	if not data.copy:
 		_set_color_preview_color(data.color)._hide_color_preview_text()
 	else:

@@ -155,8 +155,9 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 				var component: Component = interactable.get_node(component_name)
 				if component not in initial_values:
 					var _value: Variant = component.get(property_name)
-					if component is TargetGroupComponent:
-						_value = GroupEditor.GROUP_PREFIX + _value
+					if _value is String:
+						if component is TargetGroupComponent:
+							_value = Constants.GROUP_PREFIX + _value
 					initial_values[component] = _value
 			property.value_changed.connect(save_property.bind(component_name, property_name, interactables))
 			property.interaction_ended.connect(save_property_register.bind(component_name, property_name, interactables))
@@ -166,8 +167,9 @@ func save_property(value: Variant, component_name: String, property_name: String
 	for interactable: Interactable in interactables:
 		var component: Component = interactable.get_node(component_name)
 		var _value: Variant = value
-		if component is TargetGroupComponent:
-			_value = GroupEditor.GROUP_PREFIX + value
+		if _value is String:
+			if component is TargetGroupComponent:
+				_value = Constants.GROUP_PREFIX + value
 		if component not in initial_values:
 			initial_values[component] = _value
 		component.set(property_name, _value)
@@ -178,18 +180,21 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 		for _interactable: Interactable in _interactables:
 			var component: Component = _interactable.get_node(component_name)
 			var _value: Variant = new_value
-			if component is TargetGroupComponent:
-				_value = GroupEditor.GROUP_PREFIX + new_value
+			if _value is String:
+				if component is TargetGroupComponent:
+					_value = Constants.GROUP_PREFIX + new_value
 			component.set(property_name, _value)
 			if component not in initial_values:
 				initial_values[component] = _value
 		load_properties(_interactables[0], self)
 	var undo_save_property := func(_interactables_to_initial_values: Dictionary[Interactable, Variant]):
 		for _interactable: Interactable in _interactables_to_initial_values:
+			var component: Component = _interactable.get_node(component_name)
 			var _value = _interactables_to_initial_values[_interactable]
-			if _interactable.get_node(component_name) is TargetGroupComponent:
-				_value = GroupEditor.GROUP_PREFIX + _interactables_to_initial_values[_interactable]
-			_interactable.get_node(component_name).set(property_name, _value)
+			if _value is String:
+				if component is TargetGroupComponent:
+					_value = Constants.GROUP_PREFIX + _interactables_to_initial_values[_interactable]
+			component.set(property_name, _value)
 		load_properties(_interactables_to_initial_values.keys()[0], self)
 	
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
@@ -249,7 +254,7 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 			continue
 		var value = component.get(property_name)
 		if component is TargetGroupComponent:
-			value = value.trim_prefix(GroupEditor.GROUP_PREFIX)
+			value = value.trim_prefix(Constants.GROUP_PREFIX)
 		property.set_value_no_signal(value)
 
 
