@@ -13,6 +13,11 @@ enum Type {
 	set(value):
 		channel_type = value
 		type_changed.emit(value)
+		match value:
+			Type.CUSTOM:
+				changed.emit(target_color_channel)
+			Type.LEVEL:
+				changed.emit(Constants.SpecialColorChannel.find_key(target_level_channel).capitalize())
 		notify_property_list_changed()
 @export_placeholder("Color channel name") var target_color_channel: String:
 	set(value):
