@@ -261,8 +261,11 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 			printerr("Can't load property ", property_name, " on ", interactable)
 			continue
 		var value = component.get(property_name)
-		if component is TargetGroupComponent:
-			value = value.trim_prefix(Constants.GROUP_PREFIX)
+		if value is String:
+			if component is TargetGroupComponent:
+				value = value.trim_prefix(Constants.GROUP_PREFIX)
+			elif component is TargetColorChannelComponent:
+				value = value.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX)
 		property.set_value_no_signal(value)
 
 

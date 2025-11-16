@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_vuqmj"]
 [ext_resource type="Texture2D" uid="uid://cwjh6086ds3wq" path="res://assets/textures/triggers/Color.svg" id="2_vuqmj"]
-[ext_resource type="PackedScene" uid="uid://cqc5xe1c2thcj" path="res://scenes/components/game_components/GroupDisplay.tscn" id="3_3rnx6"]
+[ext_resource type="PackedScene" uid="uid://b35xisv0d22sr" path="res://scenes/components/game_components/ColorChannelDisplay.tscn" id="3_vuqmj"]
 [ext_resource type="Script" uid="uid://bpmaeypm035jw" path="res://src/interactables/public_components/TargetColorChannelComponent.gd" id="4_idjm0"]
 [ext_resource type="Script" uid="uid://c3i15kiejtddh" path="res://src/interactables/public_components/ColorChannelChangerComponent.gd" id="5_vuqmj"]
 [ext_resource type="Script" uid="uid://tfriwfc7uruu" path="res://src/interactables/public_components/EasingComponent.gd" id="6_7d1l8"]
@@ -24,17 +24,12 @@ metadata/_custom_type_script = "uid://rt6vy5mae3if"
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_vuqmj")
 
-[node name="GroupDisplay" parent="Sprite" instance=ExtResource("3_3rnx6")]
-offset_left = -512.0
-offset_top = -512.0
-offset_right = -512.0
-offset_bottom = -512.0
-scale = Vector2(5, 5)
-
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_vuqmj")
 debug_color = Color(0, 1, 0, 0)
+
+[node name="ColorChannelDisplay" parent="Hitbox" instance=ExtResource("3_vuqmj")]
 
 [node name="TargetColorChannelComponent" type="Node" parent="."]
 script = ExtResource("4_idjm0")
@@ -74,5 +69,5 @@ metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 [node name="EditorSelectionCollider" parent="." instance=ExtResource("11_sjigl")]
 type = 8
 
-[connection signal="changed" from="TargetColorChannelComponent" to="Sprite/GroupDisplay" method="_on_target_group_component_changed"]
+[connection signal="changed" from="TargetColorChannelComponent" to="Hitbox/ColorChannelDisplay" method="_on_target_color_channel_component_changed"]
 [connection signal="type_changed" from="TargetColorChannelComponent" to="ColorChannelChangerComponent" method="_on_target_color_channel_type_changed"]
