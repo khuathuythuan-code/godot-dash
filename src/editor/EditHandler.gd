@@ -497,11 +497,11 @@ func _clone(object: Node) -> Node:
 	var packer := PackedScene.new()
 	packer.pack(object)
 	var clone := packer.instantiate()
-	object.get_parent().add_child(clone, true)
-	clone.owner = object.owner
-	add_selection_highlight(clone)
+	level.add_child(clone, true)
 	NodeUtils.change_owner_recursive(object, level)
 	NodeUtils.change_owner_recursive(clone, level)
+	clone.scene_file_path = object.scene_file_path
+	add_selection_highlight(clone)
 	return clone
 
 
