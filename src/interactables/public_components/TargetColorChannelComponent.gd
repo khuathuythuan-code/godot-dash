@@ -22,11 +22,13 @@ enum Type {
 @export_placeholder("Color channel name") var target_color_channel: String:
 	set(value):
 		target_color_channel = value
-		changed.emit(value)
+		if channel_type == Type.CUSTOM:
+			changed.emit(value)
 @export var	target_level_channel: Constants.SpecialColorChannel:
 	set(value):
 		target_level_channel = value
-		changed.emit(Constants.SpecialColorChannel.find_key(value).capitalize())
+		if channel_type == Type.LEVEL:
+			changed.emit(Constants.SpecialColorChannel.find_key(value).capitalize())
 
 
 func _validate_property(property: Dictionary) -> void:
