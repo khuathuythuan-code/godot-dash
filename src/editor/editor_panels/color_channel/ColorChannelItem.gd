@@ -27,17 +27,17 @@ func update() -> void:
 		_set_color_preview_color(data.color)._hide_color_preview_text()
 	else:
 		match data.copied_channel:
-			ColorChannelData.CopyColor.BACKGROUND:
+			Constants.SpecialColorChannel.BACKGROUND:
 				_disable_color_preview()._show_color_preview_text("BG")
-			ColorChannelData.CopyColor.GROUND:
+			Constants.SpecialColorChannel.GROUND:
 				_disable_color_preview()._show_color_preview_text("G")
-			ColorChannelData.CopyColor.LINE:
+			Constants.SpecialColorChannel.LINE:
 				_disable_color_preview()._show_color_preview_text("L")
-			ColorChannelData.CopyColor.P1:
+			Constants.SpecialColorChannel.P1:
 				_disable_color_preview()._show_color_preview_text("P1")
-			ColorChannelData.CopyColor.P2:
+			Constants.SpecialColorChannel.P2:
 				_disable_color_preview()._show_color_preview_text("P2")
-			ColorChannelData.CopyColor.GLOW:
+			Constants.SpecialColorChannel.GLOW:
 				_disable_color_preview()._show_color_preview_text("GL")
 
 

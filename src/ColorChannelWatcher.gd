@@ -30,19 +30,19 @@ func refresh_objects_color(objects: Array = [], _data: ColorChannelData = data) 
 	for object: HSVWatcher in objects:
 		if _data.copy:
 			match _data.copied_channel:
-				ColorChannelData.CopyColor.BACKGROUND:
+				Constants.SpecialColorChannel.BACKGROUND:
 					object.modulate = LevelManager.background_sprites[0].modulate
-				ColorChannelData.CopyColor.GROUND:
+				Constants.SpecialColorChannel.GROUND:
 					var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
 					object.modulate = ground.self_modulate
-				ColorChannelData.CopyColor.LINE:
+				Constants.SpecialColorChannel.LINE:
 					var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
 					object.modulate = ground.material.get_shader_parameter(&"ground_color")
-				ColorChannelData.CopyColor.P1:
+				Constants.SpecialColorChannel.P1:
 					pass
-				ColorChannelData.CopyColor.P2: 
+				Constants.SpecialColorChannel.P2:
 					pass
-				ColorChannelData.CopyColor.GLOW:
+				Constants.SpecialColorChannel.GLOW:
 					pass
 		else:
 			object.modulate = _data.color

@@ -133,7 +133,7 @@ func _on_copy_channel_value_changed(value: bool) -> void:
 	version_history.commit_action()
 
 
-func _on_channel_value_changed(value: ColorChannelData.CopyColor) -> void:
+func _on_channel_value_changed(value: Constants.SpecialColorChannel) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
