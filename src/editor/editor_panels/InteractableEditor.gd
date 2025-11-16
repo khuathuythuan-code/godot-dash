@@ -158,6 +158,8 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 					if _value is String:
 						if component is TargetGroupComponent:
 							_value = Constants.GROUP_PREFIX + _value
+						elif component is TargetColorChannelComponent:
+							_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 					initial_values[component] = _value
 			property.value_changed.connect(save_property.bind(component_name, property_name, interactables))
 			property.interaction_ended.connect(save_property_register.bind(component_name, property_name, interactables))
@@ -170,6 +172,8 @@ func save_property(value: Variant, component_name: String, property_name: String
 		if _value is String:
 			if component is TargetGroupComponent:
 				_value = Constants.GROUP_PREFIX + value
+			elif component is TargetColorChannelComponent:
+				_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 		if component not in initial_values:
 			initial_values[component] = _value
 		component.set(property_name, _value)
@@ -183,6 +187,8 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 			if _value is String:
 				if component is TargetGroupComponent:
 					_value = Constants.GROUP_PREFIX + new_value
+				elif component is TargetColorChannelComponent:
+					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 			component.set(property_name, _value)
 			if component not in initial_values:
 				initial_values[component] = _value
@@ -194,6 +200,8 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 			if _value is String:
 				if component is TargetGroupComponent:
 					_value = Constants.GROUP_PREFIX + _interactables_to_initial_values[_interactable]
+				elif component is TargetColorChannelComponent:
+					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 			component.set(property_name, _value)
 		load_properties(_interactables_to_initial_values.keys()[0], self)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=300 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=302 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -224,7 +224,9 @@
 [ext_resource type="PackedScene" uid="uid://dfybg5ac3hmh6" path="res://scenes/components/level_components/triggers/ToggleTrigger.tscn" id="167_7k2uw"]
 [ext_resource type="PackedScene" uid="uid://bkym7bd812awu" path="res://scenes/components/level_components/Text.tscn" id="167_mesjt"]
 [ext_resource type="PackedScene" uid="uid://b4troe7d14whv" path="res://scenes/components/level_components/triggers/EndLevelTrigger.tscn" id="170_mvta7"]
+[ext_resource type="PackedScene" uid="uid://bleq4ccjwf3e8" path="res://scenes/components/level_components/triggers/ColorTrigger.tscn" id="171_n8fyb"]
 [ext_resource type="Texture2D" uid="uid://ycaj60j88fld" path="res://assets/textures/triggers/EndLevel.svg" id="171_wiub1"]
+[ext_resource type="Texture2D" uid="uid://cwjh6086ds3wq" path="res://assets/textures/triggers/Color.svg" id="172_3y10s"]
 [ext_resource type="PackedScene" uid="uid://i7ne6dpqa34" path="res://scenes/components/level_components/triggers/SpeedTrigger.tscn" id="172_qt8xx"]
 [ext_resource type="Texture2D" uid="uid://b6fbysw5e25ta" path="res://assets/textures/triggers/Speed.svg" id="173_2e82d"]
 [ext_resource type="PackedScene" uid="uid://g72stvyutfy4" path="res://scenes/components/level_components/triggers/TeleportTrigger.tscn" id="174_p8kvs"]
@@ -737,11 +739,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 0
+current_tab = 4
 script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -4939,7 +4942,6 @@ type = 8
 object = ExtResource("167_mesjt")
 
 [node name="Triggers" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 4
 metadata/_tab_name = ""
@@ -5003,6 +5005,40 @@ mouse_filter = 1
 [node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Alpha/CenterAnchor"]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("19_lbtum")
+
+[node name="Color" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Color"]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("171_n8fyb")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Color"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/Color/CenterAnchor"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("172_3y10s")
 
 [node name="CameraStatic" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer"]
 custom_minimum_size = Vector2(64, 64)
