@@ -67,8 +67,8 @@ func refresh() -> void:
 func set_value(new_value: Resource) -> void:
 	var previous: Resource = _value.duplicate() if _value else new_value.duplicate()
 	set_value_no_signal(new_value)
-	value_changed.emit(new_value)
-	interaction_ended.emit(new_value, previous)
+	value_changed.emit(_value)
+	interaction_ended.emit(_value, previous)
 
 
 func set_value_no_signal(new_value: Resource) -> void:
