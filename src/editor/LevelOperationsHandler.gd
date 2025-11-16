@@ -89,6 +89,9 @@ func _new_level() -> void:
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	new_level.version_history = UndoRedo.new()
+	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
+	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
+	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
 	LevelManager.current_level_duration = INF
 	Editor.level_file_name = ""
 	level_loaded.emit(new_level)

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func populate_item_list() -> void:
 	for channel in LevelManager.current_level.color_channels:
-		add_channel(channel.associated_group.trim_prefix(ColorChannelItem.COLOR_CHANNEL_GROUP_PREFIX), channel)
+		add_channel(channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX), channel)
 
 
 func clear_item_list() -> void:
@@ -133,7 +133,7 @@ func _on_copy_channel_value_changed(value: bool) -> void:
 	version_history.commit_action()
 
 
-func _on_channel_value_changed(value: ColorChannelData.CopyColor) -> void:
+func _on_channel_value_changed(value: Constants.SpecialColorChannel) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem

@@ -55,4 +55,5 @@ func refresh() -> void:
 
 
 func set_input_state(enabled: bool) -> void:
+	input.modulate.a = 1.0 if enabled else 0.1
 	input.disabled = not enabled

@@ -2,7 +2,6 @@ extends PanelContainer
 class_name ColorChannelItem
 
 const COLOR_PREVIEW_DISABLED := Color("#00000080")
-const COLOR_CHANNEL_GROUP_PREFIX := "c_"
 
 signal selected
 signal unselected
@@ -23,22 +22,22 @@ func update() -> void:
 	if data == null:
 		data = ColorChannelData.new()
 	NodeUtils.connect_once(data.changed, update)
-	data.associated_group = COLOR_CHANNEL_GROUP_PREFIX + channel_name
+	data.associated_group = Constants.COLOR_CHANNEL_GROUP_PREFIX + channel_name
 	if not data.copy:
 		_set_color_preview_color(data.color)._hide_color_preview_text()
 	else:
 		match data.copied_channel:
-			ColorChannelData.CopyColor.BACKGROUND:
+			Constants.SpecialColorChannel.BACKGROUND:
 				_disable_color_preview()._show_color_preview_text("BG")
-			ColorChannelData.CopyColor.GROUND:
+			Constants.SpecialColorChannel.GROUND:
 				_disable_color_preview()._show_color_preview_text("G")
-			ColorChannelData.CopyColor.LINE:
+			Constants.SpecialColorChannel.LINE:
 				_disable_color_preview()._show_color_preview_text("L")
-			ColorChannelData.CopyColor.P1:
+			Constants.SpecialColorChannel.P1:
 				_disable_color_preview()._show_color_preview_text("P1")
-			ColorChannelData.CopyColor.P2:
+			Constants.SpecialColorChannel.P2:
 				_disable_color_preview()._show_color_preview_text("P2")
-			ColorChannelData.CopyColor.GLOW:
+			Constants.SpecialColorChannel.GLOW:
 				_disable_color_preview()._show_color_preview_text("GL")
 
 

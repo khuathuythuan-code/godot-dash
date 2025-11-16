@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func toggle(_player: Node) -> void:
 	for toggled_group in toggled_groups:
-		var group = GroupEditor.GROUP_PREFIX + toggled_group.group
+		var group = Constants.GROUP_PREFIX + toggled_group.group
 		var state = toggled_group.state
 		var skip_deleted := func(object):
 			return not object.is_in_group("deleted")

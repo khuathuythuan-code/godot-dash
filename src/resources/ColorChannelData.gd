@@ -1,19 +1,9 @@
 extends Resource
 class_name ColorChannelData
 
-enum CopyColor {
-	BACKGROUND,
-	GROUND,
-	LINE,
-	# TODO implement players colors
-	P1,
-	P2,
-	GLOW,
-}
-
 @export var copy: bool
 @export var color := Color.WHITE
-@export var copied_channel: CopyColor
+@export var copied_channel: Constants.SpecialColorChannel
 @export var hsv_shift: Array[float] = [0.0, 0.0, 0.0]
 @export var intensity: float = 1.0
 @export var alpha: float = 1.0
@@ -34,7 +24,7 @@ func set_color(new_color: Color) -> ColorChannelData:
 	return self
 
 
-func set_copied_channel(new_copied_channel: CopyColor) -> ColorChannelData:
+func set_copied_channel(new_copied_channel: Constants.SpecialColorChannel) -> ColorChannelData:
 	copied_channel = new_copied_channel
 	emit_changed()
 	return self

@@ -188,16 +188,22 @@ impl Selection {
     /// Like [method Selection.map_generic], but returns another [Selection].
     /// This implies `method` needs to return a [Node2D].
     fn map(&self, method: Callable) -> Gd<Self> {
+        let mut first: Option<Gd<Node2D>> = None;
         let inner: HashSet<Gd<Node2D>> = self
             .inner
             .clone()
             .iter()
-            .map(|node_ref| method.call(vslice![node_ref]).to::<Gd<Node2D>>())
+            .map(|node_ref| {
+                let new_node_ref = method.call(vslice![node_ref]).to::<Gd<Node2D>>();
+                if let Some(first_ref) = self.first.clone()
+                    && &first_ref == node_ref
+                {
+                    first = Some(new_node_ref.clone());
+                }
+                new_node_ref
+            })
             .collect();
-        Gd::from_object(Self {
-            inner,
-            first: self.first.clone(),
-        })
+        Gd::from_object(Self { inner, first })
     }
     #[func]
     /// See [method Array.map].

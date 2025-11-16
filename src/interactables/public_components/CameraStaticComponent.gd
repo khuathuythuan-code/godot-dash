@@ -8,12 +8,6 @@ enum Mode {
 	EXIT,
 }
 
-enum Axis {
-	BOTH,
-	X,
-	Y,
-}
-
 @export var mode: Mode = Mode.ENTER:
 	set(value):
 		mode = value
@@ -24,7 +18,7 @@ enum Axis {
 				parent.query(TargetObjectComponent).override = ^""
 			Mode.EXIT:
 				parent.query(TargetObjectComponent).override = LevelManager.current_level.get_path_to(LevelManager.player)
-@export var axis: Axis = Axis.BOTH
+@export var axis: Constants.Axis = Constants.Axis.BOTH
 
 var initial_global_position: Vector2
 var initial_static_factor: Vector2
@@ -56,9 +50,9 @@ func _on_easing_progressed(player: Player, _weight_delta: float) -> void:
 		Mode.EXIT:
 			entering_or_exiting = 0.0
 	var weight: float = parent.query(EasingComponent).weights[player]
-	if axis == Axis.X or axis == Axis.BOTH:
+	if axis == Constants.Axis.X or axis == Constants.Axis.BOTH:
 		LevelManager.player_camera.static_factor.x = lerpf(initial_static_factor.x, entering_or_exiting, weight)
 		LevelManager.player_camera.global_position.x = lerpf(initial_global_position.x, target.global_position.x, weight)
-	if axis == Axis.Y or axis == Axis.BOTH:
+	if axis == Constants.Axis.Y or axis == Constants.Axis.BOTH:
 		LevelManager.player_camera.static_factor.y = lerpf(initial_static_factor.y, entering_or_exiting, weight)
 		LevelManager.player_camera.global_position.y = lerpf(initial_global_position.y, target.global_position.y, weight)
