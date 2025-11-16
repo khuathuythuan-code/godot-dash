@@ -4,6 +4,8 @@ class_name FireDashComponent
 # TODO figure out how to make cyan dash orbs work
 ## Dash orbs _completely_ override the player's velocity.
 
+@export var snap_x: bool # for platformer
+@export var snap_y: bool
 var path: Node
 var initial_gameplay_rotation: float
 var initial_horizontal_direction: int
@@ -11,11 +13,16 @@ var initial_speed: float
 
 
 func _ready() -> void:
+	super()
 	$"../DashOrbPreview".visible = Editor.in_editor
 	parent.interacted.connect(start)
 
 
 func start(player: Player) -> void:
+	if snap_x:
+		LevelManager.player.global_position.x = get_parent().global_position.x
+	if snap_y:
+		LevelManager.player.global_position.y = tan(get_parent().rotation) * (LevelManager.player.global_position.x - get_parent().global_position.x) + get_parent().global_position.y
 	player.dash_control = self
 	initial_gameplay_rotation = player.gameplay_rotation
 	initial_speed = player.speed_multiplier
