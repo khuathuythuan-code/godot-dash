@@ -43,7 +43,20 @@ const START_SPEED: Array[float] = [
 @export var start_speed: int = 2
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
-@export var color_channels: Array[ColorChannelData]
+@export var default_background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
+	set(new_color):
+		default_background_color = new_color
+		background_color = new_color
+@export var default_ground_color: Color = Constants.DEFAULT_GROUND_COLOR:
+	set(new_color):
+		default_ground_color = new_color
+		ground_color = new_color
+@export var default_line_color: Color = Constants.DEFAULT_LINE_COLOR:
+	set(new_color):
+		default_line_color = new_color
+		line_color = new_color
+
+@export_storage var color_channels: Array[ColorChannelData]
 @export_storage var duration: float
 
 @onready var song_player := AudioStreamPlayer.new()
@@ -53,6 +66,22 @@ var camera_rect: Rect2
 var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
 var required_fonts: Dictionary[String, int] # HashMap<FontPath, FontUsers>
+var background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
+	set(new_color):
+		background_color = new_color
+		for background_sprite: Sprite2D in LevelManager.background_sprites:
+			background_sprite.modulate = new_color
+var ground_color: Color = Constants.DEFAULT_GROUND_COLOR:
+	set(new_color):
+		var ground_down: Sprite2D = LevelManager.ground_down.get_node("Ground")
+		var ground_up: Sprite2D = LevelManager.ground_up.get_node("Ground")
+		ground_down.self_modulate = new_color
+		ground_up.self_modulate = new_color
+var line_color: Color = Constants.DEFAULT_LINE_COLOR:
+	set(new_color):
+		# The material resource is shared between ground sprites
+		var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
+		ground.material.set_shader_parameter(&"ground_color", new_color)
 
 var _pause_manager: Node
 
@@ -160,6 +189,9 @@ func to_data() -> Dictionary:
 		"start_speed": start_speed,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
+		"default_background_color": default_background_color.to_rgba32(),
+		"default_ground_color": default_ground_color.to_rgba32(),
+		"default_line_color": default_line_color.to_rgba32(),
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"objects": [],
@@ -223,6 +255,9 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_speed = data.start_speed
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
+	level.default_background_color = Color.hex(data.default_background_color)
+	level.default_ground_color = Color.hex(data.default_ground_color)
+	level.default_line_color = Color.hex(data.default_line_color)
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()

@@ -31,13 +31,11 @@ func refresh_objects_color(objects: Array = [], _data: ColorChannelData = data) 
 		if _data.copy:
 			match _data.copied_channel:
 				Constants.SpecialColorChannel.BACKGROUND:
-					object.modulate = LevelManager.background_sprites[0].modulate
+					object.modulate = LevelManager.current_level.background_color
 				Constants.SpecialColorChannel.GROUND:
-					var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
-					object.modulate = ground.self_modulate
+					object.modulate = LevelManager.current_level.ground_color
 				Constants.SpecialColorChannel.LINE:
-					var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
-					object.modulate = ground.material.get_shader_parameter(&"ground_color")
+					object.modulate = LevelManager.current_level.line_color
 				Constants.SpecialColorChannel.P1:
 					pass
 				Constants.SpecialColorChannel.P2:
