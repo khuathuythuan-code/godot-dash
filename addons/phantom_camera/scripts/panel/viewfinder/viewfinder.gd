@@ -1,10 +1,10 @@
 @tool
 extends Control
 
-#region Constants
+#region PcamConstants
 
 const PcamGroupNames = preload("res://addons/phantom_camera/scripts/group_names.gd")
-const Constants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
+const PcamConstants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
 
 # TODO - Should be in a central location
 const _camera_2d_icon: CompressedTexture2D = preload("res://addons/phantom_camera/icons/viewfinder/Camera2DIcon.svg")
@@ -116,8 +116,8 @@ func _exit_tree() -> void:
 		_add_node_button.pressed.disconnect(_add_node)
 
 	if is_instance_valid(_active_pcam_camera):
-		if _active_pcam_camera.Properties.is_connected(Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
-			_active_pcam_camera.Properties.disconnect(Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
+		if _active_pcam_camera.Properties.is_connected(PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
+			_active_pcam_camera.Properties.disconnect(PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
 	
 	if _priority_override_button.pressed.is_connected(_select_override_pcam):
 		_priority_override_button.pressed.disconnect(_select_override_pcam)
@@ -203,15 +203,15 @@ func _check_camera(root: Node, camera: Node, is_2D: bool) -> void:
 	var pcam_icon: CompressedTexture2D
 
 	if is_2D:
-		camera_string = Constants.CAMERA_2D_NODE_NAME
-		pcam_string = Constants.PCAM_2D_NODE_NAME
-		color = Constants.COLOR_2D
+		camera_string = PcamConstants.CAMERA_2D_NODE_NAME
+		pcam_string = PcamConstants.PCAM_2D_NODE_NAME
+		color = PcamConstants.COLOR_2D
 		camera_icon = _camera_2d_icon
 		pcam_icon = _pcam_2D_icon
 	else:
-		camera_string = Constants.CAMERA_3D_NODE_NAME
-		pcam_string = Constants.PCAM_3D_NODE_NAME
-		color = Constants.COLOR_3D
+		camera_string = PcamConstants.CAMERA_3D_NODE_NAME
+		pcam_string = PcamConstants.PCAM_3D_NODE_NAME
+		color = PcamConstants.COLOR_3D
 		camera_icon = _camera_3d_icon
 		pcam_icon = _pcam_3D_icon
 
@@ -246,12 +246,12 @@ func _check_camera(root: Node, camera: Node, is_2D: bool) -> void:
 						_set_empty_viewfinder_state(pcam_string, pcam_icon)
 				else:
 #					No PCamHost in scene
-					_update_button(Constants.PCAM_HOST_NODE_NAME, _pcam_host_icon, Constants.PCAM_HOST_COLOR)
-					_set_empty_viewfinder_state(Constants.PCAM_HOST_NODE_NAME, _pcam_host_icon)
+					_update_button(PcamConstants.PCAM_HOST_NODE_NAME, _pcam_host_icon, PcamConstants.PCAM_HOST_COLOR)
+					_set_empty_viewfinder_state(PcamConstants.PCAM_HOST_NODE_NAME, _pcam_host_icon)
 		else:
 #			No PCamHost in scene
-			_update_button(Constants.PCAM_HOST_NODE_NAME, _pcam_host_icon, Constants.PCAM_HOST_COLOR)
-			_set_empty_viewfinder_state(Constants.PCAM_HOST_NODE_NAME, _pcam_host_icon)
+			_update_button(PcamConstants.PCAM_HOST_NODE_NAME, _pcam_host_icon, PcamConstants.PCAM_HOST_COLOR)
+			_set_empty_viewfinder_state(PcamConstants.PCAM_HOST_NODE_NAME, _pcam_host_icon)
 	else:
 #		No Camera
 		_update_button(camera_string, camera_icon, color)
@@ -272,7 +272,7 @@ func _set_viewfinder_state() -> void:
 	target_point.set_visible(true)
 
 	if is_instance_valid(_active_pcam_camera):
-		if _active_pcam_camera.get_follow_mode() == Constants.FollowMode.FRAMED:
+		if _active_pcam_camera.get_follow_mode() == PcamConstants.FollowMode.FRAMED:
 			_dead_zone_h_box_container.set_visible(true)
 		else:
 			_dead_zone_h_box_container.set_visible(false)
@@ -303,15 +303,15 @@ func _add_node(node_type: String) -> void:
 	match node_type:
 		_no_open_scene_string:
 			pass
-		Constants.CAMERA_2D_NODE_NAME:
+		PcamConstants.CAMERA_2D_NODE_NAME:
 			var camera: Camera2D = Camera2D.new()
-			_instantiate_node(root, camera, Constants.CAMERA_2D_NODE_NAME)
-		Constants.CAMERA_3D_NODE_NAME:
+			_instantiate_node(root, camera, PcamConstants.CAMERA_2D_NODE_NAME)
+		PcamConstants.CAMERA_3D_NODE_NAME:
 			var camera: Camera3D = Camera3D.new()
-			_instantiate_node(root, camera, Constants.CAMERA_3D_NODE_NAME)
-		Constants.PCAM_HOST_NODE_NAME:
+			_instantiate_node(root, camera, PcamConstants.CAMERA_3D_NODE_NAME)
+		PcamConstants.PCAM_HOST_NODE_NAME:
 			var pcam_host: PhantomCameraHost = PhantomCameraHost.new()
-			pcam_host.set_name(Constants.PCAM_HOST_NODE_NAME)
+			pcam_host.set_name(PcamConstants.PCAM_HOST_NODE_NAME)
 			if is_2D:
 #				get_tree().get_edited_scene_root().get_viewport().get_camera_2d().add_child(pcam_host)
 				_get_camera_2D().add_child(pcam_host)
@@ -320,12 +320,12 @@ func _add_node(node_type: String) -> void:
 #				var pcam_3D := get_tree().get_edited_scene_root().get_viewport().get_camera_3d()
 				get_tree().get_edited_scene_root().get_viewport().get_camera_3d().add_child(pcam_host)
 				pcam_host.set_owner(get_tree().get_edited_scene_root())
-		Constants.PCAM_2D_NODE_NAME:
+		PcamConstants.PCAM_2D_NODE_NAME:
 			var pcam_2D: PhantomCamera2D = PhantomCamera2D.new()
-			_instantiate_node(root, pcam_2D, Constants.PCAM_2D_NODE_NAME)
-		Constants.PCAM_3D_NODE_NAME:
+			_instantiate_node(root, pcam_2D, PcamConstants.PCAM_2D_NODE_NAME)
+		PcamConstants.PCAM_3D_NODE_NAME:
 			var pcam_3D: PhantomCamera3D = PhantomCamera3D.new()
-			_instantiate_node(root, pcam_3D, Constants.PCAM_3D_NODE_NAME)
+			_instantiate_node(root, pcam_3D, PcamConstants.PCAM_3D_NODE_NAME)
 
 
 func _instantiate_node(root: Node, node: Node, name: String) -> void:
@@ -367,8 +367,8 @@ func _set_viewfinder(root: Node, editor: bool):
 			if not aspect_ratio_containers.resized.is_connected(_resized):
 				aspect_ratio_containers.resized.connect(_resized)
 
-			if not _active_pcam_camera.Properties.is_connected(_active_pcam_camera.Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
-				_active_pcam_camera.Properties.connect(_active_pcam_camera.Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
+			if not _active_pcam_camera.Properties.is_connected(_active_pcam_camera.PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
+				_active_pcam_camera.Properties.connect(_active_pcam_camera.PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
 
 				#			aspect_ratio_container
 				#			TODO - Might not be needed
