@@ -3,21 +3,21 @@
 class_name PhantomCamera3D
 extends Node3D
 
-#region Constants
+#region PcamConstants
 
-const Constants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
+const PcamConstants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
 
-const FOLLOW_DISTANCE_PROPERTY_NAME: 						StringName = Constants.FOLLOW_PARAMETERS_NAME + "distance"
-const FOLLOW_GROUP_DISTANCE_AUTO_NAME: 						StringName = Constants.FOLLOW_PARAMETERS_NAME + "auto_distance"
-const FOLLOW_GROUP_DISTANCE_AUTO_MIN_NAME: 					StringName = Constants.FOLLOW_PARAMETERS_NAME + "min_distance"
-const FOLLOW_GROUP_DISTANCE_AUTO_MAX_NAME: 					StringName = Constants.FOLLOW_PARAMETERS_NAME + "max_distance"
-const FOLLOW_GROUP_DISTANCE_AUTO_DIVISOR: 					StringName = Constants.FOLLOW_PARAMETERS_NAME + "auto_distance_divisor"
+const FOLLOW_DISTANCE_PROPERTY_NAME: 						StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "distance"
+const FOLLOW_GROUP_DISTANCE_AUTO_NAME: 						StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "auto_distance"
+const FOLLOW_GROUP_DISTANCE_AUTO_MIN_NAME: 					StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "min_distance"
+const FOLLOW_GROUP_DISTANCE_AUTO_MAX_NAME: 					StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "max_distance"
+const FOLLOW_GROUP_DISTANCE_AUTO_DIVISOR: 					StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "auto_distance_divisor"
 
 const SPRING_ARM_PROPERTY_NAME: 							StringName = "spring_arm/"
-const FOLLOW_SPRING_ARM_COLLISION_MASK_NAME: 				StringName = Constants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "collision_mask"
-const FOLLOW_SPRING_ARM_SHAPE_NAME: 						StringName = Constants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "shape"
-const FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME: 				StringName = Constants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "spring_length"
-const FOLLOW_SPRING_ARM_MARGIN_NAME: 						StringName = Constants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "margin"
+const FOLLOW_SPRING_ARM_COLLISION_MASK_NAME: 				StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "collision_mask"
+const FOLLOW_SPRING_ARM_SHAPE_NAME: 						StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "shape"
+const FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME: 				StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "spring_length"
+const FOLLOW_SPRING_ARM_MARGIN_NAME: 						StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + SPRING_ARM_PROPERTY_NAME + "margin"
 
 const LOOK_AT_MODE_PROPERTY_NAME: 							StringName = "look_at_mode"
 const LOOK_AT_TARGET_PROPERTY_NAME: 						StringName = "look_at_target"
@@ -59,7 +59,7 @@ var Properties: Object = preload("res://addons/phantom_camera/scripts/phantom_ca
 var follow_distance: float = 1:
 	set(value):
 		follow_distance = value
-		if is_instance_valid(Properties.follow_target_node) and Properties.follow_mode != Constants.FollowMode.THIRD_PERSON:
+		if is_instance_valid(Properties.follow_target_node) and Properties.follow_mode != PcamConstants.FollowMode.THIRD_PERSON:
 			set_global_position(_get_target_position_offset())
 	get:
 		return follow_distance
@@ -115,11 +115,11 @@ func _get_property_list() -> Array:
 	property_list.append_array(Properties.add_priority_properties())
 	property_list.append_array(Properties.add_follow_mode_property())
 
-	if Properties.follow_mode != Constants.FollowMode.NONE:
+	if Properties.follow_mode != PcamConstants.FollowMode.NONE:
 		property_list.append_array(Properties.add_follow_target_property())
 
-		if Properties.follow_mode == Constants.FollowMode.GROUP or \
-		Properties.follow_mode == Constants.FollowMode.FRAMED:
+		if Properties.follow_mode == PcamConstants.FollowMode.GROUP or \
+		Properties.follow_mode == PcamConstants.FollowMode.FRAMED:
 				if not _follow_group_distance_auto:
 					property_list.append({
 						"name": FOLLOW_DISTANCE_PROPERTY_NAME,
@@ -128,7 +128,7 @@ func _get_property_list() -> Array:
 						"usage": PROPERTY_USAGE_DEFAULT,
 					})
 
-				if Properties.follow_mode == Constants.FollowMode.GROUP:
+				if Properties.follow_mode == PcamConstants.FollowMode.GROUP:
 					property_list.append({
 						"name": FOLLOW_GROUP_DISTANCE_AUTO_NAME,
 						"type": TYPE_BOOL,
@@ -159,7 +159,7 @@ func _get_property_list() -> Array:
 							"usage": PROPERTY_USAGE_DEFAULT,
 						})
 
-		if Properties.follow_mode == Constants.FollowMode.THIRD_PERSON:
+		if Properties.follow_mode == PcamConstants.FollowMode.THIRD_PERSON:
 			property_list.append({
 				"name": FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME,
 				"type": TYPE_FLOAT,
@@ -241,13 +241,13 @@ func _set(property: StringName, value) -> bool:
 
 	Properties.set_follow_properties(property, value, self)
 
-	if Properties.follow_mode == Constants.FollowMode.FRAMED:
+	if Properties.follow_mode == PcamConstants.FollowMode.FRAMED:
 		if Properties.follow_framed_initial_set and Properties.follow_target_node:
 			Properties.follow_framed_initial_set = false
-			Properties.connect(Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
+			Properties.connect(PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
 	else:
-		if Properties.is_connected(Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
-			Properties.disconnect(Constants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
+		if Properties.is_connected(PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed):
+			Properties.disconnect(PcamConstants.DEAD_ZONE_CHANGED_SIGNAL, _on_dead_zone_changed)
 
 	if property == FOLLOW_DISTANCE_PROPERTY_NAME or property == FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME:
 		if value <= 0:
@@ -346,44 +346,44 @@ func _set(property: StringName, value) -> bool:
 
 func _get(property: StringName):
 #	TODO - For https://github.com/MarcusSkov/phantom-camera/issues/26
-#	if property == Constants.PHANTOM_CAMERA_HOST: return Properties.pcam_host_owner.name
+#	if property == PcamConstants.PHANTOM_CAMERA_HOST: return Properties.pcam_host_owner.name
 
-	if property == Constants.PRIORITY_OVERRIDE: 						return Properties.priority_override
-	if property == Constants.PRIORITY_PROPERTY_NAME: 					return Properties.priority
+	if property == PcamConstants.PRIORITY_OVERRIDE: 						return Properties.priority_override
+	if property == PcamConstants.PRIORITY_PROPERTY_NAME: 					return Properties.priority
 
-	if property == Constants.FOLLOW_MODE_PROPERTY_NAME: 				return Properties.follow_mode
-	if property == Constants.FOLLOW_TARGET_PROPERTY_NAME: 				return Properties.follow_target_path
-	if property == Constants.FOLLOW_GROUP_PROPERTY_NAME: 				return Properties.follow_group_paths
-	if property == Constants.FOLLOW_PATH_PROPERTY_NAME: 				return Properties.follow_path_path
+	if property == PcamConstants.FOLLOW_MODE_PROPERTY_NAME: 				return Properties.follow_mode
+	if property == PcamConstants.FOLLOW_TARGET_PROPERTY_NAME: 				return Properties.follow_target_path
+	if property == PcamConstants.FOLLOW_GROUP_PROPERTY_NAME: 				return Properties.follow_group_paths
+	if property == PcamConstants.FOLLOW_PATH_PROPERTY_NAME: 				return Properties.follow_path_path
 	if property == FOLLOW_DISTANCE_PROPERTY_NAME:				 		return follow_distance
-	if property == Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME	: 		return Properties.follow_target_offset_3D
+	if property == PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME	: 		return Properties.follow_target_offset_3D
 
 	if property == FOLLOW_GROUP_DISTANCE_AUTO_NAME:						return _follow_group_distance_auto
 	if property == FOLLOW_GROUP_DISTANCE_AUTO_MIN_NAME:					return _follow_group_distance_auto_min
 	if property == FOLLOW_GROUP_DISTANCE_AUTO_MAX_NAME:					return _follow_group_distance_auto_max
 	if property == FOLLOW_GROUP_DISTANCE_AUTO_DIVISOR:					return _follow_group_distance_auto_divisor
 
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:	return Properties.follow_framed_dead_zone_width
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:		return Properties.follow_framed_dead_zone_height
-	if property == Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:			return Properties.show_viewfinder_in_play
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:	return Properties.follow_framed_dead_zone_width
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:		return Properties.follow_framed_dead_zone_height
+	if property == PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:			return Properties.show_viewfinder_in_play
 
 	if property == FOLLOW_SPRING_ARM_COLLISION_MASK_NAME:				return _follow_spring_arm_collision_mask
 	if property == FOLLOW_SPRING_ARM_SHAPE_NAME:						return _follow_spring_arm_shape
 	if property == FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME:				return follow_distance
 	if property == FOLLOW_SPRING_ARM_MARGIN_NAME:						return _follow_spring_arm_margin
 
-	if property == Constants.FOLLOW_DAMPING_NAME: 						return Properties.follow_has_damping
-	if property == Constants.FOLLOW_DAMPING_VALUE_NAME: 				return Properties.follow_damping_value
+	if property == PcamConstants.FOLLOW_DAMPING_NAME: 						return Properties.follow_has_damping
+	if property == PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 				return Properties.follow_damping_value
 
 	if property == LOOK_AT_MODE_PROPERTY_NAME: 							return look_at_mode_enum
 	if property == LOOK_AT_TARGET_PROPERTY_NAME: 						return _look_at_target_path
 	if property == LOOK_AT_TARGET_OFFSET_PROPERTY_NAME: 				return look_at_target_offset
 	if property == LOOK_AT_GROUP_PROPERTY_NAME:							return _look_at_group_paths
 
-	if property == Constants.TWEEN_RESOURCE_PROPERTY_NAME: 				return Properties.tween_resource
+	if property == PcamConstants.TWEEN_RESOURCE_PROPERTY_NAME: 				return Properties.tween_resource
 
-	if property == Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:		return Properties.inactive_update_mode
-	if property == Constants.TWEEN_ONLOAD_NAME: 						return Properties.tween_onload
+	if property == PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:		return Properties.inactive_update_mode
+	if property == PcamConstants.TWEEN_ONLOAD_NAME: 						return Properties.tween_onload
 
 	if property ==  CAMERA_3D_RESOURCE_PROPERTY_NAME:					return _camera_3D_resouce
 
@@ -394,11 +394,11 @@ func _get(property: StringName):
 
 func _property_can_revert(property: StringName) -> bool:
 	match property:
-		Constants.PRIORITY_OVERRIDE: 									return true
-		Constants.PRIORITY_PROPERTY_NAME: 								return true
+		PcamConstants.PRIORITY_OVERRIDE: 									return true
+		PcamConstants.PRIORITY_PROPERTY_NAME: 								return true
 		
-		Constants.FOLLOW_TARGET_PROPERTY_NAME:							return true
-		Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return true
+		PcamConstants.FOLLOW_TARGET_PROPERTY_NAME:							return true
+		PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return true
 		
 		FOLLOW_DISTANCE_PROPERTY_NAME:				 					return true
 		FOLLOW_GROUP_DISTANCE_AUTO_NAME:								return true
@@ -406,20 +406,20 @@ func _property_can_revert(property: StringName) -> bool:
 		FOLLOW_GROUP_DISTANCE_AUTO_MAX_NAME:							return true
 		FOLLOW_GROUP_DISTANCE_AUTO_DIVISOR:								return true
 		
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return true
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return true
-		Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return true
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return true
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return true
+		PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return true
 
 		FOLLOW_SPRING_ARM_COLLISION_MASK_NAME:							return true
 		FOLLOW_SPRING_ARM_SHAPE_NAME:									return true
 		FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME:							return true
 		FOLLOW_SPRING_ARM_MARGIN_NAME:									return true
 		
-		Constants.FOLLOW_DAMPING_NAME: 									return true
-		Constants.FOLLOW_DAMPING_VALUE_NAME: 							return true
+		PcamConstants.FOLLOW_DAMPING_NAME: 									return true
+		PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 							return true
 		
-		Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return true
-		Constants.TWEEN_ONLOAD_NAME: 									return true
+		PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return true
+		PcamConstants.TWEEN_ONLOAD_NAME: 									return true
 		
 		CAMERA_3D_RESOURCE_PROPERTY_NAME: 								return true
 		
@@ -433,11 +433,11 @@ func _property_can_revert(property: StringName) -> bool:
 
 func _property_get_revert(property: StringName) -> Variant:
 	match property:
-		Constants.PRIORITY_OVERRIDE: 									return false
-		Constants.PRIORITY_PROPERTY_NAME: 								return 0
+		PcamConstants.PRIORITY_OVERRIDE: 									return false
+		PcamConstants.PRIORITY_PROPERTY_NAME: 								return 0
 		
-		Constants.FOLLOW_TARGET_PROPERTY_NAME:							return NodePath()
-		Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return Vector3.ZERO
+		PcamConstants.FOLLOW_TARGET_PROPERTY_NAME:							return NodePath()
+		PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return Vector3.ZERO
 		
 		FOLLOW_DISTANCE_PROPERTY_NAME:				 					return 1
 		FOLLOW_GROUP_DISTANCE_AUTO_NAME:								return false
@@ -445,20 +445,20 @@ func _property_get_revert(property: StringName) -> Variant:
 		FOLLOW_GROUP_DISTANCE_AUTO_MAX_NAME:							return 5
 		FOLLOW_GROUP_DISTANCE_AUTO_DIVISOR:								return 10
 		
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return 0.5
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return 0.5
-		Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return false
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return 0.5
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return 0.5
+		PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return false
 		
 		FOLLOW_SPRING_ARM_COLLISION_MASK_NAME:							return 1
 		FOLLOW_SPRING_ARM_SHAPE_NAME:									return null
 		FOLLOW_SPRING_ARM_SPRING_LENGTH_NAME:							return 1
 		FOLLOW_SPRING_ARM_MARGIN_NAME:									return 0.01
 		
-		Constants.FOLLOW_DAMPING_NAME: 									return false
-		Constants.FOLLOW_DAMPING_VALUE_NAME: 							return 10
+		PcamConstants.FOLLOW_DAMPING_NAME: 									return false
+		PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 							return 10
 		
-		Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return Constants.InactiveUpdateMode.ALWAYS
-		Constants.TWEEN_ONLOAD_NAME: 									return true
+		PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return PcamConstants.InactiveUpdateMode.ALWAYS
+		PcamConstants.TWEEN_ONLOAD_NAME: 									return true
 		
 		CAMERA_3D_RESOURCE_PROPERTY_NAME: 								return null
 	
@@ -493,12 +493,12 @@ func _exit_tree() -> void:
 
 
 func _ready():
-	if Properties.follow_mode == Constants.FollowMode.THIRD_PERSON:
+	if Properties.follow_mode == PcamConstants.FollowMode.THIRD_PERSON:
 		if not Engine.is_editor_hint():
 			if not is_instance_valid(_follow_spring_arm_node):
 				_follow_spring_arm_node = SpringArm3D.new()
 				get_parent().add_child.call_deferred(_follow_spring_arm_node)
-	if Properties.follow_mode == Constants.FollowMode.FRAMED:
+	if Properties.follow_mode == PcamConstants.FollowMode.FRAMED:
 		if not Engine.is_editor_hint():
 			_camera_offset = global_position - _get_target_position_offset()
 			_current_rotation = get_global_rotation()
@@ -507,26 +507,26 @@ func _ready():
 func _process(delta: float) -> void:
 	if not Properties.is_active:
 		match Properties.inactive_update_mode:
-			Constants.InactiveUpdateMode.NEVER:
+			PcamConstants.InactiveUpdateMode.NEVER:
 				return
-#			Constants.InactiveUpdateMode.EXPONENTIALLY:
+#			PcamConstants.InactiveUpdateMode.EXPONENTIALLY:
 #				TODO
 
 	if Properties.should_follow:
 		match Properties.follow_mode:
-			Constants.FollowMode.GLUED:
+			PcamConstants.FollowMode.GLUED:
 				if Properties.follow_target_node:
 					_interpolate_position(
 						Properties.follow_target_node.get_global_position(),
 						delta
 					)
-			Constants.FollowMode.SIMPLE:
+			PcamConstants.FollowMode.SIMPLE:
 				if Properties.follow_target_node:
 					_interpolate_position(
 						_get_target_position_offset(),
 						delta
 					)
-			Constants.FollowMode.GROUP:
+			PcamConstants.FollowMode.GROUP:
 				if Properties.has_follow_group:
 					if Properties.follow_group_nodes_3D.size() == 1:
 						_interpolate_position(
@@ -553,14 +553,14 @@ func _process(delta: float) -> void:
 							get_transform().basis.z * Vector3(distance, distance, distance),
 							delta
 						)
-			Constants.FollowMode.PATH:
+			PcamConstants.FollowMode.PATH:
 				if Properties.follow_target_node and Properties.follow_path_node:
 					var path_position: Vector3 = Properties.follow_path_node.get_global_position()
 					_interpolate_position(
 						Properties.follow_path_node.curve.get_closest_point(Properties.follow_target_node.get_global_position() - path_position) + path_position,
 						delta
 					)
-			Constants.FollowMode.FRAMED:
+			PcamConstants.FollowMode.FRAMED:
 				if Properties.follow_target_node:
 					if not Engine.is_editor_hint():
 						if !is_active() || get_pcam_host_owner().trigger_pcam_tween:
@@ -648,7 +648,7 @@ func _process(delta: float) -> void:
 							unprojected_position.y = (unprojected_position.y / aspect_ratio_scale + 1) / 2
 
 						Properties.viewport_position = unprojected_position
-			Constants.FollowMode.THIRD_PERSON:
+			PcamConstants.FollowMode.THIRD_PERSON:
 				if Properties.follow_target_node:
 					if not Engine.is_editor_hint():
 						if is_instance_valid(Properties.follow_target_node):
@@ -811,7 +811,7 @@ func get_tween_duration() -> float:
 
 ## Assigns a new Tween Transition value.
 ## Note: This will override and make the Tween Resource unique to this PhantomCamera3D.
-func set_tween_transition(value: Constants.TweenTransitions) -> void:
+func set_tween_transition(value: PcamConstants.TweenTransitions) -> void:
 	if get_tween_resource():
 		Properties.tween_resource_default.duration = Properties.tween_resource.duration
 		Properties.tween_resource_default.transition = value
@@ -828,7 +828,7 @@ func get_tween_transition() -> int:
 
 ## Assigns a new Tween Ease value.
 ## Note: This will override and make the Tween Resource unique to this PhantomCamera3D.
-func set_tween_ease(value: Constants.TweenEases) -> void:
+func set_tween_ease(value: PcamConstants.TweenEases) -> void:
 	if get_tween_resource():
 		Properties.tween_resource_default.duration = Properties.tween_resource.duration
 		Properties.tween_resource_default.transition = Properties.tween_resource.ease
@@ -858,7 +858,7 @@ func is_tween_on_load() -> bool:
 	return Properties.tween_onload
 
 
-## Gets the current follow mode as an enum int based on Constants.FOLLOW_MODE enum.
+## Gets the current follow mode as an enum int based on PcamConstants.FOLLOW_MODE enum.
 ## Note: Setting Follow Mode purposely not added. A separate PCam should be used instead.
 func get_follow_mode() -> int:
 	return Properties.follow_mode
@@ -1090,7 +1090,7 @@ func get_look_at_group_nodes() -> Array[Node3D]:
 
 ## Gets Inactive Update Mode property.
 func get_inactive_update_mode() -> String:
-	return Constants.InactiveUpdateMode.keys()[Properties.inactive_update_mode].capitalize()
+	return PcamConstants.InactiveUpdateMode.keys()[Properties.inactive_update_mode].capitalize()
 
 
 ## Assogms a new Camera3D Resource to this PhantomCamera3D

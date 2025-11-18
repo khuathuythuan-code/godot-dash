@@ -1,9 +1,9 @@
 @tool
 extends RefCounted
 
-#region Constants
+#region PcamConstants
 
-const Constants: Script = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
+const PcamConstants: Script = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
 const PcamGroupNames: Script = preload("res://addons/phantom_camera/scripts/group_names.gd")
 
 #endregion
@@ -40,7 +40,7 @@ var follow_has_target: bool
 var follow_has_path_target: bool
 var follow_path_node: Node
 var follow_path_path: NodePath
-var follow_mode: Constants.FollowMode = Constants.FollowMode.NONE
+var follow_mode: PcamConstants.FollowMode = PcamConstants.FollowMode.NONE
 var follow_target_offset_2D: Vector2
 var follow_target_offset_3D: Vector3
 var follow_has_damping: bool
@@ -59,7 +59,7 @@ var viewport_position: Vector2
 var tween_resource: PhantomCameraTween
 var tween_resource_default: PhantomCameraTween = PhantomCameraTween.new()
 
-var inactive_update_mode: Constants.InactiveUpdateMode = Constants.InactiveUpdateMode.ALWAYS
+var inactive_update_mode: PcamConstants.InactiveUpdateMode = PcamConstants.InactiveUpdateMode.ALWAYS
 
 #endregion
 
@@ -71,7 +71,7 @@ func add_multiple_hosts_properties() -> Array:
 
 	if scene_has_multiple_pcam_hosts:
 		_property_list.append({
-			"name": Constants.PCAM_HOST,
+			"name": PcamConstants.PCAM_HOST,
 			"type": TYPE_INT,
 			"hint": PROPERTY_HINT_ENUM,
 			"hint_string": ",".join(PackedStringArray(pcam_host_group)),
@@ -85,12 +85,12 @@ func add_priority_properties() -> Array:
 	var _property_list: Array
 
 	_property_list.append({
-		"name": Constants.PRIORITY_OVERRIDE,
+		"name": PcamConstants.PRIORITY_OVERRIDE,
 		"type": TYPE_BOOL,
 	})
 
 	_property_list.append({
-		"name": Constants.PRIORITY_PROPERTY_NAME,
+		"name": PcamConstants.PRIORITY_PROPERTY_NAME,
 		"type": TYPE_INT,
 		"hint": PROPERTY_HINT_NONE,
 		"usage": PROPERTY_USAGE_DEFAULT,
@@ -102,12 +102,12 @@ func add_priority_properties() -> Array:
 func add_follow_mode_property() -> Array:
 	var _property_list: Array
 
-	var follow_mode_keys: Array = Constants.FollowMode.keys()
+	var follow_mode_keys: Array = PcamConstants.FollowMode.keys()
 	if is_2D:
-		follow_mode_keys.remove_at(Constants.FollowMode.THIRD_PERSON)
+		follow_mode_keys.remove_at(PcamConstants.FollowMode.THIRD_PERSON)
 
 	_property_list.append({
-		"name": Constants.FOLLOW_MODE_PROPERTY_NAME,
+		"name": PcamConstants.FOLLOW_MODE_PROPERTY_NAME,
 		"type": TYPE_INT,
 		"hint": PROPERTY_HINT_ENUM,
 		"hint_string": ", ".join(PackedStringArray(follow_mode_keys)).capitalize(),
@@ -120,9 +120,9 @@ func add_follow_mode_property() -> Array:
 func add_follow_target_property() -> Array:
 	var _property_list: Array
 
-	if follow_mode == Constants.FollowMode.GROUP:
+	if follow_mode == PcamConstants.FollowMode.GROUP:
 		_property_list.append({
-			"name": Constants.FOLLOW_GROUP_PROPERTY_NAME,
+			"name": PcamConstants.FOLLOW_GROUP_PROPERTY_NAME,
 			"type": TYPE_ARRAY,
 			"hint": PROPERTY_HINT_TYPE_STRING,
 			"hint_string": TYPE_NODE_PATH,
@@ -130,15 +130,15 @@ func add_follow_target_property() -> Array:
 		})
 	else:
 		_property_list.append({
-			"name": Constants.FOLLOW_TARGET_PROPERTY_NAME,
+			"name": PcamConstants.FOLLOW_TARGET_PROPERTY_NAME,
 			"type": TYPE_NODE_PATH,
 			"hint": PROPERTY_HINT_NODE_PATH_VALID_TYPES,
 			"hint_string": "Node2D" + ',' + "Node3D",
 			"usage": PROPERTY_USAGE_DEFAULT,
 		})
-		if follow_mode == Constants.FollowMode.PATH:
+		if follow_mode == PcamConstants.FollowMode.PATH:
 			_property_list.append({
-				"name": Constants.FOLLOW_PATH_PROPERTY_NAME,
+				"name": PcamConstants.FOLLOW_PATH_PROPERTY_NAME,
 				"type": TYPE_NODE_PATH,
 				"hint": PROPERTY_HINT_NODE_PATH_VALID_TYPES,
 				"hint_string": "Path2D" + "," + "Path3D"
@@ -149,29 +149,29 @@ func add_follow_target_property() -> Array:
 
 func add_follow_properties() -> Array:
 	var _property_list: Array
-	if follow_mode != Constants.FollowMode.NONE:
-		if follow_mode == Constants.FollowMode.SIMPLE or \
-			follow_mode == Constants.FollowMode.GROUP or \
-			follow_mode == Constants.FollowMode.FRAMED or \
-			follow_mode == Constants.FollowMode.THIRD_PERSON:
+	if follow_mode != PcamConstants.FollowMode.NONE:
+		if follow_mode == PcamConstants.FollowMode.SIMPLE or \
+			follow_mode == PcamConstants.FollowMode.GROUP or \
+			follow_mode == PcamConstants.FollowMode.FRAMED or \
+			follow_mode == PcamConstants.FollowMode.THIRD_PERSON:
 			if is_2D:
 				_property_list.append({
-					"name": Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME,
+					"name": PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME,
 					"type": TYPE_VECTOR2,
 					"hint": PROPERTY_HINT_NONE,
 					"usage": PROPERTY_USAGE_DEFAULT,
 				})
 			else:
 				_property_list.append({
-					"name": Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME,
+					"name": PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME,
 					"type": TYPE_VECTOR3,
 					"hint": PROPERTY_HINT_NONE,
 					"usage": PROPERTY_USAGE_DEFAULT,
 				})
 
-	if follow_mode != Constants.FollowMode.NONE:
+	if follow_mode != PcamConstants.FollowMode.NONE:
 		_property_list.append({
-			"name": Constants.FOLLOW_DAMPING_NAME,
+			"name": PcamConstants.FOLLOW_DAMPING_NAME,
 			"type": TYPE_BOOL,
 			"hint": PROPERTY_HINT_NONE,
 			"usage": PROPERTY_USAGE_DEFAULT,
@@ -179,7 +179,7 @@ func add_follow_properties() -> Array:
 
 		if follow_has_damping:
 			_property_list.append({
-				"name": Constants.FOLLOW_DAMPING_VALUE_NAME,
+				"name": PcamConstants.FOLLOW_DAMPING_VALUE_NAME,
 				"type": TYPE_FLOAT,
 				"hint": PROPERTY_HINT_RANGE,
 				"hint_string": "0.01, 100, 0.01,",
@@ -192,16 +192,16 @@ func add_follow_properties() -> Array:
 func add_follow_framed() -> Array:
 	var _property_list: Array
 
-	if follow_mode == Constants.FollowMode.FRAMED:
+	if follow_mode == PcamConstants.FollowMode.FRAMED:
 		_property_list.append({
-			"name": Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME,
+			"name": PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME,
 			"type": TYPE_FLOAT,
 			"hint": PROPERTY_HINT_RANGE,
 			"hint_string": "0, 1, 0.01,",
 			"usage": PROPERTY_USAGE_DEFAULT,
 		})
 		_property_list.append({
-			"name": Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME,
+			"name": PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME,
 			"type": TYPE_FLOAT,
 			"hint": PROPERTY_HINT_RANGE,
 			"hint_string": "0, 1, 0.01,",
@@ -209,7 +209,7 @@ func add_follow_framed() -> Array:
 		})
 
 		_property_list.append({
-			"name": Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME,
+			"name": PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME,
 			"type": TYPE_BOOL,
 			"hint": PROPERTY_HINT_NONE,
 			"usage": PROPERTY_USAGE_DEFAULT
@@ -222,7 +222,7 @@ func add_tween_properties() -> Array:
 	var _property_list: Array
 
 	_property_list.append({
-		"name": Constants.TWEEN_RESOURCE_PROPERTY_NAME,
+		"name": PcamConstants.TWEEN_RESOURCE_PROPERTY_NAME,
 		"type": TYPE_OBJECT,
 		"hint": PROPERTY_HINT_RESOURCE_TYPE,
 		"hint_string": "PhantomCameraTween"
@@ -235,17 +235,17 @@ func add_secondary_properties() -> Array:
 	var _property_list: Array
 
 	_property_list.append({
-		"name": Constants.TWEEN_ONLOAD_NAME,
+		"name": PcamConstants.TWEEN_ONLOAD_NAME,
 		"type": TYPE_BOOL,
 		"hint": PROPERTY_HINT_NONE,
 		"usage": PROPERTY_USAGE_DEFAULT
 	})
 
 	_property_list.append({
-		"name": Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME,
+		"name": PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME,
 		"type": TYPE_INT,
 		"hint": PROPERTY_HINT_ENUM,
-		"hint_string": ", ".join(PackedStringArray(Constants.InactiveUpdateMode.keys())).capitalize(),
+		"hint_string": ", ".join(PackedStringArray(PcamConstants.InactiveUpdateMode.keys())).capitalize(),
 	})
 
 	return _property_list
@@ -256,7 +256,7 @@ func add_secondary_properties() -> Array:
 #region _set
 
 func set_phantom_host_property(property: StringName, value, pcam: Node) -> void:
-	if property == Constants.PCAM_HOST:
+	if property == PcamConstants.PCAM_HOST:
 		if value != null && value is int:
 			var host_node = instance_from_id(value)
 			pcam_host_owner = host_node
@@ -264,7 +264,7 @@ func set_phantom_host_property(property: StringName, value, pcam: Node) -> void:
 
 func set_priority_property(property: StringName, value, pcam: Node) -> void:
 	if Engine.is_editor_hint() and is_instance_valid(pcam_host_owner):
-		if property == Constants.PRIORITY_OVERRIDE:
+		if property == PcamConstants.PRIORITY_OVERRIDE:
 			if value == true:
 				priority_override = value
 				pcam_host_owner.pcam_priority_override(pcam)
@@ -273,30 +273,30 @@ func set_priority_property(property: StringName, value, pcam: Node) -> void:
 				pcam_host_owner.pcam_priority_updated(pcam)
 				pcam_host_owner.pcam_priority_override_disabled()
 
-	if property == Constants.PRIORITY_PROPERTY_NAME:
+	if property == PcamConstants.PRIORITY_PROPERTY_NAME:
 		set_priority(value, pcam)
 
 
 func set_follow_properties(property: StringName, value, pcam: Node) -> void:
-	if property == Constants.FOLLOW_MODE_PROPERTY_NAME:
+	if property == PcamConstants.FOLLOW_MODE_PROPERTY_NAME:
 		follow_mode = value
 
-		if follow_mode != Constants.FollowMode.GROUP:
+		if follow_mode != PcamConstants.FollowMode.GROUP:
 			has_follow_group = false
 
-			if follow_mode == Constants.FollowMode.FRAMED:
+			if follow_mode == PcamConstants.FollowMode.FRAMED:
 				follow_framed_initial_set = true
 
 		pcam.notify_property_list_changed()
 
 #		match value:
-#			Constants.FollowMode.NONE:
+#			PcamConstants.FollowMode.NONE:
 #				set_process(pcam, false)
 #			_:
 #				set_process(pcam, true)
 
-	if property == Constants.FOLLOW_TARGET_PROPERTY_NAME:
-		if follow_mode != Constants.FollowMode.NONE:
+	if property == PcamConstants.FOLLOW_TARGET_PROPERTY_NAME:
+		if follow_mode != PcamConstants.FollowMode.NONE:
 			should_follow = true
 		else:
 			should_follow = false
@@ -313,7 +313,7 @@ func set_follow_properties(property: StringName, value, pcam: Node) -> void:
 
 		pcam.notify_property_list_changed()
 
-	if property == Constants.FOLLOW_PATH_PROPERTY_NAME:
+	if property == PcamConstants.FOLLOW_PATH_PROPERTY_NAME:
 		follow_path_path = value
 
 		var valueNodePath: NodePath = value as NodePath
@@ -326,7 +326,7 @@ func set_follow_properties(property: StringName, value, pcam: Node) -> void:
 			follow_path_node = null
 		pcam.notify_property_list_changed()
 
-	if property == Constants.FOLLOW_GROUP_PROPERTY_NAME:
+	if property == PcamConstants.FOLLOW_GROUP_PROPERTY_NAME:
 		if value and value.size() > 0:
 			# Clears the Array in case of reshuffling or updated Nodes
 			if is_2D:
@@ -355,39 +355,39 @@ func set_follow_properties(property: StringName, value, pcam: Node) -> void:
 		pcam.notify_property_list_changed()
 
 	# Framed Follow
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:
 		follow_framed_dead_zone_width = value
 		dead_zone_changed.emit()
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:
 		follow_framed_dead_zone_height = value
 		dead_zone_changed.emit()
-	if property == Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:
+	if property == PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:
 		show_viewfinder_in_play = value
 
-	if property == Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME:
+	if property == PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME:
 		if value is Vector3:
 			follow_target_offset_3D = value
 		else:
 			follow_target_offset_2D = value
 
-	if property == Constants.FOLLOW_DAMPING_NAME:
+	if property == PcamConstants.FOLLOW_DAMPING_NAME:
 		follow_has_damping = value
 		pcam.notify_property_list_changed()
 
-	if property == Constants.FOLLOW_DAMPING_VALUE_NAME:
+	if property == PcamConstants.FOLLOW_DAMPING_VALUE_NAME:
 		follow_damping_value = value
 
 
 func set_tween_properties(property: StringName, value, pcam: Node) -> void:
-	if property == Constants.TWEEN_RESOURCE_PROPERTY_NAME:
+	if property == PcamConstants.TWEEN_RESOURCE_PROPERTY_NAME:
 		tween_resource = value
 
 
 func set_secondary_properties(property: StringName, value, pcam: Node) -> void:
-	if property == Constants.TWEEN_ONLOAD_NAME:
+	if property == PcamConstants.TWEEN_ONLOAD_NAME:
 		tween_onload = value
 
-	if property == Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:
+	if property == PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:
 		inactive_update_mode = value
 
 

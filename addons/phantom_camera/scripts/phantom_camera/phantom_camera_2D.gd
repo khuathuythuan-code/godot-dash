@@ -3,9 +3,9 @@
 class_name PhantomCamera2D
 extends Node2D
 
-#region Constants
+#region PcamConstants
 
-const Constants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
+const PcamConstants = preload("res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_constants.gd")
 
 const FRAME_PREVIEW: StringName = "frame_preview"
 
@@ -13,10 +13,10 @@ const PIXEL_PERFECT_PROPERTY_NAME: StringName = "pixel_perfect"
 
 const ZOOM_PROPERTY_NAME: StringName = "zoom"
 
-const FOLLOW_GROUP_ZOOM_AUTO: StringName = Constants.FOLLOW_PARAMETERS_NAME + "auto_zoom"
-const FOLLOW_GROUP_ZOOM_MIN: StringName = Constants.FOLLOW_PARAMETERS_NAME + "min_zoom"
-const FOLLOW_GROUP_ZOOM_MAX: StringName = Constants.FOLLOW_PARAMETERS_NAME + "max_zoom"
-const FOLLOW_GROUP_ZOOM_MARGIN: StringName = Constants.FOLLOW_PARAMETERS_NAME + "zoom_margin"
+const FOLLOW_GROUP_ZOOM_AUTO: StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "auto_zoom"
+const FOLLOW_GROUP_ZOOM_MIN: StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "min_zoom"
+const FOLLOW_GROUP_ZOOM_MAX: StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "max_zoom"
+const FOLLOW_GROUP_ZOOM_MARGIN: StringName = PcamConstants.FOLLOW_PARAMETERS_NAME + "zoom_margin"
 
 const CAMERA_2D_LIMIT: StringName = "limit/"
 
@@ -103,10 +103,10 @@ func _get_property_list() -> Array:
 
 	property_list.append_array(Properties.add_follow_mode_property())
 
-	if Properties.follow_mode != Constants.FollowMode.NONE:
+	if Properties.follow_mode != PcamConstants.FollowMode.NONE:
 		property_list.append_array(Properties.add_follow_target_property())
 
-	if Properties.follow_mode == Constants.FollowMode.GROUP:
+	if Properties.follow_mode == PcamConstants.FollowMode.GROUP:
 		property_list.append({
 			"name": FOLLOW_GROUP_ZOOM_AUTO,
 			"type": TYPE_BOOL,
@@ -315,21 +315,21 @@ func _set_limit_node(value: NodePath) -> void:
 #region _get
 
 func _get(property: StringName):
-	if property == Constants.PRIORITY_OVERRIDE: 						return Properties.priority_override
-	if property == Constants.PRIORITY_PROPERTY_NAME: 					return Properties.priority
+	if property == PcamConstants.PRIORITY_OVERRIDE: 						return Properties.priority_override
+	if property == PcamConstants.PRIORITY_PROPERTY_NAME: 					return Properties.priority
 
 	if property == ZOOM_PROPERTY_NAME: 									return camera_zoom
 
-	if property == Constants.FOLLOW_MODE_PROPERTY_NAME: 				return Properties.follow_mode
-	if property == Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME:		return Properties.follow_target_offset_2D
-	if property == Constants.FOLLOW_TARGET_PROPERTY_NAME: 				return Properties.follow_target_path
-	if property == Constants.FOLLOW_GROUP_PROPERTY_NAME: 				return Properties.follow_group_paths
+	if property == PcamConstants.FOLLOW_MODE_PROPERTY_NAME: 				return Properties.follow_mode
+	if property == PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME:		return Properties.follow_target_offset_2D
+	if property == PcamConstants.FOLLOW_TARGET_PROPERTY_NAME: 				return Properties.follow_target_path
+	if property == PcamConstants.FOLLOW_GROUP_PROPERTY_NAME: 				return Properties.follow_group_paths
 
-	if property == Constants.FOLLOW_PATH_PROPERTY_NAME: 				return Properties.follow_path_path
+	if property == PcamConstants.FOLLOW_PATH_PROPERTY_NAME: 				return Properties.follow_path_path
 
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:	return Properties.follow_framed_dead_zone_width
-	if property == Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:		return Properties.follow_framed_dead_zone_height
-	if property == Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:			return Properties.show_viewfinder_in_play
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME:	return Properties.follow_framed_dead_zone_width
+	if property == PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME:		return Properties.follow_framed_dead_zone_height
+	if property == PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:			return Properties.show_viewfinder_in_play
 
 	if property == PIXEL_PERFECT_PROPERTY_NAME:        					return pixel_perfect
 	
@@ -338,13 +338,13 @@ func _get(property: StringName):
 	if property == FOLLOW_GROUP_ZOOM_MAX: 								return follow_group_zoom_max
 	if property == FOLLOW_GROUP_ZOOM_MARGIN:							return follow_group_zoom_margin
 
-	if property == Constants.FOLLOW_DAMPING_NAME: 						return Properties.follow_has_damping
-	if property == Constants.FOLLOW_DAMPING_VALUE_NAME: 				return Properties.follow_damping_value
+	if property == PcamConstants.FOLLOW_DAMPING_NAME: 						return Properties.follow_has_damping
+	if property == PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 				return Properties.follow_damping_value
 
-	if property == Constants.TWEEN_RESOURCE_PROPERTY_NAME:				return Properties.tween_resource
+	if property == PcamConstants.TWEEN_RESOURCE_PROPERTY_NAME:				return Properties.tween_resource
 
-	if property == Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:		return Properties.inactive_update_mode
-	if property == Constants.TWEEN_ONLOAD_NAME: 						return Properties.tween_onload
+	if property == PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME:		return Properties.inactive_update_mode
+	if property == PcamConstants.TWEEN_ONLOAD_NAME: 						return Properties.tween_onload
 	
 	if property == DRAW_LIMITS:											return draw_limits
 	if property == LIMIT_LEFT:											return limit_left
@@ -364,23 +364,23 @@ func _get(property: StringName):
 
 func _property_can_revert(property: StringName) -> bool:
 	match property:
-		Constants.PRIORITY_OVERRIDE: 									return true
-		Constants.PRIORITY_PROPERTY_NAME: 								return true
+		PcamConstants.PRIORITY_OVERRIDE: 									return true
+		PcamConstants.PRIORITY_PROPERTY_NAME: 								return true
 		
 		ZOOM_PROPERTY_NAME: 											return true
 		
-		Constants.FOLLOW_TARGET_PROPERTY_NAME: 							return true
-		Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return true
+		PcamConstants.FOLLOW_TARGET_PROPERTY_NAME: 							return true
+		PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return true
 		
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return true
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return true
-		Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return true
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return true
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return true
+		PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return true
 		
-		Constants.FOLLOW_DAMPING_NAME: 									return true
-		Constants.FOLLOW_DAMPING_VALUE_NAME: 							return true
+		PcamConstants.FOLLOW_DAMPING_NAME: 									return true
+		PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 							return true
 		
-		Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return true
-		Constants.TWEEN_ONLOAD_NAME: 									return true
+		PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return true
+		PcamConstants.TWEEN_ONLOAD_NAME: 									return true
 		
 		PIXEL_PERFECT_PROPERTY_NAME: 									return true
 		
@@ -405,23 +405,23 @@ func _property_can_revert(property: StringName) -> bool:
 
 func _property_get_revert(property: StringName):
 	match property:
-		Constants.PRIORITY_OVERRIDE: 									return false
-		Constants.PRIORITY_PROPERTY_NAME: 								return 0
+		PcamConstants.PRIORITY_OVERRIDE: 									return false
+		PcamConstants.PRIORITY_PROPERTY_NAME: 								return 0
 		
 		ZOOM_PROPERTY_NAME:												return Vector2.ONE
 		
-		Constants.FOLLOW_TARGET_PROPERTY_NAME:							return NodePath()
-		Constants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return Vector2.ZERO
+		PcamConstants.FOLLOW_TARGET_PROPERTY_NAME:							return NodePath()
+		PcamConstants.FOLLOW_TARGET_OFFSET_PROPERTY_NAME: 					return Vector2.ZERO
 		
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return 0.5
-		Constants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return 0.5
-		Constants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return false
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_HORIZONTAL_NAME: 				return 0.5
+		PcamConstants.FOLLOW_FRAMED_DEAD_ZONE_VERTICAL_NAME: 				return 0.5
+		PcamConstants.FOLLOW_VIEWFINDER_IN_PLAY_NAME:						return false
 		
-		Constants.FOLLOW_DAMPING_NAME: 									return false
-		Constants.FOLLOW_DAMPING_VALUE_NAME: 							return 10.0
+		PcamConstants.FOLLOW_DAMPING_NAME: 									return false
+		PcamConstants.FOLLOW_DAMPING_VALUE_NAME: 							return 10.0
 		
-		Constants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return Constants.InactiveUpdateMode.ALWAYS
-		Constants.TWEEN_ONLOAD_NAME: 									return true
+		PcamConstants.INACTIVE_UPDATE_MODE_PROPERTY_NAME: 					return PcamConstants.InactiveUpdateMode.ALWAYS
+		PcamConstants.TWEEN_ONLOAD_NAME: 									return true
 		
 		PIXEL_PERFECT_PROPERTY_NAME: 									return false
 		
@@ -458,27 +458,27 @@ func _exit_tree() -> void:
 func _process(delta: float) -> void:
 	if not Properties.is_active:
 		match Properties.inactive_update_mode:
-			Constants.InactiveUpdateMode.NEVER:
+			PcamConstants.InactiveUpdateMode.NEVER:
 				return
-			Constants.InactiveUpdateMode.ALWAYS:
+			PcamConstants.InactiveUpdateMode.ALWAYS:
 				# Only triggers if limit isn't default
 				if limit_inactive_pcam:
 					set_global_position(
 						_set_limit_clamp_position(get_global_position())
 					)
-#			Constants.InactiveUpdateMode.EXPONENTIALLY:
+#			PcamConstants.InactiveUpdateMode.EXPONENTIALLY:
 #				TODO
 
 	if not Properties.should_follow: return
 
 	match Properties.follow_mode:
-		Constants.FollowMode.GLUED:
+		PcamConstants.FollowMode.GLUED:
 			if Properties.follow_target_node:
 				_set_pcam_global_position(Properties.follow_target_node.get_global_position(), delta)
-		Constants.FollowMode.SIMPLE:
+		PcamConstants.FollowMode.SIMPLE:
 			if Properties.follow_target_node:
 				_set_pcam_global_position(_target_position_with_offset(), delta)
-		Constants.FollowMode.GROUP:
+		PcamConstants.FollowMode.GROUP:
 			if Properties.has_follow_group:
 				if Properties.follow_group_nodes_2D.size() == 1:
 					_set_pcam_global_position(Properties.follow_group_nodes_2D[0].get_global_position(), delta)
@@ -501,7 +501,7 @@ func _process(delta: float) -> void:
 						else:
 							camera_zoom = clamp(screen_size.y / rect.size.y, follow_group_zoom_min, follow_group_zoom_max) * Vector2.ONE
 					_set_pcam_global_position(rect.get_center(), delta)
-		Constants.FollowMode.PATH:
+		PcamConstants.FollowMode.PATH:
 				if Properties.follow_target_node and Properties.follow_path_node:
 					var path_position: Vector2 = Properties.follow_path_node.get_global_position()
 					_set_pcam_global_position(
@@ -509,7 +509,7 @@ func _process(delta: float) -> void:
 							Properties.follow_target_node.get_global_position() - path_position
 						) + path_position,
 						delta)
-		Constants.FollowMode.FRAMED:
+		PcamConstants.FollowMode.FRAMED:
 			if Properties.follow_target_node:
 				if not Engine.is_editor_hint():
 					Properties.viewport_position = (get_follow_target_node().get_global_transform_with_canvas().get_origin() + Properties.follow_target_offset_2D) / get_viewport_rect().size
@@ -752,7 +752,7 @@ func get_tween_duration() -> float:
 
 ## Assigns a new Tween Transition value.
 ## Note: This will override and make the Tween Resource unique to this PhantomCamera2D.
-func set_tween_transition(value: Constants.TweenTransitions) -> void:
+func set_tween_transition(value: PcamConstants.TweenTransitions) -> void:
 	if get_tween_resource():
 		Properties.tween_resource_default.duration = Properties.tween_resource.duration
 		Properties.tween_resource_default.transition = value
@@ -769,7 +769,7 @@ func get_tween_transition() -> int:
 
 ## Assigns a new Tween Ease value.
 ## Note: This will override and make the Tween Resource unique to this PhantomCamera2D.
-func set_tween_ease(value: Constants.TweenEases) -> void:
+func set_tween_ease(value: PcamConstants.TweenEases) -> void:
 	if get_tween_resource():
 		Properties.tween_resource_default.duration = Properties.tween_resource.duration
 		Properties.tween_resource_default.transition = Properties.tween_resource.ease
@@ -799,7 +799,7 @@ func is_tween_on_load() -> bool:
 	return Properties.tween_onload
 
 
-## Gets the current follow mode as an enum int based on Constants.FOLLOW_MODE enum.
+## Gets the current follow mode as an enum int based on PcamConstants.FOLLOW_MODE enum.
 ## Note: Setting Follow Mode purposely not added. A separate PCam should be used instead.
 func get_follow_mode() -> int:
 	return Properties.follow_mode
@@ -974,6 +974,6 @@ func get_limit_smoothing_enabled() -> bool:
 
 ## Gets Interactive Update Mode property.
 func get_inactive_update_mode() -> String:
-	return Constants.InactiveUpdateMode.keys()[Properties.inactive_update_mode].capitalize()
+	return PcamConstants.InactiveUpdateMode.keys()[Properties.inactive_update_mode].capitalize()
 
 #endregion
