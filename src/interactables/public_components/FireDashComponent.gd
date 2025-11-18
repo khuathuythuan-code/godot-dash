@@ -18,9 +18,9 @@ func _ready() -> void:
 
 
 func start(player: Player) -> void:
-	if snap == Constants.AxisBitflag.X || snap != Constants.AxisBitflag.NONE && snap != Constants.AxisBitflag.Y:
+	if snap & Constants.AxisBitflag.X:
 		LevelManager.player.global_position.x = get_parent().global_position.x
-	if snap == Constants.AxisBitflag.Y || snap != Constants.AxisBitflag.NONE && snap != Constants.AxisBitflag.X:
+	if snap & Constants.AxisBitflag.Y:
 		LevelManager.player.global_position.y = tan(get_parent().rotation) * (LevelManager.player.global_position.x - get_parent().global_position.x) + get_parent().global_position.y
 	player.dash_control = self
 	initial_gameplay_rotation = player.gameplay_rotation
