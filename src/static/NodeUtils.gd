@@ -70,17 +70,20 @@ static func free_node(node: Node) -> void:
 static func is_valid_sprite(node: Node) -> bool:
 	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
 
-static func is_on_screen(node: Node, x: bool = true, y: bool = true, extended_border: int = 0) -> bool:
+static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis.BOTH, extended_border: Vector2 = Vector2.ZERO) -> bool:
 	var camera_rect: Rect2 = LevelManager.current_level.camera_rect
-	if extended_border != 0:
-		camera_rect.position -= Vector2(extended_border, extended_border)
-		camera_rect.end += Vector2(extended_border, extended_border)
+	if extended_border != Vector2.ZERO:
+		camera_rect.position -= extended_border
+		camera_rect.end += extended_border
 
-	if x and y:
-		return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x and \
-				camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
-	elif x and not y:
-		return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x
-	elif not x and y:
-		return camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
-	return false
+	match directions:
+		Constants.Axis.BOTH:
+			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x and \
+					camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
+		Constants.Axis.X:
+			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x
+		Constants.Axis.Y:
+			return camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
+		_:
+			return false
+
