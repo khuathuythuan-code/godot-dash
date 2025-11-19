@@ -5,9 +5,8 @@ class_name ReboundPadSprite
 var factor: float:
 	set(value):
 		factor = value
-		camera_rect = LevelManager.current_level.camera_rect
 		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
-		if not (camera_rect.position.x < global_position.x and camera_rect.end.x > global_position.x):
+		if not NodeUtils.is_on_screen(self, true, false, get_parent().scale.x * 128):
 			_factor_smoothed = new_factor_smoothed
 			return
 		if visible and new_factor_smoothed != _factor_smoothed:
