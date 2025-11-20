@@ -7,7 +7,7 @@ enum ColorSpace {
 }
 
 @export var color: Color = Color.WHITE
-@export_enum("sRGB", "Oklab") var color_space: int
+@export_enum("sRGB", "Oklab") var color_space: int = ColorSpace.OKLAB
 @export var reset_color: bool = false:
 	set(value):
 		reset_color = value
