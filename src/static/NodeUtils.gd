@@ -67,8 +67,10 @@ static func free_children(caller: Node) -> void:
 static func free_node(node: Node) -> void:
 	node.queue_free()
 
+
 static func is_valid_sprite(node: Node) -> bool:
 	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
+
 
 static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis.BOTH, extended_border: Vector2 = Vector2.ZERO) -> bool:
 	var camera_rect: Rect2 = LevelManager.current_level.camera_rect
