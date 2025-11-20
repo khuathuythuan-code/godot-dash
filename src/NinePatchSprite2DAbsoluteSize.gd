@@ -6,7 +6,8 @@ class_name NinePatchSprite2DAbsoluteSize
 
 
 func _process(_delta: float) -> void:
-	_on_size_changed()
+	if NodeUtils.is_on_screen(self, Constants.Axis.BOTH, Vector2(parent.scale.x * 128.0, parent.scale.y * 128.0)):
+		_on_size_changed()
 
 
 func _on_size_changed() -> void:

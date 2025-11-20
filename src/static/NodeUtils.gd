@@ -5,7 +5,6 @@ const INTERNAL := 1 << 0
 const SET_OWNER := 1 << 1
 const FORCE_READABLE_NAME := 1 << 2
 
-
 # Note: passing a value for the type parameter causes a crash
 static func get_child_of_type(node: Node, child_type):
 	for child in node.get_children():
@@ -68,5 +67,25 @@ static func free_children(caller: Node) -> void:
 static func free_node(node: Node) -> void:
 	node.queue_free()
 
+
 static func is_valid_sprite(node: Node) -> bool:
 	return node is Sprite2D or node is NinePatchSprite2D or node is ReboundOrbSprite or node is ReboundPadSprite
+
+
+static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis.BOTH, extended_border: Vector2 = Vector2.ZERO) -> bool:
+	var camera_rect: Rect2 = LevelManager.current_level.camera_rect
+	if extended_border != Vector2.ZERO:
+		camera_rect.position -= extended_border
+		camera_rect.end += extended_border
+
+	match directions:
+		Constants.Axis.BOTH:
+			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x and \
+					camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
+		Constants.Axis.X:
+			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x
+		Constants.Axis.Y:
+			return camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
+		_:
+			return false
+
