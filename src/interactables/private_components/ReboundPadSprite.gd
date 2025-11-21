@@ -6,7 +6,7 @@ var factor: float:
 	set(value):
 		factor = value
 		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
-		if not NodeUtils.is_on_screen(self, Constants.Axis.Y, Vector2(get_parent().scale.x * 128, 0.0)):
+		if not NodeUtils.is_on_screen(self, Constants.Axis.X, Vector2(get_parent().scale.x * 76.8, 0.0)):
 			_factor_smoothed = new_factor_smoothed
 			return
 		if visible and new_factor_smoothed != _factor_smoothed:
@@ -14,7 +14,7 @@ var factor: float:
 			queue_redraw()
 
 var _factor_smoothed: float
-var camera_rect: Rect2
+
 @onready var _rebound_gradient: Gradient = preload("res://resources/gradients/rebound_gradient.tres")
 
 func _ready() -> void:

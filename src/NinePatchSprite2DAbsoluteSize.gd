@@ -6,10 +6,11 @@ class_name NinePatchSprite2DAbsoluteSize
 
 
 func _process(_delta: float) -> void:
-	if NodeUtils.is_on_screen(self, Constants.Axis.BOTH, Vector2(parent.scale.x * 128.0, parent.scale.y * 128.0)):
+	if NodeUtils.is_on_screen(parent, Constants.Axis.X):
 		_on_size_changed()
 
 
 func _on_size_changed() -> void:
+	print("cahnged")
 	nine_patch_sprite.global_scale = Vector2.ONE/4
 	nine_patch_sprite.size = abs(parent.global_scale) * 512
