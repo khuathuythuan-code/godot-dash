@@ -3,12 +3,13 @@ extends Node2D
 class_name ReboundOrbSprite
 
 @onready var _rebound_gradient: Gradient = preload("res://resources/gradients/rebound_gradient.tres")
+@onready var parent: Node = get_parent()
 
 var factor: float:
 	set(value):
 		factor = value
 		var new_factor_smoothed: float = lerpf(_factor_smoothed, factor, 1-exp(-get_physics_process_delta_time() * 20))
-		if not NodeUtils.is_on_screen(self, Constants.Axis.X, Vector2(get_parent().scale.x * 76.8, 0.0)):
+		if not NodeUtils.is_on_screen(self, Constants.Axis.X, Vector2(parent.scale.x * 76.8, 0.0)):
 			_factor_smoothed = new_factor_smoothed
 			return
 		if visible and new_factor_smoothed != _factor_smoothed:
