@@ -74,18 +74,15 @@ static func is_valid_sprite(node: Node) -> bool:
 
 static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis.BOTH, extended_border: Vector2 = Vector2.ZERO) -> bool:
 	var camera_rect: Rect2 = LevelManager.current_level.camera_rect
-	if extended_border != Vector2.ZERO:
-		camera_rect.position -= extended_border
-		camera_rect.end += extended_border
-
+	var camera_rect_position: Vector2 = camera_rect.position - extended_border
+	var camera_rect_end: Vector2 = camera_rect.size + extended_border * 2.0
+	var node_position: Vector2 = node.global_position
 	match directions:
-		Constants.Axis.BOTH:
-			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x and \
-					camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
 		Constants.Axis.X:
-			return camera_rect.position.x < node.global_position.x and camera_rect.end.x > node.global_position.x
+			return camera_rect_position.x < node_position.x and camera_rect_end.x > node_position.x
 		Constants.Axis.Y:
-			return camera_rect.position.y < node.global_position.y and camera_rect.end.y > node.global_position.y
-		_:
-			return false
-
+			return camera_rect_position.y < node_position.y and camera_rect_end.y > node_position.y
+		Constants.Axis.BOTH:
+			return camera_rect_position.x < node.global_position.x and camera_rect_end.x > node_position.x and \
+					camera_rect_position.y < node_position.y and camera_rect_end.y > node_position.y
+	return false
