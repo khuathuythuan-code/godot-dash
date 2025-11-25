@@ -6,9 +6,14 @@ reloadable = true
 [libraries]
 linux.debug.x86_64 =     "res://rust/target/debug/libgodot_rust_utils.so"
 linux.release.x86_64 =   "res://rust/target/release/libgodot_rust_utils.so"
+
 windows.debug.x86_64 =   "res://rust/target/debug/godot_rust_utils.dll"
 windows.release.x86_64 = "res://rust/target/release/godot_rust_utils.dll"
+
 macos.debug =            "res://rust/target/debug/libgodot_rust_utils.dylib"
 macos.release =          "res://rust/target/release/libgodot_rust_utils.dylib"
 macos.debug.arm64 =      "res://rust/target/debug/libgodot_rust_utils.dylib"
 macos.release.arm64 =    "res://rust/target/release/libgodot_rust_utils.dylib"
+
+android.debug.arm64 =  "res://rust/target/aarch64-linux-android/debug/libgodot_rust_utils.so"
+android.release.arm64 =  "res://rust/target/aarch64-linux-android/release/libgodot_rust_utils.so"

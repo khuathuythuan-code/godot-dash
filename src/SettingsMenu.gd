@@ -89,10 +89,11 @@ func _on_close_pressed() -> void:
 
 func _on_apply_pressed() -> void:
 	get_tree().paused = false
-	if Config.discord_rich_presence == false:
-		DiscordRPC.clear()
-	else:
-		DiscordRPC.unclear()
+	if DiscordRPCManager.available:
+		if Config.discord_rich_presence == false:
+			DiscordRPCHandler.clear()
+		else:
+			DiscordRPCHandler.unclear()
 	if LevelManager.current_level != null and Editor.root:
 		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
 		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
