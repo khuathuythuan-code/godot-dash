@@ -3,12 +3,17 @@ class_name MenuLoop
 
 static var default_menu_loop: AudioStream
 
+
 func _init() -> void:
 	if not default_menu_loop:
 		ResourceLoader.load_threaded_request("uid://c4sjh7a6mxgv3")
 		default_menu_loop = ResourceLoader.load_threaded_get("uid://c4sjh7a6mxgv3")
 	Config.menu_loop_changed.connect(_on_config_menu_loop_changed)
 	_on_config_menu_loop_changed(Config.menu_loop)
+
+
+func _ready() -> void:
+	play()
 
 
 func _on_config_menu_loop_changed(menu_loop: String) -> void:

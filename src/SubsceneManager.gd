@@ -66,8 +66,6 @@ func _ready() -> void:
 	icon_garage.hide()
 	level_selector.hide()
 	await settings_layer.get_node("%SettingsMenu").ready
-	if not Engine.is_editor_hint():
-		menu_loop.play()
 	if SceneManager.from_editor():
 		_on_go_to_created_levels_list_pressed()
 		active_pcam = created_levels_list_camera
