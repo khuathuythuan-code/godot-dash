@@ -89,8 +89,9 @@ func _ready() -> void:
 		camera.add_child(PhantomCameraHost.new())
 	else:
 		active_pcam.set_priority(PhantomCameraHistory.Status.CURRENT_ACTIVE)
-	DiscordRPC.details = "Title Screen"
-	DiscordRPC.refresh()
+	if DiscordRPCManager.available:
+		DiscordRPCHandler.set_details("Title Screen")
+		DiscordRPCHandler.refresh()
 
 
 func _process(delta: float) -> void:
@@ -192,8 +193,9 @@ func _on_editor_pressed() -> void:
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 		history.change_phantomcamera(active_pcam, editor_camera)
 		await _fade_screen.fade_finished
-		DiscordRPC.details = "Creating a level"
-		DiscordRPC.refresh()
+		if DiscordRPCManager.available:
+			DiscordRPCHandler.set_details("Creating a level")
+			DiscordRPCHandler.refresh()
 		if Editor.snapshot.can_instantiate():
 			get_tree().change_scene_to_packed(Editor.snapshot)
 		else:

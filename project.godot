@@ -76,7 +76,7 @@ AssetManager="*res://src/autoloads/AssetManager.gd"
 Editor="*res://src/autoloads/Editor.gd"
 KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
-DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 
 [display]
 
@@ -383,6 +383,7 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
+textures/vram_compression/import_etc2_astc=true
 viewport/hdr_2d=true
 anti_aliasing/quality/msaa_2d=3
 anti_aliasing/screen_space_roughness_limiter/enabled=false
