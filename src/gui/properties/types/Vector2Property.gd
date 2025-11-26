@@ -28,8 +28,8 @@ func _ready() -> void:
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	input = NodeUtils.get_node_or_add(self, "Input", Vector2SpinBox, NodeUtils.INTERNAL)
 	input.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	input.value_changed.connect(func(new_value: float): value_changed.emit(new_value))
-	input.interaction_ended.connect(func(new_value: float, previous_value: float): interaction_ended.emit(new_value, previous_value))
+	input.value_changed.connect(func(new_value: Vector2): value_changed.emit(new_value))
+	input.interaction_ended.connect(func(new_value: Vector2, previous_value: Vector2): interaction_ended.emit(new_value, previous_value))
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \
