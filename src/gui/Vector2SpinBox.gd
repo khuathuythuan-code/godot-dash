@@ -32,7 +32,7 @@ signal interaction_ended(value: Vector2, previous: Vector2)
 
 var aspect_ratio: float
 
-var _value: Vector2
+var _value: Vector2 = Vector2.ZERO
 
 @onready var spinbox_x: SpinBox
 @onready var spinbox_y: SpinBox
