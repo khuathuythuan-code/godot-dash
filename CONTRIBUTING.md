@@ -8,6 +8,9 @@ Group PRs by topic, e.g. a single feature or a fix.
 
 ## Scripts
 
+Format your GDScript code with [GDQuest's GDScript formatter](https://www.gdquest.com/library/gdscript_formatter/).
+You can install it as an extension for Godot's text editor, VSCode, Zed, Helix, JetBrains Rider and [Neovim](https://github.com/GDQuest/GDScript-formatter/issues/26#issuecomment-3332838502).
+
 ### Style guide
 
 Follow [Godot's GDScript style guide](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html).
