@@ -22,14 +22,17 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		if pressed_button != null:
 			block_palette_ref = NodeUtils.get_child_of_type(pressed_button, BlockPaletteRef) as BlockPaletteRef
 		if block_palette_ref != null and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id) \
-				and (Input.is_action_pressed(&"editor_add", false) or Config.is_touch_screen and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and !Editor.swipe):
-			if pressed_button != null and (!Config.is_touch_screen or Editor.delete == false):
+				and (Input.is_action_pressed(&"editor_add", false) or Config.is_touch_screen and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Editor.swipe):
+			if pressed_button != null and (not Config.is_touch_screen or Editor.delete == false):
 				# Create object
 				var object: Node2D
 				object = block_palette_ref.object.instantiate()
 
 				if pressed_button.has_meta("texture_override"):
 					var override = pressed_button.get_meta("texture_override") as TextureOverride
+					if override.prefab_override:
+						object.queue_free()
+						object = override.prefab_override.instantiate()
 					if override.base != null:
 						object.get_node(^"Base").texture = override.base
 					if override.detail != null:

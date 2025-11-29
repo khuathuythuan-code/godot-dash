@@ -1,4 +1,4 @@
-[gd_scene load_steps=302 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=303 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bdlj0vb8x71it" path="res://assets/textures/guis/editor/block_palette/Interactables.svg" id="6_gh5m2"]
 [ext_resource type="Script" uid="uid://4twseak4h1wb" path="res://src/MapCamera2D.gd" id="6_wcytj"]
 [ext_resource type="Script" uid="uid://dsgesrbkguesm" path="res://src/editor/BlockPaletteRef.gd" id="7_f0stj"]
-[ext_resource type="PackedScene" uid="uid://ccdry45jmn43w" path="res://scenes/components/level_components/solids/DefaultBlock.tscn" id="7_ii36d"]
+[ext_resource type="PackedScene" uid="uid://ccdry45jmn43w" path="res://scenes/components/level_components/solids/NinePatchBlock.tscn" id="7_ii36d"]
 [ext_resource type="Texture2D" uid="uid://bq33ebf402ci7" path="res://assets/textures/guis/editor/block_palette/Triggers.svg" id="7_m16em"]
 [ext_resource type="Script" uid="uid://demkbf7ghqc82" path="res://src/editor/menu_bar/MenuBarHelp.gd" id="8_dl3g1"]
 [ext_resource type="Script" uid="uid://dwe55gg8wscaq" path="res://src/editor/menu_bar/Actions.gd" id="8_pfb6b"]
@@ -62,6 +62,7 @@
 [ext_resource type="Texture2D" uid="uid://duct572xtxp5h" path="res://assets/textures/solids/grid_blocks/GridBlock11.svg" id="23_5ik7l"]
 [ext_resource type="Texture2D" uid="uid://bw4wk20u6n4rx" path="res://assets/textures/guis/editor/block_palette/ReboundOrbPreview.svg" id="23_jc35a"]
 [ext_resource type="Texture2D" uid="uid://ce8d527dlwwip" path="res://assets/textures/solids/grid_blocks/GridBlock12.svg" id="24_0v0om"]
+[ext_resource type="PackedScene" uid="uid://bbf7hpkeoo678" path="res://scenes/components/level_components/solids/NearestNeighborSpriteBlock.tscn" id="24_3y10s"]
 [ext_resource type="Texture2D" uid="uid://cnonwwvnfl3ca" path="res://assets/textures/triggers/CameraRotate.svg" id="24_ji6ug"]
 [ext_resource type="Texture2D" uid="uid://csso3kjr2kpfc" path="res://assets/textures/solids/grid_blocks/GridBlock13.svg" id="25_33w7i"]
 [ext_resource type="PackedScene" uid="uid://d0dk4786hlokq" path="res://scenes/components/level_components/orbs/BlueOrb.tscn" id="26_ay76u"]
@@ -270,6 +271,7 @@ metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 [sub_resource type="Resource" id="Resource_w5ynp"]
 script = ExtResource("12_egrfm")
 base = ExtResource("22_fa2ga")
+prefab_override = ExtResource("24_3y10s")
 name = "FillBlock01"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
