@@ -22,7 +22,7 @@ enum TransformPivot {
 @export var transform_pivot_button: OptionButton
 
 var level: Level
-var selection := Selection.new()
+var selection: Selection
 var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
@@ -39,6 +39,12 @@ func _ready() -> void:
 	_reset_selection_zone(true)
 	var update_global_clipboard := func(new_clipboard): Editor.clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
+	if not Editor.selection_snapshot:
+		selection = Selection.new()
+		# RefCounted, so it doesn't copy the selection.
+		Editor.selection_snapshot = selection
+	else:
+		selection = Editor.selection_snapshot
 
 
 func _physics_process(delta: float) -> void:
