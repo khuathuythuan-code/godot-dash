@@ -41,6 +41,24 @@ impl Selection {
         })
     }
     #[func]
+    /// Creates a [Selection] from a snapshot, persistent through playtests.
+    fn from_snapshot(snapshot: Array<NodePath>, root: Gd<Node>) -> Gd<Self> {
+        let inner: HashSet<Gd<Node2D>> = snapshot
+            .iter_shared()
+            .flat_map(|path| root.get_node_or_null(&path))
+            .flat_map(|node| node.try_cast::<Node2D>())
+            .collect();
+        let first = if let Some(first_path) = snapshot.front()
+            && let Some(first_ref) = root.get_node_or_null(&first_path)
+            && let Ok(first_ref_node2d) = first_ref.try_cast::<Node2D>()
+        {
+            Some(first_ref_node2d)
+        } else {
+            None
+        };
+        Gd::from_object(Self { inner, first })
+    }
+    #[func]
     /// Creates a [Selection] containing this [Node2D].
     /// Shorthand for
     /// ```gdscript
@@ -58,6 +76,12 @@ impl Selection {
     /// Creates a typed [Array] of [Node2D]s with the objects of the selection.
     fn to_array(&self) -> Array<Gd<Node2D>> {
         Array::from_iter(self.inner.iter().cloned())
+    }
+    #[func]
+    /// Converts the selection into an [Array] of [NodePath]s to persist through
+    /// scene changes
+    fn save_snapshot(&self, root: Gd<Node>) -> Array<NodePath> {
+        Array::from_iter(self.inner.iter().map(|node| root.get_path_to(node)))
     }
     #[func]
     /// Returns the number of objects in this selection.
