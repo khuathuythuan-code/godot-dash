@@ -51,13 +51,10 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var add_object := func(_object: Node, _level: Level):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, _level)
-					if object.is_in_group(Constants.DELETED_GROUP):
-						object.remove_from_group(Constants.DELETED_GROUP)
 					if object in level.deleted_objects:
 						level.deleted_objects.erase(object)
 				var remove_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
-					object.add_to_group(Constants.DELETED_GROUP)
 					level.deleted_objects.append(object)
 				Editor.version_history.create_action("Placed object " + object.name)
 				Editor.version_history.add_do_method(add_object.bind(object, level))

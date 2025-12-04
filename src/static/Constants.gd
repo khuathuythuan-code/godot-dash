@@ -25,7 +25,6 @@ enum SpecialColorChannel {
 
 const GROUP_PREFIX: String = "g_"
 const COLOR_CHANNEL_GROUP_PREFIX := "c_"
-const DELETED_GROUP: StringName = &"deleted"
 
 const DEFAULT_BACKGROUND_COLOR: Color = Color("#3670ff")
 const DEFAULT_GROUND_COLOR: Color = Color("#1b4bc4")

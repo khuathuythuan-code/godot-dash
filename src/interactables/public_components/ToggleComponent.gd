@@ -21,15 +21,13 @@ func toggle(_player: Node) -> void:
 	for toggled_group in toggled_groups:
 		var group = Constants.GROUP_PREFIX + toggled_group.group
 		var state = toggled_group.state
-		var skip_deleted := func(object):
-			return not object.is_in_group(Constants.DELETED_GROUP)
 		var enable := func(object):
 			object.show()
 			object.process_mode = PROCESS_MODE_INHERIT
 		var disable := func(object):
 			object.hide()
 			object.process_mode = PROCESS_MODE_DISABLED
-		var objects_in_group := get_tree().get_nodes_in_group(group).filter(skip_deleted)
+		var objects_in_group := get_tree().get_nodes_in_group(group)
 		if state == ToggledGroup.ToggleState.ON:
 			objects_in_group.map(enable)
 		elif state == ToggledGroup.ToggleState.OFF:

@@ -270,10 +270,11 @@ static func from_data(data: Dictionary) -> Level:
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
 		object.z_index = object_data.z_index
+		# Deleted
 		if object_data.has("deleted"):
 			level.deleted_objects.append(object)
-			object.add_to_group(Constants.DELETED_GROUP)
-		level.add_child(object)
+		else:
+			level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
 			object.add_to_group(group)
