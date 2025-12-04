@@ -149,6 +149,7 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
+		Editor.selection_snapshot = $EditHandler.selection.to_snapshot(level)
 		$EditHandler.clear_selection()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame

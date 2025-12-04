@@ -80,7 +80,7 @@ impl Selection {
     #[func]
     /// Converts the selection into an [Array] of [NodePath]s to persist through
     /// scene changes
-    fn save_snapshot(&self, root: Gd<Node>) -> Array<NodePath> {
+    fn to_snapshot(&self, root: Gd<Node>) -> Array<NodePath> {
         Array::from_iter(self.inner.iter().map(|node| root.get_path_to(node)))
     }
     #[func]
