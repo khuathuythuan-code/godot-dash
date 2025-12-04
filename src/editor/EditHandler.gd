@@ -319,16 +319,16 @@ func delete_selection() -> void:
 	deleted_selection.emit()
 
 
-func clear_selection(merge_with_previous: bool = false) -> void:
-	select(Selection.EMPTY(), merge_with_previous)
+func clear_selection(merge_history_actions: bool = false) -> void:
+	select(Selection.EMPTY(), merge_history_actions)
 	_reset_selection_zone()
 
 
-func select_all(merge_with_previous: bool = false) -> void:
+func select_all(merge_history_actions: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
 	objects.assign(level.get_children().filter(only_node_2ds))
-	select(Selection.from_array(objects), merge_with_previous)
+	select(Selection.from_array(objects), merge_history_actions)
 
 
 func remove_gizmo(_selection = null) -> void:
@@ -358,7 +358,7 @@ func update_pivot() -> void:
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
-func select(objects: Selection, merge_with_previous: bool = false) -> void:
+func select(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if selection.is_identical(objects):
 		return
@@ -368,7 +368,7 @@ func select(objects: Selection, merge_with_previous: bool = false) -> void:
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	if merge_with_previous:
+	if merge_history_actions:
 		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		Editor.version_history.create_action("Selected %s objects" % objects.size())
@@ -377,7 +377,7 @@ func select(objects: Selection, merge_with_previous: bool = false) -> void:
 	Editor.version_history.commit_action()
 
 
-func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
+func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if objects.is_empty() or selection.is_identical(objects):
 		return
@@ -392,7 +392,7 @@ func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	if merge_with_previous:
+	if merge_history_actions:
 		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		Editor.version_history.create_action("Deselected %s objects" % objects.size())
