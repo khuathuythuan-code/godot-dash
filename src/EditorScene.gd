@@ -150,7 +150,7 @@ func _on_playtest_pressed() -> void:
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
 		Editor.selection_snapshot = $EditHandler.selection.to_snapshot(level)
-		$EditHandler.clear_selection()
+		$EditHandler.clear_selection(true)
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
 		Editor.level_data_snapshot = level.to_data()
@@ -185,6 +185,7 @@ func _on_playtest_pressed() -> void:
 		_ready()
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 		%Playtest.disabled = false
+		$EditHandler.select(Selection.from_snapshot(Editor.selection_snapshot, level), true)
 
 
 func _on_leave_pressed() -> void:

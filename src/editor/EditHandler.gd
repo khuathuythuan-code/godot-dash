@@ -22,7 +22,7 @@ enum TransformPivot {
 @export var transform_pivot_button: OptionButton
 
 var level: Level
-var selection: Selection
+var selection := Selection.new()
 var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
@@ -39,12 +39,6 @@ func _ready() -> void:
 	_reset_selection_zone(true)
 	var update_global_clipboard := func(new_clipboard): Editor.clipboard = new_clipboard
 	clipboard_changed.connect(update_global_clipboard)
-	if not Editor.selection_snapshot:
-		selection = Selection.new()
-		# RefCounted, so it doesn't copy the selection.
-		Editor.selection_snapshot = selection
-	else:
-		selection = Editor.selection_snapshot
 
 
 func _physics_process(delta: float) -> void:
@@ -362,9 +356,9 @@ func select(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if selection.is_identical(objects):
 		return
-	var change_selection := func(new_selection: Selection):
+	var change_selection := func(new_selection: Array[NodePath]):
 		selection.for_each(remove_selection_highlight)
-		selection = new_selection
+		selection = Selection.from_snapshot(new_selection, Editor.root.level)
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
@@ -372,8 +366,8 @@ func select(objects: Selection, merge_history_actions: bool = false) -> void:
 		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		Editor.version_history.create_action("Selected %s objects" % objects.size())
-	Editor.version_history.add_do_method(change_selection.bind(objects))
-	Editor.version_history.add_undo_method(change_selection.bind(selection.clone()))
+	Editor.version_history.add_do_method(change_selection.bind(objects.to_snapshot(level)))
+	Editor.version_history.add_undo_method(change_selection.bind(selection.to_snapshot(level)))
 	Editor.version_history.commit_action()
 
 
@@ -381,14 +375,14 @@ func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if objects.is_empty() or selection.is_identical(objects):
 		return
-	var do_deselection := func(negative_selection: Selection):
+	var do_deselection := func(negative_selection: Array[NodePath]):
 		selection.for_each(remove_selection_highlight)
-		selection = selection.difference(negative_selection)
+		selection = selection.difference(Selection.from_snapshot(negative_selection, Editor.root.level))
 		selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	var undo_deselection := func(new_selection: Selection):
+	var undo_deselection := func(new_selection: Array[NodePath]):
 		selection.for_each(remove_selection_highlight)
-		selection = new_selection
+		selection = Selection.from_snapshot(new_selection, Editor.root.level)
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
@@ -396,8 +390,8 @@ func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		Editor.version_history.create_action("Deselected %s objects" % objects.size())
-	Editor.version_history.add_do_method(do_deselection.bind(objects))
-	Editor.version_history.add_undo_method(undo_deselection.bind(selection.clone()))
+	Editor.version_history.add_do_method(do_deselection.bind(objects.to_snapshot(level)))
+	Editor.version_history.add_undo_method(undo_deselection.bind(selection.to_snapshot(level)))
 	Editor.version_history.commit_action()
 
 
