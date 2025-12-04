@@ -81,7 +81,6 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 		var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
 		ground.material.set_shader_parameter(&"ground_color", new_color)
 
-var deleted_objects: Array[Node2D]
 var _pause_manager: Node
 
 
@@ -195,7 +194,6 @@ func to_data() -> Dictionary:
 	}
 	var objects: Array[Node2D]
 	objects.assign(get_children())
-	objects.append_array(deleted_objects)
 	for object: Node2D in objects:
 		var object_data: Dictionary = {
 			"name": object.name,
@@ -214,8 +212,6 @@ func to_data() -> Dictionary:
 		if object is Interactable:
 			object_data.components = object.components_to_data()
 			object_data.markers = object.markers_to_data()
-		if object in deleted_objects:
-			object_data.deleted = true
 		data.objects.append(object_data)
 	return data
 
@@ -270,11 +266,7 @@ static func from_data(data: Dictionary) -> Level:
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
 		object.z_index = object_data.z_index
-		# Deleted
-		if object_data.has("deleted"):
-			level.deleted_objects.append(object)
-		else:
-			level.add_child(object)
+		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:
 			object.add_to_group(group)
