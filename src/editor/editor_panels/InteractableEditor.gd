@@ -27,6 +27,8 @@ static var MARKER_COMPONENTS: Array[Script] = [
 	NoEffectsComponent,
 ]
 
+static var are_arrays_initialized: bool
+
 @export var components_root: Container
 @export var separator: HSeparator
 @export var markers_root: Container
@@ -36,9 +38,11 @@ var initial_values: Dictionary[Component, Variant]
 
 
 func _init() -> void:
-	COMPONENT_BLACKLIST.append_array(MARKER_COMPONENTS)
-	COMPONENT_BLACKLIST.make_read_only()
-	MARKER_COMPONENTS.make_read_only()
+	if not are_arrays_initialized:
+		COMPONENT_BLACKLIST.append_array(MARKER_COMPONENTS)
+		COMPONENT_BLACKLIST.make_read_only()
+		MARKER_COMPONENTS.make_read_only()
+		are_arrays_initialized = true
 
 
 func _ready() -> void:
