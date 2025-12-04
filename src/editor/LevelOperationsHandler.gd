@@ -203,7 +203,6 @@ func save_level() -> void:
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
 	Editor.level_history_version = Editor.version_history.get_version()
-	Editor.level_saved_before_leaving = true
 	level_saved.emit()
 
 

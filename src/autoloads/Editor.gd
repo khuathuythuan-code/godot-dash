@@ -8,8 +8,7 @@ var clipboard: Array[NodePath]
 var snapshot := PackedScene.new()
 var level_data_snapshot: Dictionary
 var level_file_name: String
-var level_history_version: int
-var level_saved_before_leaving: bool
+var level_history_version: int = -1
 var selection_snapshot: Array[NodePath]
 var shortcut_blocker: Node
 var viewport: EditorViewport

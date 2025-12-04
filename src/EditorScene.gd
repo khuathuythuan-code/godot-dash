@@ -63,12 +63,15 @@ func _ready() -> void:
 	%MenuBarContainer.show()
 
 	if not Editor.level_data_snapshot.is_empty():
-		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot)) 
+		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
 		Editor.version_history = VersionHistory.new()
 		LevelManager.game_scene.add_loaded_level(level)
+	
+	$EditHandler.selection = Selection.from_snapshot(Editor.selection_snapshot, level)
+	$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
 
 
 func _physics_process(_delta: float) -> void:
@@ -95,8 +98,10 @@ func _physics_process(_delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_redo", true):
 		Editor.version_history.redo()
+		print("%s (%s)" % [Editor.version_history.get_current_action_name(), Editor.version_history.get_current_action()])
 	elif event.is_action_pressed(&"ui_undo", true):
 		Editor.version_history.undo()
+		print("%s (%s)" % [Editor.version_history.get_current_action_name(), Editor.version_history.get_current_action()])
 	elif event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
 
@@ -150,7 +155,8 @@ func _on_playtest_pressed() -> void:
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
 		Editor.selection_snapshot = $EditHandler.selection.to_snapshot(level)
-		$EditHandler.clear_selection(true)
+		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
+		$EditHandler.selection.clear()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
 		Editor.level_data_snapshot = level.to_data()
@@ -185,15 +191,12 @@ func _on_playtest_pressed() -> void:
 		_ready()
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 		%Playtest.disabled = false
-		$EditHandler.select(Selection.from_snapshot(Editor.selection_snapshot, level), true)
 
 
 func _on_leave_pressed() -> void:
-	if not LevelManager.level_playing:
-		$EditHandler.selection.for_each($EditHandler.remove_selection_highlight)
-		$EditHandler.selection.clear()
-		Editor.level_data_snapshot = level.to_data()
-		Editor.snapshot.pack(self)
+	Editor.selection_snapshot.clear()
+	Editor.level_data_snapshot.clear()
+	Editor.level_history_version = -1
 	if level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
