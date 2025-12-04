@@ -22,7 +22,7 @@ func toggle(_player: Node) -> void:
 		var group = Constants.GROUP_PREFIX + toggled_group.group
 		var state = toggled_group.state
 		var skip_deleted := func(object):
-			return not object.is_in_group("deleted")
+			return not object.is_in_group(Constants.DELETED_GROUP)
 		var enable := func(object):
 			object.show()
 			object.process_mode = PROCESS_MODE_INHERIT

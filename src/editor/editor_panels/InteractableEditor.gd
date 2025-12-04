@@ -163,7 +163,13 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 							_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 					initial_values[component] = _value
 			property.value_changed.connect(save_property.bind(component_name, property_name, interactables))
-			property.interaction_ended.connect(save_property_register.bind(component_name, property_name, interactables))
+			property.interaction_ended.connect(
+				save_property_register.bind(
+					component_name,
+					property_name,
+					interactables.map(Editor.version_history.to_nodepath)
+				)
+			)
 
 
 func save_property(value: Variant, component_name: String, property_name: String, interactables: Array[Interactable]) -> void:
@@ -218,7 +224,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	var interactables_to_initial_values: Dictionary[Interactable, Variant]
 	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, {}))
 
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set '%s' on %s interactables" % [property_name, interactables_snapshot.size()])
 	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
 	version_history.add_undo_method(undo_save_property.bind(interactables_to_initial_values))
@@ -239,7 +245,7 @@ func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script
 		property.set_value_no_signal(false)
 	
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set '%s' to %s on %s interactables" % [marker_script.get_global_name(), enabled, interactables_snapshot.size()])
 	version_history.add_do_method(add_marker.bind(interactables_snapshot) if enabled else remove_marker.bind(interactables_snapshot))
 	version_history.add_undo_method(remove_marker.bind(interactables_snapshot) if enabled else add_marker.bind(interactables_snapshot))

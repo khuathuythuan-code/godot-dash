@@ -51,7 +51,7 @@ func start(player: Player) -> void:
 		var spawned_trigger = LevelManager.current_level.get_node_or_null(trigger.path)
 		if spawned_trigger == null:
 			return false
-		return not spawned_trigger.is_in_group("deleted")
+		return not spawned_trigger.is_in_group(Constants.DELETED_GROUP)
 	spawned_triggers = spawned_triggers.filter(skip_deleted)
 	for trigger in spawned_triggers:
 		if trigger.time > _duration:

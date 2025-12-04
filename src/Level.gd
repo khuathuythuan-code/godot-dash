@@ -14,8 +14,6 @@ const START_SPEED: Array[float] = [
 	2.431, # 5x
 ]
 
-@export_storage var version_history: UndoRedo
-
 @export_file var song_path: String:
 	set(value):
 		register_required_song(song_path, value)
@@ -83,12 +81,11 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 		var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
 		ground.material.set_shader_parameter(&"ground_color", new_color)
 
+var deleted_objects: Array[Node2D]
 var _pause_manager: Node
 
 
 func _ready() -> void:
-	if version_history == null:
-		version_history = UndoRedo.new()
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
@@ -196,9 +193,10 @@ func to_data() -> Dictionary:
 		"duration": duration,
 		"objects": [],
 	}
-	for object in get_children():
-		if object is not Node2D:
-			continue
+	var objects: Array[Node2D]
+	objects.assign(get_children())
+	objects.append_array(deleted_objects)
+	for object: Node2D in objects:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
@@ -216,6 +214,8 @@ func to_data() -> Dictionary:
 		if object is Interactable:
 			object_data.components = object.components_to_data()
 			object_data.markers = object.markers_to_data()
+		if object in deleted_objects:
+			object_data.deleted = true
 		data.objects.append(object_data)
 	return data
 
@@ -270,6 +270,9 @@ static func from_data(data: Dictionary) -> Level:
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
 		object.z_index = object_data.z_index
+		if object_data.has("deleted"):
+			level.deleted_objects.append(object)
+			object.add_to_group(Constants.DELETED_GROUP)
 		level.add_child(object)
 		# Groups
 		for group: String in object_data.groups:

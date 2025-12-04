@@ -51,12 +51,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var add_object := func(_object: Node, _level: Level):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, _level)
+					if object.is_in_group(Constants.DELETED_GROUP):
+						object.remove_from_group(Constants.DELETED_GROUP)
+					if object in level.deleted_objects:
+						level.deleted_objects.erase(object)
 				var remove_object := func(_object: Node):
 					_object.get_parent().remove_child(_object)
-				level.version_history.create_action("Placed object " + object.name)
-				level.version_history.add_do_method(add_object.bind(object, level))
-				level.version_history.add_undo_method(remove_object.bind(object))
-				level.version_history.commit_action()
+					object.add_to_group(Constants.DELETED_GROUP)
+					level.deleted_objects.append(object)
+				Editor.version_history.create_action("Placed object " + object.name)
+				Editor.version_history.add_do_method(add_object.bind(object, level))
+				Editor.version_history.add_undo_method(remove_object.bind(object))
+				Editor.version_history.commit_action()
 				add_hsv_watchers(object, level)
 				edit_handler.select(Selection.from_object(object), true)
 		# Handle object deletion
@@ -73,10 +79,10 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var restore_object := func(_object: Node):
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, level)
-				level.version_history.create_action("Deleted object " + object.name)
-				level.version_history.add_do_method(delete_object.bind(object))
-				level.version_history.add_undo_method(restore_object.bind(object))
-				level.version_history.commit_action()
+				Editor.version_history.create_action("Deleted object " + object.name)
+				Editor.version_history.add_do_method(delete_object.bind(object))
+				Editor.version_history.add_undo_method(restore_object.bind(object))
+				Editor.version_history.commit_action()
 				edit_handler.deselect(Selection.from_object(object), true)
 
 

@@ -30,6 +30,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Editor.root = self
 	Editor.viewport = %EditorViewport
+	
 	if SceneManager.from_title_screen():
 		var _fade_screen = $FadeScreenLayer/FadeScreen
 		_fade_screen.show()
@@ -66,7 +67,7 @@ func _ready() -> void:
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
-		level.version_history = UndoRedo.new()
+		Editor.version_history = VersionHistory.new()
 		LevelManager.game_scene.add_loaded_level(level)
 
 
@@ -93,9 +94,9 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_redo", true):
-		level.version_history.redo()
+		Editor.version_history.redo()
 	elif event.is_action_pressed(&"ui_undo", true):
-		level.version_history.undo()
+		Editor.version_history.undo()
 	elif event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
 
@@ -122,7 +123,7 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 func level_was_modified() -> bool:
 	if not level:
 		return false
-	return level.version_history.get_version() > Editor.level_history_version
+	return Editor.version_history.get_version() > Editor.level_history_version
 
 
 func any_dialog_is_open() -> bool:

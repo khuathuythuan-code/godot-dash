@@ -12,6 +12,7 @@ var level_history_version: int
 var level_saved_before_leaving: bool
 var shortcut_blocker: Node
 var viewport: EditorViewport
+var version_history: VersionHistory
 
 # MOBILE CONTROLS
 var swipe: bool = false

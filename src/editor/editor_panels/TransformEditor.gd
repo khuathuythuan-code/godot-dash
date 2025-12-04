@@ -135,7 +135,7 @@ func _set_z_index(new_z_index: int):
 		return object.z_index
 	var selection_to_z_index: Dictionary[Node2D, int]
 	selection_to_z_index.assign(selection_snapshot.map_generic_dict(object_to_z_index))
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Changed object z index to %s" % new_z_index)
 	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
 	version_history.add_undo_method(undo_z_index_shift.bind(selection_to_z_index))

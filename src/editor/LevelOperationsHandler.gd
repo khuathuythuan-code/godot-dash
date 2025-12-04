@@ -88,7 +88,7 @@ func _new_level() -> void:
 	editor.level.queue_free()
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
-	new_level.version_history = UndoRedo.new()
+	Editor.version_history = VersionHistory.new()
 	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
@@ -202,7 +202,7 @@ func save_level() -> void:
 	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
-	Editor.level_history_version = editor.level.version_history.get_version()
+	Editor.level_history_version = Editor.version_history.get_version()
 	Editor.level_saved_before_leaving = true
 	level_saved.emit()
 
