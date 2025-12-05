@@ -156,6 +156,7 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
+		$EditHandler.remove_gizmo()
 		Editor.selection_snapshot = $EditHandler.selection.to_snapshot(level)
 		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
