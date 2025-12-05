@@ -144,10 +144,12 @@ func _fade_leave(_action: Variant = null) -> void:
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
-			.set_ease(Tween.EASE_IN) \
-			.set_trans(Tween.TRANS_EXPO) \
+	await (
+		create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5)
+			.set_ease(Tween.EASE_IN)
+			.set_trans(Tween.TRANS_EXPO)
 			.finished
+	)
 
 
 func _on_playtest_pressed() -> void:
