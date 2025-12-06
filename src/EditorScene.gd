@@ -158,7 +158,6 @@ func _on_playtest_pressed() -> void:
 	if $GameScene/PlayerCamera.enabled:
 		$EditHandler.remove_gizmo()
 		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
-		$EditHandler.selection.clear()
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
 		Editor.level_data_snapshot = level.to_data()
