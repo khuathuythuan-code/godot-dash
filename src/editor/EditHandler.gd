@@ -192,7 +192,7 @@ func scale_selection(
 			transform: Transform2D,
 			rotation: float,
 			is_global: bool,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			register_history: bool = false,
 			initial_pivot: Vector2 = Vector2.ZERO,
 		) -> void:
@@ -591,11 +591,11 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	).rotated(mean_objects_rotation)
 	selection_pivot = gizmo_center
 
-	var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
+	var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
 	for collision_object in selection_collision_objects:
 		var pivot_relative_transform: Transform2D = collision_object.global_transform
 		pivot_relative_transform.origin -= selection_pivot
-		pivot_relative_transforms[collision_object] = pivot_relative_transform
+		pivot_relative_transforms[level.get_path_to(collision_object)] = pivot_relative_transform
 
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
 	var selection_bounding_box: Transform2D = BoundingBox.new(selection_collision_objects, selection_pivot, mean_objects_rotation).as_transform()
@@ -615,22 +615,22 @@ func _on_scale_pressed(quick: bool = false) -> void:
 
 static func scale_transform(
 			object: Node2D,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			pivot: Vector2,
 			transform: Transform2D,
 		):
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 
 
 static func scale_transform_local(
 			object: Node2D,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			pivot: Vector2,
 			transform: Transform2D,
 			rotation: float,
 		):
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation))
 		.rotated(rotation)
