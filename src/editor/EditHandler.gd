@@ -175,7 +175,8 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	# This would clog the history with small rotations.
 	if is_gizmo:
 		do_rotate_selection.call(selection_snapshot)
-		do_pivot.call(selection_snapshot, selection_pivot)
+		if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
+			do_pivot.call(selection_snapshot, selection_pivot)
 		return
 
 	Editor.version_history.create_action("Rotated objects %s°" % angle)
