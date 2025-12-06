@@ -8,7 +8,7 @@ class_name TransformEditor
 @export var z_index_property: FloatProperty
 
 var selection_size: int
-var first_object: Node2D
+var first_object: PathRef
 var average_position: Vector2
 var current_rotation: float
 var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
@@ -30,19 +30,21 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	current_selection = selection
 	if selection.is_empty():
 		return
-	first_object = current_selection.first()
+	var first_object_ref: Node2D = current_selection.first()
+	first_object = PathRef.new(first_object_ref)
 	selection_size = selection.size()
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
 
-	z_index_property.set_value_no_signal(float(first_object.z_index))
+	z_index_property.set_value_no_signal(float(first_object_ref.z_index))
+
 	if selection_size == 1:
-		scale_property.set_value_no_signal(first_object.scale)
-		position_property.set_value_no_signal((first_object.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-		rotation_property.set_value_no_signal(first_object.global_rotation_degrees)
+		scale_property.set_value_no_signal(first_object_ref.scale)
+		position_property.set_value_no_signal((first_object_ref.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+		rotation_property.set_value_no_signal(first_object_ref.global_rotation_degrees)
 		same_scale = true
 		same_rotation = true
-		current_rotation = first_object.global_rotation_degrees
+		current_rotation = first_object_ref.global_rotation_degrees
 		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
 		return
 
@@ -122,19 +124,23 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 	)
 
 
-func _set_z_index(new_z_index: int):
+func _on_z_index_value_changed(new_z_index: int):
 	var do_z_index_shift := func(_selection: Selection):
+		z_index_property.set_value_no_signal(new_z_index)
 		for _object: Node2D in _selection.to_array():
 			_object.z_index = new_z_index
-	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[Node2D, int]):
-		for _object: Node2D in _selection_to_z_index:
-			_object.z_index = _selection_to_z_index[_object]
+	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[NodePath, int]):
+		for _path: NodePath in _selection_to_z_index:
+			var _object: Node2D = Editor.root.level.get_node(_path)
+			_object.z_index = _selection_to_z_index[_path]
+		z_index_property.set_value_no_signal(float(first_object.to_ref().z_index))
 	
 	var selection_snapshot: Selection = current_selection.clone()
-	var object_to_z_index := func(object: Node2D):
-		return object.z_index
-	var selection_to_z_index: Dictionary[Node2D, int]
-	selection_to_z_index.assign(selection_snapshot.map_generic_dict(object_to_z_index))
+	var object_to_z_index := func(accum: Dictionary, object: Node2D):
+		accum[Editor.root.level.get_path_to(object)] = object.z_index
+		return accum
+	var selection_to_z_index: Dictionary[NodePath, int]
+	selection_to_z_index.assign(selection_snapshot.fold_generic(object_to_z_index, {}))
 	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Changed object z index to %s" % new_z_index)
 	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
