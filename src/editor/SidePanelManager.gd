@@ -62,12 +62,13 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 func update_object_name(new_name: String):
 	var object: Node2D = $"../EditHandler".selection.first()
 	var previous_name: String = object.name
+	var path_ref := PathRef.new(object)
 	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, new_name])
 	Editor.version_history.add_do_method(func():
-		object.name = new_name
+		path_ref.to_ref().name = new_name
 		object_name.text = new_name)
 	Editor.version_history.add_undo_method(func():
-		object.name = previous_name
+		path_ref.to_ref().name = previous_name
 		object_name.text = previous_name)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds
