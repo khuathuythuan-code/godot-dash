@@ -43,7 +43,7 @@ func add_channel(channel_name: String, data: ColorChannelData = null) -> void:
 	channel_item.unselected.connect(hide_properties)
 	channel_item.deleted.connect(_on_channel_item_deleted.bind(channel_item))
 	channel_item.update()
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Created color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(%ColorChannelContainer.add_child.bind(channel_item))
 	version_history.add_do_method(channel_item.register)
@@ -96,7 +96,7 @@ func _on_line_edit_text_submitted(new_text:String) -> void:
 func _on_channel_item_deleted(channel_item: ColorChannelItem) -> void:
 	var group_objects: Array[Node] = get_tree().get_nodes_in_group(channel_item.data.associated_group)
 	var add_objects_back_to_group := func(): group_objects.map(func(object: Node): object.add_to_group(channel_item.data.associated_group))
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Deleted color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.unregister)
 	version_history.add_do_method(%ColorChannelContainer.remove_child.bind(channel_item))
@@ -122,7 +122,7 @@ func _on_copy_channel_value_changed(value: bool) -> void:
 	var change_property_visibility := func(_value: bool):
 		%Color.visible = not _value
 		%Channel.visible = _value
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("%s copy color of color channel %s" % ["Enabled" if value else "Disabled", channel_item.channel_name])
 	version_history.add_do_method(channel_item.data.set_copy.bind(value))
 	version_history.add_do_method(change_property_visibility.bind(value))
@@ -137,7 +137,7 @@ func _on_channel_value_changed(value: Constants.SpecialColorChannel) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set copied channel of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_copied_channel.bind(value))
 	version_history.add_do_method(%Channel.set_value_no_signal.bind(value))
@@ -197,7 +197,7 @@ func _on_color_interaction_ended(color: Color, previous: Color) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set color of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_color.bind(color))
 	version_history.add_do_method(%Color.set_value_no_signal.bind(color))
@@ -214,7 +214,7 @@ func _on_hue_interaction_ended(value: float, previous: float) -> void:
 	channel_item.data.set_hsv_shift(channel_item.data.hsv_shift)
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[0] = value
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set modulation hue of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
 	version_history.add_do_method(%Hue.set_value_no_signal.bind(value))
@@ -231,7 +231,7 @@ func _on_saturation_interaction_ended(value: float, previous: float) -> void:
 	channel_item.data.set_hsv_shift(channel_item.data.hsv_shift)
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[1] = value
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set modulation saturation of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
 	version_history.add_do_method(%Saturation.set_value_no_signal.bind(value))
@@ -248,7 +248,7 @@ func _on_value_interaction_ended(value: float, previous: float) -> void:
 	channel_item.data.set_hsv_shift(channel_item.data.hsv_shift)
 	var new_hsv_shift := channel_item.data.hsv_shift.duplicate()
 	new_hsv_shift[2] = value
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set modulation value of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_hsv_shift.bind(new_hsv_shift))
 	version_history.add_do_method(%Value.set_value_no_signal.bind(value))
@@ -261,7 +261,7 @@ func _on_intensity_interaction_ended(value: float, previous: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set modulation intensity of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_intensity.bind(value))
 	version_history.add_do_method(%Intensity.set_value_no_signal.bind(value))
@@ -274,7 +274,7 @@ func _on_alpha_interaction_ended(value: float, previous: float) -> void:
 	if button_group.get_pressed_button() == null:
 		return
 	var channel_item := button_group.get_pressed_button().get_parent() as ColorChannelItem
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set modulation alpha of color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(channel_item.data.set_alpha.bind(value))
 	version_history.add_do_method(%Alpha.set_value_no_signal.bind(value))

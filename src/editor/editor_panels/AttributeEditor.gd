@@ -78,7 +78,7 @@ func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script
 		property.set_value_no_signal(false)
 	
 	var selection_snapshot: Selection = selection.clone()
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set '%s' to %s on %s objects" % [attribute_script.get_global_name(), enabled, selection_snapshot.size()])
 	version_history.add_do_method(add_attribute.bind(selection_snapshot) if enabled else remove_attribute.bind(selection_snapshot))
 	version_history.add_undo_method(remove_attribute.bind(selection_snapshot) if enabled else add_attribute.bind(selection_snapshot))
@@ -102,7 +102,7 @@ func save_flag_attribute(flags: int, previous_flags: int, property: FlagsPropert
 		property.set_value_no_signal(_flags)
 	
 	var selection_snapshot: Selection = selection.clone()
-	var version_history: UndoRedo = Editor.root.level.version_history
+	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Changed '%s' flags on %s objects" % [property.name, selection_snapshot.size()])
 	version_history.add_do_method(set_flags.bind(selection_snapshot, flags))
 	version_history.add_undo_method(set_flags.bind(selection_snapshot, previous_flags))

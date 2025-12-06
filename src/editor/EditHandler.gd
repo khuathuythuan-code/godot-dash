@@ -22,7 +22,6 @@ enum TransformPivot {
 @export var transform_pivot_button: OptionButton
 
 var level: Level
-var selection := Selection.new()
 var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
@@ -33,6 +32,8 @@ var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
 var selection_pivot: Vector2
 var gizmo: Gizmo
+
+@onready var selection := Selection.new()
 
 
 func _ready() -> void:
@@ -137,10 +138,10 @@ func move_selection(distance: Vector2):
 		selection_pivot -= distance * LevelManager.CELL_SIZE
 		moved_selection_cells.emit(-distance)
 	var selection_snapshot: Selection = selection.clone()
-	level.version_history.create_action("Moved objects %s units" % distance)
-	level.version_history.add_do_method(move_object.bind(selection_snapshot))
-	level.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
-	level.version_history.commit_action()
+	Editor.version_history.create_action("Moved objects %s units" % distance)
+	Editor.version_history.add_do_method(move_object.bind(selection_snapshot))
+	Editor.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
+	Editor.version_history.commit_action()
 
 
 func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
@@ -175,15 +176,15 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 		do_rotate_selection.call(selection_snapshot)
 		do_pivot.call(selection_snapshot, selection_pivot)
 		return
-	level.version_history.create_action("Rotated objects %s°" % angle)
-	level.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
-	level.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
+	Editor.version_history.create_action("Rotated objects %s°" % angle)
+	Editor.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
+	Editor.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
 	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
 		var object_to_position := func(object: Node2D):
 			return object.global_position
-		level.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
-		level.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.map_generic_dict(object_to_position)))
-	level.version_history.commit_action()
+		Editor.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
+		Editor.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.map_generic_dict(object_to_position)))
+	Editor.version_history.commit_action()
 
 
 func scale_selection(
@@ -191,7 +192,7 @@ func scale_selection(
 			transform: Transform2D,
 			rotation: float,
 			is_global: bool,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			register_history: bool = false,
 			initial_pivot: Vector2 = Vector2.ZERO,
 		) -> void:
@@ -211,10 +212,10 @@ func scale_selection(
 				selection.for_each.call_deferred(scale_transform_local.bind(pivot_relative_transforms, position, transform, rotation))
 			undo_scale = func():
 				selection.for_each.call_deferred(scale_transform_local.bind(pivot_relative_transforms, initial_pivot, Transform2D.IDENTITY, rotation))
-		level.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
-		level.version_history.add_do_method(do_scale)
-		level.version_history.add_undo_method(undo_scale)
-		level.version_history.commit_action()
+		Editor.version_history.create_action("Scaled selection by %s %s" % [transform.get_scale(), "globally" if is_global else "locally"])
+		Editor.version_history.add_do_method(do_scale)
+		Editor.version_history.add_undo_method(undo_scale)
+		Editor.version_history.commit_action()
 		return
 	if is_global:
 		selection.for_each.call_deferred(scale_transform.bind(pivot_relative_transforms, position, transform))
@@ -246,14 +247,14 @@ func shift_z_index(increase: bool):
 		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
 	# Commit
 	var selection_snapshot: Selection = selection.clone()
-	var warns: int = selection_snapshot.reduce(increase_z_index_warns if increase else decrease_z_index_warns, 0)
+	var warns: int = selection_snapshot.fold_generic(increase_z_index_warns if increase else decrease_z_index_warns, 0)
 	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
 	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
 	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
-	level.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
-	level.version_history.add_do_method(do_shift.bind(selection_snapshot))
-	level.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
-	level.version_history.commit_action()
+	Editor.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
+	Editor.version_history.add_do_method(do_shift.bind(selection_snapshot))
+	Editor.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
+	Editor.version_history.commit_action()
 	if warns > 0:
 		Toasts.warning("%s Z index is %s (%s affected objects)" % [
 			"Maximum" if increase else "Minimum",
@@ -305,24 +306,24 @@ func delete_selection() -> void:
 			level.add_child(_object, true)
 			NodeUtils.change_owner_recursive(_object, level))
 	var selection_snapshot: Selection = selection.clone()
-	level.version_history.create_action("Deleted objects")
-	level.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
-	level.version_history.add_undo_method(undo_delete_selection.bind(selection_snapshot))
-	level.version_history.commit_action()
+	Editor.version_history.create_action("Deleted objects")
+	Editor.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
+	Editor.version_history.add_undo_method(undo_delete_selection.bind(selection_snapshot))
+	Editor.version_history.commit_action()
 	clear_selection(true)
 	deleted_selection.emit()
 
 
-func clear_selection(merge_with_previous: bool = false) -> void:
-	select(Selection.EMPTY(), merge_with_previous)
+func clear_selection(merge_history_actions: bool = false) -> void:
+	select(Selection.EMPTY(), merge_history_actions)
 	_reset_selection_zone()
 
 
-func select_all(merge_with_previous: bool = false) -> void:
+func select_all(merge_history_actions: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
 	objects.assign(level.get_children().filter(only_node_2ds))
-	select(Selection.from_array(objects), merge_with_previous)
+	select(Selection.from_array(objects), merge_history_actions)
 
 
 func remove_gizmo(_selection = null) -> void:
@@ -352,7 +353,7 @@ func update_pivot() -> void:
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
-func select(objects: Selection, merge_with_previous: bool = false) -> void:
+func select(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if selection.is_identical(objects):
 		return
@@ -362,16 +363,16 @@ func select(objects: Selection, merge_with_previous: bool = false) -> void:
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	if merge_with_previous:
-		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
+	if merge_history_actions:
+		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
-		level.version_history.create_action("Selected %s objects" % objects.size())
-	level.version_history.add_do_method(change_selection.bind(objects))
-	level.version_history.add_undo_method(change_selection.bind(selection.clone()))
-	level.version_history.commit_action()
+		Editor.version_history.create_action("Selected %s objects" % objects.size())
+	Editor.version_history.add_do_method(change_selection.bind(objects))
+	Editor.version_history.add_undo_method(change_selection.bind(selection.clone()))
+	Editor.version_history.commit_action()
 
 
-func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
+func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if objects.is_empty() or selection.is_identical(objects):
 		return
@@ -386,13 +387,13 @@ func deselect(objects: Selection, merge_with_previous: bool = false) -> void:
 		if not new_selection.is_empty():
 			selection.for_each(add_selection_highlight)
 		selection_changed.emit(selection)
-	if merge_with_previous:
-		level.version_history.create_action(level.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
+	if merge_history_actions:
+		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
-		level.version_history.create_action("Deselected %s objects" % objects.size())
-	level.version_history.add_do_method(do_deselection.bind(objects))
-	level.version_history.add_undo_method(undo_deselection.bind(selection.clone()))
-	level.version_history.commit_action()
+		Editor.version_history.create_action("Deselected %s objects" % objects.size())
+	Editor.version_history.add_do_method(do_deselection.bind(objects))
+	Editor.version_history.add_undo_method(undo_deselection.bind(selection.clone()))
+	Editor.version_history.commit_action()
 
 
 func _update_selection() -> void:
@@ -484,11 +485,11 @@ func _flip_selection(axis: int):
 				_object.scale.y *= -1
 				var position_relative_to_pivot: Vector2 = _object.global_position - selection_pivot
 				_object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
-	level.version_history.create_action("Flipped objects")
+	Editor.version_history.create_action("Flipped objects")
 	for object in selection.to_array():
-		level.version_history.add_do_method(flip.bind(object))
-		level.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
-	level.version_history.commit_action()
+		Editor.version_history.add_do_method(flip.bind(object))
+		Editor.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
+	Editor.version_history.commit_action()
 
 
 func _clone(object: Node) -> Node:
@@ -590,11 +591,11 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	).rotated(mean_objects_rotation)
 	selection_pivot = gizmo_center
 
-	var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
+	var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
 	for collision_object in selection_collision_objects:
 		var pivot_relative_transform: Transform2D = collision_object.global_transform
 		pivot_relative_transform.origin -= selection_pivot
-		pivot_relative_transforms[collision_object] = pivot_relative_transform
+		pivot_relative_transforms[level.get_path_to(collision_object)] = pivot_relative_transform
 
 	selection_collision_objects.assign(selection_collision_objects.map(get_object_selection_collider))
 	var selection_bounding_box: Transform2D = BoundingBox.new(selection_collision_objects, selection_pivot, mean_objects_rotation).as_transform()
@@ -614,22 +615,22 @@ func _on_scale_pressed(quick: bool = false) -> void:
 
 static func scale_transform(
 			object: Node2D,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			pivot: Vector2,
 			transform: Transform2D,
 		):
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 
 
 static func scale_transform_local(
 			object: Node2D,
-			pivot_relative_transforms: Dictionary[Node2D, Transform2D],
+			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
 			pivot: Vector2,
 			transform: Transform2D,
 			rotation: float,
 		):
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[object]
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation))
 		.rotated(rotation)

@@ -30,6 +30,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Editor.root = self
 	Editor.viewport = %EditorViewport
+	
 	if SceneManager.from_title_screen():
 		var _fade_screen = $FadeScreenLayer/FadeScreen
 		_fade_screen.show()
@@ -62,12 +63,15 @@ func _ready() -> void:
 	%MenuBarContainer.show()
 
 	if not Editor.level_data_snapshot.is_empty():
-		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot)) 
+		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
-		level.version_history = UndoRedo.new()
+		Editor.version_history = VersionHistory.new()
 		LevelManager.game_scene.add_loaded_level(level)
+	
+	if not $EditHandler.selection.is_empty():
+		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
 
 
 func _physics_process(_delta: float) -> void:
@@ -93,9 +97,9 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"ui_redo", true):
-		level.version_history.redo()
+		Editor.version_history.redo()
 	elif event.is_action_pressed(&"ui_undo", true):
-		level.version_history.undo()
+		Editor.version_history.undo()
 	elif event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
 
@@ -122,7 +126,7 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 func level_was_modified() -> bool:
 	if not level:
 		return false
-	return level.version_history.get_version() > Editor.level_history_version
+	return Editor.version_history.get_version() > Editor.level_history_version
 
 
 func any_dialog_is_open() -> bool:
@@ -138,17 +142,20 @@ func _fade_leave(_action: Variant = null) -> void:
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5) \
-			.set_ease(Tween.EASE_IN) \
-			.set_trans(Tween.TRANS_EXPO) \
+	await (
+		create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5)
+			.set_ease(Tween.EASE_IN)
+			.set_trans(Tween.TRANS_EXPO)
 			.finished
+	)
 
 
 func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
-		$EditHandler.clear_selection()
+		$EditHandler.remove_gizmo()
+		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
 		%ColorChannelEditor.hide_properties()
 		await get_tree().process_frame
 		Editor.level_data_snapshot = level.to_data()
@@ -186,11 +193,9 @@ func _on_playtest_pressed() -> void:
 
 
 func _on_leave_pressed() -> void:
-	if not LevelManager.level_playing:
-		$EditHandler.selection.for_each($EditHandler.remove_selection_highlight)
-		$EditHandler.selection.clear()
-		Editor.level_data_snapshot = level.to_data()
-		Editor.snapshot.pack(self)
+	Editor.selection_snapshot.clear()
+	Editor.level_data_snapshot.clear()
+	Editor.level_history_version = -1
 	if level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()

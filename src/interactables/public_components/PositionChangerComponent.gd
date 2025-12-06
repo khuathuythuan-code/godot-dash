@@ -44,9 +44,11 @@ func _validate_property(property: Dictionary) -> void:
 
 func start(_player: Player) -> void:
 	var group_objects: Array[Node2D]
-	group_objects.assign(get_tree() \
-			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
-			.filter(func(object): return object is Node2D))
+	group_objects.assign(
+		get_tree()
+			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group)
+			.filter(func(object): return object is Node2D)
+	)
 	group_objects.map(func(object): initial_global_positions.set(object, object.global_position))
 	if group_objects.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
