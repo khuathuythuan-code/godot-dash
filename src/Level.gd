@@ -14,8 +14,6 @@ const START_SPEED: Array[float] = [
 	2.431, # 5x
 ]
 
-@export_storage var version_history: UndoRedo
-
 @export_file var song_path: String:
 	set(value):
 		register_required_song(song_path, value)
@@ -87,8 +85,6 @@ var _pause_manager: Node
 
 
 func _ready() -> void:
-	if version_history == null:
-		version_history = UndoRedo.new()
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
@@ -196,9 +192,9 @@ func to_data() -> Dictionary:
 		"duration": duration,
 		"objects": [],
 	}
-	for object in get_children():
-		if object is not Node2D:
-			continue
+	var objects: Array[Node2D]
+	objects.assign(get_children())
+	for object: Node2D in objects:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),

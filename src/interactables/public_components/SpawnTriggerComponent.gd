@@ -47,12 +47,6 @@ func start(player: Player) -> void:
 	if spawned_triggers.is_empty():
 		Toasts.warning("In %s: spawned triggers is empty" % parent.name)
 		return
-	var skip_deleted := func(trigger):
-		var spawned_trigger = LevelManager.current_level.get_node_or_null(trigger.path)
-		if spawned_trigger == null:
-			return false
-		return not spawned_trigger.is_in_group("deleted")
-	spawned_triggers = spawned_triggers.filter(skip_deleted)
 	for trigger in spawned_triggers:
 		if trigger.time > _duration:
 			_duration = trigger.time

@@ -1,13 +1,17 @@
 use std::collections::HashSet;
 
-use godot::prelude::*;
+use godot::{classes::Control, prelude::*, tools::get_autoload_by_name};
+
+const EDITOR: &str = "Editor";
+const EDITOR_ROOT: &str = "root";
+const LEVEL_ROOT: &str = "level";
 
 #[derive(GodotClass)]
 /// A wrapper type for Rust's `HashSet`. Works like an [Array] of [Node2D] but all objects are
 /// unique.
 pub struct Selection {
-    inner: HashSet<Gd<Node2D>>,
-    first: Option<Gd<Node2D>>,
+    inner: HashSet<NodePath>,
+    first: Option<NodePath>,
 }
 
 #[godot_api]
@@ -26,6 +30,15 @@ impl IRefCounted for Selection {
 
 #[godot_api]
 impl Selection {
+    /// Helper method to get the level root.
+    /// Equivalent to `Editor.root.level` in GDScript.
+    fn get_level_root() -> Gd<Node2D> {
+        get_autoload_by_name::<Node>(EDITOR)
+            .get(EDITOR_ROOT)
+            .to::<Gd<Control>>()
+            .get(LEVEL_ROOT)
+            .to()
+    }
     /// Empty [Selection] constant (GDExtension doesn't yet support
     /// registering constants that aren't [int]s)
     #[func(rename = EMPTY)]
@@ -35,9 +48,13 @@ impl Selection {
     #[func]
     /// Creates a [Selection] and fill it with the array's objects.
     fn from_array(array: Array<Gd<Node2D>>) -> Gd<Self> {
+        let level_root = Self::get_level_root();
         Gd::from_object(Self {
-            inner: array.iter_shared().collect(),
-            first: array.front(),
+            inner: array
+                .iter_shared()
+                .map(|node| level_root.get_path_to(&node))
+                .collect(),
+            first: array.front().map(|node| level_root.get_path_to(&node)),
         })
     }
     #[func]
@@ -48,16 +65,21 @@ impl Selection {
     /// selection.insert(object)
     /// ```
     fn from_object(object: Gd<Node2D>) -> Gd<Self> {
-        let inner: HashSet<Gd<Node2D>> = HashSet::from([object.clone()]);
+        let level_root = Self::get_level_root();
         Gd::from_object(Self {
-            inner,
-            first: Some(object),
+            inner: HashSet::from([level_root.get_path_to(&object)]),
+            first: Some(level_root.get_path_to(&object)),
         })
     }
     #[func]
     /// Creates a typed [Array] of [Node2D]s with the objects of the selection.
     fn to_array(&self) -> Array<Gd<Node2D>> {
-        Array::from_iter(self.inner.iter().cloned())
+        let level_root = Self::get_level_root();
+        Array::from_iter(
+            self.inner
+                .iter()
+                .flat_map(|path| level_root.try_get_node_as(path)),
+        )
     }
     #[func]
     /// Returns the number of objects in this selection.
@@ -67,12 +89,7 @@ impl Selection {
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **or** in `other`.
     fn union(&self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<Gd<Node2D>> = self
-            .inner
-            .clone()
-            .union(&other.bind().inner)
-            .cloned()
-            .collect();
+        let inner: HashSet<NodePath> = self.inner.union(&other.bind().inner).cloned().collect();
         Gd::from_object(Self {
             inner,
             first: self.first.clone().or(other.bind().first.clone()),
@@ -81,9 +98,8 @@ impl Selection {
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **and** in `other`.
     fn intersection(&self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<Gd<Node2D>> = self
+        let inner: HashSet<NodePath> = self
             .inner
-            .clone()
             .intersection(&other.bind().inner)
             .cloned()
             .collect();
@@ -95,9 +111,8 @@ impl Selection {
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **and not** in `other`.
     fn difference(&mut self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<Gd<Node2D>> = self
+        let inner: HashSet<NodePath> = self
             .inner
-            .clone()
             .difference(&other.bind().inner)
             .cloned()
             .collect();
@@ -109,26 +124,30 @@ impl Selection {
     #[func]
     /// Adds an element to the selection.
     fn insert(&mut self, object: Gd<Node2D>) {
-        self.inner.insert(object.clone());
-        if self.first == None {
-            self.first = Some(object)
+        let level_root = Self::get_level_root();
+        self.inner.insert(level_root.get_path_to(&object));
+        if self.first.is_none() {
+            self.first = Some(level_root.get_path_to(&object))
         }
     }
     #[func]
     /// Check if an element exists in the selection.
     fn contains(&self, object: Gd<Node2D>) -> bool {
-        self.inner.contains(&object)
+        let level_root = Self::get_level_root();
+        self.inner.contains(&level_root.get_path_to(&object))
     }
     #[func]
     /// Removes an element from the selection.
     /// Returns whether the element was present in the selection.
     fn remove(&mut self, object: Gd<Node2D>) -> bool {
-        self.inner.remove(&object)
+        let level_root = Self::get_level_root();
+        self.inner.remove(&level_root.get_path_to(&object))
     }
     #[func]
     /// Returns the first element of the selection, or `null` if there is none.
     fn first(&self) -> Option<Gd<Node2D>> {
-        self.first.clone()
+        let level_root = Self::get_level_root();
+        self.first.clone().map(|path| level_root.get_node_as(&path))
     }
     #[func]
     /// Removes all elements from the selection.
@@ -188,19 +207,21 @@ impl Selection {
     /// Like [method Selection.map_generic], but returns another [Selection].
     /// This implies `method` needs to return a [Node2D].
     fn map(&self, method: Callable) -> Gd<Self> {
-        let mut first: Option<Gd<Node2D>> = None;
-        let inner: HashSet<Gd<Node2D>> = self
+        let level_root = Self::get_level_root();
+        let mut first: Option<NodePath> = None;
+        let inner: HashSet<NodePath> = self
             .inner
             .clone()
             .iter()
-            .map(|node_ref| {
+            .flat_map(|path| {
+                let node_ref = level_root.get_node_or_null(path)?;
                 let new_node_ref = method.call(vslice![node_ref]).to::<Gd<Node2D>>();
                 if let Some(first_ref) = self.first.clone()
-                    && &first_ref == node_ref
+                    && level_root.get_node_or_null(&first_ref)? == node_ref
                 {
-                    first = Some(new_node_ref.clone());
+                    first = Some(level_root.get_path_to(&new_node_ref));
                 }
-                new_node_ref
+                Some(level_root.get_path_to(&new_node_ref))
             })
             .collect();
         Gd::from_object(Self { inner, first })
@@ -208,33 +229,45 @@ impl Selection {
     #[func]
     /// See [method Array.map].
     fn map_generic(&self, method: Callable) -> Array<Variant> {
+        let level_root = Self::get_level_root();
         self.inner
             .clone()
-            .iter()
-            .map(|node_ref| method.call(vslice![node_ref]))
+            .into_iter()
+            .flat_map(|path| {
+                let node = level_root.get_node_or_null(&path)?;
+                Some(method.call(vslice![node]))
+            })
             .collect()
     }
     #[func]
     /// Like [method Selection.map_generic], but it produces a [Dictionary] with,
     /// for each element, keys and values being `element` and `method.call(element)`.
-    fn map_generic_dict(&self, method: Callable) -> Dictionary {
+    fn map_generic_dict(&self, method: Callable) -> VarDictionary {
         // Typed dictionaries aren't supported in godot-rust yet
+        let level_root = Self::get_level_root();
         self.inner
             .clone()
-            .iter()
-            .map(|node_ref| (node_ref.clone(), method.call(vslice![node_ref])))
+            .into_iter()
+            .flat_map(|path| {
+                let node = level_root.get_node_or_null(&path)?;
+                Some((node.clone(), method.call(vslice![node])))
+            })
             .collect()
     }
     #[func]
     /// See [method Array.filter].
     /// Produces a new [Selection] with elements where `method.call(element) returns `true`.
     fn filter(&self, method: Callable) -> Gd<Self> {
-        let inner: HashSet<Gd<Node2D>> = self
+        let level_root = Self::get_level_root();
+        let inner: HashSet<NodePath> = self
             .inner
             .clone()
-            .iter()
-            .filter(|node_ref| method.call(vslice![node_ref]).to::<bool>())
-            .cloned()
+            .into_iter()
+            .filter(|path| {
+                level_root
+                    .get_node_or_null(path)
+                    .is_some_and(|node| method.call(vslice![node]).to::<bool>())
+            })
             .collect();
         Gd::from_object(Self {
             inner,
@@ -244,18 +277,24 @@ impl Selection {
     #[func]
     /// See [method Array.reduce].
     fn fold_generic(&self, method: Callable, accum: Variant) -> Variant {
+        let level_root = Self::get_level_root();
         self.inner
             .clone()
             .iter()
-            .fold(accum, |accum: Variant, node_ref| {
-                method.call(vslice![accum, node_ref])
+            .flat_map(|path| level_root.get_node_or_null(path))
+            .fold(accum, |accum: Variant, node| {
+                method.call(vslice![accum, node])
             })
     }
     #[func]
     /// Runs `method` on each element in the selection.
     fn for_each(&mut self, method: Callable) {
-        self.inner.iter().for_each(|node_ref| {
-            method.call(vslice![node_ref]);
-        });
+        let level_root = Self::get_level_root();
+        self.inner
+            .iter()
+            .flat_map(|path| level_root.get_node_or_null(path))
+            .for_each(|node_ref| {
+                method.call(vslice![node_ref]);
+            });
     }
 }

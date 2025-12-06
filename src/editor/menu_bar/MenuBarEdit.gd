@@ -5,9 +5,9 @@ extends PopupMenu
 func _on_index_pressed(index:int) -> void:
 	match index:
 		0: # Undo
-			edit_handler.level.version_history.undo()
+			Editor.version_history.undo()
 		1: # Redo
-			edit_handler.level.version_history.redo()
+			Editor.version_history.redo()
 		# --- Separator ---
 		3: # Copy
 			edit_handler.copy_selection()

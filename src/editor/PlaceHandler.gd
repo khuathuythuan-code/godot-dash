@@ -48,15 +48,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
 				# Version history
-				var add_object := func(_object: Node, _level: Level):
-					level.add_child(_object, true)
-					NodeUtils.change_owner_recursive(_object, _level)
-				var remove_object := func(_object: Node):
+				var add_object := func(_path_ref: PathRef):
+					var _object: Node = _path_ref.to_ref()
+					Editor.root.level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, Editor.root.level)
+				var remove_object := func(_path_ref: PathRef):
+					var _object: Node = _path_ref.to_ref()
 					_object.get_parent().remove_child(_object)
-				level.version_history.create_action("Placed object " + object.name)
-				level.version_history.add_do_method(add_object.bind(object, level))
-				level.version_history.add_undo_method(remove_object.bind(object))
-				level.version_history.commit_action()
+				var path_ref := PathRef.new(object)
+				Editor.version_history.create_action("Placed object " + object.name)
+				Editor.version_history.add_do_method(add_object.bind(path_ref))
+				Editor.version_history.add_undo_method(remove_object.bind(path_ref))
+				Editor.version_history.commit_action()
 				add_hsv_watchers(object, level)
 				edit_handler.select(Selection.from_object(object), true)
 		# Handle object deletion
@@ -68,15 +71,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var object := get_area(overlapping_areas[-1])
 
 				# Version history
-				var delete_object := func(_object: Node):
+				var delete_object := func(_path_ref: PathRef):
+					var _object: Node = _path_ref.to_ref()
 					_object.get_parent().remove_child(_object)
-				var restore_object := func(_object: Node):
-					level.add_child(_object, true)
-					NodeUtils.change_owner_recursive(_object, level)
-				level.version_history.create_action("Deleted object " + object.name)
-				level.version_history.add_do_method(delete_object.bind(object))
-				level.version_history.add_undo_method(restore_object.bind(object))
-				level.version_history.commit_action()
+				var restore_object := func(_path_ref: PathRef):
+					var _object: Node = _path_ref.to_ref()
+					Editor.root.level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, Editor.root.level)
+				var path_ref := PathRef.new(object)
+				Editor.version_history.create_action("Deleted object " + object.name)
+				Editor.version_history.add_do_method(delete_object.bind(path_ref))
+				Editor.version_history.add_undo_method(restore_object.bind(path_ref))
+				Editor.version_history.commit_action()
 				edit_handler.deselect(Selection.from_object(object), true)
 
 
