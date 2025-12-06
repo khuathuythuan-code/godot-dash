@@ -1,13 +1,14 @@
 extends Node2D
+
 class_name Level
 
 @warning_ignore("unused_signal")
 signal default_font_changed
 
 const START_SPEED: Array[float] = [
-	0.0,   # 0x
+	0.0, # 0x
 	0.807, # 0.5x
-	1.0,   # 1x
+	1.0, # 1x
 	1.243, # 2x
 	1.502, # 3x
 	1.849, # 4x
@@ -193,14 +194,14 @@ func to_data() -> Dictionary:
 		"objects": [],
 	}
 	var objects: Array[Node2D]
-	objects.assign(get_children())
+	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
 	for object: Node2D in objects:
 		var object_data: Dictionary = {
 			"name": object.name,
 			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
 			"transform": Serialize.Transform2D(object.transform),
 			"groups": object.get_groups(),
-			"color_channels": {},
+			"color_channels": { },
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
 			"z_index": object.z_index,
 		}
@@ -225,9 +226,7 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 		# Color channel groups might be attached to the object directly
 		# if it doesn't have a Base.
 		var object_color_channels: Array = (
-				BaseDetailHandler.use_hsv_watcher(object)
-				.get_groups()
-				.filter(func(group: String): return group.begins_with(Constants.COLOR_CHANNEL_GROUP_PREFIX))
+			BaseDetailHandler.use_hsv_watcher(object).get_groups().filter(func(group: String): return group.begins_with(Constants.COLOR_CHANNEL_GROUP_PREFIX))
 		)
 		if not object_color_channels.is_empty():
 			object_data.color_channels = object_color_channels.front()

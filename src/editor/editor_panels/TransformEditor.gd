@@ -1,4 +1,5 @@
 extends VBoxContainer
+
 class_name TransformEditor
 
 @export var edit_handler: EditHandler
@@ -36,9 +37,8 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
 
-	z_index_property.set_value_no_signal(float(first_object_ref.z_index))
-
 	if selection_size == 1:
+		z_index_property.set_value_no_signal(float(first_object_ref.z_index))
 		scale_property.set_value_no_signal(first_object_ref.scale)
 		position_property.set_value_no_signal((first_object_ref.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 		rotation_property.set_value_no_signal(first_object_ref.global_rotation_degrees)
@@ -134,13 +134,13 @@ func _on_z_index_value_changed(new_z_index: int):
 			var _object: Node2D = Editor.root.level.get_node(_path)
 			_object.z_index = _selection_to_z_index[_path]
 		z_index_property.set_value_no_signal(float(first_object.to_ref().z_index))
-	
+
 	var selection_snapshot: Selection = current_selection.clone()
 	var object_to_z_index := func(accum: Dictionary, object: Node2D):
 		accum[Editor.root.level.get_path_to(object)] = object.z_index
 		return accum
 	var selection_to_z_index: Dictionary[NodePath, int]
-	selection_to_z_index.assign(selection_snapshot.fold_generic(object_to_z_index, {}))
+	selection_to_z_index.assign(selection_snapshot.fold_generic(object_to_z_index, { }))
 	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Changed object z index to %s" % new_z_index)
 	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
