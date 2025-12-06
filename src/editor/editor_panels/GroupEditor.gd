@@ -7,8 +7,9 @@ const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
 @export var confirm_button: Button
 @export var group_container: Container
 
-var selected_objects := Selection.new()
 var group_buttons: Dictionary[String, Button]
+
+@onready var selected_objects := Selection.new()
 
 
 func _populate_group_list(selection: Selection) -> void:

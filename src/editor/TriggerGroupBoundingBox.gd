@@ -2,7 +2,8 @@ extends Node2D
 class_name TriggerGroupBoundingBox
 
 var bounding_boxes: Dictionary[Interactable, GroupBoundingBox]
-var saved_selection := Selection.new()
+
+@onready var saved_selection := Selection.new()
 
 
 class GroupBoundingBox:

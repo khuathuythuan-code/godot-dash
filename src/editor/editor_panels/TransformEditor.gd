@@ -7,7 +7,6 @@ class_name TransformEditor
 @export var scale_property: Vector2Property
 @export var z_index_property: FloatProperty
 
-var current_selection := Selection.new()
 var selection_size: int
 var first_object: Node2D
 var average_position: Vector2
@@ -16,6 +15,7 @@ var pivot_relative_transforms: Dictionary[Node2D, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
+@onready var current_selection := Selection.new()
 @onready var parent: Node = get_parent()
 
 

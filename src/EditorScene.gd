@@ -70,8 +70,8 @@ func _ready() -> void:
 		Editor.version_history = VersionHistory.new()
 		LevelManager.game_scene.add_loaded_level(level)
 	
-	$EditHandler.selection = Selection.from_snapshot(Editor.selection_snapshot, level)
-	$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
+	if not $EditHandler.selection.is_empty():
+		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
 
 
 func _physics_process(_delta: float) -> void:
@@ -157,7 +157,6 @@ func _on_playtest_pressed() -> void:
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
 		$EditHandler.remove_gizmo()
-		Editor.selection_snapshot = $EditHandler.selection.to_snapshot(level)
 		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
 		$EditHandler.selection.clear()
 		%ColorChannelEditor.hide_properties()
