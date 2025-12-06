@@ -1,4 +1,5 @@
 extends Node
+
 class_name EditHandler
 
 signal selection_zone_changed(new_zone: Rect2)
@@ -47,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		return
 	if object_move_cooldown > 0:
 		object_move_cooldown -= delta
-	cursor_position_snapped = level.get_local_mouse_position().snapped(Vector2.ONE*128)
+	cursor_position_snapped = level.get_local_mouse_position().snapped(Vector2.ONE * 128)
 	if cursor_position_snapped != previous_cursor_position_snapped:
 		selection_index = 0
 	var is_already_swiping_selection: bool = $SelectionZone/Hitbox.shape.size != Vector2.ZERO
@@ -59,14 +60,14 @@ func _physics_process(delta: float) -> void:
 		if editor_mode.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or not any_gizmo_is_open()):
 			_update_selection()
 		var can_use_actions: bool = (
-				not selection.is_empty() and not (
-					Input.is_action_pressed(&"editor_save", true)
-					or Input.is_action_pressed(&"editor_save_as", true)
-					or Input.is_action_pressed(&"editor_new_level", true)
-					or Input.is_action_pressed(&"editor_import_level", true)
-					or Input.is_action_pressed(&"editor_export_level", true)
-					or any_gizmo_is_open()
-				)
+			not selection.is_empty() and not (
+				Input.is_action_pressed(&"editor_save", true)
+				or Input.is_action_pressed(&"editor_save_as", true)
+				or Input.is_action_pressed(&"editor_new_level", true)
+				or Input.is_action_pressed(&"editor_import_level", true)
+				or Input.is_action_pressed(&"editor_export_level", true)
+				or any_gizmo_is_open()
+			)
 		)
 		if can_use_actions:
 			if Input.is_action_just_pressed(&"editor_deselect", true):
@@ -82,10 +83,10 @@ func _physics_process(delta: float) -> void:
 				paste_selection()
 				object_move_cooldown = 5
 			if (
-					Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
-					and not Input.is_key_pressed(KEY_ALT)
-					and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")
-					and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index")
+				Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
+				and not Input.is_key_pressed(KEY_ALT)
+				and object_move_cooldown <= 0 and not Input.is_action_pressed(&"editor_select_all")
+				and not Input.is_action_pressed(&"editor_increase_z_index") and not Input.is_action_pressed(&"editor_decrease_z_index")
 			):
 				var move_vector: Vector2
 				move_vector.x = Input.get_axis(&"ui_left", &"ui_right")
@@ -120,8 +121,8 @@ func _physics_process(delta: float) -> void:
 			elif Input.is_action_just_pressed(&"editor_decrease_z_index"):
 				shift_z_index(false)
 		if not (Input.get_vector(&"ui_left", &"ui_right", &"ui_up", &"ui_down")
-				or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
-				or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90")):
+			or Input.get_axis(&"editor_rotate_-45", &"editor_rotate_45")
+			or Input.get_axis(&"editor_rotate_-90", &"editor_rotate_90") ):
 			object_move_cooldown = 0.0
 	previous_cursor_position_snapped = cursor_position_snapped
 
@@ -167,8 +168,8 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	var undo_pivot := func(_selection_original_positions: Dictionary[Node2D, Vector2]):
 		for _object in _selection_original_positions:
 			_object.global_position = _selection_original_positions[_object]
-	
-	var selection_snapshot: Selection = selection.clone() 
+
+	var selection_snapshot: Selection = selection.clone()
 	# Avoid firing signals for RotateGizmo rotations
 	# RotateGizmo fires a signal every frame its angle changes
 	# This would clog the history with small rotations.
@@ -176,6 +177,7 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 		do_rotate_selection.call(selection_snapshot)
 		do_pivot.call(selection_snapshot, selection_pivot)
 		return
+
 	Editor.version_history.create_action("Rotated objects %s°" % angle)
 	Editor.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
@@ -188,14 +190,14 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 
 
 func scale_selection(
-			position: Vector2,
-			transform: Transform2D,
-			rotation: float,
-			is_global: bool,
-			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
-			register_history: bool = false,
-			initial_pivot: Vector2 = Vector2.ZERO,
-		) -> void:
+		position: Vector2,
+		transform: Transform2D,
+		rotation: float,
+		is_global: bool,
+		pivot_relative_transforms: Dictionary[NodePath, Transform2D],
+		register_history: bool = false,
+		initial_pivot: Vector2 = Vector2.ZERO,
+) -> void:
 	if selection.is_empty():
 		return
 	selection_pivot = position
@@ -256,11 +258,13 @@ func shift_z_index(increase: bool):
 	Editor.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
 	Editor.version_history.commit_action()
 	if warns > 0:
-		Toasts.warning("%s Z index is %s (%s affected objects)" % [
-			"Maximum" if increase else "Minimum",
-			RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
-			warns,
-		])
+		Toasts.warning(
+			"%s Z index is %s (%s affected objects)" % [
+				"Maximum" if increase else "Minimum",
+				RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
+				warns,
+			],
+		)
 
 
 func duplicate_selection() -> void:
@@ -302,9 +306,11 @@ func delete_selection() -> void:
 	var do_delete_selection := func(_selection: Selection):
 		_selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
 	var undo_delete_selection := func(_selection: Selection):
-		_selection.for_each(func(_object: Node2D):
-			level.add_child(_object, true)
-			NodeUtils.change_owner_recursive(_object, level))
+		_selection.for_each(
+			func(_object: Node2D):
+				level.add_child(_object, true)
+				NodeUtils.change_owner_recursive(_object, level)
+		)
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
 	Editor.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
@@ -401,7 +407,7 @@ func _update_selection() -> void:
 		_reset_selection_zone(false)
 	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
-				and not Input.is_action_just_pressed(&"editor_selection_remove", true):
+		and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			selection_index += 1
 		if (
 			not (
@@ -412,9 +418,7 @@ func _update_selection() -> void:
 			if placed_objects_collider.has_overlapping_areas():
 				var cycled_object: Node2D = (
 					get_object_parent(
-						placed_objects_collider.get_overlapping_areas()[
-							selection_index%len(placed_objects_collider.get_overlapping_areas())
-						]
+						placed_objects_collider.get_overlapping_areas()[selection_index % len(placed_objects_collider.get_overlapping_areas())],
 					)
 				)
 				select(Selection.from_object(cycled_object))
@@ -463,7 +467,7 @@ func _swipe_selection_zone() -> void:
 	# Left Up
 	elif mouse_position.x < $SelectionZone.position.x and mouse_position.y < $SelectionZone.position.y:
 		hitbox.position = -hitbox.shape.size * 0.5
-	
+
 	selection_zone_changed.emit(Rect2($SelectionZone/Hitbox.position - $SelectionZone/Hitbox.shape.size * 0.5, $SelectionZone/Hitbox.shape.size))
 
 
@@ -574,20 +578,18 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	update_pivot()
 	if gizmo != null:
 		gizmo.queue_free()
-	
+
 	var selection_collision_objects: Array[CollisionObject2D]
 	selection_collision_objects.assign(
-			selection
-			.filter(func(object: Node2D): return object is CollisionObject2D)
-			.to_array()
+		selection.filter(func(object: Node2D): return object is CollisionObject2D).to_array(),
 	)
 
 	var first_object_rotation: float = selection.first().global_rotation
 	var mean_objects_rotation: float = first_object_rotation
 	var gizmo_center: Vector2 = ArrayUtils.transform(
-			selection.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
-			ArrayUtils.Transformation.MEAN,
-			true
+		selection.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
+		ArrayUtils.Transformation.MEAN,
+		true,
 	).rotated(mean_objects_rotation)
 	selection_pivot = gizmo_center
 
@@ -614,27 +616,25 @@ func _on_scale_pressed(quick: bool = false) -> void:
 
 
 static func scale_transform(
-			object: Node2D,
-			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
-			pivot: Vector2,
-			transform: Transform2D,
-		):
+		object: Node2D,
+		pivot_relative_transforms: Dictionary[NodePath, Transform2D],
+		pivot: Vector2,
+		transform: Transform2D,
+):
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 
 
 static func scale_transform_local(
-			object: Node2D,
-			pivot_relative_transforms: Dictionary[NodePath, Transform2D],
-			pivot: Vector2,
-			transform: Transform2D,
-			rotation: float,
-		):
+		object: Node2D,
+		pivot_relative_transforms: Dictionary[NodePath, Transform2D],
+		pivot: Vector2,
+		transform: Transform2D,
+		rotation: float,
+):
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (
-		(transform * pivot_relative_transform.rotated(-rotation))
-		.rotated(rotation)
-		.translated(pivot)
+		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
 	)
 
 
