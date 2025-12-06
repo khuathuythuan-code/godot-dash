@@ -1,4 +1,5 @@
 extends Node
+
 class_name LevelOperationsHandler
 
 signal level_loaded(level: Level)
@@ -28,7 +29,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if $AutosaveTimer.get_time_left() < 5.0 and not $AutosaveTimer.is_stopped():
-		var autosave_message := "Autosaving in " + str(ceilf($AutosaveTimer.get_time_left())) + "s"
+		var autosave_message := "Autosaving in " + str(snappedf($AutosaveTimer.get_time_left(), 0.1)) + "s"
 		if autosave_toast == null:
 			autosave_toast = Toasts.new_toast(autosave_message, $AutosaveTimer.get_time_left())
 		else:
@@ -54,7 +55,7 @@ func pause_autosave() -> void:
 	$AutosaveTimer.paused = true
 
 
-func _on_level_index_pressed(index:int) -> void:
+func _on_level_index_pressed(index: int) -> void:
 	match index:
 		0: # New
 			if editor.level_was_modified():
@@ -154,10 +155,7 @@ func _import_level(path: String, keep_original: bool) -> void:
 		return
 	for file_path in files:
 		var dir: DirAccess = (
-				level_dir if file_is_level(file_path) else
-				song_dir if file_is_song(file_path) else
-				font_dir if file_is_font(file_path) else
-				null
+			level_dir if file_is_level(file_path) else song_dir if file_is_song(file_path) else font_dir if file_is_font(file_path) else null
 		)
 		if not dir:
 			push_error("Invalid file: %s" % file_path)
@@ -207,7 +205,7 @@ func save_level() -> void:
 	level_saved.emit()
 
 
-func _on_open_level_dialog_file_selected(path:String) -> void:
+func _on_open_level_dialog_file_selected(path: String) -> void:
 	if editor.level_was_modified():
 		save_changes_before_opening_dialog.dialog_text = "Save changes before opening level?"
 		save_changes_before_opening_dialog.show()
@@ -217,7 +215,7 @@ func _on_open_level_dialog_file_selected(path:String) -> void:
 		_open_level(path)
 
 
-func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
+func _on_import_and_open_level_dialog_file_selected(path: String) -> void:
 	if editor.level_was_modified():
 		save_changes_before_opening_dialog.dialog_text = "Save changes before opening level?"
 		save_changes_before_opening_dialog.show()
@@ -228,7 +226,7 @@ func _on_import_and_open_level_dialog_file_selected(path:String) -> void:
 		_import_level(path, import_dialog.get_selected_options()["Keep original level file"])
 
 
-func _on_save_level_as_dialog_file_selected(path:String) -> void:
+func _on_save_level_as_dialog_file_selected(path: String) -> void:
 	Editor.level_file_name = path.get_file()
 	editor.level.name = path.get_file().get_basename()
 	save_level()
@@ -247,7 +245,7 @@ func _on_save_changes_before_opening_confirmed() -> void:
 			save_changes_before_opening_dialog.get_meta("next").call()
 
 
-func _on_save_changes_before_opening_custom_action(action:StringName) -> void:
+func _on_save_changes_before_opening_custom_action(action: StringName) -> void:
 	if action == &"dontsave":
 		match save_changes_before_opening_dialog.get_meta("next"):
 			_import_level:
