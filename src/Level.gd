@@ -96,8 +96,6 @@ func _ready() -> void:
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
 	add_child(song_player, false, INTERNAL_MODE_FRONT)
-	await ready
-	setup_color_channel_watchers.call_deferred()
 
 
 func _process(_delta: float) -> void:
@@ -116,7 +114,7 @@ func start_level() -> void:
 	LevelManager.ground_up.show()
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
 		LevelManager.player_camera.freefly = start_freefly
-	if !start_freefly:
+	if not start_freefly:
 		GroundData.center = EditorScene.DEFAULT_PLAYER_POSITION
 		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * LevelManager.CELL_SIZE * 0.5
 		if EditorScene.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
@@ -254,6 +252,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.default_ground_color = Color.hex(data.default_ground_color)
 	level.default_line_color = Color.hex(data.default_line_color)
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
+	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:

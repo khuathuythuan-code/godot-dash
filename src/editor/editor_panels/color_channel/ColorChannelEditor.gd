@@ -1,4 +1,5 @@
 extends Control
+
 class_name ColorChannelEditor
 
 @export var button_group: ButtonGroup
@@ -32,9 +33,10 @@ func clear_item_list() -> void:
 	%Color.show()
 
 
-func add_channel(channel_name: String, data: ColorChannelData = null) -> void:
-	if channel_name.is_empty() or (channel_name in %ColorChannelContainer.get_children()
-			.map(func(color_channel: ColorChannelItem): return color_channel.channel_name)):
+func add_channel(channel_name: String, data: ColorChannelData = null, register_history_action: bool = true) -> void:
+	var existing_channels: Array[String]
+	existing_channels.assign(%ColorChannelContainer.get_children().map(func(color_channel: ColorChannelItem): return color_channel.channel_name))
+	if channel_name.is_empty() or (channel_name in existing_channels):
 		return
 	var channel_item := color_channel_item.instantiate() as ColorChannelItem
 	channel_item.channel_name = channel_name
@@ -43,6 +45,10 @@ func add_channel(channel_name: String, data: ColorChannelData = null) -> void:
 	channel_item.unselected.connect(hide_properties)
 	channel_item.deleted.connect(_on_channel_item_deleted.bind(channel_item))
 	channel_item.update()
+	if not register_history_action:
+		%ColorChannelContainer.add_child(channel_item)
+		channel_item.register()
+		return
 	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Created color channel %s" % channel_item.channel_name)
 	version_history.add_do_method(%ColorChannelContainer.add_child.bind(channel_item))
@@ -86,7 +92,7 @@ func _on_button_pressed() -> void:
 	%LineEdit.clear()
 
 
-func _on_line_edit_text_submitted(new_text:String) -> void:
+func _on_line_edit_text_submitted(new_text: String) -> void:
 	add_channel(new_text)
 	%LineEdit.clear()
 	if not Input.is_action_pressed(&"ui_accept_keep_focus"):
@@ -281,4 +287,3 @@ func _on_alpha_interaction_ended(value: float, previous: float) -> void:
 	version_history.add_undo_method(channel_item.data.set_alpha.bind(previous))
 	version_history.add_undo_method(%Alpha.set_value_no_signal.bind(previous))
 	version_history.commit_action()
-

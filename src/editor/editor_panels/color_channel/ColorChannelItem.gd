@@ -1,4 +1,5 @@
 extends PanelContainer
+
 class_name ColorChannelItem
 
 const COLOR_PREVIEW_DISABLED := Color("#00000080")
@@ -42,7 +43,7 @@ func update() -> void:
 
 
 func register() -> void:
-	var level := LevelManager.current_level
+	var level: Level = Editor.root.level
 	var has_same_group := func(channel: ColorChannelData, group: String): return channel.associated_group == group
 	var duplicates: Array[ColorChannelData]
 	duplicates.assign(level.color_channels.filter(has_same_group.bind(data.associated_group)))
@@ -106,9 +107,8 @@ func _on_delete_button_pressed() -> void:
 	deleted.emit()
 
 
-func _on_edit_button_toggled(toggled_on:bool) -> void:
+func _on_edit_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		selected.emit()
 	else:
 		unselected.emit()
-
