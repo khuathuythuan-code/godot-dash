@@ -191,20 +191,26 @@ impl Selection {
     /// See [method Array.all].
     fn all(&self, method: Callable) -> bool {
         let level_root = Self::get_level_root();
-        self.inner.clone().iter().all(|path| {
-            level_root
-                .get_node_or_null(path)
-                .is_some_and(|node| method.call(vslice![node]).to::<bool>())
+        self.inner.iter().all(|path| {
+            level_root.get_node_or_null(path).is_some_and(|node| {
+                method
+                    .call(vslice![node])
+                    .try_to_relaxed::<bool>()
+                    .is_ok_and(|b| b)
+            })
         })
     }
     #[func]
     /// See [method Array.any].
     fn any(&self, method: Callable) -> bool {
         let level_root = Self::get_level_root();
-        self.inner.clone().iter().any(|path| {
-            level_root
-                .get_node_or_null(path)
-                .is_some_and(|node| method.call(vslice![node]).to::<bool>())
+        self.inner.iter().any(|path| {
+            level_root.get_node_or_null(path).is_some_and(|node| {
+                method
+                    .call(vslice![node])
+                    .try_to_relaxed::<bool>()
+                    .is_ok_and(|b| b)
+            })
         })
     }
     #[func]
