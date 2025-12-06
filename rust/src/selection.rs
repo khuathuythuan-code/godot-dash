@@ -190,18 +190,22 @@ impl Selection {
     #[func]
     /// See [method Array.all].
     fn all(&self, method: Callable) -> bool {
-        self.inner
-            .clone()
-            .iter()
-            .all(|node_ref| method.call(vslice![node_ref]).to::<bool>())
+        let level_root = Self::get_level_root();
+        self.inner.clone().iter().all(|path| {
+            level_root
+                .get_node_or_null(path)
+                .is_some_and(|node| method.call(vslice![node]).to::<bool>())
+        })
     }
     #[func]
     /// See [method Array.any].
     fn any(&self, method: Callable) -> bool {
-        self.inner
-            .clone()
-            .iter()
-            .any(|node_ref| method.call(vslice![node_ref]).to::<bool>())
+        let level_root = Self::get_level_root();
+        self.inner.clone().iter().any(|path| {
+            level_root
+                .get_node_or_null(path)
+                .is_some_and(|node| method.call(vslice![node]).to::<bool>())
+        })
     }
     #[func]
     /// Like [method Selection.map_generic], but returns another [Selection].
