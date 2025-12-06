@@ -247,7 +247,7 @@ func shift_z_index(increase: bool):
 		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
 	# Commit
 	var selection_snapshot: Selection = selection.clone()
-	var warns: int = selection_snapshot.reduce(increase_z_index_warns if increase else decrease_z_index_warns, 0)
+	var warns: int = selection_snapshot.fold_generic(increase_z_index_warns if increase else decrease_z_index_warns, 0)
 	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
 	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
 	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
