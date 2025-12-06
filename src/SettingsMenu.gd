@@ -25,7 +25,7 @@ func _on_touch_screen_mode_value_changed(value: int) -> void:
 			Config.is_touch_screen = false
 
 
-func _on_max_fps_value_changed(value:float) -> void:
+func _on_max_fps_value_changed(value: float) -> void:
 	Engine.max_fps = int(value)
 
 
@@ -63,22 +63,22 @@ func _on_texture_filtering_value_changed(texture_filtering_mode: Config.TextureF
 			get_viewport().canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 
 
-func _on_game_volume_value_changed(value:float) -> void:
+func _on_game_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(value))
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
-func _on_music_volume_value_changed(value:float) -> void:
+func _on_music_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Music"), linear_to_db(value))
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
-func _on_game_sfx_volume_value_changed(value:float) -> void:
+func _on_game_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Game SFX"), linear_to_db(value))
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
-func _on_in_level_sfx_volume_value_changed(value:float) -> void:
+func _on_in_level_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"In Level SFX"), linear_to_db(value))
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
@@ -98,6 +98,6 @@ func _on_apply_pressed() -> void:
 		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
 		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		Editor.level_data_snapshot = LevelManager.current_level.to_data()
+		Editor.level_data_snapshot = Editor.root.level.to_data()
 	if get_tree().reload_current_scene() != OK and Editor.in_editor:
 		get_tree().change_scene_to_packed(Editor.snapshot)
