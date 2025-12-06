@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5dllcskymml7"]
+
+[ext_resource type="Texture2D" uid="uid://deu0gosdtbuo1" path="res://assets/textures/solids/bricks/bricks.webp" id="1_0fnut"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_i3l5m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4sak"]
+size = Vector2(130, 130)
+
+[node name="DefaultCube" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Detail" type="Sprite2D" parent="."]
+
+[node name="Base" type="Sprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(8, 8)
+texture = ExtResource("1_0fnut")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s4sak")
+debug_color = Color(0, 0.071, 0.702, 0.25)
+
+[node name="EditorSelectionCollider" parent="." instance=ExtResource("2_i3l5m")]

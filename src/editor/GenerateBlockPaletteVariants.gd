@@ -13,7 +13,7 @@ extends Node
 
 
 func generate_buttons() -> void:
-	var clear_children := func(child): if child is BouncyButton: child.queue_free()
+	var clear_children := func(child): if child is BouncyButton:child.queue_free()
 	parent.get_children().map(clear_children)
 	for i in range(len(textures)):
 		var texture_override := textures[i]
@@ -48,17 +48,19 @@ func generate_buttons() -> void:
 		var base := TextureRect.new()
 		base.texture = texture_override.base
 		base.name = "Base"
+		base.texture_filter = texture_override.filtering
 
 		if texture_override.detail != null:
 			var detail := TextureRect.new()
 			detail.texture = texture_override.detail
 			detail.name = "Detail"
+			detail.texture_filter = texture_override.filtering
 			texture_rects.append(detail)
 			if texture_override.base_detail_same_color:
 				detail.modulate.v = 0.75
 
 		texture_rects.append(base)
-	
+
 		for texture_rect in texture_rects:
 			texture_rect.expand_mode = TextureRect.ExpandMode.EXPAND_IGNORE_SIZE
 			texture_rect.custom_minimum_size = button.size
