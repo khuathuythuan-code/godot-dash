@@ -58,7 +58,7 @@ func _add_selection_to_group(selection: Selection, group: String) -> void:
 	if not selection.any(in_group):
 		if group == Constants.GROUP_PREFIX:
 			return
-		selection.for_each(func(object: Node2D): object.add_to_group(group, true); push_warning(object.get_groups()))
+		selection.for_each(func(object: Node2D): object.add_to_group(group, true))
 	elif not selection.all(in_group):
 		selection.for_each(func(object: Node2D): object.add_to_group(group, true))
 		group_buttons[group].modulate = Color.WHITE
