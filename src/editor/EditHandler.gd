@@ -165,9 +165,10 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
 			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
 			_object.global_position += position_delta
-	var undo_pivot := func(_selection_original_positions: Dictionary[Node2D, Vector2]):
-		for _object in _selection_original_positions:
-			_object.global_position = _selection_original_positions[_object]
+	var undo_pivot := func(_selection_original_positions: Dictionary[NodePath, Vector2]):
+		for _path: NodePath in _selection_original_positions:
+			var _object: Node2D = Editor.root.level.get_node(_path)
+			_object.global_position = _selection_original_positions[_path]
 
 	var selection_snapshot: Selection = selection.clone()
 	# Avoid firing signals for RotateGizmo rotations
@@ -183,10 +184,13 @@ func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
 	Editor.version_history.add_do_method(do_rotate_selection.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(undo_rotate_selection.bind(selection_snapshot))
 	if transform_pivot_button.selected != TransformPivot.INDIVIDUAL_ORIGINS:
-		var object_to_position := func(object: Node2D):
-			return object.global_position
+		var object_to_position := func(accum: Dictionary, object: Node2D):
+			accum[Editor.root.level.get_path_to(object)] = object.global_position
+			return accum
+		var object_positions: Dictionary[NodePath, Vector2]
+		object_positions.assign(selection_snapshot.fold_generic(object_to_position, { }))
 		Editor.version_history.add_do_method(do_pivot.bind(selection_snapshot, selection_pivot))
-		Editor.version_history.add_undo_method(undo_pivot.bind(selection_snapshot.map_generic_dict(object_to_position)))
+		Editor.version_history.add_undo_method(undo_pivot.bind(object_positions))
 	Editor.version_history.commit_action()
 
 
@@ -558,7 +562,8 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 		return
 	update_pivot()
 	gizmo = RotateGizmo.new()
-	get_viewport().gui_focus_changed.disconnect(remove_gizmo)
+	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
+		get_viewport().gui_focus_changed.disconnect(remove_gizmo)
 	if quick:
 		gizmo.quick(keychord_display, "Rotating", "°", true)
 		get_viewport().gui_focus_changed.connect(remove_gizmo)
