@@ -1,11 +1,12 @@
 extends Control
+
 class_name EditorScene
 
 enum EditorAction {
-	SWIPE     = 1 << 0,
-	ROTATE    = 1 << 1,
+	SWIPE = 1 << 0,
+	ROTATE = 1 << 1,
 	FREE_MOVE = 1 << 2,
-	SNAP      = 1 << 3,
+	SNAP = 1 << 3,
 }
 
 const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
@@ -30,17 +31,14 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Editor.root = self
 	Editor.viewport = %EditorViewport
-	
+
 	if SceneManager.from_title_screen():
 		var _fade_screen = $FadeScreenLayer/FadeScreen
 		_fade_screen.show()
 		_fade_screen.modulate = Color("000000ff")
 		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
-		create_tween().tween_property($EditorCamera, "zoom", Vector2.ONE * 0.8, 0.5)\
-				.set_ease(Tween.EASE_OUT) \
-				.set_trans(Tween.TRANS_EXPO) \
-				.from(Vector2.ONE * 0.4)
-	
+		create_tween().tween_property($EditorCamera, "zoom", Vector2.ONE * 0.8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).from(Vector2.ONE * 0.4)
+
 	LevelManager.attempt = 1
 	LevelManager.level_playing = false
 	$EditorCamera.enabled = true
@@ -64,12 +62,15 @@ func _ready() -> void:
 
 	if not Editor.level_data_snapshot.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
+		%ColorChannelEditor.clear_item_list()
+		await get_tree().process_frame
+		%ColorChannelEditor.populate_item_list()
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
 		Editor.version_history = VersionHistory.new()
 		LevelManager.game_scene.add_loaded_level(level)
-	
+
 	if not $EditHandler.selection.is_empty():
 		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
 
@@ -89,9 +90,11 @@ func _physics_process(_delta: float) -> void:
 	get_tree().auto_accept_quit = not level_was_modified()
 	$GameScene/PauseMenuLayer/PauseMenu.suspended = level_was_modified()
 
-	if %EditorModes.get_current_tab_control().name == "Place" \
-			and (Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true) \
-			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true)):
+	if (
+		%EditorModes.get_current_tab_control().name == "Place"
+		and (Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true)
+			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true) )
+	):
 		$PlaceHandler.handle_place(block_palette_button_group, placed_objects_collider, level)
 
 
@@ -111,7 +114,7 @@ func _notification(what: int) -> void:
 		$SaveChangesBeforeOpening.show()
 		$SaveChangesBeforeOpening.custom_action.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
-		
+
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
@@ -142,12 +145,7 @@ func _fade_leave(_action: Variant = null) -> void:
 	var _fade_screen = $FadeScreenLayer/FadeScreen
 	_fade_screen.show()
 	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	await (
-		create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5)
-			.set_ease(Tween.EASE_IN)
-			.set_trans(Tween.TRANS_EXPO)
-			.finished
-	)
+	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
 
 
 func _on_playtest_pressed() -> void:
