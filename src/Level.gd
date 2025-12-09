@@ -88,10 +88,12 @@ var _pause_manager: Node
 func _ready() -> void:
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
+	stopwatch.name = "Stopwatch"
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
 	AssetManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus("Music")
+	song_player.name = "Song Player"
 	LevelManager.level_song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
@@ -144,9 +146,11 @@ func stop_timer() -> void:
 
 
 func setup_color_channel_watchers() -> void:
-	for color_channel in color_channels:
+	for color_channel: ColorChannelData in color_channels:
 		var watcher := ColorChannelWatcher.new(color_channel)
+		watcher.name = "Watcher@%s" % color_channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX)
 		add_child(watcher)
+	print_tree_pretty()
 
 
 func register_required_song(old_path: String, new_path: String) -> void:
