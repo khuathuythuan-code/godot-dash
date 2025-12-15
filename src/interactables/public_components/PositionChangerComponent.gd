@@ -22,7 +22,7 @@ enum Mode {
 ##   •  [code]1.0[/code]: the group's objects will follow the target object but [b]keep[/b] their relative distance to it. [br]
 ##   •  [code]2.0[/code]: the group's objects will follow the target object but [b]double[/b] their relative distance to it. [br]
 ##   •  [code]-1.0[/code]: the group's objects will follow the target object but [b]invert[/b] their relative distance to it.
-@export_range(0.0, 2.0, 0.05, "or_greater", "or_less", "slider") var distance_multiplier: float = 1.0
+@export_range(0.0, 2.0, 0.05, "or_greater", "or_less", "slider") var distance_multiplier: float = 0.0
 @export var offset: Vector2 ## Offset in global coordinates in units from the move target.
 
 var initial_global_positions: Dictionary[Node2D, Vector2]
