@@ -1,4 +1,5 @@
 extends Component
+
 class_name ScaleChangerComponent
 
 enum Mode {
@@ -12,7 +13,7 @@ enum Mode {
 		mode = value
 		notify_property_list_changed()
 @export var scale: Vector2
-@export var pivot: Node2D
+@export var pivot: NodePath
 @export var scale_around_self: bool:
 	set(value):
 		scale_around_self = value
@@ -36,9 +37,11 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(_player: Player) -> void:
-	group_objects.assign(get_tree() \
-			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
-			.filter(func(object): return object is Node2D))
+	group_objects.assign(
+		get_tree() \
+		.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
+		.filter(func(object): return object is Node2D),
+	)
 	group_objects.map(func(object): initial_global_scales.set(object, object.global_scale))
 	if group_objects.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
@@ -62,7 +65,8 @@ func _apply_scale_delta(group_object: Node2D, scale_delta: Vector2) -> void:
 	if scale_around_self:
 		group_object.global_scale += scale_delta
 	else:
-		var position_relative_to_pivot: Vector2 = group_object.global_position - pivot.global_position
+		var pivot_ref: Node2D = LevelManager.current_level.get_node(pivot)
+		var position_relative_to_pivot: Vector2 = group_object.global_position - pivot_ref.global_position
 		var position_delta := position_relative_to_pivot * ((group_object.global_scale + scale_delta) / group_object.global_scale) - position_relative_to_pivot
 		group_object.global_position += position_delta
 		if not change_position_only:

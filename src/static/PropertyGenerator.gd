@@ -1,6 +1,5 @@
 class_name PropertyGenerator
 
-
 static func from_property_list_field(type: Variant.Type, field: Dictionary) -> Property:
 	var property: Property
 	match type:
@@ -66,8 +65,9 @@ static func from_property_list_field(type: Variant.Type, field: Dictionary) -> P
 		TYPE_BOOL:
 			property = BoolProperty.new()
 		TYPE_OBJECT:
-			if field.hint == PROPERTY_HINT_RESOURCE_TYPE:
-				property = load("res://scenes/components/game_components/resource_properties/" + field.hint_string + "Property.tscn").instantiate()
+			match field.hint:
+				PROPERTY_HINT_RESOURCE_TYPE:
+					property = load("res://scenes/components/game_components/resource_properties/" + field.hint_string + "Property.tscn").instantiate()
 		TYPE_ARRAY:
 			property = ArrayProperty.new()
 			var hint_string: String = field.hint_string
