@@ -1,4 +1,5 @@
 extends Node
+
 class_name HSVHandler
 
 @export var hue: FloatSliderProperty
@@ -13,13 +14,15 @@ var selected_object_count: int
 
 func _ready() -> void:
 	var connections: Dictionary[FloatSliderProperty, Callable]
-	connections.assign({
-		hue: set_hue,
-		saturation: set_saturation,
-		value: set_value,
-		intensity: set_intensity,
-		alpha: set_alpha,
-	})
+	connections.assign(
+		{
+			hue: set_hue,
+			saturation: set_saturation,
+			value: set_value,
+			intensity: set_intensity,
+			alpha: set_alpha,
+		},
+	)
 	for property: FloatSliderProperty in connections:
 		property.interaction_ended.connect(_on_property_interaction_ended.bind(property, connections[property]))
 
@@ -30,15 +33,14 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		hsv_watchers.clear()
 		return
 	hsv_watchers.assign(
-		selection
-			.map_generic(BaseDetailHandler.into_base)
-			.map(BaseDetailHandler.use_hsv_watcher)
+		selection \
+		.map_generic(BaseDetailHandler.into_base) \
+		.map(BaseDetailHandler.use_hsv_watcher),
 	)
 	hsv_watchers.append_array(
-		selection
-			.map_generic(func(object: Node2D): return object.get_node_or_null(^"Detail"))
-			.filter(ArrayUtils.flatten)
-			.map(BaseDetailHandler.use_hsv_watcher)
+		selection.map_generic(func(object: Node2D): return object.get_node_or_null(^"Detail")) \
+		.filter(ArrayUtils.flatten) \
+		.map(BaseDetailHandler.use_hsv_watcher),
 	)
 	var last_hsv_watcher: HSVWatcher = hsv_watchers[-1]
 	hue.set_value_no_signal(last_hsv_watcher.hsv_shift[0])
