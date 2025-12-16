@@ -146,28 +146,36 @@ func move_selection(distance: Vector2):
 
 
 func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	var do_rotate_selection := func(_selection: Selection):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			_object.global_rotation_degrees += angle
 		rotated_selection_degrees.emit(angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(angle)
 	var undo_rotate_selection := func(_selection: Selection):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			_object.global_rotation_degrees -= angle
 		rotated_selection_degrees.emit(-angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(-angle)
 	var do_pivot := func(_selection: Selection, _selection_pivot: Vector2):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
 			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
 			_object.global_position += position_delta
 	var undo_pivot := func(_selection_original_positions: Dictionary[NodePath, Vector2]):
 		for _path: NodePath in _selection_original_positions:
 			var _object: Node2D = Editor.root.level.get_node(_path)
+			if _object is Player:
+				continue
 			_object.global_position = _selection_original_positions[_path]
 
 	var selection_snapshot: Selection = selection.clone()
@@ -305,7 +313,7 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	if selection.is_empty() or selection.size() == 1 and selection.first() is Player:
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 
 	var do_delete_selection := func(_selection: Selection):
@@ -563,7 +571,7 @@ func _on_flip_v_pressed() -> void:
 
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	update_pivot()
 	gizmo = RotateGizmo.new()
