@@ -184,6 +184,7 @@ func _on_playtest_pressed() -> void:
 		LevelManager.player_camera.static_factor = Vector2.ZERO
 		_ready() # sets `level`
 		new_player.position = level.start_position
+		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 		%Playtest.disabled = false
 
@@ -202,3 +203,13 @@ func _on_leave_pressed() -> void:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()
 	_fade_leave()
+
+
+func _load_default_player_data_component(component: DefaultPlayerDataComponent) -> void:
+	component.platformer = level.platformer
+	component.reverse = level.start_reverse
+	component.speed = level.start_speed
+	component.gameplay_rotation = level.start_gameplay_rotation_degrees
+	component.internal = level.start_internal_gamemode
+	component.displayed = level.start_displayed_gamemode
+	component.freefly = level.start_freefly
