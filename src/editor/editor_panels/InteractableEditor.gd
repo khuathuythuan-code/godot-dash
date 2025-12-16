@@ -277,7 +277,7 @@ func load_properties(interactable: Interactable, ui_root: Control) -> void:
 	var properties := NodeUtils.get_children_of_type(ui_root, Property, true)
 	if properties.is_empty():
 		return
-	for property in properties as Array[Property]:
+	for property: Property in properties:
 		if property is BoolProperty and property in marker_properties.values():
 			property.set_value_no_signal(interactable.has(marker_properties.find_key(property)))
 			continue
