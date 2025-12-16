@@ -368,12 +368,18 @@ func any_gizmo_is_open() -> bool:
 func update_pivot() -> void:
 	if selection.is_empty():
 		return
-	var group_parents: Selection = selection.filter(func(object): return object.has_meta("group_parent"))
+	var group_parents: Selection = selection.filter(func(object: Node2D): return object.has_meta("group_parent"))
 	if not group_parents.is_empty():
 		selection_pivot = group_parents.first().global_position
 	else:
 		# Take the mean of the position of all objects
-		var object_positions := selection.map_generic(func(object): return object.global_position)
+		var object_positions := (
+			selection \
+			.filter(func(object: Node2D): return object is not Player) \
+			.map_generic(func(object: Node2D): return object.global_position)
+		)
+		if object_positions.is_empty():
+			return
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
