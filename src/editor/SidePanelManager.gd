@@ -45,17 +45,15 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
 
-	transform_section.visible = not selection.is_empty()
+	var selection_is_empty: bool = selection.is_empty()
+	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
 
-	group_section.visible = not selection.is_empty()
-
-	var selection_is_interactable: bool = selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
-
-	interactable_section.visible = not selection.is_empty() and selection_is_interactable
+	transform_section.visible = not selection_is_empty
+	group_section.visible = not selection_is_empty
+	interactable_section.visible = selection_is_interactable
 	interactable_section.set_deferred(&"folded", not selection_is_interactable)
-	color_section.set_deferred(&"folded", selection_is_interactable and not selection.is_empty())
-
-	attributes_section.visible = not selection.is_empty()
+	color_section.set_deferred(&"folded", selection_is_interactable)
+	attributes_section.visible = not selection.is_empty() and not selection.any(func(object: Node2D): return object is Player)
 
 	for element in [base, detail, hsv_shift]:
 		element.visible = not selection.is_empty()

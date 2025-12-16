@@ -305,16 +305,21 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	if selection.is_empty():
+	if selection.is_empty() or selection.size() == 1 and selection.first() is Player:
 		return
 
 	var do_delete_selection := func(_selection: Selection):
-		_selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object is not Player:
+					_object.get_parent().remove_child(_object)
+		)
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
-				level.add_child(_object, true)
-				NodeUtils.change_owner_recursive(_object, level)
+				if _object is not Player:
+					level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, level)
 		)
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
