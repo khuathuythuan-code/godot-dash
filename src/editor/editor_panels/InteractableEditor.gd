@@ -1,4 +1,5 @@
 extends Control
+
 class_name InteractableEditor
 
 # Scripts aren't constants but the array shouldn't be modified nontheless.
@@ -55,10 +56,11 @@ func _ready() -> void:
 
 func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	clear_ui()
-	if selection.is_empty() or not selection.all(is_interactable):
+	var _selection: Selection = selection.map(player_to_interactable)
+	if _selection.is_empty() or not _selection.all(is_interactable):
 		return
 	var interactables: Array[Interactable]
-	interactables.assign(selection.to_array())
+	interactables.assign(_selection.to_array())
 	build_ui(interactables)
 
 
@@ -77,8 +79,8 @@ func build_ui(interactables: Array[Interactable]) -> void:
 	var should_component_be_displayed := func(component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
 	var displayed_components := first_interactable \
-			.components \
-			.filter(should_component_be_displayed)
+	.components \
+	.filter(should_component_be_displayed)
 
 	if displayed_components and same_ui(interactables):
 		for i in displayed_components.size():
@@ -89,7 +91,7 @@ func build_ui(interactables: Array[Interactable]) -> void:
 			if component.has_method(&"_validate_property"):
 				fields.map(func(field): component._validate_property(field))
 			fields = fields \
-					.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
+			.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
 			var last_section: FoldableContainer = null
 			for field: Dictionary in fields:
 				var field_name: String = field.name
@@ -171,8 +173,8 @@ func connect_ui(interactables: Array[Interactable], ui_root: Control) -> void:
 				save_property_register.bind(
 					component_name,
 					property_name,
-					interactables.map(Editor.version_history.to_nodepath)
-				)
+					interactables.map(Editor.version_history.to_nodepath),
+				),
 			)
 
 
@@ -215,7 +217,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 			component.set(property_name, _value)
 		load_properties(_interactables_to_initial_values.keys()[0], self)
-	
+
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
 	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
 		var component: Component = interactable.get_node(component_name)
@@ -226,7 +228,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 		accum[interactable] = initial_value
 		return accum
 	var interactables_to_initial_values: Dictionary[Interactable, Variant]
-	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, {}))
+	interactables_to_initial_values.assign(interactables_snapshot.reduce(map_interactable_to_initial_value, { }))
 
 	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set '%s' on %s interactables" % [property_name, interactables_snapshot.size()])
@@ -243,11 +245,13 @@ func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script
 		property.set_value_no_signal(true)
 	var remove_marker := func(_interactables: Array[Interactable]):
 		for _interactable: Interactable in _interactables:
-			NodeUtils.get_children_of_type(_interactable, marker_script).map(func(marker):
-				_interactable.components.erase(marker)
-				marker.queue_free())
+			NodeUtils.get_children_of_type(_interactable, marker_script).map(
+				func(marker):
+					_interactable.components.erase(marker)
+					marker.queue_free()
+			)
 		property.set_value_no_signal(false)
-	
+
 	var interactables_snapshot: Array[Interactable] = interactables.duplicate()
 	var version_history: VersionHistory = Editor.version_history
 	version_history.create_action("Set '%s' to %s on %s interactables" % [marker_script.get_global_name(), enabled, interactables_snapshot.size()])
@@ -300,3 +304,9 @@ static func same_ui(interactables: Array[Interactable]) -> bool:
 			if object.components[component_idx].get_script() != reference.components[component_idx].get_script():
 				return false
 	return true
+
+
+static func player_to_interactable(object: Node2D) -> Interactable:
+	if object is Player:
+		return object.get_node(^"EditorPlayerSelectionCollider")
+	return object

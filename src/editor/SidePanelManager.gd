@@ -46,13 +46,15 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		group_parent.set_input_state(false)
 
 	transform_section.visible = not selection.is_empty()
-	
+
 	group_section.visible = not selection.is_empty()
-	
-	interactable_section.visible = not selection.is_empty() and selection.all(InteractableEditor.is_interactable)
-	interactable_section.set_deferred(&"folded", not selection.all(InteractableEditor.is_interactable))
-	color_section.set_deferred(&"folded", selection.all(InteractableEditor.is_interactable) and not selection.is_empty())
-	
+
+	var selection_is_interactable: bool = selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+
+	interactable_section.visible = not selection.is_empty() and selection_is_interactable
+	interactable_section.set_deferred(&"folded", not selection_is_interactable)
+	color_section.set_deferred(&"folded", selection_is_interactable and not selection.is_empty())
+
 	attributes_section.visible = not selection.is_empty()
 
 	for element in [base, detail, hsv_shift]:
@@ -64,17 +66,21 @@ func update_object_name(new_name: String):
 	var previous_name: String = object.name
 	var path_ref := PathRef.new(object)
 	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, new_name])
-	Editor.version_history.add_do_method(func():
-		path_ref.to_ref().name = new_name
-		object_name.text = new_name)
-	Editor.version_history.add_undo_method(func():
-		path_ref.to_ref().name = previous_name
-		object_name.text = previous_name)
+	Editor.version_history.add_do_method(
+		func():
+			path_ref.to_ref().name = new_name
+			object_name.text = new_name
+	)
+	Editor.version_history.add_undo_method(
+		func():
+			path_ref.to_ref().name = previous_name
+			object_name.text = previous_name
+	)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds
 
 
-func _on_group_parent_value_changed(value:bool) -> void:
+func _on_group_parent_value_changed(value: bool) -> void:
 	var selection = $"../EditHandler".selection
 	if selection.size() != 1:
 		return

@@ -657,7 +657,7 @@ static func remove_selection_highlight(object: Node2D) -> void:
 
 
 static func get_object_parent(object: Node) -> Node2D:
-	if object is EditorSelectionCollider:
+	if object is EditorSelectionCollider or object.has_meta(&"EditorPlayerSelectionCollider"):
 		return object.get_parent()
 	else:
 		return object
