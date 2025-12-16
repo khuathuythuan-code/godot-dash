@@ -9,8 +9,6 @@ enum EditorAction {
 	SNAP = 1 << 3,
 }
 
-const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
-
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
@@ -180,12 +178,12 @@ func _on_playtest_pressed() -> void:
 		%Playtest.disabled = true
 		await get_tree().process_frame
 		var new_player: Player = AssetManager.player_packed.instantiate()
-		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player
 		LevelManager.player_camera.center_on_player_at_0x_speed = true
 		LevelManager.player_camera.static_factor = Vector2.ZERO
-		_ready()
+		_ready() # sets `level`
+		new_player.position = level.start_position
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 		%Playtest.disabled = false
 

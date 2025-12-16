@@ -27,6 +27,7 @@ const START_SPEED: Array[float] = [
 		default_font = value
 		default_font_changed.emit()
 @export var platformer: bool
+@export var start_position: Vector2 = Constants.DEFAULT_PLAYER_POSITION
 @export var start_internal_gamemode: Player.Gamemode:
 	set(value):
 		start_internal_gamemode = value
@@ -117,10 +118,10 @@ func start_level() -> void:
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
 		LevelManager.player_camera.freefly = start_freefly
 	if not start_freefly:
-		GroundData.center = EditorScene.DEFAULT_PLAYER_POSITION
+		GroundData.center = Constants.DEFAULT_PLAYER_POSITION
 		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * LevelManager.CELL_SIZE * 0.5
-		if EditorScene.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
-			GroundData.offset = (EditorScene.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
+		if Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
+			GroundData.offset = (Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
 		else:
 			GroundData.offset = 0
 
@@ -182,6 +183,7 @@ func to_data() -> Dictionary:
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
+		"start_position": LevelManager.player.global_position,
 		"start_internal_gamemode": start_internal_gamemode,
 		"start_displayed_gamemode": start_displayed_gamemode,
 		"start_freefly": start_freefly,
@@ -246,6 +248,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer
+	level.start_position = data.start_position
 	level.start_internal_gamemode = data.start_internal_gamemode
 	level.start_displayed_gamemode = data.start_displayed_gamemode
 	level.start_freefly = data.start_freefly
