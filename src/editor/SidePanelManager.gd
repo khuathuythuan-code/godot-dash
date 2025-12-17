@@ -36,7 +36,7 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	object_name.visible = not selection.is_empty()
 	if selection.size() == 1:
 		object_name.text = selection.first().name
-		object_name.editable = true
+		object_name.editable = selection.first() is not Player
 		group_parent.set_value_no_signal(selection.first().has_meta("group_parent"))
 		group_parent.set_input_state(true)
 	elif selection.size() > 1:
