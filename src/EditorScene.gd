@@ -161,7 +161,7 @@ func _on_playtest_pressed() -> void:
 		%SidePanel.hide()
 		%LevelSettings.hide()
 		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
-		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
+		LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 		$LevelOperationsHandler.pause_autosave()
