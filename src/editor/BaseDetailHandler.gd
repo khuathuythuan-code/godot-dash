@@ -48,7 +48,7 @@ func _load_detail(objects_detail: Array[HSVWatcher]) -> void:
 
 
 func _on_edit_handler_selection_changed(selection: Selection) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	# Base
 	var objects_base: Array[HSVWatcher]
