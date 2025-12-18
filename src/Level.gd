@@ -196,6 +196,12 @@ func to_data() -> Dictionary:
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"objects": [],
+		"player_data": {
+			"transform": Serialize.Transform2D(LevelManager.player.transform),
+			"groups": LevelManager.player.get_groups(),
+			"hsv": LevelManager.player.get_node(^"HSVWatcher").to_data(),
+			"z_index": LevelManager.player.z_index,
+		},
 	}
 	var objects: Array[Node2D]
 	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
@@ -261,6 +267,13 @@ static func from_data(data: Dictionary) -> Level:
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
+
+	LevelManager.player.transform = Deserialize.Transform2D(data.player_data.transform)
+	for group in data.player_data.groups:
+		LevelManager.player.add_to_group(group)
+	LevelManager.player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
+	LevelManager.player.z_index = data.player_data.z_index
+
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
