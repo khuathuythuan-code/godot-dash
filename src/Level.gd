@@ -267,11 +267,12 @@ static func from_data(data: Dictionary, player: Player = LevelManager.player) ->
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
 
-	player.position = level.start_position
-	for group in data.player_data.groups:
-		player.add_to_group(group)
-	player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
-	player.z_index = data.player_data.z_index
+	if player != null:
+		player.position = level.start_position
+		for group in data.player_data.groups:
+			player.add_to_group(group)
+		player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
+		player.z_index = data.player_data.z_index
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
