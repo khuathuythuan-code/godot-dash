@@ -247,7 +247,7 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 			object_data.color_channels.detail = detail_color_channel[0]
 
 
-static func from_data(data: Dictionary, player: Player = LevelManager.player) -> Level:
+static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
 	level.song_path = data.song_path
@@ -267,11 +267,11 @@ static func from_data(data: Dictionary, player: Player = LevelManager.player) ->
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
 
-	player.position = level.start_position
+	LevelManager.player.position = level.start_position
 	for group in data.player_data.groups:
-		player.add_to_group(group)
-	player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
-	player.z_index = data.player_data.z_index
+		LevelManager.player.add_to_group(group)
+	LevelManager.player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
+	LevelManager.player.z_index = data.player_data.z_index
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
