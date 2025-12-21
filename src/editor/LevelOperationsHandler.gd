@@ -99,11 +99,7 @@ func _new_level() -> void:
 	LevelManager.player.position = Constants.DEFAULT_PLAYER_POSITION
 	for group in LevelManager.player.get_groups():
 		LevelManager.player.remove_from_group(group)
-	LevelManager.player.get_node(^"HSVWatcher").hsv_shift.clear()
-	LevelManager.player.get_node(^"HSVWatcher").hsv_shift.resize(3)
-	LevelManager.player.get_node(^"HSVWatcher").intensity = 1
-	LevelManager.player.get_node(^"HSVWatcher").alpha = 1
-	LevelManager.player.get_node(^"HSVWatcher").update_color()
+	LevelManager.player.get_node(^"HSVWatcher").reset_color()
 	LevelManager.player.z_index = 0
 
 	level_loaded.emit(new_level)

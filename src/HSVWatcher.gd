@@ -61,5 +61,13 @@ func update_color() -> void:
 			parent.modulate = Color.CYAN
 
 
+func reset_color() -> void:
+	hsv_shift.clear()
+	hsv_shift.resize(3)
+	intensity = 1.0
+	alpha = 1.0
+	update_color()
+
+
 func _parent_getter() -> Node2D:
 	return get_parent()
