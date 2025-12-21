@@ -190,7 +190,6 @@ func _on_playtest_pressed() -> void:
 
 
 func _on_leave_pressed() -> void:
-	Editor.selection_snapshot.clear()
 	Editor.level_data_snapshot.clear()
 	Editor.level_history_version = -1
 	if level_was_modified():
