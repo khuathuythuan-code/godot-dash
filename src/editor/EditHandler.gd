@@ -668,7 +668,11 @@ static func scale_transform_local(
 
 
 static func add_selection_highlight(object: Node2D) -> void:
-	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
+	var hsv_watcher: HSVWatcher
+	if object is Interactable and object.has(DefaultPlayerDataComponent):
+		hsv_watcher = NodeUtils.get_child_of_type(object.get_parent(), HSVWatcher)
+	else:
+		hsv_watcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL
 	hsv_watcher.update_color()
 
