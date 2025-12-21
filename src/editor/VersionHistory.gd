@@ -1,6 +1,6 @@
 extends UndoRedo
-class_name VersionHistory
 
+class_name VersionHistory
 
 func to_nodepath(node: Node) -> NodePath:
 	return Editor.root.level.get_path_to(node)

@@ -27,6 +27,7 @@ const START_SPEED: Array[float] = [
 		default_font = value
 		default_font_changed.emit()
 @export var platformer: bool
+@export var start_position: Vector2 = Constants.DEFAULT_PLAYER_POSITION
 @export var start_internal_gamemode: Player.Gamemode:
 	set(value):
 		start_internal_gamemode = value
@@ -117,10 +118,10 @@ func start_level() -> void:
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
 		LevelManager.player_camera.freefly = start_freefly
 	if not start_freefly:
-		GroundData.center = EditorScene.DEFAULT_PLAYER_POSITION
+		GroundData.center = Constants.DEFAULT_PLAYER_POSITION
 		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * LevelManager.CELL_SIZE * 0.5
-		if EditorScene.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
-			GroundData.offset = (EditorScene.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
+		if Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
+			GroundData.offset = (Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
 		else:
 			GroundData.offset = 0
 
@@ -182,6 +183,7 @@ func to_data() -> Dictionary:
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
+		"start_position": Serialize.Vector2(LevelManager.player.global_position),
 		"start_internal_gamemode": start_internal_gamemode,
 		"start_displayed_gamemode": start_displayed_gamemode,
 		"start_freefly": start_freefly,
@@ -194,6 +196,11 @@ func to_data() -> Dictionary:
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"objects": [],
+		"player_data": {
+			"groups": LevelManager.player.get_groups(),
+			"hsv": LevelManager.player.get_node(^"HSVWatcher").to_data(),
+			"z_index": LevelManager.player.z_index,
+		},
 	}
 	var objects: Array[Node2D]
 	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
@@ -246,6 +253,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer
+	level.start_position = Deserialize.Vector2(data.start_position)
 	level.start_internal_gamemode = data.start_internal_gamemode
 	level.start_displayed_gamemode = data.start_displayed_gamemode
 	level.start_freefly = data.start_freefly
@@ -258,6 +266,13 @@ static func from_data(data: Dictionary) -> Level:
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
+
+	LevelManager.player.position = level.start_position
+	for group in data.player_data.groups:
+		LevelManager.player.add_to_group(group)
+	LevelManager.player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
+	LevelManager.player.z_index = data.player_data.z_index
+
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)

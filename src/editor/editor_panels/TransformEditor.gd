@@ -37,15 +37,22 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
 
+	rotation_property.set_input_state(true)
+	scale_property.set_input_state(true)
+
 	if selection_size == 1:
+		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
+		current_rotation = first_object_ref.global_rotation_degrees
 		z_index_property.set_value_no_signal(float(first_object_ref.z_index))
 		scale_property.set_value_no_signal(first_object_ref.scale)
-		position_property.set_value_no_signal((first_object_ref.position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
-		rotation_property.set_value_no_signal(first_object_ref.global_rotation_degrees)
+		position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+		rotation_property.set_value_no_signal(current_rotation)
 		same_scale = true
 		same_rotation = true
-		current_rotation = first_object_ref.global_rotation_degrees
-		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
+
+		if current_selection.first() is Player:
+			rotation_property.set_input_state(false)
+			scale_property.set_input_state(false)
 		return
 
 	var object_scales: Array[Vector2]
@@ -110,6 +117,7 @@ func _on_rotation_value_changed(new_rotation: float) -> void:
 	edit_handler.rotate_selection(new_rotation - current_rotation, false)
 	current_rotation = new_rotation
 	update_pivot_relative_transform()
+	LevelManager.player.rotation_degrees = 0
 
 
 func _on_scale_value_changed(new_scale: Vector2) -> void:

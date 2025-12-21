@@ -95,6 +95,13 @@ func _new_level() -> void:
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
 	LevelManager.current_level_duration = INF
 	Editor.level_file_name = ""
+	# Reset player
+	LevelManager.player.position = Constants.DEFAULT_PLAYER_POSITION
+	for group in LevelManager.player.get_groups():
+		LevelManager.player.remove_from_group(group)
+	LevelManager.player.get_node(^"HSVWatcher").reset_color()
+	LevelManager.player.z_index = 0
+
 	level_loaded.emit(new_level)
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)

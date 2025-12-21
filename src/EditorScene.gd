@@ -9,8 +9,6 @@ enum EditorAction {
 	SNAP = 1 << 3,
 }
 
-const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
-
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
@@ -163,7 +161,7 @@ func _on_playtest_pressed() -> void:
 		%SidePanel.hide()
 		%LevelSettings.hide()
 		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
-		$GameScene/Player.process_mode = Node.PROCESS_MODE_INHERIT
+		LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 		$GameScene/PercentageLayer.show()
 		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 		$LevelOperationsHandler.pause_autosave()
@@ -180,12 +178,13 @@ func _on_playtest_pressed() -> void:
 		%Playtest.disabled = true
 		await get_tree().process_frame
 		var new_player: Player = AssetManager.player_packed.instantiate()
-		new_player.position = DEFAULT_PLAYER_POSITION
 		$GameScene.add_child(new_player)
 		LevelManager.player_camera.player = new_player
 		LevelManager.player_camera.center_on_player_at_0x_speed = true
 		LevelManager.player_camera.static_factor = Vector2.ZERO
-		_ready()
+		_ready() # sets `level`
+		new_player.position = level.start_position
+		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)
 		%Playtest.disabled = false
 
@@ -203,3 +202,13 @@ func _on_leave_pressed() -> void:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()
 	_fade_leave()
+
+
+func _load_default_player_data_component(component: DefaultPlayerDataComponent) -> void:
+	component.platformer = level.platformer
+	component.reverse = level.start_reverse
+	component.speed = level.start_speed
+	component.gameplay_rotation = level.start_gameplay_rotation_degrees
+	component.internal = level.start_internal_gamemode
+	component.displayed = level.start_displayed_gamemode
+	component.freefly = level.start_freefly

@@ -1,7 +1,8 @@
-[gd_scene load_steps=111 format=3 uid="uid://bl48psvuka73y"]
+[gd_scene load_steps=113 format=3 uid="uid://bl48psvuka73y"]
 
 [ext_resource type="Script" uid="uid://dlfmgrvw7q01y" path="res://src/Player.gd" id="1_nvqsc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="2_6ab5b"]
+[ext_resource type="PackedScene" uid="uid://c2qj8et4qeuk7" path="res://scenes/components/game_components/EditorPlayerSelectionCollider.tscn" id="2_fruiv"]
 [ext_resource type="Texture2D" uid="uid://1mnqmwellt2q" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame1.png" id="2_mjacn"]
 [ext_resource type="Script" uid="uid://b81c0tveqh8i8" path="res://addons/trail_2d/trail_2d.gd" id="2_s0etf"]
 [ext_resource type="Script" uid="uid://kyj1mtwpgw26" path="res://src/IconGamemodeProp.gd" id="2_sxyn3"]
@@ -43,6 +44,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://cuomby61m2774" path="res://resources/SpiderAnimations.tres" id="23_244xe"]
 [ext_resource type="Texture2D" uid="uid://cfwfqja2lpecd" path="res://assets/textures/player/jetpack/Jetpack.svg" id="27_vov5s"]
 [ext_resource type="Texture2D" uid="uid://cclfd4gmsd4a0" path="res://assets/textures/player/FireBoost.svg" id="29_475ha"]
+[ext_resource type="Script" uid="uid://by1h78riu3uvw" path="res://src/HSVWatcher.gd" id="45_k4whp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14y25"]
 size = Vector2(126, 126)
@@ -863,6 +865,14 @@ libraries = {
 [node name="RobotTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="EditorPlayerSelectionCollider" parent="." instance=ExtResource("2_fruiv")]
+process_mode = 1
+
+[node name="HSVWatcher" type="Node2D" parent="."]
+process_mode = 1
+script = ExtResource("45_k4whp")
+metadata/_custom_type_script = "uid://by1h78riu3uvw"
 
 [node name="ParentedObjects" type="Node2D" parent="."]
 editor_description = "Anchor for any level objects that need to be parented to the player (to keep it tidy)."

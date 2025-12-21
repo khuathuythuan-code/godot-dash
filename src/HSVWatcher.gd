@@ -1,4 +1,5 @@
 extends Node2D
+
 class_name HSVWatcher
 
 enum SelectionHighlight {
@@ -16,7 +17,8 @@ enum SelectionHighlight {
 
 var selection_highlight: SelectionHighlight
 
-@onready var parent: Node2D = get_parent()
+@onready var parent: Node2D:
+	get = _parent_getter
 
 
 func _ready() -> void:
@@ -57,3 +59,15 @@ func update_color() -> void:
 			parent.modulate = Color.GREEN
 		SelectionHighlight.DUPLICATE:
 			parent.modulate = Color.CYAN
+
+
+func reset_color() -> void:
+	hsv_shift.clear()
+	hsv_shift.resize(3)
+	intensity = 1.0
+	alpha = 1.0
+	update_color()
+
+
+func _parent_getter() -> Node2D:
+	return get_parent()

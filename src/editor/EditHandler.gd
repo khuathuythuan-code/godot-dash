@@ -146,28 +146,36 @@ func move_selection(distance: Vector2):
 
 
 func rotate_selection(angle: float, is_gizmo: bool = false) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	var do_rotate_selection := func(_selection: Selection):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			_object.global_rotation_degrees += angle
 		rotated_selection_degrees.emit(angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(angle)
 	var undo_rotate_selection := func(_selection: Selection):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			_object.global_rotation_degrees -= angle
 		rotated_selection_degrees.emit(-angle)
 		if _selection.size() == 1 and not is_gizmo:
 			rotated_object_degrees.emit(-angle)
 	var do_pivot := func(_selection: Selection, _selection_pivot: Vector2):
 		for _object in _selection.to_array():
+			if _object is Player:
+				continue
 			var position_relative_to_pivot: Vector2 = _object.global_position - _selection_pivot
 			var position_delta := position_relative_to_pivot.rotated(deg_to_rad(angle)) - position_relative_to_pivot
 			_object.global_position += position_delta
 	var undo_pivot := func(_selection_original_positions: Dictionary[NodePath, Vector2]):
 		for _path: NodePath in _selection_original_positions:
 			var _object: Node2D = Editor.root.level.get_node(_path)
+			if _object is Player:
+				continue
 			_object.global_position = _selection_original_positions[_path]
 
 	var selection_snapshot: Selection = selection.clone()
@@ -203,7 +211,7 @@ func scale_selection(
 		register_history: bool = false,
 		initial_pivot: Vector2 = Vector2.ZERO,
 ) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	selection_pivot = position
 	if register_history:
@@ -305,16 +313,21 @@ func paste_selection() -> void:
 
 
 func delete_selection() -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 
 	var do_delete_selection := func(_selection: Selection):
-		_selection.for_each(func(_object: Node2D): _object.get_parent().remove_child(_object))
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object is not Player:
+					_object.get_parent().remove_child(_object)
+		)
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
-				level.add_child(_object, true)
-				NodeUtils.change_owner_recursive(_object, level)
+				if _object is not Player:
+					level.add_child(_object, true)
+					NodeUtils.change_owner_recursive(_object, level)
 		)
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
@@ -355,12 +368,18 @@ func any_gizmo_is_open() -> bool:
 func update_pivot() -> void:
 	if selection.is_empty():
 		return
-	var group_parents: Selection = selection.filter(func(object): return object.has_meta("group_parent"))
+	var group_parents: Selection = selection.filter(func(object: Node2D): return object.has_meta("group_parent"))
 	if not group_parents.is_empty():
 		selection_pivot = group_parents.first().global_position
 	else:
 		# Take the mean of the position of all objects
-		var object_positions := selection.map_generic(func(object): return object.global_position)
+		var object_positions := (
+			selection \
+			.filter(func(object: Node2D): return object is not Player) \
+			.map_generic(func(object: Node2D): return object.global_position)
+		)
+		if object_positions.is_empty():
+			return
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
@@ -558,7 +577,7 @@ func _on_flip_v_pressed() -> void:
 
 
 func _on_rotate_free_pressed(quick: bool = false) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	update_pivot()
 	gizmo = RotateGizmo.new()
@@ -627,6 +646,8 @@ static func scale_transform(
 		pivot: Vector2,
 		transform: Transform2D,
 ):
+	if object is Player:
+		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 
@@ -638,6 +659,8 @@ static func scale_transform_local(
 		transform: Transform2D,
 		rotation: float,
 ):
+	if object is Player:
+		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
@@ -645,7 +668,11 @@ static func scale_transform_local(
 
 
 static func add_selection_highlight(object: Node2D) -> void:
-	var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
+	var hsv_watcher: HSVWatcher
+	if object is Interactable and object.has(DefaultPlayerDataComponent):
+		hsv_watcher = NodeUtils.get_child_of_type(object.get_parent(), HSVWatcher)
+	else:
+		hsv_watcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL
 	hsv_watcher.update_color()
 
@@ -657,7 +684,7 @@ static func remove_selection_highlight(object: Node2D) -> void:
 
 
 static func get_object_parent(object: Node) -> Node2D:
-	if object is EditorSelectionCollider:
+	if object is EditorSelectionCollider or object.has_meta(&"EditorPlayerSelectionCollider"):
 		return object.get_parent()
 	else:
 		return object
