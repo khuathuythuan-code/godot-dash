@@ -56,7 +56,9 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	attributes_section.visible = not selection.is_empty() and not selection.any(func(object: Node2D): return object is Player)
 
 	for element in [base, detail, hsv_shift]:
-		element.visible = not selection.is_empty()
+		element.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
+	if selection.size() == 1 and selection.first() is Player:
+		hsv_shift.visible = true
 
 
 func update_object_name(new_name: String):

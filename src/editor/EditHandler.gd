@@ -211,7 +211,7 @@ func scale_selection(
 		register_history: bool = false,
 		initial_pivot: Vector2 = Vector2.ZERO,
 ) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	selection_pivot = position
 	if register_history:
@@ -646,6 +646,8 @@ static func scale_transform(
 		pivot: Vector2,
 		transform: Transform2D,
 ):
+	if object is Player:
+		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 
@@ -657,6 +659,8 @@ static func scale_transform_local(
 		transform: Transform2D,
 		rotation: float,
 ):
+	if object is Player:
+		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
