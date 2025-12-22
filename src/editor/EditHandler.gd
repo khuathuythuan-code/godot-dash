@@ -281,11 +281,16 @@ func shift_z_index(increase: bool):
 
 
 func duplicate_selection() -> void:
-	selection = selection.map(_clone)
+	if selection.size() == 1 and selection.first() is Player:
+		return
+	var player_in_selection: bool = selection.contains(LevelManager.player)
+	selection = selection.filter(is_not_player).map(_clone)
 	for object in selection.to_array():
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
 		hsv_watcher.update_color()
+	if player_in_selection:
+		selection.insert(LevelManager.player)
 	selection_changed.emit(selection)
 
 
@@ -375,7 +380,7 @@ func update_pivot() -> void:
 		# Take the mean of the position of all objects
 		var object_positions := (
 			selection \
-			.filter(func(object: Node2D): return object is not Player) \
+			.filter(is_not_player) \
 			.map_generic(func(object: Node2D): return object.global_position)
 		)
 		if object_positions.is_empty():
@@ -614,7 +619,7 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	var first_object_rotation: float = selection.first().global_rotation
 	var mean_objects_rotation: float = first_object_rotation
 	var gizmo_center: Vector2 = ArrayUtils.transform(
-		selection.filter(func(object: Node2D): return object is not Player) \
+		selection.filter(is_not_player) \
 		.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 		ArrayUtils.Transformation.MEAN,
 		true,
@@ -696,3 +701,7 @@ static func get_object_parent(object: Node) -> Node2D:
 static func get_object_selection_collider(object: CollisionObject2D) -> CollisionObject2D:
 	var selection_collider: EditorSelectionCollider = NodeUtils.get_child_of_type(object, EditorSelectionCollider)
 	return selection_collider if selection_collider else object
+
+
+static func is_not_player(object: Node2D) -> bool:
+	return object is not Player
