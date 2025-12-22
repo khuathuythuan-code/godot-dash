@@ -598,7 +598,7 @@ func _on_rotate_free_pressed(quick: bool = false) -> void:
 
 
 func _on_scale_pressed(quick: bool = false) -> void:
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	update_pivot()
 	if gizmo != null:
