@@ -496,7 +496,7 @@ func _swipe_selection_zone() -> void:
 
 
 func _flip_selection(axis: int):
-	if selection.is_empty():
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	var flip: Callable
 	var unflip := func(_object, _scale, _position):
