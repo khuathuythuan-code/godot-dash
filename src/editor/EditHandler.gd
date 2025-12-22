@@ -515,6 +515,8 @@ func _flip_selection(axis: int):
 				_object.global_position.y = selection_pivot.y - position_relative_to_pivot.y
 	Editor.version_history.create_action("Flipped objects")
 	for object in selection.to_array():
+		if object is Player:
+			continue
 		Editor.version_history.add_do_method(flip.bind(object))
 		Editor.version_history.add_undo_method(unflip.bind(object, object.scale, object.global_position))
 	Editor.version_history.commit_action()
