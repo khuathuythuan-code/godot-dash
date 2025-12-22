@@ -11,3 +11,5 @@ assets/sounds/music/level_music/*
 assets/textures/triggers_imported
 
 *.kate-swp
+
+target/
