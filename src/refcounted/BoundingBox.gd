@@ -12,13 +12,13 @@ func _init(collision_objects: Array[CollisionObject2D], center: Vector2, rotatio
 	for collision_shape: CollisionShape2D in collision_shapes:
 		var shape_rect: Rect2 = collision_shape.shape.get_rect()
 		shape_rect = (
-			shape_rect
-				.expand((shape_rect.position * collision_shape.global_scale * 0.5).rotated(collision_shape.global_rotation - rotation))
-				.expand((shape_rect.size * collision_shape.global_scale * 0.5).rotated(collision_shape.global_rotation - rotation))
+			shape_rect \
+			.expand((shape_rect.position * collision_shape.global_scale * 0.5).rotated(collision_shape.global_rotation - rotation)) \
+			.expand((shape_rect.size * collision_shape.global_scale * 0.5).rotated(collision_shape.global_rotation - rotation))
 		)
 		shape_rect.position += (collision_shape.global_position - center).rotated(-rotation)
 		extents = extents.merge(shape_rect)
-	transform = Transform2D.IDENTITY.scaled(extents.size/2)
+	transform = Transform2D.IDENTITY.scaled(extents.size / 2)
 
 
 func as_rect():
