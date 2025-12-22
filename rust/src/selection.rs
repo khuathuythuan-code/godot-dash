@@ -5,7 +5,7 @@ use godot::prelude::*;
 use crate::pathref::PathRef;
 
 #[derive(GodotClass)]
-/// A wrapper type for Rust's `HashSet`. Works like an [Array] of [Node2D] but all objects are
+/// A wrapper type for Rust's `HashSet`. Works like an [Array] of [PathRef]s but all objects are
 /// unique.
 pub struct Selection {
     inner: HashSet<PathRef>,
