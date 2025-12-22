@@ -606,13 +606,14 @@ func _on_scale_pressed(quick: bool = false) -> void:
 
 	var selection_collision_objects: Array[CollisionObject2D]
 	selection_collision_objects.assign(
-		selection.filter(func(object: Node2D): return object is CollisionObject2D).to_array(),
+		selection.filter(func(object: Node2D): return object is CollisionObject2D and object is not Player).to_array(),
 	)
 
 	var first_object_rotation: float = selection.first().global_rotation
 	var mean_objects_rotation: float = first_object_rotation
 	var gizmo_center: Vector2 = ArrayUtils.transform(
-		selection.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
+		selection.filter(func(object: Node2D): return object is not Player) \
+		.map_generic(func(object: Node2D): return object.global_position.rotated(-mean_objects_rotation)),
 		ArrayUtils.Transformation.MEAN,
 		true,
 	).rotated(mean_objects_rotation)
