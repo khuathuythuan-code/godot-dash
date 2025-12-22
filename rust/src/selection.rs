@@ -110,15 +110,18 @@ impl Selection {
     #[func]
     /// Adds an element to the selection.
     fn insert(&mut self, object: Gd<Node2D>) {
-        self.inner.insert(PathRef::from_ref(object.clone()));
+        let path_ref = PathRef::from_ref(object.clone());
+        self.inner.insert(path_ref.clone());
         if self.first.is_none() {
-            self.first = Some(PathRef::from_ref(object))
+            self.first = Some(path_ref)
         }
     }
     #[func]
     /// Check if an element exists in the selection.
     fn contains(&self, object: Gd<Node2D>) -> bool {
-        self.inner.contains(&PathRef::from_ref(object))
+        self.inner
+            .iter()
+            .any(|path_ref| path_ref.get_ref() == Some(object.clone()))
     }
     #[func]
     /// Removes an element from the selection.
