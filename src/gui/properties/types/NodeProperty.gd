@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name NodeProperty
 
 signal value_changed(value: NodePath)
@@ -11,6 +12,7 @@ signal interaction_ended(value: NodePath, previous: NodePath)
 
 var input: Button
 
+
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", Button, NodeUtils.INTERNAL)
@@ -20,8 +22,8 @@ func _ready() -> void:
 	if _value == null:
 		reset()
 	NodeUtils \
-		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
-		.set_input(input)
+	.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
+	.set_input(input)
 
 
 func set_value(new_value: NodePath) -> void:
@@ -71,4 +73,4 @@ func _on_input_pressed() -> void:
 		Toasts.warning("Copy a single object to assign it")
 		reset()
 	else:
-		set_value(clipboard[0])
+		set_value(Editor.root.level.get_path_to(clipboard.first()))

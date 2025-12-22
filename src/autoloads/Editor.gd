@@ -4,7 +4,7 @@ var root: EditorScene
 var in_editor: bool:
 	get():
 		return root != null
-var clipboard: Array[NodePath]
+var clipboard: Selection
 var snapshot := PackedScene.new()
 var level_data_snapshot: Dictionary
 var level_file_name: String

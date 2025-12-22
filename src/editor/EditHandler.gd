@@ -4,7 +4,7 @@ class_name EditHandler
 
 signal selection_zone_changed(new_zone: Rect2)
 signal selection_changed(selection: Selection)
-signal clipboard_changed(clipboard: Array[NodePath])
+signal clipboard_changed(clipboard: Selection)
 signal rotated_object_degrees(rotation_degrees: float)
 signal deleted_selection
 # Selection transform
@@ -23,7 +23,6 @@ enum TransformPivot {
 @export var transform_pivot_button: OptionButton
 
 var level: Level
-var clipboard: Array[NodePath]
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
 var placed_objects_collider: Area2D
@@ -35,6 +34,7 @@ var selection_pivot: Vector2
 var gizmo: Gizmo
 
 @onready var selection := Selection.new()
+@onready var clipboard := Selection.new()
 
 
 func _ready() -> void:
@@ -284,7 +284,7 @@ func duplicate_selection() -> void:
 	if selection.size() == 1 and selection.first() is Player:
 		return
 	var player_in_selection: bool = selection.contains(LevelManager.player)
-	selection = selection.filter(is_not_player).map(_clone)
+	selection = selection.filter(is_not_player).map(_clone_object)
 	for object in selection.to_array():
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
 		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
@@ -295,11 +295,8 @@ func duplicate_selection() -> void:
 
 
 func copy_selection() -> void:
-	# Using map returns an array filled with `null` instead of NodePaths.
-	# Go figure.
 	clipboard.clear()
-	for object in selection.to_array():
-		clipboard.append(level.get_path_to(object))
+	clipboard = selection.clone()
 	clipboard_camera_position = get_viewport().get_camera_2d().get_screen_center_position()
 	clipboard_changed.emit(clipboard)
 	Toasts.new_toast("Selection copied!")
@@ -307,14 +304,12 @@ func copy_selection() -> void:
 
 func paste_selection() -> void:
 	selection.for_each(remove_selection_highlight)
-	selection.clear()
-	for path in clipboard:
-		selection.insert(level.get_node(path))
-	selection = selection.map(_clone)
-	selection_changed.emit(selection)
+	selection = clipboard.clone()
 	var move_objects_to_new_screen_center = func(object: Node2D):
 		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
+	selection = selection.map(_clone_object)
 	selection.for_each(move_objects_to_new_screen_center)
+	selection_changed.emit(selection)
 
 
 func delete_selection() -> void:
@@ -527,7 +522,7 @@ func _flip_selection(axis: int):
 	Editor.version_history.commit_action()
 
 
-func _clone(object: Node) -> Node:
+func _clone_object(object: Node2D) -> Node:
 	remove_selection_highlight(object)
 	NodeUtils.change_owner_recursive(object, object)
 	var packer := PackedScene.new()
