@@ -45,7 +45,7 @@ enum Speed {
 		displayed = value
 		if Editor.in_editor:
 			Editor.root.level.start_displayed_gamemode = value
-@export var freefly: bool:
+@export var freefly: bool = true:
 	set(value):
 		freefly = value
 		if Editor.in_editor:

@@ -1,4 +1,5 @@
 extends Component
+
 class_name AlphaChangerComponent
 
 enum Mode {
@@ -16,8 +17,10 @@ enum Mode {
 @export var copy_target: Node2D
 @export_range(0.0, 1.0, 0.01, "or_greater") var copy_multiplier: float
 
-var inital_alphas: Dictionary[Node2D, float]
-var group_objects: Array[Node2D]
+var inital_alphas: Dictionary[HSVWatcher, float]
+var group_hsv_watchers: Array[HSVWatcher]
+var copy_target_hsv_watcher: HSVWatcher
+
 
 func _ready() -> void:
 	super()
@@ -34,27 +37,30 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(_player: Player) -> void:
-	group_objects.assign(
-		get_tree()
-			.get_nodes_in_group(parent.query(TargetGroupComponent).target_group)
-			.filter(func(object): return object is Node2D)
-			.map(BaseDetailHandler.use_hsv_watcher)
+	group_hsv_watchers.assign(
+		get_tree() \
+		.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
+		.filter(func(object): return object is Node2D) \
+		.map(BaseDetailHandler.use_hsv_watcher),
 	)
-	group_objects.map(func(object): inital_alphas.set(object, object.modulate.a))
-	if group_objects.is_empty():
+	group_hsv_watchers.map(func(hsv_watcher: HSVWatcher): inital_alphas.set(hsv_watcher, hsv_watcher.alpha))
+	if group_hsv_watchers.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 	if mode == Mode.COPY and copy_target == null and Editor.in_editor:
 		Toasts.error("In %s: copy target is unset" % parent.name)
+	if copy_target:
+		copy_target_hsv_watcher = BaseDetailHandler.use_hsv_watcher(copy_target)
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
-	for group_object in group_objects:
-		var initial_alpha := inital_alphas[group_object]
+	for hsv_watcher: HSVWatcher in group_hsv_watchers:
+		var initial_alpha := inital_alphas[hsv_watcher]
 		match mode:
 			Mode.SET:
-				group_object.modulate.a += (alpha - initial_alpha) * weight_delta
+				hsv_watcher.alpha += (alpha - initial_alpha) * weight_delta
 			Mode.MULTIPLY:
-				group_object.modulate.a += (alpha * initial_alpha - initial_alpha) * weight_delta
+				hsv_watcher.alpha += (alpha * initial_alpha - initial_alpha) * weight_delta
 			Mode.COPY:
-				if copy_target != null:
-					group_object.modulate.a += (copy_target.modulate.a * copy_multiplier - initial_alpha) * weight_delta
+				if copy_target_hsv_watcher:
+					hsv_watcher.alpha += (copy_target_hsv_watcher.alpha * copy_multiplier - initial_alpha) * weight_delta
+		hsv_watcher.update_color()

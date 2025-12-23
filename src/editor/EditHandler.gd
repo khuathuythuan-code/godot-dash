@@ -281,17 +281,36 @@ func shift_z_index(increase: bool):
 
 
 func duplicate_selection() -> void:
-	if selection.size() == 1 and selection.first() is Player:
+	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
-	var player_in_selection: bool = selection.contains(LevelManager.player)
-	selection = selection.filter(is_not_player).map(_clone_object)
-	for object in selection.to_array():
-		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(object, HSVWatcher)
-		hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.DUPLICATE
-		hsv_watcher.update_color()
-	if player_in_selection:
-		selection.insert(LevelManager.player)
-	selection_changed.emit(selection)
+
+	var do_duplicate_selection := func(_selection: Selection):
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object.is_inside_tree() or _object is Player:
+					return
+				level.add_child(_object, true)
+				NodeUtils.change_owner_recursive(_object, level)
+		)
+
+	var undo_duplicate_selection := func(_selection: Selection):
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object is Player:
+					return
+				_object.get_parent().remove_child(_object)
+		)
+
+	var new_selection: Selection = selection.map(_clone_object)
+	var new_selection_size: int = new_selection.size()
+	if new_selection.contains(LevelManager.player):
+		new_selection_size -= 1
+
+	Editor.version_history.create_action("Duplicated %s objects" % new_selection_size)
+	Editor.version_history.add_do_method(do_duplicate_selection.bind(new_selection))
+	Editor.version_history.add_undo_method(undo_duplicate_selection.bind(new_selection))
+	Editor.version_history.commit_action()
+	select(new_selection, true, true)
 
 
 func copy_selection() -> void:
@@ -299,17 +318,50 @@ func copy_selection() -> void:
 	clipboard = selection.clone()
 	clipboard_camera_position = get_viewport().get_camera_2d().get_screen_center_position()
 	clipboard_changed.emit(clipboard)
-	Toasts.new_toast("Selection copied!")
+	var clipboard_size: int = clipboard.size()
+	if clipboard.contains(LevelManager.player):
+		clipboard_size -= 1
+	var plural: String = "" if clipboard_size <= 1 else "s"
+	Toasts.new_toast("%s object%s copied!" % [clipboard_size, plural])
 
 
 func paste_selection() -> void:
-	selection.for_each(remove_selection_highlight)
-	selection = clipboard.clone()
+	if clipboard.is_empty() or (clipboard.size() == 1 and clipboard.first() is Player):
+		return
+
+	var do_duplicate_selection := func(_selection: Selection):
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object.is_inside_tree() or _object is Player:
+					return
+				level.add_child(_object, true)
+				NodeUtils.change_owner_recursive(_object, level)
+		)
+
+	var undo_duplicate_selection := func(_selection: Selection):
+		_selection.for_each(
+			func(_object: Node2D):
+				if _object is Player:
+					return
+				_object.get_parent().remove_child(_object)
+		)
+
 	var move_objects_to_new_screen_center = func(object: Node2D):
+		if object is Player:
+			return
 		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
-	selection = selection.map(_clone_object)
-	selection.for_each(move_objects_to_new_screen_center)
-	selection_changed.emit(selection)
+
+	var new_selection: Selection = clipboard.map(_clone_object)
+	new_selection.for_each(move_objects_to_new_screen_center)
+	var new_selection_size: int = new_selection.size()
+	if new_selection.contains(LevelManager.player):
+		new_selection_size -= 1
+
+	Editor.version_history.create_action("Duplicated %s objects" % new_selection_size)
+	Editor.version_history.add_do_method(do_duplicate_selection.bind(new_selection))
+	Editor.version_history.add_undo_method(undo_duplicate_selection.bind(new_selection))
+	Editor.version_history.commit_action()
+	select(new_selection, true)
 
 
 func delete_selection() -> void:
@@ -383,22 +435,22 @@ func update_pivot() -> void:
 		selection_pivot = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
 
 
-func select(objects: Selection, merge_history_actions: bool = false) -> void:
+func select(objects: Selection, merge_history_actions: bool = false, as_duplicate: bool = false) -> void:
 	# Avoid creating unnecessary actions
 	if selection.is_identical(objects):
 		return
-	var change_selection := func(new_selection: Selection):
+	var change_selection := func(new_selection: Selection, is_undo: bool):
 		selection.for_each(remove_selection_highlight)
 		selection = new_selection
 		if not new_selection.is_empty():
-			selection.for_each(add_selection_highlight)
+			selection.for_each(add_selection_highlight.bind(as_duplicate and not is_undo))
 		selection_changed.emit(selection)
 	if merge_history_actions:
 		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
 	else:
 		Editor.version_history.create_action("Selected %s objects" % objects.size())
-	Editor.version_history.add_do_method(change_selection.bind(objects))
-	Editor.version_history.add_undo_method(change_selection.bind(selection.clone()))
+	Editor.version_history.add_do_method(change_selection.bind(objects, false))
+	Editor.version_history.add_undo_method(change_selection.bind(selection.clone(), true))
 	Editor.version_history.commit_action()
 
 
@@ -523,7 +575,8 @@ func _flip_selection(axis: int):
 
 
 func _clone_object(object: Node2D) -> Node:
-	remove_selection_highlight(object)
+	if object is Player:
+		return object
 	NodeUtils.change_owner_recursive(object, object)
 	var packer := PackedScene.new()
 	packer.pack(object)
@@ -532,7 +585,6 @@ func _clone_object(object: Node2D) -> Node:
 	NodeUtils.change_owner_recursive(object, level)
 	NodeUtils.change_owner_recursive(clone, level)
 	clone.scene_file_path = object.scene_file_path
-	add_selection_highlight(clone)
 	return clone
 
 
@@ -670,13 +722,13 @@ static func scale_transform_local(
 	)
 
 
-static func add_selection_highlight(object: Node2D) -> void:
+static func add_selection_highlight(object: Node2D, as_duplicate: bool = false) -> void:
 	var hsv_watcher: HSVWatcher
 	if object is Interactable and object.has(DefaultPlayerDataComponent):
 		hsv_watcher = NodeUtils.get_child_of_type(object.get_parent(), HSVWatcher)
 	else:
 		hsv_watcher = NodeUtils.get_child_of_type(object, HSVWatcher)
-	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL
+	hsv_watcher.selection_highlight = HSVWatcher.SelectionHighlight.NORMAL if not as_duplicate else HSVWatcher.SelectionHighlight.DUPLICATE
 	hsv_watcher.update_color()
 
 
