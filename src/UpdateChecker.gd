@@ -1,6 +1,5 @@
 extends Node
 
-var http: HTTPRequest
 var toast: Toast
 var out_of_date: bool = false
 
@@ -9,7 +8,7 @@ func _ready() -> void:
 	if !Config.check_for_updates:
 		queue_free()
 		return
-	http = HTTPRequest.new()
+	var http: HTTPRequest = HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(_on_request_completed)
 	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
@@ -48,3 +47,8 @@ func _on_toast_pressed() -> void:
 		OS.shell_open("https://codeberg.org/godot-dash/godot-dash/")
 		await get_tree().create_timer(0.2).timeout
 		queue_free()
+
+
+func _exit_tree() -> void:
+	if toast:
+		toast.dismiss()
