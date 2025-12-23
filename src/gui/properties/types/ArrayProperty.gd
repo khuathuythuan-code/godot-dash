@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name ArrayProperty
 
 signal value_changed(value: Array)
@@ -83,16 +84,20 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 		return
 	var item = ArrayPropertyItem.new(item_template.instantiate())
 	item.property.show()
-	item.value_changed.connect(func(value):
-		_value = _value.duplicate()
-		_value[item.get_index()] = value
-		value_changed.emit(_value.duplicate()))
-	item.interaction_ended.connect(func(value, previous):
-		var _previous: Array = _value.duplicate()
-		_value = _value.duplicate()
-		_value[item.get_index()] = value
-		_previous[item.get_index()] = previous
-		interaction_ended.emit(_value, _previous))
+	item.value_changed.connect(
+		func(value):
+			_value = _value.duplicate()
+			_value[item.get_index()] = value
+			value_changed.emit(_value.duplicate())
+	)
+	item.interaction_ended.connect(
+		func(value, previous):
+			var _previous: Array = _value.duplicate()
+			_value = _value.duplicate()
+			_value[item.get_index()] = value
+			_previous[item.get_index()] = previous
+			interaction_ended.emit(_value, _previous)
+	)
 	item.name = str(idx if idx > 0 else items.get_child_count())
 	items.add_child(item)
 	var previous_value: Array = _value.duplicate()
@@ -137,8 +142,8 @@ func set_value(value: Array) -> void:
 	interaction_ended.emit(_value.duplicate(), _previous_value)
 
 
-
 func set_value_no_signal(value: Array) -> void:
+	print_debug("recieving %s" % [value])
 	var new_value = value.duplicate()
 	NodeUtils.free_children(items)
 	await get_tree().process_frame
@@ -155,6 +160,7 @@ func set_value_no_signal(value: Array) -> void:
 
 func get_value() -> Array:
 	return _value.duplicate()
+
 
 func reset() -> void:
 	pass # unimplemented, there is no easy way to change the type of an inspector typed array

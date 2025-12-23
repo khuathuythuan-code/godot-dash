@@ -1,6 +1,5 @@
 extends Node
 
-
 func _ready() -> void:
 	if Config.input_map.is_empty():
 		for action in InputMap.get_actions():
@@ -12,4 +11,3 @@ func _ready() -> void:
 			var events = Config.input_map[action]
 			for event in events:
 				InputMap.action_add_event(action, event)
-

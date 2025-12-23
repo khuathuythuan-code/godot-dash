@@ -1,6 +1,6 @@
 extends Component
-class_name SpawnTriggerComponent
 
+class_name SpawnTriggerComponent
 
 enum LoopState {
 	DISABLED,
