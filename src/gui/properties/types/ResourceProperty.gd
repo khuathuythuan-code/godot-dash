@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name ResourceProperty
 
 signal value_changed(value: Resource)
@@ -19,20 +20,24 @@ func _ready() -> void:
 		NodeUtils.get_node_or_add(self, "PanelContainer", PanelContainer, NodeUtils.INTERNAL),
 		"MarginContainer",
 		MarginContainer,
-		NodeUtils.INTERNAL) as MarginContainer
+		NodeUtils.INTERNAL,
+	) as MarginContainer
 	indentation_container = NodeUtils.get_node_or_add(
 		margin_container,
 		"VBoxContainer",
 		VBoxContainer,
-		NodeUtils.INTERNAL)
+		NodeUtils.INTERNAL,
+	)
 	assert(default != null, "Default needs to be a valid Resource")
 	resource_properties = default.get_property_list()
 	if default.get_script():
 		resource_properties.append_array(default.get_script().get_script_property_list())
 	resource_properties.remove_at(0)
-	resource_properties = resource_properties \
-			.filter(_is_property_exported) \
-			.map(func(property): return property.name)
+	resource_properties = (
+		resource_properties \
+		.filter(_is_property_exported) \
+		.map(func(property): return property.name)
+	)
 	var index: int
 	for child in get_children(false):
 		child.hide()
@@ -80,8 +85,6 @@ func set_value_no_signal(new_value: Resource) -> void:
 		var field_value: Variant = _value.get(field_name)
 		if field_value == null:
 			continue
-		if field_input is NodeProperty:
-			field_value = LevelManager.current_level.get_node(field_value)
 		field_input.set_value_no_signal(field_value)
 
 
@@ -101,28 +104,20 @@ func _connect_child_properties(node: Node, index: int, depth: int = 0) -> int:
 	if depth == 4:
 		return index
 	if node is Property:
-		node.value_changed.connect(func(value):
-			if node is NodeProperty:
-				if LevelManager.current_level == null:
-					value = ^""
-				else:
-					value = LevelManager.current_level.get_path_to(value)
-			_value = _value.duplicate(true)
-			_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
-			value_changed.emit(_value))
-		node.interaction_ended.connect(func(value, previous):
-			var _previous: Resource = _value.duplicate()
-			if node is NodeProperty:
-				if LevelManager.current_level == null:
-					value = ^""
-					previous = ^""
-				else:
-					value = LevelManager.current_level.get_path_to(value)
-					previous = LevelManager.current_level.get_path_to(previous)
-			_value = _value.duplicate(true)
-			_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
-			_previous.set(node.get_meta(&"field_name", resource_properties[index]), previous)
-			interaction_ended.emit(_value, _previous))
+		node.value_changed.connect(
+			func(value):
+				_value = _value.duplicate(true) if _value else default.duplicate()
+				_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
+				value_changed.emit(_value)
+		)
+		node.interaction_ended.connect(
+			func(value, previous):
+				var _previous: Resource = _value.duplicate()
+				_value = _value.duplicate(true)
+				_value.set(node.get_meta(&"field_name", resource_properties[index]), value)
+				_previous.set(node.get_meta(&"field_name", resource_properties[index]), previous)
+				interaction_ended.emit(_value, _previous)
+		)
 		index += 1
 	elif node is FoldableContainer and node.get_child(0) is BoxContainer:
 		for child in node.get_child(0).get_children():
