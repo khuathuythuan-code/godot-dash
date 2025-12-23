@@ -49,9 +49,9 @@ func get_value() -> NodePath:
 
 
 func reset() -> void:
-	_value = null
+	_value = ^""
 	input.text = "    Assign…    "
-	value_changed.emit(null)
+	value_changed.emit(^"")
 
 
 func refresh() -> void:
