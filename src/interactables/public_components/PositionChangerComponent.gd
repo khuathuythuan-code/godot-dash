@@ -67,7 +67,12 @@ func start(_player: Player) -> void:
 	var physics_objects: Array[Node2D]
 	for object in group_objects:
 		var hitbox: CollisionObject2D = object as CollisionObject2D
-		if hitbox == null or hitbox.is_shape_owner_disabled(hitbox.get_shape_owners()[0]) or object.process_mode == Node.PROCESS_MODE_DISABLED or (object is Area2D and object.monitoring == false):
+		if (
+			hitbox == null
+			or hitbox.is_shape_owner_disabled(hitbox.get_shape_owners()[0])
+			or object.process_mode == Node.PROCESS_MODE_DISABLED
+			or (object is Area2D and object.monitoring == false)
+		):
 			process_objects.append(object)
 			continue
 		physics_objects.append(object)
@@ -76,6 +81,26 @@ func start(_player: Player) -> void:
 		progressed.connect(_on_easing_progressed.bind(process_objects))
 	if not physics_objects.is_empty():
 		progressed.connect(_on_easing_progressed.bind(physics_objects))
+
+
+func _field_to_data(field_name: String) -> Variant:
+	match field_name:
+		"position":
+			return Serialize.Vector2(position)
+		"offset":
+			return Serialize.Vector2(offset)
+		_:
+			return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"position":
+			position = Deserialize.Vector2(field_data)
+		"offset":
+			offset = Deserialize.Vector2(field_data)
+		_:
+			set(field_name, field_data)
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float, group_objects: Array[Node2D]) -> void:

@@ -47,18 +47,20 @@ func start(_player: Player) -> void:
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 
 
-func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
-	for group_object in group_objects:
-		var initial_global_scale := initial_global_scales[group_object]
-		var scale_delta: Vector2
-		match mode:
-			Mode.SET:
-				scale_delta = (scale - initial_global_scale) * weight_delta
-			Mode.ADD:
-				scale_delta = scale * weight_delta
-			Mode.MULTIPLY:
-				scale_delta = (initial_global_scale * scale - initial_global_scale) * weight_delta
-		_apply_scale_delta(group_object, scale_delta)
+func _field_to_data(field_name: String) -> Variant:
+	match field_name:
+		"scale":
+			return Serialize.Vector2(scale)
+		_:
+			return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"scale":
+			scale = Deserialize.Vector2(field_data)
+		_:
+			set(field_name, field_data)
 
 
 func _apply_scale_delta(group_object: Node2D, scale_delta: Vector2) -> void:
@@ -71,3 +73,17 @@ func _apply_scale_delta(group_object: Node2D, scale_delta: Vector2) -> void:
 		group_object.global_position += position_delta
 		if not change_position_only:
 			group_object.global_scale += scale_delta
+
+
+func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
+	for group_object in group_objects:
+		var initial_global_scale := initial_global_scales[group_object]
+		var scale_delta: Vector2
+		match mode:
+			Mode.SET:
+				scale_delta = (scale - initial_global_scale) * weight_delta
+			Mode.ADD:
+				scale_delta = scale * weight_delta
+			Mode.MULTIPLY:
+				scale_delta = (initial_global_scale * scale - initial_global_scale) * weight_delta
+		_apply_scale_delta(group_object, scale_delta)
