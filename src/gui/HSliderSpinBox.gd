@@ -1,5 +1,6 @@
 @tool
 extends HBoxContainer
+
 class_name HSliderSpinBox
 
 signal value_changed(value: float)
@@ -56,14 +57,25 @@ func _ready() -> void:
 	spinbox = NodeUtils.get_node_or_add(self, "SpinBox", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
 	update_internals()
 	spinbox.value_changed.connect(set_value)
-	spinbox.get_line_edit().editing_toggled.connect(func(toggled_on: bool):
-		if toggled_on:
-			_spinbox_previous_value = spinbox.value
-		else:
-			interaction_ended.emit(spinbox.value, _spinbox_previous_value))
+	spinbox.get_line_edit().editing_toggled.connect(
+		func(toggled_on: bool):
+			if toggled_on:
+				_spinbox_previous_value = spinbox.value
+			else:
+				interaction_ended.emit(spinbox.value, _spinbox_previous_value)
+	)
 	hslider.value_changed.connect(set_value)
-	hslider.drag_started.connect(func(): _slider_previous_value = hslider.value)
-	hslider.drag_ended.connect(func(slider_value_changed: bool): if slider_value_changed: interaction_ended.emit(hslider.value, _slider_previous_value))
+	hslider.drag_started.connect(
+		func():
+			_slider_previous_value = hslider.value
+			hslider.mouse_default_cursor_shape = Control.CURSOR_HSIZE
+	)
+	hslider.drag_ended.connect(
+		func(slider_value_changed: bool):
+			if slider_value_changed:
+				interaction_ended.emit(hslider.value, _slider_previous_value)
+			hslider.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	)
 
 
 func update_internals() -> void:
