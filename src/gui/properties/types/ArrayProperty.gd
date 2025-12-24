@@ -146,6 +146,7 @@ func set_value_no_signal(value: Array) -> void:
 	var new_value = value.duplicate()
 	NodeUtils.free_children(items)
 	await get_tree().process_frame
+	_value = []
 	if new_value.size() < minimum_size:
 		for i in range(minimum_size):
 			add_item(i, NO_SIGNAL)
