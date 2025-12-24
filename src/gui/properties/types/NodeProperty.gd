@@ -7,6 +7,7 @@ signal value_changed(value: NodePath)
 signal interaction_ended(value: NodePath, previous: NodePath)
 
 @export var default: NodePath
+@export var type: Script = null
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
@@ -27,6 +28,8 @@ func _ready() -> void:
 
 
 func set_value(new_value: NodePath) -> void:
+	if type and not is_instance_of(Editor.version_history.from_nodepath(new_value), type):
+		return
 	var previous: NodePath = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
@@ -34,6 +37,8 @@ func set_value(new_value: NodePath) -> void:
 
 
 func set_value_no_signal(new_value: NodePath) -> void:
+	if type and not is_instance_of(Editor.version_history.from_nodepath(new_value), type):
+		return
 	if new_value.is_empty():
 		input.text = "    Assign…    "
 	else:
