@@ -633,6 +633,8 @@ func _on_flip_v_pressed() -> void:
 func _on_rotate_free_pressed(quick: bool = false) -> void:
 	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
+	if any_gizmo_is_open():
+		remove_gizmo()
 	update_pivot()
 	gizmo = RotateGizmo.new()
 	if get_viewport().gui_focus_changed.is_connected(remove_gizmo):
@@ -655,8 +657,8 @@ func _on_scale_pressed(quick: bool = false) -> void:
 	if selection.is_empty() or (selection.size() == 1 and selection.first() is Player):
 		return
 	update_pivot()
-	if gizmo != null:
-		gizmo.queue_free()
+	if any_gizmo_is_open():
+		remove_gizmo()
 
 	var selection_collision_objects: Array[CollisionObject2D]
 	selection_collision_objects.assign(
