@@ -11,7 +11,7 @@ enum Mode {
 	set(value):
 		mode = value
 		notify_property_list_changed()
-@export_range(-360, 360, 0.01, "or_greater", "or_less", "degrees") var rotation_degrees: float
+@export_range(-180, 180, 0.01, "or_greater", "or_less", "degrees", "slider") var rotation: float
 @export var pivot: NodePath
 @export var rotate_around_self: bool:
 	set(value):
@@ -68,9 +68,9 @@ func _on_easing_progressed(_player: Player, weight_delta: float, group_objects: 
 		var rotation_delta: float
 		match mode:
 			Mode.SET:
-				rotation_delta = (rotation_degrees - initial_global_rotation_degrees) * weight_delta
+				rotation_delta = (rotation - initial_global_rotation_degrees) * weight_delta
 			Mode.ADD:
-				rotation_delta = rotation_degrees * weight_delta
+				rotation_delta = rotation * weight_delta
 		_apply_rotation_delta(group_object, rotation_delta)
 
 
