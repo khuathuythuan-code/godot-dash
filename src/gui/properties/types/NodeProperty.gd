@@ -7,7 +7,11 @@ signal value_changed(value: NodePath)
 signal interaction_ended(value: NodePath, previous: NodePath)
 
 @export var default: NodePath
-@export var type: Script = null
+@export var type: Script = null:
+	set(value):
+		type = value
+		notify_property_list_changed()
+@export var component_filter: Array[Script] # Script can't be filtered by inherited classes so that's the best i can do. `Array[Script[Component]]` would be awesome
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
@@ -27,9 +31,20 @@ func _ready() -> void:
 	.set_input(input)
 
 
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "component_filter" and type != Interactable:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+
+
 func set_value(new_value: NodePath) -> void:
-	if type and not is_instance_of(Editor.version_history.from_nodepath(new_value), type):
-		return
+	if not new_value.is_empty():
+		var node: Node = Editor.version_history.from_nodepath(new_value)
+		if (
+			(type and not is_instance_of(node, type))
+			or (type == Interactable and not _matches_component_filter(node))
+		):
+			Toasts.error("Copied object is of invalid type for this field.")
+			return
 	var previous: NodePath = _value
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
@@ -37,11 +52,16 @@ func set_value(new_value: NodePath) -> void:
 
 
 func set_value_no_signal(new_value: NodePath) -> void:
-	if type and not is_instance_of(Editor.version_history.from_nodepath(new_value), type):
-		return
 	if new_value.is_empty():
 		input.text = "    Assign…    "
 	else:
+		var node: Node = Editor.version_history.from_nodepath(new_value)
+		if (
+			(type and not is_instance_of(node, type))
+			or (type == Interactable and not _matches_component_filter(node))
+		):
+			Toasts.error("Copied object is of invalid type for this field.")
+			return
 		input.text = new_value
 		# Remove trailing dots for special nodes, e.g. LevelManager.player
 		if input.text.contains(".."):
@@ -67,6 +87,13 @@ func refresh() -> void:
 
 func set_input_state(enabled: bool) -> void:
 	input.disabled = not enabled
+
+
+func _matches_component_filter(interactable: Interactable) -> bool:
+	for component_script: Script in component_filter:
+		if not interactable.has(component_script):
+			return false
+	return true
 
 
 func _on_input_pressed() -> void:

@@ -9,14 +9,7 @@ enum LoopState {
 }
 
 # TODO in editor, refresh timer duration if a spawned trigger's duration is changed
-@export var spawned_triggers: Array[SpawnedTrigger]:
-	set(value):
-		if not is_node_ready():
-			await ready
-		spawned_triggers = value
-		# spawned_triggers = value.filter(func(group):
-		# 	var trigger := LevelManager.current_level.get_node_or_null(group.path)
-		# 	return trigger != null and trigger is Interactable and trigger.has(TriggerHitboxComponent))
+@export var spawned_triggers: Array[SpawnedTrigger]
 @export var loop: LoopState = LoopState.DISABLED:
 	set(value):
 		loop = value
@@ -44,6 +37,9 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(player: Player) -> void:
+	var is_spawned_trigger_valid := func(spawned_trigger: SpawnedTrigger):
+		return not spawned_trigger.path.is_empty()
+	spawned_triggers = spawned_triggers.filter(is_spawned_trigger_valid)
 	if spawned_triggers.is_empty():
 		Toasts.warning("In %s: spawned triggers is empty" % parent.name)
 		return
