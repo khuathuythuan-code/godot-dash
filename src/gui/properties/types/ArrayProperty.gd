@@ -143,7 +143,6 @@ func set_value(value: Array) -> void:
 
 
 func set_value_no_signal(value: Array) -> void:
-	print_debug("recieving %s" % [value])
 	var new_value = value.duplicate()
 	NodeUtils.free_children(items)
 	await get_tree().process_frame
