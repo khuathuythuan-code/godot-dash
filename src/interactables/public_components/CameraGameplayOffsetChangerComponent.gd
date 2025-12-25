@@ -1,4 +1,5 @@
 extends Component
+
 class_name CameraGameplayOffsetChangerComponent
 
 enum Mode {
@@ -7,9 +8,10 @@ enum Mode {
 }
 
 @export var mode: Mode = Mode.SET
-@export_custom(PROPERTY_HINT_RANGE, "0.0,1.0,0.01,suffix:%") var gameplay_offset := Vector2.ONE
+@export_custom(PROPERTY_HINT_RANGE, "-100.0,100.0,0.01,or_greater,or_less,suffix:%") var gameplay_offset := Vector2.ONE * 100.0
 
 var initial_gameplay_offset_factor: Vector2
+
 
 func _ready() -> void:
 	super()
@@ -25,8 +27,6 @@ func start(_player: Player) -> void:
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	match mode:
 		Mode.ADD:
-			LevelManager.player_camera.gameplay_offset_factor += gameplay_offset * weight_delta
+			LevelManager.player_camera.gameplay_offset_factor += gameplay_offset * 0.01 * weight_delta
 		Mode.SET:
-			LevelManager.player_camera.gameplay_offset_factor += (gameplay_offset - initial_gameplay_offset_factor) * weight_delta
-
-
+			LevelManager.player_camera.gameplay_offset_factor += (gameplay_offset * 0.01 - initial_gameplay_offset_factor) * weight_delta
