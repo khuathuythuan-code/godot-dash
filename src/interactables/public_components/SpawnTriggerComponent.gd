@@ -63,16 +63,19 @@ func restart(player: Player) -> void:
 
 
 func _field_to_data(field_name: String) -> Variant:
-	if field_name == "spawned_triggers":
-		return spawned_triggers.map(func(spawned_trigger: SpawnedTrigger): return spawned_trigger.to_data())
-	return get(field_name)
+	match field_name:
+		"spawned_triggers":
+			return spawned_triggers.map(func(spawned_trigger: SpawnedTrigger): return spawned_trigger.to_data())
+		_:
+			return get(field_name)
 
 
 func _field_from_data(field_name: String, field_data: Variant) -> void:
-	if field_name == "spawned_triggers":
-		spawned_triggers.assign(field_data.map(func(spawned_trigger_data: Dictionary): SpawnedTrigger.from_data(spawned_trigger_data)))
-		return
-	set(field_name, field_data)
+	match field_name:
+		"spawned_triggers":
+			spawned_triggers.assign(field_data.map(func(spawned_trigger_data: Dictionary): return SpawnedTrigger.from_data(spawned_trigger_data)))
+		_:
+			set(field_name, field_data)
 
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:
