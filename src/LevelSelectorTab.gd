@@ -1,7 +1,8 @@
 @tool
 extends Control
 
-@export_file("*.tscn") var selected_level
+@export_file("*.tscn") var selected_level: String
+@export var fade_screen_layer: CanvasLayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,13 +17,14 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	if selected_level != null and ResourceLoader.exists(selected_level, "PackedScene"):
-		AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
-		var fade_screen = get_node("/root/MainScene/FadeScreenLayer/FadeScreen")
-		fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-		await get_tree().create_timer(0.5).timeout
-		LevelManager.current_level_name = name
-		LevelManager.attempt = 0
-		LevelManager.current_level_path = selected_level
-		get_tree().change_scene_to_packed(AssetManager.game_scene_packed)
+	if selected_level.is_empty() or not ResourceLoader.exists(selected_level, "PackedScene"):
+		return
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
+	var fade_screen: FadeScreen = fade_screen_layer.get_node(^"FadeScreen")
+	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	await fade_screen.fade_finished
+	LevelManager.current_level_name = name
+	LevelManager.attempt = 0
+	LevelManager.current_level_path = selected_level
+	get_tree().change_scene_to_packed(AssetManager.game_scene_packed)

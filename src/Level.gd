@@ -113,6 +113,7 @@ func start_level() -> void:
 	LevelManager.platformer = platformer
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode
+	LevelManager.player.global_position = start_position
 
 	LevelManager.ground_up.show()
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
@@ -267,11 +268,13 @@ static func from_data(data: Dictionary) -> Level:
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
 
-	LevelManager.player.position = level.start_position
+	LevelManager.player.global_position = level.start_position
 	for group in data.player_data.groups:
 		LevelManager.player.add_to_group(group)
 	LevelManager.player.get_node(^"HSVWatcher").use_data(data.player_data.hsv)
 	LevelManager.player.z_index = data.player_data.z_index
+	# start_internal_gamemode and start_displayed_gamemode are set on the player
+	# in their respective setters.
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:

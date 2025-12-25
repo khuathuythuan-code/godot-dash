@@ -1,6 +1,6 @@
 extends Node2D
-class_name GameScene
 
+class_name GameScene
 
 func _ready() -> void:
 	Engine.time_scale = 1
@@ -22,13 +22,16 @@ func _ready() -> void:
 			$FadeScreenLayer/FadeScreen.show()
 			$FadeScreenLayer/FadeScreen.modulate = Color("000000ff")
 		$EditorGridParallax/EditorGrid.hide()
-		ResourceLoader.load_threaded_request(LevelManager.current_level_path, "PackedScene", false, ResourceLoader.CACHE_MODE_IGNORE_DEEP)
-		var current_level: Node = ResourceLoader.load_threaded_get(LevelManager.current_level_path).instantiate()
-		SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
-		LevelManager.platformer = current_level.platformer
-		add_loaded_level(current_level)
+		load_level()
 		start_level()
 	await get_tree().create_timer(0.1).timeout
+
+
+func load_level() -> void:
+	ResourceLoader.load_threaded_request(LevelManager.current_level_path, "PackedScene", false, ResourceLoader.CACHE_MODE_IGNORE_DEEP)
+	var current_level: Level = ResourceLoader.load_threaded_get(LevelManager.current_level_path).instantiate()
+	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
+	add_loaded_level(current_level)
 
 
 func add_loaded_level(level: Level) -> Level:
@@ -49,6 +52,26 @@ func start_level() -> void:
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
+func reset_level() -> void:
+	LevelManager.ground_up.hide()
+	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
+	LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
+	# Avoid multiple scene transitions
+	LevelManager.player.queue_free()
+	LevelManager.player_duals.map(NodeUtils.free_node)
+	LevelManager.player_duals.clear()
+	LevelManager.current_level.queue_free()
+	await get_tree().process_frame
+	load_level()
+	var new_player: Player = AssetManager.player_packed.instantiate()
+	add_child(new_player)
+	LevelManager.player_camera.player = new_player
+	LevelManager.player_camera.center_on_player_at_0x_speed = true
+	LevelManager.player_camera.static_factor = Vector2.ZERO
+	LevelManager.player_camera.zoom = PlayerCamera.DEFAULT_ZOOM
+	LevelManager.player_camera.offset = PlayerCamera.DEFAULT_OFFSET
+
+
 func _leave_level() -> void:
 	for level in $Level.get_children():
 		level.stop_level()
@@ -59,5 +82,5 @@ func _leave_level() -> void:
 
 static func get_camera_rect(camera: Camera2D, viewport: Viewport) -> Rect2:
 	var rect_pos := camera.get_screen_center_position()
-	var rect_size := (viewport.get_visible_rect().size/camera.zoom)
+	var rect_size := (viewport.get_visible_rect().size / camera.zoom)
 	return Rect2(rect_pos - rect_size * 0.5, rect_size)

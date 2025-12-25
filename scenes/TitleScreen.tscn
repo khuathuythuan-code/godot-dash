@@ -908,8 +908,9 @@ grow_vertical = 2
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="Coming soon" parent="LevelSelector/PageContainer" instance=ExtResource("27_yieav")]
+[node name="Coming soon" parent="LevelSelector/PageContainer" node_paths=PackedStringArray("fade_screen_layer") instance=ExtResource("27_yieav")]
 layout_mode = 2
+fade_screen_layer = NodePath("../../../FadeScreenLayer")
 
 [node name="CameraCenterParent" type="Control" parent="LevelSelector"]
 layout_mode = 1
