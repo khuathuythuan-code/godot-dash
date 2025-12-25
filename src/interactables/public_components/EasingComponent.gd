@@ -1,10 +1,11 @@
 extends Component
+
 class_name EasingComponent
 
 signal progressed(weight_delta: float)
 signal finished(player: Player)
 
-@export_range(0.0, 10.0, 0.1, "or_greater", "suffix:s") var duration: float = 1.0
+@export_range(0.0, 10.0, 0.01, "or_greater", "suffix:s") var duration: float = 1.0
 @export var easing_type: Tween.EaseType = Tween.EASE_IN_OUT
 @export var easing_transition: Tween.TransitionType
 @export_group("Activation")
@@ -48,14 +49,21 @@ func start(player: Player) -> void:
 	var tween_weight := func(value: float): weights[player] = value
 	tweens[player].set_process_mode(Tween.TWEEN_PROCESS_PHYSICS if _use_physics_process else Tween.TWEEN_PROCESS_IDLE)
 	tweens[player].set_ignore_time_scale(ignore_time_scale)
-	tweens[player].tween_method(tween_weight, 0.0, 1.0, duration) \
+	(
+		tweens[player] \
+		.tween_method(tween_weight, 0.0, 1.0, duration) \
 		.set_trans(easing_transition) \
 		.set_ease(easing_type)
-	tweens[player].finished.connect(func():
-		finished.emit(player)
-		if get_tree() != null: await get_tree().process_frame
-		if get_tree() != null: await get_tree().process_frame
-		tweens.erase(player))
+	)
+	tweens[player].finished.connect(
+		func():
+			finished.emit(player)
+			if get_tree() != null:
+				await get_tree().process_frame
+			if get_tree() != null:
+				await get_tree().process_frame
+			tweens.erase(player)
+	)
 
 
 func get_weight_delta(player: Player) -> float:
