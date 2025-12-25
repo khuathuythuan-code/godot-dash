@@ -37,8 +37,6 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
 		trigger_for_one_player = true
 		ignore_time_scale = true
-	if property.name == "duration" and parent.has(SpawnTriggerComponent):
-		property.usage = PROPERTY_USAGE_NO_EDITOR
 
 
 func start(player: Player) -> void:
