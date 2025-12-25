@@ -325,3 +325,7 @@ static func player_to_interactable(object: Node2D) -> Interactable:
 	if object is Player:
 		return object.get_node(^"EditorPlayerSelectionCollider")
 	return object
+
+
+func _on_level_operations_handler_level_loaded(_level: Level) -> void:
+	initial_values.clear()

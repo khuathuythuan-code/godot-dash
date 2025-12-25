@@ -6518,6 +6518,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
+[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Interactable/InteractableEditor" method="_on_level_operations_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
 [connection signal="file_selected" from="ImportAndOpenLevelDialog" to="LevelOperationsHandler" method="_on_import_and_open_level_dialog_file_selected"]
