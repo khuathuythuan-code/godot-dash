@@ -47,7 +47,7 @@ func load_level() -> void:
 
 func add_loaded_level(level: Level) -> Level:
 	LevelManager.current_level = level
-	$Level.add_child(level)
+	$Level.add_child(level, true)
 	return level
 
 

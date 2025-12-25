@@ -36,6 +36,7 @@ func _ready() -> void:
 		_fade_screen.modulate = Color("000000ff")
 		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		create_tween().tween_property($EditorCamera, "zoom", Vector2.ONE * 0.8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).from(Vector2.ONE * 0.4)
+		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
 	LevelManager.attempt = 1
 	LevelManager.level_playing = false
@@ -168,6 +169,7 @@ func _on_playtest_pressed() -> void:
 		$GameScene.start_level()
 	else:
 		%Playtest.disabled = true
+		LevelManager.current_level.name = str(hash(LevelManager.current_level))
 		LevelManager.current_level.queue_free()
 		$GameScene.reset()
 		_ready() # sets `level`
