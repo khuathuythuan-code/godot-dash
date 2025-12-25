@@ -1,4 +1,5 @@
-@tool extends Control
+@tool
+extends Control
 
 @export_file("*.tscn") var selected_level
 
@@ -9,8 +10,10 @@ func _ready() -> void:
 	$Button.self_modulate = self_modulate
 	$Button.material.set_shader_parameter("gui_color", self_modulate)
 
+
 func _process(_delta: float) -> void:
-	$TabCenter.position = Vector2(size.x/2, size.y/2)
+	$TabCenter.position = Vector2(size.x / 2, size.y / 2)
+
 
 func _on_button_pressed() -> void:
 	if selected_level != null and ResourceLoader.exists(selected_level, "PackedScene"):
