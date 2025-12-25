@@ -76,11 +76,14 @@ func build_ui(interactables: Selection) -> void:
 	var ui_root := VBoxContainer.new()
 	var should_component_be_displayed := func(component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
-	var displayed_components := first_interactable \
-	.components \
-	.filter(should_component_be_displayed)
+	var displayed_components: Array = (
+		first_interactable \
+		.components \
+		.filter(should_component_be_displayed)
+	)
+	displayed_components = interactables.fold_generic(shared_components.bind(first_interactable), displayed_components)
 
-	if displayed_components and same_ui(interactables):
+	if displayed_components:
 		for i in displayed_components.size():
 			var component = displayed_components[i]
 			NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
@@ -123,8 +126,8 @@ func build_ui(interactables: Selection) -> void:
 			if i < displayed_components.size() - 1:
 				ui_root.add_child(HSeparator.new())
 		components_root.add_child(ui_root)
-		components_root.visible = ui_root.get_child_count() > 0
-		if first_interactable.has(HideMarkersComponent):
+		components_root.visible = components_root.get_child_count() > 0
+		if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
 			separator.hide()
 			markers_root.hide()
 		else:
@@ -310,19 +313,12 @@ static func same_script(object: Interactable, reference: Interactable) -> bool:
 	return object.get_script() == reference.get_script()
 
 
-static func same_ui(interactables: Selection) -> bool:
-	if interactables.size() == 1:
-		return true
-	var interactables_array := interactables.to_array()
-	for interactable_idx in interactables.size():
-		var object: Interactable = interactables_array[interactable_idx]
-		var reference: Interactable = interactables_array[wrapi(interactable_idx + 1, 0, interactables.size())]
-		if object.components.size() != reference.components.size():
-			return false
-		for component_idx in object.components.size():
-			if object.components[component_idx].get_script() != reference.components[component_idx].get_script():
-				return false
-	return true
+static func shared_components(accum: Array, interactable: Interactable, first_interactable: Interactable) -> Array:
+	var to_script := func(component: Component): return component.get_script()
+	accum = ArrayUtils.intersect(accum.map(to_script), interactable.components.map(to_script))
+	var to_instance := func(component_script: Script): return first_interactable.query(component_script)
+	accum = accum.map(to_instance)
+	return accum
 
 
 static func player_to_interactable(object: Node2D) -> Interactable:
