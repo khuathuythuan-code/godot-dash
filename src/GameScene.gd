@@ -76,11 +76,13 @@ func reset_level() -> void:
 	load_level()
 	var new_player: Player = AssetManager.player_packed.instantiate()
 	add_child(new_player)
-	LevelManager.player_camera.player = new_player
-	LevelManager.player_camera.center_on_player_at_0x_speed = true
-	LevelManager.player_camera.static_factor = Vector2.ZERO
-	LevelManager.player_camera.zoom = PlayerCamera.DEFAULT_ZOOM
-	LevelManager.player_camera.offset = PlayerCamera.DEFAULT_OFFSET
+	var player_camera: PlayerCamera = LevelManager.player_camera
+	player_camera.player = new_player
+	player_camera.center_on_player_at_0x_speed = true
+	player_camera.static_factor = Vector2.ZERO
+	player_camera.gameplay_offset_factor = Vector2.ONE
+	player_camera.zoom = PlayerCamera.DEFAULT_ZOOM
+	player_camera.offset = PlayerCamera.DEFAULT_OFFSET
 
 
 func _leave_level() -> void:
