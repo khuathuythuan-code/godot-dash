@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-@export_file("*.tscn") var selected_level: String
+@export_file("*.json") var selected_level: String
 @export var fade_screen_layer: CanvasLayer
 
 
@@ -17,7 +17,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	if selected_level.is_empty() or not ResourceLoader.exists(selected_level, "PackedScene"):
+	if selected_level.is_empty() or not FileAccess.file_exists(selected_level):
 		return
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
