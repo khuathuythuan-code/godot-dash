@@ -168,26 +168,10 @@ func _on_playtest_pressed() -> void:
 		$GameScene.start_level()
 	else:
 		%Playtest.disabled = true
-		LevelManager.ground_up.hide()
-		LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
-		LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
-		# Avoid multiple scene transitions
-		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
-		LevelManager.player.queue_free()
-		LevelManager.player_duals.map(NodeUtils.free_node)
-		LevelManager.player_duals.clear()
-		level.queue_free()
-		await get_tree().process_frame
-		var new_player: Player = AssetManager.player_packed.instantiate()
-		$GameScene.add_child(new_player)
-		var player_camera: PlayerCamera = LevelManager.player_camera
-		player_camera.player = new_player
-		player_camera.center_on_player_at_0x_speed = true
-		player_camera.static_factor = Vector2.ZERO
-		player_camera.gameplay_offset_factor = Vector2.ONE
-		player_camera.zoom = PlayerCamera.DEFAULT_ZOOM
-		player_camera.offset = PlayerCamera.DEFAULT_OFFSET
+		LevelManager.current_level.queue_free()
+		$GameScene.reset()
 		_ready() # sets `level`
+		var new_player: Player = LevelManager.player
 		new_player.position = level.start_position
 		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 		%LevelSettings._on_menu_bar_handler_level_loaded(level)

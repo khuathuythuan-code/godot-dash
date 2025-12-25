@@ -836,7 +836,8 @@ func _on_death_restart() -> void:
 	if Editor.in_editor:
 		Editor.root._on_playtest_pressed()
 	else:
-		LevelManager.game_scene.reset_level()
+		LevelManager.game_scene.reset()
+		LevelManager.game_scene.load_level()
 		LevelManager.game_scene.start_level()
 
 

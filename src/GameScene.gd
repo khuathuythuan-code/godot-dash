@@ -63,17 +63,15 @@ func start_level() -> void:
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func reset_level() -> void:
+func reset() -> void:
 	LevelManager.ground_up.hide()
 	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 	LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
 	# Avoid multiple scene transitions
+	LevelManager.player.name = "__freed_Player"
 	LevelManager.player.queue_free()
 	LevelManager.player_duals.map(NodeUtils.free_node)
 	LevelManager.player_duals.clear()
-	LevelManager.current_level.queue_free()
-	await get_tree().process_frame
-	load_level()
 	var new_player: Player = AssetManager.player_packed.instantiate()
 	add_child(new_player)
 	var player_camera: PlayerCamera = LevelManager.player_camera

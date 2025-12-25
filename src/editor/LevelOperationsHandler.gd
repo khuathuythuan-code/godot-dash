@@ -81,6 +81,7 @@ func _on_level_index_pressed(index: int) -> void:
 
 
 func _new_level() -> void:
+	LevelManager.game_scene.reset()
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	color_channel_editor.clear_item_list()
 	edit_handler.clear_selection()
@@ -115,6 +116,7 @@ func _open_level(path: String) -> void:
 		editor._on_playtest_pressed()
 		_open_level.call_deferred(path)
 		return
+	LevelManager.game_scene.reset()
 	# Avoid name conflicts
 	editor.level.name = str(hash(editor.level))
 	# Load level
@@ -135,8 +137,8 @@ func _open_level(path: String) -> void:
 	edit_handler.clear_selection()
 	color_channel_editor.clear_item_list()
 	# Add new level
-	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	await get_tree().process_frame
+	editor.level = LevelManager.game_scene.add_loaded_level(level)
 	LevelManager.current_level_duration = INF
 	level_loaded.emit(level)
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
