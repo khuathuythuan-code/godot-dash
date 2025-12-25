@@ -35,7 +35,7 @@ static var are_arrays_initialized: bool
 @export var markers_root: Container
 
 var marker_properties: Dictionary[Script, BoolProperty]
-var initial_values: Dictionary[Component, Variant]
+var initial_values: Dictionary[PathRef, Variant]
 
 
 func _init() -> void:
@@ -164,14 +164,15 @@ func connect_ui(interactables: Selection, ui_root: Control) -> void:
 			var component_name: String = property.get_meta(&"component_name")
 			for interactable: Interactable in interactables.to_array():
 				var component: Component = interactable.get_node(component_name)
-				if component not in initial_values:
+				var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
+				if not initial_values.keys().any(path_matches):
 					var _value: Variant = component.get(property_name)
 					if _value is String:
 						if component is TargetGroupComponent:
 							_value = Constants.GROUP_PREFIX + _value
 						elif component is TargetColorChannelComponent:
 							_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
-					initial_values[component] = _value
+					initial_values[PathRef.new(component)] = _value
 			property.value_changed.connect(
 				save_property.bind(
 					component_name,
@@ -197,8 +198,9 @@ func save_property(value: Variant, component_name: String, property_name: String
 				_value = Constants.GROUP_PREFIX + value
 			elif component is TargetColorChannelComponent:
 				_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
-		if component not in initial_values:
-			initial_values[component] = _value
+		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
+		if not initial_values.keys().any(path_matches):
+			initial_values[PathRef.new(component)] = _value
 		component.set(property_name, _value)
 
 
@@ -213,8 +215,9 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 				elif component is TargetColorChannelComponent:
 					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 			component.set(property_name, _value)
-			if component not in initial_values:
-				initial_values[component] = _value
+			var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
+			if not initial_values.keys().any(path_matches):
+				initial_values[PathRef.new(component)] = _value
 		load_properties(_interactables.first(), self)
 	var undo_save_property := func(_interactables_to_initial_values: Dictionary[NodePath, Variant]):
 		for _interactable_path: NodePath in _interactables_to_initial_values:
@@ -233,8 +236,10 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 
 	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
 		var component: Component = interactable.get_node(component_name)
-		var initial_value: Variant = initial_values[component]
-		initial_values.erase(component)
+		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
+		var component_pathref: PathRef = initial_values.keys()[initial_values.keys().find_custom(path_matches)]
+		var initial_value: Variant = initial_values[component_pathref]
+		initial_values.erase(component_pathref)
 		if initial_value is Array:
 			initial_value = initial_value.duplicate()
 		accum[Editor.version_history.to_nodepath(interactable)] = initial_value
