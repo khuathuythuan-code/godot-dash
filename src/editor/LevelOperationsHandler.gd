@@ -59,6 +59,7 @@ func _on_level_index_pressed(index: int) -> void:
 	match index:
 		0: # New
 			if editor.level_was_modified():
+				save_changes_before_opening_dialog.dialog_text = "Save changes before opening?"
 				save_changes_before_opening_dialog.show()
 				save_changes_before_opening_dialog.set_meta("next", _new_level)
 			else:
