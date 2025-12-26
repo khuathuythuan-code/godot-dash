@@ -113,6 +113,10 @@ func _notification(what: int) -> void:
 		$SaveChangesBeforeOpening.show()
 		$SaveChangesBeforeOpening.custom_action.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(get_tree().quit, ConnectFlags.CONNECT_ONE_SHOT)
+		var remove_signals := func():
+			$SaveChangesBeforeOpening.custom_action.disconnect(get_tree().quit)
+			$LevelOperationsHandler.level_saved.disconnect(get_tree().quit)
+		$SaveChangesBeforeOpening.visibility_changed.connect(remove_signals, ConnectFlags.CONNECT_ONE_SHOT)
 
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
