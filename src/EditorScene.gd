@@ -68,6 +68,7 @@ func _ready() -> void:
 		level = Level.new()
 		level.name = "New level"
 		Editor.version_history = VersionHistory.new()
+		Editor.clipboard = Selection.new()
 		LevelManager.game_scene.add_loaded_level(level)
 
 	if not $EditHandler.selection.is_empty():
