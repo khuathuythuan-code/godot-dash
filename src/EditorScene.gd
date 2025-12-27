@@ -180,7 +180,7 @@ func _on_playtest_pressed() -> void:
 		var new_player: Player = LevelManager.player
 		new_player.position = level.start_position
 		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
-		%LevelSettings._on_menu_bar_handler_level_loaded(level)
+		%LevelSettings.refresh_saveloads(level)
 		%Playtest.disabled = false
 
 

@@ -34,7 +34,6 @@ var selection_pivot: Vector2
 var gizmo: Gizmo
 
 @onready var selection := Selection.new()
-@onready var clipboard := Selection.new()
 
 
 func _ready() -> void:
@@ -314,6 +313,7 @@ func duplicate_selection() -> void:
 
 
 func copy_selection() -> void:
+	var clipboard: Selection = Editor.clipboard
 	clipboard.clear()
 	clipboard = selection.clone()
 	clipboard_camera_position = get_viewport().get_camera_2d().get_screen_center_position()
@@ -326,6 +326,7 @@ func copy_selection() -> void:
 
 
 func paste_selection() -> void:
+	var clipboard: Selection = Editor.clipboard
 	if clipboard.is_empty() or (clipboard.size() == 1 and clipboard.first() is Player):
 		return
 
