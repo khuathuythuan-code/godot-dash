@@ -150,7 +150,7 @@ func _open_level(path: String) -> void:
 	# Reset camera to default position
 	editor.editor_camera.offset = Vector2(640.0, 413.0)
 	editor.editor_camera.zoom_factor = 1.25
-	editor.editor_camera.zoom = Vector2.ONE * 0.8
+	editor.editor_camera.zoom = PlayerCamera.DEFAULT_ZOOM
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
 
