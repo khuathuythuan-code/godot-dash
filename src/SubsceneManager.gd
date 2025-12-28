@@ -6,7 +6,7 @@ enum SubScene {
 	TITLE_SCREEN,
 	LEVEL_SELECTOR,
 	ICON_GARAGE,
-	CREATED_LEVELS_LIST,
+	COMMUNITY_MENU,
 	SETTINGS_MENU,
 }
 
@@ -19,8 +19,8 @@ static var editor_scene: PackedScene
 @export var menu_loop: AudioStreamPlayer
 
 @export_group("Subscenes")
-@export var created_levels_list: Control
-@export var level_selector: Control
+@export var community_menu: PanelContainer
+@export var level_selector: PanelContainer
 @export var settings_panel: PanelContainer
 @export var settings_menu: TabContainer
 
@@ -50,13 +50,12 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	Engine.time_scale = 1.0
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	created_levels_list.position.x = created_levels_list.size.x
-	created_levels_list.hide()
+	community_menu.hide()
 	level_selector.hide()
 	settings_panel.hide()
 	await settings_menu.ready
 	if SceneManager.from_editor():
-		_on_go_to_created_levels_list_pressed()
+		_on_go_to_community_menu_pressed()
 	if not SceneManager.from_title_screen():
 		# HACK: Manual animation because PhantomCamera gets in the way
 		camera.global_position = active_pcam.global_position
@@ -88,7 +87,7 @@ func _return_to_title_screen() -> void:
 	_toggle_background_sprites_autoscroll(true)
 	_current_subscene = SubScene.TITLE_SCREEN
 	_change_background_color(_base_background_color)
-	created_levels_list.hide()
+	community_menu.hide()
 	level_selector.hide()
 	settings_panel.hide()
 
@@ -121,11 +120,13 @@ func _on_go_to_level_selector_pressed() -> void:
 	_current_subscene = SubScene.LEVEL_SELECTOR
 
 
-func _on_go_to_created_levels_list_pressed() -> void:
-	created_levels_list.show()
-	level_selector.hide()
-	_current_subscene = SubScene.CREATED_LEVELS_LIST
-	_toggle_background_sprites_autoscroll(false)
+func _on_go_to_community_menu_pressed() -> void:
+	if community_menu.visible:
+		_return_to_title_screen()
+		return
+	_return_to_title_screen()
+	community_menu.show()
+	_current_subscene = SubScene.COMMUNITY_MENU
 
 
 func _on_settings_pressed() -> void:

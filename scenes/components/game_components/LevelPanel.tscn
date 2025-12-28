@@ -1,0 +1,107 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbt2nq7hxgljk"]
+
+[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
+[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
+[ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
+
+[sub_resource type="FontVariation" id="FontVariation_507xd"]
+base_font = ExtResource("2_pkbwf")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65pcn"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ska7"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_507xd"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Level" type="HBoxContainer"]
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Play" type="Button" parent="."]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+text = "Level"
+
+[node name="Edit" type="Button" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Edit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_nvobf")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Remove" type="Button" parent="."]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="Remove"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_bhvlt")
+expand_mode = 5
+stretch_mode = 5
