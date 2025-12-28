@@ -11,43 +11,45 @@ variation_face_index = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65pcn"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ska7"]
 bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_507xd"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="Level" type="HBoxContainer"]
-theme_override_constants/separation = 12
+custom_minimum_size = Vector2(0, 50)
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Play" type="Button" parent="."]
-custom_minimum_size = Vector2(500, 75)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_grurr")
 theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
 text = "Level"
+autowrap_mode = 3
 
 [node name="Edit" type="Button" parent="."]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
@@ -66,10 +68,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_nvobf")
@@ -77,7 +79,7 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="Remove" type="Button" parent="."]
-custom_minimum_size = Vector2(75, 75)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
@@ -96,10 +98,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_bhvlt")

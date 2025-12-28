@@ -59,10 +59,10 @@ corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
 bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="Resource" id="Resource_1nrh6"]
 script = ExtResource("22_juc6n")
@@ -286,60 +286,62 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community"]
-layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community/MarginContainer"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community"]
 layout_mode = 2
 script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 12
+size_flags_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Level" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level2" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level2" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level3" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level3" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level4" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level4" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level5" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level5" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level6" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level6" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level7" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level7" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level8" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level8" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level9" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level9" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level10" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level10" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level11" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level11" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
-[node name="Level12" parent="TitleScreen/Community/MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Level12" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
 layout_mode = 2
 
 [node name="Settings" type="PanelContainer" parent="TitleScreen"]
