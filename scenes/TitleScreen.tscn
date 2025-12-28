@@ -172,6 +172,7 @@ shape = SubResource("WorldBoundaryShape2D_mekmn")
 debug_color = Color(0, 0.60038817, 0.70000815, 1)
 
 [node name="MainPanel" type="PanelContainer" parent="TitleScreen"]
+z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -242,6 +243,7 @@ text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreen"]
 visible = false
+z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -269,6 +271,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreen"]
+z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -341,6 +344,7 @@ layout_mode = 2
 
 [node name="Settings" type="PanelContainer" parent="TitleScreen"]
 visible = false
+z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -457,7 +461,7 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "community_menu", "level_selector", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "community_menu", "level_selector", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
@@ -474,7 +478,6 @@ title_screen_background = NodePath("../TitleScreen/BackgroundParallax")
 title_screen_ground = NodePath("../TitleScreen/GroundParallax")
 menu_icon = NodePath("../TitleScreen/MenuIcon")
 menu_icon_killer = NodePath("../TitleScreen/Kill Box")
-level_selector_page_container = NodePath("")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("31_n61qu")]
 
