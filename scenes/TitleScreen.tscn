@@ -432,7 +432,6 @@ theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Create" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -446,7 +445,6 @@ text = "Create New Level"
 autowrap_mode = 3
 
 [node name="Import" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -457,6 +455,19 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 text = "Import Level"
+autowrap_mode = 3
+
+[node name="Refresh" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("9_5h1vy")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Refresh"
 autowrap_mode = 3
 
 [node name="Settings" type="PanelContainer" parent="TitleScreen"]
@@ -607,4 +618,5 @@ menu_icon_killer = NodePath("../TitleScreen/Kill Box")
 [connection signal="file_selected" from="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
 [connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Refresh" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="refresh"]
 [connection signal="closed" from="TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
