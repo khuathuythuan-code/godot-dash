@@ -5,25 +5,25 @@
 [ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
 [ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
 
-[sub_resource type="FontVariation" id="FontVariation_507xd"]
+[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
 base_font = ExtResource("2_pkbwf")
 variation_face_index = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65pcn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ska7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
 bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_507xd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
@@ -40,11 +40,11 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_grurr")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 text = "Level"
 autowrap_mode = 3
 
@@ -53,11 +53,11 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 icon_alignment = 1
 expand_icon = true
 
@@ -83,11 +83,11 @@ custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 icon_alignment = 1
 expand_icon = true
 

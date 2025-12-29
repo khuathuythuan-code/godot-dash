@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=41 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -12,8 +12,8 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
-[ext_resource type="PackedScene" uid="uid://bbt2nq7hxgljk" path="res://scenes/components/game_components/LevelPanel.tscn" id="12_ijstc"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
+[ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
 [ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="19_1ska7"]
@@ -70,6 +70,31 @@ script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_08fpa"]
 script = ExtResource("22_juc6n")
+
+[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
+base_font = ExtResource("11_1ska7")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("18_cr31u")
@@ -292,63 +317,105 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
 metadata/_custom_type_script = "uid://2ient42a5q26"
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community"]
 layout_mode = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 script = ExtResource("21_u3ctg")
 wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/SmoothScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("import_dialog", "level_already_exists_dialog")]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("15_hvy54")
+import_dialog = NodePath("../ImportLevelDialog")
+level_already_exists_dialog = NodePath("../LevelAlreadyExists")
+
+[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+auto_translate_mode = 1
+oversampling_override = 1.0
+title = "Import and open"
+initial_position = 2
+size = Vector2i(1088, 720)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.level")
+use_native_dialog = true
+option_count = 1
+option_0/name = "Keep original level file"
+option_0/default = 1
+
+[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(514, 100)
+ok_button_text = "Overwrite"
+dialog_text = "A level with the same name already exists in the game directory!"
+cancel_button_text = "Open Existing"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Level" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Create" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("9_5h1vy")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Create New Level"
+autowrap_mode = 3
 
-[node name="Level2" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
+[node name="Import" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
-
-[node name="Level3" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level4" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level5" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level6" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level7" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level8" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level9" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level10" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level11" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
-
-[node name="Level12" parent="TitleScreen/Community/SmoothScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12_ijstc")]
-layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("9_5h1vy")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Import Level"
+autowrap_mode = 3
 
 [node name="Settings" type="PanelContainer" parent="TitleScreen"]
 visible = false
@@ -374,7 +441,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_bottom = 6
 
 [node name="SettingsMenu" parent="TitleScreen/Settings/MarginContainer" instance=ExtResource("12_p8bvb")]
 layout_mode = 2
@@ -495,4 +562,7 @@ menu_icon_killer = NodePath("../TitleScreen/Kill Box")
 [connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
 [connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="file_selected" from="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
 [connection signal="closed" from="TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
