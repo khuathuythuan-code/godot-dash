@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=44 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -13,6 +13,8 @@
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
 [ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
@@ -64,6 +66,15 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchwh"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 12.0
+expand_margin_right = 12.0
 
 [sub_resource type="Resource" id="Resource_1nrh6"]
 script = ExtResource("22_juc6n")
@@ -303,7 +314,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreen"]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -323,6 +333,37 @@ metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Search" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/Search"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 0
+
+[node name="SearchBarNode" type="LineEdit" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer/MarginContainer" node_paths=PackedStringArray("root_node_to_search")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
+placeholder_text = "Search..."
+right_icon = ExtResource("13_0d6if")
+script = ExtResource("14_hvy54")
+root_node_to_search = NodePath("../../../../SmoothScrollContainer/MarginContainer/VBoxContainer")
+group_name = PackedStringArray()
+metadata/_custom_type_script = "uid://y1hecem53675"
+
+[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+layout_mode = 2
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community/VBoxContainer"]
 layout_mode = 2
@@ -336,10 +377,6 @@ metadata/_custom_type_script = "uid://bgqglerkcylxx"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog")]
 layout_mode = 2
