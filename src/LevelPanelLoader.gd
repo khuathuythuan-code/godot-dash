@@ -4,6 +4,7 @@ const LEVEL_DIR: String = "user://created_levels/levels/"
 @export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
 @export var level_already_exists_dialog: ConfirmationDialog
+var levels: Dictionary[String, HBoxContainer]
 
 
 func _ready() -> void:
@@ -11,6 +12,7 @@ func _ready() -> void:
 
 
 func refresh() -> void:
+	levels.clear()
 	for child in get_children():
 		child.queue_free()
 
@@ -35,6 +37,7 @@ func refresh() -> void:
 		play_button.pressed.connect(_play_level.bind(file_name))
 		edit_button.pressed.connect(_edit_level.bind(file_name))
 		remove_button.pressed.connect(_remove_level.bind(file_name))
+		levels[file_name] = panel
 		add_child(panel)
 
 
@@ -64,7 +67,15 @@ func _edit_level(level_name: String) -> void:
 
 func _remove_level(level_name: String) -> void:
 	OS.move_to_trash(ProjectSettings.globalize_path(LEVEL_DIR + level_name))
-	refresh()
+	levels[level_name].queue_free()
+	levels.erase(level_name)
+	if get_child_count() == 0:
+		var label: Label = Label.new()
+		label.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.text = "No levels found."
+		add_child(label)
 
 
 func _open_importer() -> void:
