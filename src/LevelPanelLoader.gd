@@ -1,6 +1,7 @@
 extends VBoxContainer
 
 const LEVEL_DIR: String = "user://created_levels/levels/"
+@export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
 @export var level_already_exists_dialog: ConfirmationDialog
 
@@ -42,6 +43,7 @@ func _play_level(level_name: String) -> void:
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 	var fade_screen = get_node("/root/TitleScreen/FadeScreenLayer/FadeScreen")
 	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	subscene_manager.history.change_phantomcamera(subscene_manager.active_pcam, subscene_manager.quit_game_camera)
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.current_level_name = name
 	LevelManager.attempt = 0
@@ -53,14 +55,11 @@ func _play_level(level_name: String) -> void:
 
 
 func _edit_level(level_name: String) -> void:
-	if DiscordRPCManager.available:
-		DiscordRPCHandler.set_details("Creating a level")
-		DiscordRPCHandler.refresh()
 	var file := FileAccess.open(LEVEL_DIR + level_name, FileAccess.READ)
 	var json_string: String = file.get_as_text()
 	file.close()
 	Editor.level_data_snapshot = JSON.parse_string(json_string)
-	get_tree().change_scene_to_packed(AssetManager.editor_packed)
+	subscene_manager._on_editor_pressed()
 
 
 func _remove_level(level_name: String) -> void:

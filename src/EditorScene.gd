@@ -59,6 +59,7 @@ func _ready() -> void:
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
 
+	Editor.version_history = VersionHistory.new()
 	if not Editor.level_data_snapshot.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 		%ColorChannelEditor.clear_item_list()
@@ -67,7 +68,6 @@ func _ready() -> void:
 	elif not $GameScene/Level.get_child_count():
 		level = Level.new()
 		level.name = "New level"
-		Editor.version_history = VersionHistory.new()
 		Editor.clipboard = Selection.new()
 		LevelManager.game_scene.add_loaded_level(level)
 
@@ -187,13 +187,13 @@ func _on_playtest_pressed() -> void:
 
 func _on_leave_pressed() -> void:
 	Editor.level_data_snapshot.clear()
-	Editor.level_history_version = -1
 	if level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
+	Editor.level_history_version = -1
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()

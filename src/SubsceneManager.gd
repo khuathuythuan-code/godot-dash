@@ -50,9 +50,9 @@ func _ready() -> void:
 	community_menu.hide()
 	level_selector.hide()
 	settings_panel.hide()
-	await settings_menu.ready
-	if SceneManager.from_editor():
-		_on_go_to_community_menu_pressed()
+	if SceneManager.from_editor() or SceneManager.from_level():
+		community_menu.position = community_menu.inital_position
+		community_menu.show()
 	if not SceneManager.from_title_screen():
 		# HACK: Manual animation because PhantomCamera gets in the way
 		camera.global_position = active_pcam.global_position
@@ -141,6 +141,7 @@ func _on_editor_pressed() -> void:
 		$"../MenuLoop".playing = false
 		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+		history.change_phantomcamera(active_pcam, quit_game_camera)
 		await _fade_screen.fade_finished
 		if DiscordRPCManager.available:
 			DiscordRPCHandler.set_details("Creating a level")

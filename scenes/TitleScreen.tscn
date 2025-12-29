@@ -337,13 +337,14 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("import_dialog", "level_already_exists_dialog")]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("15_hvy54")
+subscene_manager = NodePath("../../../../../../Subscene Manager")
 import_dialog = NodePath("../ImportLevelDialog")
 level_already_exists_dialog = NodePath("../LevelAlreadyExists")
 
