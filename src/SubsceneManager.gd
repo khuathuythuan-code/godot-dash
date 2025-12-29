@@ -19,9 +19,9 @@ static var editor_scene: PackedScene
 @export var menu_loop: AudioStreamPlayer
 
 @export_group("Subscenes")
-@export var community_menu: PanelContainer
-@export var level_selector: PanelContainer
-@export var settings_panel: PanelContainer
+@export var level_selector: TitleScreenPanel
+@export var community_menu: TitleScreenPanel
+@export var settings_panel: TitleScreenPanel
 @export var settings_menu: TabContainer
 
 @export_group("PhantomCameras")
@@ -33,9 +33,6 @@ static var editor_scene: PackedScene
 @export var title_screen_ground: Parallax2D
 @export var menu_icon: MenuIcon
 @export var menu_icon_killer: MenuIconKiller
-
-@export_group("Level Selector Components")
-@export var level_selector_page_container: Control
 
 @onready var _base_background_color: Color = title_screen_background.get_node("Background").modulate
 
@@ -87,9 +84,9 @@ func _return_to_title_screen() -> void:
 	_toggle_background_sprites_autoscroll(true)
 	_current_subscene = SubScene.TITLE_SCREEN
 	_change_background_color(_base_background_color)
-	community_menu.hide()
-	level_selector.hide()
-	settings_panel.hide()
+	for object in [level_selector, community_menu, settings_panel]:
+		if object.visible:
+			object.hide_tween()
 
 
 func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
@@ -116,7 +113,7 @@ func _on_go_to_level_selector_pressed() -> void:
 		_return_to_title_screen()
 		return
 	_return_to_title_screen()
-	level_selector.show()
+	level_selector.show_tween()
 	_current_subscene = SubScene.LEVEL_SELECTOR
 
 
@@ -125,7 +122,7 @@ func _on_go_to_community_menu_pressed() -> void:
 		_return_to_title_screen()
 		return
 	_return_to_title_screen()
-	community_menu.show()
+	community_menu.show_tween()
 	_current_subscene = SubScene.COMMUNITY_MENU
 
 
@@ -134,7 +131,7 @@ func _on_settings_pressed() -> void:
 		_return_to_title_screen()
 		return
 	_return_to_title_screen()
-	settings_panel.show()
+	settings_panel.show_tween()
 	_current_subscene = SubScene.SETTINGS_MENU
 
 

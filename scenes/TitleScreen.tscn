@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=37 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_65pcn"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
+[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://bbt2nq7hxgljk" path="res://scenes/components/game_components/LevelPanel.tscn" id="12_ijstc"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
@@ -257,6 +258,8 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/LevelSelector"]
 layout_mode = 2
@@ -271,6 +274,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreen"]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -285,6 +289,8 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community"]
 layout_mode = 2
@@ -360,6 +366,8 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Settings"]
 layout_mode = 2
@@ -463,15 +471,15 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "community_menu", "level_selector", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 fade_screen_layer = NodePath("../FadeScreenLayer")
 menu_loop = NodePath("../MenuLoop")
-community_menu = NodePath("../TitleScreen/Community")
 level_selector = NodePath("../TitleScreen/LevelSelector")
+community_menu = NodePath("../TitleScreen/Community")
 settings_panel = NodePath("../TitleScreen/Settings")
 settings_menu = NodePath("../TitleScreen/Settings/MarginContainer/SettingsMenu")
 quit_game_camera = NodePath("../TitleScreen/CameraCenterParent/QuitGameCamera")
