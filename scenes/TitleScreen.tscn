@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="5_507xd"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_02qso"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_fm4nh"]
-[ext_resource type="Texture2D" uid="uid://bu2hpb5owl44q" path="res://assets/textures/guis/title_screen/Title.png" id="8_3yl86"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_65pcn"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
+[ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
@@ -213,11 +213,15 @@ alignment = 1
 
 [node name="Title" type="TextureRect" parent="TitleScreen/MainPanel/VBoxContainer"]
 texture_filter = 6
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-texture = ExtResource("8_3yl86")
+texture = ExtResource("9_08fpa")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 
 [node name="Play" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(500, 75)
