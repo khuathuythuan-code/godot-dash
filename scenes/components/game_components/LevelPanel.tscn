@@ -46,14 +46,14 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(500, 85)
+custom_minimum_size = Vector2(750, 85)
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 60.0
@@ -100,40 +100,63 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_bhvlt")
 theme_override_font_sizes/font_size = 36
-text = "10"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Play"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Play"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 95.0
 offset_top = 15.0
-offset_right = -15.0
+offset_right = -129.0
 offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="Play/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_grurr")
 theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 30
 text = "Level"
+text_overrun_behavior = 3
 
-[node name="Creator" type="Label" parent="Play/VBoxContainer"]
+[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 10
 theme = ExtResource("1_grurr")
 theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
 theme_override_fonts/font = ExtResource("2_pkbwf")
 theme_override_font_sizes/font_size = 12
 text = "Creator"
 
+[node name="Description" type="Label" parent="Play/HBoxContainer"]
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("1_grurr")
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_fonts/font = ExtResource("2_pkbwf")
+theme_override_font_sizes/font_size = 12
+text = "Description"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 3
+
 [node name="Thumbnail" type="Panel" parent="Play"]
+visible = false
 clip_children = 2
 z_index = -1
 clip_contents = true

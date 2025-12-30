@@ -15,7 +15,8 @@ const START_SPEED: Array[float] = [
 	2.431, # 5x
 ]
 
-@export var creator: String
+@export var creator: String = Config.username
+@export var description: String = ""
 @export var rating: int = -1
 
 @export_file var song_path: String:
@@ -90,8 +91,6 @@ var _pause_manager: Node
 
 
 func _ready() -> void:
-	if creator != null:
-		creator = Config.username
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
@@ -187,6 +186,7 @@ func to_data() -> Dictionary:
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
 		"creator": creator,
+		"description": description,
 		"rating": rating,
 		"song_path": song_path,
 		"song_start_time": song_start_time,
@@ -259,6 +259,7 @@ static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
 	level.creator = data.creator
+	level.description = data.description
 	level.rating = data.rating
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time

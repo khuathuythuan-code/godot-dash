@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ylswfd45fw38"]
+[gd_scene load_steps=13 format=3 uid="uid://ylswfd45fw38"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_0trr5"]
 [ext_resource type="Script" uid="uid://bhqj6dqkejl2k" path="res://src/editor/LevelSettings.gd" id="1_ikfu3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="6_ikfu3"]
 [ext_resource type="Script" uid="uid://dd8enor6efbjp" path="res://src/gui/properties/components/PropertyValueThemeDefaultFont.gd" id="7_2dtee"]
+[ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="9_2dtee"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="9_ikfu3"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="9_jvsdk"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="10_2dtee"]
@@ -158,15 +159,28 @@ script = ExtResource("10_2dtee")
 config_property = &"default_line_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Assets2" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Details" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-title = "Rating"
+title = "Details"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details"]
 layout_mode = 2
 
-[node name="Rating" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets2/VBoxContainer"]
+[node name="Description" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("9_2dtee")
+placeholder = "Description"
+metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Description"]
+script = ExtResource("10_2dtee")
+config_property = &"description"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Rating" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -178,7 +192,7 @@ rounded = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 metadata/field_name = &"_font_path"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets2/VBoxContainer/Rating"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Rating"]
 script = ExtResource("10_2dtee")
 config_property = &"rating"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
