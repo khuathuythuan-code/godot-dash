@@ -8,7 +8,7 @@
 [sub_resource type="FontVariation" id="FontVariation_0d6if"]
 variation_opentype = {
 1869640570: 14,
-2003265652: 600
+2003265652: 700
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_ibsmc"]
