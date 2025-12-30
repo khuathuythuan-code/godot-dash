@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=38 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -11,11 +11,11 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
-[ext_resource type="Script" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
+[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
-[ext_resource type="Script" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
+[ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
 [ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="18_hvy54"]
@@ -61,31 +61,6 @@ script = ExtResource("22_juc6n")
 
 [sub_resource type="Resource" id="Resource_08fpa"]
 script = ExtResource("22_juc6n")
-
-[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
-base_font = ExtResource("11_1ska7")
-variation_face_index = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
-bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("18_cr31u")
@@ -277,7 +252,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreen"]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -399,12 +373,7 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_2n7uf")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Create New Level"
 autowrap_mode = 3
 
@@ -413,11 +382,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_2n7uf")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Import Level"
 autowrap_mode = 3
 
@@ -426,11 +391,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_2n7uf")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
-theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Refresh"
 autowrap_mode = 3
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=43 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=47 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -210,6 +210,31 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
+base_font = ExtResource("1_10srq")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rrh8"]
 content_margin_left = 5.0
 content_margin_top = 10.0
@@ -354,6 +379,12 @@ TitleScreenButton/fonts/font = SubResource("FontVariation_10srq")
 TitleScreenButton/styles/hover = SubResource("StyleBoxFlat_oa72w")
 TitleScreenButton/styles/normal = SubResource("StyleBoxFlat_kkeaq")
 TitleScreenButton/styles/pressed = SubResource("StyleBoxFlat_7d5yc")
+TitleScreenCommunityLevelListButton/base_type = &"Button"
+TitleScreenCommunityLevelListButton/font_sizes/font_size = 24
+TitleScreenCommunityLevelListButton/fonts/font = SubResource("FontVariation_2n7uf")
+TitleScreenCommunityLevelListButton/styles/hover = SubResource("StyleBoxFlat_opvi4")
+TitleScreenCommunityLevelListButton/styles/normal = SubResource("StyleBoxFlat_gyoo8")
+TitleScreenCommunityLevelListButton/styles/pressed = SubResource("StyleBoxFlat_p8bvb")
 Toast/base_type = &"Button"
 Toast/styles/disabled = SubResource("StyleBoxFlat_5rrh8")
 Toast/styles/hover = SubResource("StyleBoxFlat_hdsbt")
