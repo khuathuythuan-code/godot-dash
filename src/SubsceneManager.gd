@@ -90,8 +90,9 @@ func _return_to_title_screen() -> void:
 
 
 func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
-	menu_icon.visible = enabled
-	menu_icon_killer.process_mode = Node.PROCESS_MODE_INHERIT if enabled else Node.PROCESS_MODE_DISABLED
+	if Config.enable_title_screen_icons:
+		menu_icon.visible = enabled
+		menu_icon_killer.process_mode = Node.PROCESS_MODE_INHERIT if enabled else Node.PROCESS_MODE_DISABLED
 	# HACK: autoscroll can't be interpolated
 	if enabled:
 		title_screen_background.autoscroll.x = -300
