@@ -4,7 +4,7 @@ const LEVEL_DIR: String = "user://created_levels/levels/"
 @export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
 @export var level_already_exists_dialog: ConfirmationDialog
-var levels: Dictionary[String, HBoxContainer]
+var levels: Dictionary[String, Control]
 
 
 func _ready() -> void:
@@ -29,11 +29,14 @@ func refresh() -> void:
 	var scene: PackedScene = load("res://scenes/components/game_components/LevelPanel.tscn")
 	for file_name: String in dir.get_files():
 		var level_name: String = file_name.replace(".json", "")
-		var panel: HBoxContainer = scene.instantiate()
+		var panel: Control = scene.instantiate()
+		var title: Label = panel.get_node("Play/VBoxContainer/Title")
+		var creator: Label = panel.get_node("Play/VBoxContainer/Creator")
 		var play_button: Button = panel.get_node("Play")
-		var edit_button: Button = panel.get_node("Edit")
-		var remove_button: Button = panel.get_node("Remove")
-		play_button.text = level_name
+		var edit_button: Button = panel.get_node("HBoxContainer/Edit")
+		var remove_button: Button = panel.get_node("HBoxContainer/Remove")
+		title.text = level_name
+		creator.text = JSON.parse_string(FileAccess.open(LEVEL_DIR + file_name, FileAccess.READ).get_as_text())["creator"]
 		play_button.pressed.connect(_play_level.bind(file_name))
 		edit_button.pressed.connect(_edit_level.bind(file_name))
 		remove_button.pressed.connect(_remove_level.bind(file_name))

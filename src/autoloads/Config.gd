@@ -91,6 +91,7 @@ enum ParticlePreprocessing {
 @export_group("Editor")
 @export var hide_grid_on_playtest: bool = true
 @export var autosave_delay: float
+@export var username: String = "Player"
 @export var selection_zone_color := Color.GREEN
 @export_range(0, 1, .05) var selection_zone_fill_alpha := 0.2
 @export var trigger_hitbox_color := Color.CYAN
@@ -147,6 +148,7 @@ func _init():
 	# Editor
 	hide_grid_on_playtest = config_file.get_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
 	autosave_delay = config_file.get_value("Editor", "autosave_delay", autosave_delay)
+	username = config_file.get_value("Editor", "username", username)
 	selection_zone_color = config_file.get_value("Editor", "selection_zone_color", selection_zone_color)
 	selection_zone_fill_alpha = config_file.get_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	trigger_hitbox_color = config_file.get_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
@@ -204,6 +206,7 @@ func save() -> void:
 	# Editor
 	config_file.set_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
 	config_file.set_value("Editor", "autosave_delay", autosave_delay)
+	config_file.set_value("Editor", "username", username)
 	config_file.set_value("Editor", "selection_zone_color", selection_zone_color)
 	config_file.set_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	config_file.set_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)

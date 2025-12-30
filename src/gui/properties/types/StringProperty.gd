@@ -18,7 +18,7 @@ var _previous_text: String
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", LineEdit, NodeUtils.INTERNAL)
-	input.text_submitted.connect(func(new_value: String): value_changed.emit(new_value))
+	input.text_changed.connect(func(new_value: String): value_changed.emit(new_value))
 	input.text_submitted.connect(func(new_value: String): interaction_ended.emit(new_value, _previous_text))
 	input.text_submitted.connect(submitted_release_focus)
 	input.editing_toggled.connect(unedit_release_focus)

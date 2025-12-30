@@ -15,6 +15,7 @@ const START_SPEED: Array[float] = [
 	2.431, # 5x
 ]
 
+@export var creator: String
 @export_file var song_path: String:
 	set(value):
 		register_required_song(song_path, value)
@@ -87,6 +88,8 @@ var _pause_manager: Node
 
 
 func _ready() -> void:
+	if creator != null:
+		creator = Config.username
 	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
@@ -181,6 +184,7 @@ func to_data() -> Dictionary:
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
+		"creator": creator,
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
@@ -251,6 +255,7 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
+	level.creator = data.creator
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer

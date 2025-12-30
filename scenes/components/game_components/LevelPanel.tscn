@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbt2nq7hxgljk"]
+[gd_scene load_steps=11 format=3 uid="uid://bbt2nq7hxgljk"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
 [ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
 [ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
+[ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="6_bhvlt"]
 
 [sub_resource type="FontVariation" id="FontVariation_2n7uf"]
 base_font = ExtResource("2_pkbwf")
@@ -30,14 +31,27 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="Level" type="HBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-theme_override_constants/separation = 8
-alignment = 1
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(500, 85)
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 60.0
 
 [node name="Play" type="Button" parent="."]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_grurr")
 theme_override_fonts/font = SubResource("FontVariation_2n7uf")
@@ -45,13 +59,81 @@ theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
-text = "Level"
 autowrap_mode = 3
 
-[node name="Edit" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Play"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Play/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+text = "Level"
+
+[node name="Creator" type="Label" parent="Play/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_grurr")
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_fonts/font = ExtResource("2_pkbwf")
+theme_override_font_sizes/font_size = 12
+text = "Creator"
+
+[node name="Thumbnail" type="Panel" parent="Play"]
+clip_children = 2
+z_index = -1
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme = ExtResource("1_grurr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_810tx")
+
+[node name="TextureRect" type="TextureRect" parent="Play/Thumbnail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_bhvlt")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Edit" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
 theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 35
@@ -61,7 +143,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Edit"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Edit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -78,10 +160,9 @@ texture = ExtResource("3_nvobf")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Remove" type="Button" parent="."]
+[node name="Remove" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 4
 theme = ExtResource("1_grurr")
 theme_override_fonts/font = SubResource("FontVariation_2n7uf")
 theme_override_font_sizes/font_size = 35
@@ -91,7 +172,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="Remove"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Remove"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
