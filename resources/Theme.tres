@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=39 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=43 format=3 uid="uid://cntfsyilhn2ic"]
 
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
 
@@ -185,6 +185,31 @@ corner_detail = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcyaj"]
 
+[sub_resource type="FontVariation" id="FontVariation_10srq"]
+base_font = ExtResource("1_10srq")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa72w"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kkeaq"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7d5yc"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rrh8"]
 content_margin_left = 5.0
 content_margin_top = 10.0
@@ -323,6 +348,12 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_o1vdk")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_jaexg")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_10srq")
 TextEdit/styles/focus = SubResource("StyleBoxEmpty_xcyaj")
+TitleScreenButton/base_type = &"Button"
+TitleScreenButton/font_sizes/font_size = 35
+TitleScreenButton/fonts/font = SubResource("FontVariation_10srq")
+TitleScreenButton/styles/hover = SubResource("StyleBoxFlat_oa72w")
+TitleScreenButton/styles/normal = SubResource("StyleBoxFlat_kkeaq")
+TitleScreenButton/styles/pressed = SubResource("StyleBoxFlat_7d5yc")
 Toast/base_type = &"Button"
 Toast/styles/disabled = SubResource("StyleBoxFlat_5rrh8")
 Toast/styles/hover = SubResource("StyleBoxFlat_hdsbt")

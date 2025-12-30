@@ -1,40 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://th7jwdop3hdv"]
+[gd_scene load_steps=9 format=3 uid="uid://th7jwdop3hdv"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_6oxby"]
 [ext_resource type="Script" uid="uid://dklkgkt30unai" path="res://src/PauseMenu.gd" id="1_aoxbt"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="3_nyvmt"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="3_tjkms"]
-[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
+[ext_resource type="Script" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="6_wvbob"]
 
 [sub_resource type="FontVariation" id="FontVariation_vccga"]
 base_font = ExtResource("3_tjkms")
 variation_face_index = 1
-
-[sub_resource type="FontVariation" id="FontVariation_5pdfs"]
-base_font = ExtResource("3_tjkms")
-variation_face_index = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4up3o"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlilj"]
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlg82"]
-bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qns"]
 bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
@@ -78,11 +53,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_nyvmt")
-theme_override_fonts/font = SubResource("FontVariation_5pdfs")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_4up3o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xlilj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlg82")
+theme_type_variation = &"TitleScreenButton"
 text = "Resume"
 
 [node name="Restart" type="Button" parent="PauseMenu/VBoxContainer"]
@@ -90,11 +61,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_nyvmt")
-theme_override_fonts/font = SubResource("FontVariation_5pdfs")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_4up3o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xlilj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlg82")
+theme_type_variation = &"TitleScreenButton"
 text = "Restart"
 
 [node name="Settings" type="Button" parent="PauseMenu/VBoxContainer"]
@@ -102,11 +69,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_nyvmt")
-theme_override_fonts/font = SubResource("FontVariation_5pdfs")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_4up3o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xlilj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlg82")
+theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
 [node name="Leave" type="Button" parent="PauseMenu/VBoxContainer"]
@@ -114,11 +77,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_nyvmt")
-theme_override_fonts/font = SubResource("FontVariation_5pdfs")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_4up3o")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xlilj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlg82")
+theme_type_variation = &"TitleScreenButton"
 text = "Leave"
 
 [node name="Settings" type="PanelContainer" parent="."]
@@ -137,7 +96,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y4qns")
 script = ExtResource("5_018eo")
-metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings"]
 layout_mode = 2

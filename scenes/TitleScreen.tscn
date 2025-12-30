@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=42 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -36,37 +36,16 @@ shader_parameter/ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mekmn"]
 
-[sub_resource type="FontVariation" id="FontVariation_507xd"]
-base_font = ExtResource("11_1ska7")
-variation_face_index = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65pcn"]
-bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ska7"]
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_507xd"]
-bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
 bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_507xd"]
+base_font = ExtResource("11_1ska7")
+variation_face_index = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchwh"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -240,11 +219,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_type_variation = &"TitleScreenButton"
 text = "Play"
 
 [node name="Community" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
@@ -252,11 +227,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_type_variation = &"TitleScreenButton"
 text = "Community"
 
 [node name="Settings" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
@@ -264,11 +235,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
 [node name="Quit" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
@@ -276,11 +243,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("9_5h1vy")
-theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 35
-theme_override_styles/normal = SubResource("StyleBoxFlat_65pcn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1ska7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_507xd")
+theme_type_variation = &"TitleScreenButton"
 text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreen"]
