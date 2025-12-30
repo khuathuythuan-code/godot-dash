@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbt2nq7hxgljk"]
+[gd_scene load_steps=14 format=3 uid="uid://d0snwwc2xejn4"]
 
+[ext_resource type="Script" uid="uid://bxe5tqovuq4bo" path="res://src/LevelPanel.gd" id="1_bhvlt"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
 [ext_resource type="FontFile" uid="uid://bfr3bu421t5nl" path="res://assets/fonts/OutfitRegular.ttf" id="3_bhvlt"]
@@ -52,11 +53,20 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "play_button", "edit_button", "remove_button")]
 custom_minimum_size = Vector2(750, 85)
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 60.0
+script = ExtResource("1_bhvlt")
+title = NodePath("Play/HBoxContainer/VBoxContainer/Title")
+creator = NodePath("Play/HBoxContainer/VBoxContainer/Creator")
+description = NodePath("Play/HBoxContainer/Description")
+rating_outline = NodePath("Play/Outline")
+rating = NodePath("Play/Outline/Rating")
+play_button = NodePath("Play")
+edit_button = NodePath("HBoxContainer/Edit")
+remove_button = NodePath("HBoxContainer/Remove")
 
 [node name="Play" type="Button" parent="."]
 custom_minimum_size = Vector2(500, 60)

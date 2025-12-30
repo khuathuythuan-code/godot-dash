@@ -30,24 +30,16 @@ func refresh() -> void:
 	var scene: PackedScene = load("res://scenes/components/game_components/LevelPanel.tscn")
 	for file_name: String in dir.get_files():
 		var level_name: String = file_name.replace(".json", "")
-		var panel: Control = scene.instantiate()
-		var title: Label = panel.get_node("Play/HBoxContainer/VBoxContainer/Title")
-		var creator: Label = panel.get_node("Play/HBoxContainer/VBoxContainer/Creator")
-		var description: Label = panel.get_node("Play/HBoxContainer/Description")
-		var rating_outline: Panel = panel.get_node("Play/Outline")
-		var rating: Label = panel.get_node("Play/Outline/Rating")
-		var play_button: Button = panel.get_node("Play")
-		var edit_button: Button = panel.get_node("HBoxContainer/Edit")
-		var remove_button: Button = panel.get_node("HBoxContainer/Remove")
+		var panel: LevelPanel = scene.instantiate()
 		var level_data: Dictionary = JSON.parse_string(FileAccess.open(LEVEL_DIR + file_name, FileAccess.READ).get_as_text())
-		title.text = level_name
-		creator.text = level_data["creator"]
-		description.text = level_data["description"]
-		rating.text = str(int(level_data["rating"])) if level_data["rating"] != -1 else "?"
-		rating_outline.modulate = rating_colors.get_color(level_data["rating"] + 1)
-		play_button.pressed.connect(_play_level.bind(file_name))
-		edit_button.pressed.connect(_edit_level.bind(file_name))
-		remove_button.pressed.connect(_remove_level.bind(file_name))
+		panel.title.text = level_name
+		panel.creator.text = level_data.creator
+		panel.description.text = level_data.description
+		panel.rating.text = str(int(level_data.rating)) if level_data.rating != -1 else "?"
+		panel.rating_outline.modulate = rating_colors.get_color(level_data.rating + 1)
+		panel.play_button.pressed.connect(_play_level.bind(file_name))
+		panel.edit_button.pressed.connect(_edit_level.bind(file_name))
+		panel.remove_button.pressed.connect(_remove_level.bind(file_name))
 		levels[file_name] = panel
 		add_child(panel)
 
