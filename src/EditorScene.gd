@@ -59,7 +59,8 @@ func _ready() -> void:
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
 
-	Editor.version_history = VersionHistory.new()
+	if not Editor.version_history:
+		Editor.version_history = VersionHistory.new()
 	if not Editor.level_data_snapshot.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 		%ColorChannelEditor.clear_item_list()

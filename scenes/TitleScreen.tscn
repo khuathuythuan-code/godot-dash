@@ -11,11 +11,11 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
-[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
+[ext_resource type="Script" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
-[ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
+[ext_resource type="Script" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
 [ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="18_hvy54"]
@@ -300,7 +300,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
-metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/LevelSelector"]
 layout_mode = 2
@@ -330,7 +329,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
-metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community"]
 layout_mode = 2
@@ -489,7 +487,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
-metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Settings"]
 layout_mode = 2
