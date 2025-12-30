@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbt2nq7hxgljk"]
+[gd_scene load_steps=13 format=3 uid="uid://bbt2nq7hxgljk"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
@@ -31,6 +31,23 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkbwf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_nvobf"]
+base_font = ExtResource("2_pkbwf")
+variation_face_index = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 corner_radius_top_left = 15
@@ -61,12 +78,41 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
 theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
 autowrap_mode = 3
 
+[node name="Outline" type="Panel" parent="Play"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkbwf")
+
+[node name="Rating" type="Label" parent="Play/Outline"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -22.0
+offset_right = 21.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_nvobf")
+theme_override_font_sizes/font_size = 36
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Play"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
+offset_left = 95.0
 offset_top = 15.0
 offset_right = -15.0
 offset_bottom = -15.0
