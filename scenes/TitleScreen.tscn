@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=39 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
 [ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="3_65pcn"]
 [ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="4_1ska7"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="5_507xd"]
+[ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="5_hvy54"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_02qso"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_fm4nh"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_65pcn"]
@@ -29,11 +30,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
 size = Vector2(2, 2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fto0a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dchwh"]
 shader = ExtResource("6_02qso")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mekmn"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jk6fi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
 bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
@@ -67,6 +68,12 @@ script = ExtResource("22_juc6n")
 [sub_resource type="Resource" id="Resource_08fpa"]
 script = ExtResource("22_juc6n")
 
+[sub_resource type="Resource" id="Resource_7wwop"]
+script = ExtResource("18_cr31u")
+duration = 0.5
+transition = 5
+ease = 1
+
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("18_cr31u")
 transition = 5
@@ -77,12 +84,6 @@ script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 0
-
-[sub_resource type="Resource" id="Resource_7wwop"]
-script = ExtResource("18_cr31u")
-duration = 0.5
-transition = 5
-ease = 1
 
 [node name="TitleScreen" type="Control"]
 texture_filter = 4
@@ -95,36 +96,27 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="FadeScreenLayer" parent="." instance=ExtResource("1_p8bvb")]
+[node name="Node2D" type="Node2D" parent="."]
 
-[node name="TitleScreen" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="MenuIcon" parent="TitleScreen" instance=ExtResource("2_opvi4")]
-position = Vector2(-128, 816)
+[node name="MenuIcon" parent="Node2D" instance=ExtResource("2_opvi4")]
+position = Vector2(-128, 860)
 script = ExtResource("3_65pcn")
 default_collider = null
 slope_collider = null
 
-[node name="Kill Box" type="Area2D" parent="TitleScreen" node_paths=PackedStringArray("hitbox")]
+[node name="Kill Box" type="Area2D" parent="Node2D" node_paths=PackedStringArray("hitbox")]
 physics_interpolation_mode = 1
 collision_layer = 4
 script = ExtResource("4_1ska7")
 hitbox = NodePath("Hitbox")
 metadata/_edit_lock_ = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="TitleScreen/Kill Box"]
+[node name="Hitbox" type="CollisionShape2D" parent="Node2D/Kill Box"]
 shape = SubResource("RectangleShape2D_fto0a")
 disabled = true
 debug_color = Color(0.284375, 0, 0.7, 0.42)
 
-[node name="BackgroundParallax" type="Parallax2D" parent="TitleScreen"]
+[node name="BackgroundParallax" type="Parallax2D" parent="Node2D"]
 z_index = -2
 repeat_size = Vector2(12800, 0)
 autoscroll = Vector2(-300, 0)
@@ -132,7 +124,7 @@ repeat_times = 2
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Background" type="Sprite2D" parent="TitleScreen/BackgroundParallax"]
+[node name="Background" type="Sprite2D" parent="Node2D/BackgroundParallax"]
 modulate = Color(0.213669, 0.439779, 1, 1)
 texture_repeat = 2
 position = Vector2(973, 3.05176e-05)
@@ -141,34 +133,56 @@ texture = ExtResource("5_507xd")
 region_enabled = true
 region_rect = Rect2(0, 0, 10240, 2048)
 
-[node name="GroundParallax" type="Parallax2D" parent="TitleScreen"]
-repeat_size = Vector2(9600, 0)
-autoscroll = Vector2(-800, 0)
-repeat_times = 2
+[node name="GroundDownParallax" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(24000, 0)
+autoscroll = Vector2(-1600, 0)
+repeat_times = 3
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Ground" type="Sprite2D" parent="TitleScreen/GroundParallax"]
-self_modulate = Color(0.1078, 0.295423, 0.77, 1)
+[node name="GroundDownOrigin" type="Marker2D" parent="Node2D/GroundDownParallax"]
+position = Vector2(640, 925)
+gizmo_extents = 64.0
+script = ExtResource("5_hvy54")
+DEFAULT_Y = 925.0
+
+[node name="Ground" type="Sprite2D" parent="Node2D/GroundDownParallax/GroundDownOrigin"]
+self_modulate = Color(0.105882, 0.294118, 0.768627, 1)
+z_index = 50
 texture_repeat = 2
-material = SubResource("ShaderMaterial_fto0a")
-position = Vector2(940, 1005)
+material = SubResource("ShaderMaterial_dchwh")
+position = Vector2(300, 300)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("7_fm4nh")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
-
-[node name="Ground Hitbox" type="StaticBody2D" parent="TitleScreen"]
-physics_interpolation_mode = 1
-position = Vector2(940, 885)
-collision_layer = 32
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleScreen/Ground Hitbox"]
-shape = SubResource("WorldBoundaryShape2D_mekmn")
-debug_color = Color(0, 0.60038817, 0.70000815, 1)
+[node name="GroundColliderDown" type="StaticBody2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground"]
+z_index = 50
+position = Vector2(-120, -120)
+collision_layer = 32
+metadata/_edit_group_ = true
 
-[node name="MainPanel" type="PanelContainer" parent="TitleScreen"]
+[node name="GroundHitbox" type="CollisionShape2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground/GroundColliderDown"]
+position = Vector2(0, 1.5258789e-05)
+shape = SubResource("WorldBoundaryShape2D_jk6fi")
+debug_color = Color(0, 0.701961, 0.607843, 0.419608)
+
+[node name="FadeScreenLayer" parent="." instance=ExtResource("1_p8bvb")]
+
+[node name="TitleScreenLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleScreen" type="Control" parent="TitleScreenLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MainPanel" type="PanelContainer" parent="TitleScreenLayer/TitleScreen"]
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -177,12 +191,12 @@ anchor_right = 0.333
 anchor_bottom = 1.0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/MainPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel"]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="Title" type="TextureRect" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Title" type="TextureRect" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 texture_filter = 6
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
@@ -190,39 +204,39 @@ texture = ExtResource("9_08fpa")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Spacer" type="Control" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Spacer" type="Control" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Play" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Play"
 
-[node name="Community" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Community" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Community"
 
-[node name="Settings" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
-[node name="Quit" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+[node name="Quit" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer"]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Quit"
 
-[node name="LevelSelector" type="PanelContainer" parent="TitleScreen"]
+[node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen"]
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -239,18 +253,18 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/LevelSelector"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/LevelSelector"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="TitleScreen/LevelSelector/VBoxContainer"]
+[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/LevelSelector/VBoxContainer"]
 layout_mode = 2
 text = "Coming (soon)"
 label_settings = SubResource("LabelSettings_hvy54")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="PanelContainer" parent="TitleScreen"]
+[node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen"]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -268,27 +282,27 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Search" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
+[node name="Search" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/margin_bottom = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/Search"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/Search"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 0
 
-[node name="SearchBarNode" type="LineEdit" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer/MarginContainer" node_paths=PackedStringArray("root_node_to_search")]
+[node name="SearchBarNode" type="LineEdit" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/Search/VBoxContainer/MarginContainer" node_paths=PackedStringArray("root_node_to_search")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
@@ -299,10 +313,10 @@ root_node_to_search = NodePath("../../../../SmoothScrollContainer/MarginContaine
 group_name = PackedStringArray()
 metadata/_custom_type_script = "uid://y1hecem53675"
 
-[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
 layout_mode = 2
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community/VBoxContainer"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("21_u3ctg")
@@ -310,12 +324,12 @@ wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog")]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -323,11 +337,11 @@ theme_override_constants/separation = 8
 alignment = 1
 script = ExtResource("15_hvy54")
 rating_colors = ExtResource("18_hvy54")
-subscene_manager = NodePath("../../../../../../Subscene Manager")
+subscene_manager = NodePath("../../../../../../../Subscene Manager")
 import_dialog = NodePath("../ImportLevelDialog")
 level_already_exists_dialog = NodePath("../LevelAlreadyExists")
 
-[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
 auto_translate_mode = 1
 oversampling_override = 1.0
 title = "Import and open"
@@ -343,7 +357,7 @@ option_count = 1
 option_0/name = "Keep original level file"
 option_0/default = 1
 
-[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(514, 100)
@@ -351,25 +365,25 @@ ok_button_text = "Overwrite"
 dialog_text = "A level with the same name already exists in the game directory!"
 cancel_button_text = "Open Existing"
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 theme_override_constants/margin_top = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Create" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Create" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -377,7 +391,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Create New Level"
 autowrap_mode = 3
 
-[node name="Import" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Import" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -386,7 +400,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Import Level"
 autowrap_mode = 3
 
-[node name="Refresh" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -395,7 +409,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Refresh"
 autowrap_mode = 3
 
-[node name="Settings" type="PanelContainer" parent="TitleScreen"]
+[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen"]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -413,66 +427,17 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("12_08fpa")
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Settings"]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Settings"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
-[node name="SettingsMenu" parent="TitleScreen/Settings/MarginContainer" instance=ExtResource("12_p8bvb")]
+[node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" instance=ExtResource("12_p8bvb")]
 layout_mode = 2
 
-[node name="CameraCenterParent" type="Control" parent="TitleScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TitleScreenCamera" type="Node2D" parent="TitleScreen/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 2
-zoom = Vector2(1, 1)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_assks")
-tween_on_load = true
-inactive_update_mode = 0
-
-[node name="QuitGameCamera" type="Node2D" parent="TitleScreen/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(4, 4)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_jse1c")
-tween_on_load = true
-inactive_update_mode = 0
-metadata/_edit_lock_ = true
-
-[node name="UpdateChecker" type="Node" parent="TitleScreen"]
+[node name="UpdateChecker" type="Node" parent="."]
 script = ExtResource("19_1ska7")
 
 [node name="CameraCenterParent" type="Control" parent="."]
@@ -504,8 +469,48 @@ tween_parameters = SubResource("Resource_7wwop")
 tween_on_load = true
 inactive_update_mode = 0
 
+[node name="TitleScreenCamera" type="Node2D" parent="CameraCenterParent"]
+script = ExtResource("17_6ogcu")
+priority_override = false
+priority = 2
+zoom = Vector2(0.8, 0.8)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_assks")
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="QuitGameCamera" type="Node2D" parent="CameraCenterParent"]
+script = ExtResource("17_6ogcu")
+priority_override = false
+priority = 0
+zoom = Vector2(4, 4)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_jse1c")
+tween_on_load = true
+inactive_update_mode = 0
+metadata/_edit_lock_ = true
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+zoom = Vector2(0.8, 0.8)
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera"]
@@ -518,29 +523,29 @@ script = ExtResource("32_1ska7")
 [node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
-active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
+active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 fade_screen_layer = NodePath("../FadeScreenLayer")
 menu_loop = NodePath("../MenuLoop")
-level_selector = NodePath("../TitleScreen/LevelSelector")
-community_menu = NodePath("../TitleScreen/Community")
-settings_panel = NodePath("../TitleScreen/Settings")
-settings_menu = NodePath("../TitleScreen/Settings/MarginContainer/SettingsMenu")
-quit_game_camera = NodePath("../TitleScreen/CameraCenterParent/QuitGameCamera")
-title_screen_camera = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
-title_screen_background = NodePath("../TitleScreen/BackgroundParallax")
-title_screen_ground = NodePath("../TitleScreen/GroundParallax")
-menu_icon = NodePath("../TitleScreen/MenuIcon")
-menu_icon_killer = NodePath("../TitleScreen/Kill Box")
+level_selector = NodePath("../TitleScreenLayer/TitleScreen/LevelSelector")
+community_menu = NodePath("../TitleScreenLayer/TitleScreen/Community")
+settings_panel = NodePath("../TitleScreenLayer/TitleScreen/Settings")
+settings_menu = NodePath("../TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu")
+quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
+title_screen_camera = NodePath("../CameraCenterParent/TitleScreenCamera")
+title_screen_background = NodePath("../Node2D/BackgroundParallax")
+title_screen_ground = NodePath("")
+menu_icon = NodePath("../Node2D/MenuIcon")
+menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("31_n61qu")]
 
-[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
-[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
-[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
-[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
-[connection signal="file_selected" from="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
-[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
-[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
-[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Refresh" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="refresh"]
-[connection signal="closed" from="TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="refresh"]
+[connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
