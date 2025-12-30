@@ -1,15 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://th7jwdop3hdv"]
+[gd_scene load_steps=8 format=3 uid="uid://th7jwdop3hdv"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_6oxby"]
 [ext_resource type="Script" uid="uid://dklkgkt30unai" path="res://src/PauseMenu.gd" id="1_aoxbt"]
-[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="3_nyvmt"]
-[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="3_tjkms"]
-[ext_resource type="Script" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
+[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="6_wvbob"]
 
-[sub_resource type="FontVariation" id="FontVariation_vccga"]
-base_font = ExtResource("3_tjkms")
-variation_face_index = 1
+[sub_resource type="FontVariation" id="FontVariation_0d6if"]
+variation_opentype = {
+1869640570: 14,
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibsmc"]
+font = SubResource("FontVariation_0d6if")
+font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qns"]
 bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
@@ -39,9 +43,8 @@ alignment = 1
 
 [node name="LevelName" type="Label" parent="PauseMenu/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_vccga")
-theme_override_font_sizes/font_size = 72
 text = "Level Name"
+label_settings = SubResource("LabelSettings_ibsmc")
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="PauseMenu/VBoxContainer"]
@@ -52,7 +55,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_nyvmt")
 theme_type_variation = &"TitleScreenButton"
 text = "Resume"
 
@@ -60,7 +62,6 @@ text = "Resume"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_nyvmt")
 theme_type_variation = &"TitleScreenButton"
 text = "Restart"
 
@@ -68,7 +69,6 @@ text = "Restart"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_nyvmt")
 theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
@@ -76,7 +76,6 @@ text = "Settings"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("3_nyvmt")
 theme_type_variation = &"TitleScreenButton"
 text = "Leave"
 

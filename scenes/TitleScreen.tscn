@@ -10,7 +10,6 @@
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_65pcn"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
-[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
@@ -43,9 +42,15 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="FontVariation" id="FontVariation_507xd"]
-base_font = ExtResource("11_1ska7")
-variation_face_index = 1
+[sub_resource type="FontVariation" id="FontVariation_0d6if"]
+variation_opentype = {
+1869640570: 14,
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_hvy54"]
+font = SubResource("FontVariation_0d6if")
+font_size = 64
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchwh"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
@@ -193,7 +198,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_5h1vy")
 theme_type_variation = &"TitleScreenButton"
 text = "Play"
 
@@ -201,7 +205,6 @@ text = "Play"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_5h1vy")
 theme_type_variation = &"TitleScreenButton"
 text = "Community"
 
@@ -209,7 +212,6 @@ text = "Community"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_5h1vy")
 theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
@@ -217,12 +219,10 @@ text = "Settings"
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
-theme = ExtResource("9_5h1vy")
 theme_type_variation = &"TitleScreenButton"
 text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreen"]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -245,13 +245,13 @@ alignment = 1
 
 [node name="Label" type="Label" parent="TitleScreen/LevelSelector/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_507xd")
-theme_override_font_sizes/font_size = 56
 text = "Coming (soon)"
+label_settings = SubResource("LabelSettings_hvy54")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreen"]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
