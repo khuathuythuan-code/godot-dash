@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
 [ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
+[ext_resource type="FontFile" uid="uid://bfr3bu421t5nl" path="res://assets/fonts/OutfitRegular.ttf" id="3_bhvlt"]
 [ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
 [ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
 [ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="6_bhvlt"]
@@ -43,10 +44,6 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="FontVariation" id="FontVariation_nvobf"]
-base_font = ExtResource("2_pkbwf")
-variation_face_index = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
@@ -101,7 +98,7 @@ offset_right = 21.0
 offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = SubResource("FontVariation_nvobf")
+theme_override_fonts/font = ExtResource("3_bhvlt")
 theme_override_font_sizes/font_size = 36
 text = "10"
 horizontal_alignment = 1
