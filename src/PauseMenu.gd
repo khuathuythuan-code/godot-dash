@@ -68,7 +68,7 @@ func _on_leave_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	$VBoxContainer/LevelName.text = LevelManager.current_level.name
-	get_tree().paused = !get_tree().paused
+	get_tree().paused = not get_tree().paused
 	if get_tree().paused:
 		paused.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
