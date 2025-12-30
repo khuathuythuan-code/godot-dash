@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=47 format=3 uid="uid://cntfsyilhn2ic"]
+[gd_resource type="Theme" load_steps=50 format=3 uid="uid://cntfsyilhn2ic"]
 
-[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="1_10srq"]
+[ext_resource type="FontFile" uid="uid://d4ihw5gjc286r" path="res://assets/fonts/InterVariable.ttf" id="2_jaexg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_521vp"]
 
@@ -118,6 +118,27 @@ corner_detail = 5
 color = Color(0, 0, 0, 0.5)
 thickness = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2htm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwwnt"]
@@ -186,8 +207,11 @@ corner_detail = 3
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcyaj"]
 
 [sub_resource type="FontVariation" id="FontVariation_10srq"]
-base_font = ExtResource("1_10srq")
-variation_face_index = 1
+base_font = ExtResource("2_jaexg")
+variation_opentype = {
+1869640570: 14,
+2003265652: 800
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa72w"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
@@ -211,24 +235,26 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="FontVariation" id="FontVariation_2n7uf"]
-base_font = ExtResource("1_10srq")
-variation_face_index = 1
+variation_opentype = {
+1869640570: 14,
+2003265652: 600
+}
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muv14"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fowr3"]
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqdbf"]
 bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -338,7 +364,7 @@ color = Color(1, 1, 1, 0.25)
 thickness = 2
 
 [resource]
-default_font = ExtResource("1_10srq")
+default_font = ExtResource("2_jaexg")
 default_font_size = 16
 Button/styles/focus = SubResource("StyleBoxEmpty_521vp")
 ColorPicker/styles/picker_focus_circle = SubResource("StyleBoxEmpty_jaexg")
@@ -356,6 +382,14 @@ GroupButton/styles/hover = SubResource("StyleBoxFlat_yd5pb")
 GroupButton/styles/normal = SubResource("StyleBoxFlat_d60o6")
 GroupButton/styles/pressed = SubResource("StyleBoxFlat_xxxg4")
 HSeparator/styles/separator = SubResource("StyleBoxLine_10srq")
+LevelPanel/base_type = &"Button"
+LevelPanel/styles/hover = SubResource("StyleBoxFlat_opvi4")
+LevelPanel/styles/normal = SubResource("StyleBoxFlat_gyoo8")
+LevelPanel/styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+LevelPanelSmallButton/base_type = &"Button"
+LevelPanelSmallButton/styles/hover = null
+LevelPanelSmallButton/styles/normal = SubResource("StyleBoxFlat_gyoo8")
+LevelPanelSmallButton/styles/pressed = SubResource("StyleBoxFlat_p8bvb")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_h2htm")
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
@@ -380,11 +414,11 @@ TitleScreenButton/styles/hover = SubResource("StyleBoxFlat_oa72w")
 TitleScreenButton/styles/normal = SubResource("StyleBoxFlat_kkeaq")
 TitleScreenButton/styles/pressed = SubResource("StyleBoxFlat_7d5yc")
 TitleScreenCommunityLevelListButton/base_type = &"Button"
-TitleScreenCommunityLevelListButton/font_sizes/font_size = 24
+TitleScreenCommunityLevelListButton/font_sizes/font_size = 18
 TitleScreenCommunityLevelListButton/fonts/font = SubResource("FontVariation_2n7uf")
-TitleScreenCommunityLevelListButton/styles/hover = SubResource("StyleBoxFlat_opvi4")
-TitleScreenCommunityLevelListButton/styles/normal = SubResource("StyleBoxFlat_gyoo8")
-TitleScreenCommunityLevelListButton/styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+TitleScreenCommunityLevelListButton/styles/hover = SubResource("StyleBoxFlat_muv14")
+TitleScreenCommunityLevelListButton/styles/normal = SubResource("StyleBoxFlat_fowr3")
+TitleScreenCommunityLevelListButton/styles/pressed = SubResource("StyleBoxFlat_bqdbf")
 Toast/base_type = &"Button"
 Toast/styles/disabled = SubResource("StyleBoxFlat_5rrh8")
 Toast/styles/hover = SubResource("StyleBoxFlat_hdsbt")
