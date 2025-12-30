@@ -5,13 +5,17 @@ signal unpaused
 signal leave
 signal unsuspended
 
+@export var settings_panel: TitleScreenPanel
+
 var suspended: bool
+var tween: Tween
+var settings_were_open: bool
 
 
 func _ready() -> void:
-	$"../SettingsLayer".visible = visible
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
+	settings_panel.get_node("MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -20,7 +24,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_level") and Editor.shortcut_blocker == null and not SceneManager.is_transitioning:
 		_on_continue_pressed()
 	if event.is_action_pressed("hide_pause_menu"):
-		visible = not visible
+		if visible:
+			hide_tween()
+		else:
+			show_tween()
 
 
 func _notification(what):
@@ -40,7 +47,8 @@ func _on_leave_pressed() -> void:
 	leave.emit()
 	if suspended:
 		await unsuspended
-	get_parent().hide()
+	settings_panel.hide_tween()
+	hide_tween()
 	LevelManager.platformer = false
 	LevelManager.level_playing = false
 	AssetManager.unload_all()
@@ -60,22 +68,43 @@ func _on_leave_pressed() -> void:
 
 func _on_continue_pressed() -> void:
 	$VBoxContainer/LevelName.text = LevelManager.current_level.name
-	if $"../SettingsLayer/SettingsContainer".position.y == -$"../SettingsLayer/SettingsContainer".get_viewport_rect().size.y:
-		get_tree().paused = !get_tree().paused
-		if get_tree().paused:
-			paused.emit()
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		paused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if settings_were_open:
+			settings_panel.show_tween()
+		show_tween()
+	else:
+		unpaused.emit()
+		if Editor.in_editor:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			get_parent().show()
-			$"../SettingsLayer".show()
 		else:
-			unpaused.emit()
-			if Editor.in_editor:
-				# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
-				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-			else:
-				Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-			get_parent().hide()
-			$"../SettingsLayer".hide()
+			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		settings_were_open = settings_panel.visible
+		if settings_panel.visible:
+			settings_panel.hide_tween()
+		hide_tween()
+
+
+func show_tween() -> void:
+	get_parent().show()
+	show()
+	if tween:
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property(self, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-size.x)
+	await tween.finished
+
+
+func hide_tween() -> void:
+	if tween:
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property(self, "position:x", -size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	await tween.finished
+	hide()
+	get_parent().hide()
 
 
 func _on_restart_pressed() -> void:
@@ -85,3 +114,10 @@ func _on_restart_pressed() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	get_parent().hide()
 	get_tree().reload_current_scene()
+
+
+func _on_settings_pressed() -> void:
+	if settings_panel.visible:
+		settings_panel.hide_tween()
+		return
+	settings_panel.show_tween()

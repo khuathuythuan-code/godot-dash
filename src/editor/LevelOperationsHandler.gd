@@ -192,7 +192,7 @@ func _import_level(path: String, keep_original: bool) -> void:
 	_open_level(level_path)
 
 
-func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
+static func _import_overwrite(level_path: String, buffer: PackedByteArray) -> void:
 	var file = FileAccess.open(level_path, FileAccess.WRITE)
 	file.store_buffer(buffer)
 

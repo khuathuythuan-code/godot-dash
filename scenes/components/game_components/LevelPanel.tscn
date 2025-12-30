@@ -1,0 +1,266 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0snwwc2xejn4"]
+
+[ext_resource type="Script" uid="uid://bxe5tqovuq4bo" path="res://src/LevelPanel.gd" id="1_bhvlt"]
+[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
+[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="2_pkbwf"]
+[ext_resource type="FontFile" uid="uid://bfr3bu421t5nl" path="res://assets/fonts/OutfitRegular.ttf" id="3_bhvlt"]
+[ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
+[ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="6_bhvlt"]
+
+[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
+base_font = ExtResource("2_pkbwf")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkbwf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Control" type="Control" node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "play_button", "edit_button", "remove_button")]
+custom_minimum_size = Vector2(750, 85)
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 60.0
+script = ExtResource("1_bhvlt")
+title = NodePath("Play/HBoxContainer/VBoxContainer/Title")
+creator = NodePath("Play/HBoxContainer/VBoxContainer/Creator")
+description = NodePath("Play/HBoxContainer/Description")
+rating_outline = NodePath("Play/Outline")
+rating = NodePath("Play/Outline/Rating")
+play_button = NodePath("Play")
+edit_button = NodePath("HBoxContainer/Edit")
+remove_button = NodePath("HBoxContainer/Remove")
+
+[node name="Play" type="Button" parent="."]
+custom_minimum_size = Vector2(500, 60)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+autowrap_mode = 3
+
+[node name="Outline" type="Panel" parent="Play"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 1
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkbwf")
+
+[node name="Rating" type="Label" parent="Play/Outline"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -22.0
+offset_right = 21.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bhvlt")
+theme_override_font_sizes/font_size = 36
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Play"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = 15.0
+offset_right = -129.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 30
+text = "Level"
+text_overrun_behavior = 3
+
+[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme = ExtResource("1_grurr")
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_fonts/font = ExtResource("2_pkbwf")
+theme_override_font_sizes/font_size = 12
+text = "Creator"
+
+[node name="Description" type="Label" parent="Play/HBoxContainer"]
+custom_minimum_size = Vector2(0, 51)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme = ExtResource("1_grurr")
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_fonts/font = ExtResource("2_pkbwf")
+theme_override_font_sizes/font_size = 12
+text = "Description"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Thumbnail" type="Panel" parent="Play"]
+visible = false
+clip_children = 2
+z_index = -1
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme = ExtResource("1_grurr")
+theme_override_styles/panel = SubResource("StyleBoxFlat_810tx")
+
+[node name="TextureRect" type="TextureRect" parent="Play/Thumbnail"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_bhvlt")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -114.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Edit" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Edit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 15.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_nvobf")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Remove" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("1_grurr")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Remove"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.5
+offset_top = -12.5
+offset_right = 12.5
+offset_bottom = 12.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_bhvlt")
+expand_mode = 5
+stretch_mode = 5

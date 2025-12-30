@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cinyg32n0bonm"]
+[gd_scene load_steps=42 format=3 uid="uid://cinyg32n0bonm"]
 
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="1_p8bvb"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="2_opvi4"]
@@ -7,34 +7,25 @@
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="5_507xd"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_02qso"]
 [ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_fm4nh"]
-[ext_resource type="Texture2D" uid="uid://bu2hpb5owl44q" path="res://assets/textures/guis/title_screen/Title.png" id="8_3yl86"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_65pcn"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
-[ext_resource type="Texture2D" uid="uid://cwoultxx6k47" path="res://assets/textures/guis/title_screen/GarageButton.png" id="10_o51e6"]
-[ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="11_1dcdf"]
-[ext_resource type="Texture2D" uid="uid://bjrdbga1v3vba" path="res://assets/textures/guis/title_screen/PlayButton.png" id="12_uh5eq"]
-[ext_resource type="Texture2D" uid="uid://bwxk6tcq5v31v" path="res://assets/textures/guis/title_screen/CreatedLevelListButton.png" id="13_tuyt1"]
-[ext_resource type="Texture2D" uid="uid://dorpaiw1p6bw0" path="res://assets/textures/guis/shared/CircleButtonBase.svg" id="14_hkayi"]
-[ext_resource type="Texture2D" uid="uid://bcjmav8hpm0qx" path="res://assets/textures/guis/shared/CloseButton.svg" id="15_37bcn"]
-[ext_resource type="Texture2D" uid="uid://ca7kg07rmvxyl" path="res://assets/textures/guis/shared/SettingsButton.svg" id="16_ureuc"]
+[ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
+[ext_resource type="FontFile" uid="uid://cm1ojskoj3s1a" path="res://assets/fonts/Inter.ttc" id="11_1ska7"]
+[ext_resource type="Script" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
+[ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
+[ext_resource type="Script" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_cr31u"]
+[ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="18_hvy54"]
 [ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="19_1ska7"]
-[ext_resource type="Texture2D" uid="uid://bf00dudjlkg0q" path="res://assets/textures/guis/shared/BackButton.png" id="19_pe36d"]
-[ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="20_q22b5"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_u3ctg"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_juc6n"]
-[ext_resource type="Script" uid="uid://l2sna2lde5fy" path="res://src/SceneSpawner.gd" id="23_20sjm"]
-[ext_resource type="PackedScene" uid="uid://cglilroh4eew3" path="res://scenes/components/game_components/GarageButton.tscn" id="24_sn2o6"]
-[ext_resource type="Texture2D" uid="uid://docsh85xkmade" path="res://assets/textures/guis/level_selector/LevelSelectorPrevious.png" id="25_mp5hy"]
-[ext_resource type="Texture2D" uid="uid://dhe6160dl268c" path="res://assets/textures/guis/title_screen/CreateButton.svg" id="25_opvi4"]
-[ext_resource type="Texture2D" uid="uid://cmbwn4bs0ksie" path="res://assets/textures/guis/title_screen/SavedButton.svg" id="26_65pcn"]
-[ext_resource type="Texture2D" uid="uid://bswqhh121flny" path="res://assets/textures/guis/level_selector/LevelSelectorNext.png" id="26_bhnaj"]
-[ext_resource type="PackedScene" uid="uid://kwe5xtryavgg" path="res://scenes/components/game_components/LevelSelectorTab.tscn" id="27_yieav"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_wlgas"]
 [ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="30_ucf7r"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="31_n61qu"]
 [ext_resource type="Script" uid="uid://c5cp2fpyr262x" path="res://src/MenuLoop.gd" id="32_1ska7"]
-[ext_resource type="PackedScene" uid="uid://bq6rd80p2817w" path="res://scenes/components/game_components/SettingsLayer.tscn" id="32_c2d88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
 size = Vector2(2, 2)
@@ -44,6 +35,57 @@ shader = ExtResource("6_02qso")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mekmn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="FontVariation" id="FontVariation_507xd"]
+base_font = ExtResource("11_1ska7")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchwh"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="Resource" id="Resource_1nrh6"]
+script = ExtResource("22_juc6n")
+
+[sub_resource type="Resource" id="Resource_08fpa"]
+script = ExtResource("22_juc6n")
+
+[sub_resource type="FontVariation" id="FontVariation_2n7uf"]
+base_font = ExtResource("11_1ska7")
+variation_face_index = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="Resource" id="Resource_assks"]
 script = ExtResource("18_cr31u")
@@ -56,77 +98,11 @@ duration = 0.5
 transition = 5
 ease = 0
 
-[sub_resource type="Resource" id="Resource_kwqb8"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_y15d6"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_u55b3"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_wsqty"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_oiest"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_f4jp2"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_kik7w"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_4ikpr"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_doyhq"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_2so2y"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_7yh6i"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_pwxld"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_cw1g3"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_yc0gu"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_qnen4"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_q5chl"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_j2mks"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_5ha8j"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_xuwja"]
-script = ExtResource("22_juc6n")
-
-[sub_resource type="Resource" id="Resource_g8282"]
-script = ExtResource("22_juc6n")
-
 [sub_resource type="Resource" id="Resource_7wwop"]
 script = ExtResource("18_cr31u")
 duration = 0.5
 transition = 5
 ease = 1
-
-[sub_resource type="Resource" id="Resource_opvi4"]
-script = ExtResource("18_cr31u")
-duration = 0.5
-transition = 5
-ease = 0
 
 [node name="TitleScreen" type="Control"]
 texture_filter = 4
@@ -212,127 +188,279 @@ metadata/_edit_group_ = true
 shape = SubResource("WorldBoundaryShape2D_mekmn")
 debug_color = Color(0, 0.60038817, 0.70000815, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen"]
+[node name="MainPanel" type="PanelContainer" parent="TitleScreen"]
+z_index = 128
+material = ExtResource("8_65pcn")
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -699.5
-offset_top = -279.5
-offset_right = 699.5
-offset_bottom = 279.5
-grow_horizontal = 2
+anchors_preset = -1
+anchor_right = 0.333
+anchor_bottom = 1.0
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="TitleScreen/VBoxContainer"]
+[node name="Title" type="TextureRect" parent="TitleScreen/MainPanel/VBoxContainer"]
 texture_filter = 6
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-texture = ExtResource("8_3yl86")
-expand_mode = 5
+texture = ExtResource("9_08fpa")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="Control" type="Control" parent="TitleScreen/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="Spacer" type="Control" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/VBoxContainer"]
+[node name="Play" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("9_5h1vy")
+theme_type_variation = &"TitleScreenButton"
+text = "Play"
+
+[node name="Community" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_5h1vy")
+theme_type_variation = &"TitleScreenButton"
+text = "Community"
+
+[node name="Settings" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_5h1vy")
+theme_type_variation = &"TitleScreenButton"
+text = "Settings"
+
+[node name="Quit" type="Button" parent="TitleScreen/MainPanel/VBoxContainer"]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("9_5h1vy")
+theme_type_variation = &"TitleScreenButton"
+text = "Quit"
+
+[node name="LevelSelector" type="PanelContainer" parent="TitleScreen"]
+visible = false
+z_index = 128
+material = ExtResource("8_65pcn")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/LevelSelector"]
+layout_mode = 2
 alignment = 1
-metadata/_edit_group_ = true
 
-[node name="GoToIconGarage" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="TitleScreen/LevelSelector/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("10_o51e6")
-flat = true
-script = ExtResource("11_1dcdf")
+theme_override_fonts/font = SubResource("FontVariation_507xd")
+theme_override_font_sizes/font_size = 56
+text = "Coming (soon)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="GoToLevelSelector" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
+[node name="Community" type="PanelContainer" parent="TitleScreen"]
+visible = false
+z_index = 128
+material = ExtResource("8_65pcn")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community"]
 layout_mode = 2
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("12_uh5eq")
-flat = true
-script = ExtResource("11_1dcdf")
+theme_override_constants/separation = 0
 
-[node name="GoToCreatedLevelsList" type="Button" parent="TitleScreen/VBoxContainer/HBoxContainer"]
+[node name="Search" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/Search"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 0
+
+[node name="SearchBarNode" type="LineEdit" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer/MarginContainer" node_paths=PackedStringArray("root_node_to_search")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
+placeholder_text = "Search..."
+right_icon = ExtResource("13_0d6if")
+script = ExtResource("14_hvy54")
+root_node_to_search = NodePath("../../../../SmoothScrollContainer/MarginContainer/VBoxContainer")
+group_name = PackedStringArray()
+metadata/_custom_type_script = "uid://y1hecem53675"
+
+[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/Search/VBoxContainer"]
+layout_mode = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreen/Community/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("21_u3ctg")
+wheel_scroll_damper = SubResource("Resource_1nrh6")
+dragging_scroll_damper = SubResource("Resource_08fpa")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("15_hvy54")
+rating_colors = ExtResource("18_hvy54")
+subscene_manager = NodePath("../../../../../../Subscene Manager")
+import_dialog = NodePath("../ImportLevelDialog")
+level_already_exists_dialog = NodePath("../LevelAlreadyExists")
+
+[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+auto_translate_mode = 1
+oversampling_override = 1.0
+title = "Import and open"
+initial_position = 2
+size = Vector2i(1088, 720)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.level")
+use_native_dialog = true
+option_count = 1
+option_0/name = "Keep original level file"
+option_0/default = 1
+
+[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer"]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(514, 100)
+ok_button_text = "Overwrite"
+dialog_text = "A level with the same name already exists in the game directory!"
+cancel_button_text = "Open Existing"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Community/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Create" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
 theme = ExtResource("9_5h1vy")
-icon = ExtResource("13_tuyt1")
-flat = true
-script = ExtResource("11_1dcdf")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Create New Level"
+autowrap_mode = 3
 
-[node name="QuitGame" type="Button" parent="TitleScreen"]
-layout_mode = 1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 102.0
-offset_bottom = 102.0
-pivot_offset = Vector2(35, 35)
+[node name="Import" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
 theme = ExtResource("9_5h1vy")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("11_1dcdf")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Import Level"
+autowrap_mode = 3
 
-[node name="Base" type="TextureRect" parent="TitleScreen/QuitGame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("14_hkayi")
-expand_mode = 1
-
-[node name="Close" type="TextureRect" parent="TitleScreen/QuitGame"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("15_37bcn")
-expand_mode = 1
-
-[node name="Settings" type="Button" parent="TitleScreen"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = -192.0
-offset_right = 192.0
-offset_bottom = -64.0
-grow_vertical = 0
-pivot_offset = Vector2(64, 64)
+[node name="Refresh" type="Button" parent="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
 theme = ExtResource("9_5h1vy")
-flat = true
-icon_alignment = 1
-expand_icon = true
-script = ExtResource("11_1dcdf")
+theme_override_fonts/font = SubResource("FontVariation_2n7uf")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_gyoo8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8bvb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opvi4")
+text = "Refresh"
+autowrap_mode = 3
 
-[node name="Base" type="TextureRect" parent="TitleScreen/Settings"]
+[node name="Settings" type="PanelContainer" parent="TitleScreen"]
+visible = false
+z_index = 128
+material = ExtResource("8_65pcn")
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.333
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("14_hkayi")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
 
-[node name="Settings" type="TextureRect" parent="TitleScreen/Settings"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("16_ureuc")
-expand_mode = 1
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreen/Settings"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 6
+
+[node name="SettingsMenu" parent="TitleScreen/Settings/MarginContainer" instance=ExtResource("12_p8bvb")]
+layout_mode = 2
 
 [node name="CameraCenterParent" type="Control" parent="TitleScreen"]
 layout_mode = 1
@@ -386,284 +514,6 @@ metadata/_edit_lock_ = true
 [node name="UpdateChecker" type="Node" parent="TitleScreen"]
 script = ExtResource("19_1ska7")
 
-[node name="IconGarage" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1920.0
-offset_right = -1920.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="IconGarage"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5)
-
-[node name="BackButton" type="Button" parent="IconGarage"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -100.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = 101.0
-grow_horizontal = 0
-scale = Vector2(-1, 1)
-pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("19_pe36d")
-flat = true
-icon_alignment = 2
-expand_icon = true
-script = ExtResource("11_1dcdf")
-
-[node name="CameraCenterParent" type="Control" parent="IconGarage"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="IconGarageCamera" type="Node2D" parent="IconGarage/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(1, 1)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_assks")
-tween_on_load = true
-inactive_update_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="IconGarage"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -695.0
-offset_top = -393.0
-offset_right = 678.875
-offset_bottom = 393.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 25
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="IconGarage/VBoxContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("20_q22b5")
-expand_mode = 1
-
-[node name="TabContainer" type="TabContainer" parent="IconGarage/VBoxContainer"]
-custom_minimum_size = Vector2(0, 600)
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-tab_alignment = 1
-current_tab = 0
-
-[node name="Cube" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_kwqb8")
-dragging_scroll_damper = SubResource("Resource_y15d6")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 0
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Cube"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Cube/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 100
-
-[node name="Ship" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_u55b3")
-dragging_scroll_damper = SubResource("Resource_wsqty")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 1
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ship"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ship/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 50
-
-[node name="Ball" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_oiest")
-dragging_scroll_damper = SubResource("Resource_f4jp2")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 2
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ball"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ball/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 30
-
-[node name="Ufo" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_kik7w")
-dragging_scroll_damper = SubResource("Resource_4ikpr")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 3
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Ufo"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Ufo/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 40
-
-[node name="Wave" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_doyhq")
-dragging_scroll_damper = SubResource("Resource_2so2y")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 4
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Wave"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Wave/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 60
-
-[node name="Robot" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_7yh6i")
-dragging_scroll_damper = SubResource("Resource_pwxld")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 5
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Robot"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Robot/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 30
-
-[node name="Spider" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_cw1g3")
-dragging_scroll_damper = SubResource("Resource_yc0gu")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 6
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Spider"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Spider/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 30
-
-[node name="Swing" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_qnen4")
-dragging_scroll_damper = SubResource("Resource_q5chl")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 7
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Swing"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Swing/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 20
-
-[node name="Jetpack" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_j2mks")
-dragging_scroll_damper = SubResource("Resource_5ha8j")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 8
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Jetpack"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Jetpack/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 20
-
-[node name="Death Effect" type="ScrollContainer" parent="IconGarage/VBoxContainer/TabContainer"]
-visible = false
-layout_mode = 2
-script = ExtResource("21_u3ctg")
-wheel_scroll_damper = SubResource("Resource_xuwja")
-dragging_scroll_damper = SubResource("Resource_g8282")
-metadata/_custom_type_script = "uid://bgqglerkcylxx"
-metadata/_tab_index = 9
-
-[node name="Buttons" type="FlowContainer" parent="IconGarage/VBoxContainer/TabContainer/Death Effect"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Spawner" type="Node" parent="IconGarage/VBoxContainer/TabContainer/Death Effect/Buttons"]
-script = ExtResource("23_20sjm")
-scene = ExtResource("24_sn2o6")
-amount = 5
-
 [node name="CameraCenterParent" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -693,255 +543,6 @@ tween_parameters = SubResource("Resource_7wwop")
 tween_on_load = true
 inactive_update_mode = 0
 
-[node name="CreatedLevelsList" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1920.0
-offset_right = 1920.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-
-[node name="ColorRect" type="ColorRect" parent="CreatedLevelsList"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5019608)
-
-[node name="BackButton" type="Button" parent="CreatedLevelsList"]
-layout_mode = 1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 100.0
-offset_bottom = 101.0
-pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("19_pe36d")
-flat = true
-expand_icon = true
-script = ExtResource("11_1dcdf")
-
-[node name="CameraCenterParent" type="Control" parent="CreatedLevelsList"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="CreatedLevelsListCamera" type="Node2D" parent="CreatedLevelsList/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(1, 1)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_assks")
-tween_on_load = true
-inactive_update_mode = 0
-
-[node name="EditorCamera" type="Node2D" parent="CreatedLevelsList/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(2, 2)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_opvi4")
-tween_on_load = true
-inactive_update_mode = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="CreatedLevelsList"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = 128.0
-offset_right = -128.0
-offset_bottom = -128.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CreatedLevelsList/MarginContainer"]
-layout_mode = 2
-
-[node name="SpacerTop" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="FlowContainer" type="FlowContainer" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="Create" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
-layout_mode = 2
-icon = ExtResource("25_opvi4")
-flat = true
-script = ExtResource("11_1dcdf")
-metadata/_custom_type_script = "uid://doei3yc3rs41t"
-
-[node name="Saved" type="Button" parent="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer"]
-layout_mode = 2
-icon = ExtResource("26_65pcn")
-flat = true
-script = ExtResource("11_1dcdf")
-metadata/_custom_type_script = "uid://doei3yc3rs41t"
-
-[node name="SpacerBottom" type="Control" parent="CreatedLevelsList/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="LevelSelector" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1080.0
-offset_bottom = -1080.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(960, 540)
-metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="LevelSelector"]
-
-[node name="PageControlContainer" type="Control" parent="LevelSelector/CanvasLayer"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PagePreviousNext" type="HBoxContainer" parent="LevelSelector/CanvasLayer/PageControlContainer"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -124.0
-offset_bottom = 124.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="SpacerLeft" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
-custom_minimum_size = Vector2(15, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="PreviousLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
-layout_mode = 2
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("25_mp5hy")
-flat = true
-script = ExtResource("11_1dcdf")
-
-[node name="Spacer" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-
-[node name="NextLevel" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
-layout_mode = 2
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("26_bhnaj")
-flat = true
-script = ExtResource("11_1dcdf")
-
-[node name="SpacerRight" type="Control" parent="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext"]
-custom_minimum_size = Vector2(15, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="BackButton" type="Button" parent="LevelSelector/CanvasLayer/PageControlContainer"]
-layout_mode = 1
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 100.0
-offset_bottom = 101.0
-pivot_offset = Vector2(34, 34.5)
-theme = ExtResource("9_5h1vy")
-icon = ExtResource("19_pe36d")
-flat = true
-expand_icon = true
-script = ExtResource("11_1dcdf")
-
-[node name="PageContainer" type="HBoxContainer" parent="LevelSelector"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-metadata/_edit_group_ = true
-
-[node name="Coming soon" parent="LevelSelector/PageContainer" node_paths=PackedStringArray("fade_screen_layer") instance=ExtResource("27_yieav")]
-layout_mode = 2
-fade_screen_layer = NodePath("../../../FadeScreenLayer")
-
-[node name="CameraCenterParent" type="Control" parent="LevelSelector"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LevelSelectorCamera" type="Node2D" parent="LevelSelector/CameraCenterParent"]
-script = ExtResource("17_6ogcu")
-priority_override = false
-priority = 0
-zoom = Vector2(1, 1)
-follow_mode = 0
-frame_preview = true
-pixel_perfect = false
-limit/draw_limits = true
-limit/left = -10000000
-limit/top = -10000000
-limit/right = 10000000
-limit/bottom = 10000000
-limit/limit_node_target = NodePath("")
-limit/smoothed = false
-tween_parameters = SubResource("Resource_assks")
-tween_on_load = true
-inactive_update_mode = 0
-metadata/_edit_lock_ = true
-
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 editor_draw_limits = true
@@ -953,43 +554,32 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "page_control_container", "quit_game_button", "fade_screen_layer", "settings_layer", "menu_loop", "created_levels_list", "icon_garage", "level_selector", "created_levels_list_camera", "editor_camera", "icon_garage_camera", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer", "level_selector_page_container")]
+[node name="Subscene Manager" type="Node" parent="." node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
-page_control_container = NodePath("../LevelSelector/CanvasLayer/PageControlContainer")
-quit_game_button = NodePath("../TitleScreen/QuitGame")
 fade_screen_layer = NodePath("../FadeScreenLayer")
-settings_layer = NodePath("../SettingsLayer")
 menu_loop = NodePath("../MenuLoop")
-created_levels_list = NodePath("../CreatedLevelsList")
-icon_garage = NodePath("../IconGarage")
-level_selector = NodePath("../LevelSelector")
-created_levels_list_camera = NodePath("../CreatedLevelsList/CameraCenterParent/CreatedLevelsListCamera")
-editor_camera = NodePath("../CreatedLevelsList/CameraCenterParent/EditorCamera")
-icon_garage_camera = NodePath("../IconGarage/CameraCenterParent/IconGarageCamera")
+level_selector = NodePath("../TitleScreen/LevelSelector")
+community_menu = NodePath("../TitleScreen/Community")
+settings_panel = NodePath("../TitleScreen/Settings")
+settings_menu = NodePath("../TitleScreen/Settings/MarginContainer/SettingsMenu")
 quit_game_camera = NodePath("../TitleScreen/CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../TitleScreen/CameraCenterParent/TitleScreenCamera")
 title_screen_background = NodePath("../TitleScreen/BackgroundParallax")
 title_screen_ground = NodePath("../TitleScreen/GroundParallax")
 menu_icon = NodePath("../TitleScreen/MenuIcon")
 menu_icon_killer = NodePath("../TitleScreen/Kill Box")
-level_selector_page_container = NodePath("../LevelSelector/PageContainer")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" instance=ExtResource("31_n61qu")]
 
-[node name="SettingsLayer" parent="." instance=ExtResource("32_c2d88")]
-visible = false
-
-[connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToIconGarage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
-[connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToLevelSelector" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
-[connection signal="pressed" from="TitleScreen/VBoxContainer/HBoxContainer/GoToCreatedLevelsList" to="Subscene Manager" method="_on_go_to_created_levels_list_pressed"]
-[connection signal="pressed" from="TitleScreen/QuitGame" to="Subscene Manager" method="_on_quit_game_pressed"]
-[connection signal="pressed" from="TitleScreen/Settings" to="SettingsLayer" method="_on_settings_pressed"]
-[connection signal="pressed" from="IconGarage/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
-[connection signal="pressed" from="CreatedLevelsList/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
-[connection signal="pressed" from="CreatedLevelsList/MarginContainer/VBoxContainer/FlowContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
-[connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/PreviousLevel" to="Subscene Manager" method="_on_previous_level_pressed"]
-[connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/PagePreviousNext/NextLevel" to="Subscene Manager" method="_on_next_level_pressed"]
-[connection signal="pressed" from="LevelSelector/CanvasLayer/PageControlContainer/BackButton" to="Subscene Manager" method="_on_back_button_pressed"]
+[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
+[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="file_selected" from="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
+[connection signal="pressed" from="TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Refresh" to="TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="refresh"]
+[connection signal="closed" from="TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]

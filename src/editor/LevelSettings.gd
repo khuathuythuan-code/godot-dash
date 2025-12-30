@@ -8,6 +8,7 @@ var saveloads: Array
 func _ready() -> void:
 	$"TabContainer/Level Settings/VBoxContainer".custom_minimum_size.y = $"TabContainer/Level Settings/VBoxContainer".size.y
 	saveloads = NodeUtils.get_children_of_type(self, PropertySaveLoad, true)
+	await get_tree().process_frame
 	refresh_saveloads(LevelManager.current_level)
 
 

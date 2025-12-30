@@ -14,6 +14,7 @@ func _ready() -> void:
 	icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
 	icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pressed.connect(_on_button_pressed)
+	expand_icon = true
 	# Set `custom_minimum_size` the next frame, after the layout is solved
 	# and `size` is set.
 	await get_tree().process_frame

@@ -15,6 +15,10 @@ const START_SPEED: Array[float] = [
 	2.431, # 5x
 ]
 
+@export var creator: String = Config.username
+@export var description: String = ""
+@export var rating: int = -1
+
 @export_file var song_path: String:
 	set(value):
 		register_required_song(song_path, value)
@@ -181,6 +185,9 @@ func to_data() -> Dictionary:
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
+		"creator": creator,
+		"description": description,
+		"rating": rating,
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
@@ -251,6 +258,9 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
+	level.creator = data.creator
+	level.description = data.description
+	level.rating = data.rating
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer

@@ -26,3 +26,5 @@ func refresh_inputs():
 
 	var add_button = AddKeybindButton.new(self)
 	add_child(add_button)
+	#HACK: Godot doesn't recalculate the size of the remove button after the custom minimum size is set
+	item_rect_changed.emit()
