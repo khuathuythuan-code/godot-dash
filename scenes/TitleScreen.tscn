@@ -534,7 +534,7 @@ settings_menu = NodePath("../TitleScreenLayer/TitleScreen/Settings/MarginContain
 quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../CameraCenterParent/TitleScreenCamera")
 title_screen_background = NodePath("../Node2D/BackgroundParallax")
-title_screen_ground = NodePath("")
+title_screen_ground = NodePath("../Node2D/GroundDownParallax")
 menu_icon = NodePath("../Node2D/MenuIcon")
 menu_icon_killer = NodePath("../Node2D/Kill Box")
 
