@@ -98,7 +98,6 @@ func _on_apply_pressed() -> void:
 		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
 		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		if not LevelManager.game_scene.get_node("PlayerCamera").enabled:
-			Editor.level_data_snapshot = Editor.root.level.to_data()
+		Editor.level_data_snapshot = Editor.root.level.to_data()
 	if get_tree().reload_current_scene() != OK and Editor.in_editor:
 		get_tree().change_scene_to_packed(Editor.snapshot)
