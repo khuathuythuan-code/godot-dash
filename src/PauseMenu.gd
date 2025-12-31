@@ -16,6 +16,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
 	settings_panel.get_node("MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
+	update_buttons_visibility.call_deferred()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -35,6 +36,12 @@ func _notification(what):
 		return
 	if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		_on_continue_pressed()
+
+
+func update_buttons_visibility() -> void:
+	%Restart.visible = not Editor.in_editor
+	%Practice.visible = not Editor.in_editor
+	%Edit.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
 
 
 func unsuspend() -> void:

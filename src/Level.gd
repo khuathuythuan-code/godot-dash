@@ -60,6 +60,8 @@ const START_SPEED: Array[float] = [
 	set(new_color):
 		default_line_color = new_color
 		line_color = new_color
+# Used to disable "Edit" button in the pause menu for official levels
+@export var is_editable: bool = true
 
 @export_storage var color_channels: Array[ColorChannelData]
 @export_storage var duration: float
@@ -190,6 +192,7 @@ func to_data(is_practice: bool = false) -> Dictionary:
 		"creator": creator,
 		"description": description,
 		"rating": rating,
+		"is_editable": is_editable,
 		"song_path": song_path,
 		"song_start_time": song_start_time,
 		"platformer": platformer,
@@ -264,6 +267,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.creator = data.creator
 	level.description = data.description
 	level.rating = data.rating
+	level.is_editable = data.is_editable
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
 	level.platformer = data.platformer
