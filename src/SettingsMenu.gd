@@ -95,7 +95,7 @@ func _on_apply_pressed() -> void:
 		else:
 			DiscordRPCHandler.unclear()
 	if LevelManager.current_level and Editor.root:
-		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
+		var edit_handler: EditHandler = Editor.root.edit_handler
 		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
 		if not LevelManager.level_playing:
