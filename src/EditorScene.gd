@@ -75,6 +75,8 @@ func _ready() -> void:
 
 	if not $EditHandler.selection.is_empty():
 		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
+		# HACK: ensure the interactable panel validates the properties
+		$EditHandler.selection_changed.emit($EditHandler.selection)
 
 
 func _physics_process(_delta: float) -> void:
@@ -179,10 +181,10 @@ func _on_playtest_pressed() -> void:
 		LevelManager.current_level.name = str(hash(LevelManager.current_level))
 		LevelManager.current_level.queue_free()
 		$GameScene.reset()
-		_ready() # sets `level`
 		var new_player: Player = LevelManager.player
-		new_player.position = level.start_position
 		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
+		_ready() # sets `level`
+		new_player.position = level.start_position
 		%LevelSettings.refresh_saveloads(level)
 		%Playtest.disabled = false
 
@@ -205,7 +207,10 @@ func _on_leave_pressed() -> void:
 func _load_default_player_data_component(component: DefaultPlayerDataComponent) -> void:
 	component.platformer = level.platformer
 	component.reverse = level.start_reverse
+	if level.start_speed_preset == EasedSpeedChangerComponent.SpeedPreset.CUSTOM:
+		component.manual_speed = level.start_speed
 	component.speed = level.start_speed
+	component.speed_preset = level.start_speed_preset
 	component.gameplay_rotation = level.start_gameplay_rotation_degrees
 	component.internal = level.start_internal_gamemode
 	component.displayed = level.start_displayed_gamemode

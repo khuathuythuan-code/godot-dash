@@ -44,7 +44,8 @@ const START_SPEED: Array[float] = [
 			LevelManager.player.displayed_gamemode = start_displayed_gamemode
 			LevelManager.player.scale = Vector2.ONE if start_displayed_gamemode != Player.Gamemode.WAVE else Vector2.ONE * Player.PLAYER_SCALE_WAVE
 @export var start_freefly: bool = true
-@export var start_speed: int = 2
+@export var start_speed_preset: int = EasedSpeedChangerComponent.SpeedPreset.x1
+@export var start_speed: float = START_SPEED[2]
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
 @export var default_background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
@@ -131,7 +132,7 @@ func start_level() -> void:
 			GroundData.offset = 0
 
 	LevelManager.player.scale = Vector2.ONE
-	LevelManager.player.speed_multiplier = START_SPEED[start_speed]
+	LevelManager.player.speed_multiplier = start_speed
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
 	LevelManager.player_camera.position = LevelManager.player.position
@@ -181,7 +182,8 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		required_fonts[new_path] += 1
 
 
-func to_data() -> Dictionary:
+func to_data(is_practice: bool = false) -> Dictionary:
+	var practice := func(practice_off: Variant, practice_on: Variant): return practice_on if is_practice else practice_off
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
@@ -192,10 +194,11 @@ func to_data() -> Dictionary:
 		"song_start_time": song_start_time,
 		"platformer": platformer,
 		"start_position": Serialize.Vector2(LevelManager.player.global_position),
-		"start_internal_gamemode": start_internal_gamemode,
-		"start_displayed_gamemode": start_displayed_gamemode,
-		"start_freefly": start_freefly,
-		"start_speed": start_speed,
+		"start_internal_gamemode": practice.call(start_internal_gamemode, LevelManager.player.internal_gamemode),
+		"start_displayed_gamemode": practice.call(start_displayed_gamemode, LevelManager.player.displayed_gamemode),
+		"start_freefly": practice.call(start_freefly, LevelManager.player_camera.freefly),
+		"start_speed": practice.call(start_speed, LevelManager.player.speed_multiplier),
+		"start_speed_preset": start_speed_preset,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
 		"default_background_color": default_background_color.to_rgba32(),
@@ -269,6 +272,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_displayed_gamemode = data.start_displayed_gamemode
 	level.start_freefly = data.start_freefly
 	level.start_speed = data.start_speed
+	level.start_speed_preset = data.start_speed_preset
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
 	level.default_background_color = Color.hex(data.default_background_color)

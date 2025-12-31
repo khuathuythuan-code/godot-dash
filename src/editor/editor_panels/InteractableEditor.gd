@@ -74,7 +74,7 @@ func rebuild_ui(interactables: Selection) -> void:
 func build_ui(interactables: Selection) -> void:
 	var first_interactable: Interactable = interactables.first()
 	var ui_root := VBoxContainer.new()
-	var should_component_be_displayed := func(component):
+	var should_component_be_displayed := func(component: Component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
 	var displayed_components: Array = (
 		first_interactable \
@@ -90,9 +90,14 @@ func build_ui(interactables: Selection) -> void:
 			var fields: Array[Dictionary] = component.script.get_script_property_list()
 			# Follow _validate_property
 			if component.has_method(&"_validate_property"):
-				fields.map(func(field): component._validate_property(field))
-			fields = fields \
-			.filter(func(field): return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP)
+				fields.map(
+					func(field):
+						component._validate_property(field)
+				)
+			fields = fields.filter(
+				func(field):
+					return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP
+			)
 			var last_section: FoldableContainer = null
 			for field: Dictionary in fields:
 				var field_name: String = field.name

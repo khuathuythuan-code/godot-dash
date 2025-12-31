@@ -1,4 +1,5 @@
 extends Component
+
 class_name EasedSpeedChangerComponent
 
 signal changed(speed: String)
@@ -22,7 +23,7 @@ const SPEED_PRESET_LABELS: PackedStringArray = ["x0.0", "x0.5", "x1.0", "x2.0", 
 		speed = Level.START_SPEED[speed_preset] if speed_preset != SpeedPreset.CUSTOM else _manual_speed
 		notify_property_list_changed()
 
-@export_range(0.0, 2.0, 0.01, "or_greater") var speed: float = 1.0:
+@export_range(0.0, 2.0, 0.01, "or_greater", "slider") var speed: float = 1.0:
 	set(value):
 		speed = value
 		if speed_preset == SpeedPreset.CUSTOM:

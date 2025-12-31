@@ -2,16 +2,6 @@ extends Component
 
 class_name DefaultPlayerDataComponent
 
-enum Speed {
-	x0,
-	x05,
-	x1,
-	x2,
-	x3,
-	x4,
-	x5,
-}
-
 @export var platformer: bool:
 	set(value):
 		platformer = value
@@ -23,9 +13,18 @@ enum Speed {
 		reverse = value
 		if Editor.in_editor:
 			Editor.root.level.start_reverse = value
-@export_enum("x0.0", "x0.5", "x1.0", "x2.0", "x3.0", "x4.0", "x5.0") var speed: int = Speed.x1:
+@export_enum("x0.0", "x0.5", "x1.0", "x2.0", "x3.0", "x4.0", "x5.0", "Custom") var speed_preset: int = EasedSpeedChangerComponent.SpeedPreset.x1:
+	set(value):
+		speed_preset = value
+		speed = Level.START_SPEED[speed_preset] if speed_preset != EasedSpeedChangerComponent.SpeedPreset.CUSTOM else manual_speed
+		if Editor.in_editor:
+			Editor.root.level.start_speed_preset = value
+		notify_property_list_changed()
+@export_range(0.0, 2.0, 0.01, "or_greater", "slider") var speed: float = 1.0:
 	set(value):
 		speed = value
+		if speed_preset == EasedSpeedChangerComponent.SpeedPreset.CUSTOM:
+			manual_speed = value
 		if Editor.in_editor:
 			Editor.root.level.start_speed = value
 @export_range(-180, 180, 0.01, "degrees", "slider") var gameplay_rotation: float:
@@ -51,11 +50,11 @@ enum Speed {
 		if Editor.in_editor:
 			Editor.root.level.start_freefly = value
 
+@export_storage var manual_speed: float = speed
+
 
 func _validate_property(property: Dictionary) -> void:
 	if property.name == "reverse" and platformer:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
-
-
-func get_speed():
-	return Level.START_SPEED[speed]
+	if property.name == "speed" and speed_preset != EasedSpeedChangerComponent.SpeedPreset.CUSTOM:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
