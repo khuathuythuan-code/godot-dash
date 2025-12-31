@@ -61,7 +61,7 @@ func _ready() -> void:
 		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		_camera_tween = create_tween()
 		(
-			_camera_tween.tween_property(camera, "zoom", Vector2.ONE, 0.5).from(Vector2.ONE * 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+			_camera_tween.tween_property(camera, "zoom", PlayerCamera.DEFAULT_ZOOM, 0.5).from(Vector2.ONE * 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 		)
 		await _camera_tween.finished
 		camera.add_child(PhantomCameraHost.new())
