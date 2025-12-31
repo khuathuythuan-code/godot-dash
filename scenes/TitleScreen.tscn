@@ -237,6 +237,7 @@ theme_type_variation = &"TitleScreenButton"
 text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen"]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
