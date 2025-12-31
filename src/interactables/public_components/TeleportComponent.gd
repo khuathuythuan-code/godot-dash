@@ -1,5 +1,6 @@
 @tool
 extends Component
+
 class_name TeleportComponent
 
 @export var axis: Constants.Axis
@@ -58,14 +59,14 @@ func teleport(player: Player) -> void:
 	elif override_velocity:
 		match new_velocity_axes:
 			Constants.Axis.BOTH:
-				player.set_deferred(&"velocity", (new_velocity * PositionChangerComponent.CELLS_TO_PX).rotated(player.gameplay_rotation))
+				player.set_deferred(&"velocity", (new_velocity * Constants.CELLS_TO_PX).rotated(player.gameplay_rotation))
 			Constants.Axis.X:
 				player.velocity = Vector2(
-						(new_velocity * PositionChangerComponent.CELLS_TO_PX).x,
-						player.velocity.rotated(-player.gameplay_rotation).y,
+					(new_velocity * Constants.CELLS_TO_PX).x,
+					player.velocity.rotated(-player.gameplay_rotation).y,
 				).rotated(player.gameplay_rotation)
 			Constants.Axis.Y:
 				player.velocity = Vector2(
-						player.velocity.rotated(-player.gameplay_rotation).x,
-						(new_velocity * PositionChangerComponent.CELLS_TO_PX).y,
+					player.velocity.rotated(-player.gameplay_rotation).x,
+					(new_velocity * Constants.CELLS_TO_PX).y,
 				).rotated(player.gameplay_rotation)

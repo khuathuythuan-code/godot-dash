@@ -1,7 +1,6 @@
 extends Component
-class_name CameraOffsetChangerComponent
 
-const CELLS_TO_PX := Vector2(LevelManager.CELL_SIZE, -LevelManager.CELL_SIZE)
+class_name CameraOffsetChangerComponent
 
 enum Mode {
 	ADD,
@@ -13,6 +12,7 @@ enum Mode {
 
 var initial_offset: Vector2
 var initial_gameplay_offset: Vector2
+
 
 func _ready() -> void:
 	super()
@@ -28,8 +28,6 @@ func start(_player: Player) -> void:
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	match mode:
 		Mode.ADD:
-			LevelManager.player_camera.additional_offset += offset * CELLS_TO_PX * weight_delta
+			LevelManager.player_camera.additional_offset += offset * Constants.CELLS_TO_PX * weight_delta
 		Mode.SET:
-			LevelManager.player_camera.additional_offset += (offset * CELLS_TO_PX - initial_offset) * weight_delta
-
-
+			LevelManager.player_camera.additional_offset += (offset * Constants.CELLS_TO_PX - initial_offset) * weight_delta

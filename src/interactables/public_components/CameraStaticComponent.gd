@@ -1,7 +1,6 @@
 extends Component
-class_name CameraStaticComponent
 
-const CELLS_TO_PX := Vector2(LevelManager.CELL_SIZE, -LevelManager.CELL_SIZE)
+class_name CameraStaticComponent
 
 enum Mode {
 	ENTER,
@@ -46,7 +45,7 @@ func _on_easing_progressed(player: Player, _weight_delta: float) -> void:
 	var entering_or_exiting: float
 	match mode:
 		Mode.ENTER:
-			entering_or_exiting = 1.0 
+			entering_or_exiting = 1.0
 		Mode.EXIT:
 			entering_or_exiting = 0.0
 	var weight: float = parent.query(EasingComponent).weights[player]

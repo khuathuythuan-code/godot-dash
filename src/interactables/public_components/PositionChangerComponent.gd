@@ -2,8 +2,6 @@ extends Component
 
 class_name PositionChangerComponent
 
-const CELLS_TO_PX := Vector2(LevelManager.CELL_SIZE, -LevelManager.CELL_SIZE)
-
 enum Mode {
 	ADD,
 	SET,
@@ -107,17 +105,19 @@ func _on_easing_progressed(_player: Player, weight_delta: float, group_objects: 
 	match mode:
 		Mode.ADD:
 			for group_object in group_objects:
-				group_object.global_position += position * CELLS_TO_PX * weight_delta
+				group_object.global_position += position * Constants.CELLS_TO_PX * weight_delta
 		Mode.SET:
 			for group_object in group_objects:
 				var initial_global_position = initial_global_positions[group_object]
-				group_object.global_position += (parent.to_global(position * CELLS_TO_PX) - initial_global_position) * weight_delta
+				group_object.global_position += (parent.to_global(position * Constants.CELLS_TO_PX) - initial_global_position) * weight_delta
 		Mode.MOVE_TOWARDS when move_towards != ^"":
 			for group_object in group_objects:
 				var initial_global_position = initial_global_positions[group_object]
 				var initial_distance := initial_distances[group_object]
 				# FIXME: doesn't work when `move_towards` is moving
 				var move_towards_ref: Node2D = LevelManager.current_level.get_node(move_towards)
-				group_object.global_position += (move_towards_ref.global_position - initial_global_position
+				group_object.global_position += (
+					move_towards_ref.global_position - initial_global_position
 					+ initial_distance * -distance_multiplier
-					+ offset * CELLS_TO_PX ) * weight_delta
+					+ offset * Constants.CELLS_TO_PX
+				) * weight_delta
