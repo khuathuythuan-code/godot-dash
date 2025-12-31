@@ -3,7 +3,7 @@ extends Node2D
 class_name GameScene
 
 func _ready() -> void:
-	Engine.time_scale = 1
+	Engine.time_scale = 1.0
 	LevelManager.game_scene = self
 	LevelManager.background_sprites.clear()
 	LevelManager.background_sprites.append($BackgroundParallax/Background)
@@ -64,6 +64,7 @@ func start_level() -> void:
 
 
 func reset() -> void:
+	Engine.time_scale = 1.0
 	LevelManager.ground_up.hide()
 	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 	LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
@@ -72,6 +73,10 @@ func reset() -> void:
 	LevelManager.player.queue_free()
 	LevelManager.player_duals.map(NodeUtils.free_node)
 	LevelManager.player_duals.clear()
+	LevelManager.player_camera.limit_left = -10000000
+	LevelManager.player_camera.limit_top = -10000000
+	LevelManager.player_camera.limit_right = 10000000
+	LevelManager.player_camera.limit_bottom = 10000000
 	var new_player: Player = AssetManager.player_packed.instantiate()
 	add_child(new_player)
 	var player_camera: PlayerCamera = LevelManager.player_camera
