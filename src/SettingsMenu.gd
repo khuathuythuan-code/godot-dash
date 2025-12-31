@@ -94,11 +94,11 @@ func _on_apply_pressed() -> void:
 			DiscordRPCHandler.clear()
 		else:
 			DiscordRPCHandler.unclear()
-	if LevelManager.current_level != null and Editor.root:
+	if LevelManager.current_level and Editor.root:
 		var edit_handler: EditHandler = Editor.root.get_node("EditHandler")
 		edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
 		edit_handler.selection.clear()
-		if not LevelManager.game_scene.get_node("PlayerCamera").enabled:
+		if not LevelManager.level_playing:
 			Editor.level_data_snapshot = Editor.root.level.to_data()
 	if get_tree().reload_current_scene() != OK and Editor.in_editor:
 		get_tree().change_scene_to_packed(Editor.snapshot)
