@@ -9,6 +9,7 @@ enum EditorAction {
 	SNAP = 1 << 3,
 }
 
+@export var edit_handler: EditHandler
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
