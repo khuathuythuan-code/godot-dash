@@ -1,5 +1,7 @@
 extends TabContainer
 
+class_name SettingsMenu
+
 signal closed
 
 
