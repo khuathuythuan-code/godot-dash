@@ -1,4 +1,5 @@
 extends Component
+
 class_name TargetObjectComponent
 
 @export var target: NodePath:
@@ -31,6 +32,6 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func target_to_node() -> Node2D:
-	if not LevelManager.current_level:
+	if not LevelManager.current_level or target.is_empty():
 		return null
 	return LevelManager.current_level.get_node(target)
