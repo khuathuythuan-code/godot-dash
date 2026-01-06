@@ -123,6 +123,18 @@ func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 
 
+func _on_edit_pressed() -> void:
+	var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
+	var json_string: String = file.get_as_text()
+	file.close()
+	Editor.level_data_snapshot = JSON.parse_string(json_string)
+	if DiscordRPCManager.available:
+		DiscordRPCHandler.set_details("Creating a level")
+		DiscordRPCHandler.refresh()
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(AssetManager.editor_packed)
+
+
 func _on_settings_pressed() -> void:
 	if settings_panel.visible:
 		settings_panel.hide_tween()
