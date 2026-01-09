@@ -1,4 +1,5 @@
 extends Component
+
 class_name TextComponent
 
 const DEFAULT_TEXT_SETTINGS: TextSettings = preload("res://resources/DefaultTextSettings.tres")
@@ -54,7 +55,7 @@ func update_label_size() -> void:
 	_selection_collider.position = _label.get_rect().get_center()
 
 
-func _field_to_data(field_name: String) -> Variant:
+func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
 	if field_name == "settings":
 		return (settings if settings else DEFAULT_TEXT_SETTINGS).to_data()
 	return get(field_name)

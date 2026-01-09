@@ -1,4 +1,5 @@
 extends Component
+
 class_name ToggleComponent
 
 signal send_to_group_display(group_name: String)
@@ -42,7 +43,7 @@ func toggle(_player: Node) -> void:
 					object.show()
 
 
-func _field_to_data(field_name: String) -> Variant:
+func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
 	if field_name == "toggled_groups":
 		return toggled_groups.map(func(toggled_group: ToggledGroup): return toggled_group.to_data())
 	return get(field_name)

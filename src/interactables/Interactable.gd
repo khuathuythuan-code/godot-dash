@@ -1,4 +1,5 @@
 extends Area2D
+
 class_name Interactable
 
 @warning_ignore("unused_signal")
@@ -25,7 +26,7 @@ func query(component_type: Script) -> Component:
 	return components[component_idx] if component_idx >= 0 else null
 
 
-func components_to_data() -> Dictionary[String, Dictionary]:
+func components_to_data(reason: Level.SerializeReason) -> Dictionary[String, Dictionary]:
 	assert(Editor.in_editor, "Cannot serialize outside the editor")
 	var data: Dictionary[String, Dictionary]
 	var should_serialize_component := func(component: Component): return not component.get_script() in InteractableEditor.COMPONENT_BLACKLIST
@@ -33,7 +34,7 @@ func components_to_data() -> Dictionary[String, Dictionary]:
 	serialized_components.assign(components.filter(should_serialize_component))
 	for serialized_component: Component in serialized_components:
 		var serialized_component_name: String = serialized_component.get_script().get_global_name()
-		data[serialized_component_name] = serialized_component.to_data()
+		data[serialized_component_name] = serialized_component.to_data(reason)
 	return data
 
 

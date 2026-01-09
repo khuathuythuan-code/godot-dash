@@ -5,6 +5,11 @@ class_name Level
 @warning_ignore("unused_signal")
 signal default_font_changed
 
+enum SerializeReason {
+	SAVE,
+	PRACTICE_ATTEMPT,
+}
+
 const START_SPEED: Array[float] = [
 	0.0, # 0x
 	0.807, # 0.5x
@@ -184,8 +189,8 @@ func register_required_font(old_path: String, new_path: String) -> void:
 		required_fonts[new_path] += 1
 
 
-func to_data(is_practice: bool = false) -> Dictionary:
-	var practice := func(practice_off: Variant, practice_on: Variant): return practice_on if is_practice else practice_off
+func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
+	var practice := func(practice_off: Variant, practice_on: Variant): return practice_on if reason == SerializeReason.PRACTICE_ATTEMPT else practice_off
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
@@ -234,7 +239,7 @@ func to_data(is_practice: bool = false) -> Dictionary:
 		if object.has_meta(&"attributes"):
 			object_data.attributes = object.get_meta(&"attributes")
 		if object is Interactable:
-			object_data.components = object.components_to_data()
+			object_data.components = object.components_to_data(reason)
 			object_data.markers = object.markers_to_data()
 		data.objects.append(object_data)
 	return data

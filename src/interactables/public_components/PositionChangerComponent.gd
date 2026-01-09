@@ -81,7 +81,7 @@ func start(_player: Player) -> void:
 		progressed.connect(_on_easing_progressed.bind(physics_objects))
 
 
-func _field_to_data(field_name: String) -> Variant:
+func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
 	match field_name:
 		"position":
 			return Serialize.Vector2(position)

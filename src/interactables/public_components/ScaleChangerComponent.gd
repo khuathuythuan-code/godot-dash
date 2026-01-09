@@ -47,7 +47,7 @@ func start(_player: Player) -> void:
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 
 
-func _field_to_data(field_name: String) -> Variant:
+func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
 	match field_name:
 		"scale":
 			return Serialize.Vector2(scale)

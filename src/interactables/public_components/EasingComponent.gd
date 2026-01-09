@@ -14,6 +14,15 @@ signal finished(player: Player)
 @export var ignore_time_scale: bool = false
 @export var _use_physics_process: bool = false
 
+# Read-only variable
+@export_storage var elapsed_time: Dictionary[Player, float]:
+	set(value):
+		return
+	get():
+		for player in tweens:
+			elapsed_time[player] = tweens[player].get_total_elapsed_time()
+		return elapsed_time
+
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
 var _previous_weights: Dictionary[Player, float]
@@ -37,6 +46,16 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
 		trigger_for_one_player = true
 		ignore_time_scale = true
+
+
+func _field_to_data(field_name: String, reason: Level.SerializeReason) -> Variant:
+	match field_name:
+		"elapsed_time":
+			if reason != Level.SerializeReason.PRACTICE_ATTEMPT:
+				return null
+			return elapsed_time
+		_:
+			return get(field_name)
 
 
 func start(player: Player) -> void:

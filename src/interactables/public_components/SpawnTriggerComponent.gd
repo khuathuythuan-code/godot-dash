@@ -76,7 +76,7 @@ func restart(player: Player) -> void:
 		parent.interacted.emit(player)
 
 
-func _field_to_data(field_name: String) -> Variant:
+func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
 	match field_name:
 		"spawned_triggers":
 			return spawned_triggers.map(func(spawned_trigger: SpawnedTrigger): return spawned_trigger.to_data())
