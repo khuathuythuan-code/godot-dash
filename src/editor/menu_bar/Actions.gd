@@ -13,5 +13,5 @@ func _ready() -> void:
 func _on_index_pressed(index:int) -> void:
 	match index:
 		0: # Menu
-			game_scene.get_node("PauseMenuLayer").visible = true
+			game_scene.get_node("PauseMenuLayer/PauseMenu")._on_continue_pressed()
 	set_item_checked(index, not is_item_checked(index))
