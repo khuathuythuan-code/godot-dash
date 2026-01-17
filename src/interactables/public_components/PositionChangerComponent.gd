@@ -25,12 +25,14 @@ enum Mode {
 
 var initial_global_positions: Dictionary[Node2D, Vector2]
 var initial_distances: Dictionary[Node2D, Vector2]
+var group_objects: Array[Node2D]
 
 
 func _ready() -> void:
 	super()
 	await require([TargetGroupComponent, EasingComponent])
 	parent.interacted.connect(start)
+	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 
 
 func _validate_property(property: Dictionary) -> void:
@@ -41,7 +43,6 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(_player: Player) -> void:
-	var group_objects: Array[Node2D]
 	group_objects.assign(
 		get_tree() \
 		.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
@@ -57,31 +58,8 @@ func start(_player: Player) -> void:
 		elif Editor.in_editor:
 			Toasts.error("In %s: move towards is unset" % parent.name)
 
-	var progressed: Signal = parent.query(EasingComponent).progressed
-	if progressed.is_connected(_on_easing_progressed):
-		progressed.disconnect(_on_easing_progressed)
 
-	var process_objects: Array[Node2D]
-	var physics_objects: Array[Node2D]
-	for object in group_objects:
-		var hitbox: CollisionObject2D = object as CollisionObject2D
-		if (
-			hitbox == null
-			or hitbox.is_shape_owner_disabled(hitbox.get_shape_owners()[0])
-			or object.process_mode == Node.PROCESS_MODE_DISABLED
-			or (object is Area2D and object.monitoring == false)
-		):
-			process_objects.append(object)
-			continue
-		physics_objects.append(object)
-
-	if not process_objects.is_empty():
-		progressed.connect(_on_easing_progressed.bind(process_objects))
-	if not physics_objects.is_empty():
-		progressed.connect(_on_easing_progressed.bind(physics_objects))
-
-
-func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
+func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"position":
 			return Serialize.Vector2(position)
@@ -101,7 +79,7 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 			set(field_name, field_data)
 
 
-func _on_easing_progressed(_player: Player, weight_delta: float, group_objects: Array[Node2D]) -> void:
+func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	match mode:
 		Mode.ADD:
 			for group_object in group_objects:
