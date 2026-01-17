@@ -1,5 +1,6 @@
 @tool
 extends BaseButton
+
 class_name BouncyButton
 
 # @export var selected_level: PackedScene
@@ -9,6 +10,7 @@ var saved_position: Vector2
 var absolute_position: Vector2
 var inital_scale: Vector2
 
+
 func _ready() -> void:
 	if reset_scale_on_ready:
 		scale = Vector2.ONE
@@ -16,14 +18,16 @@ func _ready() -> void:
 	connect("button_down", Callable(self, "_button_held"))
 	connect("button_up", Callable(self, "_button_unheld"))
 
+
 func _process(_delta: float) -> void:
-	pivot_offset.x = size.x/2
-	pivot_offset.y = size.y/2
+	pivot_offset.x = size.x / 2
+	pivot_offset.y = size.y / 2
 	if block_palette_button:
 		if is_pressed():
 			modulate = Color("808080")
 		else:
 			modulate = Color("ffffff")
+
 
 func _button_held() -> void:
 	if is_inside_tree():
@@ -36,6 +40,7 @@ func _button_held() -> void:
 				saved_position = position
 				position = get_global_rect().position
 			top_level = true
+
 
 func _button_unheld() -> void:
 	if is_inside_tree():

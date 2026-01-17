@@ -12,8 +12,10 @@ var _previous_camera_rotation: float
 
 func _ready() -> void:
 	match ground_position:
-		1: LevelManager.ground_down = self
-		-1: LevelManager.ground_up = self
+		1:
+			LevelManager.ground_down = self
+		-1:
+			LevelManager.ground_up = self
 
 
 func _physics_process(delta: float) -> void:
@@ -21,24 +23,26 @@ func _physics_process(delta: float) -> void:
 		return
 	if get_viewport().get_camera_2d() != LevelManager.player_camera:
 		return
-	var zoom_factor: Vector2 = PlayerCamera.DEFAULT_ZOOM/LevelManager.player_camera.zoom
+	var zoom_factor: Vector2 = PlayerCamera.DEFAULT_ZOOM / LevelManager.player_camera.zoom
 	# var zoom_factor := Vector2.ONE
 	if not LevelManager.player_camera.freefly:
 		var global_position_rotated: Vector2 = global_position.rotated(LevelManager.player.gameplay_rotation)
 		global_position_rotated = global_position_rotated.lerp(
 			Vector2(
 				GroundData.center.x,
-				(ground_position * GroundData.distance) \
-						* zoom_factor.y \
-						+ GroundData.center.y - GroundData.offset
+				(
+					(ground_position * GroundData.distance)
+					* zoom_factor.y
+					+ GroundData.center.y - GroundData.offset
+				),
 			),
-			0.2 * delta * 60
+			0.2 * delta * 60,
 		)
 		global_position = global_position_rotated.rotated(-LevelManager.player.gameplay_rotation)
 	else:
 		global_position = global_position.lerp(
 			Vector2(global_position.x, DEFAULT_Y),
-			0.2 * delta * 60
+			0.2 * delta * 60,
 		)
 	_previous_camera_rotation = LevelManager.player_camera.rotation
 

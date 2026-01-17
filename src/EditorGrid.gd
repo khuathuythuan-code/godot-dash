@@ -1,5 +1,6 @@
 @tool
 extends Node2D
+
 class_name EditorGrid
 
 const LINE_COLOR_PRIMARY := Color.WHITE
@@ -71,12 +72,16 @@ func _draw() -> void:
 		draw_line(
 			Vector2(cell_x * cell_size.x + cell_offset, _line_base_y),
 			Vector2(cell_x * cell_size.x + cell_offset, -grid_size.y * cell_size.y),
-			line_color_y, line_width.y)
+			line_color_y,
+			line_width.y,
+		)
 		if symmetrize & Constants.AxisBitflag.Y:
 			draw_line(
 				Vector2(-cell_x * cell_size.x + cell_offset, _line_base_y),
 				Vector2(-cell_x * cell_size.x + cell_offset, -grid_size.y * cell_size.y),
-				line_color_y, line_width.y)
+				line_color_y,
+				line_width.y,
+			)
 	for cell_y in grid_size.y + 1:
 		var line_color_x: Color
 		var line_base_x = 0.0 if not symmetrize & Constants.AxisBitflag.X else -grid_size.x * cell_size.x
@@ -92,9 +97,13 @@ func _draw() -> void:
 		draw_line(
 			Vector2(line_base_x, -cell_y * cell_size.y + cell_offset),
 			Vector2(grid_size.x * cell_size.x, -cell_y * cell_size.y + cell_offset),
-			line_color_x, line_width.x)
+			line_color_x,
+			line_width.x,
+		)
 		if symmetrize & Constants.AxisBitflag.Y:
 			draw_line(
 				Vector2(line_base_x, cell_y * cell_size.y + cell_offset),
 				Vector2(grid_size.x * cell_size.x, cell_y * cell_size.y + cell_offset),
-				line_color_x, line_width.x)
+				line_color_x,
+				line_width.x,
+			)

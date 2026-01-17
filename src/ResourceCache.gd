@@ -1,4 +1,5 @@
 extends RefCounted
+
 class_name ResourceCache
 
 var cache: Dictionary[String, Resource]

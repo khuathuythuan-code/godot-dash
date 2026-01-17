@@ -27,7 +27,7 @@ var _smoothed_gameplay_rotation: float
 func _ready() -> void:
 	LevelManager.player_camera = self
 	player = LevelManager.player
-	offset = get_offset_target(1/offset_smoothing)
+	offset = get_offset_target(1 / offset_smoothing)
 
 
 func _process(delta: float) -> void:
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	_smoothed_gameplay_rotation = lerpf(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
 
 	var player_distance = player.position - position
-	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI/2) * GroundData.offset
+	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI / 2) * GroundData.offset
 	# Rotation-local
 	var local_player_distance = player_distance.rotated(-player.gameplay_rotation)
 	var local_ground_distance = ground_distance.rotated(-player.gameplay_rotation)
@@ -46,13 +46,15 @@ func _process(delta: float) -> void:
 	local_added_distance.y = local_target_distance_axis(
 		local_player_distance.y if freefly else local_ground_distance.y,
 		MAX_DISTANCE.y / zoom.y,
-		framerate_compensation)
+		framerate_compensation,
+	)
 	if LevelManager.platformer:
 		local_added_distance.x = local_target_distance_axis(
 			local_player_distance.x,
 			MAX_DISTANCE.x / zoom.x,
-			framerate_compensation)
-	
+			framerate_compensation,
+		)
+
 	# Apply distance
 	var added_distance: Vector2 = local_added_distance.rotated(player.gameplay_rotation)
 	if static_factor.x == 0:
@@ -69,7 +71,7 @@ func _process(delta: float) -> void:
 	# Same thing for the top edge of the screen
 	if position.y - half_screen_height / zoom.y < LevelManager.ground_up.DEFAULT_Y - 160:
 		position.y = LevelManager.ground_up.DEFAULT_Y - 160 + half_screen_height / zoom.y
-	
+
 	LevelManager.current_level.camera_rect = Rect2(global_position - get_viewport_rect().size / 2 / zoom, get_viewport_rect().size / zoom)
 
 
@@ -91,8 +93,10 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
 				(DEFAULT_OFFSET.x * player.get_direction() * player_speed_sign) / zoom.x,
-				DEFAULT_OFFSET.y / zoom.y),
-			0.125 * framerate_compensation if not is_snapping_view else 1.0)
+				DEFAULT_OFFSET.y / zoom.y,
+			),
+			0.125 * framerate_compensation if not is_snapping_view else 1.0,
+		)
 	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset
 
 

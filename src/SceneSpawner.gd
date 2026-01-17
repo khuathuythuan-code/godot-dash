@@ -3,6 +3,7 @@ extends Node
 @export var scene: PackedScene
 @export var amount: int
 
+
 func _ready() -> void:
 	for i in amount:
 		var node: Node

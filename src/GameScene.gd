@@ -2,6 +2,9 @@ extends Node2D
 
 class_name GameScene
 
+@export var checkpoint_parent: Node2D
+
+
 func _ready() -> void:
 	Engine.time_scale = 1.0
 	LevelManager.game_scene = self

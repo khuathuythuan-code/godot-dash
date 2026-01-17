@@ -1,4 +1,5 @@
 extends Node
+
 class_name ColorChannelWatcher
 
 const WATCHER_GROUP_PREFIX := "watcher_"
