@@ -9,8 +9,8 @@ var components: Array[Component]
 
 
 func _ready() -> void:
-	if has_node("Hitbox"):
-		$Hitbox.debug_color = Color("00ff0033")
+	if has_node(^"Hitbox"):
+		$Hitbox.debug_color = Color.hex(0x00ff0033)
 
 
 func register_public(component: Component) -> void:
