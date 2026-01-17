@@ -16,12 +16,12 @@ var settings_were_open: bool
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_manager = self
-	settings_panel.get_node("MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
+	settings_panel.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 	update_buttons_visibility.call_deferred()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if LevelManager.level_playing and event.is_action_pressed("restart_level"):
+	if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):
 		_on_restart_pressed()
 	if event.is_action_pressed("pause_level") and Editor.shortcut_blocker == null and not SceneManager.is_transitioning:
 		_on_continue_pressed()
@@ -52,6 +52,26 @@ func unsuspend() -> void:
 	unsuspended.emit()
 
 
+func show_tween() -> void:
+	get_parent().show()
+	show()
+	if tween:
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property(self, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-size.x)
+	await tween.finished
+
+
+func hide_tween() -> void:
+	if tween:
+		tween.stop()
+	tween = create_tween()
+	tween.tween_property(self, "position:x", -size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	await tween.finished
+	hide()
+	get_parent().hide()
+
+
 func _on_leave_pressed() -> void:
 	get_tree().paused = false
 	leave.emit()
@@ -61,6 +81,7 @@ func _on_leave_pressed() -> void:
 	hide_tween()
 	LevelManager.platformer = false
 	LevelManager.practice_mode = false
+	LevelManager.practice_level_snapshots.clear()
 	LevelManager.level_playing = false
 	AssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
@@ -98,28 +119,7 @@ func _on_continue_pressed() -> void:
 		hide_tween()
 
 
-func show_tween() -> void:
-	get_parent().show()
-	show()
-	if tween:
-		tween.stop()
-	tween = create_tween()
-	tween.tween_property(self, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-size.x)
-	await tween.finished
-
-
-func hide_tween() -> void:
-	if tween:
-		tween.stop()
-	tween = create_tween()
-	tween.tween_property(self, "position:x", -size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-	await tween.finished
-	hide()
-	get_parent().hide()
-
-
 func _on_restart_pressed() -> void:
-	LevelManager.player_duals.clear()
 	get_tree().paused = false
 	unpaused.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
@@ -150,4 +150,6 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	LevelManager.practice_mode = toggled_on
 	# Forward the signal to toggle the visibility of the touchscreen practice UI in GameScene
 	practice_mode_toggled.emit(toggled_on)
+	if not toggled_on:
+		NodeUtils.free_children(LevelManager.game_scene.checkpoint_parent)
 	_on_continue_pressed()

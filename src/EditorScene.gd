@@ -163,6 +163,8 @@ func start_playtest() -> void:
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 	$GameScene/PercentageLayer.show()
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
+	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice").show()
+	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").show()
 	$LevelOperationsHandler.pause_autosave()
 	$GameScene.start_level()
 
@@ -170,11 +172,18 @@ func start_playtest() -> void:
 func stop_playtest() -> void:
 	%Playtest.disabled = true
 	$GameScene.reset()
+	LevelManager.practice_mode = false
+	LevelManager.practice_level_snapshots.clear()
 	var new_player: Player = LevelManager.player
-	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	_ready() # sets `level`
+	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	new_player.position = level.start_position
 	%LevelSettings.refresh_saveloads(level)
+	NodeUtils.free_children($GameScene.checkpoint_parent)
+	var practice_button: Button = $GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice")
+	practice_button.hide()
+	practice_button.set_pressed_no_signal(false)
+	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
 	%Playtest.disabled = false
 
 

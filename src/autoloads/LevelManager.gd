@@ -19,6 +19,7 @@ var ground_down: GroundObject
 var level_song_player: AudioStreamPlayer
 var platformer: bool = false
 var practice_mode: bool = false
+var practice_level_snapshots: Array[Dictionary]
 
 
 func _ready() -> void:

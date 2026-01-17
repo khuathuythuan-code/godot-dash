@@ -27,7 +27,6 @@ func query(component_type: Script) -> Component:
 
 
 func components_to_data(reason: Level.SerializeReason) -> Dictionary[String, Dictionary]:
-	assert(Editor.in_editor, "Cannot serialize outside the editor")
 	var data: Dictionary[String, Dictionary]
 	var should_serialize_component := func(component: Component): return not component.get_script() in InteractableEditor.COMPONENT_BLACKLIST
 	var serialized_components: Array[Component]

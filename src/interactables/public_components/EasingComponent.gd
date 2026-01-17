@@ -15,12 +15,12 @@ signal finished(player: Player)
 @export var _use_physics_process: bool = false
 
 # Read-only variable
-@export_storage var elapsed_time: Dictionary[Player, float]:
+@export_storage var elapsed_time: Dictionary[NodePath, float]:
 	set(value):
 		return
 	get():
 		for player in tweens:
-			elapsed_time[player] = tweens[player].get_total_elapsed_time()
+			elapsed_time[Serialize.Node(player)] = tweens[player].get_total_elapsed_time()
 		return elapsed_time
 
 var tweens: Dictionary[Player, Tween]
@@ -56,6 +56,17 @@ func _field_to_data(field_name: String, reason: Level.SerializeReason) -> Varian
 			return elapsed_time
 		_:
 			return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"elapsed_time":
+			for player_path: NodePath in field_data:
+				var player: Player = Deserialize.Node(player_path)
+				start(player)
+				tweens[player].custom_step(field_data[player_path])
+		_:
+			set(field_name, field_data)
 
 
 func start(player: Player) -> void:

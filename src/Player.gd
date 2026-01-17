@@ -847,11 +847,15 @@ func _handle_checkpoint_placement() -> void:
 		new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
 		checkpoint_parent.add_child(new_checkpoint)
 		new_checkpoint.global_position = global_position
+		LevelManager.practice_level_snapshots.append(
+			LevelManager.current_level.to_data(Level.SerializeReason.PRACTICE_ATTEMPT),
+		)
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
 			return
 		last_checkpoint.queue_free()
+		LevelManager.practice_level_snapshots.pop_back()
 
 
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:
