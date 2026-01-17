@@ -109,7 +109,7 @@ func _on_base_color_interaction_ended(base_channel: String, previous_base_channe
 		var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + Constants.COLOR_CHANNEL_GROUP_PREFIX + base_channel)
 		watcher.refresh_objects_color(_objects_base)
 
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set base channel to '%s' on %s objects" % [base_channel, objects_base.size()])
 	version_history.add_do_method(do_set_base_channel.bind(objects_base.duplicate()))
 	version_history.add_undo_method(undo_set_base_channel.bind(objects_base_to_channel.duplicate()))
@@ -164,7 +164,7 @@ func _on_detail_color_interaction_ended(detail_channel: String, previous_detail_
 		var watcher: ColorChannelWatcher = get_tree().get_first_node_in_group(ColorChannelWatcher.WATCHER_GROUP_PREFIX + Constants.COLOR_CHANNEL_GROUP_PREFIX + detail_channel)
 		watcher.refresh_objects_color(_objects_detail)
 
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set detail channel to '%s' on %s objects" % [detail_channel, objects_detail.size()])
 	version_history.add_do_method(do_set_detail_channel.bind(objects_detail.duplicate()))
 	version_history.add_undo_method(undo_set_detail_channel.bind(objects_detail_to_channel.duplicate()))

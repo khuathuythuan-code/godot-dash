@@ -61,7 +61,7 @@ func _ready() -> void:
 	%MenuBarContainer.show()
 
 	if not Editor.version_history:
-		Editor.version_history = VersionHistory.new()
+		Editor.version_history = UndoRedo.new()
 	if not Editor.level_data_snapshot.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 		%ColorChannelEditor.clear_item_list()

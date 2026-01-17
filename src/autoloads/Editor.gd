@@ -11,7 +11,7 @@ var level_file_name: String
 var level_history_version: int = 1
 var shortcut_blocker: Node
 var viewport: EditorViewport
-var version_history: VersionHistory
+var version_history: UndoRedo
 
 # MOBILE CONTROLS
 var swipe: bool = false

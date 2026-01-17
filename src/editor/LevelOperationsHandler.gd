@@ -89,7 +89,7 @@ func _new_level() -> void:
 	var new_level := Level.new()
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
-	Editor.version_history = VersionHistory.new()
+	Editor.version_history = UndoRedo.new()
 	Editor.clipboard = Selection.new()
 	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
@@ -123,7 +123,7 @@ func _open_level(path: String) -> void:
 	var level: Level = _load_level(path)
 	if not level:
 		return
-	Editor.version_history = VersionHistory.new()
+	Editor.version_history = UndoRedo.new()
 	Editor.clipboard = Selection.new()
 	# Load song
 	var song_file_path: String

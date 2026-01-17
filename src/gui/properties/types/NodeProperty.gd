@@ -38,7 +38,7 @@ func _validate_property(property: Dictionary) -> void:
 
 func set_value(new_value: NodePath) -> void:
 	if not new_value.is_empty():
-		var node: Node = Editor.version_history.from_nodepath(new_value)
+		var node: Node = Deserialize.Node(new_value)
 		if (
 			(type and not is_instance_of(node, type))
 			or (type == Interactable and not _matches_component_filter(node))
@@ -55,7 +55,7 @@ func set_value_no_signal(new_value: NodePath) -> void:
 	if new_value.is_empty():
 		input.text = "    Assign…    "
 	else:
-		var node: Node = Editor.version_history.from_nodepath(new_value)
+		var node: Node = Deserialize.Node(new_value)
 		if (
 			(type and not is_instance_of(node, type))
 			or (type == Interactable and not _matches_component_filter(node))

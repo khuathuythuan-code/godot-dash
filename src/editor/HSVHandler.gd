@@ -99,7 +99,7 @@ func _on_property_interaction_ended(new_value: float, previous_value: float, pro
 	var set_property := func(_value: float):
 		action.call(hsv_watchers.duplicate(), _value)
 		property.set_value_no_signal(_value)
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Changed %s on %s objects" % [property.name.capitalize().to_lower(), selected_object_count])
 	version_history.add_do_method(set_property.bind(new_value))
 	version_history.add_undo_method(set_property.bind(previous_value))

@@ -1,4 +1,5 @@
 extends VBoxContainer
+
 class_name AttributeEditor
 
 static var BOOL_ATTRIBUTES: Array[Script] = [
@@ -7,7 +8,7 @@ static var BOOL_ATTRIBUTES: Array[Script] = [
 
 static var FLAG_ATTRIBUTES: Dictionary[String, Array] = {
 	"Hide": [HideSpriteAttribute, HideBaseAttribute, HideDetailAttribute, HideParticlesAttribute],
-	"Music Scale": [MusicScaleSpriteAttribute, MusicScaleBaseAttribute, MusicScaleDetailAttribute, MusicScaleParticlesAttribute, MusicScaleHitboxAttribute]
+	"Music Scale": [MusicScaleSpriteAttribute, MusicScaleBaseAttribute, MusicScaleDetailAttribute, MusicScaleParticlesAttribute, MusicScaleHitboxAttribute],
 }
 
 var bool_properties: Dictionary[Script, BoolProperty]
@@ -60,7 +61,7 @@ func connect_ui(selection: Selection) -> void:
 				property.interaction_ended.disconnect(connection.callable)
 		property.interaction_ended.get_connections().map(remove_connections)
 		property.interaction_ended.connect(save_flag_attribute.bind(property, FLAG_ATTRIBUTES[category_name], selection))
-		
+
 
 func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script: Script, selection: Selection) -> void:
 	var add_attribute := func(_selection: Selection):
@@ -69,16 +70,16 @@ func save_bool_attribute(enabled: bool, property: BoolProperty, attribute_script
 				_object,
 				str(attribute_script.get_global_name()),
 				attribute_script,
-				NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME
+				NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME,
 			)
 		property.set_value_no_signal(true)
 	var remove_attribute := func(_selection: Selection):
 		for _object in _selection.to_array():
 			NodeUtils.get_children_of_type(_object, attribute_script).map(NodeUtils.free_node)
 		property.set_value_no_signal(false)
-	
+
 	var selection_snapshot: Selection = selection.clone()
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set '%s' to %s on %s objects" % [attribute_script.get_global_name(), enabled, selection_snapshot.size()])
 	version_history.add_do_method(add_attribute.bind(selection_snapshot) if enabled else remove_attribute.bind(selection_snapshot))
 	version_history.add_undo_method(remove_attribute.bind(selection_snapshot) if enabled else add_attribute.bind(selection_snapshot))
@@ -95,14 +96,14 @@ func save_flag_attribute(flags: int, previous_flags: int, property: FlagsPropert
 						_object,
 						str(attribute_script.get_global_name()),
 						attribute_script,
-						NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME
+						NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME,
 					)
 				else:
 					NodeUtils.get_children_of_type(_object, attribute_script).map(NodeUtils.free_node)
 		property.set_value_no_signal(_flags)
-	
+
 	var selection_snapshot: Selection = selection.clone()
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Changed '%s' flags on %s objects" % [property.name, selection_snapshot.size()])
 	version_history.add_do_method(set_flags.bind(selection_snapshot, flags))
 	version_history.add_undo_method(set_flags.bind(selection_snapshot, previous_flags))

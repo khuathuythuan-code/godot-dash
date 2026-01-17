@@ -149,7 +149,7 @@ func _on_z_index_value_changed(new_z_index: int):
 		return accum
 	var selection_to_z_index: Dictionary[NodePath, int]
 	selection_to_z_index.assign(selection_snapshot.fold_generic(object_to_z_index, { }))
-	var version_history: VersionHistory = Editor.version_history
+	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Changed object z index to %s" % new_z_index)
 	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
 	version_history.add_undo_method(undo_z_index_shift.bind(selection_to_z_index))
