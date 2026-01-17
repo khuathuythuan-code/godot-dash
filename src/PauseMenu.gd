@@ -28,10 +28,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hide_pause_menu"):
 		if visible:
 			hide_tween()
+			settings_were_open = settings_panel.visible
 			settings_panel.hide_tween()
 		else:
 			show_tween()
-			settings_panel.show_tween()
+			if settings_were_open:
+				settings_panel.show_tween()
 
 
 func _notification(what):
