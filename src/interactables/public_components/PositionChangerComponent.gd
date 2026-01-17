@@ -42,23 +42,6 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 
 
-func start(_player: Player) -> void:
-	group_objects.assign(
-		get_tree() \
-		.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
-		.filter(func(object): return object is Node2D),
-	)
-	group_objects.map(func(object): initial_global_positions.set(object, object.global_position))
-	if group_objects.is_empty():
-		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
-	if mode == Mode.MOVE_TOWARDS:
-		if move_towards != ^"":
-			var move_towards_ref: Node2D = LevelManager.current_level.get_node(move_towards)
-			group_objects.map(func(object): initial_distances.set(object, move_towards_ref.global_position - object.global_position))
-		elif Editor.in_editor:
-			Toasts.error("In %s: move towards is unset" % parent.name)
-
-
 func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"position":
@@ -77,6 +60,23 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 			offset = Deserialize.Vector2(field_data)
 		_:
 			set(field_name, field_data)
+
+
+func start(_player: Player) -> void:
+	group_objects.assign(
+		get_tree() \
+		.get_nodes_in_group(parent.query(TargetGroupComponent).target_group) \
+		.filter(func(object): return object is Node2D),
+	)
+	group_objects.map(func(object): initial_global_positions.set(object, object.global_position))
+	if group_objects.is_empty():
+		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
+	if mode == Mode.MOVE_TOWARDS:
+		if move_towards != ^"":
+			var move_towards_ref: Node2D = LevelManager.current_level.get_node(move_towards)
+			group_objects.map(func(object): initial_distances.set(object, move_towards_ref.global_position - object.global_position))
+		elif Editor.in_editor:
+			Toasts.error("In %s: move towards is unset" % parent.name)
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:

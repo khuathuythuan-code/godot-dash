@@ -20,11 +20,15 @@ func require(component_types: Array[Script]) -> void:
 func to_data(reason: Level.SerializeReason = Level.SerializeReason.SAVE) -> Dictionary:
 	var fields: Array[Dictionary] = get_script().get_script_property_list()
 	var is_field_serialized := func(field: Dictionary): return field.usage & PROPERTY_USAGE_STORAGE and not field.name.begins_with("_")
-	var get_field_name := func(field: Dictionary): return field.name
-	var field_names := PackedStringArray(fields.filter(is_field_serialized).map(get_field_name))
 	var data: Dictionary
-	for field_name: String in field_names:
-		var field_value: Variant = _field_to_data(field_name, reason)
+	for field: Dictionary in fields.filter(is_field_serialized):
+		# WARN: "serialize" can't be used with other hint strings
+		if "serialize" in field.hint_string and field.hint_string.get_slice(":", 1) in Level.SerializeReason:
+			var field_reason: Level.SerializeReason = Level.SerializeReason[field.hint_string.get_slice(":", 1)]
+			if reason != field_reason:
+				continue
+		var field_name: String = field.name
+		var field_value: Variant = _field_to_data(field_name)
 		if field_value == null:
 			continue
 		data[field_name] = field_value
@@ -36,7 +40,7 @@ func use_data(data: Dictionary) -> void:
 		_field_from_data(field_name, data[field_name])
 
 
-func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
+func _field_to_data(field_name: String) -> Variant:
 	var field_value: Variant = get(field_name)
 	var is_resource := func(element: Variant): return element is Resource
 	assert(

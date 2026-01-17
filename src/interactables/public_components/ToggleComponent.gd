@@ -43,7 +43,7 @@ func toggle(_player: Node) -> void:
 					object.show()
 
 
-func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
+func _field_to_data(field_name: String) -> Variant:
 	if field_name == "toggled_groups":
 		return toggled_groups.map(func(toggled_group: ToggledGroup): return toggled_group.to_data())
 	return get(field_name)

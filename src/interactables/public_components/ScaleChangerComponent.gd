@@ -47,7 +47,7 @@ func start(_player: Player) -> void:
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 
 
-func _field_to_data(field_name: String, _reason: Level.SerializeReason) -> Variant:
+func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"scale":
 			return Serialize.Vector2(scale)
@@ -76,6 +76,7 @@ func _apply_scale_delta(group_object: Node2D, scale_delta: Vector2) -> void:
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
+	prints(weight_delta, group_objects.size())
 	for group_object in group_objects:
 		var initial_global_scale := initial_global_scales[group_object]
 		var scale_delta: Vector2

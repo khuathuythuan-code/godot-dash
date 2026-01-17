@@ -4,6 +4,7 @@ class_name EasingComponent
 
 signal progressed(weight_delta: float)
 signal finished(player: Player)
+signal restored(player: Player)
 
 @export_range(0.0, 10.0, 0.01, "or_greater", "suffix:s") var duration: float = 1.0
 @export var easing_type: Tween.EaseType = Tween.EASE_IN_OUT
@@ -14,14 +15,8 @@ signal finished(player: Player)
 @export var ignore_time_scale: bool = false
 @export var _use_physics_process: bool = false
 
-# Read-only variable
-@export_storage var elapsed_time: Dictionary[NodePath, float]:
-	set(value):
-		return
-	get():
-		for player in tweens:
-			elapsed_time[Serialize.Node(player)] = tweens[player].get_total_elapsed_time()
-		return elapsed_time
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
+var elapsed_time: Dictionary[NodePath, float]
 
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
@@ -48,12 +43,10 @@ func _validate_property(property: Dictionary) -> void:
 		ignore_time_scale = true
 
 
-func _field_to_data(field_name: String, reason: Level.SerializeReason) -> Variant:
+func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"elapsed_time":
-			if reason != Level.SerializeReason.PRACTICE_ATTEMPT:
-				return null
-			return elapsed_time
+			return get_elapsed_time()
 		_:
 			return get(field_name)
 
@@ -61,10 +54,8 @@ func _field_to_data(field_name: String, reason: Level.SerializeReason) -> Varian
 func _field_from_data(field_name: String, field_data: Variant) -> void:
 	match field_name:
 		"elapsed_time":
-			for player_path: NodePath in field_data:
-				var player: Player = Deserialize.Node(player_path)
-				start(player)
-				tweens[player].custom_step(field_data[player_path])
+			elapsed_time = field_data
+			restore_from_elapsed_time.call_deferred()
 		_:
 			set(field_name, field_data)
 
@@ -111,3 +102,18 @@ func is_inactive_any() -> bool:
 func reset(player: Player) -> void:
 	weights[player] = 0.0
 	_previous_weights[player] = 0.0
+
+
+func get_elapsed_time() -> Dictionary[NodePath, float]:
+	var _elapsed_time: Dictionary[NodePath, float] = { }
+	for player in tweens:
+		_elapsed_time[Serialize.Node(player)] = tweens[player].get_total_elapsed_time()
+	return _elapsed_time
+
+
+func restore_from_elapsed_time() -> void:
+	for player_path: NodePath in elapsed_time:
+		var player: Player = Deserialize.Node(player_path)
+		start(player)
+		restored.emit(player)
+		tweens[player].custom_step(elapsed_time[player_path])
