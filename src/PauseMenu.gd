@@ -4,6 +4,7 @@ signal paused
 signal unpaused
 signal leave
 signal unsuspended
+signal practice_mode_toggled(toggled_on: bool)
 
 @export var settings_panel: TitleScreenPanel
 
@@ -140,3 +141,10 @@ func _on_settings_pressed() -> void:
 		settings_panel.hide_tween()
 		return
 	settings_panel.show_tween()
+
+
+func _on_practice_toggled(toggled_on: bool) -> void:
+	LevelManager.practice_mode = toggled_on
+	# Forward the signal to toggle the visibility of the touchscreen practice UI in GameScene
+	practice_mode_toggled.emit(toggled_on)
+	_on_continue_pressed()

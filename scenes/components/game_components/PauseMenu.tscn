@@ -72,6 +72,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
+toggle_mode = true
 text = "Practice"
 
 [node name="Edit" type="Button" parent="PauseMenu/VBoxContainer"]
@@ -127,7 +128,7 @@ current_tab = 0
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="PauseMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Practice" to="PauseMenu" method="_on_restart_pressed"]
+[connection signal="toggled" from="PauseMenu/VBoxContainer/Practice" to="PauseMenu" method="_on_practice_toggled"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Edit" to="PauseMenu" method="_on_edit_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Settings" to="PauseMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Leave" to="PauseMenu" method="_on_leave_pressed"]

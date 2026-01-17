@@ -48,6 +48,7 @@ const SPIDER_TRAIL: PackedScene = preload("res://scenes/components/game_componen
 const DASH_BOOM: PackedScene = preload("res://scenes/components/game_components/DashBoom.tscn")
 const GROUND_HIT_PARTICLE: PackedScene = preload("uid://c3pbl5e1vp2ck")
 const UFO_PARTICLE: PackedScene = preload("uid://nt6jgd7lk03t")
+const CHECKPOINT_TEXTURE: Texture2D = preload("uid://byhliui13khoi")
 const ICON_LERP_FACTOR := 0.5
 const SHIP_ROTATION_LERP_FACTOR := 0.15
 const PLATFORMER_ACCELERATION := 5.0
@@ -241,6 +242,9 @@ func _physics_process(delta: float) -> void:
 			_snap_sprite_rotation_frames -= 1
 		elif _snap_sprite_rotation_frames == 0:
 			_snap_sprite_rotation = false
+
+	if LevelManager.practice_mode and LevelManager.level_playing:
+		_handle_checkpoint_placement()
 
 
 func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: bool) -> void:
@@ -839,6 +843,21 @@ func _on_death_restart() -> void:
 		LevelManager.game_scene.reset()
 		LevelManager.game_scene.load_level()
 		LevelManager.game_scene.start_level()
+
+
+func _handle_checkpoint_placement() -> void:
+	var checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent
+	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
+		var new_checkpoint := Sprite2D.new()
+		new_checkpoint.texture = CHECKPOINT_TEXTURE
+		new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
+		checkpoint_parent.add_child(new_checkpoint)
+		new_checkpoint.global_position = global_position
+	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
+		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
+		if not last_checkpoint:
+			return
+		last_checkpoint.queue_free()
 
 
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:

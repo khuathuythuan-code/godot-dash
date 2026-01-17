@@ -17,7 +17,8 @@ var background_sprites: Array[Sprite2D]
 var ground_up: GroundObject
 var ground_down: GroundObject
 var level_song_player: AudioStreamPlayer
-var platformer := false
+var platformer: bool = false
+var practice_mode: bool = false
 
 
 func _ready() -> void:
