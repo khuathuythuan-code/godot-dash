@@ -164,7 +164,6 @@ func setup_color_channel_watchers() -> void:
 		var watcher := ColorChannelWatcher.new(color_channel)
 		watcher.name = "Watcher@%s" % color_channel.associated_group.trim_prefix(Constants.COLOR_CHANNEL_GROUP_PREFIX)
 		add_child(watcher)
-	print_tree_pretty()
 
 
 func register_required_song(old_path: String, new_path: String) -> void:
