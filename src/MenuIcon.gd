@@ -1,9 +1,11 @@
 extends Player
+
 class_name MenuIcon
 
 var _last_jump: int = 0
 var _last_jump_state: int = false
 var _jump_interval: int = 0
+
 
 func _ready() -> void:
 	if not Config.enable_title_screen_icons:
@@ -58,9 +60,8 @@ func _get_jump_state() -> int:
 		Gamemode.BALL, Gamemode.SPIDER:
 			if randi_range(0, 2) == 0:
 				jump_state = 1
-	
-	jump_state = _prevent_leave_screen(internal_gamemode, jump_state)
 
+	jump_state = _prevent_leave_screen(internal_gamemode, jump_state)
 
 	_last_jump_state = jump_state
 	return jump_state
@@ -85,6 +86,7 @@ func _player_death() -> void:
 	_dead = false
 	$Icon.show()
 	_global_position_check()
+
 
 func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 	match gamemode:
@@ -118,8 +120,8 @@ func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 					if position.y > 512 and gravity_flip == 1: # miniswing accel is kinda slow
 						return 1
 
-
 	return original_value
+
 
 func _global_position_check() -> void:
 	if global_position.x > DisplayServer.screen_get_size().x + 1024:
