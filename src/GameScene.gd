@@ -4,6 +4,9 @@ class_name GameScene
 
 @export var checkpoint_parent: Node2D
 
+var cached_level_data: Dictionary
+var cached_level_path: String
+
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
@@ -31,19 +34,22 @@ func _ready() -> void:
 
 
 func load_level() -> void:
-	var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
-	var json_string: String = file.get_as_text()
-	file.close()
-	var json := JSON.new()
-	var error: Error = json.parse(json_string)
-	if error != OK:
-		var error_message: String = "JSON Parse Error: %s in %s at line %s" % [json.get_error_message(), json_string, json.get_error_line()]
-		push_error(error_message)
-		return
-	if json.data is not Dictionary:
-		push_error("Unexpected data")
-		return
-	var level: Level = Level.from_data(json.data)
+	if LevelManager.current_level_path != cached_level_path:
+		cached_level_path = LevelManager.current_level_path
+		var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
+		var json_string: String = file.get_as_text()
+		file.close()
+		var json := JSON.new()
+		var error: Error = json.parse(json_string)
+		if error != OK:
+			var error_message: String = "JSON Parse Error: %s in %s at line %s" % [json.get_error_message(), json_string, json.get_error_line()]
+			push_error(error_message)
+			return
+		if json.data is not Dictionary:
+			push_error("Unexpected data")
+			return
+		cached_level_data = json.data
+	var level: Level = Level.from_data(cached_level_data)
 	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
 	add_loaded_level(level)
 
