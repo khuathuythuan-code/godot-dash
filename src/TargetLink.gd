@@ -1,5 +1,6 @@
 @tool
 extends Line2D
+
 class_name TargetLink
 
 var target: Node2D
@@ -22,7 +23,7 @@ func _process(delta: float) -> void:
 	if target == null:
 		clear_points()
 		return
-	if get_point_position(1) != target.global_position:
+	if get_point_count() > 0 and get_point_position(1) != target.global_position:
 		clear_points()
 		add_point(to_local(target.global_position), 0)
 		add_point(Vector2.ZERO, 1)
