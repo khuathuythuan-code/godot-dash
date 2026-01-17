@@ -19,8 +19,11 @@ enum Mode {
 				parent.query(TargetObjectComponent).override = LevelManager.current_level.get_path_to(LevelManager.player)
 @export var axis: Constants.Axis = Constants.Axis.BOTH
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_global_position: Vector2
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_static_factor: Vector2
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var target: Node2D
 
 
@@ -55,3 +58,7 @@ func _on_easing_progressed(player: Player, _weight_delta: float) -> void:
 	if axis == Constants.Axis.Y or axis == Constants.Axis.BOTH:
 		LevelManager.player_camera.static_factor.y = lerpf(initial_static_factor.y, entering_or_exiting, weight)
 		LevelManager.player_camera.global_position.y = lerpf(initial_global_position.y, target.global_position.y, weight)
+
+
+func _on_easing_restored(_player: Player) -> void:
+	target = parent.query(TargetObjectComponent).target_to_node()
