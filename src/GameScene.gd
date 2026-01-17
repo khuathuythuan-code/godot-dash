@@ -66,6 +66,16 @@ func start_level() -> void:
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
+func restart_level() -> void:
+	LevelManager.player_duals.clear()
+	if Editor.in_editor:
+		Editor.root.stop_playtest()
+	else:
+		reset()
+		load_level()
+		start_level()
+
+
 func reset() -> void:
 	LevelManager.current_level.name = "__freed_Level_%s" % hash(LevelManager.current_level)
 	LevelManager.current_level.queue_free()

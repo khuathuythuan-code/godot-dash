@@ -836,13 +836,7 @@ func _player_death() -> void:
 
 
 func _on_death_restart() -> void:
-	LevelManager.player_duals.clear()
-	if Editor.in_editor:
-		Editor.root._on_playtest_pressed()
-	else:
-		LevelManager.game_scene.reset()
-		LevelManager.game_scene.load_level()
-		LevelManager.game_scene.start_level()
+	LevelManager.game_scene.restart_level()
 
 
 func _handle_checkpoint_placement() -> void:

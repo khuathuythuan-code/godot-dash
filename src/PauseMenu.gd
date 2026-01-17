@@ -121,7 +121,7 @@ func _on_restart_pressed() -> void:
 	unpaused.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	get_parent().hide()
-	get_tree().reload_current_scene()
+	LevelManager.game_scene.restart_level()
 
 
 func _on_edit_pressed() -> void:

@@ -148,6 +148,36 @@ func any_dialog_is_open() -> bool:
 	return false
 
 
+func start_playtest() -> void:
+	$EditHandler.remove_gizmo()
+	$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
+	%ColorChannelEditor.hide_properties()
+	await get_tree().process_frame
+	Editor.level_data_snapshot = level.to_data()
+	Editor.snapshot.pack(self)
+	%MenuBarContainer.hide()
+	%EditorModes.hide()
+	%SidePanel.hide()
+	%LevelSettings.hide()
+	%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
+	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
+	$GameScene/PercentageLayer.show()
+	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
+	$LevelOperationsHandler.pause_autosave()
+	$GameScene.start_level()
+
+
+func stop_playtest() -> void:
+	%Playtest.disabled = true
+	$GameScene.reset()
+	var new_player: Player = LevelManager.player
+	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
+	_ready() # sets `level`
+	new_player.position = level.start_position
+	%LevelSettings.refresh_saveloads(level)
+	%Playtest.disabled = false
+
+
 func _fade_leave(_action: Variant = null) -> void:
 	$GameScene/PauseMenuLayer/PauseMenu.unsuspend()
 	var _fade_screen = $FadeScreenLayer/FadeScreen
@@ -160,31 +190,9 @@ func _on_playtest_pressed() -> void:
 	$EditorCamera.enabled = not $EditorCamera.enabled
 	$GameScene/PlayerCamera.enabled = not $GameScene/PlayerCamera.enabled
 	if $GameScene/PlayerCamera.enabled:
-		$EditHandler.remove_gizmo()
-		$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
-		%ColorChannelEditor.hide_properties()
-		await get_tree().process_frame
-		Editor.level_data_snapshot = level.to_data()
-		Editor.snapshot.pack(self)
-		%MenuBarContainer.hide()
-		%EditorModes.hide()
-		%SidePanel.hide()
-		%LevelSettings.hide()
-		%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
-		LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
-		$GameScene/PercentageLayer.show()
-		$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
-		$LevelOperationsHandler.pause_autosave()
-		$GameScene.start_level()
+		start_playtest()
 	else:
-		%Playtest.disabled = true
-		$GameScene.reset()
-		var new_player: Player = LevelManager.player
-		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
-		_ready() # sets `level`
-		new_player.position = level.start_position
-		%LevelSettings.refresh_saveloads(level)
-		%Playtest.disabled = false
+		stop_playtest()
 
 
 func _on_leave_pressed() -> void:
