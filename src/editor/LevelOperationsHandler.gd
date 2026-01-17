@@ -87,8 +87,6 @@ func _new_level() -> void:
 	color_channel_editor.clear_item_list()
 	edit_handler.clear_selection()
 	var new_level := Level.new()
-	editor.level.name = "tempname"
-	editor.level.queue_free()
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	Editor.version_history = VersionHistory.new()
@@ -137,7 +135,6 @@ func _open_level(path: String) -> void:
 	level.set_meta("packed_file_path", path)
 	# Remove current editor level
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
-	editor.level.queue_free()
 	edit_handler.clear_selection()
 	color_channel_editor.clear_item_list()
 	# Add new level

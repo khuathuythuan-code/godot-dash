@@ -67,6 +67,8 @@ func start_level() -> void:
 
 
 func reset() -> void:
+	LevelManager.current_level.name = "__freed_Level_%s" % hash(LevelManager.current_level)
+	LevelManager.current_level.queue_free()
 	Engine.time_scale = 1.0
 	LevelManager.ground_up.hide()
 	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y

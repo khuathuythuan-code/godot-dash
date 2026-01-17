@@ -178,8 +178,6 @@ func _on_playtest_pressed() -> void:
 		$GameScene.start_level()
 	else:
 		%Playtest.disabled = true
-		LevelManager.current_level.name = str(hash(LevelManager.current_level))
-		LevelManager.current_level.queue_free()
 		$GameScene.reset()
 		var new_player: Player = LevelManager.player
 		_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
