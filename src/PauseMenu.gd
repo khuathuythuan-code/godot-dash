@@ -28,8 +28,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hide_pause_menu"):
 		if visible:
 			hide_tween()
+			settings_panel.hide_tween()
 		else:
 			show_tween()
+			settings_panel.show_tween()
 
 
 func _notification(what):
@@ -58,6 +60,7 @@ func _on_leave_pressed() -> void:
 	settings_panel.hide_tween()
 	hide_tween()
 	LevelManager.platformer = false
+	LevelManager.practice_mode = false
 	LevelManager.level_playing = false
 	AssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
