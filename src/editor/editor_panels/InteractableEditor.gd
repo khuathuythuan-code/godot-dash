@@ -238,7 +238,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 				elif component is TargetColorChannelComponent:
 					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
 			component.set(property_name, _value)
-		load_properties(Editor.version_history.from_nodepath(_interactables_to_initial_values.keys()[0]), self)
+		load_properties(Deserialize.Node(_interactables_to_initial_values.keys()[0]), self)
 
 	var interactables_snapshot: Selection = interactables.clone()
 
