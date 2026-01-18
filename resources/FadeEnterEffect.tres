@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dnw8es3aa6koc"]
+
+[ext_resource type="Shader" uid="uid://bnvot7xslvjkb" path="res://resources/shaders/FadeEnterEffect.gdshader" id="1_46473"]
+
+[resource]
+shader = ExtResource("1_46473")

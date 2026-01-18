@@ -299,6 +299,7 @@ static func from_data(data: Dictionary) -> Level:
 	# in their respective setters.
 
 	var resource_cache := ResourceCache.new()
+	var fade_enter_effect: Material = load("res://resources/FadeEnterEffect.tres")
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		if prefab == null:
@@ -351,4 +352,9 @@ static func from_data(data: Dictionary) -> Level:
 				var markers: Array[String]
 				markers.assign(object_data.markers)
 				object.markers_from_data(markers)
+		# Enter Effect
+		object.material = fade_enter_effect
+		for child: Object in object.get_children():
+			if child is Node2D or child is Control:
+				child.use_parent_material = true
 	return level

@@ -62,6 +62,11 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				Editor.version_history.commit_action()
 				add_hsv_watchers(object, level)
 				edit_handler.select(Selection.from_object(object), true)
+
+				object.material = load("res://resources/FadeEnterEffect.tres")
+				for child: Object in object.get_children():
+					if child is Node2D or child is Control:
+						child.use_parent_material = true
 		# Handle object deletion
 		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
 			placed_object_rotation_degrees = 0.0
