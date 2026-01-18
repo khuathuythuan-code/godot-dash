@@ -355,6 +355,6 @@ static func from_data(data: Dictionary) -> Level:
 		# Enter Effect
 		object.material = fade_enter_effect
 		for child: Object in object.get_children():
-			if (child is Node2D or child is Control) and child is not PulseCircle:
+			if (child is Node2D or child is Control) and child is not PulseCircle and not child.material:
 				child.use_parent_material = true
 	return level
