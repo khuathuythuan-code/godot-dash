@@ -17,7 +17,7 @@ enum Mode {
 @export var copy_target: Node2D
 @export_range(0.0, 1.0, 0.01, "or_greater") var copy_multiplier: float
 
-var inital_alphas: Dictionary[HSVWatcher, float]
+var initial_alphas: Dictionary[HSVWatcher, float]
 var group_hsv_watchers: Array[HSVWatcher]
 var copy_target_hsv_watcher: HSVWatcher
 
@@ -43,7 +43,7 @@ func start(_player: Player) -> void:
 		.filter(func(object): return object is Node2D) \
 		.map(BaseDetailHandler.use_hsv_watcher),
 	)
-	group_hsv_watchers.map(func(hsv_watcher: HSVWatcher): inital_alphas.set(hsv_watcher, hsv_watcher.alpha))
+	group_hsv_watchers.map(func(hsv_watcher: HSVWatcher): initial_alphas.set(hsv_watcher, hsv_watcher.alpha))
 	if group_hsv_watchers.is_empty():
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 	if mode == Mode.COPY and copy_target == null and Editor.in_editor:
@@ -54,7 +54,7 @@ func start(_player: Player) -> void:
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	for hsv_watcher: HSVWatcher in group_hsv_watchers:
-		var initial_alpha := inital_alphas[hsv_watcher]
+		var initial_alpha := initial_alphas[hsv_watcher]
 		match mode:
 			Mode.SET:
 				hsv_watcher.alpha += (alpha - initial_alpha) * weight_delta
