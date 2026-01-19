@@ -18,9 +18,12 @@ func _process(delta: float) -> void:
 	if _factor != 0.0:
 		_factor = move_toward(_factor, 0.0, delta * 6)
 		_pulse_target.material.set_shader_parameter("factor", _factor)
+	else:
+		_pulse_target.use_parent_material = true
 
 
 func pulse(_player: Player) -> void:
 	if parent.has(NoEffectsComponent):
 		return
+	_pulse_target.use_parent_material = false
 	_factor = 1.0
