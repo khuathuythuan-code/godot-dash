@@ -8,10 +8,10 @@ uniform float gradient_end: hint_range(0.0, 1.0, 0.01) = 1.0;
 uniform bool use_canvas_group = false;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
-varying vec2 screen_position_px;
+varying vec2 screen_position;
 
 void vertex() {
-	screen_position_px = (CANVAS_MATRIX * MODEL_MATRIX * vec4(vec2(0.0), 0.0, 1.0)).xy;
+	screen_position = (SCREEN_MATRIX * CANVAS_MATRIX * MODEL_MATRIX * vec4(vec2(0.0), 0.0, 1.0)).xy;
 }
 
 void fragment() {
@@ -23,8 +23,7 @@ void fragment() {
 		COLOR *= screen_color;
 	}
 
-	vec2 screen_position = screen_position_px * SCREEN_PIXEL_SIZE;
-	float fade_gradient = (1.0 - abs(screen_position.x - 0.5) * 2.0) * (1.0 / (fade_width * 2.0));
+	float fade_gradient = (1.0 - abs(screen_position.x)) * (1.0 / (fade_width * 2.0));
 	fade_gradient = 1.0 - pow(1.0 - clamp(fade_gradient, 0.0, 1.0), 2.0);
 	COLOR.a *= fade_gradient;
 }

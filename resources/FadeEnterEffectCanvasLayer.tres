@@ -4,7 +4,7 @@
 
 [resource]
 shader = ExtResource("1_7p4w3")
-shader_parameter/fade_width = 0.075
+shader_parameter/fade_width = 0.15
 shader_parameter/gradient_start = 0.0
 shader_parameter/gradient_end = 1.0
 shader_parameter/use_canvas_group = true
