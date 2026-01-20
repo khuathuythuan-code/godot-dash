@@ -10,6 +10,12 @@ enum SerializeReason {
 	PRACTICE_ATTEMPT,
 }
 
+enum EnterEffect {
+	DISABLED,
+	FADE,
+	FADE_AND_MOVE_DOWN,
+}
+
 const START_SPEED: Array[float] = [
 	0.0, # 0x
 	0.807, # 0.5x
@@ -65,6 +71,17 @@ const START_SPEED: Array[float] = [
 	set(new_color):
 		default_line_color = new_color
 		line_color = new_color
+@export var enter_effect: EnterEffect = EnterEffect.FADE:
+	set(new_enter_effect):
+		enter_effect = new_enter_effect
+		if not AssetManager.ready:
+			await AssetManager.ready
+		if not AssetManager.fade_enter_effect:
+			await AssetManager.fade_enter_loaded
+		AssetManager.fade_enter_effect.set_shader_parameter(&"mode", new_enter_effect)
+		if not AssetManager.fade_enter_effect_canvas_group:
+			await AssetManager.fade_enter_canvas_group_loaded
+		AssetManager.fade_enter_effect_canvas_group.set_shader_parameter(&"mode", new_enter_effect)
 # Used to disable "Edit" button in the pause menu for official levels
 @export var is_editable: bool = true
 
@@ -211,6 +228,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"default_background_color": default_background_color.to_rgba32(),
 		"default_ground_color": default_ground_color.to_rgba32(),
 		"default_line_color": default_line_color.to_rgba32(),
+		"enter_effect": enter_effect,
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"objects": [],
@@ -286,6 +304,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.default_background_color = Color.hex(data.default_background_color)
 	level.default_ground_color = Color.hex(data.default_ground_color)
 	level.default_line_color = Color.hex(data.default_line_color)
+	level.enter_effect = data.enter_effect
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration

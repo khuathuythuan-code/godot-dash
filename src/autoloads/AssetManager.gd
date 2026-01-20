@@ -1,5 +1,8 @@
 extends Node
 
+signal fade_enter_loaded
+signal fade_enter_canvas_group_loaded
+
 var thread: Thread
 
 var loaded_songs: Dictionary[String, AudioStream]
@@ -26,7 +29,9 @@ func _ready() -> void:
 	game_scene_packed = ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
 	player_packed = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
 	fade_enter_effect = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffect.tres")
+	fade_enter_loaded.emit()
 	fade_enter_effect_canvas_group = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffectCanvasGroup.tres")
+	fade_enter_canvas_group_loaded.emit()
 
 
 func load_song(path: String) -> AudioStream:
