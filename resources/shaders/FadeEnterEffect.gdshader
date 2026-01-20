@@ -1,22 +1,20 @@
 shader_type canvas_item;
 
-uniform float FADE: hint_range(0.0, 1.0, 0.01) = 0.075;
+uniform float fade_width: hint_range(0.0, 1.0, 0.01) = 0.15;
 uniform float gradient_start: hint_range(0.0, 1.0, 0.01) = 0.01;
 uniform float gradient_end: hint_range(0.0, 1.0, 0.01) = 1.0;
 
+// Multi-pass shader
 uniform bool use_canvas_group = false;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
+varying vec2 screen_position_px;
+
+void vertex() {
+	screen_position_px = (CANVAS_MATRIX * MODEL_MATRIX * vec4(vec2(0.0), 0.0, 1.0)).xy;
+}
+
 void fragment() {
-	float screen_width = 1.0 / SCREEN_PIXEL_SIZE.x;
-	float fade = FADE / SCREEN_PIXEL_SIZE.x;
-
-	if (FRAGCOORD.x < fade) {
-		COLOR.a *= smoothstep(gradient_start, gradient_end, FRAGCOORD.x / fade);
-	} else if (FRAGCOORD.x > screen_width - fade) {
-		COLOR.a *= smoothstep(gradient_start, gradient_end, (screen_width - FRAGCOORD.x) / fade);
-	}
-
 	if (use_canvas_group) {
 		vec4 screen_color = textureLod(screen_texture, SCREEN_UV, 0.0);
 		if (screen_color.a > 0.0001) {
@@ -24,4 +22,9 @@ void fragment() {
 		}
 		COLOR *= screen_color;
 	}
+
+	vec2 screen_position = screen_position_px * SCREEN_PIXEL_SIZE;
+	float fade_gradient = (1.0 - abs(screen_position.x - 0.5) * 2.0) * (1.0 / (fade_width * 2.0));
+	fade_gradient = 1.0 - pow(1.0 - clamp(fade_gradient, 0.0, 1.0), 2.0);
+	COLOR.a *= fade_gradient;
 }
