@@ -17,8 +17,11 @@ enum Mode {
 @export var copy_target: Node2D
 @export_range(0.0, 1.0, 0.01, "or_greater") var copy_multiplier: float
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_alphas: Dictionary[HSVWatcher, float]
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var group_hsv_watchers: Array[HSVWatcher]
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var copy_target_hsv_watcher: HSVWatcher
 
 
@@ -34,6 +37,35 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if property.name in ["copy_target", "copy_multiplier"] and mode != Mode.COPY:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
+
+
+func _field_to_data(field_name: String) -> Variant:
+	match field_name:
+		"initial_alphas":
+			var _initial_alphas: Dictionary[NodePath, float] = { }
+			for hsv_watcher: HSVWatcher in initial_alphas:
+				_initial_alphas[Serialize.Node(hsv_watcher)] = initial_alphas[hsv_watcher]
+			return _initial_alphas
+		"group_hsv_watchers":
+			return group_hsv_watchers.map(Serialize.Node)
+		"copy_target_hsv_watcher":
+			return Serialize.Node(copy_target_hsv_watcher)
+		_:
+			return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"initial_alphas":
+			for path: NodePath in field_data:
+				initial_alphas[Deserialize.Node(path) as HSVWatcher] = field_data[path]
+		"group_hsv_watchers":
+			group_hsv_watchers.assign(field_data.map(Deserialize.Node))
+		"copy_target_hsv_watcher":
+			copy_target_hsv_watcher = Deserialize.Node(field_data)
+		_:
+			set(field_name, field_data)
+	breakpoint
 
 
 func start(_player: Player) -> void:
@@ -54,7 +86,7 @@ func start(_player: Player) -> void:
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 	for hsv_watcher: HSVWatcher in group_hsv_watchers:
-		var initial_alpha := initial_alphas[hsv_watcher]
+		var initial_alpha: float = initial_alphas[hsv_watcher]
 		match mode:
 			Mode.SET:
 				hsv_watcher.alpha += (alpha - initial_alpha) * weight_delta
