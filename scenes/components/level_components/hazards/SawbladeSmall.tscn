@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwuamvvlwaodm"]
+[gd_scene load_steps=9 format=3 uid="uid://cwuamvvlwaodm"]
 
 [ext_resource type="Texture2D" uid="uid://bc3mwmxfrxugt" path="res://assets/textures/hazards/sawblade/small/RegularSawbladeSmall.svg" id="1_5457p"]
 [ext_resource type="Script" uid="uid://c13bd47nn7q63" path="res://src/interactables/Interactable.gd" id="1_tof8v"]
 [ext_resource type="Shader" uid="uid://c8fmb7haov3m7" path="res://resources/shaders/Sawblade.gdshader" id="2_cgbsa"]
+[ext_resource type="Material" uid="uid://dr6386rtmro6e" path="res://resources/FadeEnterEffectCanvasLayer.tres" id="2_goltc"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_i8mmv"]
 [ext_resource type="Script" uid="uid://uatxmfuua4wq" path="res://src/interactables/public_components/TextureRotateComponent.gd" id="4_cgbsa"]
 
@@ -19,7 +20,10 @@ collision_layer = 2048
 script = ExtResource("1_tof8v")
 metadata/_custom_type_script = "uid://c13bd47nn7q63"
 
-[node name="RegularSawbladeSmall" type="Sprite2D" parent="."]
+[node name="EnterEffectLayer" type="CanvasGroup" parent="."]
+material = ExtResource("2_goltc")
+
+[node name="RegularSawbladeSmall" type="Sprite2D" parent="EnterEffectLayer"]
 material = SubResource("ShaderMaterial_goltc")
 texture = ExtResource("1_5457p")
 
@@ -32,6 +36,6 @@ type = 4
 
 [node name="TextureRotateComponent" type="Node" parent="." node_paths=PackedStringArray("_sprite")]
 script = ExtResource("4_cgbsa")
-_sprite = NodePath("../RegularSawbladeSmall")
+_sprite = NodePath("../EnterEffectLayer/RegularSawbladeSmall")
 rotation_rate = -180.0
 metadata/_custom_type_script = "uid://uatxmfuua4wq"
