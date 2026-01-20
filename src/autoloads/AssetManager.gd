@@ -10,6 +10,8 @@ var title_screen_packed: PackedScene
 var editor_packed: PackedScene
 var game_scene_packed: PackedScene
 var menu_loop: AudioStream
+var fade_enter_effect: ShaderMaterial
+var fade_enter_effect_canvas_group: ShaderMaterial
 
 
 func _ready() -> void:
@@ -17,10 +19,14 @@ func _ready() -> void:
 	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
+	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffect.tres")
+	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffectCanvasGroup.tres")
 	title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 	editor_packed = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
 	game_scene_packed = ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
 	player_packed = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
+	fade_enter_effect = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffect.tres")
+	fade_enter_effect_canvas_group = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffectCanvasGroup.tres")
 
 
 func load_song(path: String) -> AudioStream:

@@ -299,7 +299,6 @@ static func from_data(data: Dictionary) -> Level:
 	# in their respective setters.
 
 	var resource_cache := ResourceCache.new()
-	var fade_enter_effect: Material = load("res://resources/FadeEnterEffect.tres")
 	for object_data: Dictionary in data.objects:
 		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 		if prefab == null:
@@ -353,8 +352,20 @@ static func from_data(data: Dictionary) -> Level:
 				markers.assign(object_data.markers)
 				object.markers_from_data(markers)
 		# Enter Effect
-		object.material = fade_enter_effect
-		for child: Object in object.get_children():
-			if (child is Node2D or child is Control) and child is not PulseCircle and not child.name.contains("Sawblade"):
-				child.use_parent_material = true
+		for child: Node in object.get_children():
+			apply_enter_effect(child)
 	return level
+
+
+static func apply_enter_effect(object_child: Node) -> void:
+	if object_child is CanvasGroup:
+		object_child.material = AssetManager.fade_enter_effect_canvas_group
+		return
+	if not (
+		object_child is Sprite2D
+		or object_child is NinePatchSprite2D
+		or object_child is ReboundOrbSprite
+		or object_child is ReboundPadSprite
+	):
+		return
+	object_child.material = AssetManager.fade_enter_effect

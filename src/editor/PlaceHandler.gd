@@ -1,4 +1,5 @@
 extends Node
+
 class_name PlaceHandler
 
 signal object_deleted(object: Node2D)
@@ -21,8 +22,15 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		var block_palette_ref: BlockPaletteRef
 		if pressed_button != null:
 			block_palette_ref = NodeUtils.get_child_of_type(pressed_button, BlockPaletteRef) as BlockPaletteRef
-		if block_palette_ref != null and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id) \
-				and (Input.is_action_pressed(&"editor_add", false) or Config.is_touch_screen and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and not Editor.swipe):
+		if (
+			block_palette_ref != null
+			and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id)
+			and (
+				Input.is_action_pressed(&"editor_add", false)
+				or Config.is_touch_screen
+				and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+				and not Editor.swipe )
+		):
 			if pressed_button != null and (not Config.is_touch_screen or Editor.delete == false):
 				# Create object
 				var object: Node2D
@@ -63,12 +71,17 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				add_hsv_watchers(object, level)
 				edit_handler.select(Selection.from_object(object), true)
 
-				object.material = load("res://resources/FadeEnterEffect.tres")
-				for child: Object in object.get_children():
-					if (child is Node2D or child is Control) and child is not PulseCircle and not child.name.contains("Sawblade"):
-						child.use_parent_material = true
+				for child: Node in object.get_children():
+					Level.apply_enter_effect(child)
 		# Handle object deletion
-		elif (Input.is_action_pressed(&"editor_remove", false) or Config.is_touch_screen and Editor.delete) and placed_objects_collider.has_overlapping_areas():
+		elif (
+			(
+				Input.is_action_pressed(&"editor_remove", false)
+				or Config.is_touch_screen
+				and Editor.delete
+			)
+			and placed_objects_collider.has_overlapping_areas()
+		):
 			placed_object_rotation_degrees = 0.0
 			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not Level:
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
@@ -118,7 +131,7 @@ func _set_texture_override_metadata(object: Node2D, override: TextureOverride, i
 	object.set_meta(&"texture_override", texture_override_data)
 
 
-func _on_edit_handler_rotated_object_degrees(rotation_degrees:float) -> void:
+func _on_edit_handler_rotated_object_degrees(rotation_degrees: float) -> void:
 	placed_object_rotation_degrees += rotation_degrees
 
 
