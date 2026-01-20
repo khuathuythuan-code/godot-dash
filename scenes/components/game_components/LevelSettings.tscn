@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://ylswfd45fw38"]
+[gd_scene load_steps=14 format=3 uid="uid://ylswfd45fw38"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_0trr5"]
 [ext_resource type="Script" uid="uid://bhqj6dqkejl2k" path="res://src/editor/LevelSettings.gd" id="1_ikfu3"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="6_ikfu3"]
 [ext_resource type="Script" uid="uid://dd8enor6efbjp" path="res://src/gui/properties/components/PropertyValueThemeDefaultFont.gd" id="7_2dtee"]
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="9_2dtee"]
+[ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="9_bmwhr"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="9_ikfu3"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="9_jvsdk"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="10_2dtee"]
@@ -113,14 +114,14 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 script = ExtResource("7_2dtee")
 metadata/_custom_type_script = "uid://dd8enor6efbjp"
 
-[node name="Default Colors" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Default Look" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-title = "Default Colors"
+title = "Default Look"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look"]
 layout_mode = 2
 
-[node name="Background" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer"]
+[node name="Background" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -128,12 +129,12 @@ script = ExtResource("11_jvsdk")
 default = Color(0.21176471, 0.4392157, 1, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer/Background"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Background"]
 script = ExtResource("10_2dtee")
 config_property = &"default_background_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Ground" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer"]
+[node name="Ground" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -141,12 +142,12 @@ script = ExtResource("11_jvsdk")
 default = Color(0.105882354, 0.29411766, 0.76862746, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer/Ground"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Ground"]
 script = ExtResource("10_2dtee")
 config_property = &"default_ground_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Line" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer"]
+[node name="Line" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -154,9 +155,23 @@ script = ExtResource("11_jvsdk")
 default = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Colors/VBoxContainer/Line"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Line"]
 script = ExtResource("10_2dtee")
 config_property = &"default_line_color"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Enter Effect" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("9_bmwhr")
+default = 1
+fields = PackedStringArray("Disabled", "Fade", "Fade and move down")
+metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Enter Effect"]
+script = ExtResource("10_2dtee")
+config_property = &"enter_effect"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="Details" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
