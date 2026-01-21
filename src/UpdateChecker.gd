@@ -17,7 +17,16 @@ func _ready() -> void:
 
 func _on_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	var text: String
-	if body.get_string_from_utf8().containsn('config/version="%s"' % ProjectSettings.get_setting("application/config/version")):
+	if not body.get_string_from_utf8().containsn('config/version='):
+		text = "Could not check for updates."
+		if toast:
+			toast.queue_free()
+		toast = Toasts.warning(text, INF)
+		await get_tree().create_timer(1.0).timeout
+		toast.dismiss()
+		queue_free()
+		return
+	elif body.get_string_from_utf8().containsn('config/version="%s"' % ProjectSettings.get_setting("application/config/version")):
 		text = "Up to date (version %s)." % ProjectSettings.get_setting("application/config/version")
 		if toast:
 			toast.text = text
