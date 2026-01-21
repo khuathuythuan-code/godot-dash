@@ -1,63 +1,40 @@
-extends Node
+extends Button
 
-var toast: Toast
+var version: String = ProjectSettings.get_setting("application/config/version")
 var out_of_date: bool = false
+var new_version: String
 
 
 func _ready() -> void:
 	if !Config.check_for_updates:
-		queue_free()
+		text = version
 		return
+	pressed.connect(_on_pressed)
 	var http: HTTPRequest = HTTPRequest.new()
 	add_child(http)
 	http.request_completed.connect(_on_request_completed)
 	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
-	toast = Toasts.new_toast("Checking for updates...", INF)
+	text = "(v%s) Checking for updates..." % version
 
 
 func _on_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
-	var text: String
 	if not body.get_string_from_utf8().containsn('config/version='):
-		text = "Could not check for updates."
-		if toast:
-			toast.queue_free()
-		toast = Toasts.warning(text, INF)
-		await get_tree().create_timer(1.0).timeout
-		toast.dismiss()
-		queue_free()
+		text = "(v%s) Could not check for updates." % version
+		add_theme_color_override("font_disabled_color", Color.DARK_RED)
 		return
-	elif body.get_string_from_utf8().containsn('config/version="%s"' % ProjectSettings.get_setting("application/config/version")):
-		text = "Up to date (version %s)." % ProjectSettings.get_setting("application/config/version")
-		if toast:
-			toast.text = text
-		else:
-			Toasts.new_toast(text, INF)
-		await get_tree().create_timer(1.0).timeout
-		if toast:
-			toast.dismiss()
-		queue_free()
+	elif body.get_string_from_utf8().containsn('config/version="%s"' % version):
+		text = "(v%s) Up to date." % version
 		return
 	for line in body.get_string_from_utf8().split("\n"):
 		if line.begins_with("config/version="):
-			text = line.replacen("config/version=", "").remove_chars('"')
+			new_version = line.replacen("config/version=", "").remove_chars('"')
 			break
-	text = "New update available (version %s)! Click to download." % text
-	if toast:
-		toast.text = text
-	else:
-		Toasts.new_toast(text, INF)
-	out_of_date = true
-	toast.pressed.connect(_on_toast_pressed)
+	text = "(v%s) New update available: v%s! Click to download." % [version, new_version]
+	disabled = false
 
 
-func _on_toast_pressed() -> void:
-	if out_of_date:
-		toast.text = "Link opened."
-		OS.shell_open("https://codeberg.org/godot-dash/godot-dash/")
-		await get_tree().create_timer(0.2).timeout
-		queue_free()
-
-
-func _exit_tree() -> void:
-	if toast:
-		toast.dismiss()
+func _on_pressed() -> void:
+	OS.shell_open("https://codeberg.org/godot-dash/godot-dash/")
+	text = "Link opened!"
+	await get_tree().create_timer(1.0).timeout
+	text = "(v%s) New update available: v%s! Click to download." % [version, new_version]
