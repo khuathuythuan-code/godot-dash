@@ -74,7 +74,6 @@ func start_level() -> void:
 
 
 func restart_level() -> void:
-	LevelManager.player_duals.clear()
 	var should_use_practice_snapshot: bool = LevelManager.practice_mode and not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
