@@ -60,6 +60,7 @@ jump_boost = -0.706
 
 [node name="GravityFlipChangerComponent" type="Node" parent="."]
 script = ExtResource("7_i2245")
+flip_state = 2
 
 [node name="DirectionChangerComponent" type="Node" parent="."]
 script = ExtResource("8_63mce")
