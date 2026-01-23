@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name ArrayPropertyItem
 
 signal value_changed(value: Variant)
@@ -22,6 +23,8 @@ func _ready() -> void:
 
 	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
 	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
+	delete_button.custom_minimum_size.x = 24.0
+	delete_button.expand_icon = true
 	delete_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	delete_button.pressed.connect(remove_self)
 
