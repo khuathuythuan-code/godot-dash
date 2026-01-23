@@ -1,5 +1,6 @@
 @tool
 extends Component
+
 class_name PlayerCountChangerComponent
 
 @export_range(1, 10, 1, "or_greater") var _player_count: int = 1
@@ -49,9 +50,9 @@ func set_player_count(player: Player) -> void:
 			var normalized_parent_global_position := parent.global_position.rotated(-LevelManager.player.gameplay_rotation)
 			var normalized_player_global_position := LevelManager.player.global_position.rotated(-LevelManager.player.gameplay_rotation)
 			player_instance.global_position = Vector2(
-					normalized_player_global_position.x,
-					normalized_parent_global_position.y
-				).rotated(LevelManager.player.gameplay_rotation)
+				normalized_player_global_position.x,
+				normalized_parent_global_position.y,
+			).rotated(LevelManager.player.gameplay_rotation)
 			player_instance.velocity = LevelManager.player.velocity
 			player_instance.gameplay_rotation = LevelManager.player.gameplay_rotation
 			player_instance.horizontal_direction = LevelManager.player.horizontal_direction
@@ -67,8 +68,7 @@ func set_player_count(player: Player) -> void:
 			if not same_gravity and dual_index % 2 == 1:
 				player_instance.gravity_flip *= -1
 				player_instance.velocity = Vector2(
-						player_instance.velocity.rotated(-player_instance.gameplay_rotation).x,
-						-player_instance.velocity.rotated(-player_instance.gameplay_rotation).y
+					player_instance.velocity.rotated(-player_instance.gameplay_rotation).x,
+					-player_instance.velocity.rotated(-player_instance.gameplay_rotation).y,
 				).rotated(player_instance.gameplay_rotation)
 			duals_to_create -= 1
-

@@ -65,7 +65,6 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 			copy_target_hsv_watcher = Deserialize.Node(field_data)
 		_:
 			set(field_name, field_data)
-	breakpoint
 
 
 func start(_player: Player) -> void:

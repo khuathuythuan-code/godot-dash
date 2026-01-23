@@ -20,7 +20,6 @@ func _ready() -> void:
 	LevelManager.ground_down = $GroundDownParallax/GroundDownOrigin
 	LevelManager.ground_up = $GroundUpParallax/GroundUpOrigin
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		$PauseMenuLayer/PauseMenu.leave.connect(_leave_level)
@@ -62,6 +61,7 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 	$PlayerCamera.snap_view()
 	if LevelManager.attempt == 0:
 		await get_tree().create_timer(0.2).timeout
@@ -74,7 +74,6 @@ func start_level() -> void:
 
 
 func restart_level() -> void:
-	LevelManager.player_duals.clear()
 	var should_use_practice_snapshot: bool = LevelManager.practice_mode and not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()

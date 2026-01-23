@@ -66,6 +66,7 @@ func _physics_process(delta: float) -> void:
 				or Input.is_action_pressed(&"editor_import_level", true)
 				or Input.is_action_pressed(&"editor_export_level", true)
 				or any_gizmo_is_open()
+				or Editor.is_text_input_focused()
 			)
 		)
 		if can_use_actions:

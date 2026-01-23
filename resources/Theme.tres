@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=51 format=3 uid="uid://cntfsyilhn2ic"]
 
-[ext_resource type="FontFile" uid="uid://d4ihw5gjc286r" path="res://assets/fonts/InterVariable.ttf" id="2_jaexg"]
+[ext_resource type="FontFile" uid="uid://blmhcdu7yijqw" path="res://assets/fonts/Inter.ttc" id="2_cjwly"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_521vp"]
 
@@ -219,11 +219,7 @@ corner_detail = 3
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xcyaj"]
 
 [sub_resource type="FontVariation" id="FontVariation_10srq"]
-base_font = ExtResource("2_jaexg")
-variation_opentype = {
-1869640570: 14,
-2003265652: 800
-}
+variation_face_index = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa72w"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
@@ -247,10 +243,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="FontVariation" id="FontVariation_2n7uf"]
-variation_opentype = {
-1869640570: 14,
-2003265652: 600
-}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muv14"]
 bg_color = Color(0.16007765, 0.16007765, 0.16007765, 0.6)
@@ -376,7 +368,7 @@ color = Color(1, 1, 1, 0.25)
 thickness = 2
 
 [resource]
-default_font = ExtResource("2_jaexg")
+default_font = ExtResource("2_cjwly")
 default_font_size = 16
 Button/styles/focus = SubResource("StyleBoxEmpty_521vp")
 ColorPicker/styles/picker_focus_circle = SubResource("StyleBoxEmpty_jaexg")
