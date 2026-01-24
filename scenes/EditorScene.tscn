@@ -1,4 +1,4 @@
-[gd_scene load_steps=306 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=317 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dvxhihlq7b81b" path="res://assets/textures/solids/grid_blocks/GridBlock01.svg" id="13_fa2pl"]
 [ext_resource type="Texture2D" uid="uid://mbqogq5cigyt" path="res://assets/textures/solids/grid_blocks/GridBlock02.svg" id="14_ajdcu"]
 [ext_resource type="Texture2D" uid="uid://b5b8kj1ubkugy" path="res://assets/textures/solids/regular_blocks/RegularSlopeRegular01.svg" id="14_ccqvw"]
+[ext_resource type="Script" uid="uid://tb1aau87yyxd" path="res://src/RenderModes.gd" id="14_tp0jt"]
 [ext_resource type="PackedScene" uid="uid://dh1l6k3qxgwdf" path="res://scenes/components/level_components/hazards/SpikeFlat.tscn" id="14_wyjb2"]
 [ext_resource type="Texture2D" uid="uid://bidrk8pvqveup" path="res://assets/textures/orbs/YellowOrb.svg" id="15_cisni"]
 [ext_resource type="Texture2D" uid="uid://xt2p3hurjk54" path="res://assets/textures/solids/grid_blocks/GridBlock03.svg" id="15_e8m1b"]
@@ -251,6 +252,92 @@
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqjdx"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.3019608)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tp0jt"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1xji"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.33, 0.33, 0.33, 0.6)
+corner_radius_top_left = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdb1n"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo0kk"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7gu6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.33, 0.33, 0.33, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n2a8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03wiq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n63fl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.33, 0.33, 0.33, 0.6)
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66500"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -739,6 +826,50 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 reset_scale_on_ready = true
+
+[node name="RenderModes" type="PanelContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" node_paths=PackedStringArray("object_mode", "material_mode", "rendered_mode")]
+material = ExtResource("3_m55bu")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 10.0
+offset_right = -10.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dqjdx")
+script = ExtResource("14_tp0jt")
+object_mode = NodePath("HBoxContainer/ObjectMode")
+material_mode = NodePath("HBoxContainer/MaterialMode")
+rendered_mode = NodePath("HBoxContainer/RenderedMode")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/RenderModes"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ObjectMode" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/RenderModes/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tp0jt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r1xji")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gdb1n")
+toggle_mode = true
+text = "Object Mode"
+
+[node name="MaterialMode" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/RenderModes/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_vo0kk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a7gu6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6n2a8")
+toggle_mode = true
+text = "Material Mode"
+
+[node name="RenderedMode" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport/RenderModes/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_03wiq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n63fl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_66500")
+toggle_mode = true
+button_pressed = true
+text = "Rendered Mode"
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
@@ -6197,11 +6328,13 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 

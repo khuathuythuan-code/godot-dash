@@ -82,6 +82,8 @@ const START_SPEED: Array[float] = [
 		if not AssetManager.fade_enter_effect_canvas_group:
 			await AssetManager.fade_enter_canvas_group_loaded
 		AssetManager.fade_enter_effect_canvas_group.set_shader_parameter(&"mode", new_enter_effect)
+		if Editor.render_mode_manager:
+			Editor.render_mode_manager.update()
 # Used to disable "Edit" button in the pause menu for official levels
 @export var is_editable: bool = true
 
@@ -100,12 +102,16 @@ var background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
 		background_color = new_color
 		for background_sprite: Sprite2D in LevelManager.background_sprites:
 			background_sprite.modulate = new_color
+		if Editor.render_mode_manager:
+			Editor.render_mode_manager.update()
 var ground_color: Color = Constants.DEFAULT_GROUND_COLOR:
 	set(new_color):
 		var ground_down: Sprite2D = LevelManager.ground_down.get_node("Ground")
 		var ground_up: Sprite2D = LevelManager.ground_up.get_node("Ground")
 		ground_down.self_modulate = new_color
 		ground_up.self_modulate = new_color
+		if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
+			Editor.render_mode_manager.update()
 var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 	set(new_color):
 		# The material resource is shared between ground sprites

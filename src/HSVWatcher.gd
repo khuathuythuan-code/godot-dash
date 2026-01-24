@@ -22,6 +22,8 @@ var selection_highlight: SelectionHighlight
 
 
 func _ready() -> void:
+	if Editor.render_mode_manager:
+		Editor.render_mode_manager.update_hsvwatcher.connect(update_color)
 	# Avoid using the parent's modulate if the modulate is already set.
 	# This happens when a scene with HSVWatchers with set up modulates is loaded.
 	if not parent.has_meta("_has_hsvwatcher"):
@@ -53,8 +55,11 @@ func update_color() -> void:
 	shifted_modulate.v += hsv_shift[2]
 	match selection_highlight:
 		SelectionHighlight.NONE:
-			parent.modulate = shifted_modulate * intensity * base_intensity
-			parent.modulate.a = modulate.a * alpha * base_alpha
+			if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
+				parent.modulate = Color.WHITE
+			else:
+				parent.modulate = shifted_modulate * intensity * base_intensity
+				parent.modulate.a = modulate.a * alpha * base_alpha
 		SelectionHighlight.NORMAL:
 			parent.modulate = Color.GREEN
 		SelectionHighlight.DUPLICATE:
