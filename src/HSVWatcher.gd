@@ -29,6 +29,10 @@ func _ready() -> void:
 	parent.set_meta("_has_hsvwatcher", true)
 	hsv_shift.resize(3)
 
+	await get_tree().process_frame
+	if Editor.render_mode_manager:
+		Editor.render_mode_manager.update_hsvwatcher.connect(update_color)
+
 
 func to_data() -> Dictionary:
 	return {
@@ -53,8 +57,11 @@ func update_color() -> void:
 	shifted_modulate.v += hsv_shift[2]
 	match selection_highlight:
 		SelectionHighlight.NONE:
-			parent.modulate = shifted_modulate * intensity * base_intensity
-			parent.modulate.a = modulate.a * alpha * base_alpha
+			if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
+				parent.modulate = Color.WHITE
+			else:
+				parent.modulate = shifted_modulate * intensity * base_intensity
+				parent.modulate.a = modulate.a * alpha * base_alpha
 		SelectionHighlight.NORMAL:
 			parent.modulate = Color.GREEN
 		SelectionHighlight.DUPLICATE:
