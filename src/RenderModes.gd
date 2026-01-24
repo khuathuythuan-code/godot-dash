@@ -25,6 +25,8 @@ func _ready() -> void:
 	object_mode.pressed.connect(enable_object_mode)
 	material_mode.pressed.connect(enable_material_mode)
 	rendered_mode.pressed.connect(enable_rendered_mode)
+	mode = Config.default_render_mode
+	update()
 
 
 func _untoggle_all(exclude: Button = null) -> void:

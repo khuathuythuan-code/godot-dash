@@ -77,21 +77,23 @@ enum ParticlePreprocessing {
 @export_global_file(
 	"*.mp3",
 	"*.ogg",
-	"*.wav"
-) var menu_loop: String:
+	"*.wav",
+)
+var menu_loop: String:
 	set(value):
 		menu_loop = value
 		menu_loop_changed.emit(value)
 
 # Keybinds
 @export_group("Keybinds")
-@export_storage var input_map: Dictionary[StringName, Array] = {} # Dictionary[StringName, Array[InputEvent]]
+@export_storage var input_map: Dictionary[StringName, Array] = { } # Dictionary[StringName, Array[InputEvent]]
 
 # Editor
 @export_group("Editor")
 @export var hide_grid_on_playtest: bool = true
 @export var autosave_delay: float
 @export var username: String = "Player"
+@export var default_render_mode: RenderMode.Mode = RenderMode.Mode.RENDERED_MODE
 @export var selection_zone_color := Color.GREEN
 @export_range(0, 1, .05) var selection_zone_fill_alpha := 0.2
 @export var trigger_hitbox_color := Color.CYAN
@@ -149,6 +151,7 @@ func _init():
 	hide_grid_on_playtest = config_file.get_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
 	autosave_delay = config_file.get_value("Editor", "autosave_delay", autosave_delay)
 	username = config_file.get_value("Editor", "username", username)
+	default_render_mode = config_file.get_value("Editor", "default_render_mode", default_render_mode)
 	selection_zone_color = config_file.get_value("Editor", "selection_zone_color", selection_zone_color)
 	selection_zone_fill_alpha = config_file.get_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	trigger_hitbox_color = config_file.get_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
@@ -207,6 +210,7 @@ func save() -> void:
 	config_file.set_value("Editor", "hide_grid_on_playtest", hide_grid_on_playtest)
 	config_file.set_value("Editor", "autosave_delay", autosave_delay)
 	config_file.set_value("Editor", "username", username)
+	config_file.set_value("Editor", "default_render_mode", default_render_mode)
 	config_file.set_value("Editor", "selection_zone_color", selection_zone_color)
 	config_file.set_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	config_file.set_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
@@ -223,6 +227,5 @@ func save() -> void:
 	# Internet
 	config_file.set_value("Internet", "check_for_updates", check_for_updates)
 	config_file.set_value("Internet", "discord_rich_presence", discord_rich_presence)
-
 
 	config_file.save("user://config.cfg")

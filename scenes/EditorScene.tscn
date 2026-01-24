@@ -868,7 +868,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_03wiq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_n63fl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_66500")
 toggle_mode = true
-button_pressed = true
 text = "Rendered Mode"
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
