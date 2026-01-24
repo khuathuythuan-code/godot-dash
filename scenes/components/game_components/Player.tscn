@@ -487,10 +487,6 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_244xe")
 
-[node name="GroundRaycast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 128)
-collision_mask = 32
-
 [node name="WaveTrail" type="Line2D" parent="."]
 unique_name_in_owner = true
 z_index = -1

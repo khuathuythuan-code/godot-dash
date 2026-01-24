@@ -386,8 +386,6 @@ func _compute_velocity(
 	$KillColliderSolid.rotation = gameplay_rotation
 	$KillColliderRectangularHazard.rotation = gameplay_rotation
 	$KillColliderCircularHazard.rotation = gameplay_rotation
-	$GroundRaycast.rotation = gameplay_rotation
-	$GroundRaycast.scale.y = gravity_flip
 	$SlopeShapecast.rotation = gameplay_rotation
 	$SlopeShapecast.scale.y = gravity_flip
 
@@ -410,7 +408,7 @@ func _compute_velocity(
 		elif internal_gamemode == Gamemode.SPIDER:
 			_velocity.y += GRAVITY * delta * gravity_flip * gravity_multiplier * jump_state * -1 * SPIDER_GRAVITY_MULTIPLIER
 			_velocity.y = clamp(_velocity.y, -TERMINAL_VELOCITY.y, TERMINAL_VELOCITY.y)
-		elif not is_on_floor() and not $GroundRaycast.is_colliding():
+		elif not is_on_floor():
 			if internal_gamemode == Gamemode.UFO:
 				_velocity.y += GRAVITY * delta * gravity_flip * gravity_multiplier * UFO_GRAVITY_MULTIPLIER
 			else:
