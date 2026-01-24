@@ -191,8 +191,25 @@ anchor_right = 0.333
 anchor_bottom = 1.0
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/MainPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpdateChecker" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+disabled = true
+text = "Update Checker"
+flat = true
+script = ExtResource("19_1ska7")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_constants/separation = 12
 alignment = 1
 
@@ -437,9 +454,6 @@ theme_override_constants/margin_bottom = 6
 
 [node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" instance=ExtResource("12_p8bvb")]
 layout_mode = 2
-
-[node name="UpdateChecker" type="Node" parent="."]
-script = ExtResource("19_1ska7")
 
 [node name="CameraCenterParent" type="Control" parent="."]
 layout_mode = 1
