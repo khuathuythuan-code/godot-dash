@@ -23,14 +23,14 @@ func _ready() -> void:
 	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
 	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffect.tres")
-	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffectCanvasLayer.tres")
+	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffectCanvasGroup.tres")
 	title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
 	editor_packed = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
 	game_scene_packed = ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
 	player_packed = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")
 	fade_enter_effect = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffect.tres")
 	fade_enter_loaded.emit()
-	fade_enter_effect_canvas_group = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffectCanvasLayer.tres")
+	fade_enter_effect_canvas_group = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffectCanvasGroup.tres")
 	fade_enter_canvas_group_loaded.emit()
 
 

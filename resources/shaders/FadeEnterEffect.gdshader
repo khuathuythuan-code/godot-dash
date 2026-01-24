@@ -13,14 +13,6 @@ varying vec2 screen_position;
 varying vec2 screen_uv;
 
 vec4 fade_color(vec4 color) {
-	if (use_canvas_group) {
-		vec4 screen_color = textureLod(screen_texture, screen_uv, 0.0);
-		if (screen_color.a > 0.0001) {
-			screen_color.rgb /= screen_color.a;
-		}
-		color *= screen_color;
-	}
-
 	float fade_gradient = (1.0 - abs(screen_position.x)) * (1.0 / (fade_width * 2.0));
 	fade_gradient = 1.0 - pow(1.0 - clamp(fade_gradient, 0.0, 1.0), 2.0);
 	color.a *= fade_gradient;
@@ -44,6 +36,13 @@ void vertex() {
 }
 
 void fragment() {
+	if (use_canvas_group) {
+		vec4 screen_color = textureLod(screen_texture, screen_uv, 0.0);
+		if (screen_color.a > 0.0001) {
+			screen_color.rgb /= screen_color.a;
+		}
+		COLOR *= screen_color;
+	}
 	switch (mode) {
 		case 0: // Disabled
 			break;
