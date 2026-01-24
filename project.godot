@@ -50,7 +50,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="godot-dash"
-config/version="0.1.0"
+config/version="0.0.1"
 run/main_scene="res://scenes/TitleScreen.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.5", "Forward Plus")
