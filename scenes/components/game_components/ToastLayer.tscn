@@ -4,15 +4,14 @@
 layer = 101
 
 [node name="ToastContainer" type="VBoxContainer" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -79.5
-offset_right = 79.5
-offset_bottom = 69.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 103.0
 grow_horizontal = 2
+mouse_filter = 2
 theme_override_constants/separation = 10
 
 [node name="Spacer" type="Control" parent="ToastContainer"]
 custom_minimum_size = Vector2(0, 53)
 layout_mode = 2
+mouse_filter = 2
