@@ -742,9 +742,9 @@ script = ExtResource("4_gl2yd")
 reset_scale_on_ready = true
 
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" instance=ExtResource("14_tp0jt")]
+unique_name_in_owner = true
 layout_mode = 1
-offset_left = -370.0
-offset_bottom = 46.0
+offset_left = -242.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
