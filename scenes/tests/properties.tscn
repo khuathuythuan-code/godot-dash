@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://3bc5088argko"]
+[gd_scene load_steps=18 format=3 uid="uid://3bc5088argko"]
 
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="1_1q0ts"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_xcvel"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://s3yc0qgg4nal" path="res://src/resources/SpawnedTrigger.gd" id="13_iyxla"]
 [ext_resource type="Script" uid="uid://b77ajx8cop15a" path="res://src/gui/properties/types/MultilineStringProperty.gd" id="14_iyxla"]
 [ext_resource type="Script" uid="uid://cfmafqjh1b675" path="res://src/gui/properties/types/FlagsProperty.gd" id="15_pssp5"]
+[ext_resource type="Script" uid="uid://cwu2m4yu7an50" path="res://src/gui/properties/types/OneLineEnumProperty.gd" id="17_htt1w"]
 
 [sub_resource type="Resource" id="Resource_iyxla"]
 resource_local_to_scene = true
@@ -55,6 +56,7 @@ layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="FloatProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -63,6 +65,7 @@ default = 50.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
 [node name="FloatSliderProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 tooltip_text = "FloatSliderProperty"
@@ -75,6 +78,7 @@ metadata/_custom_type_script = "uid://c73uilol0rw1g"
 metadata/_edit_lock_ = true
 
 [node name="BoolProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -83,6 +87,7 @@ default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
 [node name="Vector2Property" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -92,6 +97,7 @@ default = Vector2(5, 0)
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
 [node name="StringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -101,6 +107,7 @@ placeholder = ":3"
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
 [node name="ColorProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -113,9 +120,15 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("7_4ovid")
-default = 1
-fields = PackedStringArray("a", "b")
+fields = PackedStringArray("A", "B")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
+
+[node name="OneLineEnumProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("17_htt1w")
+fields = PackedStringArray("Object", "Material", "Rendered")
 
 [node name="Node2DProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
