@@ -1,4 +1,4 @@
-[gd_scene load_steps=306 format=3 uid="uid://b3u17qn20dek3"]
+[gd_scene load_steps=307 format=3 uid="uid://b3u17qn20dek3"]
 
 [ext_resource type="Script" uid="uid://ccok7xaujrlpn" path="res://src/EditorScene.gd" id="1_ftcrp"]
 [ext_resource type="PackedScene" uid="uid://db7ebleody4s3" path="res://scenes/GameScene.tscn" id="1_ql4al"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dvxhihlq7b81b" path="res://assets/textures/solids/grid_blocks/GridBlock01.svg" id="13_fa2pl"]
 [ext_resource type="Texture2D" uid="uid://mbqogq5cigyt" path="res://assets/textures/solids/grid_blocks/GridBlock02.svg" id="14_ajdcu"]
 [ext_resource type="Texture2D" uid="uid://b5b8kj1ubkugy" path="res://assets/textures/solids/regular_blocks/RegularSlopeRegular01.svg" id="14_ccqvw"]
+[ext_resource type="PackedScene" uid="uid://7sn531ose2as" path="res://scenes/components/game_components/RenderModes.tscn" id="14_tp0jt"]
 [ext_resource type="PackedScene" uid="uid://dh1l6k3qxgwdf" path="res://scenes/components/level_components/hazards/SpikeFlat.tscn" id="14_wyjb2"]
 [ext_resource type="Texture2D" uid="uid://bidrk8pvqveup" path="res://assets/textures/orbs/YellowOrb.svg" id="15_cisni"]
 [ext_resource type="Texture2D" uid="uid://xt2p3hurjk54" path="res://assets/textures/solids/grid_blocks/GridBlock03.svg" id="15_e8m1b"]
@@ -739,6 +740,11 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 reset_scale_on_ready = true
+
+[node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" instance=ExtResource("14_tp0jt")]
+layout_mode = 1
+offset_left = -370.0
+offset_bottom = 46.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true

@@ -12,6 +12,7 @@ var level_history_version: int = 1
 var shortcut_blocker: Node
 var viewport: EditorViewport
 var version_history: UndoRedo
+var render_mode_manager: RenderMode
 
 # MOBILE CONTROLS
 var swipe: bool = false
