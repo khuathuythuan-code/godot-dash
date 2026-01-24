@@ -166,7 +166,7 @@ layout_mode = 2
 vertical = true
 script = ExtResource("9_bmwhr")
 default = 1
-fields = PackedStringArray("Disabled", "Fade", "Fade and move down")
+fields = PackedStringArray("Disabled", "Fade", "Fade and move down", "Fade and scale")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
 [node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Enter Effect"]

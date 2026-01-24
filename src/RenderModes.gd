@@ -4,9 +4,7 @@ class_name RenderMode
 
 signal update_hsvwatcher
 
-@export var object_mode: Button
-@export var material_mode: Button
-@export var rendered_mode: Button
+@export var enum_button: EnumButton
 var mode: Mode = Mode.RENDERED_MODE
 
 enum Mode {
@@ -19,21 +17,22 @@ enum Mode {
 func _ready() -> void:
 	await get_tree().process_frame
 	Editor.render_mode_manager = self
-	object_mode.pressed.connect(enable_object_mode)
-	material_mode.pressed.connect(enable_material_mode)
-	rendered_mode.pressed.connect(enable_rendered_mode)
+	enum_button.value_changed.connect(
+		func(enum_variant: int):
+			match enum_variant:
+				Mode.OBJECT_MODE:
+					enable_object_mode()
+				Mode.MATERIAL_MODE:
+					enable_material_mode()
+				Mode.RENDERED_MODE:
+					enable_rendered_mode()
+	)
 	mode = Config.default_render_mode
-	match mode:
-		Mode.OBJECT_MODE:
-			object_mode.set_pressed(true)
-		Mode.MATERIAL_MODE:
-			material_mode.set_pressed(true)
-		Mode.RENDERED_MODE:
-			rendered_mode.set_pressed(true)
+	enum_button.set_value_no_signal(mode)
 
 
 func enable_object_mode() -> void:
-	LevelManager.game_scene.get_node("ShaderLayer").visible = false
+	LevelManager.game_scene.get_node(^"ShaderLayer").visible = false
 	var level: Level = Editor.root.level
 	level.ground_color = Color.GRAY
 	level.background_color = Color.GRAY
@@ -45,7 +44,7 @@ func enable_object_mode() -> void:
 
 func enable_material_mode() -> void:
 	mode = Mode.MATERIAL_MODE
-	LevelManager.game_scene.get_node("ShaderLayer").visible = false
+	LevelManager.game_scene.get_node(^"ShaderLayer").visible = false
 	var level: Level = Editor.root.level
 	level.ground_color = level.default_ground_color
 	level.background_color = level.default_background_color
@@ -56,7 +55,7 @@ func enable_material_mode() -> void:
 
 func enable_rendered_mode() -> void:
 	mode = Mode.RENDERED_MODE
-	LevelManager.game_scene.get_node("ShaderLayer").visible = true
+	LevelManager.game_scene.get_node(^"ShaderLayer").visible = true
 	var level: Level = Editor.root.level
 	level.ground_color = level.default_ground_color
 	level.background_color = level.default_background_color

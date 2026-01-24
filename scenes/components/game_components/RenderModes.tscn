@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://7sn531ose2as"]
+[gd_scene load_steps=6 format=3 uid="uid://7sn531ose2as"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_mt01j"]
 [ext_resource type="Script" uid="uid://tb1aau87yyxd" path="res://src/RenderModes.gd" id="2_60r7y"]
+[ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_60r7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqjdx"]
 content_margin_left = 4.0
@@ -14,124 +15,35 @@ corner_radius_top_right = 18
 corner_radius_bottom_right = 18
 corner_radius_bottom_left = 18
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tp0jt"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5wda"]
+bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1xji"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.33, 0.33, 0.33, 0.6)
-corner_radius_top_left = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdb1n"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 14
-corner_radius_bottom_left = 14
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_mt01j"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo0kk"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7gu6"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.33, 0.33, 0.33, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6n2a8"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_03wiq"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 5
+anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n63fl"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.33, 0.33, 0.33, 0.6)
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66500"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-
-[node name="RenderModes" type="PanelContainer" node_paths=PackedStringArray("object_mode", "material_mode", "rendered_mode")]
+[node name="RenderModes" type="PanelContainer" node_paths=PackedStringArray("enum_button")]
 material = ExtResource("1_mt01j")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -250.0
 offset_top = 10.0
 offset_right = -10.0
+offset_bottom = 48.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dqjdx")
 script = ExtResource("2_60r7y")
-object_mode = NodePath("HBoxContainer/ObjectMode")
-material_mode = NodePath("HBoxContainer/MaterialMode")
-rendered_mode = NodePath("HBoxContainer/RenderedMode")
+enum_button = NodePath("EnumButton")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="EnumButton" type="PanelContainer" parent="."]
+clip_children = 1
 layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="ObjectMode" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_tp0jt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_r1xji")
-theme_override_styles/hover = SubResource("StyleBoxFlat_gdb1n")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_mt01j")
-text = "Object Mode"
-
-[node name="MaterialMode" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_vo0kk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_a7gu6")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6n2a8")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_mt01j")
-text = "Material Mode"
-
-[node name="RenderedMode" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_03wiq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n63fl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_66500")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_mt01j")
-text = "Rendered Mode"
+theme_type_variation = &"ClipMaskPanel"
+theme_override_styles/panel = SubResource("StyleBoxFlat_s5wda")
+script = ExtResource("3_60r7y")
+default = 2
+variants = PackedStringArray("Object", "Material", "Rendered")
+metadata/_custom_type_script = "uid://bkadwmxos4osm"

@@ -1,7 +1,7 @@
 @tool
 extends Property
 
-class_name EnumProperty
+class_name OneLineEnumProperty
 
 signal value_changed(value: int)
 signal interaction_ended(value: int, previous: int)
@@ -11,16 +11,14 @@ signal interaction_ended(value: int, previous: int)
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
-var input: OptionButton
-var _previous_variant: int
+var input: EnumButton
 
 
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	input = NodeUtils.get_node_or_add(self, "Input", OptionButton, NodeUtils.INTERNAL)
-	input.pressed.connect(func(): _previous_variant = input.selected)
-	input.item_selected.connect(value_changed.emit)
-	input.item_selected.connect(func(new_value: int): interaction_ended.emit(new_value, _previous_variant))
+	input = NodeUtils.get_node_or_add(self, "Input", EnumButton, NodeUtils.INTERNAL)
+	input.value_changed.connect(value_changed.emit)
+	input.interaction_ended.connect(interaction_ended.emit)
 	renamed.connect(refresh)
 	refresh()
 	(
@@ -31,18 +29,18 @@ func _ready() -> void:
 
 
 func set_value(new_value: int) -> void:
-	_value = new_value
-	input.selected = new_value
+	assert(new_value < fields.size(), "IndexError: variant index is out of range")
+	input.set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 
 
 func set_value_no_signal(new_value: int) -> void:
-	_value = new_value
-	input.selected = new_value
+	assert(new_value < fields.size(), "IndexError: variant index is out of range")
+	input.set_value_no_signal(new_value)
 
 
 func get_value() -> int:
-	return input.selected
+	return input.get_value()
 
 
 func reset() -> void:
@@ -51,14 +49,13 @@ func reset() -> void:
 
 func refresh() -> void:
 	label.text = name
-	input.clear()
-	input.theme_type_variation = &"TransButton" if fields[0].begins_with("Trans ") and Config.enable_easter_eggs else &""
 	input.custom_minimum_size.y = MIN_HEIGHT
-	for field in fields:
-		input.add_item(field if Config.enable_easter_eggs else field.trim_prefix("Trans "))
+	input.variants = fields
+	input.default = default
+	input.update()
 	if Engine.is_editor_hint():
 		reset()
 
 
 func set_input_state(enabled: bool) -> void:
-	input.disabled = not enabled
+	input.set_input_state(enabled)

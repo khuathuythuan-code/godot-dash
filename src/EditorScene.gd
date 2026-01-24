@@ -44,6 +44,7 @@ func _ready() -> void:
 	$EditorCamera.enabled = true
 	%EditorModes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
 	%SidePanel.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
+	%RenderModes.show()
 	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameScene/PlayerCamera.enabled = false
 	$GameScene/PercentageLayer.hide()
@@ -158,6 +159,7 @@ func start_playtest() -> void:
 	%MenuBarContainer.hide()
 	%EditorModes.hide()
 	%SidePanel.hide()
+	%RenderModes.hide()
 	%LevelSettings.hide()
 	%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
