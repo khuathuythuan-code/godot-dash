@@ -145,7 +145,7 @@ var pad_queue: Array[PadInteractable]
 # Private
 var _spider_jump_invulnerability_frames: int = 0
 var _click_buffer_state: ClickBufferState
-var _dead: bool
+var dead: bool
 var _is_flying_gamemode: bool
 var _last_spider_trail: SpiderTrail
 var _last_spider_trail_height: float
@@ -255,7 +255,13 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 	var is_ceiling: bool = collision_angle >= deg_to_rad(180.0 - 10.0)
 	var is_wall: bool = collision_angle > floor_max_angle and collision_angle < PI - floor_max_angle
 	var is_slope := not is_floor and not is_ceiling
-	if not LevelManager.platformer and ((is_ceiling and allow_ceiling_hit_count == 0) or is_wall) or (internal_gamemode == Gamemode.WAVE and allow_wave_slide_count == 0):
+	if (
+		not LevelManager.platformer
+		and (
+			(is_ceiling and allow_ceiling_hit_count == 0) or is_wall
+		)
+		or (internal_gamemode == Gamemode.WAVE and allow_wave_slide_count == 0)
+	):
 		if collision.get_collider().collision_layer & 1 << 1:
 			collision.get_collider().collision_layer = 1 << 9
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
@@ -539,7 +545,7 @@ func _compute_velocity(
 
 
 func _should_process() -> bool:
-	return LevelManager.level_playing and not _dead
+	return LevelManager.level_playing and not dead
 
 
 ## Ensure velocity redirection can happen and the vertical velocity isn't reset by hitting the floor.
@@ -825,7 +831,7 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 func _player_death() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-	_dead = true
+	dead = true
 	$Icon.hide()
 	$DeathEffect.frame = 0
 	$DeathEffect.play()

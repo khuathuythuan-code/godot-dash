@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 
 
 func _should_process() -> bool:
-	return not _dead
+	return not dead
 
 
 func _get_jump_state() -> int:
@@ -68,9 +68,9 @@ func _get_jump_state() -> int:
 
 
 func _player_death() -> void:
-	if _dead:
+	if dead:
 		return
-	_dead = true
+	dead = true
 	speed_multiplier = 0.0
 	velocity = Vector2.ZERO
 	$Icon.hide()
@@ -83,7 +83,7 @@ func _player_death() -> void:
 	await get_tree().create_timer(0.5).timeout
 	speed_multiplier = 1.0
 	global_position.x = 10000
-	_dead = false
+	dead = false
 	$Icon.show()
 	_global_position_check()
 
