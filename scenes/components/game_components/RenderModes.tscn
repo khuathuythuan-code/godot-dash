@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7sn531ose2as"]
+[gd_scene load_steps=14 format=3 uid="uid://7sn531ose2as"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_mt01j"]
 [ext_resource type="Script" uid="uid://tb1aau87yyxd" path="res://src/RenderModes.gd" id="2_60r7y"]
@@ -40,6 +40,8 @@ content_margin_bottom = 4.0
 bg_color = Color(0.225, 0.225, 0.225, 0.6)
 corner_radius_top_left = 14
 corner_radius_bottom_left = 14
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_mt01j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo0kk"]
 content_margin_left = 4.0
@@ -113,6 +115,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_tp0jt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r1xji")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gdb1n")
 toggle_mode = true
+button_group = SubResource("ButtonGroup_mt01j")
 text = "Object Mode"
 
 [node name="MaterialMode" type="Button" parent="HBoxContainer"]
@@ -121,6 +124,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vo0kk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_a7gu6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_6n2a8")
 toggle_mode = true
+button_group = SubResource("ButtonGroup_mt01j")
 text = "Material Mode"
 
 [node name="RenderedMode" type="Button" parent="HBoxContainer"]
@@ -129,4 +133,5 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_03wiq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_n63fl")
 theme_override_styles/hover = SubResource("StyleBoxFlat_66500")
 toggle_mode = true
+button_group = SubResource("ButtonGroup_mt01j")
 text = "Rendered Mode"

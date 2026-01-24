@@ -742,8 +742,9 @@ script = ExtResource("4_gl2yd")
 reset_scale_on_ready = true
 
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" instance=ExtResource("14_tp0jt")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+offset_left = -370.0
+offset_bottom = 46.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
@@ -6202,13 +6203,11 @@ layout_mode = 2
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" instance=ExtResource("55_wey7f")]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
