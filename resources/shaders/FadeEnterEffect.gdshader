@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform int mode : hint_enum("Disabled", "Fade", "Fade and move down") = 1;
+uniform int mode : hint_enum("Disabled", "Fade", "Fade and move down", "Fade and scale") = 1;
 uniform float fade_width: hint_range(0.0, 1.0, 0.01) = 0.15;
 uniform float gradient_start: hint_range(0.0, 1.0, 0.01) = 0.01;
 uniform float gradient_end: hint_range(0.0, 1.0, 0.01) = 1.0;
@@ -30,10 +30,16 @@ vec4 fade_color(vec4 color) {
 void vertex() {
 	screen_position = (SCREEN_MATRIX * CANVAS_MATRIX * MODEL_MATRIX * vec4(vec2(0.0), 0.0, 1.0)).xy;
 	screen_uv = (SCREEN_MATRIX * CANVAS_MATRIX * MODEL_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy * 0.5 + 0.5;
-	if (mode == 2) { // Fade and move up
-		float y_displacement = (1.0 - abs(screen_position.x)) * (1.0 / (fade_width * 2.0));
-		y_displacement = 1.0 - pow(1.0 - clamp(y_displacement, 0.0, 1.0), 2.0);
-		VERTEX.y -= (1.0 - y_displacement) * 1000.0;
+	float power = (1.0 - abs(screen_position.x)) * (1.0 / (fade_width * 2.0));
+	power = 1.0 - pow(1.0 - clamp(power, 0.0, 1.0), 2.0);
+	switch (mode) {
+		case 2: // Fade and move up
+			VERTEX.y -= (1.0 - power) * 1000.0;
+			break;
+		case 3: // Fade and scale
+			VERTEX *= power;
+			VERTEX += power;
+			break;
 	}
 }
 
@@ -45,6 +51,9 @@ void fragment() {
 			COLOR = fade_color(COLOR);
 			break;
 		case 2:
+			COLOR = fade_color(COLOR);
+			break;
+		case 3:
 			COLOR = fade_color(COLOR);
 			break;
 	}
