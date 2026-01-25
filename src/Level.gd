@@ -255,6 +255,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 			"z_index": LevelManager.player.z_index,
 		},
 	}
+	if reason == SerializeReason.PRACTICE_ATTEMPT:
+		data.practice_data = _get_practice_data()
 	var objects: Array[Node2D]
 	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
 	for object: Node2D in objects:
@@ -305,6 +307,12 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 			object_data.color_channels.detail = detail_color_channel[0]
 
 
+func _get_practice_data() -> Dictionary:
+	var practice_data: Dictionary = { }
+	practice_data.player_velocity = LevelManager.player.velocity
+	return practice_data
+
+
 static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
@@ -341,6 +349,10 @@ static func from_data(data: Dictionary) -> Level:
 	LevelManager.player.z_index = data.player_data.z_index
 	# start_internal_gamemode and start_displayed_gamemode are set on the player
 	# in their respective setters.
+
+	if data.has("practice_data"):
+		var practice_data: Dictionary = data.practice_data
+		LevelManager.player.velocity = practice_data.player_velocity
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
