@@ -742,9 +742,9 @@ script = ExtResource("4_gl2yd")
 reset_scale_on_ready = true
 
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" instance=ExtResource("14_tp0jt")]
+unique_name_in_owner = true
 layout_mode = 1
-offset_left = -370.0
-offset_bottom = 46.0
+offset_left = -242.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer"]
 unique_name_in_owner = true
@@ -6067,7 +6067,6 @@ alignment = 1
 [node name="Groups" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-mouse_filter = 1
 folded = true
 title = "Groups"
 title_alignment = 1
@@ -6191,13 +6190,11 @@ metadata/_custom_type_script = "uid://cry3286stfmmk"
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
-folded = true
 title = "Colors"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors"]
-visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer"]

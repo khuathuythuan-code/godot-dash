@@ -6,9 +6,13 @@ static func from_property_list_field(type: Variant.Type, field: Dictionary) -> P
 		TYPE_INT:
 			match field.hint:
 				PROPERTY_HINT_ENUM:
-					property = EnumProperty.new()
+					var fields: PackedStringArray = field.hint_string.split(",")
+					if fields.size() > 3:
+						property = EnumProperty.new()
+					else:
+						property = OneLineEnumProperty.new()
 					var prefix: String = "%s " % field.class_name.capitalize()
-					property.fields = field.hint_string.split(",")
+					property.fields = fields
 					for i in property.fields.size():
 						var enum_variant_name: String = property.fields[i].get_slice(":", 0).trim_prefix(prefix)
 						property.fields.set(i, enum_variant_name)
