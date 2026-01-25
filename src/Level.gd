@@ -226,7 +226,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"rating": rating,
 		"is_editable": is_editable,
 		"song_path": song_path,
-		"song_start_time": song_start_time,
+		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
 		"platformer": platformer,
 		"start_position": Serialize.Vector2(LevelManager.player.global_position),
 		"start_internal_gamemode": practice.call(start_internal_gamemode, LevelManager.player.internal_gamemode),
