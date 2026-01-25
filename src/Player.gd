@@ -63,7 +63,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var displayed_gamemode: Gamemode:
 	set(value):
 		displayed_gamemode = value
-		player_scale = player_scale # set wave scale
+		update_player_scale(false)
 		for icon in $Icon.get_children():
 			if icon.gamemode != value:
 				icon.hide()
@@ -86,25 +86,7 @@ var gameplay_rotation: float:
 		return deg_to_rad(gameplay_rotation_degrees)
 	set(value):
 		gameplay_rotation_degrees = rad_to_deg(value)
-var player_scale: PlayerScale = PlayerScale.NORMAL:
-	set(value):
-		player_scale = value
-		var player_scale_value: Vector2
-		match value:
-			PlayerScale.MINI:
-				player_scale_value = PLAYER_SCALE_MINI
-			PlayerScale.NORMAL:
-				player_scale_value = PLAYER_SCALE_NORMAL
-			PlayerScale.BIG:
-				player_scale_value = PLAYER_SCALE_BIG
-		if displayed_gamemode == Gamemode.WAVE:
-			player_scale_value *= PLAYER_SCALE_WAVE
-		(
-			create_tween() \
-			.tween_property(self, "scale", player_scale_value, 0.25) \
-			.set_ease(Tween.EASE_OUT) \
-			.set_trans(Tween.TRANS_BACK)
-		)
+var player_scale: PlayerScale = PlayerScale.NORMAL
 var can_hit_ceiling: bool
 var jump_hold_disabled: bool
 var speed_multiplier: float = 1.0
@@ -729,6 +711,28 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 func defer_snap_sprite_rotation() -> void:
 	_snap_sprite_rotation = true
 	_snap_sprite_rotation_frames = 16
+
+
+func update_player_scale(tweened: bool) -> void:
+	var player_scale_value: Vector2
+	match player_scale:
+		PlayerScale.MINI:
+			player_scale_value = PLAYER_SCALE_MINI
+		PlayerScale.NORMAL:
+			player_scale_value = PLAYER_SCALE_NORMAL
+		PlayerScale.BIG:
+			player_scale_value = PLAYER_SCALE_BIG
+	if displayed_gamemode == Gamemode.WAVE:
+		player_scale_value *= PLAYER_SCALE_WAVE
+	if not tweened:
+		scale = player_scale_value
+		return
+	(
+		create_tween() \
+		.tween_property(self, "scale", player_scale_value, 0.25) \
+		.set_ease(Tween.EASE_OUT) \
+		.set_trans(Tween.TRANS_BACK)
+	)
 
 
 func _update_swing_fire(delta: float) -> void:

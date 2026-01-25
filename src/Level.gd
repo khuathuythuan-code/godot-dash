@@ -167,7 +167,6 @@ func start_level() -> void:
 		else:
 			GroundData.offset = 0
 
-	LevelManager.player.scale = Vector2.ONE
 	LevelManager.player.speed_multiplier = start_speed
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
