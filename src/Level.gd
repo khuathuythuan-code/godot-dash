@@ -270,7 +270,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 			object_data.markers = object.markers_to_data()
 		for child in object.get_children():
 			var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
-			if hsv_watcher != null:
+			if hsv_watcher:
 				object_data.children_hsv.append(hsv_watcher.to_data())
 		data.objects.append(object_data)
 	return data

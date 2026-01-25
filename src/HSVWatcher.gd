@@ -28,10 +28,8 @@ func _ready() -> void:
 		modulate = parent.modulate
 	parent.set_meta("_has_hsvwatcher", true)
 	hsv_shift.resize(3)
-
-	await get_tree().process_frame
-	if Editor.render_mode_manager:
-		Editor.render_mode_manager.update_hsvwatcher.connect(update_color)
+	LevelManager.update_hsv_watchers.connect(update_color)
+	update_color()
 
 
 func to_data() -> Dictionary:
