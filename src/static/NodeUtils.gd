@@ -1,15 +1,18 @@
 extends Object
+
 class_name NodeUtils
 
 const INTERNAL := 1 << 0
 const SET_OWNER := 1 << 1
 const FORCE_READABLE_NAME := 1 << 2
 
+
 # Note: passing a value for the type parameter causes a crash
 static func get_child_of_type(node: Node, child_type):
 	for child in node.get_children():
 		if is_instance_of(child, child_type):
 			return child
+	return null
 
 
 # Note: passing a value for the type parameter causes a crash
@@ -84,5 +87,5 @@ static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis
 			return camera_rect_position.y < node_position.y and camera_rect_end.y > node_position.y
 		Constants.Axis.BOTH:
 			return camera_rect_position.x < node.global_position.x and camera_rect_end.x > node_position.x and \
-					camera_rect_position.y < node_position.y and camera_rect_end.y > node_position.y
+			camera_rect_position.y < node_position.y and camera_rect_end.y > node_position.y
 	return false
