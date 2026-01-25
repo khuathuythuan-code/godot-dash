@@ -257,6 +257,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 			"groups": object.get_groups(),
 			"color_channels": { },
 			"hsv": object.get_node(^"HSVWatcher").to_data(),
+			"children_hsv": [],
 			"z_index": object.z_index,
 		}
 		_set_object_color_channel_data(object, object_data)
@@ -267,6 +268,10 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		if object is Interactable:
 			object_data.components = object.components_to_data(reason)
 			object_data.markers = object.markers_to_data()
+		for child in object.get_children():
+			var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
+			if hsv_watcher:
+				object_data.children_hsv.append(hsv_watcher.to_data())
 		data.objects.append(object_data)
 	return data
 
@@ -353,6 +358,13 @@ static func from_data(data: Dictionary) -> Level:
 				BaseDetailHandler.use_hsv_watcher(detail).add_to_group(object_data.color_channels.detail)
 		# HSV
 		object.get_node(^"HSVWatcher").use_data(object_data.hsv)
+		for child in object.get_children():
+			if object_data.children_hsv.size() == 0:
+				break
+			var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
+			if hsv_watcher:
+				hsv_watcher.use_data(object_data.children_hsv[0])
+				object_data.children_hsv.remove_at(0)
 		# Texture Override
 		if object_data.has("texture_override"):
 			var override_data: Dictionary = object_data.texture_override

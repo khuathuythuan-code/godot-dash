@@ -2,6 +2,8 @@ extends Node
 
 const CELL_SIZE: int = 128
 
+signal update_hsv_watchers
+
 var game_scene: GameScene
 var current_level: Level
 var current_level_path: String

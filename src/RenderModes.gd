@@ -2,8 +2,6 @@ extends PanelContainer
 
 class_name RenderMode
 
-signal update_hsvwatcher
-
 @export var enum_button: EnumButton
 var mode: Mode = Mode.RENDERED_MODE
 
@@ -39,7 +37,7 @@ func enable_object_mode() -> void:
 	level.line_color = Color.WHITE
 	level.enter_effect = level.enter_effect # Trigger setter
 	mode = Mode.OBJECT_MODE # Locks editing of level colors
-	update_hsvwatcher.emit()
+	LevelManager.update_hsv_watchers.emit()
 
 
 func enable_material_mode() -> void:
@@ -50,7 +48,7 @@ func enable_material_mode() -> void:
 	level.background_color = level.default_background_color
 	level.line_color = level.default_line_color
 	level.enter_effect = level.enter_effect # Trigger setter
-	update_hsvwatcher.emit()
+	LevelManager.update_hsv_watchers.emit()
 
 
 func enable_rendered_mode() -> void:
@@ -61,4 +59,4 @@ func enable_rendered_mode() -> void:
 	level.background_color = level.default_background_color
 	level.line_color = level.default_line_color
 	level.enter_effect = level.enter_effect # Trigger setter
-	update_hsvwatcher.emit()
+	LevelManager.update_hsv_watchers.emit()
