@@ -185,6 +185,8 @@ func stop_playtest() -> void:
 	practice_button.set_pressed_no_signal(false)
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
 	%Playtest.disabled = false
+	await get_tree().process_frame
+	Editor.render_mode_manager.update_hsvwatcher.emit()
 
 
 func _fade_leave(_action: Variant = null) -> void:
