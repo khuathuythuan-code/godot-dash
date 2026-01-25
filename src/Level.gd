@@ -60,6 +60,8 @@ const START_SPEED: Array[float] = [
 @export var start_speed: float = START_SPEED[2]
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
+@export var start_gravity_multiplier: float = 1.0
+@export var start_gravity_flip: int = 1
 @export var default_background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
 	set(new_color):
 		default_background_color = new_color
@@ -169,6 +171,8 @@ func start_level() -> void:
 	LevelManager.player.speed_multiplier = start_speed
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
+	LevelManager.player.gravity_multiplier = start_gravity_multiplier
+	LevelManager.player.gravity_flip = start_gravity_flip
 	LevelManager.player_camera.position = LevelManager.player.position
 	LevelManager.level_playing = true
 	stopwatch.paused = false
@@ -236,6 +240,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"start_speed_preset": start_speed_preset,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
+		"start_gravity_multiplier": start_gravity_multiplier,
+		"start_gravity_flip": start_gravity_flip,
 		"default_background_color": default_background_color.to_rgba32(),
 		"default_ground_color": default_ground_color.to_rgba32(),
 		"default_line_color": default_line_color.to_rgba32(),
@@ -318,6 +324,8 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_speed_preset = data.start_speed_preset
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
+	level.start_gravity_multiplier = data.start_gravity_multiplier
+	level.start_gravity_flip = data.start_gravity_flip
 	level.default_background_color = Color.hex(data.default_background_color)
 	level.default_ground_color = Color.hex(data.default_ground_color)
 	level.default_line_color = Color.hex(data.default_line_color)

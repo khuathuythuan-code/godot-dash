@@ -229,6 +229,8 @@ func _load_default_player_data_component(component: DefaultPlayerDataComponent) 
 	component.speed = level.start_speed
 	component.speed_preset = level.start_speed_preset
 	component.gameplay_rotation = level.start_gameplay_rotation_degrees
+	component.gravity_multiplier = level.start_gravity_multiplier
+	component.flipped_gravity = level.start_gravity_flip < 0
 	component.internal = level.start_internal_gamemode
 	component.displayed = level.start_displayed_gamemode
 	component.freefly = level.start_freefly
