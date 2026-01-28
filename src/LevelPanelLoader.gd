@@ -56,12 +56,12 @@ func reorder() -> void:
 	for child in get_children():
 		children.append(child)
 	# Alphabetical
-	children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Title").text > b.get_node("Play/HBoxContainer/VBoxContainer/Title").text)
+	children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower())
 	match sort_by.selected:
 		1: # Rating
 			children.sort_custom(func(a, b): return int(a.get_node("Play/Outline/Rating").text) < int(b.get_node("Play/Outline/Rating").text))
 		2: # Creator
-			children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Creator").text > b.get_node("Play/HBoxContainer/VBoxContainer/Creator").text)
+			children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower())
 
 	for child in children:
 		move_child(child, 0)
