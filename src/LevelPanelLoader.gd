@@ -57,7 +57,7 @@ func reorder() -> void:
 		children.append(child)
 	match sort_by.selected:
 		0: # Alphabetically
-			children.sort_custom(func(a, b): return a.name > b.name)
+			children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Title").text > b.get_node("Play/HBoxContainer/VBoxContainer/Title").text)
 		1: # Rating
 			children.sort_custom(func(a, b): return int(a.get_node("Play/Outline/Rating").text) < int(b.get_node("Play/Outline/Rating").text))
 		2: # Creator
