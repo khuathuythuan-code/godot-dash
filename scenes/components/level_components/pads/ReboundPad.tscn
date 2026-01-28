@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjbdfuvh8nxcn"]
+[gd_scene format=3 uid="uid://cjbdfuvh8nxcn"]
 
 [ext_resource type="Script" uid="uid://bccihwc0pstxx" path="res://src/interactables/PadInteractable.gd" id="1_6nccy"]
 [ext_resource type="PackedScene" uid="uid://05h0teol0odp" path="res://scenes/particle_emitter_presets/PadParticles.tscn" id="4_26ak1"]
@@ -15,7 +15,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_dol5j"]
 curve = SubResource("Curve_6hqd0")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wmrey"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_akqco"]
 resource_local_to_scene = true
 lifetime_randomness = 0.1
 particle_flag_align_y = true
@@ -30,39 +30,39 @@ scale_curve = SubResource("CurveTexture_dol5j")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxki2"]
 size = Vector2(92, 24)
 
-[node name="ReboundPad" type="Area2D"]
+[node name="ReboundPad" type="Area2D" unique_id=801299777]
 process_priority = 1
 process_physics_priority = 2
 collision_layer = 8
 script = ExtResource("1_6nccy")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("4_26ak1")]
+[node name="ParticleEmitter" parent="." unique_id=1898340232 instance=ExtResource("4_26ak1")]
 modulate = Color(1, 0.8, 0.8, 1)
 position = Vector2(0, 57)
-process_material = SubResource("ParticleProcessMaterial_wmrey")
+process_material = SubResource("ParticleProcessMaterial_akqco")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=715806695]
 position = Vector2(0, 55)
 shape = SubResource("RectangleShape2D_qxki2")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=1366930511]
 position = Vector2(0, 57)
 script = ExtResource("5_hg5x3")
 
-[node name="ReboundComponent" type="Node" parent="."]
+[node name="ReboundComponent" type="Node" parent="." unique_id=23063940]
 script = ExtResource("6_actth")
 
-[node name="DirectionChangerComponent" type="Node" parent="."]
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=240389681]
 script = ExtResource("8_lapvy")
 
-[node name="ClippingMask" type="Polygon2D" parent="."]
+[node name="ClippingMask" type="Polygon2D" parent="." unique_id=192414769]
 clip_children = 1
 polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 
-[node name="ReboundPadSprite" type="Node2D" parent="ClippingMask"]
+[node name="ReboundPadSprite" type="Node2D" parent="ClippingMask" unique_id=1581204098]
 position = Vector2(0, 64)
 script = ExtResource("9_50uy8")
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_akqco")]
+[node name="EditorSelectionCollider" parent="." unique_id=1788068213 instance=ExtResource("7_akqco")]
 type = 8

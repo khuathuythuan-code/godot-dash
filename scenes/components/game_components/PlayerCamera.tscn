@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxcgyea560vmr"]
+[gd_scene format=3 uid="uid://dxcgyea560vmr"]
 
 [ext_resource type="Script" uid="uid://cp4b5tutccsbo" path="res://src/PlayerCamera.gd" id="1_6187l"]
 
-[node name="PlayerCamera" type="Camera2D"]
+[node name="PlayerCamera" type="Camera2D" unique_id=1121283703]
 process_physics_priority = 1
 z_index = 100
 ignore_rotation = false
@@ -13,4 +13,3 @@ drag_top_margin = 0.5
 drag_bottom_margin = 0.5
 editor_draw_limits = true
 script = ExtResource("1_6187l")
-position_smoothing = Vector2(0.5, 0.1)

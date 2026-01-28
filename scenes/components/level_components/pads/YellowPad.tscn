@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://nsvkooc5od83"]
+[gd_scene format=3 uid="uid://nsvkooc5od83"]
 
 [ext_resource type="Script" uid="uid://bccihwc0pstxx" path="res://src/interactables/PadInteractable.gd" id="1_4v4hg"]
 [ext_resource type="PackedScene" uid="uid://05h0teol0odp" path="res://scenes/particle_emitter_presets/PadParticles.tscn" id="2_812fi"]
@@ -15,7 +15,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_dol5j"]
 curve = SubResource("Curve_6hqd0")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tdy8m"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p2ndc"]
 resource_local_to_scene = true
 lifetime_randomness = 0.1
 particle_flag_align_y = true
@@ -30,33 +30,33 @@ scale_curve = SubResource("CurveTexture_dol5j")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4v8oj"]
 size = Vector2(98, 18)
 
-[node name="YellowPad" type="Area2D"]
+[node name="YellowPad" type="Area2D" unique_id=393464816]
 collision_layer = 8
 script = ExtResource("1_4v4hg")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_812fi")]
+[node name="ParticleEmitter" parent="." unique_id=189933652 instance=ExtResource("2_812fi")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(0, 57)
-process_material = SubResource("ParticleProcessMaterial_tdy8m")
+process_material = SubResource("ParticleProcessMaterial_p2ndc")
 
-[node name="YellowPad" type="Sprite2D" parent="."]
+[node name="YellowPad" type="Sprite2D" parent="." unique_id=176827153]
 texture = ExtResource("4_qk8gr")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2119048221]
 position = Vector2(0, 57)
 shape = SubResource("RectangleShape2D_4v8oj")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=257458075]
 position = Vector2(0, 57)
 script = ExtResource("4_c702s")
 
-[node name="JumpBoostComponent" type="Node" parent="."]
+[node name="JumpBoostComponent" type="Node" parent="." unique_id=124685341]
 script = ExtResource("6_arix8")
 jump_boost = 1.428
 
-[node name="DirectionChangerComponent" type="Node" parent="."]
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=701135297]
 script = ExtResource("7_128ej")
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_p2ndc")]
+[node name="EditorSelectionCollider" parent="." unique_id=742762646 instance=ExtResource("7_p2ndc")]
 type = 8

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://jdhlbkky38ej"]
+[gd_scene format=3 uid="uid://jdhlbkky38ej"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_6jx6u"]
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_v7vet"]
@@ -29,47 +29,43 @@ scale_curve = SubResource("CurveTexture_0y2x4")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3k1gh"]
 resource_local_to_scene = true
 shader = ExtResource("3_q7yot")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx3nn"]
 size = Vector2(140, 174)
 
-[node name="SpeedPortal0x" type="Area2D"]
+[node name="SpeedPortal0x" type="Area2D" unique_id=521850817]
 z_index = -5
 collision_layer = 8
 script = ExtResource("1_6jx6u")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_v7vet")]
+[node name="ParticleEmitter" parent="." unique_id=1691842602 instance=ExtResource("2_v7vet")]
 modulate = Color(0.101961, 0.101961, 0.101961, 1)
 material = null
 process_material = SubResource("ParticleProcessMaterial_28a5j")
 
-[node name="RemoveMaterial" type="Node" parent="ParticleEmitter"]
+[node name="RemoveMaterial" type="Node" parent="ParticleEmitter" unique_id=1430429200]
 script = ExtResource("3_j8qvu")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1597802304]
 material = SubResource("ShaderMaterial_3k1gh")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_gln18")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1405337811]
 shape = SubResource("RectangleShape2D_vx3nn")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=2000282819]
 script = ExtResource("5_ttkjn")
 no_blending = true
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=179766720]
 script = ExtResource("6_xon7y")
 
-[node name="SpeedChangerComponent" type="Node" parent="."]
+[node name="SpeedChangerComponent" type="Node" parent="." unique_id=852523528]
 script = ExtResource("7_vr53l")
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("8_gexpq")]
+[node name="EditorSelectionCollider" parent="." unique_id=1355452362 instance=ExtResource("8_gexpq")]
 type = 8

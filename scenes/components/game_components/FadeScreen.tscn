@@ -1,12 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxsvurwa62arg"]
+[gd_scene format=3 uid="uid://dxsvurwa62arg"]
 
 [ext_resource type="Script" uid="uid://bcvao0q4nxnl6" path="res://src/FadeScreen.gd" id="1_a1tqg"]
 
-[node name="FadeScreenLayer" type="CanvasLayer"]
+[node name="FadeScreenLayer" type="CanvasLayer" unique_id=1325913890]
 process_mode = 3
 layer = 110
 
-[node name="FadeScreen" type="ColorRect" parent="."]
+[node name="FadeScreen" type="ColorRect" parent="." unique_id=1651296591]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

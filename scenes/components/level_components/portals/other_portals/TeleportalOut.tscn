@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckrakyci0r2eg"]
+[gd_scene format=3 uid="uid://ckrakyci0r2eg"]
 
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="3_4gkp4"]
 [ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="4_8crq8"]
@@ -8,35 +8,31 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bg8ge"]
 shader = ExtResource("4_8crq8")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
-[node name="TeleportalOut" type="Node2D"]
+[node name="TeleportalOut" type="Node2D" unique_id=1961688401]
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("3_4gkp4")]
+[node name="ParticleEmitter" parent="." unique_id=953476137 instance=ExtResource("3_4gkp4")]
 modulate = Color(1, 0.74902, 0, 1)
 rotation = -3.14159
 scale = Vector2(1, -1)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=40702863]
 material = SubResource("ShaderMaterial_bg8ge")
 
-[node name="TeleportalOutBack" type="Sprite2D" parent="Sprites"]
+[node name="TeleportalOutBack" type="Sprite2D" parent="Sprites" unique_id=1687518377]
 z_index = -1
 use_parent_material = true
 texture = ExtResource("5_wyoah")
 flip_h = true
 
-[node name="TeleportalOutFront" type="Sprite2D" parent="Sprites"]
+[node name="TeleportalOutFront" type="Sprite2D" parent="Sprites" unique_id=434309449]
 z_index = 1
 use_parent_material = true
 texture = ExtResource("6_p5kb6")
 flip_h = true
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("5_0chxq")]
+[node name="EditorSelectionCollider" parent="." unique_id=416729878 instance=ExtResource("5_0chxq")]
 scale = Vector2(1, 3)
 type = 8

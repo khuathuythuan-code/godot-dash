@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ml08ihwpuksa"]
+[gd_scene format=3 uid="uid://ml08ihwpuksa"]
 
 [ext_resource type="Script" uid="uid://oa6jikqrcstu" path="res://addons/tabby_explorer/editor/sub_fs_dock/sub_fs_config.gd" id="1_87stq"]
 [ext_resource type="PackedScene" uid="uid://c81nrsifb1lwy" path="res://addons/tabby_explorer/editor/sub_fs_dock/sub_fs_config_docks.tscn" id="2_nlk06"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m0cu5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chalk"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -35,19 +35,11 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 corner_detail = 4
 
-[sub_resource type="Image" id="Image_chalk"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
+[sub_resource type="DPITexture" id="DPITexture_yu4s6"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
 
-[sub_resource type="ImageTexture" id="ImageTexture_lucf3"]
-image = SubResource("Image_chalk")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ipy6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3ce3"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -59,7 +51,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fh0l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5aku"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -71,7 +63,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="config" type="MarginContainer"]
+[node name="config" type="MarginContainer" unique_id=1881287879]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -81,202 +73,202 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_87stq")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=276915643]
 visible = false
 layout_mode = 2
 
-[node name="config_inner" type="MarginContainer" parent="."]
+[node name="config_inner" type="MarginContainer" parent="." unique_id=363885205]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="config_inner"]
+[node name="VBoxContainer" type="VBoxContainer" parent="config_inner" unique_id=11273117]
 layout_mode = 2
 
-[node name="config_scroll_container" type="ScrollContainer" parent="config_inner/VBoxContainer"]
+[node name="config_scroll_container" type="ScrollContainer" parent="config_inner/VBoxContainer" unique_id=1985798597]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_m0cu5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_chalk")
 
-[node name="scroll_inner" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container"]
+[node name="scroll_inner" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container" unique_id=523627977]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="PluginTitle" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="PluginTitle" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1503181774]
 layout_mode = 2
 text = "Tabby Explorer Plugin Settings"
 horizontal_alignment = 1
 
-[node name="Control6" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control6" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=381246635]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="heading_controls" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="heading_controls" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1246561210]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="repo_btn" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls"]
+[node name="repo_btn" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls" unique_id=1041945909]
 layout_mode = 2
 text = "README"
 
-[node name="Control" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls"]
+[node name="Control" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls" unique_id=856921194]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="donate_btn" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls"]
+[node name="donate_btn" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/heading_controls" unique_id=484971967]
 layout_mode = 2
 text = "Support Development"
 
-[node name="Control" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=106083618]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="options_container" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="options_container" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=2127360118]
 layout_mode = 2
 
-[node name="section" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container"]
+[node name="section" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container" unique_id=1992634536]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="option_section" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/section"]
+[node name="option_section" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/section" unique_id=733088231]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_xpk20")
 text = "General Options"
 
-[node name="fields" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container"]
+[node name="fields" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container" unique_id=901855391]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields"]
+[node name="VBoxContainer" type="VBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields" unique_id=1871304338]
 layout_mode = 2
 
-[node name="dock_for_favorites_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer"]
+[node name="dock_for_favorites_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer" unique_id=684269404]
 layout_mode = 2
 tooltip_text = "With this option,  plugin will generate a  dock with favorites"
 text = " Dedicated dock for Folders in Favorites"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer" unique_id=834518609]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer/HBoxContainer" unique_id=1408940064]
 layout_mode = 2
 text = "Dock name for Favorites :"
 
-[node name="favorites_dock_name" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer/HBoxContainer"]
+[node name="favorites_dock_name" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer/HBoxContainer" unique_id=1850773230]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Favorites"
 
-[node name="support_context_menu_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer"]
+[node name="support_context_menu_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer" unique_id=1232501018]
 layout_mode = 2
 tooltip_text = "DFSI mode, implemented through some clever tweaks, introduces additional features. These include a context menu that appears with a right mouse button click, enabling the opening of files handled by the default FileSystem dock.
 Without DFSI mode, Tabby Explorer operates in a read-only mode."
 text = "Activate DFSI mode (Experimental)"
 
-[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer"]
+[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container/fields/VBoxContainer" unique_id=1987809499]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 text = "DFSI mode, implemented through some clever tweaks, introduces additional features. These include a context menu that appears with a right mouse button click, enabling the opening of files handled by the default FileSystem dock.
 Without DFSI mode, Tabby Explorer operates in a read-only mode."
 autowrap_mode = 2
 
-[node name="Control2" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container"]
+[node name="Control2" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/options_container" unique_id=440195354]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
-[node name="user_docks_section" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="user_docks_section" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1405891347]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_srb6a")
 text = "Docks (User)"
 
-[node name="use_user_config_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="use_user_config_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1346954519]
 layout_mode = 2
 tooltip_text = "Use project shared configuration"
 text = "Enabled"
 
-[node name="user_prefix" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="user_prefix" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1281296171]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/user_prefix"]
+[node name="Label" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/user_prefix" unique_id=1838299636]
 layout_mode = 2
 text = " Prefix : "
 
-[node name="user_docks_prefix" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/user_prefix"]
+[node name="user_docks_prefix" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/user_prefix" unique_id=1088794302]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Insert a prefix to avoid dock name conflict"
 select_all_on_focus = true
 
-[node name="Control4" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control4" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1388420850]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="user_docks_config" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" instance=ExtResource("2_nlk06")]
+[node name="user_docks_config" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=336435895 instance=ExtResource("2_nlk06")]
 layout_mode = 2
 title = "Docks (User)"
 
-[node name="Control2" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control2" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=986781654]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="user_docks_section2" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="user_docks_section2" type="Button" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1692596380]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_srb6a")
 text = "Docks (Shared in Project)"
 
-[node name="use_project_shared_config_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="use_project_shared_config_checkbox" type="CheckBox" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=2009825032]
 layout_mode = 2
 tooltip_text = "Use project shared configuration"
 text = "Enabled"
 
-[node name="project_prefix" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="project_prefix" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=55603233]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/project_prefix"]
+[node name="Label2" type="Label" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/project_prefix" unique_id=1506229057]
 layout_mode = 2
 text = " Prefix : "
 
-[node name="project_shared_docks_prefix" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/project_prefix"]
+[node name="project_shared_docks_prefix" type="LineEdit" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner/project_prefix" unique_id=699973632]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Insert a prefix to avoid dock name conflict"
 select_all_on_focus = true
 
-[node name="Control5" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control5" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=952145800]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="project_docks_config" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" instance=ExtResource("2_nlk06")]
+[node name="project_docks_config" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1266756656 instance=ExtResource("2_nlk06")]
 layout_mode = 2
 title = "Docks (Project Shared)"
 
-[node name="Control3" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="Control3" type="Control" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=313850593]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="config_inner/VBoxContainer/config_scroll_container/scroll_inner" unique_id=1303468459]
 layout_mode = 2
 alignment = 1
 
-[node name="bottom_toolbar" type="HBoxContainer" parent="config_inner/VBoxContainer"]
+[node name="bottom_toolbar" type="HBoxContainer" parent="config_inner/VBoxContainer" unique_id=676361204]
 layout_mode = 2
 
-[node name="cancel_btn" type="Button" parent="config_inner/VBoxContainer/bottom_toolbar"]
+[node name="cancel_btn" type="Button" parent="config_inner/VBoxContainer/bottom_toolbar" unique_id=477132358]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 text = "  Cancel  "
-icon = SubResource("ImageTexture_lucf3")
+icon = SubResource("DPITexture_yu4s6")
 
-[node name="apply_options_btn" type="Button" parent="config_inner/VBoxContainer/bottom_toolbar"]
+[node name="apply_options_btn" type="Button" parent="config_inner/VBoxContainer/bottom_toolbar" unique_id=1813667515]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_0ipy6")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6fh0l")
+theme_override_styles/normal = SubResource("StyleBoxFlat_n3ce3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_g5aku")
 text = "  Apply  "
-icon = SubResource("ImageTexture_lucf3")
+icon = SubResource("DPITexture_yu4s6")

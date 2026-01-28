@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://05h0teol0odp"]
+[gd_scene format=3 uid="uid://05h0teol0odp"]
 
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="1_sylsc"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="2_h5quy"]
@@ -23,7 +23,7 @@ scale_min = 0.25
 scale_max = 0.25
 scale_curve = SubResource("CurveTexture_dol5j")
 
-[node name="ParticleEmitter" type="GPUParticles2D"]
+[node name="ParticleEmitter" type="GPUParticles2D" unique_id=1316932708]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0

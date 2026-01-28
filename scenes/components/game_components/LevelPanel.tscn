@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbt2nq7hxgljk"]
+[gd_scene format=3 uid="uid://bbt2nq7hxgljk"]
 
-[ext_resource type="Script" path="res://src/LevelPanel.gd" id="1_bhvlt"]
+[ext_resource type="Script" uid="uid://bxe5tqovuq4bo" path="res://src/LevelPanel.gd" id="1_bhvlt"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
 [ext_resource type="FontFile" uid="uid://bfr3bu421t5nl" path="res://assets/fonts/OutfitRegular.ttf" id="3_bhvlt"]
 [ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
@@ -45,7 +45,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="Control" type="Control" node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "play_button", "edit_button", "remove_button")]
+[node name="Control" type="Control" unique_id=1191992704 node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "play_button", "edit_button", "remove_button")]
 custom_minimum_size = Vector2(750, 85)
 layout_mode = 3
 anchors_preset = 0
@@ -60,7 +60,7 @@ play_button = NodePath("Play")
 edit_button = NodePath("HBoxContainer/Edit")
 remove_button = NodePath("HBoxContainer/Remove")
 
-[node name="Play" type="Button" parent="."]
+[node name="Play" type="Button" parent="." unique_id=541082571]
 custom_minimum_size = Vector2(500, 60)
 layout_mode = 1
 anchors_preset = 15
@@ -72,7 +72,7 @@ size_flags_horizontal = 3
 theme_type_variation = &"LevelPanel"
 autowrap_mode = 3
 
-[node name="Outline" type="Panel" parent="Play"]
+[node name="Outline" type="Panel" parent="Play" unique_id=915871752]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 1
 anchors_preset = -1
@@ -82,7 +82,7 @@ offset_right = -10.0
 offset_bottom = -10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pkbwf")
 
-[node name="Rating" type="Label" parent="Play/Outline"]
+[node name="Rating" type="Label" parent="Play/Outline" unique_id=722575495]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,7 +100,7 @@ label_settings = SubResource("LabelSettings_bhvlt")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Play"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Play" unique_id=1237067221]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -113,26 +113,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Play/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Play/HBoxContainer" unique_id=1824245988]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 
-[node name="Title" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="Play/HBoxContainer/VBoxContainer" unique_id=1329197613]
 layout_mode = 2
 theme = ExtResource("1_grurr")
 text = "Level"
 label_settings = SubResource("LabelSettings_q1nc0")
 text_overrun_behavior = 3
 
-[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer"]
+[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer" unique_id=1907906613]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
 text = "Creator"
 label_settings = SubResource("LabelSettings_x5v4x")
 
-[node name="Description" type="Label" parent="Play/HBoxContainer"]
+[node name="Description" type="Label" parent="Play/HBoxContainer" unique_id=2134997376]
 custom_minimum_size = Vector2(0, 51)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,7 +144,7 @@ vertical_alignment = 2
 autowrap_mode = 3
 text_overrun_behavior = 3
 
-[node name="Thumbnail" type="Panel" parent="Play"]
+[node name="Thumbnail" type="Panel" parent="Play" unique_id=1862120905]
 visible = false
 clip_children = 2
 z_index = -1
@@ -161,7 +161,7 @@ mouse_filter = 2
 theme = ExtResource("1_grurr")
 theme_override_styles/panel = SubResource("StyleBoxFlat_810tx")
 
-[node name="TextureRect" type="TextureRect" parent="Play/Thumbnail"]
+[node name="TextureRect" type="TextureRect" parent="Play/Thumbnail" unique_id=440858244]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,7 +172,7 @@ texture = ExtResource("6_bhvlt")
 expand_mode = 3
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=175597223]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -186,14 +186,14 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 2
 
-[node name="Edit" type="Button" parent="HBoxContainer"]
+[node name="Edit" type="Button" parent="HBoxContainer" unique_id=1759664642]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_type_variation = &"LevelPanelSmallButton"
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Edit"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Edit" unique_id=626260282]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -210,14 +210,14 @@ texture = ExtResource("3_nvobf")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="Remove" type="Button" parent="HBoxContainer"]
+[node name="Remove" type="Button" parent="HBoxContainer" unique_id=326030155]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_type_variation = &"LevelPanelSmallButton"
 icon_alignment = 1
 expand_icon = true
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Remove"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Remove" unique_id=1168137663]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3pbl5e1vp2ck"]
+[gd_scene format=3 uid="uid://c3pbl5e1vp2ck"]
 
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="1_5npyg"]
 [ext_resource type="Script" uid="uid://c3dqcr6r1jkr3" path="res://src/InstanciatedOneShotParticle.gd" id="2_0fo3v"]
@@ -30,7 +30,7 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
 alpha_curve = SubResource("CurveTexture_0fo3v")
 
-[node name="GroundParticlesLand" type="GPUParticles2D"]
+[node name="GroundParticlesLand" type="GPUParticles2D" unique_id=1253953305]
 z_index = 51
 emitting = false
 amount = 16

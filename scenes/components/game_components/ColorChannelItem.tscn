@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1wkjpnilh50a"]
+[gd_scene format=3 uid="uid://d1wkjpnilh50a"]
 
 [ext_resource type="Script" uid="uid://c74ll20dwcp1l" path="res://src/editor/editor_panels/color_channel/ColorChannelItem.gd" id="1_2ntyf"]
 [ext_resource type="ButtonGroup" uid="uid://cev0xn2madcx2" path="res://resources/ColorChannelItemButtonGroup.tres" id="2_t5ace"]
@@ -20,7 +20,7 @@ font_size = 10
 [sub_resource type="LabelSettings" id="LabelSettings_cj6jc"]
 line_spacing = -5.0
 
-[node name="ColorChannelItem" type="PanelContainer"]
+[node name="ColorChannelItem" type="PanelContainer" unique_id=1429568002]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 33.0
@@ -28,14 +28,14 @@ grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1h1sw")
 script = ExtResource("1_2ntyf")
 
-[node name="EditButton" type="Button" parent="."]
+[node name="EditButton" type="Button" parent="." unique_id=347480090]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("2_t5ace")
 icon_alignment = 2
 expand_icon = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1238416124]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -44,18 +44,18 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=204714835]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="ColorPreview" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+[node name="ColorPreview" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=900121207]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(23, 23)
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_avq3m")
 
-[node name="ColorPreviewText" type="Label" parent="MarginContainer/HBoxContainer/ColorPreview"]
+[node name="ColorPreviewText" type="Label" parent="MarginContainer/HBoxContainer/ColorPreview" unique_id=1722856456]
 unique_name_in_owner = true
 layout_mode = 2
 text = "BG"
@@ -63,7 +63,7 @@ label_settings = SubResource("LabelSettings_6fayn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ChannelName" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="ChannelName" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2016318190]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -72,7 +72,7 @@ label_settings = SubResource("LabelSettings_cj6jc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=146730264]
 texture_filter = 4
 layout_mode = 2
 theme_override_constants/icon_max_width = 15

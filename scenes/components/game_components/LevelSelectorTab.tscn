@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://kwe5xtryavgg"]
+[gd_scene format=3 uid="uid://kwe5xtryavgg"]
 
 [ext_resource type="Script" uid="uid://b27syg81d3s4s" path="res://src/LevelSelectorTab.gd" id="1_byc33"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="1_m8x5r"]
@@ -11,10 +11,7 @@
 resource_local_to_scene = true
 shader = ExtResource("2_ss55f")
 shader_parameter/lod = 3.0
-shader_parameter/gui_color = Color(0.27451, 0.627451, 1, 1)
-shader_parameter/mix_factor = 0.1
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfpn3"]
+shader_parameter/lightness = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc3rl"]
 bg_color = Color(0.741176, 0.741176, 0.741176, 1)
@@ -22,6 +19,8 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfpn3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ng4su"]
 font = ExtResource("4_3yq55")
@@ -31,11 +30,10 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_38ea1"]
 script = ExtResource("2_25fwn")
-duration = 1.0
 transition = 5
 ease = 1
 
-[node name="GDLevelSelectorTab" type="Control"]
+[node name="GDLevelSelectorTab" type="Control" unique_id=763875370]
 self_modulate = Color(0.27451, 0.627451, 1, 1)
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
@@ -48,7 +46,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_byc33")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=693640030]
 self_modulate = Color(0.27451, 0.627451, 1, 1)
 material = SubResource("ShaderMaterial_8fxol")
 layout_mode = 1
@@ -68,14 +66,14 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_3yq55")
 theme_override_font_sizes/font_size = 64
-theme_override_styles/focus = SubResource("StyleBoxEmpty_bfpn3")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_oc3rl")
-theme_override_styles/hover = SubResource("StyleBoxFlat_oc3rl")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_oc3rl")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oc3rl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oc3rl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oc3rl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_oc3rl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bfpn3")
 script = ExtResource("5_pa43o")
 
-[node name="Label" type="Label" parent="Button"]
+[node name="Label" type="Label" parent="Button" unique_id=966320317]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -93,11 +91,11 @@ label_settings = SubResource("LabelSettings_ng4su")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TabCenter" type="Marker2D" parent="."]
+[node name="TabCenter" type="Marker2D" parent="." unique_id=888654005]
 position = Vector2(960, 540)
 gizmo_extents = 64.0
 
-[node name="LevelSelectorTabCamera" type="Node2D" parent="TabCenter"]
+[node name="LevelSelectorTabCamera" type="Node2D" parent="TabCenter" unique_id=1651613258]
 unique_name_in_owner = true
 script = ExtResource("1_m8x5r")
 priority_override = false

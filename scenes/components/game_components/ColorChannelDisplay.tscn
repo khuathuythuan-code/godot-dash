@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b35xisv0d22sr"]
+[gd_scene format=3 uid="uid://b35xisv0d22sr"]
 
 [ext_resource type="Script" uid="uid://deigywjpdw5u5" path="res://src/interactables/private_components/ColorChannelDisplay.gd" id="1_sxi2y"]
 [ext_resource type="LabelSettings" uid="uid://c7371tftg8uhq" path="res://resources/TriggerDisplay.tres" id="2_qngi5"]
 
-[node name="ColorChannelDisplay" type="Control"]
+[node name="ColorChannelDisplay" type="Control" unique_id=1637179847]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sxi2y")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2026385075]
 layout_mode = 0
 offset_top = 6.0
 offset_right = 1.0

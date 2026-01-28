@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ds8cfe4b5j2x6"]
+[gd_scene format=3 uid="uid://ds8cfe4b5j2x6"]
 
-[ext_resource type="Script" path="res://addons/signal_lens/test_scene/signal_lens_test_scene.gd" id="1_3ongb"]
+[ext_resource type="Script" uid="uid://djmoevfcvyvgr" path="res://addons/signal_lens/test_scene/signal_lens_test_scene.gd" id="1_3ongb"]
 
-[node name="SignalLensTestScene" type="Control"]
+[node name="SignalLensTestScene" type="Control" unique_id=1282035863]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3ongb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1401978]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,18 +25,18 @@ offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AddButton" type="Button" parent="VBoxContainer"]
+[node name="AddButton" type="Button" parent="VBoxContainer" unique_id=1387883619]
 layout_mode = 2
 text = "Add to counter"
 
-[node name="Counter" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Counter" type="HBoxContainer" parent="VBoxContainer" unique_id=1387790224]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Counter"]
+[node name="Label" type="Label" parent="VBoxContainer/Counter" unique_id=1251052433]
 layout_mode = 2
 text = "Total times clicked: "
 
-[node name="CounterValueLabel" type="Label" parent="VBoxContainer/Counter"]
+[node name="CounterValueLabel" type="Label" parent="VBoxContainer/Counter" unique_id=1917840182]
 layout_mode = 2
 text = "0"
 

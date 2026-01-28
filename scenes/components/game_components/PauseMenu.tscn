@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://th7jwdop3hdv"]
+[gd_scene format=3 uid="uid://th7jwdop3hdv"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_6oxby"]
 [ext_resource type="Script" uid="uid://dklkgkt30unai" path="res://src/PauseMenu.gd" id="1_aoxbt"]
@@ -19,11 +19,11 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PauseMenuLayer" type="CanvasLayer"]
+[node name="PauseMenuLayer" type="CanvasLayer" unique_id=853703343]
 process_mode = 3
 layer = 101
 
-[node name="PauseMenu" type="PanelContainer" parent="." node_paths=PackedStringArray("settings_panel")]
+[node name="PauseMenu" type="PanelContainer" parent="." unique_id=933404352 node_paths=PackedStringArray("settings_panel")]
 z_index = 128
 material = ExtResource("1_6oxby")
 anchors_preset = -1
@@ -33,29 +33,29 @@ grow_vertical = 2
 script = ExtResource("1_aoxbt")
 settings_panel = NodePath("../Settings")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=2056078458]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="LevelName" type="Label" parent="PauseMenu/VBoxContainer"]
+[node name="LevelName" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1687682951]
 layout_mode = 2
 text = "Level Name"
 label_settings = SubResource("LabelSettings_ibsmc")
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="PauseMenu/VBoxContainer"]
+[node name="Spacer" type="Control" parent="PauseMenu/VBoxContainer" unique_id=98440856]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Resume" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1290684664]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Resume"
 
-[node name="Restart" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Restart" type="Button" parent="PauseMenu/VBoxContainer" unique_id=864556660]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
@@ -63,7 +63,7 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Restart"
 
-[node name="Practice" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Practice" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1058546948]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
@@ -72,7 +72,7 @@ theme_type_variation = &"TitleScreenButton"
 toggle_mode = true
 text = "Practice"
 
-[node name="Edit" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Edit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=840835775]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(500, 75)
@@ -81,21 +81,21 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Edit"
 
-[node name="Settings" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Settings" type="Button" parent="PauseMenu/VBoxContainer" unique_id=639824919]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
-[node name="Leave" type="Button" parent="PauseMenu/VBoxContainer"]
+[node name="Leave" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1220920267]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Leave"
 
-[node name="Settings" type="PanelContainer" parent="."]
+[node name="Settings" type="PanelContainer" parent="." unique_id=89556222]
 visible = false
 z_index = 128
 material = ExtResource("1_6oxby")
@@ -112,14 +112,14 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_y4qns")
 script = ExtResource("5_018eo")
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+[node name="MarginContainer" type="MarginContainer" parent="Settings" unique_id=110892163]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
 
-[node name="SettingsMenu" parent="Settings/MarginContainer" instance=ExtResource("6_wvbob")]
+[node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
 layout_mode = 2
 current_tab = 0
 

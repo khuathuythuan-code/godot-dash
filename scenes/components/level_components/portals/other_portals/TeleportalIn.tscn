@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d05asiy6k2voi"]
+[gd_scene format=3 uid="uid://d05asiy6k2voi"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_3sgph"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="2_6nd4y"]
@@ -15,56 +15,51 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bg8ge"]
 resource_local_to_scene = true
 shader = ExtResource("3_c01u1")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1q4x"]
 size = Vector2(106, 384)
 
-[node name="TeleportalIn" type="Area2D"]
+[node name="TeleportalIn" type="Area2D" unique_id=1994029984]
 collision_layer = 8
 script = ExtResource("1_3sgph")
 
-[node name="TargetLink" parent="." instance=ExtResource("2_g4fee")]
-z_index = -50
+[node name="TargetLink" parent="." unique_id=1794560635 instance=ExtResource("2_g4fee")]
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_6nd4y")]
+[node name="ParticleEmitter" parent="." unique_id=1469661410 instance=ExtResource("2_6nd4y")]
 modulate = Color(0.356863, 0.85098, 1, 1)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=949046477]
 material = SubResource("ShaderMaterial_bg8ge")
 
-[node name="TeleportalInBack" type="Sprite2D" parent="Sprites"]
+[node name="TeleportalInBack" type="Sprite2D" parent="Sprites" unique_id=1053903692]
 z_index = -1
 use_parent_material = true
 texture = ExtResource("4_62kgg")
 
-[node name="TeleportalInFront" type="Sprite2D" parent="Sprites"]
+[node name="TeleportalInFront" type="Sprite2D" parent="Sprites" unique_id=774772074]
 z_index = 1
 use_parent_material = true
 texture = ExtResource("5_toxp5")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1567422726]
 position = Vector2(53, 0)
 shape = SubResource("RectangleShape2D_k1q4x")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_wo8fp")]
+[node name="EditorSelectionCollider" parent="." unique_id=426597047 instance=ExtResource("7_wo8fp")]
 scale = Vector2(1, 3)
 type = 8
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=162269336]
 script = ExtResource("9_rk7d5")
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=386628352]
 script = ExtResource("7_vbgas")
 
-[node name="TargetObjectComponent" type="Node" parent="."]
+[node name="TargetObjectComponent" type="Node" parent="." unique_id=77900328]
 script = ExtResource("10_ohmk0")
 
-[node name="TeleportComponent" type="Node" parent="."]
+[node name="TeleportComponent" type="Node" parent="." unique_id=1002562758]
 script = ExtResource("8_crgvb")

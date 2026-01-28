@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dfwwxyf5unhva"]
+[gd_scene format=3 uid="uid://dfwwxyf5unhva"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_wf63w"]
 [ext_resource type="Texture2D" uid="uid://4totkksq1aty" path="res://assets/textures/triggers/GameplayRotate.svg" id="2_43cvm"]
@@ -17,50 +17,50 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
-[node name="GameplayRotateTrigger" type="Area2D"]
+[node name="GameplayRotateTrigger" type="Area2D" unique_id=1412347101]
 script = ExtResource("1_wf63w")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("gameplay_rotation_changer_component", "direction_changer_component")]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1130989063 node_paths=PackedStringArray("gameplay_rotation_changer_component", "direction_changer_component")]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_43cvm")
 script = ExtResource("3_7u7ql")
 gameplay_rotation_changer_component = NodePath("../GameplayRotationChangerComponent")
 direction_changer_component = NodePath("../DirectionChangerComponent")
 
-[node name="GameplayRotateTriggerIndicator" type="Node2D" parent="Sprite"]
+[node name="GameplayRotateTriggerIndicator" type="Node2D" parent="Sprite" unique_id=387102999]
 show_behind_parent = true
 script = ExtResource("4_7u7ql")
 metadata/_custom_type_script = "uid://byumf0aq42yfc"
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1998552368]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_nuarc")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="GameplayRotationChangerComponent" type="Node" parent="."]
+[node name="GameplayRotationChangerComponent" type="Node" parent="." unique_id=940173513]
 script = ExtResource("4_e3cbx")
 metadata/_custom_type_script = "uid://od07mvmrscru"
 
-[node name="DirectionChangerComponent" type="Node" parent="."]
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=134706983]
 script = ExtResource("5_imbv6")
 metadata/_custom_type_script = "uid://crvw7wonis42n"
 
-[node name="GravityFlipChangerComponent" type="Node" parent="."]
+[node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=2048066488]
 script = ExtResource("7_pcqrk")
 metadata/_custom_type_script = "uid://df636dbhnu65v"
 
-[node name="EasingComponent" type="Node" parent="."]
+[node name="EasingComponent" type="Node" parent="." unique_id=1643423661]
 script = ExtResource("5_xe2oq")
 duration = 0.0
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
-[node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
+[node name="TriggerHitboxComponent" type="Node" parent="." unique_id=1038548916 node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("6_ahorf")
 _hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://cilw18c36fh6"
 
-[node name="HitboxDisplay" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="HitboxDisplay" type="Node2D" parent="." unique_id=1139106071 node_paths=PackedStringArray("hitbox")]
 z_index = -20
 script = ExtResource("8_h22j2")
 hitbox = NodePath("../Hitbox")
@@ -68,9 +68,9 @@ color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
+[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=714875557]
 script = ExtResource("10_228gr")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("12_gmkjp")]
+[node name="EditorSelectionCollider" parent="." unique_id=958642864 instance=ExtResource("12_gmkjp")]
 type = 8

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmbrwf8s3jk72"]
+[gd_scene format=3 uid="uid://bmbrwf8s3jk72"]
 
 [ext_resource type="Script" uid="uid://dmoghagxbithp" path="res://src/editor/gizmos/ScaleGizmo.gd" id="2_wi2ry"]
 
-[node name="Gizmos" type="Control"]
+[node name="Gizmos" type="Control" unique_id=561727546]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1699877153]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ grow_vertical = 2
 color = Color(0.298039, 0.298039, 0.298039, 1)
 metadata/_edit_lock_ = true
 
-[node name="ScaleGizmo" type="Control" parent="."]
+[node name="ScaleGizmo" type="Control" parent="." unique_id=1196172064]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

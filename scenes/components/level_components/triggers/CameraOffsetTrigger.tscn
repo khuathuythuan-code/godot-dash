@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2o4o1630e50x"]
+[gd_scene format=3 uid="uid://b2o4o1630e50x"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_7rp4f"]
 [ext_resource type="Texture2D" uid="uid://6tc6g218qrva" path="res://assets/textures/triggers/CameraOffset.svg" id="2_31tvo"]
@@ -14,38 +14,38 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
-[node name="CameraOffsetTrigger" type="Area2D"]
+[node name="CameraOffsetTrigger" type="Area2D" unique_id=1856496546]
 script = ExtResource("1_7rp4f")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1439299428]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_31tvo")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1244635099]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_4ydte")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="CameraOffsetChangerComponent" type="Node" parent="."]
+[node name="CameraOffsetChangerComponent" type="Node" parent="." unique_id=418888322]
 script = ExtResource("3_wlim6")
 
-[node name="EasingComponent" type="Node" parent="."]
+[node name="EasingComponent" type="Node" parent="." unique_id=1938627912]
 script = ExtResource("6_dhkcg")
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
-[node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
+[node name="TriggerHitboxComponent" type="Node" parent="." unique_id=1547039858 node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("7_roy2v")
 _hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://cilw18c36fh6"
 
-[node name="TextureRotationPinComponent" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPinComponent" type="Node" parent="." unique_id=1663475708 node_paths=PackedStringArray("pinned")]
 script = ExtResource("8_3frdy")
 pinned = NodePath("../Sprite")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 
-[node name="HitboxDisplay" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="HitboxDisplay" type="Node2D" parent="." unique_id=2002049651 node_paths=PackedStringArray("hitbox")]
 z_index = -20
 script = ExtResource("9_fkese")
 hitbox = NodePath("../Hitbox")
@@ -53,9 +53,9 @@ color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
+[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=70462128]
 script = ExtResource("8_wlim6")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("9_7rp4f")]
+[node name="EditorSelectionCollider" parent="." unique_id=1491950634 instance=ExtResource("9_7rp4f")]
 type = 8

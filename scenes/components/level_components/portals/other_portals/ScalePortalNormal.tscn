@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhjfnlli5vshw"]
+[gd_scene format=3 uid="uid://bhjfnlli5vshw"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_if0q6"]
 [ext_resource type="Texture2D" uid="uid://b2epvogeak18n" path="res://assets/textures/portals/other_portals/scale_portal_small/ScalePortalSmallBack.png" id="2_88axh"]
@@ -15,46 +15,42 @@ size = Vector2(128, 384)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_60mar"]
 resource_local_to_scene = true
 shader = ExtResource("3_aaqhj")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
-[node name="ScalePortalNormal" type="Area2D"]
+[node name="ScalePortalNormal" type="Area2D" unique_id=630849753]
 collision_layer = 8
 script = ExtResource("1_if0q6")
 metadata/_edit_group_ = true
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_o2xvl")]
+[node name="ParticleEmitter" parent="." unique_id=408203954 instance=ExtResource("2_o2xvl")]
 modulate = Color(0, 1, 0, 1)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=534276703]
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=1086133223]
 material = SubResource("ShaderMaterial_60mar")
 
-[node name="PortalBack" type="Sprite2D" parent="Sprites"]
+[node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=699397513]
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_88axh")
 
-[node name="PortalFront" type="Sprite2D" parent="Sprites"]
+[node name="PortalFront" type="Sprite2D" parent="Sprites" unique_id=2068171758]
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_wvek7")
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=206296420]
 script = ExtResource("7_cr5uw")
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=201128870]
 script = ExtResource("8_uq0n2")
 
-[node name="PlayerScaleChangerComponent" type="Node" parent="."]
+[node name="PlayerScaleChangerComponent" type="Node" parent="." unique_id=20820086]
 script = ExtResource("9_ryy04")
 player_scale = 1

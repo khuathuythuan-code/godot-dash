@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwqcjqk3as34v"]
+[gd_scene format=3 uid="uid://bwqcjqk3as34v"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_ukvqu"]
 [ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="2_rwy5o"]
@@ -18,62 +18,58 @@ size = Vector2(128, 384)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r7ldh"]
 resource_local_to_scene = true
 shader = ExtResource("2_rwy5o")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
-[node name="GravityPortalNormal" type="Area2D"]
+[node name="GravityPortalNormal" type="Area2D" unique_id=1467166309]
 collision_layer = 8
 script = ExtResource("1_ukvqu")
 metadata/_edit_group_ = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=95734593]
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=1879266259]
 material = SubResource("ShaderMaterial_r7ldh")
 
-[node name="PortalBack" type="Sprite2D" parent="Sprites"]
+[node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=167072589]
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_h3dng")
 
-[node name="PortalFront" type="Sprite2D" parent="Sprites"]
+[node name="PortalFront" type="Sprite2D" parent="Sprites" unique_id=1578417085]
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_m7fq6")
 
-[node name="PortalIndicatorBg" type="Sprite2D" parent="Sprites"]
+[node name="PortalIndicatorBg" type="Sprite2D" parent="Sprites" unique_id=1311732190]
 z_index = 1
 use_parent_material = true
 position = Vector2(58, 0)
 texture = ExtResource("5_67rea")
 
-[node name="IndicatorIcon" type="Sprite2D" parent="Sprites"]
+[node name="IndicatorIcon" type="Sprite2D" parent="Sprites" unique_id=88302707]
 z_index = 1
 use_parent_material = true
 position = Vector2(52, 0)
 texture = ExtResource("6_dfbcm")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("7_5eui3")]
+[node name="ParticleEmitter" parent="." unique_id=1866013509 instance=ExtResource("7_5eui3")]
 modulate = Color(0, 0.721569, 0.886275, 1)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=220571492]
 script = ExtResource("9_nodad")
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=709696425]
 script = ExtResource("10_ufkdc")
 
-[node name="GravityFlipChangerComponent" type="Node" parent="."]
+[node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=1539330157]
 script = ExtResource("11_12or6")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPin" type="Node" parent="." unique_id=74377547 node_paths=PackedStringArray("pinned")]
 script = ExtResource("12_rnoqo")
 pinned = NodePath("../Sprites/IndicatorIcon")
 pin_to_gameplay_rotation = true

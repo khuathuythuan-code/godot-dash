@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://3bc5088argko"]
+[gd_scene format=3 uid="uid://3bc5088argko"]
 
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="1_1q0ts"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_xcvel"]
@@ -17,11 +17,11 @@
 [ext_resource type="Script" uid="uid://cfmafqjh1b675" path="res://src/gui/properties/types/FlagsProperty.gd" id="15_pssp5"]
 [ext_resource type="Script" uid="uid://cwu2m4yu7an50" path="res://src/gui/properties/types/OneLineEnumProperty.gd" id="17_htt1w"]
 
-[sub_resource type="Resource" id="Resource_iyxla"]
+[sub_resource type="Resource" id="Resource_7kfuq"]
 resource_local_to_scene = true
 script = ExtResource("13_iyxla")
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" unique_id=2132735514]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +31,7 @@ grow_vertical = 2
 theme = ExtResource("1_xcvel")
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=20594555]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +41,7 @@ grow_vertical = 2
 color = Color(0.298039, 0.298039, 0.298039, 1)
 metadata/_edit_lock_ = true
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1914189088]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,13 +49,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=293250668]
 process_mode = 1
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="FloatProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="FloatProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1503137303]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -64,7 +64,7 @@ script = ExtResource("1_1q0ts")
 default = 50.0
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="FloatSliderProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="FloatSliderProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1786770700]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -77,7 +77,7 @@ max_value = 10.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 metadata/_edit_lock_ = true
 
-[node name="BoolProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="BoolProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=754964842]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -86,7 +86,7 @@ script = ExtResource("3_bgdif")
 default = true
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="Vector2Property" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Vector2Property" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1026776731]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -96,7 +96,7 @@ script = ExtResource("4_rks8l")
 default = Vector2(5, 0)
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
-[node name="StringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="StringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=526284983]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -106,7 +106,7 @@ default = "a"
 placeholder = ":3"
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
-[node name="ColorProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="ColorProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1373675914]
 visible = false
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -115,7 +115,7 @@ script = ExtResource("6_msomc")
 default = Color(0, 1, 0, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="EnumProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="EnumProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=2010305471]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -123,28 +123,28 @@ script = ExtResource("7_4ovid")
 fields = PackedStringArray("A", "B")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="OneLineEnumProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="OneLineEnumProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1741657982]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("17_htt1w")
 fields = PackedStringArray("Object", "Material", "Rendered")
 
-[node name="Node2DProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="Node2DProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1155177334]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("8_eapbg")
 metadata/_custom_type_script = "uid://bm3bhys0ur0ns"
 
-[node name="FileProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="FileProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=262590856]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("9_eabr2")
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 
-[node name="ArrayProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="ArrayProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1099857151]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -154,18 +154,18 @@ minimum_size = 1
 item_template = ExtResource("12_ostnf")
 metadata/_custom_type_script = "uid://d3j6obbost55b"
 
-[node name="ResourceProperty" parent="CenterContainer/VBoxContainer" instance=ExtResource("12_ostnf")]
+[node name="ResourceProperty" parent="CenterContainer/VBoxContainer" unique_id=2140278759 instance=ExtResource("12_ostnf")]
 layout_mode = 2
-default = SubResource("Resource_iyxla")
+default = SubResource("Resource_7kfuq")
 
-[node name="MultilineStringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="MultilineStringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=52310013]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("14_iyxla")
 metadata/_custom_type_script = "uid://b77ajx8cop15a"
 
-[node name="FlagsProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer"]
+[node name="FlagsProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=801444458]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
