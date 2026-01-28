@@ -10,3 +10,4 @@ class_name LevelPanel
 @export var play_button: Button
 @export var edit_button: Button
 @export var remove_button: Button
+var data: Dictionary
