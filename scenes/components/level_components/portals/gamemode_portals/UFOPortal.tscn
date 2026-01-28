@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bd0j0ubumn1dc"]
+[gd_scene format=3 uid="uid://bd0j0ubumn1dc"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_m72w8"]
 [ext_resource type="Texture2D" uid="uid://n74audulsaf4" path="res://assets/textures/portals/gamemode_portals/ufo_portal/UFOPortalBack.png" id="2_ivt8v"]
@@ -19,66 +19,62 @@ size = Vector2(128, 384)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jgmp7"]
 resource_local_to_scene = true
 shader = ExtResource("2_n6vns")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
-[node name="UFOPortal" type="Area2D"]
+[node name="UFOPortal" type="Area2D" unique_id=220896547]
 collision_layer = 8
 script = ExtResource("1_m72w8")
 metadata/_edit_group_ = true
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1039201366]
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=1971796244]
 material = SubResource("ShaderMaterial_jgmp7")
 
-[node name="UFOPortalBack" type="Sprite2D" parent="Sprites"]
+[node name="UFOPortalBack" type="Sprite2D" parent="Sprites" unique_id=538742267]
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_ivt8v")
 
-[node name="UFOPortalFront" type="Sprite2D" parent="Sprites"]
+[node name="UFOPortalFront" type="Sprite2D" parent="Sprites" unique_id=2009375299]
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_ogdae")
 
-[node name="UFOPortalIndicatorBg" type="Sprite2D" parent="Sprites"]
+[node name="UFOPortalIndicatorBg" type="Sprite2D" parent="Sprites" unique_id=1554360160]
 z_index = 1
 use_parent_material = true
 position = Vector2(48, -1.90735e-06)
 texture = ExtResource("4_b1r1t")
 
-[node name="IndicatorIcon" type="Sprite2D" parent="Sprites"]
+[node name="IndicatorIcon" type="Sprite2D" parent="Sprites" unique_id=720504250]
 z_index = 1
 use_parent_material = true
 position = Vector2(44, -1.90735e-06)
 texture = ExtResource("5_hl8ac")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("7_p7ufc")]
+[node name="ParticleEmitter" parent="." unique_id=1600688424 instance=ExtResource("7_p7ufc")]
 modulate = Color(1, 0.47451, 0, 1)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=523484136]
 script = ExtResource("8_uesul")
 
-[node name="GamemodeChangerComponent" type="Node" parent="."]
+[node name="GamemodeChangerComponent" type="Node" parent="." unique_id=1046759544]
 script = ExtResource("9_h6xnr")
 _gamemode = 2
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=699600628]
 script = ExtResource("11_8ibny")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
-[node name="GroundMoverComponent" type="Node" parent="."]
+[node name="GroundMoverComponent" type="Node" parent="." unique_id=761876644]
 script = ExtResource("12_gi1ek")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPin" type="Node" parent="." unique_id=676242741 node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_dxq01")
 pinned = NodePath("../Sprites/IndicatorIcon")

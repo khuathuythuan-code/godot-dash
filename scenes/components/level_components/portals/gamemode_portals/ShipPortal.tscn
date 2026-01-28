@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ctf8cfrxbjfdk"]
+[gd_scene format=3 uid="uid://ctf8cfrxbjfdk"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_vnd63"]
 [ext_resource type="Texture2D" uid="uid://cilrx38i18agf" path="res://assets/textures/portals/gamemode_portals/ship_portal/ShipPortalBack.png" id="2_cs1mo"]
@@ -19,65 +19,61 @@ size = Vector2(128, 384)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hn81s"]
 resource_local_to_scene = true
 shader = ExtResource("2_eb732")
-shader_parameter/shine_color = Color(1, 1, 1, 1)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
-[node name="ShipPortal" type="Area2D"]
+[node name="ShipPortal" type="Area2D" unique_id=1107289033]
 collision_layer = 8
 script = ExtResource("1_vnd63")
 metadata/_edit_group_ = true
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("6_kigd0")]
+[node name="ParticleEmitter" parent="." unique_id=2104952149 instance=ExtResource("6_kigd0")]
 modulate = Color(1, 0.121569, 1, 1)
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=837259715]
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=339251201]
 material = SubResource("ShaderMaterial_hn81s")
 
-[node name="ShipPortalBack" type="Sprite2D" parent="Sprites"]
+[node name="ShipPortalBack" type="Sprite2D" parent="Sprites" unique_id=402944069]
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_cs1mo")
 
-[node name="ShipPortalFront" type="Sprite2D" parent="Sprites"]
+[node name="ShipPortalFront" type="Sprite2D" parent="Sprites" unique_id=692193799]
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_kgeug")
 
-[node name="ShipPortalIndicatorBg" type="Sprite2D" parent="Sprites"]
+[node name="ShipPortalIndicatorBg" type="Sprite2D" parent="Sprites" unique_id=538600743]
 z_index = 1
 use_parent_material = true
 position = Vector2(48, 0)
 texture = ExtResource("4_u5rr6")
 
-[node name="IndicatorIcon" type="Sprite2D" parent="Sprites"]
+[node name="IndicatorIcon" type="Sprite2D" parent="Sprites" unique_id=916044009]
 z_index = 1
 use_parent_material = true
 position = Vector2(44, 0)
 texture = ExtResource("5_dwkn1")
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=11783804]
 script = ExtResource("8_jwyvl")
 
-[node name="GamemodeChangerComponent" type="Node" parent="."]
+[node name="GamemodeChangerComponent" type="Node" parent="." unique_id=713081204]
 script = ExtResource("9_ahdn2")
 _gamemode = 1
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=8544880]
 script = ExtResource("11_ecaga")
 
-[node name="GroundMoverComponent" type="Node" parent="."]
+[node name="GroundMoverComponent" type="Node" parent="." unique_id=1563033734]
 script = ExtResource("12_0v1uf")
 
-[node name="TextureRotationPin" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPin" type="Node" parent="." unique_id=1391171060 node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_vfit2")
 pinned = NodePath("../Sprites/IndicatorIcon")

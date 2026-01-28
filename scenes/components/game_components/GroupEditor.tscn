@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://da4xswy05y0ve"]
+[gd_scene format=3 uid="uid://da4xswy05y0ve"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_b71ym"]
 [ext_resource type="Script" uid="uid://u5n6v8qenvt6" path="res://src/editor/editor_panels/GroupEditor.gd" id="1_laiw3"]
@@ -14,7 +14,7 @@ script = ExtResource("7_1melt")
 [sub_resource type="Resource" id="Resource_c6xh5"]
 script = ExtResource("7_1melt")
 
-[node name="GroupEditor" type="VBoxContainer" node_paths=PackedStringArray("line_edit", "confirm_button", "group_container")]
+[node name="GroupEditor" type="VBoxContainer" unique_id=1315070301 node_paths=PackedStringArray("line_edit", "confirm_button", "group_container")]
 custom_minimum_size = Vector2(0, 200)
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,10 +27,10 @@ line_edit = NodePath("HBoxContainer/LineEdit")
 confirm_button = NodePath("HBoxContainer/Button")
 group_container = NodePath("SmoothScrollContainer/GroupContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=309496151]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer" node_paths=PackedStringArray("root_node_to_search")]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" unique_id=458054201 node_paths=PackedStringArray("root_node_to_search")]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
@@ -45,7 +45,7 @@ filters = Array[StringName]([&"text"])
 discard_similars = false
 metadata/_custom_type_script = "uid://y1hecem53675"
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=1361347023]
 texture_filter = 4
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
@@ -53,7 +53,7 @@ focus_mode = 0
 icon = ExtResource("3_dlgkp")
 icon_alignment = 1
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="." unique_id=253098050]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_ibtip")
@@ -61,7 +61,7 @@ wheel_scroll_damper = SubResource("Resource_gi0fj")
 dragging_scroll_damper = SubResource("Resource_c6xh5")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="GroupContainer" type="HFlowContainer" parent="SmoothScrollContainer"]
+[node name="GroupContainer" type="HFlowContainer" parent="SmoothScrollContainer" unique_id=1140782770]
 layout_mode = 2
 size_flags_horizontal = 3
 

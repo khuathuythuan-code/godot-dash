@@ -5,10 +5,14 @@ const LEVEL_DIR: String = "user://created_levels/levels/"
 @export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
 @export var level_already_exists_dialog: ConfirmationDialog
+@export var sort_by: OptionButton
+@export var order: OptionButton
 var levels: Dictionary[String, Control]
 
 
 func _ready() -> void:
+	sort_by.item_selected.connect(reorder.unbind(1))
+	order.item_selected.connect(reorder.unbind(1))
 	refresh()
 
 
@@ -42,6 +46,30 @@ func refresh() -> void:
 		panel.remove_button.pressed.connect(_remove_level.bind(file_name))
 		levels[file_name] = panel
 		add_child(panel)
+
+	await get_tree().process_frame
+	reorder()
+
+
+func reorder() -> void:
+	var children: Array
+	for child in get_children():
+		children.append(child)
+	# Alphabetical
+	children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower())
+	match sort_by.selected:
+		1: # Rating
+			children.sort_custom(func(a, b): return int(a.get_node("Play/Outline/Rating").text) < int(b.get_node("Play/Outline/Rating").text))
+		2: # Creator
+			children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower())
+
+	for child in children:
+		move_child(child, 0)
+
+	# Flip order
+	if order.selected == 1:
+		for child in get_children():
+			move_child(child, 0)
 
 
 func _play_level(level_name: String) -> void:

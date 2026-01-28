@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://bl48psvuka73y"]
+[gd_scene format=3 uid="uid://bl48psvuka73y"]
 
 [ext_resource type="Script" uid="uid://dlfmgrvw7q01y" path="res://src/Player.gd" id="1_nvqsc"]
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="2_6ab5b"]
@@ -444,7 +444,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3hrq"]
 size = Vector2(128, 128)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=509732007]
 process_mode = 1
 collision_mask = 122
 collision_priority = 2.0
@@ -458,7 +458,7 @@ script = ExtResource("1_nvqsc")
 default_collider = SubResource("RectangleShape2D_14y25")
 slope_collider = SubResource("CircleShape2D_xclbr")
 
-[node name="DashParticles" type="GPUParticles2D" parent="."]
+[node name="DashParticles" type="GPUParticles2D" parent="." unique_id=987294890]
 modulate = Color(0, 1, 1, 1)
 material = ExtResource("5_dvha5")
 emitting = false
@@ -466,7 +466,7 @@ amount = 30
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_1h32q")
 
-[node name="DashFlame" type="AnimatedSprite2D" parent="."]
+[node name="DashFlame" type="AnimatedSprite2D" parent="." unique_id=1800491855]
 visible = false
 modulate = Color(0, 1, 1, 1)
 material = ExtResource("5_dvha5")
@@ -476,9 +476,9 @@ autoplay = "default"
 frame_progress = 0.144669
 offset = Vector2(-96, 0)
 
-[node name="GroundParticlesOrigin" type="Node2D" parent="."]
+[node name="GroundParticlesOrigin" type="Node2D" parent="." unique_id=1852482948]
 
-[node name="GroundParticles" type="GPUParticles2D" parent="GroundParticlesOrigin"]
+[node name="GroundParticles" type="GPUParticles2D" parent="GroundParticlesOrigin" unique_id=1694958379]
 unique_name_in_owner = true
 modulate = Color(0, 1, 1, 1)
 position = Vector2(0, 64)
@@ -487,7 +487,7 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_244xe")
 
-[node name="WaveTrail" type="Line2D" parent="."]
+[node name="WaveTrail" type="Line2D" parent="." unique_id=1174212770]
 unique_name_in_owner = true
 z_index = -1
 width = 50.0
@@ -499,7 +499,7 @@ antialiased = true
 script = ExtResource("2_s0etf")
 length = 0
 
-[node name="WaveTrailInner" type="Line2D" parent="."]
+[node name="WaveTrailInner" type="Line2D" parent="." unique_id=1844026426]
 unique_name_in_owner = true
 z_index = -1
 material = ExtResource("5_dvha5")
@@ -512,37 +512,37 @@ antialiased = true
 script = ExtResource("2_s0etf")
 length = 0
 
-[node name="SlopeShapecast" type="ShapeCast2D" parent="."]
+[node name="SlopeShapecast" type="ShapeCast2D" parent="." unique_id=1175629948]
 visible = false
 modulate = Color(1, 1, 1, 0.313726)
 shape = SubResource("CircleShape2D_o2txy")
 target_position = Vector2(0, 128)
 collision_mask = 64
 
-[node name="Icon" type="Node2D" parent="."]
+[node name="Icon" type="Node2D" parent="." unique_id=1476032725]
 
-[node name="Cube" type="Node2D" parent="Icon"]
+[node name="Cube" type="Node2D" parent="Icon" unique_id=1897038084]
 script = ExtResource("2_sxyn3")
 
-[node name="CubeIcon" type="Sprite2D" parent="Icon/Cube"]
+[node name="CubeIcon" type="Sprite2D" parent="Icon/Cube" unique_id=1996823347]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6ab5b")
 
-[node name="Robot" type="Node2D" parent="Icon"]
+[node name="Robot" type="Node2D" parent="Icon" unique_id=1028692649]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 5
 
-[node name="CubeIcon" type="Sprite2D" parent="Icon/Robot"]
+[node name="CubeIcon" type="Sprite2D" parent="Icon/Robot" unique_id=627873927]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_6ab5b")
 
-[node name="Spider" type="Node2D" parent="Icon"]
+[node name="Spider" type="Node2D" parent="Icon" unique_id=1699397179]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 6
 
-[node name="SpiderCast" type="ShapeCast2D" parent="Icon/Spider"]
+[node name="SpiderCast" type="ShapeCast2D" parent="Icon/Spider" unique_id=740452231]
 modulate = Color(0, 0, 0, 0.301961)
 show_behind_parent = true
 shape = SubResource("RectangleShape2D_p8d76")
@@ -550,98 +550,96 @@ target_position = Vector2(0, -8192)
 collision_mask = 102
 collide_with_areas = true
 
-[node name="SpiderTrailSpawnPoint" type="Marker2D" parent="Icon/Spider/SpiderCast"]
+[node name="SpiderTrailSpawnPoint" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1966975195]
 position = Vector2(64, 64)
 
-[node name="SpiderTrailSpawnPointReverse" type="Marker2D" parent="Icon/Spider/SpiderCast"]
+[node name="SpiderTrailSpawnPointReverse" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1972961010]
 position = Vector2(-64, 64)
 
-[node name="SpiderSprites" type="Node2D" parent="Icon/Spider"]
+[node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1437256854]
 metadata/_edit_lock_ = true
 
-[node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites"]
+[node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=678229343]
 position = Vector2(21, 8)
 rotation = 0.0330985
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left"]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=390644432]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left"]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=1889692412]
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites"]
+[node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=905109566]
 position = Vector2(58, 9)
 rotation = -0.204853
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right"]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=1219995926]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right"]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=351682121]
 modulate = Color(0.62, 0.62, 0.5, 1)
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites"]
+[node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1221838451]
 position = Vector2(8, -14)
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head"]
+[node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1123283173]
 z_index = -1
 texture = ExtResource("19_w1emf")
 
-[node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head"]
+[node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1645860533]
 texture = ExtResource("20_bb8qe")
 
-[node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites"]
+[node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=166204152]
 position = Vector2(-30, 12)
 rotation = 0.751096
 scale = Vector2(0.25, 0.305)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left"]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=470303584]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left"]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1032391879]
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites"]
+[node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1181714659]
 position = Vector2(-9, 8)
 rotation = 0.0693143
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right"]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=2087875789]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right"]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=282204352]
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites"]
-libraries = {
-&"": ExtResource("23_244xe")
-}
+[node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites" unique_id=131212605]
+libraries/ = ExtResource("23_244xe")
 playback_default_blend_time = 1.0
 next/RESET = &"walk"
 blend_times = [&"RESET", &"RESET", 1.0, &"RESET", &"walk", 1.0, &"walk", &"walk", 1.0]
 
-[node name="SpiderStateMachine" type="AnimationTree" parent="Icon/Spider"]
+[node name="SpiderStateMachine" type="AnimationTree" parent="Icon/Spider" unique_id=859358445]
 root_node = NodePath("../SpiderSprites")
 tree_root = SubResource("AnimationNodeStateMachine_vvc3a")
 anim_player = NodePath("../SpiderSprites/SpiderAnimation")
@@ -652,62 +650,62 @@ parameters/run/TimeScale/scale = 3.0
 parameters/walk/PlayerSpeed/scale = 1.0
 parameters/walk/TimeScale/scale = 3.0
 
-[node name="Ball" type="Node2D" parent="Icon"]
+[node name="Ball" type="Node2D" parent="Icon" unique_id=623646442]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 3
 
-[node name="Ball" type="Sprite2D" parent="Icon/Ball"]
+[node name="Ball" type="Sprite2D" parent="Icon/Ball" unique_id=1700073485]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("18_b7ibp")
 
-[node name="Wave" type="Node2D" parent="Icon"]
+[node name="Wave" type="Node2D" parent="Icon" unique_id=577725467]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 4
 
-[node name="Icon" type="Sprite2D" parent="Icon/Wave"]
+[node name="Icon" type="Sprite2D" parent="Icon/Wave" unique_id=453892104]
 scale = Vector2(0.417, 0.417)
 texture = ExtResource("19_8jrwm")
 
-[node name="UFO" type="Node2D" parent="Icon"]
+[node name="UFO" type="Node2D" parent="Icon" unique_id=2032529004]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 2
 
-[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO"]
+[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO" unique_id=1074874466]
 unique_name_in_owner = true
 position = Vector2(0, 64)
 
-[node name="UFOIcon" type="Sprite2D" parent="Icon/UFO"]
+[node name="UFOIcon" type="Sprite2D" parent="Icon/UFO" unique_id=410039601]
 position = Vector2(0, -3)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("18_nmour")
 
-[node name="Ship" type="Node2D" parent="Icon"]
+[node name="Ship" type="Node2D" parent="Icon" unique_id=1604499480]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 1
 platformer = 1
 
-[node name="ShipParticles" type="GPUParticles2D" parent="Icon/Ship"]
+[node name="ShipParticles" type="GPUParticles2D" parent="Icon/Ship" unique_id=832361813]
 unique_name_in_owner = true
 position = Vector2(-79, 22)
 amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="ShipIcon" type="Sprite2D" parent="Icon/Ship"]
+[node name="ShipIcon" type="Sprite2D" parent="Icon/Ship" unique_id=2005628673]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_mqpwg")
 
-[node name="Jetpack" type="Node2D" parent="Icon"]
+[node name="Jetpack" type="Node2D" parent="Icon" unique_id=142755310]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 1
 platformer = 2
 
-[node name="JetpackParticles" type="GPUParticles2D" parent="Icon/Jetpack"]
+[node name="JetpackParticles" type="GPUParticles2D" parent="Icon/Jetpack" unique_id=41120558]
 unique_name_in_owner = true
 position = Vector2(-43, 57.000008)
 rotation = -1.4522295
@@ -715,27 +713,27 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="JetpackIcon" type="Sprite2D" parent="Icon/Jetpack"]
+[node name="JetpackIcon" type="Sprite2D" parent="Icon/Jetpack" unique_id=1027718418]
 position = Vector2(0, -10)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("27_vov5s")
 
-[node name="Swing" type="Node2D" parent="Icon"]
+[node name="Swing" type="Node2D" parent="Icon" unique_id=1099555214]
 visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 7
 
-[node name="Swing-glow" type="Sprite2D" parent="Icon/Swing"]
+[node name="Swing-glow" type="Sprite2D" parent="Icon/Swing" unique_id=248484907]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_6vub1")
 
-[node name="FireBoostTop" type="Sprite2D" parent="Icon/Swing"]
+[node name="FireBoostTop" type="Sprite2D" parent="Icon/Swing" unique_id=941325389]
 position = Vector2(-24, -33)
 rotation = 2.35619
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
 
-[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostTop"]
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostTop" unique_id=1885754964]
 show_behind_parent = true
 position = Vector2(1.5258789e-05, -8.333351)
 rotation = -1.5707941
@@ -744,13 +742,13 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="FireBoostMiddle" type="Sprite2D" parent="Icon/Swing"]
+[node name="FireBoostMiddle" type="Sprite2D" parent="Icon/Swing" unique_id=464839742]
 position = Vector2(-82, 0)
 rotation = 1.57079
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
 
-[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostMiddle"]
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostMiddle" unique_id=58379360]
 show_behind_parent = true
 position = Vector2(1.5258789e-05, -8.333351)
 rotation = -1.5707941
@@ -758,13 +756,13 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="FireBoostBottom" type="Sprite2D" parent="Icon/Swing"]
+[node name="FireBoostBottom" type="Sprite2D" parent="Icon/Swing" unique_id=1846968917]
 position = Vector2(-54, 63)
 rotation = 0.785397
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("29_475ha")
 
-[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostBottom"]
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostBottom" unique_id=1154380714]
 show_behind_parent = true
 position = Vector2(1.5258789e-05, -8.333351)
 rotation = -1.5707941
@@ -772,61 +770,61 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="Swing-NoGlow" type="Sprite2D" parent="Icon/Swing"]
+[node name="Swing-NoGlow" type="Sprite2D" parent="Icon/Swing" unique_id=1790209392]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_qd53y")
 
-[node name="GroundCollider" type="CollisionShape2D" parent="."]
+[node name="GroundCollider" type="CollisionShape2D" parent="." unique_id=341704025]
 editor_description = "Detects collisions with the local gravity's ground."
 shape = SubResource("RectangleShape2D_p8d76")
 debug_color = Color(0.701961, 0, 0, 0.168627)
 metadata/_edit_lock_ = true
 
-[node name="KillColliderSolid" type="Area2D" parent="."]
+[node name="KillColliderSolid" type="Area2D" parent="." unique_id=1563576516]
 collision_mask = 512
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="KillColliderSolidHitbox" type="CollisionShape2D" parent="KillColliderSolid"]
+[node name="KillColliderSolidHitbox" type="CollisionShape2D" parent="KillColliderSolid" unique_id=721004622]
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_4mg1a")
 debug_color = Color(0, 0.0705882, 0.701961, 0.223529)
 
-[node name="KillColliderRectangularHazard" type="Area2D" parent="."]
+[node name="KillColliderRectangularHazard" type="Area2D" parent="." unique_id=1858958843]
 visible = false
 collision_mask = 4
 
-[node name="KillColliderRectangularHazardHitbox" type="CollisionShape2D" parent="KillColliderRectangularHazard"]
+[node name="KillColliderRectangularHazardHitbox" type="CollisionShape2D" parent="KillColliderRectangularHazard" unique_id=631098531]
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_t218l")
 debug_color = Color(0.701961, 0, 0, 0.419608)
 
-[node name="KillColliderCircularHazard" type="Area2D" parent="."]
+[node name="KillColliderCircularHazard" type="Area2D" parent="." unique_id=570637210]
 visible = false
 collision_mask = 2048
 
-[node name="KillColliderCircularHazardHitbox" type="CollisionShape2D" parent="KillColliderCircularHazard"]
+[node name="KillColliderCircularHazardHitbox" type="CollisionShape2D" parent="KillColliderCircularHazard" unique_id=230704428]
 rotation = 3.14159
 shape = SubResource("CircleShape2D_b3l5p")
 debug_color = Color(0.701961, 0, 0, 0.419608)
 
-[node name="SolidOverlapCheck" type="Area2D" parent="."]
+[node name="SolidOverlapCheck" type="Area2D" parent="." unique_id=2073120478]
 collision_mask = 512
 
-[node name="SolidOverlapCheckCollider" type="CollisionShape2D" parent="SolidOverlapCheck"]
+[node name="SolidOverlapCheckCollider" type="CollisionShape2D" parent="SolidOverlapCheck" unique_id=1693452314]
 editor_description = "Detects collisions with the local gravity's ground."
 shape = SubResource("RectangleShape2D_p8d76")
 debug_color = Color(0, 0.0700001, 0.7, 0)
 metadata/_edit_lock_ = true
 
-[node name="DeathEffect" type="AnimatedSprite2D" parent="."]
+[node name="DeathEffect" type="AnimatedSprite2D" parent="." unique_id=812924046]
 z_index = 100
 material = ExtResource("5_dvha5")
 sprite_frames = SubResource("SpriteFrames_x7s6i")
 frame = 12
 frame_progress = 1.0
 
-[node name="DeathParticles" type="GPUParticles2D" parent="."]
+[node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=1321524057]
 visible = false
 modulate = Color(0, 1, 1, 1)
 material = ExtResource("5_dvha5")
@@ -838,10 +836,10 @@ one_shot = true
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_uynvo")
 
-[node name="DebugOverlays" type="Node2D" parent="."]
+[node name="DebugOverlays" type="Node2D" parent="." unique_id=1534176086]
 unique_name_in_owner = true
 
-[node name="DebugTrail" type="Line2D" parent="DebugOverlays"]
+[node name="DebugTrail" type="Line2D" parent="DebugOverlays" unique_id=1505874252]
 z_index = 2
 width = 5.0
 default_color = Color(1, 0, 0, 1)
@@ -852,28 +850,26 @@ antialiased = true
 script = ExtResource("2_s0etf")
 length = 512
 
-[node name="DeathAnimator" type="AnimationPlayer" parent="."]
+[node name="DeathAnimator" type="AnimationPlayer" parent="." unique_id=1145986274]
 process_mode = 1
-libraries = {
-&"": SubResource("AnimationLibrary_sr0vc")
-}
+libraries/ = SubResource("AnimationLibrary_sr0vc")
 
-[node name="RobotTimer" type="Timer" parent="."]
+[node name="RobotTimer" type="Timer" parent="." unique_id=1125061952]
 wait_time = 0.5
 one_shot = true
 
-[node name="EditorPlayerSelectionCollider" parent="." instance=ExtResource("2_fruiv")]
+[node name="EditorPlayerSelectionCollider" parent="." unique_id=1420153758 instance=ExtResource("2_fruiv")]
 process_mode = 1
 
-[node name="HSVWatcher" type="Node2D" parent="."]
+[node name="HSVWatcher" type="Node2D" parent="." unique_id=812518477]
 process_mode = 1
 script = ExtResource("45_k4whp")
 metadata/_custom_type_script = "uid://by1h78riu3uvw"
 
-[node name="ParentedObjects" type="Node2D" parent="."]
+[node name="ParentedObjects" type="Node2D" parent="." unique_id=1114820785]
 editor_description = "Anchor for any level objects that need to be parented to the player (to keep it tidy)."
 
-[node name="EnsureVelocityRedirect" type="ShapeCast2D" parent="."]
+[node name="EnsureVelocityRedirect" type="ShapeCast2D" parent="." unique_id=1319472096]
 visible = false
 shape = SubResource("RectangleShape2D_u3hrq")
 collision_mask = 1024

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnrd5u6usdt5j"]
+[gd_scene format=3 uid="uid://dnrd5u6usdt5j"]
 
 [sub_resource type="Image" id="Image_dsafh"]
 data = {
@@ -12,64 +12,64 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_4l4q0"]
 image = SubResource("Image_dsafh")
 
-[node name="main" type="VBoxContainer"]
+[node name="main" type="VBoxContainer" unique_id=429279063]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="inner" type="VBoxContainer" parent="."]
+[node name="inner" type="VBoxContainer" parent="." unique_id=616797434]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="tabbar_container" type="HBoxContainer" parent="inner"]
+[node name="tabbar_container" type="HBoxContainer" parent="inner" unique_id=770112921]
 layout_mode = 2
 
-[node name="space_filler_on_hidden_tabbar" type="Control" parent="inner/tabbar_container"]
+[node name="space_filler_on_hidden_tabbar" type="Control" parent="inner/tabbar_container" unique_id=1164041927]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="tab_bar_wrapper" type="MarginContainer" parent="inner/tabbar_container"]
+[node name="tab_bar_wrapper" type="MarginContainer" parent="inner/tabbar_container" unique_id=1288130918]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="rename_btn" type="Button" parent="inner/tabbar_container"]
+[node name="rename_btn" type="Button" parent="inner/tabbar_container" unique_id=848160504]
 layout_mode = 2
 tooltip_text = "Rename current tab"
 icon = SubResource("ImageTexture_4l4q0")
 
-[node name="new_tab_btn" type="Button" parent="inner/tabbar_container"]
+[node name="new_tab_btn" type="Button" parent="inner/tabbar_container" unique_id=932913476]
 layout_mode = 2
 tooltip_text = "Add new tab"
 icon = SubResource("ImageTexture_4l4q0")
 
-[node name="edit_tabs_btn" type="Button" parent="inner/tabbar_container"]
+[node name="edit_tabs_btn" type="Button" parent="inner/tabbar_container" unique_id=1585355249]
 layout_mode = 2
 tooltip_text = "Toggle tab management"
 toggle_mode = true
 icon = SubResource("ImageTexture_4l4q0")
 
-[node name="config_btn" type="Button" parent="inner/tabbar_container"]
+[node name="config_btn" type="Button" parent="inner/tabbar_container" unique_id=1819941145]
 layout_mode = 2
 tooltip_text = "Open the Tabby Explorer Plugin settings panel"
 icon = SubResource("ImageTexture_4l4q0")
 
-[node name="Control" type="Control" parent="inner/tabbar_container"]
+[node name="Control" type="Control" parent="inner/tabbar_container" unique_id=1573140547]
 layout_mode = 2
 
-[node name="tab_rename_cont" type="HBoxContainer" parent="inner"]
+[node name="tab_rename_cont" type="HBoxContainer" parent="inner" unique_id=598890746]
 layout_mode = 2
 
-[node name="tab_rename_edit" type="LineEdit" parent="inner/tab_rename_cont"]
+[node name="tab_rename_edit" type="LineEdit" parent="inner/tab_rename_cont" unique_id=815588714]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="tab_rename_done_btn" type="Button" parent="inner/tab_rename_cont"]
+[node name="tab_rename_done_btn" type="Button" parent="inner/tab_rename_cont" unique_id=1615152168]
 layout_mode = 2
 text = " DONE "
 
-[node name="tab_container_wrapper" type="MarginContainer" parent="inner"]
+[node name="tab_container_wrapper" type="MarginContainer" parent="inner" unique_id=1247373827]
 layout_mode = 2
 size_flags_vertical = 3

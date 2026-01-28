@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fxf42hm6fitr"]
+[gd_scene format=3 uid="uid://fxf42hm6fitr"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_8888d"]
 [ext_resource type="Texture2D" uid="uid://b6eeefnqgnv52" path="res://assets/textures/triggers/Spawn.svg" id="2_u2tfh"]
@@ -13,36 +13,36 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
-[node name="SpawnTrigger" type="Area2D"]
+[node name="SpawnTrigger" type="Area2D" unique_id=2029496294]
 script = ExtResource("1_8888d")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=4807923]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_u2tfh")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1784835647]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_nuarc")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="SpawnTriggerComponent" type="Node" parent="." node_paths=PackedStringArray("_timer")]
+[node name="SpawnTriggerComponent" type="Node" parent="." unique_id=1979524454 node_paths=PackedStringArray("_timer")]
 script = ExtResource("3_8888d")
 _timer = NodePath("../Timer")
 metadata/_custom_type_script = "uid://c6rptyu8h64wl"
 
-[node name="TriggerHitboxComponent" type="Node" parent="." node_paths=PackedStringArray("_hitbox")]
+[node name="TriggerHitboxComponent" type="Node" parent="." unique_id=820296659 node_paths=PackedStringArray("_hitbox")]
 script = ExtResource("6_mbe8q")
 _hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://cilw18c36fh6"
 
-[node name="TextureRotationPinComponent" type="Node" parent="." node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPinComponent" type="Node" parent="." unique_id=1084597786 node_paths=PackedStringArray("pinned")]
 script = ExtResource("7_vvahw")
 pinned = NodePath("../Sprite")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 
-[node name="HitboxDisplay" type="Node2D" parent="." node_paths=PackedStringArray("hitbox")]
+[node name="HitboxDisplay" type="Node2D" parent="." unique_id=1255653760 node_paths=PackedStringArray("hitbox")]
 z_index = -20
 script = ExtResource("8_pb1p6")
 hitbox = NodePath("../Hitbox")
@@ -50,12 +50,12 @@ color_config_key = "trigger_hitbox_color"
 fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="."]
+[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=1948399917]
 script = ExtResource("8_8888d")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("9_dhjpi")]
+[node name="EditorSelectionCollider" parent="." unique_id=780469653 instance=ExtResource("9_dhjpi")]
 type = 8
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=1804919696]
 one_shot = true

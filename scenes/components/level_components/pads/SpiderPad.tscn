@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ht60eohfg08"]
+[gd_scene format=3 uid="uid://ht60eohfg08"]
 
 [ext_resource type="Script" uid="uid://bccihwc0pstxx" path="res://src/interactables/PadInteractable.gd" id="1_waji3"]
 [ext_resource type="PackedScene" uid="uid://05h0teol0odp" path="res://scenes/particle_emitter_presets/PadParticles.tscn" id="2_tu38l"]
@@ -15,7 +15,7 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_dol5j"]
 curve = SubResource("Curve_6hqd0")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yvms1"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p8td0"]
 resource_local_to_scene = true
 lifetime_randomness = 0.1
 particle_flag_align_y = true
@@ -30,32 +30,32 @@ scale_curve = SubResource("CurveTexture_dol5j")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dmxk1"]
 size = Vector2(106, 20)
 
-[node name="SpiderPad" type="Area2D"]
+[node name="SpiderPad" type="Area2D" unique_id=847685500]
 collision_layer = 8
 script = ExtResource("1_waji3")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_tu38l")]
+[node name="ParticleEmitter" parent="." unique_id=513433565 instance=ExtResource("2_tu38l")]
 modulate = Color(0.694118, 0.180392, 0.980392, 1)
 position = Vector2(0, 52)
-process_material = SubResource("ParticleProcessMaterial_yvms1")
+process_material = SubResource("ParticleProcessMaterial_p8td0")
 
-[node name="SpiderPad" type="Sprite2D" parent="."]
+[node name="SpiderPad" type="Sprite2D" parent="." unique_id=1663977571]
 texture = ExtResource("4_kj2v3")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1964865229]
 position = Vector2(0, 53)
 shape = SubResource("RectangleShape2D_dmxk1")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=1897748686]
 position = Vector2(0, 53)
 script = ExtResource("6_6xrik")
 
-[node name="SpiderDashComponent" type="Node" parent="."]
+[node name="SpiderDashComponent" type="Node" parent="." unique_id=1533211616]
 script = ExtResource("7_0buu6")
 
-[node name="DirectionChangerComponent" type="Node" parent="."]
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=991365019]
 script = ExtResource("8_dhbbb")
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("7_p8td0")]
+[node name="EditorSelectionCollider" parent="." unique_id=126345154 instance=ExtResource("7_p8td0")]
 type = 8

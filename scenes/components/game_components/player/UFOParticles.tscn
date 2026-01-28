@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://nt6jgd7lk03t"]
+[gd_scene format=3 uid="uid://nt6jgd7lk03t"]
 
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="1_ncdyw"]
 [ext_resource type="Script" uid="uid://c3dqcr6r1jkr3" path="res://src/InstanciatedOneShotParticle.gd" id="2_kl26i"]
@@ -39,7 +39,7 @@ scale_curve = SubResource("CurveTexture_vov5s")
 color_ramp = SubResource("GradientTexture1D_fruiv")
 alpha_curve = SubResource("CurveTexture_fruiv")
 
-[node name="UFOParticles" type="GPUParticles2D"]
+[node name="UFOParticles" type="GPUParticles2D" unique_id=2059413013]
 show_behind_parent = true
 emitting = false
 amount = 16

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cw15476n2m4we"]
+[gd_scene format=3 uid="uid://cw15476n2m4we"]
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_orc32"]
 [ext_resource type="Script" uid="uid://dpfci6rxt0pwi" path="res://src/editor/editor_panels/color_channel/ColorChannelEditor.gd" id="2_cnty4"]
@@ -20,7 +20,7 @@ script = ExtResource("8_00t8p")
 [sub_resource type="Resource" id="Resource_nviis"]
 script = ExtResource("8_00t8p")
 
-[node name="ColorChannelEditor" type="VBoxContainer" node_paths=PackedStringArray("separator", "properties_container")]
+[node name="ColorChannelEditor" type="VBoxContainer" unique_id=457190377 node_paths=PackedStringArray("separator", "properties_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,10 +31,10 @@ button_group = ExtResource("3_u8i2y")
 separator = NodePath("HSeparator")
 properties_container = NodePath("VBoxContainer")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2019751470]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer" node_paths=PackedStringArray("root_node_to_search")]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer" unique_id=1505154210 node_paths=PackedStringArray("root_node_to_search")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -50,7 +50,7 @@ filters = Array[StringName]([&"channel_name"])
 discard_similars = false
 metadata/_custom_type_script = "uid://y1hecem53675"
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="HBoxContainer" unique_id=1388913642]
 texture_filter = 4
 custom_minimum_size = Vector2(31, 31)
 layout_mode = 2
@@ -58,7 +58,7 @@ focus_mode = 0
 icon = ExtResource("4_lmm7r")
 icon_alignment = 1
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="."]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="." unique_id=796204241]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("7_xmx11")
@@ -66,20 +66,20 @@ wheel_scroll_damper = SubResource("Resource_17tqa")
 dragging_scroll_damper = SubResource("Resource_nviis")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="ColorChannelContainer" type="HFlowContainer" parent="SmoothScrollContainer"]
+[node name="ColorChannelContainer" type="HFlowContainer" parent="SmoothScrollContainer" unique_id=1655537685]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=759781961]
 visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1408888635]
 visible = false
 layout_mode = 2
 
-[node name="Copy channel" type="BoxContainer" parent="VBoxContainer"]
+[node name="Copy channel" type="BoxContainer" parent="VBoxContainer" unique_id=236908819]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -87,21 +87,21 @@ vertical = true
 script = ExtResource("5_b5wg1")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="PropertyWatcher" type="Node" parent="VBoxContainer/Copy channel" node_paths=PackedStringArray("target")]
+[node name="PropertyWatcher" type="Node" parent="VBoxContainer/Copy channel" unique_id=700351788 node_paths=PackedStringArray("target")]
 script = ExtResource("6_lmm7r")
 target = NodePath("../../Channel")
 condition = "value"
 property = &"visible"
 metadata/_custom_type_script = "uid://dewr6g2sliqsr"
 
-[node name="PropertyWatcher2" type="Node" parent="VBoxContainer/Copy channel" node_paths=PackedStringArray("target")]
+[node name="PropertyWatcher2" type="Node" parent="VBoxContainer/Copy channel" unique_id=1550979515 node_paths=PackedStringArray("target")]
 script = ExtResource("6_lmm7r")
 target = NodePath("../../Color")
 condition = "not value"
 property = &"visible"
 metadata/_custom_type_script = "uid://dewr6g2sliqsr"
 
-[node name="Color" type="BoxContainer" parent="VBoxContainer"]
+[node name="Color" type="BoxContainer" parent="VBoxContainer" unique_id=1557049686]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -109,7 +109,7 @@ vertical = true
 script = ExtResource("6_maglq")
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="Channel" type="BoxContainer" parent="VBoxContainer"]
+[node name="Channel" type="BoxContainer" parent="VBoxContainer" unique_id=407628610]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -118,17 +118,17 @@ script = ExtResource("7_dv0aw")
 fields = PackedStringArray("Background", "Ground", "Line", "P1", "P2", "Glow")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="Modulation" type="FoldableContainer" parent="VBoxContainer"]
+[node name="Modulation" type="FoldableContainer" parent="VBoxContainer" unique_id=2126872056]
 layout_mode = 2
 folded = true
 title = "Modulation"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Modulation"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Modulation" unique_id=817892931]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Hue" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Hue" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer" unique_id=303190439]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -138,7 +138,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Saturation" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Saturation" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer" unique_id=1445900511]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -148,7 +148,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Value" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Value" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer" unique_id=859112091]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -158,7 +158,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Intensity" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Intensity" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer" unique_id=1565771178]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -169,7 +169,7 @@ max_value = 5.0
 allow_greater = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Alpha" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer"]
+[node name="Alpha" type="BoxContainer" parent="VBoxContainer/Modulation/VBoxContainer" unique_id=247289345]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -179,7 +179,7 @@ default = 1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="." unique_id=975271802]
 auto_translate_mode = 1
 title = "Please confirm..."
 initial_position = 2

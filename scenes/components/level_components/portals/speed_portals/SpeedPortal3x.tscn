@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtumn0qc8usca"]
+[gd_scene format=3 uid="uid://dtumn0qc8usca"]
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_o81mw"]
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_jo6r4"]
@@ -28,44 +28,40 @@ scale_curve = SubResource("CurveTexture_0y2x4")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3k1gh"]
 resource_local_to_scene = true
 shader = ExtResource("3_mqlch")
-shader_parameter/shine_color = Color(1, 1, 1, 0)
-shader_parameter/alpha_limit = 0.0
-shader_parameter/cycle_speed = 1.0
-shader_parameter/full_pulse_cycle = false
+shader_parameter/pulse_color = Color(1, 1, 1, 1)
 shader_parameter/factor = 0.0
-shader_parameter/mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nuny"]
 size = Vector2(260, 226)
 
-[node name="SpeedPortal3x" type="Area2D"]
+[node name="SpeedPortal3x" type="Area2D" unique_id=1257926069]
 collision_layer = 8
 script = ExtResource("1_o81mw")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_jo6r4")]
+[node name="ParticleEmitter" parent="." unique_id=1407038338 instance=ExtResource("2_jo6r4")]
 modulate = Color(1, 0.533333, 1, 1)
 process_material = SubResource("ParticleProcessMaterial_28a5j")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1165778235]
 material = SubResource("ShaderMaterial_3k1gh")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_fb1yk")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=922416691]
 shape = SubResource("RectangleShape2D_8nuny")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=2071064938]
 script = ExtResource("7_tm4o7")
 no_blending = true
 
-[node name="PulseWhite" type="Node" parent="."]
+[node name="PulseWhite" type="Node" parent="." unique_id=13139713]
 script = ExtResource("8_ow1g0")
 
-[node name="SpeedChangerComponent" type="Node" parent="."]
+[node name="SpeedChangerComponent" type="Node" parent="." unique_id=2113861949]
 script = ExtResource("9_qnayd")
 speed = 1.502
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("8_q2xvc")]
+[node name="EditorSelectionCollider" parent="." unique_id=1020319466 instance=ExtResource("8_q2xvc")]
 scale = Vector2(2, 2)
 type = 8

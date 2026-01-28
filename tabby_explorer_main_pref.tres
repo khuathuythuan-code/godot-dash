@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=6 format=3 uid="uid://dgbh034xl0r3v"]
+[gd_resource type="Resource" format=3 uid="uid://dgbh034xl0r3v"]
 
 [ext_resource type="Script" uid="uid://dlelnye6b8s4l" path="res://addons/tabby_explorer/editor/main_pref.gd" id="1_me5xm"]
 [ext_resource type="Script" uid="uid://vfscu5cwadss" path="res://addons/tabby_explorer/editor/dock_pref.gd" id="1_odf7p"]

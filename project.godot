@@ -53,14 +53,14 @@ config/name="godot-dash"
 config/version="0.0.1"
 run/main_scene="res://scenes/TitleScreen.tscn"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 boot_splash/image="uid://c1mj3e3vvh1h0"
 config/icon="uid://c8auew2txgxb5"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="uid://htget5gliwyv"
 
 [autoload]
 
@@ -75,7 +75,7 @@ Files="*res://scenes/autoloads/Files.tscn"
 AssetManager="*res://src/autoloads/AssetManager.gd"
 Editor="*res://src/autoloads/Editor.gd"
 KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
-DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+DebugMenu="*uid://cggqb75a8w8r"
 DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 
 [display]

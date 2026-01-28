@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://43t0kgu3lhyt"]
+[gd_scene format=3 uid="uid://43t0kgu3lhyt"]
 
 [ext_resource type="Script" uid="uid://bxvjbgjx18gup" path="res://src/interactables/public_components/ToggleComponent.gd" id="1_dcl03"]
 [ext_resource type="Script" uid="uid://f5fvarclvwxg" path="res://src/interactables/OrbInteractable.gd" id="1_klrau"]
@@ -15,49 +15,49 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwypc"]
 size = Vector2(128, 128)
 
-[node name="ToggleOrb" type="Area2D"]
+[node name="ToggleOrb" type="Area2D" unique_id=475719726]
 collision_layer = 8
 script = ExtResource("1_klrau")
 
-[node name="ParticleEmitter" parent="." instance=ExtResource("2_803s0")]
+[node name="ParticleEmitter" parent="." unique_id=1568831714 instance=ExtResource("2_803s0")]
 
-[node name="MusicScale" type="Node" parent="ParticleEmitter"]
+[node name="MusicScale" type="Node" parent="ParticleEmitter" unique_id=103642874]
 script = ExtResource("3_8a4sg")
 
-[node name="Base" type="Sprite2D" parent="."]
+[node name="Base" type="Sprite2D" parent="." unique_id=1925339276]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_4qwcb")
 
-[node name="MusicScale" type="Node" parent="Base"]
+[node name="MusicScale" type="Node" parent="Base" unique_id=81776232]
 script = ExtResource("3_8a4sg")
 
-[node name="Fill" type="Sprite2D" parent="."]
+[node name="Fill" type="Sprite2D" parent="." unique_id=1137103059]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_2jqxi")
 
-[node name="MusicScale" type="Node" parent="Fill"]
+[node name="MusicScale" type="Node" parent="Fill" unique_id=36450178]
 script = ExtResource("3_8a4sg")
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1051960417]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_jwypc")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="PulseRing" type="Node2D" parent="."]
+[node name="PulseRing" type="Node2D" parent="." unique_id=764849785]
 script = ExtResource("8_8h2d8")
 
-[node name="PulseCircle" type="Node2D" parent="."]
+[node name="PulseCircle" type="Node2D" parent="." unique_id=125014924]
 script = ExtResource("9_hfjph")
 
-[node name="DirectionChangerComponent" type="Node" parent="."]
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=535142037]
 script = ExtResource("12_j5u27")
 
-[node name="ToggleComponent" type="Node" parent="."]
+[node name="ToggleComponent" type="Node" parent="." unique_id=1965696259]
 script = ExtResource("1_dcl03")
 
-[node name="Detail" type="Node2D" parent="."]
+[node name="Detail" type="Node2D" parent="." unique_id=731043802]
 script = ExtResource("11_fi63b")
 metadata/_custom_type_script = "uid://b0qdkfpjncyhk"
 
-[node name="EditorSelectionCollider" parent="." instance=ExtResource("11_4mcye")]
+[node name="EditorSelectionCollider" parent="." unique_id=388189170 instance=ExtResource("11_4mcye")]
 type = 8

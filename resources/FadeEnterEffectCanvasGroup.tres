@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dr6386rtmro6e"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dr6386rtmro6e"]
 
 [ext_resource type="Shader" uid="uid://c1trqvdcgdxwu" path="res://resources/shaders/FadeEnterEffect.gdshader" id="1_ci1le"]
 

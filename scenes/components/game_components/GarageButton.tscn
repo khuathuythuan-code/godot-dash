@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cglilroh4eew3"]
+[gd_scene format=3 uid="uid://cglilroh4eew3"]
 
 [ext_resource type="Texture2D" uid="uid://omcvgcf1uk5p" path="res://assets/textures/player/cube/Cube.svg" id="1_aec52"]
 
-[node name="Button" type="Button"]
+[node name="Button" type="Button" unique_id=1960701150]
 custom_minimum_size = Vector2(100, 100)
 icon = ExtResource("1_aec52")
 flat = true

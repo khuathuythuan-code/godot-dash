@@ -21,7 +21,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ## Compilation
 
-**⚠️ Make sure to use Godot 4.5. ⚠️**
+**⚠️ Make sure to use Godot 4.6. ⚠️**
 
 ### Dependencies
 
@@ -40,7 +40,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ## Contributing
 
-**⚠️ Make sure to use Godot 4.5. ⚠️**
+**⚠️ Make sure to use Godot 4.6. ⚠️**
 
 ### Dependencies
 

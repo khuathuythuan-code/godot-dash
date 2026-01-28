@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ylswfd45fw38"]
+[gd_scene format=3 uid="uid://ylswfd45fw38"]
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_0trr5"]
 [ext_resource type="Script" uid="uid://bhqj6dqkejl2k" path="res://src/editor/LevelSettings.gd" id="1_ikfu3"]
@@ -19,7 +19,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_am3gx"]
 events = [SubResource("InputEventAction_bmwhr")]
 
-[node name="LevelSettings" type="CenterContainer"]
+[node name="LevelSettings" type="CenterContainer" unique_id=1050656253]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,43 +29,43 @@ mouse_filter = 2
 theme = ExtResource("6_ikfu3")
 script = ExtResource("1_ikfu3")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=1686766034]
 material = ExtResource("1_0trr5")
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 current_tab = 0
 
-[node name="Level Settings" type="MarginContainer" parent="TabContainer"]
+[node name="Level Settings" type="MarginContainer" parent="TabContainer" unique_id=1272803793]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings" unique_id=324532145]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Level Settings/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Level Settings/VBoxContainer" unique_id=306218532]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer" unique_id=1857341801]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Assets" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Assets" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1235149664]
 layout_mode = 2
 mouse_filter = 1
 title = "Assets"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets" unique_id=478697826]
 layout_mode = 2
 
-[node name="Song" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer"]
+[node name="Song" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer" unique_id=462471360]
 layout_mode = 2
 mouse_filter = 1
 title = "Song"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song" unique_id=241849637]
 layout_mode = 2
 
-[node name="Song" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer"]
+[node name="Song" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer" unique_id=561288785]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -75,12 +75,12 @@ load_root = "user://created_levels/songs/"
 import_to = "user://created_levels/songs/"
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Song"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Song" unique_id=1583453944]
 script = ExtResource("10_2dtee")
 config_property = &"song_path"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Start Offset" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer"]
+[node name="Start Offset" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer" unique_id=1054219443]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -89,12 +89,12 @@ allow_greater = true
 suffix = "s"
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Start Offset"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Start Offset" unique_id=261025969]
 script = ExtResource("10_2dtee")
 config_property = &"song_start_time"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Default Font" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer"]
+[node name="Default Font" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer" unique_id=423738507]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -105,23 +105,23 @@ import_to = "user://created_levels/fonts/"
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 metadata/field_name = &"_font_path"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font" unique_id=122440009]
 script = ExtResource("10_2dtee")
 config_property = &"default_font"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="PropertyValueThemeDefaultFont" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font"]
+[node name="PropertyValueThemeDefaultFont" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font" unique_id=714639320]
 script = ExtResource("7_2dtee")
 metadata/_custom_type_script = "uid://dd8enor6efbjp"
 
-[node name="Default Look" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Default Look" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1237378348]
 layout_mode = 2
 title = "Default Look"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look" unique_id=1320244172]
 layout_mode = 2
 
-[node name="Background" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
+[node name="Background" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer" unique_id=2142067944]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -129,12 +129,12 @@ script = ExtResource("11_jvsdk")
 default = Color(0.21176471, 0.4392157, 1, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Background"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Background" unique_id=1326647879]
 script = ExtResource("10_2dtee")
 config_property = &"default_background_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Ground" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
+[node name="Ground" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer" unique_id=1541205660]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -142,12 +142,12 @@ script = ExtResource("11_jvsdk")
 default = Color(0.105882354, 0.29411766, 0.76862746, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Ground"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Ground" unique_id=469741541]
 script = ExtResource("10_2dtee")
 config_property = &"default_ground_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Line" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
+[node name="Line" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer" unique_id=2131976856]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -155,12 +155,12 @@ script = ExtResource("11_jvsdk")
 default = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Line"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Line" unique_id=1558276889]
 script = ExtResource("10_2dtee")
 config_property = &"default_line_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Enter Effect" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer"]
+[node name="Enter Effect" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer" unique_id=1016670902]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -169,20 +169,20 @@ default = 1
 fields = PackedStringArray("Disabled", "Fade", "Fade and move down", "Fade and scale")
 metadata/_custom_type_script = "uid://djfsy06pkw4ju"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Enter Effect"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Default Look/VBoxContainer/Enter Effect" unique_id=202326203]
 script = ExtResource("10_2dtee")
 config_property = &"enter_effect"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Details" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Details" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1928758384]
 layout_mode = 2
 mouse_filter = 1
 title = "Details"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details" unique_id=1931953724]
 layout_mode = 2
 
-[node name="Description" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer"]
+[node name="Description" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer" unique_id=1409677537]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -190,12 +190,12 @@ script = ExtResource("9_2dtee")
 placeholder = "Description"
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Description"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Description" unique_id=267945812]
 script = ExtResource("10_2dtee")
 config_property = &"description"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Rating" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer"]
+[node name="Rating" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer" unique_id=1409587310]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -207,20 +207,20 @@ rounded = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 metadata/field_name = &"_font_path"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Rating"]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Rating" unique_id=254086717]
 script = ExtResource("10_2dtee")
 config_property = &"rating"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Level Settings/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Level Settings/VBoxContainer" unique_id=300168482]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Level Settings/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Level Settings/VBoxContainer" unique_id=1078397740]
 layout_mode = 2
 alignment = 1
 
-[node name="Close" type="Button" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer2"]
+[node name="Close" type="Button" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer2" unique_id=256832948]
 layout_mode = 2
 mouse_filter = 1
 shortcut = SubResource("Shortcut_am3gx")
