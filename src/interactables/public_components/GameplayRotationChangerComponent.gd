@@ -1,9 +1,11 @@
 extends Component
+
 class_name GameplayRotationChangerComponent
 
 @export_range(-180, 180, 0.01, "degrees", "or_greater", "or_less") var gameplay_rotation: float
 
 var initial_gameplay_rotations: Dictionary[Player, float]
+
 
 func _ready() -> void:
 	super()
@@ -18,4 +20,3 @@ func start(player: Player) -> void:
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 	player.gameplay_rotation_degrees += (gameplay_rotation - initial_gameplay_rotations[player]) * weight_delta
-
