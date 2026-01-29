@@ -44,6 +44,7 @@ func refresh() -> void:
 		panel.play_button.pressed.connect(_play_level.bind(file_name))
 		panel.edit_button.pressed.connect(_edit_level.bind(file_name))
 		panel.remove_button.pressed.connect(_remove_level.bind(file_name))
+		panel.data = level_data
 		levels[file_name] = panel
 		add_child(panel)
 
@@ -59,9 +60,11 @@ func reorder() -> void:
 	children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Title").text.to_lower())
 	match sort_by.selected:
 		1: # Rating
-			children.sort_custom(func(a, b): return int(a.get_node("Play/Outline/Rating").text) < int(b.get_node("Play/Outline/Rating").text))
+			children.sort_custom(func(a, b): return a.data.rating < b.data.rating)
 		2: # Creator
-			children.sort_custom(func(a, b): return a.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower() > b.get_node("Play/HBoxContainer/VBoxContainer/Creator").text.to_lower())
+			children.sort_custom(func(a, b): return a.data.creator.to_lower() > b.data.creator.to_lower())
+		3: # Creation Date
+			children.sort_custom(func(a, b): return a.data.creation_date < b.data.creation_date)
 
 	for child in children:
 		move_child(child, 0)
