@@ -68,8 +68,14 @@ func update(_mode: Mode = mode) -> void:
 		Mode.RENDERED_MODE:
 			enable_rendered_mode()
 	if fold_button.button_pressed:
+		var minimum_size: float = options_panel.custom_minimum_size.y
 		toggle_render_mode_options(false, false)
 		toggle_render_mode_options(true, false)
+		var new_minimum_size: float = options_panel.custom_minimum_size.y
+		options_panel.custom_minimum_size.y = minimum_size
+		var tween := create_tween()
+		tween.tween_property(options_panel, "custom_minimum_size:y", new_minimum_size, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		
 
 
 func enable_object_mode() -> void:
