@@ -745,6 +745,7 @@ reset_scale_on_ready = true
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" unique_id=710755591 instance=ExtResource("14_tp0jt")]
 unique_name_in_owner = true
 layout_mode = 1
+anchors_preset = 1
 offset_left = -242.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer" unique_id=1251313673]
@@ -6040,6 +6041,7 @@ alignment = 1
 [node name="Groups" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" unique_id=1060342494]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 folded = true
 title = "Groups"
 title_alignment = 1
