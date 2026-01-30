@@ -18,7 +18,6 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	FlipGravityComponent,
 	AllowCeilingHitComponent,
 	AllowWaveSlideComponent,
-	HiddenOutsideEditorComponent,
 	HideMarkersComponent,
 ]
 

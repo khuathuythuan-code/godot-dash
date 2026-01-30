@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_0fegu"]
 [ext_resource type="Script" uid="uid://sv2oa8nvx3ob" path="res://addons/nine_patch_sprite_2d/nine_patch_sprite_2d.gd" id="2_f3s5q"]
 [ext_resource type="Texture2D" uid="uid://bryaobm17acnu" path="res://assets/textures/triggers/AllowCeilingHit.svg" id="3_0fegu"]
-[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="4_85l4o"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="4_85l4o"]
 [ext_resource type="Script" uid="uid://baiq5ve1kkxb7" path="res://src/interactables/public_components/AllowCeilingHitComponent.gd" id="4_f3s5q"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="5_43du4"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="6_cfkdj"]
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
 script = ExtResource("4_f3s5q")
 metadata/_custom_type_script = "uid://baiq5ve1kkxb7"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=1625505204]
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="." unique_id=1625505204]
 script = ExtResource("4_85l4o")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
