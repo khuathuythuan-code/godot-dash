@@ -26,7 +26,6 @@ var copy_target_hsv_watcher: HSVWatcher
 
 
 func _ready() -> void:
-	super()
 	await require([TargetGroupComponent, EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)

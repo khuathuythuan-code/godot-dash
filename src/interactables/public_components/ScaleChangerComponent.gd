@@ -25,7 +25,6 @@ var group_objects: Array[Node2D]
 
 
 func _ready() -> void:
-	super()
 	await require([TargetGroupComponent, EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)

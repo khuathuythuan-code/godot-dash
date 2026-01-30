@@ -28,7 +28,6 @@ var target: Node2D
 
 
 func _ready() -> void:
-	super()
 	await require([TargetObjectComponent, EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)

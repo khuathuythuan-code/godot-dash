@@ -1,4 +1,5 @@
 extends Component
+
 class_name GravityFlipChangerComponent
 
 enum FlipState {
@@ -11,7 +12,6 @@ enum FlipState {
 
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(set_gravity)
 
 
@@ -26,5 +26,3 @@ func set_gravity(player: Player) -> void:
 	var local_velocity: Vector2 = player.velocity.rotated(-player.gameplay_rotation)
 	local_velocity.y = clampf(local_velocity.y, -Player.TERMINAL_VELOCITY.y, Player.TERMINAL_VELOCITY.y)
 	player.velocity = local_velocity.rotated(player.gameplay_rotation)
-
-

@@ -34,11 +34,11 @@ const SPEED_PRESET_LABELS: PackedStringArray = ["x0.0", "x0.5", "x1.0", "x2.0", 
 
 @export_storage var _manual_speed: float = speed
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_speed: float
 
 
 func _ready() -> void:
-	super()
 	await require([EasingComponent])
 	set_deferred(&"speed", speed) # initialize the label
 	parent.interacted.connect(start)

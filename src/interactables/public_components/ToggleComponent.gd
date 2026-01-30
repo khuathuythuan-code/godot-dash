@@ -14,7 +14,6 @@ signal send_to_group_display(group_name: String)
 
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(toggle)
 
 

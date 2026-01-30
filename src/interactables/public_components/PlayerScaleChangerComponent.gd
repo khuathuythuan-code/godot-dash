@@ -6,7 +6,6 @@ class_name PlayerScaleChangerComponent
 
 
 func _ready() -> void:
-	super()
 	parent.body_entered.connect(set_scale)
 
 

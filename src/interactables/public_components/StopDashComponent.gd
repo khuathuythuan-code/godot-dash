@@ -1,9 +1,8 @@
 extends Component
+
 class_name StopDashComponent
 
-
 func _ready() -> void:
-	super()
 	parent.interacted.connect(stop_dash)
 
 

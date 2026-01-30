@@ -1,4 +1,5 @@
 extends Component
+
 class_name TimescaleChangerComponent
 
 signal changed(time_scale: String)
@@ -8,10 +9,11 @@ signal changed(time_scale: String)
 		time_scale = value
 		changed.emit("%.f%%" % (time_scale * 100))
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_time_scale: float
 
+
 func _ready() -> void:
-	super()
 	await require([EasingComponent])
 	set_deferred(&"time_scale", time_scale) # initialize the label
 	parent.interacted.connect(start)

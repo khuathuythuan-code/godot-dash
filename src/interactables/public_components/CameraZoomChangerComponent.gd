@@ -15,6 +15,12 @@ enum Mode {
 var initial_zoom: Vector2
 
 
+func _ready() -> void:
+	await require([EasingComponent])
+	parent.interacted.connect(start)
+	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
+
+
 func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"zoom":
@@ -29,13 +35,6 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 			zoom = Deserialize.Vector2(field_data)
 		_:
 			set(field_name, field_data)
-
-
-func _ready() -> void:
-	super()
-	await require([EasingComponent])
-	parent.interacted.connect(start)
-	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
 
 
 func start(_player: Player) -> void:

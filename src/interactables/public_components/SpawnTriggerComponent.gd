@@ -23,7 +23,6 @@ var _interacted_with_player: Player
 
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(start)
 
 
