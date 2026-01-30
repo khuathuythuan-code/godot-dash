@@ -35,8 +35,8 @@ func enable_object_mode() -> void:
 	level.ground_color = Color.GRAY
 	level.background_color = Color.GRAY
 	level.line_color = Color.WHITE
-	level.enter_effect = level.enter_effect # Trigger setter
 	mode = Mode.OBJECT_MODE # Locks editing of level colors
+	level.enter_effect = level.enter_effect # Trigger setter
 	LevelManager.update_hsv_watchers.emit()
 
 
