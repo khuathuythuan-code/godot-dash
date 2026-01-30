@@ -11,7 +11,24 @@ enum Mode {
 @export var mode: Mode = Mode.SET
 @export_custom(PROPERTY_HINT_RANGE, "0.0,100.0,0.01,or_greater,suffix:%") var zoom := Vector2.ONE * 100.0
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var initial_zoom: Vector2
+
+
+func _field_to_data(field_name: String) -> Variant:
+	match field_name:
+		"zoom":
+			return Serialize.Vector2(zoom)
+		_:
+			return get(field_name)
+
+
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"zoom":
+			zoom = Deserialize.Vector2(field_data)
+		_:
+			set(field_name, field_data)
 
 
 func _ready() -> void:
