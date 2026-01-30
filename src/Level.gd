@@ -428,6 +428,8 @@ static func apply_enter_effect(object_child: Node) -> void:
 		or object_child is NinePatchSprite2D
 		or object_child is ReboundOrbSprite
 		or object_child is ReboundPadSprite
+		or object_child is HitboxDisplay
+		or object_child is Line2D
 	):
 		return
 	object_child.material = AssetManager.fade_enter_effect
