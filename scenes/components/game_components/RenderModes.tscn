@@ -49,7 +49,7 @@ corner_radius_bottom_left = 14
 corner_detail = 5
 anti_aliasing = false
 
-[node name="RenderModes" type="PanelContainer" unique_id=1941457548 node_paths=PackedStringArray("enum_button", "fold_button", "options_panel", "options_panel_vbox", "object_segment", "background_color_selector")]
+[node name="RenderModes" type="PanelContainer" unique_id=1941457548 node_paths=PackedStringArray("enum_button", "fold_button", "options_panel", "options_panel_vbox", "object_segment", "background_color_selector", "ground_color_selector", "line_color_selector")]
 material = ExtResource("1_mt01j")
 anchors_preset = 1
 anchor_left = 1.0
@@ -67,6 +67,8 @@ options_panel = NodePath("VBoxContainer/Options")
 options_panel_vbox = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer")
 object_segment = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object")
 background_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Background Color")
+ground_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Ground Color")
+line_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Line Color")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=251552038]
 layout_mode = 2
@@ -123,6 +125,20 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Background Color" type="BoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer/Object" unique_id=34309323]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("5_5oygk")
+metadata/_custom_type_script = "uid://bwcwfobfohbsd"
+
+[node name="Ground Color" type="BoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer/Object" unique_id=1459349795]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("5_5oygk")
+metadata/_custom_type_script = "uid://bwcwfobfohbsd"
+
+[node name="Line Color" type="BoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer/Object" unique_id=458752010]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true

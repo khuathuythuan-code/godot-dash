@@ -9,6 +9,8 @@ class_name RenderMode
 @export var object_segment: Control
 @export_group("Properties")
 @export var background_color_selector: ColorProperty
+@export var ground_color_selector: ColorProperty
+@export var line_color_selector: ColorProperty
 var mode: Mode = Mode.RENDERED_MODE
 
 enum Mode {
@@ -35,11 +37,29 @@ func _ready() -> void:
 				Editor.root.level.background_color = value
 				mode = Mode.OBJECT_MODE
 	)
+	ground_color_selector.set_value_no_signal(Color.GRAY)
+	ground_color_selector.value_changed.connect(
+		func(value: Color):
+			if mode == Mode.OBJECT_MODE:
+				mode = Mode.TEMP
+				Editor.root.level.ground_color = value
+				mode = Mode.OBJECT_MODE
+	)
+	line_color_selector.set_value_no_signal(Color.WHITE)
+	line_color_selector.value_changed.connect(
+		func(value: Color):
+			if mode == Mode.OBJECT_MODE:
+				mode = Mode.TEMP
+				Editor.root.level.line_color = value
+				mode = Mode.OBJECT_MODE
+	)
 	mode = Config.default_render_mode
 	enum_button.set_value_no_signal(mode)
 
 
 func update(_mode: Mode = mode) -> void:
+	if _mode == mode:
+		return
 	match _mode:
 		Mode.OBJECT_MODE:
 			enable_object_mode()
@@ -55,9 +75,9 @@ func update(_mode: Mode = mode) -> void:
 func enable_object_mode() -> void:
 	LevelManager.game_scene.get_node(^"ShaderLayer").visible = false
 	var level: Level = Editor.root.level
-	level.ground_color = Color.GRAY
+	level.ground_color = ground_color_selector.get_value()
 	level.background_color = background_color_selector.get_value()
-	level.line_color = Color.WHITE
+	level.line_color = line_color_selector.get_value()
 	mode = Mode.OBJECT_MODE # Locks editing of level colors
 	level.enter_effect = level.enter_effect # Trigger setter
 	LevelManager.update_hsv_watchers.emit()
@@ -85,19 +105,42 @@ func enable_rendered_mode() -> void:
 	LevelManager.update_hsv_watchers.emit()
 
 
-func toggle_render_mode_options(value: bool, animate: bool = true) -> void:
+func toggle_render_mode_options(value: bool, animate: bool = true, time: float = 0.25) -> void:
 	if value:
-		options_panel.get_node(^"MarginContainer").show()
 		$VBoxContainer.add_theme_constant_override("separation", 4)
 		options_panel.show()
-		if animate:
-			var tween := create_tween()
-			tween.set_parallel(true)
-			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", -90.0, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-			tween.tween_property(options_panel, "custom_minimum_size:y", 128, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		match mode:
 			Mode.OBJECT_MODE:
 				object_segment.show()
+		var minimum_size: float = 52
+
+		for child in options_panel_vbox.get_children():
+			if child.visible:
+				minimum_size += 36 * child.get_child_count() + 4
+
+		if animate:
+			var tween := create_tween()
+			tween.set_parallel(true)
+			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", -90.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(options_panel, "custom_minimum_size:y", minimum_size, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			options_panel.get_node(^"MarginContainer").show()
+			for child in options_panel_vbox.get_children():
+				for property in child.get_children():
+					property.hide()
+			while options_panel.custom_minimum_size.y != minimum_size:
+				await get_tree().process_frame
+				var count: int = round((options_panel.custom_minimum_size.y - 56) / 36)
+				for child in options_panel_vbox.get_children():
+					if child.visible == true:
+						for property in child.get_children():
+							if count <= 0:
+								break
+							property.show()
+							count -= 1
+		else:
+			options_panel.custom_minimum_size.y = minimum_size
+			fold_button.get_node(^"TextureRect").rotation_degrees = -90
+			options_panel.get_node(^"MarginContainer").show()
 	else:
 		for child in options_panel_vbox.get_children():
 			if child is VBoxContainer:
@@ -107,7 +150,10 @@ func toggle_render_mode_options(value: bool, animate: bool = true) -> void:
 		if animate:
 			var tween := create_tween()
 			tween.set_parallel(true)
-			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", 0.0, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-			tween.tween_property(options_panel, "custom_minimum_size:y", 0, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", 0.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(options_panel, "custom_minimum_size:y", 0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 			await tween.finished
+		else:
+			options_panel.custom_minimum_size.y = 0
+			fold_button.get_node(^"TextureRect").rotation_degrees = 0
 		options_panel.hide()
