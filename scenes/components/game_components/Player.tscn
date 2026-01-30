@@ -158,9 +158,6 @@ alpha_curve = SubResource("CurveTexture_244xe")
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2txy"]
 radius = 64.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8d76"]
-size = Vector2(126, 126)
-
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_g4xb6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssp1h"]
@@ -343,6 +340,9 @@ scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
 color_ramp = SubResource("GradientTexture1D_fruiv")
 alpha_curve = SubResource("CurveTexture_fruiv")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8d76"]
+size = Vector2(126, 126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mg1a"]
 size = Vector2(32, 32)
@@ -542,19 +542,13 @@ visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 6
 
-[node name="SpiderCast" type="ShapeCast2D" parent="Icon/Spider" unique_id=740452231]
-modulate = Color(0, 0, 0, 0.301961)
-show_behind_parent = true
-shape = SubResource("RectangleShape2D_p8d76")
+[node name="SpiderCast" type="RayCast2D" parent="Icon/Spider" unique_id=880187727]
 target_position = Vector2(0, -8192)
 collision_mask = 102
 collide_with_areas = true
 
 [node name="SpiderTrailSpawnPoint" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1966975195]
-position = Vector2(64, 64)
-
-[node name="SpiderTrailSpawnPointReverse" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1972961010]
-position = Vector2(-64, 64)
+position = Vector2(0, 64)
 
 [node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1437256854]
 metadata/_edit_lock_ = true
@@ -865,9 +859,6 @@ process_mode = 1
 process_mode = 1
 script = ExtResource("45_k4whp")
 metadata/_custom_type_script = "uid://by1h78riu3uvw"
-
-[node name="ParentedObjects" type="Node2D" parent="." unique_id=1114820785]
-editor_description = "Anchor for any level objects that need to be parented to the player (to keep it tidy)."
 
 [node name="EnsureVelocityRedirect" type="ShapeCast2D" parent="." unique_id=1319472096]
 visible = false
