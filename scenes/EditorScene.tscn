@@ -4188,9 +4188,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.87, 0.87)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("94_vo0kk")
-expand_mode = 5
+expand_mode = 1
 
 [node name="DashOrbGreen" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs" unique_id=653874489]
 custom_minimum_size = Vector2(64, 64)

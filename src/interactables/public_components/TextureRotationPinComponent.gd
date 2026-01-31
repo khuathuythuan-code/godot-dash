@@ -1,9 +1,11 @@
 @tool
 extends Component
+
 class_name TextureRotationPinComponent
 
 @export var pinned: CanvasItem
 @export var pin_to_gameplay_rotation := false
+@export var pin_scale: bool = true
 @export var sprite_scale := Vector2.ONE
 
 
@@ -17,5 +19,7 @@ func _process(_delta: float) -> void:
 			pinned.set_deferred(&"global_rotation", LevelManager.player_camera.rotation)
 	else:
 		pinned.set_deferred(&"global_rotation", 0.0)
+	if not pin_scale:
+		return
 	pinned.set_deferred(&"global_scale", parent.scale.abs() * sprite_scale)
 	pinned.set_deferred(&"global_skew", 0.0)
