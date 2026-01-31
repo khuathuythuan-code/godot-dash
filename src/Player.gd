@@ -106,6 +106,7 @@ var speed: Vector2:
 				return SPEED
 var dash_control: FireDashComponent = null
 var speed_0_portal_control: Interactable = null
+var slope_velocity: Vector2
 var last_collision: KinematicCollision2D
 var floor_angle_history: Array[float]
 var floor_angle_average: float
@@ -126,6 +127,7 @@ var pad_queue: Array[PadInteractable]
 
 # Private
 var _spider_dash_frames: int = 0
+var _slope_exit_velocity_frames: int = 0
 var _click_buffer_state: ClickBufferState
 var dead: bool
 var _is_flying_gamemode: bool
@@ -159,7 +161,7 @@ func _physics_process(delta: float) -> void:
 	# Get velocity
 	up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
 	var jump_state = _get_jump_state()
-	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state)
+	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D)
 
 	# Slope collision resolution
 	# Reset collision shape and set it back to the slope collider if needed
@@ -169,8 +171,7 @@ func _physics_process(delta: float) -> void:
 	last_collision = move_and_collide(speed.y * Vector2.DOWN * delta, true)
 	_handle_collision(last_collision, true)
 
-	# floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
-	for i in range(10):
+	for i in range(4):
 		last_collision = move_and_collide(velocity * delta, true)
 		_handle_collision(last_collision, i != 0)
 		# Collide down with solids so the wave can crash into them
@@ -343,6 +344,7 @@ func _compute_velocity(
 		previous_velocity: Vector2,
 		direction: int,
 		jump_state: int,
+		was_sliding_on_slope: bool,
 ) -> Vector2:
 	var local_velocity: Vector2 = previous_velocity.rotated(-gameplay_rotation)
 	_is_flying_gamemode = (internal_gamemode == Gamemode.SHIP or internal_gamemode == Gamemode.SWING or internal_gamemode == Gamemode.WAVE)
@@ -350,13 +352,16 @@ func _compute_velocity(
 	if _spider_dash_frames > 0:
 		_spider_dash_frames -= 1
 
+	if _slope_exit_velocity_frames > 0:
+		_slope_exit_velocity_frames -= 1
+
 	#region Slope physics
-	var slope_velocity: Vector2
-	if $GroundCollider.shape is CircleShape2D and get_last_slide_collision() != null:
+	if was_sliding_on_slope and get_last_slide_collision():
 		var floor_angle := get_floor_angle_signed(true, jump_state)
 		# 90° collision warp prevention
-		if pingpong(floor_angle, PI / 2) < floor_max_angle:
+		if absf(sin(floor_angle)) < sin(floor_max_angle):
 			slope_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
+			_slope_exit_velocity_frames = 4
 	#endregion
 
 	if (internal_gamemode == Gamemode.SWING or internal_gamemode == Gamemode.BALL) and jump_state == 1 and orb_queue.is_empty():
@@ -419,9 +424,6 @@ func _compute_velocity(
 			pass
 		elif internal_gamemode == Gamemode.SPIDER:
 			var displacement: Vector2 = Vector2.UP.rotated(gameplay_rotation) * _get_spider_dash_height()
-			last_collision = move_and_collide(displacement, true)
-			$GroundCollider.rotation = gameplay_rotation
-			_handle_collision(last_collision, false)
 			position += displacement
 			var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 			trail.start.call_deferred(self, displacement)
@@ -489,7 +491,7 @@ func _compute_velocity(
 	#region Dash orb velocity
 	if dash_control:
 		local_velocity = dash_control.path.get_velocity(self)
-		if Input.is_action_just_released("jump"):
+		if Input.is_action_just_released(&"jump"):
 			stop_dash()
 	#endregion
 
@@ -503,6 +505,10 @@ func _compute_velocity(
 			coyote_time = 0.0
 
 	_deferred_velocity_redirect = _ensure_velocity_redirect(delta, local_velocity.rotated(gameplay_rotation))
+
+	# Reset slope velocity if needed
+	if not is_on_floor() and _slope_exit_velocity_frames == 0:
+		slope_velocity = Vector2.ZERO
 
 	return local_velocity.rotated(gameplay_rotation)
 
