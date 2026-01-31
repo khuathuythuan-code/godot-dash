@@ -20,8 +20,8 @@ var freefly := true
 var gameplay_offset: Vector2
 var is_snapping_view: bool
 var player_speed_sign: int
-
-var _smoothed_gameplay_rotation: float
+var static_offset_rotation: float ## Rotation used by the offset when static gets enabled.
+var smoothed_gameplay_rotation: float
 
 
 func _ready() -> void:
@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		return
 	queue_redraw()
 	var framerate_compensation := delta * 60.0
-	_smoothed_gameplay_rotation = lerp_angle(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
+	smoothed_gameplay_rotation = lerp_angle(smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
 
 	var player_distance = player.position - position
 	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI / 2) * GroundData.offset
@@ -62,7 +62,7 @@ func _process(delta: float) -> void:
 	if static_factor.y == 0:
 		position.y += added_distance.y
 
-	offset = get_offset_target(framerate_compensation).rotated(_smoothed_gameplay_rotation)
+	offset = get_offset_target(framerate_compensation).rotated(smoothed_gameplay_rotation if static_factor == Vector2.ZERO else static_offset_rotation)
 
 	# Clamp bottom edge of the screen to the ground
 	var half_screen_height = get_viewport_rect().size.y / 2
