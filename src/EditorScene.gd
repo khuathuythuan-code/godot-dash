@@ -186,6 +186,7 @@ func stop_playtest() -> void:
 	practice_button.hide()
 	practice_button.set_pressed_no_signal(false)
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
+	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
 
 
