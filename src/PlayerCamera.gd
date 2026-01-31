@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		return
 	queue_redraw()
 	var framerate_compensation := delta * 60.0
-	_smoothed_gameplay_rotation = lerpf(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
+	_smoothed_gameplay_rotation = lerp_angle(_smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
 
 	var player_distance = player.position - position
 	var ground_distance = GroundData.center - position + Vector2.from_angle(player.gameplay_rotation - PI / 2) * GroundData.offset
