@@ -745,8 +745,6 @@ reset_scale_on_ready = true
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" unique_id=710755591 instance=ExtResource("14_tp0jt")]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
-offset_left = -242.0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer" unique_id=1251313673]
 unique_name_in_owner = true
@@ -6165,21 +6163,25 @@ metadata/_custom_type_script = "uid://cry3286stfmmk"
 [node name="Colors" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer" unique_id=665081038]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Colors"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors" unique_id=713960330]
+visible = false
 layout_mode = 2
 
 [node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer" unique_id=1330467912]
 layout_mode = 2
 mouse_filter = 1
+folded = true
 title = "Channel Editor"
 foldable_group = SubResource("FoldableGroup_bmgxg")
 
 [node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/VBoxContainer/Colors/VBoxContainer/Channel Editor" unique_id=1665020490 instance=ExtResource("55_wey7f")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 

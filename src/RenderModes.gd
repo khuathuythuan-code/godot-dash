@@ -147,6 +147,10 @@ func toggle_render_mode_options(value: bool, animate: bool = true, time: float =
 			options_panel.custom_minimum_size.y = minimum_size
 			fold_button.get_node(^"TextureRect").rotation_degrees = -90
 			options_panel.get_node(^"MarginContainer").show()
+			for child in options_panel_vbox.get_children():
+					if child.visible == true:
+						for property in child.get_children():
+							property.show()
 	else:
 		for child in options_panel_vbox.get_children():
 			if child is VBoxContainer:
