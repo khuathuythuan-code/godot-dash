@@ -162,18 +162,20 @@ func _physics_process(delta: float) -> void:
 	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state)
 
 	# Slope collision resolution
-	if not $SlopeShapecast.is_colliding() and $GroundCollider.shape is CircleShape2D:
-		$GroundCollider.shape = default_collider
-		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = default_collider
-	floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
+	# Reset collision shape and set it back to the slope collider if needed
+	$GroundCollider.shape = default_collider
+	$GroundCollider.rotation = gameplay_rotation
+	$SolidOverlapCheck/SolidOverlapCheckCollider.shape = default_collider
+	last_collision = move_and_collide(speed.y * Vector2.DOWN * delta, true)
+	_handle_collision(last_collision, true)
+
+	# floor_snap_length = 0.0 if LevelManager.platformer and internal_gamemode == Gamemode.WAVE else LevelManager.CELL_SIZE * 0.5 * speed_multiplier
 	for i in range(10):
 		last_collision = move_and_collide(velocity * delta, true)
-		$GroundCollider.rotation = gameplay_rotation
 		_handle_collision(last_collision, i != 0)
 		# Collide down with solids so the wave can crash into them
 		if internal_gamemode == Gamemode.WAVE and allow_wave_slide_count == 0:
 			last_collision = move_and_collide(speed.y * Vector2.DOWN * delta, true)
-			$GroundCollider.rotation = gameplay_rotation
 			_handle_collision(last_collision, true)
 
 	# Apply movement
@@ -241,10 +243,10 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 			collision.get_collider().get_node("Hitbox").debug_color.s = 0.0 # DEBUG: Hardcoded name for hitbox color
 	if is_ceiling and allow_ceiling_hit_count > 0:
 		hit_ceiling.emit(self)
+	if is_slope:
+		$GroundCollider.shape = slope_collider
+		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
 	if not is_refine_iteration:
-		if is_slope:
-			$GroundCollider.shape = slope_collider
-			$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
 		if is_floor and not dash_control:
 			var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
 			%GroundParticles.add_child(ground_hit_particles)
@@ -365,8 +367,6 @@ func _compute_velocity(
 	$KillColliderSolid.rotation = gameplay_rotation
 	$KillColliderRectangularHazard.rotation = gameplay_rotation
 	$KillColliderCircularHazard.rotation = gameplay_rotation
-	$SlopeShapecast.rotation = gameplay_rotation
-	$SlopeShapecast.scale.y = gravity_flip
 
 	#region Apply Gravity
 	if not dash_control:
