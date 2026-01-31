@@ -159,7 +159,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	# Get velocity
-	up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
+	up_direction = Vector2.UP.rotated(gameplay_rotation) * gravity_flip
 	var jump_state = _get_jump_state()
 	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D)
 
@@ -864,7 +864,7 @@ func _get_spider_dash_height() -> float:
 	raycast.force_raycast_update()
 	var target_position = raycast.get_collision_point()
 	var dash_height: float = (target_position - position).length()
-	var raycast_collision_angle: float = raycast.get_collision_normal().angle_to(-up_direction) + raycast.global_rotation
+	var raycast_collision_angle: float = raycast.get_collision_normal().angle_to(Vector2.DOWN * gravity_flip) + raycast.global_rotation
 	dash_height -= (default_collider.size.y * 0.5 * scale.y) / cos(raycast_collision_angle)
 	dash_height *= gravity_flip
 	if not raycast.is_colliding():
