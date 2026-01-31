@@ -188,6 +188,7 @@ func stop_playtest() -> void:
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
 	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
+	Editor.viewport.remove_cursor_shape_override()
 
 
 func _fade_leave(_action: Variant = null) -> void:
