@@ -2,16 +2,28 @@ extends PanelContainer
 
 class_name RenderMode
 
+@export_group("Panels")
 @export var enum_button: EnumButton
 @export var fold_button: Button
 @export var options_panel: PanelContainer
 @export var options_panel_vbox: VBoxContainer
-@export var object_segment: Control
-@export_group("Properties")
+@export var global_segment: VBoxContainer
+@export var object_segment: VBoxContainer 
+
+@export_group("Global")
+
+@export_group("Object")
 @export var background_color_selector: ColorProperty
 @export var ground_color_selector: ColorProperty
 @export var line_color_selector: ColorProperty
+@export var object_color_selector: ColorProperty
+
+@export_group("Material")
+
+@export_group("Rendered")
+
 var mode: Mode = Mode.RENDERED_MODE
+var object_modulate: Color = Color.WHITE
 
 enum Mode {
 	OBJECT_MODE,
@@ -53,6 +65,14 @@ func _ready() -> void:
 				Editor.root.level.line_color = value
 				mode = Mode.OBJECT_MODE
 	)
+	object_color_selector.set_value_no_signal(object_modulate)
+	object_color_selector.value_changed.connect(
+		func(value: Color):
+			if mode == Mode.OBJECT_MODE:
+				object_modulate = value
+				LevelManager.update_hsv_watchers.emit()
+	)
+
 	mode = Config.default_render_mode
 	enum_button.set_value_no_signal(mode)
 
@@ -118,6 +138,7 @@ func toggle_render_mode_options(value: bool, animate: bool = true, time: float =
 		match mode:
 			Mode.OBJECT_MODE:
 				object_segment.show()
+		global_segment.show()
 		var minimum_size: float = 52
 
 		for child in options_panel_vbox.get_children():

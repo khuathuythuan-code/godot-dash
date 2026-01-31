@@ -49,7 +49,7 @@ corner_radius_bottom_left = 14
 corner_detail = 5
 anti_aliasing = false
 
-[node name="RenderModes" type="PanelContainer" unique_id=1941457548 node_paths=PackedStringArray("enum_button", "fold_button", "options_panel", "options_panel_vbox", "object_segment", "background_color_selector", "ground_color_selector", "line_color_selector")]
+[node name="RenderModes" type="PanelContainer" unique_id=1941457548 node_paths=PackedStringArray("enum_button", "fold_button", "options_panel", "options_panel_vbox", "global_segment", "object_segment", "background_color_selector", "ground_color_selector", "line_color_selector", "object_color_selector")]
 material = ExtResource("1_mt01j")
 anchors_preset = -1
 anchor_left = 1.0
@@ -64,10 +64,12 @@ enum_button = NodePath("VBoxContainer/HBoxContainer/EnumButton")
 fold_button = NodePath("VBoxContainer/HBoxContainer/FoldButton")
 options_panel = NodePath("VBoxContainer/Options")
 options_panel_vbox = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer")
+global_segment = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Global")
 object_segment = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object")
 background_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Background Color")
 ground_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Ground Color")
 line_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Line Color")
+object_color_selector = NodePath("VBoxContainer/Options/MarginContainer/VBoxContainer/Object/Object Color")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=251552038]
 layout_mode = 2
@@ -109,7 +111,6 @@ variants = PackedStringArray("Object", "Material", "Rendered")
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
 [node name="Options" type="PanelContainer" parent="VBoxContainer" unique_id=1388843025]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qac3c")
 
@@ -119,6 +120,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Options/MarginContainer" unique_id=435929528]
+layout_mode = 2
+
+[node name="Global" type="VBoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer" unique_id=1310725861]
 layout_mode = 2
 
 [node name="Object" type="VBoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer" unique_id=1387347848]
@@ -139,6 +143,13 @@ script = ExtResource("5_5oygk")
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
 [node name="Line Color" type="BoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer/Object" unique_id=458752010]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("5_5oygk")
+metadata/_custom_type_script = "uid://bwcwfobfohbsd"
+
+[node name="Object Color" type="BoxContainer" parent="VBoxContainer/Options/MarginContainer/VBoxContainer/Object" unique_id=213360415]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true

@@ -56,7 +56,7 @@ func update_color() -> void:
 	match selection_highlight:
 		SelectionHighlight.NONE:
 			if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
-				parent.modulate = Color.WHITE
+				parent.modulate = Editor.render_mode_manager.object_modulate
 			else:
 				parent.modulate = shifted_modulate * intensity * base_intensity
 				parent.modulate.a = modulate.a * alpha * base_alpha
