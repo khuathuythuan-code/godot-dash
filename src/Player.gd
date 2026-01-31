@@ -411,7 +411,7 @@ func _compute_velocity(
 	if not pad_queue.is_empty():
 		var colliding_pad: PadInteractable = pad_queue.pop_front()
 		local_velocity = _handle_velocity_interactable(local_velocity, colliding_pad)
-		interactable_used_rotating_spider_dash = colliding_pad.has(SpiderDashComponent) and colliding_pad.query(SpiderDashComponent).change_gameplay_rotation
+		interactable_used_rotating_spider_dash = colliding_pad.has(SpiderDashComponent) and colliding_pad.query(SpiderDashComponent).changes_gameplay_rotation()
 	#endregion
 
 	#region Handle jump.
@@ -420,6 +420,9 @@ func _compute_velocity(
 			pass
 		elif internal_gamemode == Gamemode.SPIDER:
 			var displacement: Vector2 = Vector2.UP.rotated(gameplay_rotation) * _get_spider_dash_height()
+			last_collision = move_and_collide(displacement, true)
+			$GroundCollider.rotation = gameplay_rotation
+			_handle_collision(last_collision, false)
 			position += displacement
 			var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 			trail.start.call_deferred(self, displacement)
@@ -470,7 +473,7 @@ func _compute_velocity(
 		_click_buffer_state = ClickBufferState.BUFFER_USED
 		colliding_orb.interacted.emit(self)
 		local_velocity = _handle_velocity_interactable(local_velocity, colliding_orb)
-		interactable_used_rotating_spider_dash = colliding_orb.has(SpiderDashComponent) and colliding_orb.query(SpiderDashComponent).change_gameplay_rotation
+		interactable_used_rotating_spider_dash = colliding_orb.has(SpiderDashComponent) and colliding_orb.query(SpiderDashComponent).changes_gameplay_rotation()
 		if not colliding_orb.has(SingleUsageComponent):
 			orb_queue.append(colliding_orb)
 	#endregion
@@ -518,18 +521,25 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 				if gravity_flip < 0:
 					raycast_rotation += PI
 				$Icon/Spider/SpiderCast.global_rotation = raycast_rotation
-				var displacement: Vector2 = up_direction.rotated(interactable.global_rotation) * _get_spider_dash_height()
+				var displacement: Vector2 = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * _get_spider_dash_height()
 				position += displacement
 				jump_hold_disabled = true
 				$Icon/Spider/SpiderCast.rotation = 0.0
 				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 				trail.start.call_deferred(self, displacement, raycast_rotation + (PI if absf(raycast_rotation) >= PI / 2 else 0.0))
 				add_child(trail)
-				if component.change_gameplay_rotation:
+				if component.changes_gameplay_rotation():
 					gameplay_rotation = interactable.global_rotation
-					gravity_flip *= -1
+					gravity_flip = 1 if absf(raycast_rotation) >= PI / 2 else -1
 				else:
 					gravity_flip = 1 if absf(interactable.global_rotation) >= PI / 2 else -1
+				allow_ceiling_hit_count += 1
+				# Force up direction update in order for _handle_collision to work properly
+				up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
+				last_collision = move_and_collide(displacement.normalized() * LevelManager.CELL_SIZE, true)
+				$GroundCollider.rotation = gameplay_rotation
+				_handle_collision(last_collision, false)
+				allow_ceiling_hit_count -= 1
 			else:
 				var displacement: Vector2 = Vector2.UP.rotated(gameplay_rotation) * _get_spider_dash_height()
 				position += displacement
