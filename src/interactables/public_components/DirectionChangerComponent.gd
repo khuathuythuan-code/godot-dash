@@ -2,6 +2,8 @@ extends Component
 
 class_name DirectionChangerComponent
 
+signal direction_changed(new_direction: Direction)
+
 enum Direction {
 	KEEP,
 	FLIP,
@@ -9,7 +11,10 @@ enum Direction {
 	BACKWARDS,
 }
 
-@export var direction := Direction.KEEP
+@export var direction := Direction.KEEP:
+	set(value):
+		direction = value
+		direction_changed.emit(value)
 
 
 func _ready() -> void:

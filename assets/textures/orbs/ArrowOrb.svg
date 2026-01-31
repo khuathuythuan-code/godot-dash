@@ -7,7 +7,7 @@
    viewBox="0 0 165.10001 165.10001"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25, custom)"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    sodipodi:docname="ArrowOrb.svg"
    xml:space="preserve"
    inkscape:export-filename="../../../../Téléchargements/ArrowOrb.png"
@@ -28,14 +28,15 @@
      inkscape:deskcolor="#181825"
      inkscape:document-units="px"
      inkscape:zoom="0.67067305"
-     inkscape:cx="386.17923"
-     inkscape:cy="308.64517"
+     inkscape:cx="313.11829"
+     inkscape:cy="318.33693"
      inkscape:window-width="1894"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" /><defs
+     inkscape:current-layer="g1"
+     showgrid="false" /><defs
      id="defs1"><inkscape:path-effect
        effect="dashed_stroke"
        id="path-effect7"
@@ -46,7 +47,7 @@
        splitsegments="true"
        halfextreme="true"
        unifysegment="true"
-       message="Add &lt;b&gt;&quot;Fill Between Many LPE&quot;&lt;/b&gt; to add fill." /><linearGradient
+       message="" /><linearGradient
        id="linearGradient6"
        inkscape:collect="always"><stop
          style="stop-color:#8397ff;stop-opacity:1;"
@@ -125,8 +126,8 @@
      id="layer1"><g
        id="g1"
        style="display:inline;mix-blend-mode:normal"
-       transform="translate(14.816678,14.816678)"><path
-         d="M 47.059133,5.857512 H 88.407517 L 67.733325,-14.816678 Z"
+       transform="matrix(1,0,0,-1,14.816678,150.28333)"><path
+         d="M 47.059133,129.60913 H 88.407517 L 67.733325,150.28332 Z"
          style="display:inline;fill:#ffffff;stroke-width:11.9063;stroke-linecap:square;paint-order:stroke fill markers"
          id="path11" /><path
          d="M 129.60914,47.059133 V 88.407517 L 150.28333,67.733325 Z"
