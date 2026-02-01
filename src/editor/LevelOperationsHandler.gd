@@ -37,17 +37,19 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"editor_new_level"):
+	if LevelManager.level_playing:
+		return
+	if event.is_action_pressed(&"editor_new_level", false, true):
 		_on_level_index_pressed(0)
-	if event.is_action_pressed(&"editor_open_level"):
+	if event.is_action_pressed(&"editor_open_level", false, true):
 		_on_level_index_pressed(1)
-	if event.is_action_pressed(&"editor_import_level"):
+	if event.is_action_pressed(&"editor_import_level", false, true):
 		_on_level_index_pressed(2)
-	if event.is_action_pressed(&"editor_save") and not event.is_action_pressed(&"editor_save_as"):
+	if event.is_action_pressed(&"editor_save", false, true):
 		_on_level_index_pressed(3)
-	if event.is_action_pressed(&"editor_save_as"):
+	if event.is_action_pressed(&"editor_save_as", false, true):
 		_on_level_index_pressed(4)
-	if event.is_action_pressed(&"editor_export_level"):
+	if event.is_action_pressed(&"editor_export_level", false, true):
 		_on_level_index_pressed(5)
 
 
