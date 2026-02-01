@@ -178,6 +178,7 @@ func start_level() -> void:
 	LevelManager.player.gravity_flip = start_gravity_flip
 	LevelManager.player_camera.position = LevelManager.player.position
 	LevelManager.level_playing = true
+	LevelManager.player_camera.snap_view()
 	stopwatch.paused = false
 
 
