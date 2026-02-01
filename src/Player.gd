@@ -541,7 +541,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 				if absf(raycast_rotation) >= PI / 2:
 					trail_rotation += PI
 				if component.changes_gameplay_rotation():
-					if absf(raycast_rotation - gameplay_rotation) < PI / 4:
+					if absf(raycast_rotation - gameplay_rotation) <= PI / 4:
 						# The teleportation is almost vertical
 						gameplay_rotation = raycast_rotation
 						gravity_flip *= -1
@@ -571,6 +571,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			_handle_collision(last_collision, false)
 			allow_ceiling_hit_count -= 1
 			_spider_dash_frames = 4
+			slope_velocity = Vector2.ZERO
 			defer_snap_sprite_rotation()
 	return local_velocity
 
