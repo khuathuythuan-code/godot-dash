@@ -76,6 +76,8 @@ func hide_tween() -> void:
 
 func _on_leave_pressed() -> void:
 	get_tree().paused = false
+	if Editor.in_editor:
+		Editor.root.stop_playtest()
 	leave.emit()
 	if suspended:
 		await unsuspended
