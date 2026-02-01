@@ -42,6 +42,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_4ej1d")
 
 [node name="Indicator" type="Sprite2D" parent="Sprite" unique_id=1481971971]
+use_parent_material = true
 texture = ExtResource("7_nlpri")
 
 [node name="ArrowOrbTextureFlip" type="Node" parent="Sprite/Indicator" unique_id=1237665405]
