@@ -97,7 +97,6 @@ func update(_mode: Mode = mode) -> void:
 		tween.tween_property(options_panel, "custom_minimum_size:y", new_minimum_size, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 		
 
-
 func enable_object_mode() -> void:
 	LevelManager.game_scene.get_node(^"ShaderLayer").visible = false
 	var level: Level = Editor.root.level
