@@ -31,7 +31,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not LevelManager.level_playing:
+	if not LevelManager.level_playing or player.dead:
 		return
 	queue_redraw()
 	var framerate_compensation := delta * 60.0
