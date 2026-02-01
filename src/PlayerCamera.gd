@@ -92,12 +92,12 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 			player_speed_sign = sign(player.speed_multiplier)
 		gameplay_offset = gameplay_offset.lerp(
 			Vector2(
-				(DEFAULT_OFFSET.x * player.get_direction() * player_speed_sign) / zoom.x,
-				DEFAULT_OFFSET.y / zoom.y,
+				(DEFAULT_OFFSET.x * player.get_direction() * player_speed_sign),
+				DEFAULT_OFFSET.y,
 			),
 			0.125 * framerate_compensation if not is_snapping_view else 1.0,
 		)
-	return gameplay_offset * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset
+	return (gameplay_offset / zoom) * gameplay_offset_factor * (Vector2.ONE - static_factor) + additional_offset + shake_offset
 
 
 func snap_view() -> void:
