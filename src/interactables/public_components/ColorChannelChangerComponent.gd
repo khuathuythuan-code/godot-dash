@@ -1,4 +1,5 @@
 extends Component
+
 class_name ColorChannelChangerComponent
 
 enum ColorSpace {
@@ -30,9 +31,7 @@ var initial_color: Color
 var gradient: Gradient = Gradient.new()
 
 
-
 func _ready() -> void:
-	super()
 	await require([TargetColorChannelComponent, EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
@@ -118,7 +117,6 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 					pass
 				Channel.GLOW:
 					pass
-
 
 
 func _on_target_color_channel_type_changed(type: TargetColorChannelComponent.Type) -> void:

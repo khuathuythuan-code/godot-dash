@@ -1,5 +1,8 @@
 extends Component
+
 class_name DirectionChangerComponent
+
+signal direction_changed(new_direction: Direction)
 
 enum Direction {
 	KEEP,
@@ -8,11 +11,15 @@ enum Direction {
 	BACKWARDS,
 }
 
-@export var direction := Direction.KEEP
+@export var direction := Direction.KEEP:
+	set(value):
+		direction = value
+		direction_changed.emit(value)
+
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(set_direction)
+
 
 func set_direction(player: Player):
 	if not LevelManager.platformer:
@@ -23,5 +30,3 @@ func set_direction(player: Player):
 				player.horizontal_direction = 1
 			Direction.BACKWARDS:
 				player.horizontal_direction = -1
-
-

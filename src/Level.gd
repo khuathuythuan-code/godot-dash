@@ -60,6 +60,8 @@ const START_SPEED: Array[float] = [
 @export var start_speed: float = START_SPEED[2]
 @export var start_reverse: bool
 @export var start_gameplay_rotation_degrees: float
+@export var start_gravity_multiplier: float = 1.0
+@export var start_gravity_flip: int = 1
 @export var default_background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
 	set(new_color):
 		default_background_color = new_color
@@ -165,10 +167,11 @@ func start_level() -> void:
 		else:
 			GroundData.offset = 0
 
-	LevelManager.player.scale = Vector2.ONE
 	LevelManager.player.speed_multiplier = start_speed
 	LevelManager.player.horizontal_direction = -1 if start_reverse else 1
 	LevelManager.player.gameplay_rotation_degrees = start_gameplay_rotation_degrees
+	LevelManager.player.gravity_multiplier = start_gravity_multiplier
+	LevelManager.player.gravity_flip = start_gravity_flip
 	LevelManager.player_camera.position = LevelManager.player.position
 	LevelManager.level_playing = true
 	stopwatch.paused = false
@@ -226,7 +229,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"rating": rating,
 		"is_editable": is_editable,
 		"song_path": song_path,
-		"song_start_time": song_start_time,
+		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
 		"platformer": platformer,
 		"start_position": Serialize.Vector2(LevelManager.player.global_position),
 		"start_internal_gamemode": practice.call(start_internal_gamemode, LevelManager.player.internal_gamemode),
@@ -236,6 +239,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"start_speed_preset": start_speed_preset,
 		"start_reverse": start_reverse,
 		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
+		"start_gravity_multiplier": start_gravity_multiplier,
+		"start_gravity_flip": start_gravity_flip,
 		"default_background_color": default_background_color.to_rgba32(),
 		"default_ground_color": default_ground_color.to_rgba32(),
 		"default_line_color": default_line_color.to_rgba32(),
@@ -249,6 +254,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 			"z_index": LevelManager.player.z_index,
 		},
 	}
+	if reason == SerializeReason.PRACTICE_ATTEMPT:
+		data.practice_data = _get_practice_data()
 	var objects: Array[Node2D]
 	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
 	for object: Node2D in objects:
@@ -299,6 +306,12 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 			object_data.color_channels.detail = detail_color_channel[0]
 
 
+func _get_practice_data() -> Dictionary:
+	var practice_data: Dictionary = { }
+	practice_data.player_velocity = LevelManager.player.velocity
+	return practice_data
+
+
 static func from_data(data: Dictionary) -> Level:
 	var level := Level.new()
 	level.name = data.name
@@ -318,6 +331,8 @@ static func from_data(data: Dictionary) -> Level:
 	level.start_speed_preset = data.start_speed_preset
 	level.start_reverse = data.start_reverse
 	level.start_gameplay_rotation_degrees = data.start_gameplay_rotation_degrees
+	level.start_gravity_multiplier = data.start_gravity_multiplier
+	level.start_gravity_flip = data.start_gravity_flip
 	level.default_background_color = Color.hex(data.default_background_color)
 	level.default_ground_color = Color.hex(data.default_ground_color)
 	level.default_line_color = Color.hex(data.default_line_color)
@@ -333,6 +348,10 @@ static func from_data(data: Dictionary) -> Level:
 	LevelManager.player.z_index = data.player_data.z_index
 	# start_internal_gamemode and start_displayed_gamemode are set on the player
 	# in their respective setters.
+
+	if data.has("practice_data"):
+		var practice_data: Dictionary = data.practice_data
+		LevelManager.player.velocity = practice_data.player_velocity
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
@@ -409,6 +428,8 @@ static func apply_enter_effect(object_child: Node) -> void:
 		or object_child is NinePatchSprite2D
 		or object_child is ReboundOrbSprite
 		or object_child is ReboundPadSprite
+		or object_child is HitboxDisplay
+		or object_child is Line2D
 	):
 		return
 	object_child.material = AssetManager.fade_enter_effect

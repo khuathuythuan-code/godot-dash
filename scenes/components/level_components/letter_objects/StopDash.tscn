@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://wxnp5voc8u7a" path="res://assets/textures/triggers/StopDash.svg" id="3_0r1mm"]
 [ext_resource type="Script" uid="uid://411xfh8l0h1w" path="res://src/interactables/public_components/StopDashComponent.gd" id="4_jafy6"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="4_unfh5"]
-[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="5_ua7qa"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="5_ua7qa"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_ua7qa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_65trp"]
@@ -33,7 +33,7 @@ metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
 script = ExtResource("4_jafy6")
 metadata/_custom_type_script = "uid://411xfh8l0h1w"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=1775544388]
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="." unique_id=1775544388]
 script = ExtResource("5_ua7qa")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 

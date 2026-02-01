@@ -3,10 +3,11 @@ extends Node
 
 class_name Component
 
-@onready var parent := get_parent() as Interactable
+var parent: Interactable
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
+	parent = get_parent()
 	parent.register_public(self)
 
 

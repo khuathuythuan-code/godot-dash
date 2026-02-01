@@ -186,7 +186,9 @@ func stop_playtest() -> void:
 	practice_button.hide()
 	practice_button.set_pressed_no_signal(false)
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
+	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
+	Editor.viewport.remove_cursor_shape_override()
 
 
 func _fade_leave(_action: Variant = null) -> void:
@@ -229,6 +231,8 @@ func _load_default_player_data_component(component: DefaultPlayerDataComponent) 
 	component.speed = level.start_speed
 	component.speed_preset = level.start_speed_preset
 	component.gameplay_rotation = level.start_gameplay_rotation_degrees
+	component.gravity_multiplier = level.start_gravity_multiplier
+	component.flipped_gravity = level.start_gravity_flip < 0
 	component.internal = level.start_internal_gamemode
 	component.displayed = level.start_displayed_gamemode
 	component.freefly = level.start_freefly

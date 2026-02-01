@@ -1,4 +1,5 @@
 extends Component
+
 class_name FireDashComponent
 
 # TODO figure out how to make cyan dash orbs work
@@ -12,7 +13,6 @@ var initial_speed: float
 
 
 func _ready() -> void:
-	super()
 	$"../DashOrbPreview".visible = Editor.in_editor
 	parent.interacted.connect(start)
 

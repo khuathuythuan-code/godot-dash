@@ -8,7 +8,6 @@ class_name PlayerCountChangerComponent
 
 
 func _ready() -> void:
-	super()
 	parent.body_entered.connect(set_player_count)
 
 

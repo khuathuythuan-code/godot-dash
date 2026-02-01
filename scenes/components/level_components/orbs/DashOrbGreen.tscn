@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bejm8xhsl8h0b" path="res://scenes/particle_emitter_presets/OrbParticles.tscn" id="2_y4jb6"]
 [ext_resource type="Script" uid="uid://cx0n1qip15t20" path="res://src/interactables/private_components/MusicScale.gd" id="3_8l25v"]
 [ext_resource type="Script" uid="uid://c772o12ml0hud" path="res://src/interactables/public_components/FireDashComponent.gd" id="3_binks"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="4_4f06y"]
 [ext_resource type="Texture2D" uid="uid://5svtduawb5vo" path="res://assets/textures/orbs/DashOrbGreen.svg" id="4_4g3sr"]
 [ext_resource type="Script" uid="uid://734ig4xqcu7j" path="res://src/interactables/private_components/FireDashTangentSpeed.gd" id="4_rnp8a"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="7_1yihk"]
@@ -26,10 +27,14 @@ modulate = Color(0, 1, 0, 1)
 script = ExtResource("3_8l25v")
 
 [node name="DashOrbPreview" type="Line2D" parent="." unique_id=1643298064]
-points = PackedVector2Array(64, 0, 768, 0)
+points = PackedVector2Array(64, 0, 1152, 0)
 width = 4.0
 default_color = Color(0, 1, 0, 1)
 end_cap_mode = 2
+
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="DashOrbPreview" unique_id=1650468348]
+script = ExtResource("4_4f06y")
+metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1025388266]
 position = Vector2(6, 0)

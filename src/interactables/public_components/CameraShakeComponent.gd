@@ -26,7 +26,6 @@ var linear_eased_weight: float
 
 
 func _ready() -> void:
-	super()
 	await require([EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)

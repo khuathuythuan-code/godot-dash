@@ -32,6 +32,16 @@ class_name DefaultPlayerDataComponent
 		gameplay_rotation = value
 		if Editor.in_editor:
 			Editor.root.level.start_gameplay_rotation_degrees = value
+@export_range(0.0, 2.0, 0.01, "or_greater", "or_less", "slider") var gravity_multiplier: float = 1.0:
+	set(value):
+		gravity_multiplier = value
+		if Editor.in_editor:
+			Editor.root.level.start_gravity_multiplier = value
+@export var flipped_gravity: bool = false:
+	set(value):
+		flipped_gravity = value
+		if Editor.in_editor:
+			Editor.root.level.start_gravity_flip = 1 if not flipped_gravity else -1
 
 @export_group("Gamemode")
 @export var internal: Player.Gamemode:

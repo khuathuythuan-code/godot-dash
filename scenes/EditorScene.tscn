@@ -183,6 +183,8 @@
 [ext_resource type="PackedScene" uid="uid://d05asiy6k2voi" path="res://scenes/components/level_components/portals/other_portals/TeleportalIn.tscn" id="82_n18q3"]
 [ext_resource type="PackedScene" uid="uid://ckrakyci0r2eg" path="res://scenes/components/level_components/portals/other_portals/TeleportalOut.tscn" id="83_gaibe"]
 [ext_resource type="Texture2D" uid="uid://cjen3j6at6ei" path="res://assets/textures/portals/other_portals/teleportal_out/TeleportalOutFront.png" id="84_glhus"]
+[ext_resource type="Texture2D" uid="uid://cwjvxw6w83ew2" path="res://assets/textures/orbs/ArrowOrb.svg" id="93_gdb1n"]
+[ext_resource type="Texture2D" uid="uid://c0hk8qwb5cfdk" path="res://assets/textures/orbs/ArrowOrbDirectionIndicator.svg" id="94_vo0kk"]
 [ext_resource type="Texture2D" uid="uid://cq3vm0mtdhxgb" path="res://assets/textures/triggers/CameraStatic.svg" id="107_ik2f6"]
 [ext_resource type="Texture2D" uid="uid://2fg5ga0mw6c2" path="res://assets/textures/triggers/CameraZoom.svg" id="108_cxib2"]
 [ext_resource type="Texture2D" uid="uid://4totkksq1aty" path="res://assets/textures/triggers/GameplayRotate.svg" id="111_1i48y"]
@@ -732,7 +734,7 @@ offset_left = 64.0
 offset_top = 64.0
 offset_right = 192.0
 offset_bottom = 192.0
-pivot_offset = Vector2(64, 64)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 icon = ExtResource("3_qy4mu")
@@ -4157,6 +4159,38 @@ block_palette_button = true
 script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("28_qxx6w")
+
+[node name="ArrowOrb" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs" unique_id=717387466]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("93_gdb1n")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/ArrowOrb" unique_id=785074164]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("28_qxx6w")
+
+[node name="TextureRect" type="TextureRect" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs/ArrowOrb" unique_id=1276236530]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.87, 0.87)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("94_vo0kk")
+expand_mode = 1
 
 [node name="DashOrbGreen" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/Orbs" unique_id=653874489]
 custom_minimum_size = Vector2(64, 64)

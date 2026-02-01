@@ -1,25 +1,19 @@
-extends AnimatedSprite2D
+extends Node2D
 
 class_name SpiderTrail
 
-const SPIDER_TRAIL_HEIGHT: float = 896.0 * 0.75
+const TRAIL_HEIGHT: float = 896.0 * 0.75
 
-@onready var trail_global_position: Vector2 # Global position
-@onready var trail_rotation: float
-@onready var displayed_scale_y: float = 0.0 # DISPLAYED y scale
-@onready var displayed_scale_x: float = 0.0
+@export var trail: AnimatedSprite2D
 
 
 func _ready() -> void:
-	global_scale = Vector2.ONE
-	scale.x = displayed_scale_y
-	scale.y = displayed_scale_x
-	rotation += trail_rotation
-	play()
-	animation_finished.connect(queue_free)
+	trail.animation_finished.connect(queue_free)
 
 
-func _physics_process(_delta: float) -> void:
-	global_position = trail_global_position
-	scale.x = displayed_scale_y # x scale because the trail is rotated 90 degrees
-	scale.y = displayed_scale_x
+func start(player: Player, displacement: Vector2, new_rotation: float = NAN) -> void:
+	trail.play()
+	global_position = player.get_spider_trail_global_position()
+	scale.x = player.horizontal_direction
+	scale.y = abs(displacement.length() / TRAIL_HEIGHT) * player.gravity_flip
+	rotation = player.gameplay_rotation if is_nan(new_rotation) else new_rotation

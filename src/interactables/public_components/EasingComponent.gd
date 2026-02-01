@@ -24,7 +24,6 @@ var _previous_weights: Dictionary[Player, float]
 
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(start)
 
 

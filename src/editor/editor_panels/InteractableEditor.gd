@@ -7,7 +7,6 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	JumpBoostComponent,
 	GravityFlipChangerComponent,
 	ReboundComponent,
-	SpiderDashComponent,
 	SpeedChangerComponent,
 	# PlayerCountChangerComponent, # we need to be able to set if duals use the same gravity
 	PlayerScaleChangerComponent,
@@ -18,7 +17,6 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	FlipGravityComponent,
 	AllowCeilingHitComponent,
 	AllowWaveSlideComponent,
-	HiddenOutsideEditorComponent,
 	HideMarkersComponent,
 ]
 

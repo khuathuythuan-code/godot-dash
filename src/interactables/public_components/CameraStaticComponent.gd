@@ -28,7 +28,6 @@ var target: Node2D
 
 
 func _ready() -> void:
-	super()
 	await require([TargetObjectComponent, EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)
@@ -37,6 +36,7 @@ func _ready() -> void:
 func start(_player: Player) -> void:
 	initial_global_position = LevelManager.player_camera.global_position
 	initial_static_factor = LevelManager.player_camera.static_factor
+	LevelManager.player_camera.static_offset_rotation = LevelManager.player_camera.smoothed_gameplay_rotation
 	target = parent.query(TargetObjectComponent).target_to_node()
 	if not target:
 		Toasts.error("In %s: target is unset" % parent.name)

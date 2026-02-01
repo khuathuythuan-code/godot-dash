@@ -15,41 +15,42 @@ func _ready() -> void:
 	if reset_scale_on_ready:
 		scale = Vector2.ONE
 	inital_scale = scale
-	connect("button_down", Callable(self, "_button_held"))
-	connect("button_up", Callable(self, "_button_unheld"))
+	button_down.connect(_button_held)
+	button_up.connect(_button_unheld)
 
 
 func _process(_delta: float) -> void:
-	pivot_offset.x = size.x / 2
-	pivot_offset.y = size.y / 2
-	if block_palette_button:
-		if is_pressed():
-			modulate = Color("808080")
-		else:
-			modulate = Color("ffffff")
+	pivot_offset_ratio = Vector2.ONE * 0.5
+	if not block_palette_button:
+		return
+	modulate = Color.hex(0x808080) if is_pressed() else Color.WHITE
 
 
 func _button_held() -> void:
-	if is_inside_tree():
-		var scale_tween = create_tween()
-		scale_tween.set_ease(Tween.EASE_OUT)
-		scale_tween.set_trans(Tween.TRANS_BOUNCE)
-		scale_tween.tween_property(self, "scale", inital_scale * 1.1, 0.2)
-		if get_parent() is Container:
-			if not top_level:
-				saved_position = position
-				position = get_global_rect().position
-			top_level = true
+	if not is_inside_tree():
+		return
+	var scale_tween = create_tween()
+	scale_tween.set_ease(Tween.EASE_OUT)
+	scale_tween.set_trans(Tween.TRANS_BOUNCE)
+	scale_tween.tween_property(self, "scale", inital_scale * 1.1, 0.2)
+	if get_parent() is not Container:
+		return
+	if not top_level:
+		saved_position = position
+		position = get_global_rect().position
+	top_level = true
 
 
 func _button_unheld() -> void:
-	if is_inside_tree():
-		var scale_tween = create_tween()
-		scale_tween.set_ease(Tween.EASE_OUT)
-		scale_tween.set_trans(Tween.TRANS_BOUNCE)
-		scale_tween.tween_property(self, "scale", inital_scale, 0.2)
-		release_focus()
-		await scale_tween.finished
-		if get_parent() is Container:
-			top_level = false
-			position = saved_position
+	if not is_inside_tree():
+		return
+	var scale_tween = create_tween()
+	scale_tween.set_ease(Tween.EASE_OUT)
+	scale_tween.set_trans(Tween.TRANS_BOUNCE)
+	scale_tween.tween_property(self, "scale", inital_scale, 0.2)
+	release_focus()
+	await scale_tween.finished
+	if get_parent() is not Container:
+		return
+	top_level = false
+	position = saved_position

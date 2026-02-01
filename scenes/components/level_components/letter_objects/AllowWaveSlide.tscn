@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://sv2oa8nvx3ob" path="res://addons/nine_patch_sprite_2d/nine_patch_sprite_2d.gd" id="2_xdsve"]
 [ext_resource type="Texture2D" uid="uid://puq2amlox0qe" path="res://assets/textures/triggers/AllowWaveSlide.svg" id="3_b5lhx"]
 [ext_resource type="Script" uid="uid://2642oxsxg03r" path="res://src/interactables/public_components/AllowWaveSlideComponent.gd" id="4_b5lhx"]
-[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="5_fvapx"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="5_fvapx"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="6_0gigw"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="7_e40vt"]
 
@@ -32,7 +32,7 @@ metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
 [node name="AllowWaveSlideComponent" type="Node" parent="." unique_id=599287630]
 script = ExtResource("4_b5lhx")
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=1854502931]
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="." unique_id=1854502931]
 script = ExtResource("5_fvapx")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 

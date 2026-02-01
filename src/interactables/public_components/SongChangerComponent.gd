@@ -1,4 +1,5 @@
 extends Component
+
 class_name SongChangerComponent
 
 @export_global_file(
@@ -6,8 +7,9 @@ class_name SongChangerComponent
 	"*.ogg",
 	"*.wav",
 	"load_root:user://created_levels/songs/", # Custom data
-	"import_to:user://created_levels/songs/"  # Custom data
-) var song_path: String:
+	"import_to:user://created_levels/songs/", # Custom data
+)
+var song_path: String:
 	set(value):
 		if LevelManager.current_level:
 			LevelManager.current_level.register_required_song(song_path, value)
@@ -17,7 +19,6 @@ class_name SongChangerComponent
 
 
 func _ready() -> void:
-	super()
 	# don't make the request twice, the song_path setter will run at _init
 	LevelManager.current_level.register_required_song(song_path, song_path)
 	parent.interacted.connect(start)

@@ -1,9 +1,8 @@
 extends Marker
+
 class_name SingleUsageComponent
 
-
 func _ready() -> void:
-	super()
 	parent.interacted.connect(disable)
 
 

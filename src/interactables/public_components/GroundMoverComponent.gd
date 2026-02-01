@@ -1,5 +1,6 @@
 @tool
 extends Component
+
 class_name GroundMoverComponent
 
 const DEFAULT_GROUND_DOWN_Y: float = 925.0
@@ -19,7 +20,6 @@ const LOCKEDFLY_GAMEMODE_GRID_HEIGHTS: Dictionary = {
 
 
 func _ready() -> void:
-	super()
 	parent.body_entered.connect(_move_grounds)
 
 

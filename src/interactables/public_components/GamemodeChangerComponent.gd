@@ -1,4 +1,5 @@
 extends Component
+
 class_name GamemodeChangerComponent
 
 enum GamemodeChange {
@@ -12,7 +13,6 @@ enum GamemodeChange {
 
 
 func _ready() -> void:
-	super()
 	parent.interacted.connect(set_gamemode)
 
 

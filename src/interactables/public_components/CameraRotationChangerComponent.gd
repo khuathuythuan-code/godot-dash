@@ -1,4 +1,5 @@
 extends Component
+
 class_name CameraRotationChangerComponent
 
 enum Mode {
@@ -13,7 +14,6 @@ var initial_global_rotation_degrees: float
 
 
 func _ready() -> void:
-	super()
 	await require([EasingComponent])
 	parent.interacted.connect(start)
 	parent.query(EasingComponent).progressed.connect(_on_easing_progressed)

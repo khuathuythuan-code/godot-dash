@@ -55,6 +55,10 @@ func pause_autosave() -> void:
 	$AutosaveTimer.paused = true
 
 
+func unpause_autosave() -> void:
+	$AutosaveTimer.paused = false
+
+
 func _on_level_index_pressed(index: int) -> void:
 	match index:
 		0: # New

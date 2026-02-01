@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://m5i4ldkc8kfv" path="res://src/interactables/private_components/HitboxDisplay.gd" id="7_ck578"]
 [ext_resource type="Script" uid="uid://t87nu0a2md6y" path="res://src/interactables/public_components/CameraStaticComponent.gd" id="8_r5la0"]
 [ext_resource type="Script" uid="uid://78e8oeq1vi6k" path="res://src/TargetLink.gd" id="11_d3f43"]
-[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="12_fu0o5"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="12_fu0o5"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="13_ck578"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_nuarc"]
@@ -95,7 +95,7 @@ default_color = Color(0, 0, 0, 1)
 script = ExtResource("11_d3f43")
 metadata/_custom_type_script = "uid://78e8oeq1vi6k"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=1478150376]
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="." unique_id=1478150376]
 script = ExtResource("12_fu0o5")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 

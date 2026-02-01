@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cpwidpl0d6peh" path="res://assets/textures/triggers/FlipGravity.svg" id="3_42b68"]
 [ext_resource type="Script" uid="uid://baiq5ve1kkxb7" path="res://src/interactables/public_components/AllowCeilingHitComponent.gd" id="5_1u1h2"]
 [ext_resource type="Script" uid="uid://c11eeqbetvhcv" path="res://src/interactables/public_components/FlipGravityComponent.gd" id="5_42b68"]
-[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/interactables/public_components/HiddenOutsideEditorComponent.gd" id="5_l2isw"]
+[ext_resource type="Script" uid="uid://b27xonb0bpa1d" path="res://src/attributes/HiddenOutsideEditorAttribute.gd" id="5_l2isw"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="6_6dku5"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_jdurq"]
 
@@ -30,7 +30,7 @@ patch_margin_right = 36.0
 patch_margin_bottom = 36.0
 metadata/_custom_type_script = "uid://sv2oa8nvx3ob"
 
-[node name="HiddenOutsideEditorComponent" type="Node" parent="." unique_id=570885664]
+[node name="HiddenOutsideEditorAttribute" type="Node" parent="." unique_id=570885664]
 script = ExtResource("5_l2isw")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 

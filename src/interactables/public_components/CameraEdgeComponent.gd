@@ -1,4 +1,5 @@
 extends Component
+
 class_name CameraEdgeComponent
 
 enum Mode {
@@ -18,7 +19,6 @@ enum Edge {
 
 
 func _ready() -> void:
-	super()
 	await require([TargetObjectComponent])
 	parent.interacted.connect(start)
 
@@ -52,4 +52,3 @@ func start(_player: Player):
 				player_camera.limit_bottom = int(target.global_position.y - player_camera.offset.y)
 			Mode.RESET:
 				player_camera.limit_bottom = 10000000
-

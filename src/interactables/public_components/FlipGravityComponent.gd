@@ -1,9 +1,8 @@
 extends Component
+
 class_name FlipGravityComponent
 
-
 func _ready() -> void:
-	super()
 	parent.body_entered.connect(engage_player_for_flip)
 	parent.body_exited.connect(disengage_player_for_flip)
 
