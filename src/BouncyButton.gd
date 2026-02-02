@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 	pivot_offset_ratio = Vector2.ONE * 0.5
 	if not block_palette_button:
 		return
-	modulate = Color.hex(0x808080) if is_pressed() else Color.WHITE
+	modulate = Color.hex(0x808080ff) if is_pressed() else Color.WHITE
 
 
 func _button_held() -> void:
