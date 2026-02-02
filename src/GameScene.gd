@@ -33,6 +33,7 @@ func _ready() -> void:
 
 
 func load_level() -> void:
+	assert(not LevelManager.current_level_path.is_empty())
 	if LevelManager.current_level_path != cached_level_path:
 		cached_level_path = LevelManager.current_level_path
 		var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
