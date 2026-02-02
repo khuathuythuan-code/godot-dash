@@ -8,7 +8,7 @@ class_name RenderMode
 @export var options_panel: PanelContainer
 @export var options_panel_vbox: VBoxContainer
 @export var global_segment: VBoxContainer
-@export var object_segment: VBoxContainer 
+@export var object_segment: VBoxContainer
 
 @export_group("Global")
 
@@ -95,7 +95,7 @@ func update(_mode: Mode = mode) -> void:
 		options_panel.custom_minimum_size.y = minimum_size
 		var tween := create_tween()
 		tween.tween_property(options_panel, "custom_minimum_size:y", new_minimum_size, 0.25).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-		
+
 
 func enable_object_mode() -> void:
 	LevelManager.game_scene.get_node(^"ShaderLayer").visible = false
@@ -147,8 +147,8 @@ func toggle_render_mode_options(value: bool, animate: bool = true, time: float =
 		if animate:
 			var tween := create_tween()
 			tween.set_parallel(true)
-			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", -90.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
-			tween.tween_property(options_panel, "custom_minimum_size:y", minimum_size, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(fold_button.get_node(^"TextureRect"), ^"rotation_degrees", -90.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(options_panel, ^"custom_minimum_size:y", minimum_size, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 			options_panel.get_node(^"MarginContainer").show()
 			for child in options_panel_vbox.get_children():
 				for property in child.get_children():
@@ -168,9 +168,9 @@ func toggle_render_mode_options(value: bool, animate: bool = true, time: float =
 			fold_button.get_node(^"TextureRect").rotation_degrees = -90
 			options_panel.get_node(^"MarginContainer").show()
 			for child in options_panel_vbox.get_children():
-					if child.visible == true:
-						for property in child.get_children():
-							property.show()
+				if child.visible == true:
+					for property in child.get_children():
+						property.show()
 	else:
 		for child in options_panel_vbox.get_children():
 			if child is VBoxContainer:
@@ -180,10 +180,10 @@ func toggle_render_mode_options(value: bool, animate: bool = true, time: float =
 		if animate:
 			var tween := create_tween()
 			tween.set_parallel(true)
-			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", 0.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+			tween.tween_property(fold_button.get_node(^"TextureRect"), "rotation_degrees", -180.0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 			tween.tween_property(options_panel, "custom_minimum_size:y", 0, time).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 			await tween.finished
 		else:
 			options_panel.custom_minimum_size.y = 0
-			fold_button.get_node(^"TextureRect").rotation_degrees = 0
+			fold_button.get_node(^"TextureRect").rotation_degrees = -180.0
 		options_panel.hide()
