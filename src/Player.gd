@@ -415,7 +415,7 @@ func _compute_velocity(
 	#region Apply pads velocity
 	if not pad_queue.is_empty():
 		var colliding_pad: PadInteractable = pad_queue.pop_front()
-		local_velocity = _handle_velocity_interactable(local_velocity, colliding_pad)
+		local_velocity = _handle_velocity_interactable(local_velocity, colliding_pad, direction)
 	#endregion
 
 	#region Handle jump.
@@ -423,7 +423,9 @@ func _compute_velocity(
 		if _is_flying_gamemode:
 			pass
 		elif internal_gamemode == Gamemode.SPIDER:
-			var displacement: Vector2 = Vector2.UP.rotated(gameplay_rotation) * _get_spider_dash_height()
+			var dash_data: PackedFloat64Array = _get_spider_dash_data()
+			var dash_height: float = dash_data[0]
+			var displacement: Vector2 = Vector2.UP.rotated(gameplay_rotation) * dash_height
 			position += displacement
 			var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 			trail.start.call_deferred(self, displacement)
@@ -437,6 +439,10 @@ func _compute_velocity(
 			$GroundCollider.rotation = gameplay_rotation
 			_handle_collision(last_collision, false)
 			allow_ceiling_hit_count -= 1
+			# Snap velocity to the ground
+			var floor_angle: float = dash_data[1]
+			local_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
+			slope_velocity = Vector2.ZERO
 			_spider_dash_frames = 4
 			defer_snap_sprite_rotation()
 		elif internal_gamemode == Gamemode.BALL:
@@ -480,7 +486,7 @@ func _compute_velocity(
 		var colliding_orb: OrbInteractable = orb_queue.pop_front()
 		_click_buffer_state = ClickBufferState.BUFFER_USED
 		colliding_orb.interacted.emit(self)
-		local_velocity = _handle_velocity_interactable(local_velocity, colliding_orb)
+		local_velocity = _handle_velocity_interactable(local_velocity, colliding_orb, direction)
 		if not colliding_orb.has(SingleUsageComponent):
 			orb_queue.append(colliding_orb)
 	#endregion
@@ -513,7 +519,7 @@ func _compute_velocity(
 	return local_velocity.rotated(gameplay_rotation)
 
 
-func _handle_velocity_interactable(local_velocity: Vector2, interactable: Interactable) -> Vector2:
+func _handle_velocity_interactable(local_velocity: Vector2, interactable: Interactable, direction: int) -> Vector2:
 	for component in interactable.components.filter(ArrayUtils.flatten):
 		var is_rebound: bool = component is ReboundComponent and (not is_on_floor() or _deferred_velocity_redirect)
 		if (
@@ -528,12 +534,15 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 				_spider_state_machine.travel("jump")
 		elif component is SpiderDashComponent:
 			var displacement: Vector2
+			var dash_data: PackedFloat64Array
 			if interactable is OrbInteractable:
 				var raycast_rotation: float = interactable.global_rotation
 				if gravity_flip < 0:
 					raycast_rotation += PI
 				$Icon/Spider/SpiderCast.global_rotation = raycast_rotation
-				displacement = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * _get_spider_dash_height()
+				dash_data = _get_spider_dash_data()
+				var dash_height: float = dash_data[0]
+				displacement = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * dash_height
 				position += displacement
 				jump_hold_disabled = true
 				$Icon/Spider/SpiderCast.rotation = 0.0
@@ -556,7 +565,9 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 				add_child(trail)
 				trail.start.call_deferred(self, displacement, trail_rotation)
 			else:
-				displacement = Vector2.UP.rotated(gameplay_rotation) * _get_spider_dash_height()
+				dash_data = _get_spider_dash_data()
+				var dash_height: float = dash_data[0]
+				displacement = Vector2.UP.rotated(gameplay_rotation) * dash_height
 				position += displacement
 				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 				trail.start.call_deferred(self, displacement)
@@ -571,6 +582,9 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			_handle_collision(last_collision, false)
 			allow_ceiling_hit_count -= 1
 			_spider_dash_frames = 4
+			# Snap velocity to the ground
+			var floor_angle: float = dash_data[1]
+			local_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
 			slope_velocity = Vector2.ZERO
 			defer_snap_sprite_rotation()
 	return local_velocity
@@ -860,18 +874,19 @@ func _set_particles_visibility() -> void:
 	$DeathParticles.visible = particles_visibility
 
 
-func _get_spider_dash_height() -> float:
+func _get_spider_dash_data() -> PackedFloat64Array:
 	var raycast: RayCast2D = $Icon/Spider/SpiderCast
 	raycast.force_raycast_update()
 	var target_position = raycast.get_collision_point()
 	var dash_height: float = (target_position - position).length()
-	var raycast_collision_angle: float = raycast.get_collision_normal().angle_to(Vector2.DOWN * gravity_flip) + raycast.global_rotation
+	var floor_angle: float = raycast.get_collision_normal().angle_to(Vector2.DOWN * gravity_flip)
+	var raycast_collision_angle: float = floor_angle + raycast.global_rotation
 	dash_height -= (default_collider.size.y * 0.5 * scale.y) / cos(raycast_collision_angle)
 	dash_height *= gravity_flip
 	if not raycast.is_colliding():
 		$DeathAnimator.play("DeathAnimation")
-		return dash_height * 32
-	return dash_height
+		return [dash_height * 32, raycast_collision_angle]
+	return [dash_height, raycast_collision_angle]
 
 
 func _update_spider_state_machine(jump_state: int) -> void:
