@@ -100,3 +100,7 @@ func set_value(new_value: float) -> void:
 func set_value_no_signal(new_value: float) -> void:
 	spinbox.set_value_no_signal(new_value)
 	hslider.set_value_no_signal(new_value)
+
+
+func get_value() -> float:
+	return spinbox.value
