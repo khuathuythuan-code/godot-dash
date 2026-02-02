@@ -535,6 +535,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 		elif component is SpiderDashComponent:
 			var displacement: Vector2
 			var dash_data: PackedFloat64Array
+			var floor_angle: float
 			if interactable is OrbInteractable:
 				var raycast_rotation: float = interactable.global_rotation
 				if gravity_flip < 0:
@@ -542,6 +543,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 				$Icon/Spider/SpiderCast.global_rotation = raycast_rotation
 				dash_data = _get_spider_dash_data()
 				var dash_height: float = dash_data[0]
+				floor_angle = dash_data[1]
 				displacement = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * dash_height
 				position += displacement
 				jump_hold_disabled = true
@@ -559,7 +561,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 						trail_rotation += PI
 						gravity_flip = 1
 				else:
-					gravity_flip = 1 if absf(interactable.global_rotation - gameplay_rotation) >= PI / 2 else -1
+					gravity_flip = gravity_flip if absf(floor_angle - gameplay_rotation) >= PI / 2 else -gravity_flip
 				# Trail
 				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
 				add_child(trail)
@@ -567,6 +569,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			else:
 				dash_data = _get_spider_dash_data()
 				var dash_height: float = dash_data[0]
+				floor_angle = dash_data[1]
 				displacement = Vector2.UP.rotated(gameplay_rotation) * dash_height
 				position += displacement
 				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
@@ -583,8 +586,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			allow_ceiling_hit_count -= 1
 			_spider_dash_frames = 4
 			# Snap velocity to the ground
-			var floor_angle: float = dash_data[1]
-			local_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
+			local_velocity.y = tan(-floor_angle - gameplay_rotation) * abs(local_velocity.x) * direction
 			slope_velocity = Vector2.ZERO
 			defer_snap_sprite_rotation()
 	return local_velocity
@@ -885,8 +887,8 @@ func _get_spider_dash_data() -> PackedFloat64Array:
 	dash_height *= gravity_flip
 	if not raycast.is_colliding():
 		$DeathAnimator.play("DeathAnimation")
-		return [dash_height * 32, raycast_collision_angle]
-	return [dash_height, raycast_collision_angle]
+		return [dash_height * 32, floor_angle]
+	return [dash_height, floor_angle]
 
 
 func _update_spider_state_machine(jump_state: int) -> void:
