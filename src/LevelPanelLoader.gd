@@ -1,12 +1,14 @@
 extends VBoxContainer
 
 const LEVEL_DIR: String = "user://created_levels/levels/"
+
 @export var rating_colors: Gradient
 @export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
 @export var level_already_exists_dialog: ConfirmationDialog
 @export var sort_by: OptionButton
 @export var order: OptionButton
+
 var levels: Dictionary[String, Control]
 
 
