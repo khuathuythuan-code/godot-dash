@@ -441,7 +441,7 @@ func _compute_velocity(
 			allow_ceiling_hit_count -= 1
 			# Snap velocity to the ground
 			var floor_angle: float = dash_data[1]
-			local_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
+			local_velocity.y = tan(-floor_angle - gameplay_rotation) * abs(local_velocity.x) * direction
 			slope_velocity = Vector2.ZERO
 			_spider_dash_frames = 4
 			defer_snap_sprite_rotation()
