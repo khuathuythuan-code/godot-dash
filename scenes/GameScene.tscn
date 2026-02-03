@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
 [ext_resource type="Script" uid="uid://df58p5n7dllpj" path="res://src/WorldEnvironment.gd" id="17_21xg8"]
-[ext_resource type="Script" uid="uid://b0xmfrq6wj4dc" path="res://src/TouchscreenControls.gd" id="17_iaegw"]
+[ext_resource type="Script" path="res://src/TouchscreenControls.gd" id="17_iaegw"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="18_2gh7q"]
 [ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
 [ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]
@@ -296,7 +296,7 @@ script = ExtResource("17_iaegw")
 [node name="Pause" type="Button" parent="TouchscreenControlsLayer" unique_id=728533107]
 modulate = Color(0.59, 0.59, 0.59, 1)
 material = ExtResource("18_2gh7q")
-anchors_preset = -1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -100.0
@@ -313,7 +313,7 @@ expand_icon = true
 
 [node name="LeftRight" type="PanelContainer" parent="TouchscreenControlsLayer" unique_id=452245364]
 material = ExtResource("18_2gh7q")
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0
@@ -378,7 +378,7 @@ expand_mode = 5
 
 [node name="Down" type="PanelContainer" parent="TouchscreenControlsLayer" unique_id=112277178]
 material = ExtResource("18_2gh7q")
-anchors_preset = -1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0

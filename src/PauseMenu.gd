@@ -161,4 +161,18 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 
 
 func _on_play_pressed() -> void:
-	pass # Replace with function body.
+	if LevelManager.level_playing:
+		Editor.root.stop_playtest()
+	Editor.root.level_operations_handler.save_level()
+	_on_continue_pressed()
+	var fade_screen: FadeScreen = Editor.root.get_node(^"FadeScreenLayer/FadeScreen")
+	fade_screen.fade_in(0.5)
+	await fade_screen.fade_finished
+	if DiscordRPCManager.available:
+		DiscordRPCHandler.set_details("Playing a level")
+		DiscordRPCHandler.refresh()
+	LevelManager.current_level_name = Editor.level_file_name.get_basename()
+	LevelManager.attempt = 0
+	LevelManager.current_level_path = Constants.LEVEL_DIR + Editor.level_file_name
+	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
+	get_tree().change_scene_to_packed(AssetManager.game_scene_packed)

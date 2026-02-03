@@ -539,11 +539,12 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aju4o"]
 size = Vector2(2, 2)
 
-[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "editor_camera", "view_menu")]
+[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "level_operations_handler", "editor_camera", "view_menu")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ftcrp")
 edit_handler = NodePath("EditHandler")
+level_operations_handler = NodePath("LevelOperationsHandler")
 block_palette_button_group = ExtResource("3_0vcbd")
 editor_camera = NodePath("EditorCamera")
 view_menu = NodePath("EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View")

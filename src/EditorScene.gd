@@ -10,6 +10,7 @@ enum EditorAction {
 }
 
 @export var edit_handler: EditHandler
+@export var level_operations_handler: LevelOperationsHandler
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView

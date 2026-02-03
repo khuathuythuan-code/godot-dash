@@ -88,7 +88,7 @@ custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
-text = "Play"
+text = "Save and play"
 
 [node name="Settings" type="Button" parent="PauseMenu/VBoxContainer" unique_id=639824919]
 custom_minimum_size = Vector2(500, 75)
