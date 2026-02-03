@@ -155,6 +155,10 @@ func start_level() -> void:
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode
 	LevelManager.player.global_position = start_position
+	if platformer:
+		LevelManager.touchscreen_controls.enable_platformer(start_internal_gamemode == Player.Gamemode.WAVE)
+	else:
+		LevelManager.touchscreen_controls.disable_platformer()
 
 	LevelManager.ground_up.show()
 	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:

@@ -60,6 +60,7 @@ func _ready() -> void:
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
+	LevelManager.touchscreen_controls.hide()
 
 	if not Editor.version_history:
 		Editor.version_history = UndoRedo.new()
@@ -167,6 +168,7 @@ func start_playtest() -> void:
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice").show()
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").show()
+	LevelManager.touchscreen_controls.visible = Config.is_touch_screen
 	$LevelOperationsHandler.pause_autosave()
 	$GameScene.start_level()
 
@@ -189,6 +191,7 @@ func stop_playtest() -> void:
 	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
 	Editor.viewport.remove_cursor_shape_override()
+	LevelManager.touchscreen_controls.disable_platformer()
 
 
 func _fade_leave(_action: Variant = null) -> void:

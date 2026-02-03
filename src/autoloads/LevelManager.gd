@@ -22,6 +22,7 @@ var level_song_player: AudioStreamPlayer
 var platformer: bool = false
 var practice_mode: bool = false
 var practice_level_snapshots: Array[Dictionary]
+var touchscreen_controls: CanvasLayer
 
 
 func _ready() -> void:

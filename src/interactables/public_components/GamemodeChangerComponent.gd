@@ -21,7 +21,11 @@ func set_gamemode(player: Player) -> void:
 		GamemodeChange.BOTH:
 			player.internal_gamemode = _gamemode
 			player.displayed_gamemode = _gamemode
+			if LevelManager.platformer:
+				LevelManager.touchscreen_controls.enable_platformer(_gamemode == Player.Gamemode.WAVE)
 		GamemodeChange.ONLY_INTERNAL:
 			player.internal_gamemode = _gamemode
+			if LevelManager.platformer:
+				LevelManager.touchscreen_controls.enable_platformer(_gamemode == Player.Gamemode.WAVE)
 		GamemodeChange.ONLY_DISPLAYED:
 			player.displayed_gamemode = _gamemode
