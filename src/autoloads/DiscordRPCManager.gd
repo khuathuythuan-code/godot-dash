@@ -14,5 +14,5 @@ func _ready() -> void:
 
 
 func  _process(_delta) -> void:
-	if Config.discord_rich_presence == true and available:
+	if Config.discord_rich_presence and available:
 		DiscordRPCHandler.run_callbacks()

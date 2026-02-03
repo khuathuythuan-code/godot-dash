@@ -60,6 +60,7 @@ func _ready() -> void:
 	$EditHandler.placed_objects_collider = placed_objects_collider
 	$EditHandler.editor_mode = %EditorModes
 	%MenuBarContainer.show()
+	LevelManager.touchscreen_controls.disable_platformer()
 
 	if not Editor.version_history:
 		Editor.version_history = UndoRedo.new()
@@ -189,6 +190,7 @@ func stop_playtest() -> void:
 	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
 	Editor.viewport.remove_cursor_shape_override()
+	LevelManager.touchscreen_controls.disable_platformer()
 
 
 func _fade_leave(_action: Variant = null) -> void:

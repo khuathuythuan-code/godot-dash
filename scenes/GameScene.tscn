@@ -16,6 +16,12 @@
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
 [ext_resource type="Script" uid="uid://df58p5n7dllpj" path="res://src/WorldEnvironment.gd" id="17_21xg8"]
+[ext_resource type="Script" uid="uid://b0xmfrq6wj4dc" path="res://src/TouchscreenControls.gd" id="17_iaegw"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="18_2gh7q"]
+[ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
+[ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]
+[ext_resource type="Texture2D" uid="uid://c3lg8dqlq0qwy" path="res://assets/textures/guis/touchscreen/Right.svg" id="21_1npfk"]
+[ext_resource type="Texture2D" uid="uid://by7isbryvvuaa" path="res://assets/textures/guis/touchscreen/Down.svg" id="22_1npfk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
@@ -53,6 +59,45 @@ background_canvas_max_layer = 50
 glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1npfk"]
+content_margin_left = 13.0
+content_margin_top = 13.0
+content_margin_right = 13.0
+content_margin_bottom = 13.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 42
+corner_radius_top_right = 42
+corner_radius_bottom_right = 42
+corner_radius_bottom_left = 42
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nmf6"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 42
+corner_radius_top_right = 42
+corner_radius_bottom_right = 42
+corner_radius_bottom_left = 42
+corner_detail = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk0vr"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 42
+corner_radius_top_right = 42
+corner_radius_bottom_right = 42
+corner_radius_bottom_left = 42
+corner_detail = 12
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2kej"]
+size = Vector2(195, 195)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3t3mo"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 42
+corner_radius_top_right = 42
+corner_radius_bottom_right = 42
+corner_radius_bottom_left = 42
+corner_detail = 12
 
 [node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent")]
 physics_interpolation_mode = 2
@@ -186,7 +231,6 @@ debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 [node name="PlayerCamera" parent="." unique_id=2028002695 instance=ExtResource("9_e8rlm")]
 position = Vector2(640, 413)
 editor_draw_drag_margin = true
-position_smoothing = 0.1
 
 [node name="ShaderLayer" type="CanvasLayer" parent="." unique_id=936641481]
 layer = 50
@@ -244,3 +288,130 @@ visible = false
 environment = SubResource("Environment_4phyr")
 camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
 script = ExtResource("17_21xg8")
+
+[node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
+process_mode = 3
+script = ExtResource("17_iaegw")
+
+[node name="Pause" type="Button" parent="TouchscreenControlsLayer" unique_id=728533107]
+modulate = Color(1, 1, 1, 0.13725491)
+material = ExtResource("18_2gh7q")
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_1npfk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1npfk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1npfk")
+icon = ExtResource("19_a5tct")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LeftRight" type="PanelContainer" parent="TouchscreenControlsLayer" unique_id=452245364]
+material = ExtResource("18_2gh7q")
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_bottom = -25.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nmf6")
+
+[node name="MarginContainer" type="MarginContainer" parent="TouchscreenControlsLayer/LeftRight" unique_id=743611022]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TouchscreenControlsLayer/LeftRight/MarginContainer" unique_id=856334247]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Left" type="PanelContainer" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer" unique_id=1915264287]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lk0vr")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer/Left" unique_id=773942036]
+position = Vector2(87.5, 87.5)
+shape = SubResource("RectangleShape2D_f2kej")
+shape_visible = false
+passby_press = true
+action = "move_left"
+
+[node name="TextureRect" type="TextureRect" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer/Left" unique_id=1749918563]
+modulate = Color(1, 1, 1, 0.14117648)
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("20_a5tct")
+expand_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer" unique_id=1365700233]
+layout_mode = 2
+
+[node name="Right" type="PanelContainer" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer" unique_id=2095998992]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_3t3mo")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer/Right" unique_id=2112003078]
+position = Vector2(87.5, 87.5)
+shape = SubResource("RectangleShape2D_f2kej")
+shape_visible = false
+passby_press = true
+action = "move_right"
+
+[node name="TextureRect" type="TextureRect" parent="TouchscreenControlsLayer/LeftRight/MarginContainer/HBoxContainer/Right" unique_id=1103970483]
+modulate = Color(1, 1, 1, 0.14117648)
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("21_1npfk")
+expand_mode = 5
+
+[node name="Down" type="PanelContainer" parent="TouchscreenControlsLayer" unique_id=112277178]
+material = ExtResource("18_2gh7q")
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6nmf6")
+
+[node name="MarginContainer" type="MarginContainer" parent="TouchscreenControlsLayer/Down" unique_id=2103472719]
+layout_mode = 2
+
+[node name="Down" type="PanelContainer" parent="TouchscreenControlsLayer/Down/MarginContainer" unique_id=1280238972]
+custom_minimum_size = Vector2(175, 175)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lk0vr")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="TouchscreenControlsLayer/Down/MarginContainer/Down" unique_id=761519701]
+position = Vector2(87.5, 87.5)
+shape = SubResource("RectangleShape2D_f2kej")
+shape_visible = false
+passby_press = true
+action = "platformer_wave_down"
+
+[node name="TextureRect" type="TextureRect" parent="TouchscreenControlsLayer/Down/MarginContainer/Down" unique_id=674927255]
+modulate = Color(1, 1, 1, 0.14117648)
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("22_1npfk")
+expand_mode = 5
+
+[connection signal="pressed" from="TouchscreenControlsLayer/Pause" to="TouchscreenControlsLayer" method="_pause"]
