@@ -27,9 +27,6 @@ var touchscreen_controls: CanvasLayer
 
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
-	if not DirAccess.dir_exists_absolute("user://created_levels/levels"):
-		DirAccess.make_dir_recursive_absolute("user://created_levels/levels")
-	if not DirAccess.dir_exists_absolute("user://created_levels/songs"):
-		DirAccess.make_dir_recursive_absolute("user://created_levels/songs")
-	if not DirAccess.dir_exists_absolute("user://created_levels/fonts"):
-		DirAccess.make_dir_recursive_absolute("user://created_levels/fonts")
+	for directory: String in [Constants.LEVEL_DIR, Constants.SONG_DIR, Constants.FONT_DIR]:
+		if not DirAccess.dir_exists_absolute(directory):
+			DirAccess.make_dir_recursive_absolute(directory)

@@ -1,7 +1,5 @@
 extends VBoxContainer
 
-const LEVEL_DIR: String = "user://created_levels/levels/"
-
 @export var rating_colors: Gradient
 @export var subscene_manager: SubsceneManager
 @export var import_dialog: FileDialog
@@ -23,7 +21,7 @@ func refresh() -> void:
 	for child in get_children():
 		child.queue_free()
 
-	var dir := DirAccess.open(LEVEL_DIR)
+	var dir := DirAccess.open(Constants.LEVEL_DIR)
 	if dir.get_files().size() == 0:
 		var label: Label = Label.new()
 		label.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -37,7 +35,7 @@ func refresh() -> void:
 	for file_name: String in dir.get_files():
 		var level_name: String = file_name.replace(".json", "")
 		var panel: LevelPanel = scene.instantiate()
-		var level_data: Dictionary = JSON.parse_string(FileAccess.open(LEVEL_DIR + file_name, FileAccess.READ).get_as_text())
+		var level_data: Dictionary = JSON.parse_string(FileAccess.open(Constants.LEVEL_DIR + file_name, FileAccess.READ).get_as_text())
 		panel.title.text = level_name
 		panel.creator.text = level_data.creator
 		panel.description.text = level_data.description
@@ -86,7 +84,7 @@ func _play_level(level_name: String) -> void:
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.current_level_name = name
 	LevelManager.attempt = 0
-	LevelManager.current_level_path = LEVEL_DIR + level_name
+	LevelManager.current_level_path = Constants.LEVEL_DIR + level_name
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Playing a level")
 		DiscordRPCHandler.refresh()
@@ -94,7 +92,7 @@ func _play_level(level_name: String) -> void:
 
 
 func _edit_level(level_name: String) -> void:
-	var file := FileAccess.open(LEVEL_DIR + level_name, FileAccess.READ)
+	var file := FileAccess.open(Constants.LEVEL_DIR + level_name, FileAccess.READ)
 	var json_string: String = file.get_as_text()
 	file.close()
 	Editor.level_data_snapshot = JSON.parse_string(json_string)
@@ -102,7 +100,7 @@ func _edit_level(level_name: String) -> void:
 
 
 func _remove_level(level_name: String) -> void:
-	OS.move_to_trash(ProjectSettings.globalize_path(LEVEL_DIR + level_name))
+	OS.move_to_trash(ProjectSettings.globalize_path(Constants.LEVEL_DIR + level_name))
 	levels[level_name].queue_free()
 	levels.erase(level_name)
 	# Node is freed the next frame
@@ -124,9 +122,9 @@ func _import_level(path: String) -> void:
 	var reader = ZIPReader.new()
 	reader.open(path)
 	var files := reader.get_files()
-	var level_dir := DirAccess.open("user://created_levels/levels")
-	var song_dir := DirAccess.open("user://created_levels/songs")
-	var font_dir := DirAccess.open("user://created_levels/fonts")
+	var level_dir := DirAccess.open(Constants.LEVEL_DIR)
+	var song_dir := DirAccess.open(Constants.SONG_DIR)
+	var font_dir := DirAccess.open(Constants.FONT_DIR)
 	var level_path: String
 	if not "json" in Array(files).map(func(file): return file.get_extension()):
 		Toasts.error("This exported level doesn't contain a valid JSON file and can't be imported.")

@@ -139,8 +139,8 @@ func _open_level(path: String) -> void:
 		song_file_path = ResourceUID.get_id_path(ResourceUID.text_to_id(level.song_path)).get_file()
 	else:
 		song_file_path = level.song_path.get_file()
-	level.song_path = "" if song_file_path.is_empty() else "user://created_levels/songs/" + song_file_path
-	level.set_meta("packed_file_path", path)
+	level.song_path = "" if song_file_path.is_empty() else Constants.SONG_DIR + song_file_path
+	level.set_meta(&"packed_file_path", path)
 	# Remove current editor level
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	edit_handler.clear_selection()
@@ -164,9 +164,9 @@ func _import_level(path: String, keep_original: bool) -> void:
 	var reader = ZIPReader.new()
 	reader.open(path)
 	var files := reader.get_files()
-	var level_dir := DirAccess.open("user://created_levels/levels")
-	var song_dir := DirAccess.open("user://created_levels/songs")
-	var font_dir := DirAccess.open("user://created_levels/fonts")
+	var level_dir := DirAccess.open(Constants.LEVEL_DIR)
+	var song_dir := DirAccess.open(Constants.SONG_DIR)
+	var font_dir := DirAccess.open(Constants.FONT_DIR)
 	var level_path: String
 	if not "json" in Array(files).map(func(file): return file.get_extension()):
 		corrupted_level_dialog.show()
@@ -208,7 +208,7 @@ func save_level() -> void:
 		return # save_level will get called again by the dialog
 	var play_button: Button = LevelManager.game_scene.get_node(^"PauseMenuLayer/PauseMenu").get_node(^"%Play")
 	play_button.show()
-	var file_name = Editor.level_file_name
+	var file_name: String = Editor.level_file_name
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
@@ -216,7 +216,7 @@ func save_level() -> void:
 		Editor.level_data_snapshot = level_data
 	$AutosaveTimer.stop()
 	$AutosaveTimer.start(Config.autosave_delay * 60)
-	var file := FileAccess.open("user://created_levels/levels/%s" % file_name, FileAccess.WRITE)
+	var file := FileAccess.open(Constants.LEVEL_DIR + file_name, FileAccess.WRITE)
 	file.store_line(JSON.stringify(level_data, "\t"))
 	file.close()
 	Toasts.new_toast("Saved level " + file_name.get_basename())
