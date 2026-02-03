@@ -294,7 +294,7 @@ process_mode = 3
 script = ExtResource("17_iaegw")
 
 [node name="Pause" type="Button" parent="TouchscreenControlsLayer" unique_id=728533107]
-modulate = Color(1, 1, 1, 0.13725491)
+modulate = Color(0.59, 0.59, 0.59, 1)
 material = ExtResource("18_2gh7q")
 anchors_preset = -1
 anchor_left = 1.0

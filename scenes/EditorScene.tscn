@@ -747,6 +747,7 @@ reset_scale_on_ready = true
 [node name="RenderModes" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorViewport" unique_id=710755591 instance=ExtResource("14_tp0jt")]
 unique_name_in_owner = true
 layout_mode = 1
+grow_horizontal = 0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer" unique_id=1251313673]
 unique_name_in_owner = true
