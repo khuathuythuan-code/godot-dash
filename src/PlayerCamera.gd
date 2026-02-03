@@ -103,6 +103,7 @@ func get_offset_target(framerate_compensation: float) -> Vector2:
 func snap_view() -> void:
 	is_snapping_view = true
 	await get_tree().process_frame
+	await get_tree().process_frame
 	is_snapping_view = false
 
 
