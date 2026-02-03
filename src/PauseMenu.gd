@@ -47,6 +47,7 @@ func update_buttons_visibility() -> void:
 	%Restart.visible = not Editor.in_editor
 	%Practice.visible = not Editor.in_editor
 	%Edit.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
+	%Play.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
 
 
 func unsuspend() -> void:
@@ -157,3 +158,7 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	if not toggled_on:
 		NodeUtils.free_children(LevelManager.game_scene.checkpoint_parent)
 	_on_continue_pressed()
+
+
+func _on_play_pressed() -> void:
+	pass # Replace with function body.
