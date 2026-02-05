@@ -22,11 +22,10 @@ func _ready() -> void:
 
 
 func set_direction(player: Player):
-	if not LevelManager.platformer:
-		match direction:
-			Direction.FLIP:
-				player.horizontal_direction *= -1
-			Direction.FORWARDS:
-				player.horizontal_direction = 1
-			Direction.BACKWARDS:
-				player.horizontal_direction = -1
+	match direction:
+		Direction.FLIP:
+			player.horizontal_direction *= -1
+		Direction.FORWARDS:
+			player.horizontal_direction = 1
+		Direction.BACKWARDS:
+			player.horizontal_direction = -1
