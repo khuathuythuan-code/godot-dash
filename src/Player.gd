@@ -137,6 +137,7 @@ var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
 var _snap_sprite_rotation: bool
 var _snap_sprite_rotation_frames: int
+var _last_automatic_checkpoint: float = 0
 
 
 func _ready() -> void:
@@ -909,6 +910,7 @@ func _update_spider_state_machine(jump_state: int) -> void:
 func _player_death() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	dead = true
+	_last_automatic_checkpoint = 0
 	$Icon.hide()
 	$DeathEffect.frame = 0
 	$DeathEffect.play()
@@ -925,20 +927,38 @@ func _on_death_restart() -> void:
 func _handle_checkpoint_placement() -> void:
 	var checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
-		var new_checkpoint := Sprite2D.new()
-		new_checkpoint.texture = CHECKPOINT_TEXTURE
-		new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
-		checkpoint_parent.add_child(new_checkpoint)
-		new_checkpoint.global_position = global_position
-		LevelManager.practice_level_snapshots.append(
-			LevelManager.current_level.to_data(Level.SerializeReason.PRACTICE_ATTEMPT),
-		)
+		place_checkpoint()
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
 			return
 		last_checkpoint.queue_free()
 		LevelManager.practice_level_snapshots.pop_back()
+	elif Config.automatic_checkpoints:
+		if not _should_process():
+			return
+		if _last_automatic_checkpoint < Config.automatic_checkpoint_interval:
+			_last_automatic_checkpoint += get_physics_process_delta_time()
+			return
+		if is_on_floor_only():
+			place_checkpoint()
+		elif internal_gamemode != Gamemode.CUBE and internal_gamemode != Gamemode.ROBOT and internal_gamemode != Gamemode.SPIDER and internal_gamemode != Gamemode.BALL:
+			place_checkpoint()
+		else:
+			return
+		_last_automatic_checkpoint = 0
+
+
+func place_checkpoint(checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent) -> void:
+	var new_checkpoint := Sprite2D.new()
+	new_checkpoint.texture = CHECKPOINT_TEXTURE
+	new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
+	checkpoint_parent.add_child(new_checkpoint)
+	new_checkpoint.global_position = global_position
+	new_checkpoint.global_rotation_degrees = gameplay_rotation_degrees
+	LevelManager.practice_level_snapshots.append(
+		LevelManager.current_level.to_data(Level.SerializeReason.PRACTICE_ATTEMPT),
+	)
 
 
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:
