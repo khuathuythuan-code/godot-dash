@@ -30,7 +30,6 @@ void vertex() {
 			break;
 		case 3: // Fade and scale
 			VERTEX *= power;
-			VERTEX += power;
 			break;
 	}
 }
