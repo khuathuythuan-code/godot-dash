@@ -494,9 +494,6 @@ func _compute_velocity(
 			orb_queue.append(colliding_orb)
 	#endregion
 
-	if LevelManager.player_camera:
-		_flip_upside_down_controls(local_velocity)
-
 	#region Dash orb velocity
 	if dash_control:
 		local_velocity = dash_control.path.get_velocity(self)
@@ -593,19 +590,6 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			slope_velocity = Vector2.ZERO
 			defer_snap_sprite_rotation()
 	return local_velocity
-
-
-func _flip_upside_down_controls(local_velocity: Vector2) -> void:
-	var visual_gameplay_rotation_degrees: float = round(gameplay_rotation_degrees - LevelManager.player_camera.global_rotation_degrees)
-	var gameplay_rotation_in_180_quadrant: bool = abs(visual_gameplay_rotation_degrees) > 135.0 and abs(visual_gameplay_rotation_degrees) < 225.0
-	var flipped_controls_in_90_quadrant: bool = gravity_flip < 0 and abs(visual_gameplay_rotation_degrees) > 45.0 and abs(visual_gameplay_rotation_degrees) < 135.0
-	if not (gameplay_rotation_in_180_quadrant or flipped_controls_in_90_quadrant):
-		return
-
-	if (LevelManager.platformer and abs(local_velocity.x) < 10.0):
-		gameplay_rotation_degrees = wrapf((abs(gameplay_rotation_degrees) - 180.0) * signf(gameplay_rotation_degrees), -180.0, 180.0)
-		gravity_flip *= -1
-		horizontal_direction *= -1
 
 
 ## Ensure velocity redirection can happen and the vertical velocity isn't reset by hitting the floor.
