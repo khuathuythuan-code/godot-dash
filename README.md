@@ -32,7 +32,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 - Clone the repo locally or download the source code as a zip from the releases.
 - Import the project.godot file (if you cloned the repo) or the source code zip (if you downloaded it from the releases).
-- Navigate to `<repo>/rust/` and run ` just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
+- Navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
 - Do `Project → Reload current project` to load the Rust extensions.
 - Go to `Project → Export` and select the export preset you want.
 - Choose an export path.
@@ -52,6 +52,6 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 - **Read [CONTRIBUTING.md](./CONTRIBUTING.md).**
 - Clone the repo and import it in Godot.
-- Navigate to `<repo>/rust/` and run ` just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
+- Navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
 - Do `Project → Reload current project` to load the Rust extensions.
 - Open a PR with your changes.
