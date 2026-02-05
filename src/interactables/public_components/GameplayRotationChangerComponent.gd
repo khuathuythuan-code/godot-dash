@@ -19,3 +19,5 @@ func start(player: Player) -> void:
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 	player.gameplay_rotation_degrees += (gameplay_rotation - initial_gameplay_rotations[player]) * weight_delta
+	if is_equal_approx(weight_delta, 1.0) and is_equal_approx(absf(gameplay_rotation - initial_gameplay_rotations[player]), PI):
+		player.defer_snap_sprite_rotation()
