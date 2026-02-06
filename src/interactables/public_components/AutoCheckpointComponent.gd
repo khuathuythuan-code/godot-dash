@@ -8,6 +8,7 @@ class_name AutoCheckpointComponent
 func _ready() -> void:
 	parent.interacted.connect(
 		func(player: Player):
-			if (LevelManager.practice_mode and practice_only) or not practice_only:
+			var player_just_respawned: bool = LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time()
+			if not player_just_respawned and ((LevelManager.practice_mode and practice_only) or not practice_only):
 				player.place_checkpoint(true)
 	)
