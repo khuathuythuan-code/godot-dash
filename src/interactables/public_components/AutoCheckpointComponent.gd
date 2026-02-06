@@ -6,7 +6,8 @@ class_name AutoCheckpointComponent
 
 
 func _ready() -> void:
-	parent.interacted.connect(func(player: Player): 
-		if (LevelManager.practice_mode and practice_only) or not practice_only:
-			player.place_checkpoint(true)
-		)
+	parent.interacted.connect(
+		func(player: Player):
+			if (LevelManager.practice_mode and practice_only) or not practice_only:
+				player.place_checkpoint(true)
+	)
