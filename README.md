@@ -25,7 +25,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- [`git-lfs`](https://github.com/git-lfs/git-lfs?utm_source=gitlfs_site&utm_medium=installation_link&utm_campaign=gitlfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
+- [`git-lfs`](https://github.com/git-lfs/git-lfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
 
 ### Instructions
 
@@ -45,7 +45,7 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- [`git-lfs`](https://github.com/git-lfs/git-lfs?utm_source=gitlfs_site&utm_medium=installation_link&utm_campaign=gitlfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
+- [`git-lfs`](https://github.com/git-lfs/git-lfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
 
 ### Instructions
 
