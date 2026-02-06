@@ -241,6 +241,8 @@
 [ext_resource type="PackedScene" uid="uid://degkpmw636iws" path="res://scenes/components/level_components/triggers/CameraEdgeTrigger.tscn" id="176_6duda"]
 [ext_resource type="Texture2D" uid="uid://cdliwusgrssq" path="res://assets/textures/triggers/CameraEdge.svg" id="177_hy1ca"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="179_0v0om"]
+[ext_resource type="Texture2D" uid="uid://dh2orcxxtf0uc" path="res://assets/textures/triggers/NoAutoCheckpoints.svg" id="179_6n2a8"]
+[ext_resource type="PackedScene" uid="uid://cawp7sy5hugch" path="res://scenes/components/level_components/letter_objects/NoAutoCheckpoints.tscn" id="180_03wiq"]
 [ext_resource type="PackedScene" uid="uid://ylswfd45fw38" path="res://scenes/components/game_components/LevelSettings.tscn" id="180_nk067"]
 [ext_resource type="PackedScene" uid="uid://b4vh26wn3qq40" path="res://scenes/components/game_components/InteractableEditor.tscn" id="183_momrj"]
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
@@ -5039,6 +5041,26 @@ block_palette_button = true
 script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("149_a0ntt")
+
+[node name="NoAutoCheckpoints" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects" unique_id=882529201]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("179_6n2a8")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/NoAutoCheckpoints" unique_id=1225330312]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("180_03wiq")
 
 [node name="Text" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects" unique_id=972127834]
 custom_minimum_size = Vector2(64, 64)

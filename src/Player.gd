@@ -121,6 +121,10 @@ var allow_ceiling_hit_count: int:
 var allow_wave_slide_count: int:
 	set(value):
 		allow_wave_slide_count = max(value, 0)
+var allow_auto_checkpoints_count: int:
+	set(value):
+		allow_auto_checkpoints_count = max(value, 0)
+
 
 # Queues
 var orb_queue: Array[OrbInteractable]
@@ -936,7 +940,7 @@ func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(
 		last_checkpoint.queue_free()
 		LevelManager.practice_level_snapshots.pop_back()
 	elif Config.automatic_checkpoints:
-		if not _should_process():
+		if not _should_process() or allow_auto_checkpoints_count != 0:
 			return
 		if _last_automatic_checkpoint < Config.automatic_checkpoint_interval:
 			_last_automatic_checkpoint += delta
