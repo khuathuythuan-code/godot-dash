@@ -25,14 +25,14 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- [`cargo`](https://rustup.rs/)
-- [`just`](https://just.systems/)
+- [`git-lfs`](https://github.com/git-lfs/git-lfs?utm_source=gitlfs_site&utm_medium=installation_link&utm_campaign=gitlfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
 
 ### Instructions
 
-- Clone the repo locally or download the source code as a zip from the releases.
+- If using `git-lfs`, run `git lfs install` if you haven't done so already.
+- Clone the repo locally (required for `git-lfs`) or download the source code as a zip from the releases.
 - Import the project.godot file (if you cloned the repo) or the source code zip (if you downloaded it from the releases).
-- Navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
+- If using `just`, navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
 - Do `Project → Reload current project` to load the Rust extensions.
 - Go to `Project → Export` and select the export preset you want.
 - Choose an export path.
@@ -45,13 +45,13 @@ Godot Dash V2 will start getting pre-releases as soon as the editor is completel
 
 ### Dependencies
 
-- [`cargo`](https://rustup.rs/)
-- [`just`](https://just.systems/)
+- [`git-lfs`](https://github.com/git-lfs/git-lfs?utm_source=gitlfs_site&utm_medium=installation_link&utm_campaign=gitlfs#installing) (prebuilt binaries) or [`just`](https://just.systems/) and [`cargo`](https://rustup.rs/) (manual compilation)
 
 ### Instructions
 
 - **Read [CONTRIBUTING.md](./CONTRIBUTING.md).**
+- If using `git-lfs`, run `git lfs install` if you haven't done so already.
 - Clone the repo and import it in Godot.
-- Navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
+- If using `just`, navigate to `<repo>/rust/` and run `just build-debug` if you plan on playing through the editor and/or `just build-release` if you plan on exporting the project.
 - Do `Project → Reload current project` to load the Rust extensions.
 - Open a PR with your changes.
