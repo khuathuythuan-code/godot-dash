@@ -218,7 +218,7 @@ func _physics_process(delta: float) -> void:
 			_snap_sprite_rotation = false
 
 	if LevelManager.practice_mode and LevelManager.level_playing:
-		_handle_checkpoint_placement()
+		_handle_checkpoint_placement(delta)
 
 
 func _should_process() -> bool:
@@ -924,7 +924,7 @@ func _on_death_restart() -> void:
 	LevelManager.game_scene.restart_level()
 
 
-func _handle_checkpoint_placement() -> void:
+func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time()) -> void:
 	var checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
 		place_checkpoint()
@@ -938,7 +938,7 @@ func _handle_checkpoint_placement() -> void:
 		if not _should_process():
 			return
 		if _last_automatic_checkpoint < Config.automatic_checkpoint_interval:
-			_last_automatic_checkpoint += get_physics_process_delta_time()
+			_last_automatic_checkpoint += delta
 			return
 		if is_on_floor_only():
 			place_checkpoint()
