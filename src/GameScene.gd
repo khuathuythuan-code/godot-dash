@@ -33,7 +33,8 @@ func _ready() -> void:
 
 
 func load_level() -> void:
-	assert(not LevelManager.current_level_path.is_empty())
+	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
+	assert(not LevelManager.current_level_path.is_empty() or should_use_practice_snapshot)
 	if LevelManager.current_level_path != cached_level_path:
 		cached_level_path = LevelManager.current_level_path
 		var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
@@ -49,7 +50,6 @@ func load_level() -> void:
 			push_error("Unexpected data")
 			return
 		cached_level_data = json.data
-	var should_use_practice_snapshot: bool = LevelManager.practice_mode and not LevelManager.practice_level_snapshots.is_empty()
 	var level: Level = Level.from_data(cached_level_data if not should_use_practice_snapshot else LevelManager.practice_level_snapshots[-1])
 	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
 	add_loaded_level(level)
@@ -74,7 +74,7 @@ func start_level() -> void:
 
 
 func restart_level() -> void:
-	var should_use_practice_snapshot: bool = LevelManager.practice_mode and not LevelManager.practice_level_snapshots.is_empty()
+	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
 	else:

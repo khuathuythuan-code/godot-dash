@@ -257,6 +257,8 @@
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
+[ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpoint.tscn" id="225_n63fl"]
+[ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -768,7 +770,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 3
+current_tab = 0
 tab_0/icon = ExtResource("4_7or8s")
 tab_1/icon = ExtResource("138_ha8mj")
 tab_2/icon = ExtResource("5_gyl57")
@@ -778,7 +780,6 @@ script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=306517331]
-visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -3974,6 +3975,7 @@ type = 3
 object = ExtResource("65_ukctk")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=1999398369]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -5827,6 +5829,40 @@ mouse_filter = 1
 [node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/EndLevel/CenterAnchor" unique_id=2040563148]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("171_wiub1")
+
+[node name="AutoCheckpoint" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer" unique_id=1875927612]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/AutoCheckpoint" unique_id=267872226]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("225_n63fl")
+
+[node name="CenterAnchor" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/AutoCheckpoint" unique_id=1610463338]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Triggers/MarginContainer/SmoothScrollContainer/ButtonContainer/AutoCheckpoint/CenterAnchor" unique_id=638976342]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("226_66500")
 
 [node name="BlockPaletteIcons" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=2011114789]
 script = ExtResource("3_d5qub")
