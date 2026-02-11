@@ -114,10 +114,7 @@ func _on_continue_pressed() -> void:
 		show_tween()
 	else:
 		unpaused.emit()
-		if Editor.in_editor:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 		settings_were_open = settings_panel.visible
 		if settings_panel.visible:
 			settings_panel.hide_tween()
@@ -127,7 +124,7 @@ func _on_continue_pressed() -> void:
 func _on_restart_pressed() -> void:
 	get_tree().paused = false
 	unpaused.emit()
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 	get_parent().hide()
 	LevelManager.game_scene.restart_level()
 
