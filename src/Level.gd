@@ -42,7 +42,12 @@ const START_SPEED: Array[float] = [
 		register_required_font(default_font, value)
 		default_font = value
 		default_font_changed.emit()
-@export var platformer: bool
+@export var platformer: bool:
+	set(value):
+		platformer = value
+		LevelManager.platformer = value
+		if LevelManager.player:
+			LevelManager.player.displayed_gamemode = start_displayed_gamemode
 @export var start_position: Vector2 = Constants.DEFAULT_PLAYER_POSITION
 @export var start_internal_gamemode: Player.Gamemode:
 	set(value):
@@ -54,7 +59,7 @@ const START_SPEED: Array[float] = [
 		start_displayed_gamemode = value
 		if LevelManager.player:
 			LevelManager.player.displayed_gamemode = start_displayed_gamemode
-			LevelManager.player.scale = Vector2.ONE if start_displayed_gamemode != Player.Gamemode.WAVE else Vector2.ONE * Player.PLAYER_SCALE_WAVE
+			LevelManager.player.update_player_scale(false)
 @export var start_freefly: bool = true
 @export var start_speed_preset: int = EasedSpeedChangerComponent.SpeedPreset.x1
 @export var start_speed: float = START_SPEED[2]
