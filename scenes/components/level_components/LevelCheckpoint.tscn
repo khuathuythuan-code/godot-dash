@@ -56,7 +56,8 @@ metadata/_custom_type_script = "uid://rt6vy5mae3if"
 material = ExtResource("2_whwcp")
 
 [node name="Checkpoint" parent="EnterEffectLayer" unique_id=176800394 instance=ExtResource("2_8qpjw")]
-instance_shader_parameters/enabled_factor = 0.0
+instance_shader_parameters/enabled_factor = 1.0
+instance_shader_parameters/flash_factor = 0.0
 instance_shader_parameters/hue = 0.667
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1419137033]

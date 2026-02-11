@@ -14,13 +14,13 @@ func _init(new_player: Player) -> void:
 
 func use_normal_sprite() -> CheckpointPlacementBuilder:
 	new_checkpoint = CHECKPOINT_PREFAB.instantiate()
-	new_checkpoint.set_instance_shader_parameter(&"added_hue", 1.0 / 3.0)
+	new_checkpoint.set_instance_shader_parameter(&"hue", 1.0 / 3.0)
 	return self
 
 
 func use_auto_sprite() -> CheckpointPlacementBuilder:
 	new_checkpoint = CHECKPOINT_PREFAB.instantiate()
-	new_checkpoint.set_instance_shader_parameter(&"added_hue", 0.107)
+	new_checkpoint.set_instance_shader_parameter(&"hue", 0.107)
 	return self
 
 

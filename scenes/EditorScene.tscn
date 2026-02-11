@@ -245,8 +245,11 @@
 [ext_resource type="PackedScene" uid="uid://cawp7sy5hugch" path="res://scenes/components/level_components/letter_objects/NoAutoCheckpoints.tscn" id="180_03wiq"]
 [ext_resource type="PackedScene" uid="uid://ylswfd45fw38" path="res://scenes/components/game_components/LevelSettings.tscn" id="180_nk067"]
 [ext_resource type="PackedScene" uid="uid://b4vh26wn3qq40" path="res://scenes/components/game_components/InteractableEditor.tscn" id="183_momrj"]
+[ext_resource type="Material" uid="uid://djc5r0qac4mro" path="res://resources/Checkpoint.tres" id="183_vp4xm"]
+[ext_resource type="Texture2D" uid="uid://byhliui13khoi" path="res://assets/textures/checkpoints/Checkpoint.svg" id="184_7horl"]
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
+[ext_resource type="PackedScene" uid="uid://binpj3dosa82o" path="res://scenes/components/level_components/LevelCheckpoint.tscn" id="185_vp4xm"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="192_hvjsv"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="193_5tfcf"]
@@ -770,7 +773,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
 theme = ExtResource("147_1ad2k")
-current_tab = 0
+current_tab = 3
 tab_0/icon = ExtResource("4_7or8s")
 tab_1/icon = ExtResource("138_ha8mj")
 tab_2/icon = ExtResource("5_gyl57")
@@ -780,6 +783,7 @@ script = ExtResource("4_2at5j")
 metadata/_tab_index = 0
 
 [node name="Blocks" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=306517331]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 metadata/_tab_index = 0
@@ -3975,7 +3979,6 @@ type = 3
 object = ExtResource("65_ukctk")
 
 [node name="Interactables" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=1999398369]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 metadata/_tab_name = ""
@@ -5083,6 +5086,28 @@ block_palette_button = true
 script = ExtResource("7_f0stj")
 type = 8
 object = ExtResource("167_mesjt")
+
+[node name="Checkpoint" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects" unique_id=1639180617]
+material = ExtResource("183_vp4xm")
+instance_shader_parameters/hue = 0.667
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("147_1ad2k")
+toggle_mode = true
+button_group = ExtResource("3_0vcbd")
+icon = ExtResource("184_7horl")
+flat = true
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place/Interactables/MarginContainer/SmoothScrollContainer/ButtonContainer/LetterObjects/Checkpoint" unique_id=1801286053]
+script = ExtResource("7_f0stj")
+type = 8
+object = ExtResource("185_vp4xm")
 
 [node name="Triggers" type="Control" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Place" unique_id=2022199418]
 visible = false
