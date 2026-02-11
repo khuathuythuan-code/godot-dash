@@ -63,6 +63,11 @@ enum ParticlePreprocessing {
 @export var preprocess_particles_in_editor: bool = true
 @export var particles_preprocessing: int = ParticlePreprocessing.MAX
 
+# Practice
+@export_group("Practice")
+@export var automatic_checkpoints: bool = true
+@export var automatic_checkpoint_interval: float = 1
+
 # Audio
 @export_group("Audio")
 
@@ -136,6 +141,10 @@ func _init():
 	preprocess_particles_in_editor = config_file.get_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
 	particles_preprocessing = config_file.get_value("Performance", "particles_preprocessing", particles_preprocessing)
 
+	# Practice
+	automatic_checkpoints = config_file.get_value("Practice", "automatic_checkpoints", automatic_checkpoints)
+	automatic_checkpoint_interval = config_file.get_value("Practice", "automatic_checkpoint_interval", automatic_checkpoint_interval)
+
 	# Audio
 	master_audio_level = config_file.get_value("Audio", "master_audio_level", master_audio_level)
 	music_audio_level = config_file.get_value("Audio", "music_audio_level", music_audio_level)
@@ -194,6 +203,10 @@ func save() -> void:
 	config_file.set_value("Performance", "particles_visibility", particles_visibility)
 	config_file.set_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
 	config_file.set_value("Performance", "particles_preprocessing", particles_preprocessing)
+
+	# Practice
+	config_file.set_value("Practice", "automatic_checkpoints", automatic_checkpoints)
+	config_file.set_value("Practice", "automatic_checkpoint_interval", automatic_checkpoint_interval)
 
 	# Audio
 	config_file.set_value("Audio", "master_audio_level", master_audio_level)

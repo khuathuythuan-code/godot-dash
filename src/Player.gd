@@ -48,7 +48,6 @@ const SPIDER_TRAIL: PackedScene = preload("res://scenes/components/game_componen
 const DASH_BOOM: PackedScene = preload("res://scenes/components/game_components/DashBoom.tscn")
 const GROUND_HIT_PARTICLE: PackedScene = preload("uid://c3pbl5e1vp2ck")
 const UFO_PARTICLE: PackedScene = preload("uid://nt6jgd7lk03t")
-const CHECKPOINT_TEXTURE: Texture2D = preload("uid://byhliui13khoi")
 const ICON_LERP_FACTOR := 0.5
 const SHIP_ROTATION_LERP_FACTOR := 0.15
 const PLATFORMER_ACCELERATION := 5.0
@@ -120,6 +119,9 @@ var allow_ceiling_hit_count: int:
 var allow_wave_slide_count: int:
 	set(value):
 		allow_wave_slide_count = max(value, 0)
+var allow_auto_checkpoints_count: int:
+	set(value):
+		allow_auto_checkpoints_count = max(value, 0)
 
 # Queues
 var orb_queue: Array[OrbInteractable]
@@ -137,6 +139,7 @@ var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
 var _snap_sprite_rotation: bool
 var _snap_sprite_rotation_frames: int
+var _last_automatic_checkpoint: float = 0
 
 
 func _ready() -> void:
@@ -216,8 +219,8 @@ func _physics_process(delta: float) -> void:
 		elif _snap_sprite_rotation_frames == 0:
 			_snap_sprite_rotation = false
 
-	if LevelManager.practice_mode and LevelManager.level_playing:
-		_handle_checkpoint_placement()
+	if LevelManager.level_playing:
+		_handle_checkpoint_placement(delta)
 
 
 func _should_process() -> bool:
@@ -909,6 +912,7 @@ func _update_spider_state_machine(jump_state: int) -> void:
 func _player_death() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	dead = true
+	_last_automatic_checkpoint = 0
 	$Icon.hide()
 	$DeathEffect.frame = 0
 	$DeathEffect.play()
@@ -922,23 +926,35 @@ func _on_death_restart() -> void:
 	LevelManager.game_scene.restart_level()
 
 
-func _handle_checkpoint_placement() -> void:
+func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(), practice_mode: bool = LevelManager.practice_mode) -> void:
 	var checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent
+	if not practice_mode:
+		return
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
-		var new_checkpoint := Sprite2D.new()
-		new_checkpoint.texture = CHECKPOINT_TEXTURE
-		new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
-		checkpoint_parent.add_child(new_checkpoint)
-		new_checkpoint.global_position = global_position
-		LevelManager.practice_level_snapshots.append(
-			LevelManager.current_level.to_data(Level.SerializeReason.PRACTICE_ATTEMPT),
-		)
+		place_checkpoint().use_normal_sprite().done()
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
 			return
 		last_checkpoint.queue_free()
 		LevelManager.practice_level_snapshots.pop_back()
+	elif Config.automatic_checkpoints:
+		if not _should_process() or allow_auto_checkpoints_count != 0:
+			return
+		if _last_automatic_checkpoint < Config.automatic_checkpoint_interval:
+			_last_automatic_checkpoint += delta
+			return
+		if is_on_floor_only():
+			place_checkpoint().use_auto_sprite().done()
+		elif internal_gamemode != Gamemode.CUBE and internal_gamemode != Gamemode.ROBOT and internal_gamemode != Gamemode.SPIDER and internal_gamemode != Gamemode.BALL:
+			place_checkpoint().use_auto_sprite().done()
+		else:
+			return
+		_last_automatic_checkpoint = 0
+
+
+func place_checkpoint() -> CheckpointPlacementBuilder:
+	return CheckpointPlacementBuilder.new(self)
 
 
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:

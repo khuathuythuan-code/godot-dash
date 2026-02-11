@@ -16,4 +16,3 @@ func _process(_delta: float) -> void:
 				texture = preload("res://assets/textures/triggers/ToggleFlip.svg")
 	else:
 		texture = preload("res://assets/textures/triggers/ToggleMultipleGroups.svg")
-
