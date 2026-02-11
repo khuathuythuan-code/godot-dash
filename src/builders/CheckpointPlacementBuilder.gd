@@ -2,8 +2,7 @@ extends Builder
 
 class_name CheckpointPlacementBuilder
 
-const CHECKPOINT_TEXTURE: Texture2D = preload("uid://byhliui13khoi")
-const AUTOMATIC_CHECKPOINT_TEXTURE: Texture2D = preload("uid://dcqatki40lxp4")
+const CHECKPOINT_PREFAB: PackedScene = preload("res://scenes/components/game_components/Checkpoint.tscn")
 
 var player: Player
 var new_checkpoint: Sprite2D
@@ -14,14 +13,14 @@ func _init(new_player: Player) -> void:
 
 
 func use_normal_sprite() -> CheckpointPlacementBuilder:
-	new_checkpoint = Sprite2D.new()
-	new_checkpoint.texture = CHECKPOINT_TEXTURE
+	new_checkpoint = CHECKPOINT_PREFAB.instantiate()
+	new_checkpoint.set_instance_shader_parameter(&"added_hue", 1.0 / 3.0)
 	return self
 
 
 func use_auto_sprite() -> CheckpointPlacementBuilder:
-	new_checkpoint = Sprite2D.new()
-	new_checkpoint.texture = AUTOMATIC_CHECKPOINT_TEXTURE
+	new_checkpoint = CHECKPOINT_PREFAB.instantiate()
+	new_checkpoint.set_instance_shader_parameter(&"added_hue", 0.107)
 	return self
 
 
