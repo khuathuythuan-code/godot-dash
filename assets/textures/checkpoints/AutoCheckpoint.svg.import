@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcqatki40lxp4"
-path="res://.godot/imported/AutoCheckpoint.svg-ecebdc8f1d9436139353f5b82daaeea5.ctex"
+path="res://.godot/imported/AutoCheckpoint.svg-c5be21404f5441883cabeb8a03635b1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/AutoCheckpoint.svg"
-dest_files=["res://.godot/imported/AutoCheckpoint.svg-ecebdc8f1d9436139353f5b82daaeea5.ctex"]
+source_file="res://assets/textures/checkpoints/AutoCheckpoint.svg"
+dest_files=["res://.godot/imported/AutoCheckpoint.svg-c5be21404f5441883cabeb8a03635b1a.ctex"]
 
 [params]
 
