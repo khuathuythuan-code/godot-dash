@@ -48,8 +48,6 @@ const SPIDER_TRAIL: PackedScene = preload("res://scenes/components/game_componen
 const DASH_BOOM: PackedScene = preload("res://scenes/components/game_components/DashBoom.tscn")
 const GROUND_HIT_PARTICLE: PackedScene = preload("uid://c3pbl5e1vp2ck")
 const UFO_PARTICLE: PackedScene = preload("uid://nt6jgd7lk03t")
-const CHECKPOINT_TEXTURE: Texture2D = preload("uid://byhliui13khoi")
-const AUTOMATIC_CHECKPOINT_TEXTURE: Texture2D = preload("uid://dcqatki40lxp4")
 const ICON_LERP_FACTOR := 0.5
 const SHIP_ROTATION_LERP_FACTOR := 0.15
 const PLATFORMER_ACCELERATION := 5.0
@@ -947,24 +945,16 @@ func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(
 			_last_automatic_checkpoint += delta
 			return
 		if is_on_floor_only():
-			place_checkpoint(true)
+			place_checkpoint().as_auto().done()
 		elif internal_gamemode != Gamemode.CUBE and internal_gamemode != Gamemode.ROBOT and internal_gamemode != Gamemode.SPIDER and internal_gamemode != Gamemode.BALL:
-			place_checkpoint(true)
+			place_checkpoint().as_auto().done()
 		else:
 			return
 		_last_automatic_checkpoint = 0
 
 
-func place_checkpoint(auto: bool = false, checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent) -> void:
-	var new_checkpoint := Sprite2D.new()
-	new_checkpoint.texture = CHECKPOINT_TEXTURE if not auto else AUTOMATIC_CHECKPOINT_TEXTURE
-	new_checkpoint.name = "Checkpoint%s" % checkpoint_parent.get_child_count()
-	checkpoint_parent.add_child(new_checkpoint)
-	new_checkpoint.global_position = global_position
-	new_checkpoint.global_rotation_degrees = gameplay_rotation_degrees
-	LevelManager.practice_level_snapshots.append(
-		LevelManager.current_level.to_data(Level.SerializeReason.PRACTICE_ATTEMPT),
-	)
+func place_checkpoint() -> CheckpointPlacementBuilder:
+	return CheckpointPlacementBuilder.new(self)
 
 
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:

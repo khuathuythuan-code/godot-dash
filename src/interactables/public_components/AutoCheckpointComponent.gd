@@ -9,4 +9,4 @@ func _ready() -> void:
 func place_auto_checkpoint(player: Player) -> void:
 	var player_just_respawned: bool = LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time()
 	if LevelManager.practice_mode and not player_just_respawned:
-		player.place_checkpoint(true)
+		player.place_checkpoint().as_auto().done()
