@@ -2,13 +2,11 @@ extends Component
 
 class_name AutoCheckpointComponent
 
-@export var practice_only: bool = true
-
-
 func _ready() -> void:
-	parent.interacted.connect(
-		func(player: Player):
-			var player_just_respawned: bool = LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time()
-			if not player_just_respawned and ((LevelManager.practice_mode and practice_only) or not practice_only):
-				player.place_checkpoint(true)
-	)
+	parent.interacted.connect(place_auto_checkpoint)
+
+
+func place_auto_checkpoint(player: Player) -> void:
+	var player_just_respawned: bool = LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time()
+	if LevelManager.practice_mode and not player_just_respawned:
+		player.place_checkpoint(true)
