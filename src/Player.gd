@@ -931,7 +931,7 @@ func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(
 	if not practice_mode:
 		return
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
-		place_checkpoint()
+		place_checkpoint().use_normal_sprite().done()
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
@@ -945,9 +945,9 @@ func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(
 			_last_automatic_checkpoint += delta
 			return
 		if is_on_floor_only():
-			place_checkpoint().as_auto().done()
+			place_checkpoint().use_auto_sprite().done()
 		elif internal_gamemode != Gamemode.CUBE and internal_gamemode != Gamemode.ROBOT and internal_gamemode != Gamemode.SPIDER and internal_gamemode != Gamemode.BALL:
-			place_checkpoint().as_auto().done()
+			place_checkpoint().use_auto_sprite().done()
 		else:
 			return
 		_last_automatic_checkpoint = 0
