@@ -38,6 +38,10 @@ font_size = 30
 font_size = 12
 font_color = Color(1, 1, 1, 0.5)
 
+[sub_resource type="LabelSettings" id="LabelSettings_nvobf"]
+font_size = 12
+font_color = Color(1, 0.2509804, 0, 0.5019608)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_810tx"]
 bg_color = Color(0, 0, 0, 0.6)
 corner_radius_top_left = 15
@@ -45,17 +49,18 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="Control" type="Control" unique_id=1191992704 node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "play_button", "edit_button", "remove_button")]
+[node name="Control" type="Control" unique_id=1191992704 node_paths=PackedStringArray("title", "creator", "description", "rating_outline", "rating", "flashing_lights", "play_button", "edit_button", "remove_button")]
 custom_minimum_size = Vector2(750, 85)
 layout_mode = 3
 anchors_preset = 0
 offset_bottom = 60.0
 script = ExtResource("1_bhvlt")
 title = NodePath("Play/HBoxContainer/VBoxContainer/Title")
-creator = NodePath("Play/HBoxContainer/VBoxContainer/Creator")
+creator = NodePath("Play/HBoxContainer/VBoxContainer/HBoxContainer/Creator")
 description = NodePath("Play/HBoxContainer/Description")
 rating_outline = NodePath("Play/Outline")
 rating = NodePath("Play/Outline/Rating")
+flashing_lights = NodePath("Play/HBoxContainer/VBoxContainer/HBoxContainer/FlashingLights")
 play_button = NodePath("Play")
 edit_button = NodePath("HBoxContainer/Edit")
 remove_button = NodePath("HBoxContainer/Remove")
@@ -125,12 +130,26 @@ text = "Level"
 label_settings = SubResource("LabelSettings_q1nc0")
 text_overrun_behavior = 3
 
-[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer" unique_id=1907906613]
+[node name="HBoxContainer" type="HBoxContainer" parent="Play/HBoxContainer/VBoxContainer" unique_id=477520080]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
+size_flags_vertical = 3
+
+[node name="Creator" type="Label" parent="Play/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1907906613]
+layout_mode = 2
 text = "Creator"
 label_settings = SubResource("LabelSettings_x5v4x")
+
+[node name="FlashingLights" type="VSeparator" parent="Play/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=237148239]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Play/HBoxContainer/VBoxContainer/HBoxContainer/FlashingLights" unique_id=934555290]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 1.0
+offset_right = 147.0
+offset_bottom = 16.0
+text = "Contains Flashing Lights"
+label_settings = SubResource("LabelSettings_nvobf")
 
 [node name="Description" type="Label" parent="Play/HBoxContainer" unique_id=2134997376]
 custom_minimum_size = Vector2(0, 51)
