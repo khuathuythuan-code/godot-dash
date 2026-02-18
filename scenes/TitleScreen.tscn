@@ -119,8 +119,6 @@ size_flags_vertical = 4
 [node name="MenuIcon" parent="Node2D" unique_id=1938015 instance=ExtResource("2_opvi4")]
 position = Vector2(-128, 860)
 script = ExtResource("3_65pcn")
-default_collider = null
-slope_collider = null
 
 [node name="Kill Box" type="Area2D" parent="Node2D" unique_id=313833091 node_paths=PackedStringArray("hitbox")]
 physics_interpolation_mode = 1

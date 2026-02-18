@@ -594,8 +594,6 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 
 ## Ensure velocity redirection can happen and the vertical velocity isn't reset by hitting the floor.
 func _ensure_velocity_redirect(delta: float, global_velocity: Vector2) -> bool:
-	if self is MenuIcon:
-		return false
 	var down_direction_snapped_velocity := global_velocity.rotated(global_velocity.angle_to(up_direction.rotated(PI)))
 	$EnsureVelocityRedirect.shape = $GroundCollider.shape
 	$EnsureVelocityRedirect.target_position = down_direction_snapped_velocity * delta * ENSURE_VELOCITY_REDIRECT_SAFE_MARGIN
