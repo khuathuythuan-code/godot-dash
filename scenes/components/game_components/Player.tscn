@@ -501,7 +501,7 @@ texture_mode = 2
 joint_mode = 2
 script = ExtResource("2_s0etf")
 mode = 1
-time = 0.5
+time = 0.25
 metadata/_custom_type_script = "uid://b81c0tveqh8i8"
 
 [node name="WaveTrail" type="Line2D" parent="." unique_id=1174212770]
