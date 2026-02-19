@@ -125,6 +125,7 @@ func _prevent_leave_screen(gamemode: Gamemode, original_value: int = -1) -> int:
 
 func _global_position_check() -> void:
 	if global_position.x > DisplayServer.screen_get_size().x + 1024:
+		%Trail.clear_points()
 		global_position.x = -512.0
 		global_position.y = randi_range(816, 300)
 		# Excludes Gamemode.BALL and Gamemode.SPIDER since there is no roof

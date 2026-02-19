@@ -188,6 +188,12 @@ func _physics_process(delta: float) -> void:
 	# Sprite updates
 	_rotate_sprite_degrees(delta, jump_state)
 	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
+	if is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control or displayed_gamemode == Gamemode.WAVE:
+		%Trail.add_points = false
+	if displayed_gamemode in [Gamemode.SHIP, Gamemode.SWING, Gamemode.UFO]:
+		%Trail.add_points = true
+	if %Trail.add_points:
+		%Trail.material.set_shader_parameter("bias", float(%Trail.get_point_count()) / float(%Trail.length) * 1.2)
 	match displayed_gamemode:
 		Gamemode.SPIDER:
 			_update_spider_state_machine(jump_state)
@@ -419,6 +425,7 @@ func _compute_velocity(
 	if not pad_queue.is_empty():
 		var colliding_pad: PadInteractable = pad_queue.pop_front()
 		local_velocity = _handle_velocity_interactable(local_velocity, colliding_pad, direction)
+		%Trail.add_points = true
 	#endregion
 
 	#region Handle jump.
@@ -492,6 +499,7 @@ func _compute_velocity(
 		local_velocity = _handle_velocity_interactable(local_velocity, colliding_orb, direction)
 		if not colliding_orb.has(SingleUsageComponent):
 			orb_queue.append(colliding_orb)
+		%Trail.add_points = true
 	#endregion
 
 	#region Dash orb velocity

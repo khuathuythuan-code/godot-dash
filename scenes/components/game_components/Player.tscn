@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect9.png" id="14_ytq4k"]
 [ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect10.png" id="15_tt21x"]
 [ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect11.png" id="16_4ncex"]
+[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
+[ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trails/Trail0.png" id="17_6n35y"]
 [ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect12.png" id="17_ctfuu"]
 [ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
 [ext_resource type="Texture2D" uid="uid://dnpykktg8amk8" path="res://assets/textures/player/ufo/Ufo.svg" id="18_nmour"]
@@ -154,6 +156,10 @@ scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_vov5s")
 alpha_curve = SubResource("CurveTexture_244xe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpsk7"]
+shader = ExtResource("16_6n35y")
+shader_parameter/bias = 0.9
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_g4xb6"]
 
@@ -483,6 +489,20 @@ emitting = false
 amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_244xe")
+
+[node name="Trail" type="Line2D" parent="." unique_id=406071707]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_kpsk7")
+position = Vector2(0, 1)
+width = 43.0
+texture = ExtResource("17_6n35y")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("2_s0etf")
+mode = 1
+time = 0.5
+metadata/_custom_type_script = "uid://b81c0tveqh8i8"
 
 [node name="WaveTrail" type="Line2D" parent="." unique_id=1174212770]
 unique_name_in_owner = true
