@@ -41,6 +41,8 @@ func refresh() -> void:
 		panel.description.text = level_data.description
 		panel.rating.text = str(int(level_data.rating)) if level_data.rating != -1 else "?"
 		panel.rating_outline.modulate = rating_colors.get_color(level_data.rating + 1)
+		if not level_data.flashing_lights:
+			panel.flashing_lights.hide()
 		panel.play_button.pressed.connect(_play_level.bind(file_name))
 		panel.edit_button.pressed.connect(_edit_level.bind(file_name))
 		panel.remove_button.pressed.connect(_remove_level.bind(file_name))
