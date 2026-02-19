@@ -3,7 +3,6 @@ extends Line2D
 enum Mode {
 	LENGTH,
 	TIME,
-	FOREVER,
 }
 
 @export_category('Trail')
