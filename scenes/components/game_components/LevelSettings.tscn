@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="10_2dtee"]
 [ext_resource type="Script" uid="uid://3na5h1vigpxe" path="res://src/gui/properties/types/FileProperty.gd" id="11_am3gx"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="11_jvsdk"]
+[ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="12_am3gx"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_bmwhr"]
 action = &"ui_cancel"
@@ -210,6 +211,18 @@ metadata/field_name = &"_font_path"
 [node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Rating" unique_id=254086717]
 script = ExtResource("10_2dtee")
 config_property = &"rating"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Flashing Lights" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer" unique_id=317055802]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("12_am3gx")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Details/VBoxContainer/Flashing Lights" unique_id=1258454732]
+script = ExtResource("10_2dtee")
+config_property = &"flashing_lights"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Level Settings/VBoxContainer" unique_id=300168482]
