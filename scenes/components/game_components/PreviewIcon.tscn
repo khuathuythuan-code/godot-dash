@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://dbv5i3do4liox"]
+
+[ext_resource type="Script" uid="uid://dd5fn6u4eujv7" path="res://src/PreviewIcon.gd" id="1_o8qdf"]
+[ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Parts/Spider_Head-glow.svg" id="2_hx1qv"]
+[ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider.svg" id="3_4aqbe"]
+[ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Parts/Spider_Leg-glow.svg" id="4_junqh"]
+[ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Parts/Spider_Leg.svg" id="5_yr6x6"]
+
+[node name="PreviewIcon" type="Control" unique_id=1355076740]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("1_o8qdf")
+metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
+
+[node name="Spider" type="Node2D" parent="." unique_id=963685437]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Head" type="Marker2D" parent="Spider" unique_id=251479903]
+position = Vector2(8, -14)
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderHead-glow" type="Sprite2D" parent="Spider/Head" unique_id=272969984]
+z_index = -1
+texture = ExtResource("2_hx1qv")
+
+[node name="Spider" type="Sprite2D" parent="Spider/Head" unique_id=664888188]
+texture = ExtResource("3_4aqbe")
+
+[node name="Leg-Back-Left" type="Marker2D" parent="Spider" unique_id=862593960]
+position = Vector2(21, 8)
+rotation = 0.0330985
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Spider/Leg-Back-Left" unique_id=1848012661]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("4_junqh")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Spider/Leg-Back-Left" unique_id=1025564659]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(0, 100)
+texture = ExtResource("5_yr6x6")
+
+[node name="Leg-Back-Right" type="Marker2D" parent="Spider" unique_id=391949198]
+position = Vector2(58, 9)
+rotation = -0.204853
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Spider/Leg-Back-Right" unique_id=2067598184]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("4_junqh")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Spider/Leg-Back-Right" unique_id=504206983]
+modulate = Color(0.62, 0.62, 0.5, 1)
+position = Vector2(0, 100)
+texture = ExtResource("5_yr6x6")
+
+[node name="Leg-Front-Left" type="Marker2D" parent="Spider" unique_id=1885767152]
+position = Vector2(-30, 12)
+rotation = 0.751096
+scale = Vector2(0.25, 0.305)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Spider/Leg-Front-Left" unique_id=810285874]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("4_junqh")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Spider/Leg-Front-Left" unique_id=1087187655]
+position = Vector2(0, 100)
+texture = ExtResource("5_yr6x6")
+
+[node name="Leg-Front-Right" type="Marker2D" parent="Spider" unique_id=402803639]
+position = Vector2(-9, 8)
+rotation = 0.0693143
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Spider/Leg-Front-Right" unique_id=754488640]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("4_junqh")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Spider/Leg-Front-Right" unique_id=76368459]
+position = Vector2(0, 100)
+texture = ExtResource("5_yr6x6")
