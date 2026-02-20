@@ -255,6 +255,13 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Community"
 
+[node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=2135693891]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+text = "Icons"
+
 [node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=53588540]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
@@ -299,6 +306,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1928976847]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -477,6 +485,33 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Refresh"
 autowrap_mode = 3
 
+[node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
+visible = false
+z_index = 128
+material = ExtResource("8_65pcn")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+script = ExtResource("12_08fpa")
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=1152082415]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1593463008]
+layout_mode = 2
+
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=270245945]
 visible = false
 z_index = 128
@@ -585,7 +620,7 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
@@ -594,6 +629,7 @@ fade_screen_layer = NodePath("../FadeScreenLayer")
 menu_loop = NodePath("../MenuLoop")
 level_selector = NodePath("../TitleScreenLayer/TitleScreen/LevelSelector")
 community_menu = NodePath("../TitleScreenLayer/TitleScreen/Community")
+icon_garage = NodePath("../TitleScreenLayer/TitleScreen/Icon Garage")
 settings_panel = NodePath("../TitleScreenLayer/TitleScreen/Settings")
 settings_menu = NodePath("../TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu")
 quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
@@ -607,6 +643,7 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
 [connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
