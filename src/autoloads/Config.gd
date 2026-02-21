@@ -121,17 +121,19 @@ var menu_loop: String:
 
 # Icons
 @export_group("Icon")
-@export var cube_icon_path: String = "res://assets/textures/player/cube/Cube.svg"
-@export var ship_icon_path: String = "res://assets/textures/player/ship/Ship1.svg"
-@export var jetpack_icon_path: String = "res://assets/textures/player/jetpack/Jetpack.svg"
-@export var ufo_icon_path: String = "res://assets/textures/player/ufo/Ufo.svg"
-@export var ball_icon_path: String = "res://assets/textures/player/ball/Ball1.svg"
-@export var wave_icon_path: String = "res://assets/textures/player/wave/Wave1/"
-@export var robot_icon_path: String = ""
-@export var spider_icon_path: String = "res://assets/textures/player/spider/Spider1/"
-@export var swing_icon_path: String = "res://assets/textures/player/swing/Swing1/"
-@export var trail_icon_path: String = ""
-@export var death_effect_path: String = ""
+@export var icons: Dictionary[PreviewIcon.Icon, Dictionary] = {
+	PreviewIcon.Icon.CUBE: {"path" = "res://assets/textures/player/cube/Cube.svg"},
+	PreviewIcon.Icon.SHIP: {"path" = "res://assets/textures/player/ship/Ship1.svg"},
+	PreviewIcon.Icon.JETPACK: {"path" = "res://assets/textures/player/jetpack/Jetpack.svg"},
+	PreviewIcon.Icon.UFO: {"path" = "res://assets/textures/player/ufo/Ufo.svg"},
+	PreviewIcon.Icon.BALL: {"path" = "res://assets/textures/player/ball/Ball1.svg"},
+	PreviewIcon.Icon.WAVE: {"path" = "res://assets/textures/player/wave/Wave1/"},
+	PreviewIcon.Icon.ROBOT: {"path" = "res://assets/textures/player/cube/Cube.svg"},
+	PreviewIcon.Icon.SPIDER: {"path" = "res://assets/textures/player/spider/Spider1/"},
+	PreviewIcon.Icon.SWING: {"path" = "res://assets/textures/player/swing/Swing1/"},
+	PreviewIcon.Icon.TRAIL: {},
+	PreviewIcon.Icon.DEATH_EFFECT: {},
+}
 
 var config_file: ConfigFile = ConfigFile.new()
 
@@ -193,17 +195,7 @@ func _init():
 	discord_rich_presence = config_file.get_value("Internet", "discord_rich_presence", discord_rich_presence)
 	
 	# Icons
-	cube_icon_path = config_file.get_value("Icons", "cube_icon_path", cube_icon_path)
-	ship_icon_path = config_file.get_value("Icons", "ship_icon_path", ship_icon_path)
-	jetpack_icon_path = config_file.get_value("Icons", "jetpack_icon_path", jetpack_icon_path)
-	ufo_icon_path = config_file.get_value("Icons", "ufo_icon_path", ufo_icon_path)
-	ball_icon_path = config_file.get_value("Icons", "ball_icon_path", ball_icon_path)
-	wave_icon_path = config_file.get_value("Icons", "wave_icon_path", wave_icon_path)
-	robot_icon_path = config_file.get_value("Icons", "robot_icon_path", robot_icon_path)
-	spider_icon_path = config_file.get_value("Icons", "spider_icon_path", spider_icon_path)
-	swing_icon_path = config_file.get_value("Icons", "swing_icon_path", swing_icon_path)
-	trail_icon_path = config_file.get_value("Icons", "trail_icon_path", trail_icon_path)
-	death_effect_path = config_file.get_value("Icons", "death_effect_path", death_effect_path)
+	icons = config_file.get_value("Icons", "icons", icons)
 
 
 func _notification(what):
@@ -269,16 +261,6 @@ func save() -> void:
 	config_file.set_value("Internet", "discord_rich_presence", discord_rich_presence)
 	
 	# Icons
-	config_file.set_value("Icons", "cube_icon_path", cube_icon_path)
-	config_file.set_value("Icons", "ship_icon_path", ship_icon_path)
-	config_file.set_value("Icons", "jetpack_icon_path", jetpack_icon_path)
-	config_file.set_value("Icons", "ufo_icon_path", ufo_icon_path)
-	config_file.set_value("Icons", "ball_icon_path", ball_icon_path)
-	config_file.set_value("Icons", "wave_icon_path", wave_icon_path)
-	config_file.set_value("Icons", "robot_icon_path", robot_icon_path)
-	config_file.set_value("Icons", "spider_icon_path", spider_icon_path)
-	config_file.set_value("Icons", "swing_icon_path", swing_icon_path)
-	config_file.set_value("Icons", "trail_icon_path", trail_icon_path)
-	config_file.set_value("Icons", "death_effect_path", death_effect_path)
+	config_file.set_value("Icons", "icons", icons)
 
 	config_file.save("user://config.cfg")
