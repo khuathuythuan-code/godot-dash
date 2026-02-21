@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpy13a0h4xapo"
-path="res://.godot/imported/DeathEffect7.png-9d322a0dc9de446acef5818b877f3d01.ctex"
+uid="uid://cde8d3baybtg3"
+path="res://.godot/imported/DeathEffect05.png-b5e652867b0b89308be1fb0f3a4c17f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect7.png"
-dest_files=["res://.godot/imported/DeathEffect7.png-9d322a0dc9de446acef5818b877f3d01.ctex"]
+source_file="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect05.png"
+dest_files=["res://.godot/imported/DeathEffect05.png-b5e652867b0b89308be1fb0f3a4c17f6.ctex"]
 
 [params]
 

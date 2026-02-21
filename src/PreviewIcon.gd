@@ -39,8 +39,14 @@ func _refresh() -> void:
 			$Sprite.show()
 			$Sprite.texture = ResourceLoader.load(icon_path.path_join("Swing.svg"))
 		Icon.DEATH_EFFECT:
-			$Sprite.show()
-			$Sprite.texture = ResourceLoader.load(icon_path.path_join("DeathEffect1.svg"))
+			$"Death Effect".show()
+			for icon in DirAccess.open(icon_path).get_files():
+				if icon.contains(".import"):
+					continue
+				var frame := ResourceLoader.load(icon_path + "/" + icon)
+				$"Death Effect/Death Effect".sprite_frames.add_frame("default", frame)
+				$"Death Effect/Death Effect".scale = Vector2(0.25, 0.25) * icon_scale
+				$"Death Effect/Death Effect".play("default")
 		Icon.SPIDER:
 			$Spider.show()
 			var head_sprite := ResourceLoader.load(icon_path.path_join("Spider_Head.svg"))
@@ -54,4 +60,4 @@ func _refresh() -> void:
 					continue
 				part.get_node(^"SpiderLeg").texture = leg_sprite
 				part.get_node(^"SpiderLeg-glow").texture = leg_glow_sprite
-			$Spider/Spider.scale = Vector2(icon_scale, icon_scale)
+			$Spider/Spider.scale = Vector2.ONE * icon_scale

@@ -132,7 +132,7 @@ var menu_loop: String:
 	PreviewIcon.Icon.SPIDER: {"path" = "res://assets/textures/player/spider/Spider1/"},
 	PreviewIcon.Icon.SWING: {"path" = "res://assets/textures/player/swing/Swing1/"},
 	PreviewIcon.Icon.TRAIL: {},
-	PreviewIcon.Icon.DEATH_EFFECT: {},
+	PreviewIcon.Icon.DEATH_EFFECT: {"path" = "res://assets/textures/player/death_effect/DeathEffect1/"},
 }
 
 var config_file: ConfigFile = ConfigFile.new()

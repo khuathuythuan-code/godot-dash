@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="4_junqh"]
 [ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="5_yr6x6"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_hx1qv"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
 [node name="PreviewIcon" type="BoxContainer" unique_id=421685478]
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -108,3 +116,13 @@ texture = ExtResource("4_junqh")
 [node name="SpiderLeg" type="Sprite2D" parent="Spider/Spider/Leg-Front-Right" unique_id=154601670]
 position = Vector2(0, 100)
 texture = ExtResource("5_yr6x6")
+
+[node name="Death Effect" type="Control" parent="." unique_id=2130149428]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Death Effect" type="AnimatedSprite2D" parent="Death Effect" unique_id=858317879]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_hx1qv")
