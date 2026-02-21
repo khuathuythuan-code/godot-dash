@@ -29,7 +29,8 @@ const START_SPEED: Array[float] = [
 @export var creator: String = Config.username
 @export var description: String = ""
 @export var rating: int = -1
-@export var creation_date: int = Time.get_unix_time_from_system()
+@export var creation_date: int = int(Time.get_unix_time_from_system())
+@export var flashing_lights: bool = false
 
 @export_file var song_path: String:
 	set(value):
@@ -237,6 +238,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"description": description,
 		"creation_date": creation_date,
 		"rating": rating,
+		"flashing_lights": flashing_lights,
 		"is_editable": is_editable,
 		"song_path": song_path,
 		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
@@ -329,6 +331,7 @@ static func from_data(data: Dictionary) -> Level:
 	level.description = data.description
 	level.rating = data.rating
 	level.creation_date = data.creation_date
+	level.flashing_lights = data.flashing_lights
 	level.is_editable = data.is_editable
 	level.song_path = data.song_path
 	level.song_start_time = data.song_start_time
