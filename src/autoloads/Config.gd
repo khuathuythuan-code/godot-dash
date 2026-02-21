@@ -119,6 +119,19 @@ var menu_loop: String:
 @export var check_for_updates: bool = true
 @export var discord_rich_presence: bool = true
 
+@export_group("Icon")
+@export var cube_icon_path: String = ""
+@export var ship_icon_path: String = ""
+@export var jetpack_icon_path: String = ""
+@export var ufo_icon_path: String = ""
+@export var ball_icon_path: String = ""
+@export var wave_icon_path: String = ""
+@export var robot_icon_path: String = ""
+@export var spider_icon_path: String = ""
+@export var swing_icon_path: String = ""
+@export var trail_icon_path: String = ""
+@export var death_effect_path: String = ""
+
 var config_file: ConfigFile = ConfigFile.new()
 
 

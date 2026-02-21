@@ -36,3 +36,4 @@ const CELLS_TO_PX := Vector2(LevelManager.CELL_SIZE, -LevelManager.CELL_SIZE)
 const LEVEL_DIR: String = "user://created_levels/levels/"
 const SONG_DIR: String = "user://created_levels/songs/"
 const FONT_DIR: String = "user://created_levels/fonts/"
+const ICON_DIR: String = "res://assets/textures/player/"
