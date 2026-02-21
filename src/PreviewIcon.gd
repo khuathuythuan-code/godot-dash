@@ -17,7 +17,10 @@ enum Icon {
 }
 
 @export var gamemode: Icon = Icon.CUBE
-@export var icon_path: String = ""
+@export var icon_path: String = "":
+	set(value):
+		icon_path = value
+		_refresh()
 @export var icon_scale: float = 1.0
 
 func _ready() -> void:
@@ -51,4 +54,4 @@ func _refresh() -> void:
 					continue
 				part.get_node(^"SpiderLeg").texture = leg_sprite
 				part.get_node(^"SpiderLeg-glow").texture = leg_glow_sprite
-			$Spider/Spider.scale *= icon_scale
+			$Spider/Spider.scale = Vector2(icon_scale, icon_scale)

@@ -63,6 +63,7 @@ func _ready() -> void:
 
 
 func refresh() -> void:
+
 	var loaded_preview_icon = ResourceLoader.load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
@@ -86,6 +87,21 @@ func refresh() -> void:
 			icon_selector.add_child(button)
 			button.add_child(preview_icon)
 			button.pressed.connect(_on_icon_pressed.bind(preview_icon))
+	update_icons()
+
+
+func update_icons() -> void:
+	preview_icons.get_node(^"Cube").icon_path = Config.cube_icon_path
+	preview_icons.get_node(^"Ship/Ship").icon_path = Config.ship_icon_path
+	preview_icons.get_node(^"Ship/Jetpack").icon_path = Config.jetpack_icon_path
+	preview_icons.get_node(^"UFO").icon_path = Config.ufo_icon_path
+	preview_icons.get_node(^"Ball").icon_path = Config.ball_icon_path
+	preview_icons.get_node(^"Wave").icon_path = Config.wave_icon_path
+	# preview_icons.get_node(^"Robot").icon_path = Config.robot_icon_path
+	preview_icons.get_node(^"Spider").icon_path = Config.spider_icon_path
+	preview_icons.get_node(^"Swing").icon_path = Config.swing_icon_path
+	# preview_icons.get_node(^"Trail").icon_path = Config.trail_icon_path
+	# preview_icons.get_node(^"DeathEffect").icon_path = Config.death_effect_path
 
 
 func _on_icon_pressed(icon: PreviewIcon) -> void:
@@ -94,8 +110,12 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 			Config.cube_icon_path = icon.icon_path
 		PreviewIcon.Icon.SHIP:
 			Config.ship_icon_path = icon.icon_path
+			preview_icons.get_node(^"Ship/Ship").show()	
+			preview_icons.get_node(^"Ship/Jetpack").hide()
 		PreviewIcon.Icon.JETPACK:
 			Config.jetpack_icon_path = icon.icon_path
+			preview_icons.get_node(^"Ship/Ship").hide()	
+			preview_icons.get_node(^"Ship/Jetpack").show()
 		PreviewIcon.Icon.UFO:
 			Config.ufo_icon_path = icon.icon_path		
 		PreviewIcon.Icon.BALL:
@@ -112,6 +132,9 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 			Config.trail_icon_path = icon.icon_path
 		PreviewIcon.Icon.DEATH_EFFECT:
 			Config.death_effect_path = icon.icon_path
+	Config.save()
+	update_icons()
+
 
 func _on_tab_changed(value: int) -> void:
 	tab = value as PreviewIcon.Icon

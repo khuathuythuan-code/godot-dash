@@ -523,6 +523,7 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
