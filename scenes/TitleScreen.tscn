@@ -657,25 +657,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-gamemode = 2
+gamemode = 8
 icon_path = "res://assets/textures/player/jetpack/Jetpack.svg"
 icon_scale = 0.75
 
 [node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-gamemode = 4
+gamemode = 3
 icon_path = "res://assets/textures/player/ball/Ball1.svg"
 icon_scale = 0.75
 
 [node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-gamemode = 3
+gamemode = 2
 icon_path = "res://assets/textures/player/ufo/Ufo.svg"
 icon_scale = 0.75
 
 [node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-gamemode = 5
+gamemode = 4
 icon_path = "res://assets/textures/player/wave/Wave1"
 icon_scale = 0.75
 
@@ -690,13 +690,13 @@ texture = ExtResource("20_dchwh")
 
 [node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-gamemode = 7
+gamemode = 6
 icon_path = "res://assets/textures/player/spider/Spider1"
 icon_scale = 0.75
 
 [node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-gamemode = 8
+gamemode = 7
 icon_path = "res://assets/textures/player/swing/Swing1"
 icon_scale = 0.75
 

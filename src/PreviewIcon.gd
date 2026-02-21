@@ -5,13 +5,13 @@ class_name PreviewIcon
 enum Icon {
 	CUBE,
 	SHIP,
-	JETPACK,
 	UFO,
 	BALL,
 	WAVE,
 	ROBOT,
 	SPIDER,
 	SWING,
+	JETPACK,
 	TRAIL,
 	DEATH_EFFECT,
 }

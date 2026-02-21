@@ -137,7 +137,29 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 
 
 func _on_tab_changed(value: int) -> void:
-	tab = value as PreviewIcon.Icon
+	match value:
+		0:
+			tab = PreviewIcon.Icon.CUBE
+		1:
+			tab = PreviewIcon.Icon.SHIP
+		2:
+			tab = PreviewIcon.Icon.JETPACK
+		3:
+			tab = PreviewIcon.Icon.UFO
+		4:
+			tab = PreviewIcon.Icon.BALL
+		5:
+			tab = PreviewIcon.Icon.WAVE
+		6:
+			tab = PreviewIcon.Icon.ROBOT
+		7:
+			tab = PreviewIcon.Icon.SPIDER
+		8:
+			tab = PreviewIcon.Icon.SWING
+		9:
+			tab = PreviewIcon.Icon.TRAIL
+		10:
+			tab = PreviewIcon.Icon.DEATH_EFFECT
 	refresh()
 
 

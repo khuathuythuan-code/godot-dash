@@ -212,7 +212,7 @@ node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"Animation",
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3t6xh"]
-graph_offset = Vector2(-318, -36)
+graph_offset = Vector2(-633.76025, 99.5654)
 nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_j3k2l")
 nodes/PlayerSpeed/position = Vector2(20, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ksqvo")
@@ -311,7 +311,7 @@ states/run/position = Vector2(360, 221)
 states/walk/node = SubResource("AnimationNodeBlendTree_3t6xh")
 states/walk/position = Vector2(256, 100)
 transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_j87l4"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_ux6am"), "idle", "idle-alt", SubResource("AnimationNodeStateMachineTransition_xjiwe"), "idle-alt", "idle", SubResource("AnimationNodeStateMachineTransition_3ow27"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_oqq0p"), "idle-alt", "jump", SubResource("AnimationNodeStateMachineTransition_102cw"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_f8c6o"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ti1vy"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_333xh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_y725x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_d8wj8"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_hfsl1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cnpoe"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_w0b68"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_w21ie"), "fall", "walk", SubResource("AnimationNodeStateMachineTransition_36kv4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_b4v22"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_87vic"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_i1yrl"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_eidpu"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_vccgf")]
-graph_offset = Vector2(-13.371094, -31.914063)
+graph_offset = Vector2(-220.6618, 11.0859375)
 
 [sub_resource type="CurveTexture" id="CurveTexture_k4whp"]
 curve = SubResource("Curve_vov5s")
