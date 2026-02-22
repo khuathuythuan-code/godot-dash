@@ -12,13 +12,6 @@ variation_face_index = 10
 font = SubResource("FontVariation_0d6if")
 font_size = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4qns"]
-bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [node name="PauseMenuLayer" type="CanvasLayer" unique_id=853703343]
 process_mode = 3
 layer = 101
@@ -105,7 +98,6 @@ theme_type_variation = &"TitleScreenButton"
 text = "Leave"
 
 [node name="Settings" type="PanelContainer" parent="." unique_id=89556222]
-visible = false
 z_index = 128
 material = ExtResource("1_6oxby")
 anchors_preset = -1
@@ -118,19 +110,14 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_y4qns")
+theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("5_018eo")
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings" unique_id=110892163]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 6
 
 [node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
 layout_mode = 2
-current_tab = 0
 
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="PauseMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
