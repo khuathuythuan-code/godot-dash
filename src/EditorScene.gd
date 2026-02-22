@@ -171,6 +171,7 @@ func start_playtest() -> void:
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").show()
 	LevelManager.touchscreen_controls.visible = Config.is_touch_screen
 	$LevelOperationsHandler.pause_autosave()
+	level.start_position = LevelManager.player.position
 	$GameScene.start_level()
 
 
