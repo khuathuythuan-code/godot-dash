@@ -4,6 +4,8 @@ extends CanvasLayer
 
 
 func _process(_delta: float) -> void:
+	if not LevelManager.current_level:
+		return
 	if is_zero_approx(LevelManager.current_level.duration):
 		label.text = "Infinite"
 	elif not LevelManager.player.dead:
