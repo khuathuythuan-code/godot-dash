@@ -51,13 +51,13 @@ func _ready() -> void:
 			_:
 				continue
 
-		var textures_dir: Array
+		var textures_dir: PackedStringArray
 		match icon_type:
 			PreviewIcon.Icon.WAVE, PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
 				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_directories()
 			_:
 				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_files()
-		for icon in textures_dir:
+		for icon: String in textures_dir:
 			if icon.contains(".import"):
 				continue
 			icons[icon_type].append(Constants.ICON_DIR.path_join(type_dir).path_join(icon))
@@ -65,7 +65,7 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	var loaded_preview_icon = ResourceLoader.load("res://scenes/components/game_components/PreviewIcon.tscn")
+	var loaded_preview_icon = load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
 
@@ -74,17 +74,15 @@ func refresh() -> void:
 			continue
 		for icon in icons[icon_type]:
 			var button := BouncyButton.new()
-			var preview_icon = loaded_preview_icon.instantiate()
+			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
 			preview_icon.gamemode = icon_type
 			preview_icon.icon_path = icon
 			preview_icon.icon_scale = 0.5
 			preview_icon.custom_minimum_size = Vector2(96, 96)
-			button.custom_minimum_size = Vector2(96, 96)
-			if icon_type == PreviewIcon.Icon.SHIP:
-				button.custom_minimum_size.x *= 820.0 / 524.0
-				preview_icon.custom_minimum_size.x *= 820.0 / 524.0
+			preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
 			button.z_index = 4096
 			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.custom_minimum_size = Vector2(96, 96)
 			icon_selector.add_child(button)
 			button.add_child(preview_icon)
 			button.pressed.connect(_on_icon_pressed.bind(preview_icon))

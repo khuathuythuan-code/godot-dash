@@ -14,9 +14,10 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="PreviewIcon" type="BoxContainer" unique_id=421685478]
+[node name="PreviewIcon" type="BoxContainer" unique_id=808775852]
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 script = ExtResource("1_o8qdf")
 metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
 
@@ -24,6 +25,7 @@ metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 expand_mode = 3
 stretch_mode = 5
 
@@ -31,29 +33,19 @@ stretch_mode = 5
 visible = false
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 4
+size_flags_vertical = 6
 
 [node name="Spider" type="Control" parent="Spider" unique_id=513735278]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[node name="Head" type="Marker2D" parent="Spider/Spider" unique_id=888046566]
-position = Vector2(8, -14)
-scale = Vector2(0.25, 0.25)
-metadata/_edit_group_ = true
-
-[node name="SpiderHead-glow" type="Sprite2D" parent="Spider/Spider/Head" unique_id=888331303]
-z_index = -1
-texture = ExtResource("2_hx1qv")
-
-[node name="Spider" type="Sprite2D" parent="Spider/Spider/Head" unique_id=1765805934]
-texture = ExtResource("3_4aqbe")
 
 [node name="Leg-Back-Left" type="Marker2D" parent="Spider/Spider" unique_id=1257914949]
 position = Vector2(21, 8)
@@ -86,6 +78,18 @@ texture = ExtResource("4_junqh")
 modulate = Color(0.62, 0.62, 0.5, 1)
 position = Vector2(0, 100)
 texture = ExtResource("5_yr6x6")
+
+[node name="Head" type="Marker2D" parent="Spider/Spider" unique_id=888046566]
+position = Vector2(8, -14)
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderHead-glow" type="Sprite2D" parent="Spider/Spider/Head" unique_id=888331303]
+z_index = -1
+texture = ExtResource("2_hx1qv")
+
+[node name="Spider" type="Sprite2D" parent="Spider/Spider/Head" unique_id=1765805934]
+texture = ExtResource("3_4aqbe")
 
 [node name="Leg-Front-Left" type="Marker2D" parent="Spider/Spider" unique_id=272224950]
 position = Vector2(-30, 12)

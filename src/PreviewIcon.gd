@@ -1,5 +1,6 @@
 @tool
 extends BoxContainer
+
 class_name PreviewIcon
 
 enum Icon {
@@ -23,6 +24,7 @@ enum Icon {
 		_refresh()
 @export var icon_scale: float = 1.0
 
+
 func _ready() -> void:
 	_refresh()
 
@@ -31,28 +33,28 @@ func _refresh() -> void:
 	match gamemode:
 		Icon.CUBE, Icon.SHIP, Icon.JETPACK, Icon.UFO, Icon.BALL, Icon.ROBOT:
 			$Sprite.show()
-			$Sprite.texture = ResourceLoader.load(icon_path)
+			$Sprite.texture = load(icon_path)
 		Icon.WAVE:
 			$Sprite.show()
-			$Sprite.texture = ResourceLoader.load(icon_path.path_join("Wave.svg"))
+			$Sprite.texture = load(icon_path.path_join("Wave.svg"))
 		Icon.SWING:
 			$Sprite.show()
-			$Sprite.texture = ResourceLoader.load(icon_path.path_join("Swing.svg"))
+			$Sprite.texture = load(icon_path.path_join("Swing.svg"))
 		Icon.DEATH_EFFECT:
 			$"Death Effect".show()
 			for icon in DirAccess.open(icon_path).get_files():
 				if icon.contains(".import"):
 					continue
-				var frame := ResourceLoader.load(icon_path + "/" + icon)
+				var frame := load(icon_path + "/" + icon)
 				$"Death Effect/Death Effect".sprite_frames.add_frame("default", frame)
 				$"Death Effect/Death Effect".scale = Vector2(0.25, 0.25) * icon_scale
-				$"Death Effect/Death Effect".play("default")
+				$"Death Effect/Death Effect".play(&"default")
 		Icon.SPIDER:
 			$Spider.show()
-			var head_sprite := ResourceLoader.load(icon_path.path_join("Spider_Head.svg"))
-			var head_glow_sprite := ResourceLoader.load(icon_path.path_join("Spider_Head-glow.svg"))
-			var leg_sprite := ResourceLoader.load(icon_path.path_join("Spider_Leg.svg"))
-			var leg_glow_sprite := ResourceLoader.load(icon_path.path_join("Spider_Leg-glow.svg"))
+			var head_sprite: Texture2D = load(icon_path.path_join("Spider_Head.svg"))
+			var head_glow_sprite: Texture2D = load(icon_path.path_join("Spider_Head-glow.svg"))
+			var leg_sprite: Texture2D = load(icon_path.path_join("Spider_Leg.svg"))
+			var leg_glow_sprite: Texture2D = load(icon_path.path_join("Spider_Leg-glow.svg"))
 			for part in $Spider/Spider.get_children():
 				if part.name == "Head":
 					part.get_node(^"Spider").texture = head_sprite

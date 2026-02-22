@@ -32,7 +32,7 @@ func _button_held() -> void:
 	var scale_tween = create_tween()
 	scale_tween.set_ease(Tween.EASE_OUT)
 	scale_tween.set_trans(Tween.TRANS_BOUNCE)
-	scale_tween.tween_property(self, "scale", inital_scale * 1.1, 0.2)
+	scale_tween.tween_property(self, ^"scale", inital_scale * 1.1, 0.2)
 	if get_parent() is not Container:
 		return
 	if not top_level:
@@ -47,7 +47,7 @@ func _button_unheld() -> void:
 	var scale_tween = create_tween()
 	scale_tween.set_ease(Tween.EASE_OUT)
 	scale_tween.set_trans(Tween.TRANS_BOUNCE)
-	scale_tween.tween_property(self, "scale", inital_scale, 0.2)
+	scale_tween.tween_property(self, ^"scale", inital_scale, 0.2)
 	release_focus()
 	await scale_tween.finished
 	if get_parent() is not Container:

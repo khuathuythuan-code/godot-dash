@@ -86,20 +86,20 @@ script = ExtResource("22_juc6n")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
 bg_color = Color(0, 0, 0, 0.3019608)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 corner_detail = 5
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opvi4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
 bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-corner_detail = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
 
 [sub_resource type="Resource" id="Resource_tuyt1"]
 script = ExtResource("22_juc6n")
@@ -480,7 +480,6 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -526,7 +525,7 @@ layout_mode = 2
 icon_path = "res://assets/textures/player/cube/Cube.svg"
 icon_scale = 0.75
 
-[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=745809336]
+[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1783302652]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -601,6 +600,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 gamemode = 1
 icon_path = "res://assets/textures/player/ship/Ship1.svg"
 icon_scale = 0.75
@@ -613,6 +614,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 gamemode = 8
 icon_path = "res://assets/textures/player/jetpack/Jetpack.svg"
 icon_scale = 0.75
@@ -658,10 +661,10 @@ icon_scale = 0.75
 
 [node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1363110770]
 clip_children = 1
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_type_variation = &"ClipMaskPanel"
-theme_override_styles/panel = SubResource("StyleBoxFlat_opvi4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
 script = ExtResource("24_60dxp")
 variants = PackedStringArray("Cube", "Ship", "Jetpack", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing", "Trail", "Death Effect")
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
@@ -683,6 +686,7 @@ theme_override_constants/v_separation = 10
 columns = 10
 
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1634750853]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
