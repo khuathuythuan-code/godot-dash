@@ -925,6 +925,7 @@ func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(
 		return
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
 		place_checkpoint().use_normal_sprite().done()
+		_last_automatic_checkpoint = 0.0
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
