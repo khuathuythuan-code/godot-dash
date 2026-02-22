@@ -1,4 +1,5 @@
 extends VBoxContainer
+
 class_name IconGarage
 
 @export var preview_icons: HBoxContainer
@@ -18,6 +19,7 @@ class_name IconGarage
 }
 
 var tab: PreviewIcon.Icon = PreviewIcon.Icon.CUBE
+
 
 func _ready() -> void:
 	var icon_path := DirAccess.open(Constants.ICON_DIR)
@@ -43,7 +45,7 @@ func _ready() -> void:
 			"swing":
 				icon_type = PreviewIcon.Icon.SWING
 			# "trail": Not on this branch
-				# icon_type = PreviewIcon.Icon.TRAIL
+			# icon_type = PreviewIcon.Icon.TRAIL
 			"death_effect":
 				icon_type = PreviewIcon.Icon.DEATH_EFFECT
 			_:
@@ -63,7 +65,6 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-
 	var loaded_preview_icon = ResourceLoader.load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
@@ -72,7 +73,7 @@ func refresh() -> void:
 		if icon_type != tab:
 			continue
 		for icon in icons[icon_type]:
-			var button := BouncyButton.new() 
+			var button := BouncyButton.new()
 			var preview_icon = loaded_preview_icon.instantiate()
 			preview_icon.gamemode = icon_type
 			preview_icon.icon_path = icon
@@ -99,7 +100,7 @@ func update_icons() -> void:
 	preview_icons.get_node(^"Wave").icon_path = Config.icons[PreviewIcon.Icon.WAVE]["path"]
 	# preview_icons.get_node(^"Robot").icon_path = Config.icons[PreviewIcon.Icon.ROBOT]["path"]
 	preview_icons.get_node(^"Spider").icon_path = Config.icons[PreviewIcon.Icon.SPIDER]["path"]
-	preview_icons.get_node(^"Swing").icon_path =  Config.icons[PreviewIcon.Icon.SWING]["path"]
+	preview_icons.get_node(^"Swing").icon_path = Config.icons[PreviewIcon.Icon.SWING]["path"]
 	# preview_icons.get_node(^"Trail").icon_path = Config.icons[PreviewIcon.Icon.TRAIL]["path"]
 	# preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"]
 
@@ -110,11 +111,11 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 			Config.icons[PreviewIcon.Icon.CUBE]["path"] = icon.icon_path
 		PreviewIcon.Icon.SHIP:
 			Config.icons[PreviewIcon.Icon.SHIP]["path"] = icon.icon_path
-			preview_icons.get_node(^"Ship/Ship").show()	
+			preview_icons.get_node(^"Ship/Ship").show()
 			preview_icons.get_node(^"Ship/Jetpack").hide()
 		PreviewIcon.Icon.JETPACK:
 			Config.icons[PreviewIcon.Icon.JETPACK]["path"] = icon.icon_path
-			preview_icons.get_node(^"Ship/Ship").hide()	
+			preview_icons.get_node(^"Ship/Ship").hide()
 			preview_icons.get_node(^"Ship/Jetpack").show()
 		PreviewIcon.Icon.UFO:
 			Config.icons[PreviewIcon.Icon.UFO]["path"] = icon.icon_path
@@ -164,7 +165,7 @@ func _on_tab_changed(value: int) -> void:
 
 
 func _on_ship_pressed() -> void:
-	var ship_sprite := preview_icons.get_node(^"Ship/Ship")	
+	var ship_sprite := preview_icons.get_node(^"Ship/Ship")
 	var jetpack_sprite := preview_icons.get_node(^"Ship/Jetpack")
 	if ship_sprite.visible:
 		ship_sprite.hide()
