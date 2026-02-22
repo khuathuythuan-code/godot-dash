@@ -21,6 +21,7 @@ static var editor_scene: PackedScene
 @export_group("Subscenes")
 @export var level_selector: TitleScreenPanel
 @export var community_menu: TitleScreenPanel
+@export var icon_garage: TitleScreenPanel
 @export var settings_panel: TitleScreenPanel
 @export var settings_menu: TabContainer
 
@@ -84,7 +85,7 @@ func _return_to_title_screen() -> void:
 	_toggle_background_sprites_autoscroll(true)
 	_current_subscene = SubScene.TITLE_SCREEN
 	_change_background_color(_base_background_color)
-	for object in [level_selector, community_menu, settings_panel]:
+	for object in [level_selector, community_menu, settings_panel, icon_garage]:
 		if object.visible:
 			object.hide_tween()
 
@@ -125,6 +126,15 @@ func _on_go_to_community_menu_pressed() -> void:
 	_return_to_title_screen()
 	community_menu.show_tween()
 	_current_subscene = SubScene.COMMUNITY_MENU
+
+
+func _on_go_to_icon_garage_pressed() -> void:
+	if icon_garage.visible:
+		_return_to_title_screen()
+		return
+	_return_to_title_screen()
+	icon_garage.show_tween()
+	_current_subscene = SubScene.ICON_GARAGE
 
 
 func _on_settings_pressed() -> void:

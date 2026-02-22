@@ -145,6 +145,15 @@ var _last_automatic_checkpoint: float = 0
 func _ready() -> void:
 	if %DebugOverlays:
 		%DebugOverlays.visible = Config.draw_debug_overlays
+	$DeathEffect.sprite_frames.clear("default")
+	for icon in DirAccess.open(Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"]).get_files():
+		if icon.contains(".import"):
+			continue
+		var frame := ResourceLoader.load(Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"] + "/" + icon)
+		$DeathEffect.sprite_frames.add_frame("default", frame)
+	var empty_frame := Texture2D.new()
+	$DeathEffect.sprite_frames.add_frame("default", empty_frame)
+	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count("default") - 1
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
 	dash_control = null
 	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
