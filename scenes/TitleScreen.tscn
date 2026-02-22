@@ -480,6 +480,7 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -682,7 +683,6 @@ theme_override_constants/v_separation = 10
 columns = 10
 
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1634750853]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -701,10 +701,6 @@ script = ExtResource("12_08fpa")
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Settings" unique_id=1177693866]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 5
 
 [node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" unique_id=917759721 instance=ExtResource("12_p8bvb")]
 layout_mode = 2
