@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://co733tkf77uuu" path="res://src/settings/KeybindLoader.gd" id="12_vf3uf"]
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="16_c7um1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c7um1"]
+
 [sub_resource type="Resource" id="Resource_ndunm"]
 script = ExtResource("10_egxjo")
 
@@ -43,7 +45,6 @@ script = ExtResource("10_egxjo")
 script = ExtResource("10_egxjo")
 
 [node name="SettingsMenu" type="TabContainer" unique_id=774909354]
-texture_filter = 4
 material = ExtResource("1_olkne")
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_r47on")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c7um1")
 current_tab = 1
 script = ExtResource("3_rvg0e")
 

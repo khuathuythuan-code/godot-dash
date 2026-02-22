@@ -41,13 +41,6 @@ shader_parameter/ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jk6fi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
-bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-
 [sub_resource type="FontVariation" id="FontVariation_0d6if"]
 variation_opentype = {
 1869640570: 14,
@@ -93,15 +86,6 @@ script = ExtResource("22_juc6n")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
 bg_color = Color(0, 0, 0, 0.3019608)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-corner_detail = 5
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8bvb"]
-bg_color = Color(0, 0, 0, 0)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
@@ -328,7 +312,7 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/LevelSelector" unique_id=1259277509]
@@ -357,34 +341,21 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=83722630]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="TopBar" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer" unique_id=1434590960]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar" unique_id=1944930659]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1989226303]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer" unique_id=1264815166]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer" unique_id=83722630]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_type_variation = &"TitleScreenVBox"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer/MarginContainer" unique_id=63428710]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=63428710]
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="SearchBarNode" type="LineEdit" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1583867424 node_paths=PackedStringArray("root_node_to_search")]
+[node name="SearchBarNode" type="LineEdit" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1583867424 node_paths=PackedStringArray("root_node_to_search")]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -392,11 +363,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
 placeholder_text = "Search..."
 right_icon = ExtResource("13_0d6if")
 script = ExtResource("14_hvy54")
-root_node_to_search = NodePath("../../../../../SmoothScrollContainer/MarginContainer/VBoxContainer")
+root_node_to_search = NodePath("../../SmoothScrollContainer/VBoxContainer")
 group_name = PackedStringArray()
 metadata/_custom_type_script = "uid://y1hecem53675"
 
-[node name="SortBy" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1818962724]
+[node name="SortBy" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1818962724]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hvy54")
@@ -412,7 +383,7 @@ popup/item_2/id = 2
 popup/item_3/text = "Creation Date"
 popup/item_3/id = 3
 
-[node name="Order" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1969587000]
+[node name="Order" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1969587000]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_hvy54")
@@ -424,10 +395,10 @@ popup/item_0/id = 0
 popup/item_1/text = "Last-First"
 popup/item_1/id = 1
 
-[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/TopBar/VBoxContainer" unique_id=1878298392]
+[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1878298392]
 layout_mode = 2
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer" unique_id=1418880581]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1418880581]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("21_u3ctg")
@@ -435,12 +406,7 @@ wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer" unique_id=1322184182]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order")]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -449,12 +415,12 @@ alignment = 1
 script = ExtResource("15_hvy54")
 rating_colors = ExtResource("18_hvy54")
 subscene_manager = NodePath("../../../../../../../Subscene Manager")
-import_dialog = NodePath("../ImportLevelDialog")
-level_already_exists_dialog = NodePath("../LevelAlreadyExists")
-sort_by = NodePath("../../../TopBar/VBoxContainer/MarginContainer/HBoxContainer/SortBy")
-order = NodePath("../../../TopBar/VBoxContainer/MarginContainer/HBoxContainer/Order")
+import_dialog = NodePath("../../ImportLevelDialog")
+level_already_exists_dialog = NodePath("../../LevelAlreadyExists")
+sort_by = NodePath("../../HBoxContainer/SortBy")
+order = NodePath("../../HBoxContainer/Order")
 
-[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" unique_id=1642811303]
+[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1642811303]
 auto_translate_mode = 1
 oversampling_override = 1.0
 title = "Import and open"
@@ -470,7 +436,7 @@ option_count = 1
 option_0/name = "Keep original level file"
 option_0/default = 1
 
-[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer" unique_id=349342493]
+[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=349342493]
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(514, 100)
@@ -478,25 +444,16 @@ ok_button_text = "Overwrite"
 dialog_text = "A level with the same name already exists in the game directory!"
 cancel_button_text = "Open Existing"
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer" unique_id=1269197552]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_constants/margin_top = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer" unique_id=939319287]
+[node name="HSeparator2" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=203126498]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer" unique_id=203126498]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1136863510]
+[node name="HBoxContainer2" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1136863510]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="Create" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=698177680]
+[node name="Create" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=698177680]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -504,7 +461,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Create New Level"
 autowrap_mode = 3
 
-[node name="Import" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=669107035]
+[node name="Import" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=669107035]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -513,7 +470,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Import Level"
 autowrap_mode = 3
 
-[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1421014872]
+[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1421014872]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
@@ -523,7 +480,6 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -537,40 +493,39 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=1593463008 node_paths=PackedStringArray("preview_icons", "icon_selector")]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=615632743]
+custom_minimum_size = Vector2(0, 512)
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1593463008 node_paths=PackedStringArray("preview_icons", "icon_selector")]
+layout_mode = 2
+theme_type_variation = &"TitleScreenVBox"
 script = ExtResource("20_1ska7")
-preview_icons = NodePath("Preview/PanelContainer/HBoxContainer")
-icon_selector = NodePath("SmoothScrollContainer/Selector/GridContainer")
+preview_icons = NodePath("PanelContainer/HBoxContainer")
+icon_selector = NodePath("SmoothScrollContainer/GridContainer")
 
-[node name="Preview" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer" unique_id=1192420295]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 0
-
-[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview" unique_id=1548300878]
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1548300878]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_gyoo8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer" unique_id=964293732]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer" unique_id=964293732]
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("21_60dxp")]
+[node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 icon_path = "res://assets/textures/player/cube/Cube.svg"
 icon_scale = 0.75
 
-[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=745809336]
+[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=745809336]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -638,7 +593,7 @@ shortcut_in_tooltip = true
 script = ExtResource("22_tuyt1")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
-[node name="Ship" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer/Ship" unique_id=1545261769 instance=ExtResource("21_60dxp")]
+[node name="Ship" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" unique_id=1545261769 instance=ExtResource("21_60dxp")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -649,7 +604,7 @@ gamemode = 1
 icon_path = "res://assets/textures/player/ship/Ship1.svg"
 icon_scale = 0.75
 
-[node name="Jetpack" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer/Ship" unique_id=104251690 instance=ExtResource("21_60dxp")]
+[node name="Jetpack" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" unique_id=104251690 instance=ExtResource("21_60dxp")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -661,55 +616,48 @@ gamemode = 8
 icon_path = "res://assets/textures/player/jetpack/Jetpack.svg"
 icon_scale = 0.75
 
-[node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
+[node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 3
 icon_path = "res://assets/textures/player/ball/Ball1.svg"
 icon_scale = 0.75
 
-[node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
+[node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 2
 icon_path = "res://assets/textures/player/ufo/Ufo.svg"
 icon_scale = 0.75
 
-[node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
+[node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 4
 icon_path = "res://assets/textures/player/wave/Wave1"
 icon_scale = 0.75
 
-[node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1523449182]
+[node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1523449182]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
+[node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
 scale = Vector2(0.188, 0.188)
 texture = ExtResource("20_dchwh")
 
-[node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
+[node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 6
 icon_path = "res://assets/textures/player/spider/Spider1"
 icon_scale = 0.75
 
-[node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("21_60dxp")]
+[node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 7
 icon_path = "res://assets/textures/player/swing/Swing1"
 icon_scale = 0.75
 
-[node name="Gamemodes" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer" unique_id=1282733094]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Gamemodes" unique_id=513580005]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p8bvb")
-
-[node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Gamemodes/PanelContainer" unique_id=1363110770]
+[node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1363110770]
 clip_children = 1
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_type_variation = &"ClipMaskPanel"
 theme_override_styles/panel = SubResource("StyleBoxFlat_opvi4")
@@ -717,7 +665,7 @@ script = ExtResource("24_60dxp")
 variants = PackedStringArray("Cube", "Ship", "Jetpack", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing", "Trail", "Death Effect")
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer" unique_id=1366781961]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1366781961]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("21_u3ctg")
@@ -725,19 +673,15 @@ wheel_scroll_damper = SubResource("Resource_tuyt1")
 dragging_scroll_damper = SubResource("Resource_hkayi")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="Selector" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/SmoothScrollContainer" unique_id=615632743]
-custom_minimum_size = Vector2(0, 512)
+[node name="GridContainer" type="GridContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=1909683977]
 layout_mode = 2
-size_flags_vertical = 3
-
-[node name="GridContainer" type="GridContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/SmoothScrollContainer/Selector" unique_id=1909683977]
-layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 10
 
-[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=270245945]
+[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1634750853]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -752,15 +696,15 @@ offset_right = -100.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Settings" unique_id=1177693866]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 6
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
 
 [node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" unique_id=917759721 instance=ExtResource("12_p8bvb")]
 layout_mode = 2
@@ -871,10 +815,10 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
-[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_import_level"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Create" to="Subscene Manager" method="_on_editor_pressed"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Import" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="_open_importer"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Community/VBoxContainer/SmoothScrollContainer/MarginContainer/VBoxContainer" method="refresh"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Preview/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer" method="_on_ship_pressed"]
-[connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer/Gamemodes/PanelContainer/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/VBoxContainer" method="_on_tab_changed"]
+[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="_import_level"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="_open_importer"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="refresh"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_ship_pressed"]
+[connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_tab_changed"]
 [connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]

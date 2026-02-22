@@ -293,6 +293,13 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rrh8"]
 content_margin_left = 15.0
 content_margin_top = 10.0
@@ -459,6 +466,10 @@ TitleScreenCommunityLevelListButton/fonts/font = SubResource("FontVariation_2n7u
 TitleScreenCommunityLevelListButton/styles/hover = SubResource("StyleBoxFlat_muv14")
 TitleScreenCommunityLevelListButton/styles/normal = SubResource("StyleBoxFlat_fowr3")
 TitleScreenCommunityLevelListButton/styles/pressed = SubResource("StyleBoxFlat_bqdbf")
+TitleScreenPanel/base_type = &"PanelContainer"
+TitleScreenPanel/styles/panel = SubResource("StyleBoxFlat_60dxp")
+TitleScreenVBox/base_type = &"VBoxContainer"
+TitleScreenVBox/constants/separation = 10
 Toast/base_type = &"Button"
 Toast/styles/disabled = SubResource("StyleBoxFlat_5rrh8")
 Toast/styles/hover = SubResource("StyleBoxFlat_hdsbt")
