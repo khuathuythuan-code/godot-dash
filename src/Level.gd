@@ -240,7 +240,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"rating": rating,
 		"flashing_lights": flashing_lights,
 		"is_editable": is_editable,
-		"song_path": song_path,
+		"song_path": practice.call(song_path, song_player.stream.resource_path if song_player.stream else song_path),
 		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
 		"platformer": platformer,
 		"start_position": Serialize.Vector2(LevelManager.player.global_position),

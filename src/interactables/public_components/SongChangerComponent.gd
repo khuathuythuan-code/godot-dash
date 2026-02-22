@@ -26,4 +26,5 @@ func _ready() -> void:
 
 func start(_player: Player) -> void:
 	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(song_path)
+	LevelManager.level_song_player.stream.resource_path = song_path
 	LevelManager.level_song_player.play(song_start)
