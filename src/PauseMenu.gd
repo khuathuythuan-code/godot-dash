@@ -119,14 +119,13 @@ func _on_leave_pressed() -> void:
 	SceneManager.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	LevelManager.current_level.process_mode = Node.PROCESS_MODE_DISABLED
-	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
 	await LevelManager.game_scene.fade_screen.fade_finished
 	LevelManager.game_scene = null
 	if Editor.clipboard:
 		Editor.clipboard.clear()
 	SceneManager.is_transitioning = false
 	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
+	AudioServer.set_bus_mute.call_deferred(AudioServer.get_bus_index(&"Music"), false)
 
 
 func _on_restart_pressed() -> void:
@@ -145,8 +144,17 @@ func _on_edit_pressed() -> void:
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Creating a level")
 		DiscordRPCHandler.refresh()
+	SceneManager.is_transitioning = true
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
+	LevelManager.current_level.process_mode = Node.PROCESS_MODE_DISABLED
+	var fade_screen = LevelManager.game_scene.fade_screen
 	get_tree().paused = false
+	LevelManager.level_playing = false
+	fade_screen.fade_in(0.5)
+	await fade_screen.fade_finished
+	SceneManager.is_transitioning = false
 	get_tree().change_scene_to_packed(AssetManager.editor_packed)
+	AudioServer.set_bus_mute.call_deferred(AudioServer.get_bus_index(&"Music"), false)
 
 
 func _on_settings_pressed() -> void:
