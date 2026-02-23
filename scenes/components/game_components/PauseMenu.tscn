@@ -121,7 +121,7 @@ layout_mode = 2
 [node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
 layout_mode = 2
 
-[connection signal="pressed" from="Menu/VBoxContainer/Resume" to="Menu" method="_on_continue_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Resume" to="." method="toggle_pause_menu"]
 [connection signal="pressed" from="Menu/VBoxContainer/Restart" to="Menu" method="_on_restart_pressed"]
 [connection signal="toggled" from="Menu/VBoxContainer/Practice" to="Menu" method="_on_practice_toggled"]
 [connection signal="pressed" from="Menu/VBoxContainer/Edit" to="Menu" method="_on_edit_pressed"]

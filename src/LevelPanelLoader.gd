@@ -6,6 +6,7 @@ extends VBoxContainer
 @export var level_already_exists_dialog: ConfirmationDialog
 @export var sort_by: OptionButton
 @export var order: OptionButton
+@export var fade_screen: FadeScreen
 
 var levels: Dictionary[String, Control]
 
@@ -80,7 +81,6 @@ func reorder() -> void:
 func _play_level(level_name: String) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
-	var fade_screen = get_node("/root/TitleScreen/FadeScreenLayer/FadeScreen")
 	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 	subscene_manager.history.change_phantomcamera(subscene_manager.active_pcam, subscene_manager.quit_game_camera)
 	await get_tree().create_timer(0.5).timeout

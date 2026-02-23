@@ -29,9 +29,9 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):
 		_on_restart_pressed()
-	if event.is_action_pressed("pause_level") and Editor.shortcut_blocker == null and not SceneManager.is_transitioning:
-		_on_continue_pressed()
-	if event.is_action_pressed("hide_pause_menu"):
+	if event.is_action_pressed(&"pause_level") and Editor.shortcut_blocker == null and not SceneManager.is_transitioning:
+		toggle_pause_menu()
+	if event.is_action_pressed(&"hide_pause_menu"):
 		if visible:
 			hide_tween()
 			settings_were_open = $Settings.visible
@@ -46,7 +46,7 @@ func _notification(what):
 	if not is_inside_tree():
 		return
 	if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		_on_continue_pressed()
+		toggle_pause_menu()
 
 
 func update_buttons_visibility() -> void:
@@ -79,6 +79,24 @@ func hide_tween() -> void:
 	hide()
 
 
+func toggle_pause_menu() -> void:
+	level_name_label.text = LevelManager.current_level.name
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		paused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if settings_were_open:
+			$Settings.show_tween()
+		show_tween()
+	else:
+		unpaused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
+		settings_were_open = $Settings.visible
+		if $Settings.visible:
+			$Settings.hide_tween()
+		hide_tween()
+
+
 func _on_leave_pressed() -> void:
 	get_tree().paused = false
 	if Editor.in_editor:
@@ -105,24 +123,6 @@ func _on_leave_pressed() -> void:
 	SceneManager.is_transitioning = false
 	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-
-
-func _on_continue_pressed() -> void:
-	level_name_label.text = LevelManager.current_level.name
-	get_tree().paused = not get_tree().paused
-	if get_tree().paused:
-		paused.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		if settings_were_open:
-			$Settings.show_tween()
-		show_tween()
-	else:
-		unpaused.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
-		settings_were_open = $Settings.visible
-		if $Settings.visible:
-			$Settings.hide_tween()
-		hide_tween()
 
 
 func _on_restart_pressed() -> void:
@@ -161,14 +161,14 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	elif LevelManager.player:
 		var player: Player = LevelManager.player
 		player.last_automatic_checkpoint_position = Vector2.INF
-	_on_continue_pressed()
+	toggle_pause_menu()
 
 
 func _on_save_and_play_pressed() -> void:
 	if LevelManager.level_playing:
 		Editor.root.stop_playtest()
 	Editor.root.level_operations_handler.save_level()
-	_on_continue_pressed()
+	toggle_pause_menu()
 	var fade_screen: FadeScreen = Editor.root.fade_screen
 	fade_screen.fade_in(0.5)
 	await fade_screen.fade_finished

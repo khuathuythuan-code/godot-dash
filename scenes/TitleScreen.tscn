@@ -404,7 +404,7 @@ wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="LevelPanelLoader" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order")]
+[node name="LevelPanelLoader" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order", "fade_screen")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -417,6 +417,7 @@ import_dialog = NodePath("../../ImportLevelDialog")
 level_already_exists_dialog = NodePath("../../LevelAlreadyExists")
 sort_by = NodePath("../../HBoxContainer/SortBy")
 order = NodePath("../../HBoxContainer/Order")
+fade_screen = NodePath("../../../../../../../FadeScreen")
 
 [node name="ImportLevelDialog" type="FileDialog" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1642811303]
 auto_translate_mode = 1
