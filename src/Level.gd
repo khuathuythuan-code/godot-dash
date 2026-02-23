@@ -161,6 +161,7 @@ func start_level() -> void:
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode
 	LevelManager.player.global_position = start_position
+	LevelManager.player.last_automatic_checkpoint_position = start_position
 	if platformer:
 		LevelManager.touchscreen_controls.enable_platformer(start_internal_gamemode == Player.Gamemode.WAVE)
 	else:
