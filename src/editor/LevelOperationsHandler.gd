@@ -125,8 +125,7 @@ func _open_level(path: String) -> void:
 		_open_level.call_deferred(path)
 		return
 	LevelManager.game_scene.reset()
-	var play_button: Button = LevelManager.game_scene.get_node(^"PauseMenuLayer/PauseMenu").get_node(^"%Play")
-	play_button.show()
+	LevelManager.game_scene.pause_menu.play_button.show()
 	# Avoid name conflicts
 	editor.level.name = str(hash(editor.level))
 	# Load level
@@ -208,8 +207,7 @@ func save_level() -> void:
 	if Editor.level_file_name.is_empty():
 		save_as_dialog.show()
 		return # save_level will get called again by the dialog
-	var play_button: Button = LevelManager.game_scene.get_node(^"PauseMenuLayer/PauseMenu").get_node(^"%Play")
-	play_button.show()
+	LevelManager.game_scene.pause_menu.play_button.show()
 	var file_name: String = Editor.level_file_name
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()

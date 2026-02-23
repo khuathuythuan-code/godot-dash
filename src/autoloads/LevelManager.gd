@@ -10,7 +10,7 @@ var current_level_name: String
 var current_level_duration: float = INF
 var attempt: int
 var level_playing: bool
-var pause_manager: Node
+var pause_menu: PauseMenu
 var player: Player
 var player_duals: Array[Player]
 var player_camera: PlayerCamera

@@ -1,4 +1,6 @@
-extends Control
+extends CanvasLayer
+
+class_name PauseMenu
 
 signal paused
 signal unpaused
@@ -6,7 +8,11 @@ signal leave
 signal unsuspended
 signal practice_mode_toggled(toggled_on: bool)
 
-@export var settings_panel: TitleScreenPanel
+@export var level_name_label: Label
+@export var restart_button: Button
+@export var practice_button: Button
+@export var edit_button: Button
+@export var play_button: Button
 
 var suspended: bool
 var tween: Tween
@@ -15,8 +21,8 @@ var settings_were_open: bool
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	LevelManager.pause_manager = self
-	settings_panel.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
+	LevelManager.pause_menu = self
+	$Settings.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 	update_buttons_visibility.call_deferred()
 
 
@@ -28,12 +34,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("hide_pause_menu"):
 		if visible:
 			hide_tween()
-			settings_were_open = settings_panel.visible
-			settings_panel.hide_tween()
+			settings_were_open = $Settings.visible
+			$Settings.hide_tween()
 		else:
 			show_tween()
 			if settings_were_open:
-				settings_panel.show_tween()
+				$Settings.show_tween()
 
 
 func _notification(what):
@@ -44,10 +50,10 @@ func _notification(what):
 
 
 func update_buttons_visibility() -> void:
-	%Restart.visible = not Editor.in_editor
-	%Practice.visible = not Editor.in_editor
-	%Edit.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
-	%Play.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
+	restart_button.visible = not Editor.in_editor
+	practice_button.visible = not Editor.in_editor
+	edit_button.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
+	play_button.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
 
 
 func unsuspend() -> void:
@@ -56,12 +62,11 @@ func unsuspend() -> void:
 
 
 func show_tween() -> void:
-	get_parent().show()
 	show()
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property(self, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-size.x)
+	tween.tween_property($Menu, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-$Menu.size.x)
 	await tween.finished
 
 
@@ -69,10 +74,9 @@ func hide_tween() -> void:
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property(self, "position:x", -size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Menu, "position:x", -$Menu.size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	await tween.finished
 	hide()
-	get_parent().hide()
 
 
 func _on_leave_pressed() -> void:
@@ -82,7 +86,7 @@ func _on_leave_pressed() -> void:
 	leave.emit()
 	if suspended:
 		await unsuspended
-	settings_panel.hide_tween()
+	$Settings.hide_tween()
 	hide_tween()
 	LevelManager.platformer = false
 	LevelManager.practice_mode = false
@@ -104,20 +108,20 @@ func _on_leave_pressed() -> void:
 
 
 func _on_continue_pressed() -> void:
-	$VBoxContainer/LevelName.text = LevelManager.current_level.name
+	level_name_label.text = LevelManager.current_level.name
 	get_tree().paused = not get_tree().paused
 	if get_tree().paused:
 		paused.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		if settings_were_open:
-			settings_panel.show_tween()
+			$Settings.show_tween()
 		show_tween()
 	else:
 		unpaused.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
-		settings_were_open = settings_panel.visible
-		if settings_panel.visible:
-			settings_panel.hide_tween()
+		settings_were_open = $Settings.visible
+		if $Settings.visible:
+			$Settings.hide_tween()
 		hide_tween()
 
 
@@ -142,10 +146,10 @@ func _on_edit_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
-	if settings_panel.visible:
-		settings_panel.hide_tween()
+	if $Settings.visible:
+		$Settings.hide_tween()
 		return
-	settings_panel.show_tween()
+	$Settings.show_tween()
 
 
 func _on_practice_toggled(toggled_on: bool) -> void:
@@ -160,7 +164,7 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	_on_continue_pressed()
 
 
-func _on_play_pressed() -> void:
+func _on_save_and_play_pressed() -> void:
 	if LevelManager.level_playing:
 		Editor.root.stop_playtest()
 	Editor.root.level_operations_handler.save_level()

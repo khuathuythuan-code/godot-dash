@@ -3,6 +3,7 @@ extends Node2D
 class_name GameScene
 
 @export var checkpoint_parent: Node2D
+@export var pause_menu: PauseMenu
 
 var cached_level_data: Dictionary
 var cached_level_path: String
@@ -22,7 +23,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
-		$PauseMenuLayer/PauseMenu.leave.connect(_leave_level)
+		pause_menu.leave.connect(_leave_level)
 		$EditorGridParallax/EditorGrid.hide()
 		load_level()
 		start_level()

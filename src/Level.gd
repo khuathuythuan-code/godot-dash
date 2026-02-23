@@ -130,11 +130,8 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 		var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
 		ground.material.set_shader_parameter(&"ground_color", new_color)
 
-var _pause_manager: Node
-
 
 func _ready() -> void:
-	_pause_manager = LevelManager.pause_manager
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
@@ -154,7 +151,7 @@ func _process(_delta: float) -> void:
 
 func start_level() -> void:
 	if get_tree().paused:
-		await _pause_manager.unpaused
+		await LevelManager.pause_menu.unpaused
 	song_player.stream = AssetManager.load_song_threaded_get(song_path)
 	song_player.play(song_start_time)
 	LevelManager.platformer = platformer

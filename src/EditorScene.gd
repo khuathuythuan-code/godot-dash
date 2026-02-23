@@ -52,7 +52,7 @@ func _ready() -> void:
 	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
 	if editor_grid.visible:
 		editor_grid.queue_redraw()
-	NodeUtils.connect_once($GameScene/PauseMenuLayer/PauseMenu.leave, _on_leave_pressed)
+	NodeUtils.connect_once($GameScene.pause_menu.leave, _on_leave_pressed)
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
@@ -93,7 +93,7 @@ func _physics_process(_delta: float) -> void:
 			%EditorModes.current_tab = 2
 
 	get_tree().auto_accept_quit = not level_was_modified()
-	$GameScene/PauseMenuLayer/PauseMenu.suspended = level_was_modified()
+	$GameScene.pause_menu.suspended = level_was_modified()
 
 	if (
 		%EditorModes.get_current_tab_control().name == "Place"
@@ -165,8 +165,8 @@ func start_playtest() -> void:
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 	$GameScene/PercentageLayer.show()
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
-	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice").show()
-	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").show()
+	$GameScene.pause_menu.practice_button.show()
+	$GameScene.pause_menu.restart_button.show()
 	LevelManager.touchscreen_controls.visible = Config.is_touch_screen
 	$LevelOperationsHandler.pause_autosave()
 	level.start_position = LevelManager.player.position
@@ -184,10 +184,9 @@ func stop_playtest() -> void:
 	new_player.global_position = level.start_position
 	%LevelSettings.refresh_saveloads(level)
 	NodeUtils.free_children($GameScene.checkpoint_parent)
-	var practice_button: Button = $GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice")
-	practice_button.hide()
-	practice_button.set_pressed_no_signal(false)
-	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").hide()
+	$GameScene.pause_menu.practice_button.hide()
+	$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)
+	$GameScene.pause_menu.restart_button.hide()
 	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
 	Editor.viewport.remove_cursor_shape_override()
@@ -195,7 +194,7 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
-	$GameScene/PauseMenuLayer/PauseMenu.unsuspend()
+	$GameScene.pause_menu.unsuspend()
 	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
 

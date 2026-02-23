@@ -12,52 +12,55 @@ variation_face_index = 10
 font = SubResource("FontVariation_0d6if")
 font_size = 64
 
-[node name="PauseMenuLayer" type="CanvasLayer" unique_id=853703343]
+[node name="PauseMenu" type="CanvasLayer" unique_id=189033300 node_paths=PackedStringArray("level_name_label", "restart_button", "practice_button", "edit_button", "play_button")]
 process_mode = 3
 layer = 101
+script = ExtResource("1_aoxbt")
+level_name_label = NodePath("Menu/VBoxContainer/LevelName")
+restart_button = NodePath("Menu/VBoxContainer/Restart")
+practice_button = NodePath("Menu/VBoxContainer/Practice")
+edit_button = NodePath("Menu/VBoxContainer/Edit")
+play_button = NodePath("Menu/VBoxContainer/Save And Play")
+metadata/_custom_type_script = "uid://dklkgkt30unai"
 
-[node name="PauseMenu" type="PanelContainer" parent="." unique_id=933404352 node_paths=PackedStringArray("settings_panel")]
+[node name="Menu" type="PanelContainer" parent="." unique_id=933404352]
 z_index = 128
 material = ExtResource("1_6oxby")
 anchors_preset = -1
 anchor_right = 0.333
 anchor_bottom = 1.0
 grow_vertical = 2
-script = ExtResource("1_aoxbt")
-settings_panel = NodePath("../Settings")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=2056078458]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu" unique_id=2056078458]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="LevelName" type="Label" parent="PauseMenu/VBoxContainer" unique_id=1687682951]
+[node name="LevelName" type="Label" parent="Menu/VBoxContainer" unique_id=1687682951]
 layout_mode = 2
 text = "Level Name"
 label_settings = SubResource("LabelSettings_ibsmc")
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="PauseMenu/VBoxContainer" unique_id=98440856]
+[node name="Spacer" type="Control" parent="Menu/VBoxContainer" unique_id=98440856]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1290684664]
+[node name="Resume" type="Button" parent="Menu/VBoxContainer" unique_id=1290684664]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Resume"
 
-[node name="Restart" type="Button" parent="PauseMenu/VBoxContainer" unique_id=864556660]
-unique_name_in_owner = true
+[node name="Restart" type="Button" parent="Menu/VBoxContainer" unique_id=864556660]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Restart"
 
-[node name="Practice" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1058546948]
-unique_name_in_owner = true
+[node name="Practice" type="Button" parent="Menu/VBoxContainer" unique_id=1058546948]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -65,8 +68,7 @@ theme_type_variation = &"TitleScreenButton"
 toggle_mode = true
 text = "Practice"
 
-[node name="Edit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=840835775]
-unique_name_in_owner = true
+[node name="Edit" type="Button" parent="Menu/VBoxContainer" unique_id=840835775]
 visible = false
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
@@ -74,8 +76,7 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Edit"
 
-[node name="Play" type="Button" parent="PauseMenu/VBoxContainer" unique_id=625697786]
-unique_name_in_owner = true
+[node name="Save And Play" type="Button" parent="Menu/VBoxContainer" unique_id=625697786]
 visible = false
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
@@ -83,14 +84,14 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Save and play"
 
-[node name="Settings" type="Button" parent="PauseMenu/VBoxContainer" unique_id=639824919]
+[node name="Settings" type="Button" parent="Menu/VBoxContainer" unique_id=639824919]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Settings"
 
-[node name="Leave" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1220920267]
+[node name="Leave" type="Button" parent="Menu/VBoxContainer" unique_id=1220920267]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -120,10 +121,10 @@ layout_mode = 2
 [node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
 layout_mode = 2
 
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="PauseMenu" method="_on_continue_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Restart" to="PauseMenu" method="_on_restart_pressed"]
-[connection signal="toggled" from="PauseMenu/VBoxContainer/Practice" to="PauseMenu" method="_on_practice_toggled"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Edit" to="PauseMenu" method="_on_edit_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Play" to="PauseMenu" method="_on_play_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Settings" to="PauseMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Leave" to="PauseMenu" method="_on_leave_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Resume" to="Menu" method="_on_continue_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Restart" to="Menu" method="_on_restart_pressed"]
+[connection signal="toggled" from="Menu/VBoxContainer/Practice" to="Menu" method="_on_practice_toggled"]
+[connection signal="pressed" from="Menu/VBoxContainer/Edit" to="Menu" method="_on_edit_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Save And Play" to="." method="_on_save_and_play_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Settings" to="Menu" method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/Leave" to="Menu" method="_on_leave_pressed"]
