@@ -53,13 +53,6 @@ font_size = 48
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Environment" id="Environment_4phyr"]
-background_mode = 3
-background_canvas_max_layer = 50
-glow_enabled = true
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1npfk"]
 content_margin_left = 13.0
 content_margin_top = 13.0
@@ -98,6 +91,13 @@ corner_radius_top_right = 42
 corner_radius_bottom_right = 42
 corner_radius_bottom_left = 42
 corner_detail = 12
+
+[sub_resource type="Environment" id="Environment_4phyr"]
+background_mode = 3
+background_canvas_max_layer = 50
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
 
 [node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent")]
 physics_interpolation_mode = 2
@@ -278,17 +278,6 @@ label_settings = SubResource("LabelSettings_21xg8")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseMenuLayer" parent="." unique_id=992005032 instance=ExtResource("9_vv033")]
-layer = 102
-visible = false
-
-[node name="FadeScreenLayer" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220297200]
-environment = SubResource("Environment_4phyr")
-camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
-script = ExtResource("17_21xg8")
-
 [node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
 process_mode = 3
 script = ExtResource("17_iaegw")
@@ -413,5 +402,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("22_1npfk")
 expand_mode = 5
+
+[node name="PauseMenuLayer" parent="." unique_id=992005032 instance=ExtResource("9_vv033")]
+layer = 102
+visible = false
+
+[node name="FadeScreen" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220297200]
+environment = SubResource("Environment_4phyr")
+camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
+script = ExtResource("17_21xg8")
 
 [connection signal="pressed" from="TouchscreenControlsLayer/Pause" to="TouchscreenControlsLayer" method="_pause"]

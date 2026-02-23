@@ -206,8 +206,6 @@ position = Vector2(0, 1.5258789e-05)
 shape = SubResource("WorldBoundaryShape2D_jk6fi")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
-[node name="FadeScreenLayer" parent="." unique_id=1242859628 instance=ExtResource("1_p8bvb")]
-
 [node name="TitleScreenLayer" type="CanvasLayer" parent="." unique_id=1427652507]
 
 [node name="TitleScreen" type="Control" parent="TitleScreenLayer" unique_id=2049651669]
@@ -363,7 +361,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
 placeholder_text = "Search..."
 right_icon = ExtResource("13_0d6if")
 script = ExtResource("14_hvy54")
-root_node_to_search = NodePath("../../SmoothScrollContainer/VBoxContainer")
+root_node_to_search = NodePath("../../SmoothScrollContainer/LevelPanelLoader")
 group_name = PackedStringArray()
 metadata/_custom_type_script = "uid://y1hecem53675"
 
@@ -406,7 +404,7 @@ wheel_scroll_damper = SubResource("Resource_1nrh6")
 dragging_scroll_damper = SubResource("Resource_08fpa")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order")]
+[node name="LevelPanelLoader" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -710,6 +708,8 @@ layout_mode = 2
 [node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" unique_id=917759721 instance=ExtResource("12_p8bvb")]
 layout_mode = 2
 
+[node name="FadeScreen" parent="." unique_id=1242859628 instance=ExtResource("1_p8bvb")]
+
 [node name="CameraCenterParent" type="Control" parent="." unique_id=782059914]
 layout_mode = 1
 anchors_preset = 8
@@ -790,12 +790,12 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen_layer", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
-fade_screen_layer = NodePath("../FadeScreenLayer")
+fade_screen = NodePath("../FadeScreen")
 menu_loop = NodePath("../MenuLoop")
 level_selector = NodePath("../TitleScreenLayer/TitleScreen/LevelSelector")
 community_menu = NodePath("../TitleScreenLayer/TitleScreen/Community")
@@ -816,10 +816,10 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
-[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="_import_level"]
+[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_import_level"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="_open_importer"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/VBoxContainer" method="refresh"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_open_importer"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="refresh"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_ship_pressed"]
 [connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_tab_changed"]
 [connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]

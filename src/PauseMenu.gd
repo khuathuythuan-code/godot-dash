@@ -165,7 +165,7 @@ func _on_play_pressed() -> void:
 		Editor.root.stop_playtest()
 	Editor.root.level_operations_handler.save_level()
 	_on_continue_pressed()
-	var fade_screen: FadeScreen = Editor.root.get_node(^"FadeScreenLayer/FadeScreen")
+	var fade_screen: FadeScreen = Editor.root.fade_screen
 	fade_screen.fade_in(0.5)
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:
