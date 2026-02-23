@@ -14,7 +14,6 @@ enum EditorAction {
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
-@export var fade_screen: FadeScreen
 
 var level: Level:
 	set(value):
@@ -34,7 +33,7 @@ func _ready() -> void:
 	Editor.viewport = %EditorViewport
 
 	if SceneManager.from_title_screen():
-		fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		$GameScene.fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		create_tween().tween_property($EditorCamera, ^"zoom", Vector2.ONE * 0.8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).from(Vector2.ONE * 0.4)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
@@ -194,9 +193,14 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
-	$GameScene.pause_menu.unsuspend()
-	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
+	$GameScene.pause_menu.unsuspend(true)
+	$GameScene.fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	(
+		create_tween() \
+		.tween_property($EditorCamera, ^"zoom", $EditorCamera.zoom / 2.0, 0.5) \
+		.set_ease(Tween.EASE_IN) \
+		.set_trans(Tween.TRANS_EXPO)
+	)
 
 
 func _on_playtest_pressed() -> void:
@@ -213,6 +217,7 @@ func _on_leave_pressed() -> void:
 	if level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
+		$SaveChangesBeforeOpening.canceled.connect($GameScene.pause_menu.unsuspend.bind(false), ConnectFlags.CONNECT_ONE_SHOT)
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return

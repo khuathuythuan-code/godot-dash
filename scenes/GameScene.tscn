@@ -99,11 +99,12 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
 
-[node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent", "pause_menu")]
+[node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent", "pause_menu", "fade_screen")]
 physics_interpolation_mode = 2
 script = ExtResource("1_k47tp")
 checkpoint_parent = NodePath("CheckpointParent")
 pause_menu = NodePath("PauseMenu")
+fade_screen = NodePath("FadeScreen")
 metadata/_edit_lock_ = true
 
 [node name="BackgroundParallax" type="Parallax2D" parent="." unique_id=967726218]

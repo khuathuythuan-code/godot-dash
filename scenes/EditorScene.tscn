@@ -68,7 +68,6 @@
 [ext_resource type="Texture2D" uid="uid://csso3kjr2kpfc" path="res://assets/textures/solids/grid_blocks/GridBlock13.svg" id="25_33w7i"]
 [ext_resource type="PackedScene" uid="uid://d0dk4786hlokq" path="res://scenes/components/level_components/orbs/BlueOrb.tscn" id="26_ay76u"]
 [ext_resource type="Texture2D" uid="uid://did756jp8kche" path="res://assets/textures/orbs/BlueOrb.svg" id="26_guceq"]
-[ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="26_j5fve"]
 [ext_resource type="Texture2D" uid="uid://dnl8ddabana01" path="res://assets/textures/solids/grid_blocks/GridBlock14.svg" id="26_t7625"]
 [ext_resource type="PackedScene" uid="uid://danxhobafrnci" path="res://scenes/components/level_components/orbs/GreenOrb.tscn" id="27_wpv76"]
 [ext_resource type="Texture2D" uid="uid://c2yhbwvo7g3jj" path="res://assets/textures/orbs/GreenOrb.svg" id="28_lenuf"]
@@ -546,7 +545,7 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aju4o"]
 size = Vector2(2, 2)
 
-[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "level_operations_handler", "editor_camera", "view_menu", "fade_screen")]
+[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "level_operations_handler", "editor_camera", "view_menu")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ftcrp")
@@ -555,7 +554,6 @@ level_operations_handler = NodePath("LevelOperationsHandler")
 block_palette_button_group = ExtResource("3_0vcbd")
 editor_camera = NodePath("EditorCamera")
 view_menu = NodePath("EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar/View")
-fade_screen = NodePath("FadeScreen")
 metadata/_edit_vertical_guides_ = [-111.0]
 metadata/_edit_lock_ = true
 
@@ -6413,8 +6411,6 @@ metadata/_edit_group_ = true
 [node name="Hitbox" type="CollisionShape2D" parent="PlacedObjectsCollider" unique_id=131423467]
 shape = SubResource("CircleShape2D_ac3bt")
 debug_color = Color(0.678125, 0.7, 0, 0.42)
-
-[node name="FadeScreen" parent="." unique_id=324242049 instance=ExtResource("26_j5fve")]
 
 [node name="PlaceHandler" type="Node" parent="." unique_id=1480197025 node_paths=PackedStringArray("game_scene", "editor_viewport", "edit_handler")]
 script = ExtResource("33_uwrsc")

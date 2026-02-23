@@ -4,6 +4,7 @@ class_name GameScene
 
 @export var checkpoint_parent: Node2D
 @export var pause_menu: PauseMenu
+@export var fade_screen: FadeScreen
 
 var cached_level_data: Dictionary
 var cached_level_path: String

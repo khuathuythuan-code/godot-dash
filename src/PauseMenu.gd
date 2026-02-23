@@ -5,7 +5,7 @@ class_name PauseMenu
 signal paused
 signal unpaused
 signal leave
-signal unsuspended
+signal unsuspended(proceed_through: bool)
 signal practice_mode_toggled(toggled_on: bool)
 
 @export var level_name_label: Label
@@ -56,9 +56,9 @@ func update_buttons_visibility() -> void:
 	play_button.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
 
 
-func unsuspend() -> void:
+func unsuspend(proceed_through: bool) -> void:
 	suspended = false
-	unsuspended.emit()
+	unsuspended.emit(proceed_through)
 
 
 func show_tween() -> void:
@@ -102,10 +102,13 @@ func _on_leave_pressed() -> void:
 	if Editor.in_editor:
 		Editor.root.stop_playtest()
 	leave.emit()
+	var proceed_through: bool
 	if suspended:
-		await unsuspended
+		proceed_through = await unsuspended
 	$Settings.hide_tween()
 	hide_tween()
+	if not proceed_through:
+		return
 	LevelManager.platformer = false
 	LevelManager.practice_mode = false
 	LevelManager.practice_level_snapshots.clear()
@@ -113,16 +116,16 @@ func _on_leave_pressed() -> void:
 	AssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit.ogg")
 	SceneManager.is_transitioning = true
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	LevelManager.current_level.process_mode = Node.PROCESS_MODE_DISABLED
 	# HACK: removing the delay gets the screen frozen on the last frame after pressing the button instead of fading to black
-	await get_tree().create_timer(0.5).timeout
+	await LevelManager.game_scene.fade_screen.fade_finished
 	LevelManager.game_scene = null
 	if Editor.clipboard:
 		Editor.clipboard.clear()
 	SceneManager.is_transitioning = false
 	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
 
 
 func _on_restart_pressed() -> void:
@@ -169,7 +172,7 @@ func _on_save_and_play_pressed() -> void:
 		Editor.root.stop_playtest()
 	Editor.root.level_operations_handler.save_level()
 	toggle_pause_menu()
-	var fade_screen: FadeScreen = Editor.root.fade_screen
+	var fade_screen: FadeScreen = LevelManager.game_scene.fade_screen
 	fade_screen.fade_in(0.5)
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:
