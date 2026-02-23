@@ -81,7 +81,7 @@ func reorder() -> void:
 func _play_level(level_name: String) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
-	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	fade_screen.fade_in()
 	subscene_manager.history.change_phantomcamera(subscene_manager.active_pcam, subscene_manager.quit_game_camera)
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.current_level_name = name

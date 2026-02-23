@@ -33,8 +33,14 @@ func _ready() -> void:
 	Editor.viewport = %EditorViewport
 
 	if SceneManager.from_title_screen() or SceneManager.from_level():
-		$GameScene.fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
-		create_tween().tween_property($EditorCamera, ^"zoom", Vector2.ONE * 0.8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).from(Vector2.ONE * 0.4)
+		$GameScene.fade_screen.fade_out()
+		(
+			create_tween() \
+			.tween_property($EditorCamera, ^"zoom", Vector2.ONE * 0.8, Config.transition_duration) \
+			.set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_EXPO) \
+			.from(Vector2.ONE * 0.4)
+		)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
 	LevelManager.attempt = 1
@@ -193,10 +199,10 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
-	$GameScene.fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	$GameScene.fade_screen.fade_in()
 	(
 		create_tween() \
-		.tween_property($EditorCamera, ^"zoom", $EditorCamera.zoom / 2.0, 0.5) \
+		.tween_property($EditorCamera, ^"zoom", $EditorCamera.zoom / 2.0, Config.transition_duration) \
 		.set_ease(Tween.EASE_IN) \
 		.set_trans(Tween.TRANS_EXPO)
 	)

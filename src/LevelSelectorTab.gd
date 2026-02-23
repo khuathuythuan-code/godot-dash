@@ -22,7 +22,7 @@ func _on_button_pressed() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 	var fade_screen: FadeScreen = fade_screen_layer.get_node(^"FadeScreen")
-	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	fade_screen.fade_in()
 	await fade_screen.fade_finished
 	LevelManager.current_level_name = name
 	LevelManager.attempt = 0

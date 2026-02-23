@@ -58,10 +58,14 @@ func _ready() -> void:
 		# HACK: Manual animation because PhantomCamera gets in the way
 		camera.global_position = active_pcam.global_position
 		camera.get_node(^"PhantomCameraHost").queue_free()
-		fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		fade_screen.fade_out()
 		_camera_tween = create_tween()
 		(
-			_camera_tween.tween_property(camera, "zoom", PlayerCamera.DEFAULT_ZOOM, 0.5).from(Vector2.ONE * 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+			_camera_tween \
+			.tween_property(camera, ^"zoom", PlayerCamera.DEFAULT_ZOOM, Config.transition_duration) \
+			.from(Vector2.ONE * 2) \
+			.set_ease(Tween.EASE_OUT) \
+			.set_trans(Tween.TRANS_EXPO)
 		)
 		await _camera_tween.finished
 		camera.add_child(PhantomCameraHost.new())
@@ -151,7 +155,7 @@ func _on_editor_pressed() -> void:
 	$"../MenuLoop".playing = false
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 	history.change_phantomcamera(active_pcam, quit_game_camera)
-	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	fade_screen.fade_in()
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Creating a level")
@@ -165,7 +169,7 @@ func _on_editor_pressed() -> void:
 func _on_quit_game_pressed() -> void:
 	if fade_screen.is_fading:
 		return
-	fade_screen.fade_in(0.5, Tween.EASE_IN_OUT, Tween.TRANS_EXPO)
+	fade_screen.fade_in()
 	history.change_phantomcamera(active_pcam, quit_game_camera)
 	await fade_screen.fade_finished
 	get_tree().quit()

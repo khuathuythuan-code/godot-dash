@@ -234,6 +234,21 @@ script = ExtResource("6_p6jor")
 config_property = &"menu_blur"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
+[node name="Transition Duration" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=168407974]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("10_vf3uf")
+default = 0.5
+max_value = 5.0
+suffix = "s"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Transition Duration" unique_id=1598599333]
+script = ExtResource("6_p6jor")
+config_property = &"transition_duration"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
 [node name="Performance" type="FoldableContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer" unique_id=568226307]
 layout_mode = 2
 mouse_filter = 1
@@ -473,7 +488,6 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Master" unique_id=642482444]
@@ -487,7 +501,6 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Music" unique_id=2064338932]
@@ -501,7 +514,6 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" unique_id=943003920]
@@ -515,7 +527,6 @@ vertical = true
 script = ExtResource("10_vf3uf")
 min_value = 1.0
 max_value = 1.0
-spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" unique_id=1570908205]

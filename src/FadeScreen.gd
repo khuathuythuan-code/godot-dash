@@ -17,15 +17,15 @@ func _ready() -> void:
 	hide()
 
 
-func fade_in(fade_duration: float, ease_type: Tween.EaseType = Tween.EASE_IN, trans_type: Tween.TransitionType = Tween.TRANS_SINE) -> void:
+func fade_in() -> void:
 	is_fading = true
 	show()
 	var fade_tween = get_tree().create_tween()
 	(
 		fade_tween \
-		.tween_property($ColorRect, ^"color", Color.BLACK, fade_duration) \
-		.set_ease(ease_type) \
-		.set_trans(trans_type) \
+		.tween_property($ColorRect, ^"color", Color.BLACK, Config.transition_duration) \
+		.set_ease(Tween.EASE_IN) \
+		.set_trans(Tween.TRANS_SINE) \
 		.from(Color.hex(0x00000000)) # transparent black
 	)
 	await fade_tween.finished
@@ -33,15 +33,15 @@ func fade_in(fade_duration: float, ease_type: Tween.EaseType = Tween.EASE_IN, tr
 	is_fading = false
 
 
-func fade_out(fade_duration: float, ease_type: Tween.EaseType = Tween.EASE_OUT, trans_type: Tween.TransitionType = Tween.TRANS_SINE) -> void:
+func fade_out() -> void:
 	is_fading = true
 	show()
 	var fade_tween = get_tree().create_tween()
 	(
 		fade_tween \
-		.tween_property($ColorRect, ^"color", Color.hex(0x00000000), fade_duration) \
-		.set_ease(ease_type) \
-		.set_trans(trans_type) \
+		.tween_property($ColorRect, ^"color", Color.hex(0x00000000), Config.transition_duration) \
+		.set_ease(Tween.EASE_OUT) \
+		.set_trans(Tween.TRANS_SINE) \
 		.from(Color.BLACK)
 	)
 	await fade_tween.finished

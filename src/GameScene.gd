@@ -65,7 +65,7 @@ func start_level() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 	if LevelManager.attempt == 0 and not Editor.in_editor:
 		await get_tree().create_timer(0.2).timeout
-		$FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		$FadeScreen.fade_out()
 		await $FadeScreen.fade_finished
 	for level in $Level.get_children():
 		level.start_level()
@@ -115,7 +115,7 @@ func _leave_level() -> void:
 		level.stop_level()
 	LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 	LevelManager.player_camera.process_mode = Node.PROCESS_MODE_DISABLED
-	$FadeScreen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	$FadeScreen.fade_in()
 
 
 static func get_camera_rect(camera: Camera2D, viewport: Viewport) -> Rect2:

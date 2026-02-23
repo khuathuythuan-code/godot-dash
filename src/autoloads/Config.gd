@@ -52,6 +52,7 @@ enum ParticlePreprocessing {
 @export var texture_filtering: TextureFilteringMode = TextureFilteringMode.LINEAR_WITH_MIPMAPS
 @export var bloom: bool = true
 @export var menu_blur: bool = true
+@export var transition_duration: float = 0.5
 
 # Performance
 @export_group("Performance")
@@ -149,6 +150,7 @@ func _init():
 	texture_filtering = config_file.get_value("Graphics", "texture_filtering", texture_filtering)
 	bloom = config_file.get_value("Graphics", "bloom", bloom)
 	menu_blur = config_file.get_value("Graphics", "menu_blur", menu_blur)
+	transition_duration = config_file.get_value("Graphics", "transition_duration", transition_duration)
 
 	# Performance
 	enable_title_screen_icons = config_file.get_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
@@ -215,6 +217,7 @@ func save() -> void:
 	config_file.set_value("Graphics", "texture_filtering", texture_filtering)
 	config_file.set_value("Graphics", "bloom", bloom)
 	config_file.set_value("Graphics", "menu_blur", menu_blur)
+	config_file.set_value("Graphics", "transition_duration", transition_duration)
 
 	# Performance
 	config_file.set_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)

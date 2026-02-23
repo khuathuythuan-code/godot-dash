@@ -68,7 +68,7 @@ func show_tween() -> void:
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property($Menu, "position:x", 0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-$Menu.size.x)
+	tween.tween_property($Menu, ^"position:x", 0, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-$Menu.size.x)
 	await tween.finished
 
 
@@ -76,7 +76,7 @@ func hide_tween() -> void:
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property($Menu, "position:x", -$Menu.size.x, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property($Menu, ^"position:x", -$Menu.size.x, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	await tween.finished
 	hide()
 
@@ -150,7 +150,7 @@ func _on_edit_pressed() -> void:
 	var fade_screen = LevelManager.game_scene.fade_screen
 	get_tree().paused = false
 	LevelManager.level_playing = false
-	fade_screen.fade_in(0.5)
+	fade_screen.fade_in()
 	await fade_screen.fade_finished
 	SceneManager.is_transitioning = false
 	get_tree().change_scene_to_packed(AssetManager.editor_packed)
@@ -182,7 +182,7 @@ func _on_save_and_play_pressed() -> void:
 	Editor.root.level_operations_handler.save_level()
 	toggle_pause_menu()
 	var fade_screen: FadeScreen = LevelManager.game_scene.fade_screen
-	fade_screen.fade_in(0.5)
+	fade_screen.fade_in()
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Playing a level")
