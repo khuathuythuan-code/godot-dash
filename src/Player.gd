@@ -119,9 +119,9 @@ var allow_ceiling_hit_count: int:
 var allow_wave_slide_count: int:
 	set(value):
 		allow_wave_slide_count = max(value, 0)
-var allow_auto_checkpoints_count: int:
+var no_auto_checkpoints_count: int:
 	set(value):
-		allow_auto_checkpoints_count = max(value, 0)
+		no_auto_checkpoints_count = max(value, 0)
 
 # Queues
 var orb_queue: Array[OrbInteractable]
@@ -139,7 +139,8 @@ var _spider_state_machine: AnimationNodeStateMachinePlayback
 var _spider_animation_tree: AnimationTree
 var _snap_sprite_rotation: bool
 var _snap_sprite_rotation_frames: int
-var _last_automatic_checkpoint: float = 0
+
+@onready var last_automatic_checkpoint_position: Vector2 = position
 
 
 func _ready() -> void:
@@ -229,7 +230,7 @@ func _physics_process(delta: float) -> void:
 			_snap_sprite_rotation = false
 
 	if LevelManager.level_playing:
-		_handle_checkpoint_placement(delta)
+		_handle_checkpoint_placement()
 
 
 func _should_process() -> bool:
@@ -447,7 +448,7 @@ func _compute_velocity(
 			allow_ceiling_hit_count += 1
 			# Force up direction update in order for _handle_collision to work properly
 			up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
-			last_collision = move_and_collide(displacement.normalized() * LevelManager.CELL_SIZE, true)
+			last_collision = move_and_collide(displacement.normalized() * Constants.CELL_SIZE, true)
 			$GroundCollider.rotation = gameplay_rotation
 			_handle_collision(last_collision, false)
 			allow_ceiling_hit_count -= 1
@@ -589,7 +590,7 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			allow_ceiling_hit_count += 1
 			# Force up direction update in order for _handle_collision to work properly
 			up_direction = Vector2.UP.rotated(gameplay_rotation) * sign(gravity_flip)
-			last_collision = move_and_collide(displacement.normalized() * LevelManager.CELL_SIZE, true)
+			last_collision = move_and_collide(displacement.normalized() * Constants.CELL_SIZE, true)
 			$GroundCollider.rotation = gameplay_rotation
 			_handle_collision(last_collision, false)
 			allow_ceiling_hit_count -= 1
@@ -905,7 +906,7 @@ func _update_spider_state_machine(jump_state: int) -> void:
 func _player_death() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	dead = true
-	_last_automatic_checkpoint = 0
+	last_automatic_checkpoint_position = position
 	$Icon.hide()
 	$DeathEffect.frame = 0
 	$DeathEffect.play()
@@ -919,32 +920,29 @@ func _on_death_restart() -> void:
 	LevelManager.game_scene.restart_level()
 
 
-func _handle_checkpoint_placement(delta: float = get_physics_process_delta_time(), practice_mode: bool = LevelManager.practice_mode) -> void:
+func _handle_checkpoint_placement(practice_mode: bool = LevelManager.practice_mode) -> void:
 	var checkpoint_parent: Node2D = LevelManager.game_scene.checkpoint_parent
 	if not practice_mode:
 		return
 	if Input.is_action_just_pressed(&"practice_create_checkpoint"):
 		place_checkpoint().use_normal_sprite().done()
-		_last_automatic_checkpoint = 0.0
+		last_automatic_checkpoint_position = position
 	elif Input.is_action_just_pressed(&"practice_remove_checkpoint"):
 		var last_checkpoint: Sprite2D = checkpoint_parent.get_child(-1)
 		if not last_checkpoint:
 			return
 		last_checkpoint.queue_free()
 		LevelManager.practice_level_snapshots.pop_back()
-	elif Config.automatic_checkpoints:
-		if not _should_process() or allow_auto_checkpoints_count != 0:
-			return
-		if _last_automatic_checkpoint < Config.automatic_checkpoint_interval:
-			_last_automatic_checkpoint += delta
+	elif Config.automatic_checkpoints and no_auto_checkpoints_count == 0:
+		if last_automatic_checkpoint_position.distance_to(position) < Config.automatic_checkpoint_distance * Constants.CELL_SIZE:
 			return
 		if is_on_floor_only():
 			place_checkpoint().use_auto_sprite().done()
-		elif internal_gamemode != Gamemode.CUBE and internal_gamemode != Gamemode.ROBOT and internal_gamemode != Gamemode.SPIDER and internal_gamemode != Gamemode.BALL:
+		elif _is_flying_gamemode:
 			place_checkpoint().use_auto_sprite().done()
 		else:
 			return
-		_last_automatic_checkpoint = 0
+		last_automatic_checkpoint_position = position
 
 
 func place_checkpoint() -> CheckpointPlacementBuilder:

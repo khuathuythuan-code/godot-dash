@@ -66,7 +66,7 @@ enum ParticlePreprocessing {
 # Practice
 @export_group("Practice")
 @export var automatic_checkpoints: bool = true
-@export var automatic_checkpoint_interval: float = 1
+@export var automatic_checkpoint_distance: float = 10.0
 
 # Audio
 @export_group("Audio")
@@ -122,17 +122,17 @@ var menu_loop: String:
 # Icons
 @export_group("Icon")
 @export var icons: Dictionary[PreviewIcon.Icon, Dictionary] = {
-	PreviewIcon.Icon.CUBE: {"path" = "res://assets/textures/player/cube/Cube.svg"},
-	PreviewIcon.Icon.SHIP: {"path" = "res://assets/textures/player/ship/Ship1.svg"},
-	PreviewIcon.Icon.JETPACK: {"path" = "res://assets/textures/player/jetpack/Jetpack.svg"},
-	PreviewIcon.Icon.UFO: {"path" = "res://assets/textures/player/ufo/Ufo.svg"},
-	PreviewIcon.Icon.BALL: {"path" = "res://assets/textures/player/ball/Ball1.svg"},
-	PreviewIcon.Icon.WAVE: {"path" = "res://assets/textures/player/wave/Wave1/"},
-	PreviewIcon.Icon.ROBOT: {"path" = "res://assets/textures/player/cube/Cube.svg"},
-	PreviewIcon.Icon.SPIDER: {"path" = "res://assets/textures/player/spider/Spider1/"},
-	PreviewIcon.Icon.SWING: {"path" = "res://assets/textures/player/swing/Swing1/"},
-	PreviewIcon.Icon.TRAIL: {},
-	PreviewIcon.Icon.DEATH_EFFECT: {"path" = "res://assets/textures/player/death_effect/DeathEffect1/"},
+	PreviewIcon.Icon.CUBE: { "path" ="res://assets/textures/player/cube/Cube.svg" },
+	PreviewIcon.Icon.SHIP: { "path" ="res://assets/textures/player/ship/Ship1.svg" },
+	PreviewIcon.Icon.JETPACK: { "path" ="res://assets/textures/player/jetpack/Jetpack.svg" },
+	PreviewIcon.Icon.UFO: { "path" ="res://assets/textures/player/ufo/Ufo.svg" },
+	PreviewIcon.Icon.BALL: { "path" ="res://assets/textures/player/ball/Ball1.svg" },
+	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave1/" },
+	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube.svg" },
+	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
+	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },
+	PreviewIcon.Icon.TRAIL: { },
+	PreviewIcon.Icon.DEATH_EFFECT: { "path" ="res://assets/textures/player/death_effect/DeathEffect1/" },
 }
 
 var config_file: ConfigFile = ConfigFile.new()
@@ -159,7 +159,7 @@ func _init():
 
 	# Practice
 	automatic_checkpoints = config_file.get_value("Practice", "automatic_checkpoints", automatic_checkpoints)
-	automatic_checkpoint_interval = config_file.get_value("Practice", "automatic_checkpoint_interval", automatic_checkpoint_interval)
+	automatic_checkpoint_distance = config_file.get_value("Practice", "automatic_checkpoint_distance", automatic_checkpoint_distance)
 
 	# Audio
 	master_audio_level = config_file.get_value("Audio", "master_audio_level", master_audio_level)
@@ -193,7 +193,7 @@ func _init():
 	# Internet
 	check_for_updates = config_file.get_value("Internet", "check_for_updates", check_for_updates)
 	discord_rich_presence = config_file.get_value("Internet", "discord_rich_presence", discord_rich_presence)
-	
+
 	# Icons
 	icons = config_file.get_value("Icons", "icons", icons)
 
@@ -225,7 +225,7 @@ func save() -> void:
 
 	# Practice
 	config_file.set_value("Practice", "automatic_checkpoints", automatic_checkpoints)
-	config_file.set_value("Practice", "automatic_checkpoint_interval", automatic_checkpoint_interval)
+	config_file.set_value("Practice", "automatic_checkpoint_distance", automatic_checkpoint_distance)
 
 	# Audio
 	config_file.set_value("Audio", "master_audio_level", master_audio_level)
@@ -259,7 +259,7 @@ func save() -> void:
 	# Internet
 	config_file.set_value("Internet", "check_for_updates", check_for_updates)
 	config_file.set_value("Internet", "discord_rich_presence", discord_rich_presence)
-	
+
 	# Icons
 	config_file.set_value("Icons", "icons", icons)
 

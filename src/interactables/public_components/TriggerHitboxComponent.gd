@@ -1,10 +1,11 @@
 extends Component
+
 class_name TriggerHitboxComponent
 
 enum HitboxShape {
 	LINE,
 	SQUARE,
-	DISABLED
+	DISABLED,
 }
 
 @export var _hitbox: CollisionShape2D
@@ -16,11 +17,11 @@ enum HitboxShape {
 		match value:
 			HitboxShape.LINE:
 				_hitbox.shape = SegmentShape2D.new()
-				_hitbox.shape.a = Vector2(0, -hitbox_height * LevelManager.CELL_SIZE)
-				_hitbox.shape.b = Vector2(0,  hitbox_height * LevelManager.CELL_SIZE)
+				_hitbox.shape.a = Vector2(0, -hitbox_height * Constants.CELL_SIZE)
+				_hitbox.shape.b = Vector2(0, hitbox_height * Constants.CELL_SIZE)
 			HitboxShape.SQUARE:
 				_hitbox.shape = RectangleShape2D.new()
-				_hitbox.shape.size = Vector2.ONE * LevelManager.CELL_SIZE
+				_hitbox.shape.size = Vector2.ONE * Constants.CELL_SIZE
 			HitboxShape.DISABLED:
 				_hitbox.shape = null
 
@@ -30,5 +31,5 @@ enum HitboxShape {
 		if hitbox_shape != HitboxShape.LINE or _hitbox == null:
 			return
 		_hitbox.shape = SegmentShape2D.new()
-		_hitbox.shape.a = Vector2(0, -value * LevelManager.CELL_SIZE)
-		_hitbox.shape.b = Vector2(0,  value * LevelManager.CELL_SIZE)
+		_hitbox.shape.a = Vector2(0, -value * Constants.CELL_SIZE)
+		_hitbox.shape.b = Vector2(0, value * Constants.CELL_SIZE)

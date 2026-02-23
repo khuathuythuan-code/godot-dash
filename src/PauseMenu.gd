@@ -154,6 +154,9 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	practice_mode_toggled.emit(toggled_on)
 	if not toggled_on:
 		NodeUtils.free_children(LevelManager.game_scene.checkpoint_parent)
+	elif LevelManager.player:
+		var player: Player = LevelManager.player
+		player.last_automatic_checkpoint_position = player.position + Vector2.ONE * Config.automatic_checkpoint_distance
 	_on_continue_pressed()
 
 

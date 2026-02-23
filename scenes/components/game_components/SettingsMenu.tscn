@@ -87,6 +87,7 @@ script = ExtResource("4_y26le")
 metadata/_custom_type_script = "uid://5wf1ujgda80e"
 
 [node name="Graphics" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=1078651350]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,7 +352,6 @@ theme_type_variation = &"GroupButton"
 text = "Apply and Reload"
 
 [node name="Gameplay" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=1198764347]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -396,22 +396,23 @@ script = ExtResource("6_p6jor")
 config_property = &"automatic_checkpoints"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Automatic Checkpoint Interval" type="BoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Practice/VBoxContainer" unique_id=247462545]
+[node name="Automatic Checkpoint Distance" type="BoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Practice/VBoxContainer" unique_id=247462545]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("10_vf3uf")
-default = 1.0
-min_value = 0.1
-max_value = 10.0
+default = 10.0
+min_value = 1.0
+max_value = 50.0
 step = 0.1
 allow_greater = true
-suffix = "s"
+suffix = "cells"
+spinbox_width = 120.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Practice/VBoxContainer/Automatic Checkpoint Interval" unique_id=1438187978]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Practice/VBoxContainer/Automatic Checkpoint Distance" unique_id=1438187978]
 script = ExtResource("6_p6jor")
-config_property = &"automatic_checkpoint_interval"
+config_property = &"automatic_checkpoint_distance"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="HSeparator" type="HSeparator" parent="EnumButtonTabContainer/Gameplay" unique_id=807865401]
@@ -472,7 +473,7 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-slider_width = 256.0
+spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Master" unique_id=642482444]
@@ -486,7 +487,7 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-slider_width = 256.0
+spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Music" unique_id=2064338932]
@@ -500,7 +501,7 @@ vertical = true
 script = ExtResource("10_vf3uf")
 default = 1.0
 max_value = 1.0
-slider_width = 256.0
+spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" unique_id=943003920]
@@ -514,7 +515,7 @@ vertical = true
 script = ExtResource("10_vf3uf")
 min_value = 1.0
 max_value = 1.0
-slider_width = 256.0
+spinbox_width = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" unique_id=1570908205]

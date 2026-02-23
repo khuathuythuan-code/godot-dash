@@ -31,7 +31,8 @@ const DEFAULT_BACKGROUND_COLOR: Color = Color("#3670ff")
 const DEFAULT_GROUND_COLOR: Color = Color("#1b4bc4")
 const DEFAULT_LINE_COLOR: Color = Color.WHITE
 
-const CELLS_TO_PX := Vector2(LevelManager.CELL_SIZE, -LevelManager.CELL_SIZE)
+const CELL_SIZE: int = 128
+const CELLS_TO_PX := Vector2(CELL_SIZE, -CELL_SIZE)
 
 const LEVEL_DIR: String = "user://created_levels/levels/"
 const SONG_DIR: String = "user://created_levels/songs/"

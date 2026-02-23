@@ -171,7 +171,7 @@ func start_level() -> void:
 		LevelManager.player_camera.freefly = start_freefly
 	if not start_freefly:
 		GroundData.center = Constants.DEFAULT_PLAYER_POSITION
-		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * LevelManager.CELL_SIZE * 0.5
+		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * Constants.CELL_SIZE * 0.5
 		if Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
 			GroundData.offset = (Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
 		else:

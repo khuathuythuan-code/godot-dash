@@ -29,7 +29,7 @@ func _move_grounds(_player: Player) -> void:
 	if freefly:
 		return
 	GroundData.center = parent.global_position
-	GroundData.distance = LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[parent.get_node("GamemodeChangerComponent")._gamemode] * LevelManager.CELL_SIZE * 0.5
+	GroundData.distance = LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[parent.get_node("GamemodeChangerComponent")._gamemode] * Constants.CELL_SIZE * 0.5
 	if parent.global_position.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
 		GroundData.offset = (parent.global_position.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
 	else:
