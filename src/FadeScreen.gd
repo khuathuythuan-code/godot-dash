@@ -48,3 +48,8 @@ func fade_out(fade_duration: float, ease_type: Tween.EaseType, trans_type: Tween
 	fade_finished.emit(FadeType.FADE_OUT)
 	hide()
 	is_fading = false
+
+
+func anticipate_fade_out() -> void:
+	$ColorRect.color = Color.BLACK
+	show()

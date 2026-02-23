@@ -25,6 +25,7 @@ func _ready() -> void:
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		pause_menu.leave.connect(_leave_level)
+		fade_screen.anticipate_fade_out()
 		$EditorGridParallax/EditorGrid.hide()
 		load_level()
 		start_level()
