@@ -60,7 +60,7 @@ func pause_autosave() -> void:
 
 
 func unpause_autosave() -> void:
-	$AutosaveTimer.start(Config.autosave_delay)
+	$AutosaveTimer.start(Config.autosave_delay * 60.0)
 
 
 func _on_level_index_pressed(index: int) -> void:
