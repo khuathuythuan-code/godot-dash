@@ -193,7 +193,6 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
-	$GameScene.pause_menu.unsuspend(true)
 	$GameScene.fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 	(
 		create_tween() \
@@ -201,6 +200,7 @@ func _fade_leave(_action: Variant = null) -> void:
 		.set_ease(Tween.EASE_IN) \
 		.set_trans(Tween.TRANS_EXPO)
 	)
+	$GameScene.pause_menu.unsuspend(true)
 
 
 func _on_playtest_pressed() -> void:
@@ -213,7 +213,6 @@ func _on_playtest_pressed() -> void:
 
 
 func _on_leave_pressed() -> void:
-	Editor.level_data_snapshot.clear()
 	if level_was_modified():
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
@@ -221,6 +220,7 @@ func _on_leave_pressed() -> void:
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
+	Editor.level_data_snapshot.clear()
 	Editor.level_history_version = -1
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")

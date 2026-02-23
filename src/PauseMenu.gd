@@ -5,7 +5,7 @@ class_name PauseMenu
 signal paused
 signal unpaused
 signal leave
-signal unsuspended(proceed_through: bool)
+signal unsuspended
 signal practice_mode_toggled(toggled_on: bool)
 
 @export var level_name_label: Label
@@ -17,6 +17,7 @@ signal practice_mode_toggled(toggled_on: bool)
 var suspended: bool
 var tween: Tween
 var settings_were_open: bool
+var proceed_through_unsuspend: bool
 
 
 func _ready() -> void:
@@ -58,7 +59,8 @@ func update_buttons_visibility() -> void:
 
 func unsuspend(proceed_through: bool) -> void:
 	suspended = false
-	unsuspended.emit(proceed_through)
+	proceed_through_unsuspend = proceed_through
+	unsuspended.emit()
 
 
 func show_tween() -> void:
@@ -102,12 +104,11 @@ func _on_leave_pressed() -> void:
 	if Editor.in_editor:
 		Editor.root.stop_playtest()
 	leave.emit()
-	var proceed_through: bool
 	if suspended:
-		proceed_through = await unsuspended
+		await unsuspended
 	$Settings.hide_tween()
 	hide_tween()
-	if not proceed_through:
+	if not proceed_through_unsuspend:
 		return
 	LevelManager.platformer = false
 	LevelManager.practice_mode = false
