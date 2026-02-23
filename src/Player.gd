@@ -934,7 +934,7 @@ func _handle_checkpoint_placement(practice_mode: bool = LevelManager.practice_mo
 		last_checkpoint.queue_free()
 		LevelManager.practice_level_snapshots.pop_back()
 	elif Config.automatic_checkpoints and no_auto_checkpoints_count == 0:
-		if last_automatic_checkpoint_position.distance_to(position) < Config.automatic_checkpoint_distance * Constants.CELL_SIZE:
+		if last_automatic_checkpoint_position.is_finite() and last_automatic_checkpoint_position.distance_to(position) < Config.automatic_checkpoint_distance * Constants.CELL_SIZE:
 			return
 		if is_on_floor_only():
 			place_checkpoint().use_auto_sprite().done()
