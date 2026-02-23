@@ -58,7 +58,7 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 			update_group_display()
 		"used_times":
 			used_times = field_data
-			for i in used_times:
+			if used_times % 2 == 1:
 				toggle.call_deferred()
 		_:
 			set(field_name, field_data)
