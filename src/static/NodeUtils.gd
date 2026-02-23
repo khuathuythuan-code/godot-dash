@@ -68,6 +68,7 @@ static func free_children(caller: Node) -> void:
 
 
 static func free_node(node: Node) -> void:
+	node.name = str(hash(node))
 	node.queue_free()
 
 
