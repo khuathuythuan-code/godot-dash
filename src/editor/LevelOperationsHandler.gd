@@ -28,12 +28,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if $AutosaveTimer.get_time_left() < 5.0 and not $AutosaveTimer.is_stopped():
+	if not LevelManager.level_playing and $AutosaveTimer.get_time_left() < 5.0 and not $AutosaveTimer.is_stopped():
 		var autosave_message := "Autosaving in " + str(snappedf($AutosaveTimer.get_time_left(), 0.1)) + "s"
-		if autosave_toast == null:
-			autosave_toast = Toasts.new_toast(autosave_message, $AutosaveTimer.get_time_left())
-		else:
+		if autosave_toast:
 			autosave_toast.update_text(autosave_message)
+		else:
+			autosave_toast = Toasts.new_toast(autosave_message, $AutosaveTimer.get_time_left())
+	if autosave_toast and LevelManager.level_playing:
+		autosave_toast.dismiss()
 
 
 func _unhandled_input(event: InputEvent) -> void:
