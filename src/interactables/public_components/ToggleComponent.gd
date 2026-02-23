@@ -7,10 +7,7 @@ signal send_to_group_display(group_name: String)
 @export var toggled_groups: Array[ToggledGroup]:
 	set(value):
 		toggled_groups = value
-		if toggled_groups.size() == 1:
-			send_to_group_display.emit(toggled_groups[0].group)
-		else:
-			send_to_group_display.emit("")
+		update_group_display()
 
 
 func _ready() -> void:
@@ -43,13 +40,24 @@ func toggle(_player: Node) -> void:
 
 
 func _field_to_data(field_name: String) -> Variant:
-	if field_name == "toggled_groups":
-		return toggled_groups.map(func(toggled_group: ToggledGroup): return toggled_group.to_data())
-	return get(field_name)
+	match field_name:
+		"toggled_groups":
+			return toggled_groups.map(func(toggled_group: ToggledGroup): return toggled_group.to_data())
+		_:
+			return get(field_name)
 
 
 func _field_from_data(field_name: String, field_data: Variant) -> void:
-	if field_name == "toggled_groups":
-		toggled_groups.assign(field_data.map(func(toggled_group_data: Dictionary): ToggledGroup.from_data(toggled_group_data)))
-		return
-	set(field_name, field_data)
+	match field_name:
+		"toggled_groups":
+			toggled_groups.assign(field_data.map(func(toggled_group_data: Dictionary): return ToggledGroup.from_data(toggled_group_data)))
+			update_group_display()
+		_:
+			set(field_name, field_data)
+
+
+func update_group_display() -> void:
+	if toggled_groups.size() == 1:
+		send_to_group_display.emit(toggled_groups[0].group)
+	else:
+		send_to_group_display.emit("")
