@@ -61,7 +61,7 @@ func add_loaded_level(level: Level) -> Level:
 
 func start_level() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
-	if LevelManager.attempt == 0:
+	if LevelManager.attempt == 0 and not Editor.in_editor:
 		await get_tree().create_timer(0.2).timeout
 		$FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		await $FadeScreen.fade_finished
