@@ -167,7 +167,7 @@ func start_level() -> void:
 		LevelManager.touchscreen_controls.disable_platformer()
 
 	LevelManager.ground_up.show()
-	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
+	if LevelManager.player_camera and get_viewport().get_camera_2d() == LevelManager.player_camera:
 		LevelManager.player_camera.freefly = start_freefly
 	if not start_freefly:
 		GroundData.center = Constants.DEFAULT_PLAYER_POSITION

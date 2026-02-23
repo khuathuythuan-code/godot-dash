@@ -17,7 +17,7 @@ func _ready() -> void:
 	parent.interacted.connect(toggle)
 
 
-func toggle(_player: Node) -> void:
+func toggle(_player: Player = null) -> void:
 	for toggled_group in toggled_groups:
 		var group = Constants.GROUP_PREFIX + toggled_group.group
 		var state = toggled_group.state
@@ -59,7 +59,7 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 		"used_times":
 			used_times = field_data
 			for i in used_times:
-				toggle.call_deferred(LevelManager.player)
+				toggle.call_deferred()
 		_:
 			set(field_name, field_data)
 

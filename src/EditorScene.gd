@@ -183,7 +183,7 @@ func stop_playtest() -> void:
 	var new_player: Player = LevelManager.player
 	_ready() # sets `level`
 	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
-	new_player.position = level.start_position
+	new_player.global_position = level.start_position
 	%LevelSettings.refresh_saveloads(level)
 	NodeUtils.free_children($GameScene.checkpoint_parent)
 	var practice_button: Button = $GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice")
