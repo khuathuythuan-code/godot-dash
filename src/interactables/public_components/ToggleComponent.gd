@@ -9,6 +9,9 @@ signal send_to_group_display(group_name: String)
 		toggled_groups = value
 		update_group_display()
 
+@export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
+var used_times: int = 0
+
 
 func _ready() -> void:
 	parent.interacted.connect(toggle)
@@ -37,6 +40,7 @@ func toggle(_player: Node) -> void:
 				elif object.process_mode == PROCESS_MODE_DISABLED: # If it is toggled off
 					object.set_deferred("process_mode", PROCESS_MODE_INHERIT)
 					object.show()
+	used_times += 1
 
 
 func _field_to_data(field_name: String) -> Variant:
@@ -52,6 +56,10 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 		"toggled_groups":
 			toggled_groups.assign(field_data.map(func(toggled_group_data: Dictionary): return ToggledGroup.from_data(toggled_group_data)))
 			update_group_display()
+		"used_times":
+			used_times = field_data
+			for i in used_times:
+				toggle.call_deferred(LevelManager.player)
 		_:
 			set(field_name, field_data)
 
