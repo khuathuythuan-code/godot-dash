@@ -74,10 +74,10 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nmf6"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 42
-corner_radius_top_right = 42
-corner_radius_bottom_right = 42
-corner_radius_bottom_left = 42
+corner_radius_top_left = 52
+corner_radius_top_right = 52
+corner_radius_bottom_right = 52
+corner_radius_bottom_left = 52
 corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk0vr"]
@@ -150,11 +150,11 @@ primary_line_thickness = 3.0
 [node name="Level" type="Node2D" parent="." unique_id=412428242]
 position = Vector2(640, 925)
 
+[node name="CheckpointParent" type="Node2D" parent="." unique_id=747964933]
+
 [node name="Player" parent="." unique_id=758830337 instance=ExtResource("3_22pbm")]
 unique_name_in_owner = true
 position = Vector2(640, 860)
-
-[node name="CheckpointParent" type="Node2D" parent="." unique_id=747964933]
 
 [node name="GroundDownParallax" type="Parallax2D" parent="." unique_id=2138827315]
 repeat_size = Vector2(24000, 0)
