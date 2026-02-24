@@ -51,7 +51,8 @@ func load_level() -> void:
 			return
 		cached_level_data = json.data
 	var level: Level = Level.from_data(cached_level_data if not should_use_practice_snapshot else LevelManager.practice_level_snapshots[-1])
-	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
+	if not SceneManager.in_editor():
+		SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
 	add_loaded_level(level)
 
 
