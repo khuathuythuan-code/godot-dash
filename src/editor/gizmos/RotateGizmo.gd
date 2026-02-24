@@ -1,4 +1,5 @@
 extends Gizmo
+
 class_name RotateGizmo
 
 signal angle_changed(degrees: float)
@@ -85,8 +86,8 @@ func _process(_delta: float) -> void:
 			handle_position = Vector2.from_angle(
 				snappedf(
 					get_local_mouse_position().angle() - quick_rotation_initial_angle,
-					deg_to_rad(snap_interval_input.get_value()/2)
-				)
+					deg_to_rad(snap_interval_input.get_value() / 2),
+				),
 			) * radius
 		angle_changed.emit(rad_to_deg(handle_position.angle() - previous_handle_position.angle()))
 		angle_input.set_value_no_signal(rad_to_deg(handle_position.angle()))
@@ -95,8 +96,8 @@ func _process(_delta: float) -> void:
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.ENABLED:
 		state = State.DISABLED
 	if get_viewport().get_camera_2d() != null:
-		scale.x = 1/get_viewport().get_camera_2d().zoom.x
-		scale.y = 1/get_viewport().get_camera_2d().zoom.y
+		scale.x = 1 / get_viewport().get_camera_2d().zoom.x
+		scale.y = 1 / get_viewport().get_camera_2d().zoom.y
 		scale *= gizmo_scale
 	else:
 		scale = Vector2.ONE * gizmo_scale
@@ -130,7 +131,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	if snap_interval < 5.0:
 		return
 	var snap_ticks := PackedVector2Array()
-	for i in 360.0/snap_interval:
+	for i in 360.0 / snap_interval:
 		var if_outline := 0.0 if not outline else 3.0
 		# Full
 		var tick_angle := deg_to_rad(i * snap_interval)
@@ -150,6 +151,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 
 
 func remove_gizmo(reset_angle: bool = false) -> void:
+	Editor.viewport.remove_cursor_shape_override()
 	state = State.DISABLED
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()

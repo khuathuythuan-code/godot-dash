@@ -1,4 +1,5 @@
 extends Gizmo
+
 class_name ScaleGizmo
 
 signal scale_changed(position: Vector2, transform: Transform2D, rotation: float, is_global_axis: bool)
@@ -9,9 +10,14 @@ static var HANDLE_RADIUS: float = 8.0
 
 var handles: Array[Handle] = [
 	# Resize handles
-	Handle.new(Vector2(-1.0, -1.0), Handle.Type.CORNER, 0), Handle.new(Vector2(0.0, -1.0), Handle.Type.HORIZONTAL_EDGE), Handle.new(Vector2(1.0, -1.0), Handle.Type.CORNER, 1),
-	Handle.new(Vector2(-1.0, 0.0), Handle.Type.VERTICAL_EDGE), Handle.new(Vector2(1.0, 0.0), Handle.Type.VERTICAL_EDGE),
-	Handle.new(Vector2(-1.0, 1.0), Handle.Type.CORNER, 3), Handle.new(Vector2(0.0, 1.0), Handle.Type.HORIZONTAL_EDGE), Handle.new(Vector2(1.0, 1.0), Handle.Type.CORNER, 2),
+	Handle.new(Vector2(-1.0, -1.0), Handle.Type.CORNER, 0),
+	Handle.new(Vector2(0.0, -1.0), Handle.Type.HORIZONTAL_EDGE),
+	Handle.new(Vector2(1.0, -1.0), Handle.Type.CORNER, 1),
+	Handle.new(Vector2(-1.0, 0.0), Handle.Type.VERTICAL_EDGE),
+	Handle.new(Vector2(1.0, 0.0), Handle.Type.VERTICAL_EDGE),
+	Handle.new(Vector2(-1.0, 1.0), Handle.Type.CORNER, 3),
+	Handle.new(Vector2(0.0, 1.0), Handle.Type.HORIZONTAL_EDGE),
+	Handle.new(Vector2(1.0, 1.0), Handle.Type.CORNER, 2),
 ]
 var hovered_handle: Handle
 var has_hovered_handle: bool
@@ -38,6 +44,7 @@ class Handle:
 	var corner_idx: int
 	var rotation: float
 
+
 	func _init(_axis: Vector2, _type: Type, _corner_idx: int = -1) -> void:
 		axis = _axis
 		type = _type
@@ -45,6 +52,7 @@ class Handle:
 		if _type == Type.CORNER:
 			assert(_corner_idx >= 0, "Corner Index must be defined when initializing corner handle")
 			corner_idx = _corner_idx
+
 
 	func displayed_position(transform: Transform2D, global: bool = false) -> Vector2:
 		# HACK: fix flipped transform rotation
@@ -78,10 +86,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Update displayed_handle_radius
 	if get_viewport().get_camera_2d():
-		displayed_handle_radius = 1/get_viewport().get_camera_2d().zoom.length() * HANDLE_RADIUS
+		displayed_handle_radius = 1 / get_viewport().get_camera_2d().zoom.length() * HANDLE_RADIUS
 	else:
 		displayed_handle_radius = HANDLE_RADIUS
-	
+
 	if is_zero_approx(gizmo_scale):
 		return
 
@@ -100,7 +108,7 @@ func _process(_delta: float) -> void:
 				break
 			else:
 				has_hovered_handle = false
-	
+
 	# Move handles
 	if state != State.DISABLED:
 		# Modifiers
@@ -117,10 +125,10 @@ func _process(_delta: float) -> void:
 		if resizing_keep_aspect:
 			mouse_position_delta = mouse_position_delta.project(focused_handle.displayed_position(displayed_transform))
 		var scale_multiplier: Vector2 = (
-				Vector2.ONE
-				+ mouse_position_delta * displayed_transform.affine_inverse()
-					* focused_handle.axis # Constrains the angle perpendicular to the side
-					* resize_and_move_multiplier
+			Vector2.ONE
+			+ mouse_position_delta * displayed_transform.affine_inverse()
+			* focused_handle.axis # Constrains the angle perpendicular to the side
+			* resize_and_move_multiplier
 		)
 		var is_edge_handle: bool = focused_handle.type == Handle.Type.VERTICAL_EDGE or focused_handle.type == Handle.Type.HORIZONTAL_EDGE
 		if resizing_keep_aspect and is_edge_handle:
@@ -140,7 +148,7 @@ func _process(_delta: float) -> void:
 						transform.y = transform.y.normalized()
 					AxisConstraint.GLOBAL_Y, AxisConstraint.LOCAL_Y:
 						transform.x = transform.x.normalized()
-		
+
 		if resize_and_move:
 			match focused_handle.type:
 				Handle.Type.CORNER:
@@ -149,7 +157,6 @@ func _process(_delta: float) -> void:
 					real_position += (mouse_position_delta * resize_and_move_multiplier * Vector2.RIGHT).rotated(rotation)
 				Handle.Type.HORIZONTAL_EDGE:
 					real_position += (mouse_position_delta * resize_and_move_multiplier * Vector2.DOWN).rotated(rotation)
-
 
 		var quick_and_global: bool = false if not is_quick else quick_gizmo_value_input.is_global_axis()
 
@@ -177,7 +184,7 @@ func _process(_delta: float) -> void:
 				rotation,
 				quick_and_global,
 			)
-	
+
 	previous_mouse_position = get_gizmo_local_mouse_position()
 	set_cursor_shape(hovered_handle if has_hovered_handle else null)
 	scale = Vector2.ONE * gizmo_scale
@@ -236,9 +243,9 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	corner_handles.sort_custom(func(handle_a: Handle, handle_b: Handle): return handle_a.corner_idx < handle_b.corner_idx)
 	corner_handles.append(corner_handles[0])
 	draw_polyline(
-			corner_handles.map(func(handle: Handle): return handle.displayed_position(displayed_transform, quick_and_global)),
-			color,
-			(displayed_handle_radius * 8.0) / HANDLE_RADIUS if outline else (displayed_handle_radius * 2.0) / HANDLE_RADIUS
+		corner_handles.map(func(handle: Handle): return handle.displayed_position(displayed_transform, quick_and_global)),
+		color,
+		(displayed_handle_radius * 8.0) / HANDLE_RADIUS if outline else (displayed_handle_radius * 2.0) / HANDLE_RADIUS,
 	)
 
 	for handle in handles:
@@ -252,13 +259,14 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 			draw_circle(handle.displayed_position(displayed_transform, quick_and_global), displayed_handle_radius, handle_color, false, displayed_handle_radius)
 		else:
 			draw_circle(handle.displayed_position(displayed_transform, quick_and_global), displayed_handle_radius, handle_color)
-	
+
 	if Config.draw_debug_overlays:
 		draw_line(Vector2.ZERO, displayed_transform.x, Color.RED, 6.0)
 		draw_line(Vector2.ZERO, displayed_transform.y, Color.DARK_GREEN, 6.0)
 
 
 func remove_gizmo(reset: bool = false) -> void:
+	Editor.viewport.remove_cursor_shape_override()
 	state = State.DISABLED
 	has_hovered_handle = false
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
@@ -278,7 +286,7 @@ func remove_gizmo(reset: bool = false) -> void:
 			position,
 			transform,
 			rotation,
-			quick_and_global
+			quick_and_global,
 		)
 	if reset:
 		tween.tween_method(do_reset_scale.bind(position, transform), 0.0, 1.0, 0.5).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
