@@ -21,9 +21,9 @@
 [ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="18_hvy54"]
 [ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="19_1ska7"]
 [ext_resource type="Script" uid="uid://driqqpbqw61rh" path="res://src/IconGarage.gd" id="20_1ska7"]
-[ext_resource type="Texture2D" path="res://assets/textures/player/cube/Cube.svg" id="20_dchwh"]
 [ext_resource type="PackedScene" uid="uid://dbv5i3do4liox" path="res://scenes/components/game_components/PreviewIcon.tscn" id="21_60dxp"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="21_u3ctg"]
+[ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="22_60dxp"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_juc6n"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="22_tuyt1"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="24_60dxp"]
@@ -526,7 +526,7 @@ alignment = 1
 
 [node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("21_60dxp")]
 layout_mode = 2
-icon_path = "res://assets/textures/player/cube/Cube.svg"
+icon_path = "res://assets/textures/player/cube/Cube1.svg"
 icon_scale = 0.75
 
 [node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1783302652]
@@ -651,7 +651,7 @@ size_flags_vertical = 4
 
 [node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
 scale = Vector2(0.188, 0.188)
-texture = ExtResource("20_dchwh")
+texture = ExtResource("22_60dxp")
 
 [node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
 layout_mode = 2

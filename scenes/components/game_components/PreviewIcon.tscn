@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="4_junqh"]
 [ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="5_yr6x6"]
 [ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="6_yr6x6"]
-[ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trail/Trail0.png" id="7_h537d"]
+[ext_resource type="Texture2D" uid="uid://djpyq2yoeq2j2" path="res://assets/textures/player/trail/Trail1.png" id="7_yr6x6"]
 [ext_resource type="Script" uid="uid://b81c0tveqh8i8" path="res://addons/trail_2d/trail_2d.gd" id="8_fm7vr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hx1qv"]
@@ -152,7 +152,7 @@ process_mode = 4
 z_index = 4096
 material = SubResource("ShaderMaterial_ptdrb")
 width = 43.0
-texture = ExtResource("7_h537d")
+texture = ExtResource("7_yr6x6")
 texture_mode = 2
 joint_mode = 2
 script = ExtResource("8_fm7vr")
