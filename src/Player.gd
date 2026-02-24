@@ -810,10 +810,15 @@ func update_player_scale(tweened: bool) -> void:
 		player_scale_value *= PLAYER_SCALE_WAVE
 	if not tweened:
 		scale = player_scale_value
+		if not is_node_ready():
+			await ready
+		%Trail.width = %Trail.texture.get_width() * scale.y
 		return
 	(
 		create_tween() \
-		.tween_property(self, "scale", player_scale_value, 0.25) \
+		.set_parallel() \
+		.tween_property(self, ^"scale", player_scale_value, 0.25) \
+		.tween_property(%Trail, ^"width", %Trail.texture.get_width() * scale.y, 0.25) \
 		.set_ease(Tween.EASE_OUT) \
 		.set_trans(Tween.TRANS_BACK)
 	)
