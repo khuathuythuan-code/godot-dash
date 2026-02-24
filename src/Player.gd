@@ -152,6 +152,8 @@ func _ready() -> void:
 			continue
 		var frame := ResourceLoader.load(Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"] + "/" + icon)
 		$DeathEffect.sprite_frames.add_frame("default", frame)
+	%Trail.texture = load(Config.icons[PreviewIcon.Icon.TRAIL]["path"])
+	%Trail.width = %Trail.texture.get_width()
 	var empty_frame := Texture2D.new()
 	$DeathEffect.sprite_frames.add_frame("default", empty_frame)
 	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count("default") - 1

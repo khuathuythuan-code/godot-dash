@@ -10,7 +10,7 @@ enum Mode {
 @export var length: int = 10
 @export var time: float = 1.0
 
-@onready var parent: Node2D = get_parent()
+@onready var parent: Node = get_parent()
 var offset := Vector2.ZERO
 var add_points: bool = true
 

@@ -131,7 +131,7 @@ var menu_loop: String:
 	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube.svg" },
 	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
 	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },
-	PreviewIcon.Icon.TRAIL: { },
+	PreviewIcon.Icon.TRAIL: { "path" = "res://assets/textures/player/trails/"},
 	PreviewIcon.Icon.DEATH_EFFECT: { "path" ="res://assets/textures/player/death_effect/DeathEffect1/" },
 }
 
