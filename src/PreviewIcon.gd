@@ -23,15 +23,20 @@ enum Icon {
 		icon_path = value
 		_refresh()
 @export var icon_scale: float = 1.0
+var last_position: Vector2 
 
 
 func _ready() -> void:
 	await get_tree().process_frame
+	last_position = global_position
 	_refresh()
 
 
 func _process(_delta: float) -> void:
 	if visible and gamemode == Icon.TRAIL:
+		if last_position != global_position:
+			_refresh()
+		last_position = global_position
 		$Trail/Trail.width = get_parent().scale.x * $Trail/Trail.texture.get_height()
 
 
@@ -60,7 +65,7 @@ func _refresh() -> void:
 			$Trail/Trail.texture = load(icon_path)
 			$Trail/Trail.width = $Trail/Trail.texture.get_height()
 			$Trail/Trail.clear_points()
-			$Trail/Trail.add_point(global_position + Vector2(0, custom_minimum_size.y / 2))
+			$Trail/Trail.add_point(global_position + Vector2(2, custom_minimum_size.y / 2))
 			$Trail/Trail.add_point(global_position + Vector2(custom_minimum_size.x, custom_minimum_size.y / 2))
 		Icon.SPIDER:
 			$Spider.show()

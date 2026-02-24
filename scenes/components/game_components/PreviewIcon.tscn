@@ -29,7 +29,6 @@ script = ExtResource("1_o8qdf")
 metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
 
 [node name="Sprite" type="TextureRect" parent="." unique_id=559371661]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
