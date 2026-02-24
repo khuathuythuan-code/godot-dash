@@ -295,7 +295,7 @@ size_flags_horizontal = 4
 theme_type_variation = &"TitleScreenButton"
 text = "Quit"
 
-[node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=515215760]
+[node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1262912517]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -312,6 +312,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/LevelSelector" unique_id=1259277509]
 layout_mode = 2
@@ -324,7 +325,7 @@ label_settings = SubResource("LabelSettings_hvy54")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1928976847]
+[node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1806156210]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -341,6 +342,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1989226303]
 layout_mode = 2
@@ -478,7 +480,7 @@ theme_type_variation = &"TitleScreenCommunityLevelListButton"
 text = "Refresh"
 autowrap_mode = 3
 
-[node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1337721675]
+[node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -495,37 +497,39 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=615632743]
 custom_minimum_size = Vector2(0, 512)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1593463008 node_paths=PackedStringArray("preview_icons", "icon_selector")]
+[node name="IconGarage" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1474942368 node_paths=PackedStringArray("preview_icons", "icon_selector")]
 layout_mode = 2
 theme_type_variation = &"TitleScreenVBox"
 script = ExtResource("20_1ska7")
 preview_icons = NodePath("PanelContainer/HBoxContainer")
 icon_selector = NodePath("SmoothScrollContainer/GridContainer")
+metadata/_custom_type_script = "uid://driqqpbqw61rh"
 
-[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1548300878]
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1548300878]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_gyoo8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer" unique_id=964293732]
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer" unique_id=964293732]
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("21_60dxp")]
+[node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 icon_path = "res://assets/textures/player/cube/Cube.svg"
 icon_scale = 0.75
 
-[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1783302652]
+[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1783302652]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -593,7 +597,7 @@ shortcut_in_tooltip = true
 script = ExtResource("22_tuyt1")
 metadata/_custom_type_script = "uid://doei3yc3rs41t"
 
-[node name="Ship" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" unique_id=1545261769 instance=ExtResource("21_60dxp")]
+[node name="Ship" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" unique_id=1545261769 instance=ExtResource("21_60dxp")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -606,7 +610,7 @@ gamemode = 1
 icon_path = "res://assets/textures/player/ship/Ship1.svg"
 icon_scale = 0.75
 
-[node name="Jetpack" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" unique_id=104251690 instance=ExtResource("21_60dxp")]
+[node name="Jetpack" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" unique_id=104251690 instance=ExtResource("21_60dxp")]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -620,46 +624,46 @@ gamemode = 8
 icon_path = "res://assets/textures/player/jetpack/Jetpack.svg"
 icon_scale = 0.75
 
-[node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
+[node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 3
 icon_path = "res://assets/textures/player/ball/Ball1.svg"
 icon_scale = 0.75
 
-[node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
+[node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 2
 icon_path = "res://assets/textures/player/ufo/Ufo.svg"
 icon_scale = 0.75
 
-[node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
+[node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 4
 icon_path = "res://assets/textures/player/wave/Wave1"
 icon_scale = 0.75
 
-[node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1523449182]
+[node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1523449182]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 
-[node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
+[node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
 scale = Vector2(0.188, 0.188)
 texture = ExtResource("20_dchwh")
 
-[node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
+[node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 6
 icon_path = "res://assets/textures/player/spider/Spider1"
 icon_scale = 0.75
 
-[node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("21_60dxp")]
+[node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 7
 icon_path = "res://assets/textures/player/swing/Swing1"
 icon_scale = 0.75
 
-[node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1363110770]
+[node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1363110770]
 clip_children = 1
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
@@ -669,7 +673,7 @@ script = ExtResource("24_60dxp")
 variants = PackedStringArray("Cube", "Ship", "Jetpack", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing", "Trail", "Death Effect")
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
-[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" unique_id=1366781961]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1366781961]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("21_u3ctg")
@@ -677,7 +681,7 @@ wheel_scroll_damper = SubResource("Resource_tuyt1")
 dragging_scroll_damper = SubResource("Resource_hkayi")
 metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="GridContainer" type="GridContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=1909683977]
+[node name="GridContainer" type="GridContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/SmoothScrollContainer" unique_id=1909683977]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -685,7 +689,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 10
 
-[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1634750853]
+[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1153421102]
 visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
@@ -702,6 +706,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
 script = ExtResource("12_08fpa")
+metadata/_custom_type_script = "uid://2ient42a5q26"
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Settings" unique_id=1177693866]
 layout_mode = 2
@@ -821,6 +826,6 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_open_importer"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="refresh"]
-[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_ship_pressed"]
-[connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/VBoxContainer" method="_on_tab_changed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_ship_pressed"]
+[connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_tab_changed"]
 [connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
