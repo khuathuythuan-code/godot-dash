@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://omcvgcf1uk5p"
-path="res://.godot/imported/Cube.svg-d3fab39c7f6dbfb4ca79e8594b33d063.ctex"
+uid="uid://b5edol3n0fged"
+path="res://.godot/imported/Wave1.svg-0f32f824824a719720fb99fe520c5ca3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/player/cube/Cube.svg"
-dest_files=["res://.godot/imported/Cube.svg-d3fab39c7f6dbfb4ca79e8594b33d063.ctex"]
+source_file="res://assets/textures/player/wave/Wave1.svg"
+dest_files=["res://.godot/imported/Wave1.svg-0f32f824824a719720fb99fe520c5ca3.ctex"]
 
 [params]
 

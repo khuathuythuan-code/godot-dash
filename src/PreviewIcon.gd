@@ -42,12 +42,6 @@ func _process(_delta: float) -> void:
 
 func _refresh() -> void:
 	match gamemode:
-		Icon.CUBE, Icon.SHIP, Icon.JETPACK, Icon.UFO, Icon.BALL, Icon.ROBOT:
-			$Sprite.show()
-			$Sprite.texture = load(icon_path)
-		Icon.WAVE:
-			$Sprite.show()
-			$Sprite.texture = load(icon_path.path_join("Wave.svg"))
 		Icon.SWING:
 			$Sprite.show()
 			$Sprite.texture = load(icon_path.path_join("Swing.svg"))
@@ -81,3 +75,6 @@ func _refresh() -> void:
 				part.get_node(^"SpiderLeg").texture = leg_sprite
 				part.get_node(^"SpiderLeg-glow").texture = leg_glow_sprite
 			$Spider/Spider.scale = Vector2.ONE * icon_scale
+		_:
+			$Sprite.show()
+			$Sprite.texture = load(icon_path)

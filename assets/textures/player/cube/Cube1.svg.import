@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct8mmusdnvtiq"
-path="res://.godot/imported/WaveNoGlow.svg-81103e439101fe9854bfd7c29cc1dfb6.ctex"
+uid="uid://bqx4a65opjmir"
+path="res://.godot/imported/Cube1.svg-b2af03e8e7fbb558b34c691f856db393.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/player/wave/Wave1/WaveNoGlow.svg"
-dest_files=["res://.godot/imported/WaveNoGlow.svg-81103e439101fe9854bfd7c29cc1dfb6.ctex"]
+source_file="res://assets/textures/player/cube/Cube1.svg"
+dest_files=["res://.godot/imported/Cube1.svg-b2af03e8e7fbb558b34c691f856db393.ctex"]
 
 [params]
 

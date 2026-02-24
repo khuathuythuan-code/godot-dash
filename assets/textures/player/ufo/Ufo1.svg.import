@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hv3g6nr62nor"
-path="res://.godot/imported/WaveGlow.svg-aaf4428bd932c6f86a658cd80a968bb3.ctex"
+uid="uid://bpvqfk8hakv6t"
+path="res://.godot/imported/Ufo1.svg-43e16c4fd92bb0308a6715608b306bac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/player/wave/Wave1/WaveGlow.svg"
-dest_files=["res://.godot/imported/WaveGlow.svg-aaf4428bd932c6f86a658cd80a968bb3.ctex"]
+source_file="res://assets/textures/player/ufo/Ufo1.svg"
+dest_files=["res://.godot/imported/Ufo1.svg-43e16c4fd92bb0308a6715608b306bac.ctex"]
 
 [params]
 

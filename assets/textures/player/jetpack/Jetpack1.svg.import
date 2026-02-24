@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2nqx4cn1p4r"
-path="res://.godot/imported/Wave.svg-dbbcaed5d86cfeeddc0eced23b82e8f3.ctex"
+uid="uid://co5622oddlvir"
+path="res://.godot/imported/Jetpack1.svg-65229f03c67dd15d9f694a9375567bb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/player/wave/Wave1/Wave.svg"
-dest_files=["res://.godot/imported/Wave.svg-dbbcaed5d86cfeeddc0eced23b82e8f3.ctex"]
+source_file="res://assets/textures/player/jetpack/Jetpack1.svg"
+dest_files=["res://.godot/imported/Jetpack1.svg-65229f03c67dd15d9f694a9375567bb2.ctex"]
 
 [params]
 
