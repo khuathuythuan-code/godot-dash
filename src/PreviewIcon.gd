@@ -1,5 +1,5 @@
 @tool
-extends BoxContainer
+extends CenterContainer
 
 class_name PreviewIcon
 
@@ -23,7 +23,7 @@ enum Icon {
 		icon_path = value
 		_refresh()
 @export var icon_scale: float = 1.0
-var last_position: Vector2 
+var last_position: Vector2
 
 
 func _ready() -> void:

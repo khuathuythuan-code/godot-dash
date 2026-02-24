@@ -21,15 +21,17 @@ animations = [{
 shader = ExtResource("6_yr6x6")
 shader_parameter/bias = 0.9
 
-[node name="PreviewIcon" type="BoxContainer" unique_id=808775852]
+[node name="PreviewIcon" type="CenterContainer" unique_id=265404038]
+offset_right = 96.0
+offset_bottom = 96.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 0
 script = ExtResource("1_o8qdf")
 metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
 
 [node name="Sprite" type="TextureRect" parent="." unique_id=559371661]
-visible = false
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
