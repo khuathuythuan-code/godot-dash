@@ -118,8 +118,8 @@ var ground_color: Color = Constants.DEFAULT_GROUND_COLOR:
 	set(new_color):
 		if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
 			return
-		var ground_down: Sprite2D = LevelManager.ground_down.get_node("Ground")
-		var ground_up: Sprite2D = LevelManager.ground_up.get_node("Ground")
+		var ground_down: Sprite2D = LevelManager.ground_down.get_node(^"Ground")
+		var ground_up: Sprite2D = LevelManager.ground_up.get_node(^"Ground")
 		ground_down.self_modulate = new_color
 		ground_up.self_modulate = new_color
 var line_color: Color = Constants.DEFAULT_LINE_COLOR:
@@ -127,7 +127,7 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 		if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
 			return
 		# The material resource is shared between ground sprites
-		var ground: Sprite2D = LevelManager.ground_down.get_node("Ground")
+		var ground: Sprite2D = LevelManager.ground_down.get_node(^"Ground")
 		ground.material.set_shader_parameter(&"ground_color", new_color)
 
 
@@ -149,11 +149,8 @@ func _process(_delta: float) -> void:
 	music_scale = 0.85 + MusicVolume.get_volume()
 
 
-func start_level() -> void:
-	if get_tree().paused:
-		await LevelManager.pause_menu.unpaused
+func prepare_external_data() -> void:
 	song_player.stream = AssetManager.load_song_threaded_get(song_path)
-	song_player.play(song_start_time)
 	LevelManager.platformer = platformer
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode
@@ -181,8 +178,14 @@ func start_level() -> void:
 	LevelManager.player.gravity_multiplier = start_gravity_multiplier
 	LevelManager.player.gravity_flip = start_gravity_flip
 	LevelManager.player_camera.position = LevelManager.player.position
-	LevelManager.level_playing = true
+
+
+func start_level() -> void:
+	if get_tree().paused:
+		await LevelManager.pause_menu.unpaused
+	song_player.play(song_start_time)
 	stopwatch.paused = false
+	LevelManager.level_playing = true
 
 
 func stop_level() -> void:

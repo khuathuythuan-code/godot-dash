@@ -62,13 +62,14 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
+	var level: Level = $Level.get_child(0)
+	level.prepare_external_data()
 	LevelManager.player_camera.snap_view()
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
 	if LevelManager.attempt == 0 and not Editor.in_editor:
 		$FadeScreen.fade_out()
 		await $FadeScreen.fade_finished
-	for level in $Level.get_children():
-		level.start_level()
+	level.start_level()
 	LevelManager.attempt += 1
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
