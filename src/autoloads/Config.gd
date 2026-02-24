@@ -203,9 +203,9 @@ func _init():
 func _notification(what):
 	if mute_game_on_unfocus:
 		if what == NOTIFICATION_APPLICATION_FOCUS_IN:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(master_audio_level / 100.0))
+			AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Master"), false)
 		elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(0.0))
+			AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Master"), true)
 
 
 func save() -> void:

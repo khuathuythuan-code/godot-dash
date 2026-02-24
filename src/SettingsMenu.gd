@@ -65,8 +65,12 @@ func _on_texture_filtering_value_changed(texture_filtering_mode: Config.TextureF
 
 
 func _on_game_volume_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(value / 100.0))
+	var master_bus: int = AudioServer.get_bus_index(&"Master")
+	var mute_state: bool = AudioServer.is_bus_mute(master_bus)
+	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value / 100.0))
+	AudioServer.set_bus_mute(master_bus, false)
 	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
+	AudioServer.set_bus_mute(master_bus, mute_state)
 
 
 func _on_music_volume_value_changed(value: float) -> void:
