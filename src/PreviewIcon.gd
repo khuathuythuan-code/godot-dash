@@ -50,9 +50,9 @@ func _refresh() -> void:
 			for icon in DirAccess.open(icon_path).get_files():
 				if icon.contains(".import"):
 					continue
-				var frame := load(icon_path + "/" + icon)
-				$"Death Effect/Death Effect".sprite_frames.add_frame("default", frame)
-				$"Death Effect/Death Effect".scale = Vector2(0.25, 0.25) * icon_scale
+				var frame: Texture2D = load(icon_path + "/" + icon)
+				$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
+				$"Death Effect/Death Effect".scale = Vector2.ONE * 0.25 * icon_scale
 				$"Death Effect/Death Effect".play(&"default")
 		Icon.TRAIL:
 			$Trail.show()
