@@ -181,7 +181,7 @@ metadata/_edit_group_ = true
 position = Vector2(640, 925)
 gizmo_extents = 64.0
 script = ExtResource("5_hvy54")
-DEFAULT_Y = 925.0
+default_y = 925.0
 
 [node name="Ground" type="Sprite2D" parent="Node2D/GroundDownParallax/GroundDownOrigin" unique_id=653056734]
 self_modulate = Color(0.105882, 0.294118, 0.768627, 1)

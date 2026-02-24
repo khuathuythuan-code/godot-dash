@@ -167,7 +167,7 @@ metadata/_edit_lock_ = true
 position = Vector2(640, 925)
 gizmo_extents = 64.0
 script = ExtResource("7_fb2li")
-DEFAULT_Y = 925.0
+default_y = 925.0
 
 [node name="Ground" type="Sprite2D" parent="GroundDownParallax/GroundDownOrigin" unique_id=1755954939]
 self_modulate = Color(0.105882, 0.294118, 0.768627, 1)
@@ -203,7 +203,7 @@ visible = false
 position = Vector2(0, -25000)
 gizmo_extents = 64.0
 script = ExtResource("7_fb2li")
-DEFAULT_Y = -25000.0
+default_y = -25000.0
 ground_position = -1
 
 [node name="Ground" type="Sprite2D" parent="GroundUpParallax/GroundUpOrigin" unique_id=550117985]

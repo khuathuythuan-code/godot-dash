@@ -4,7 +4,7 @@ class_name GroundObject
 
 const LERP_FACTOR: float = 30
 
-@export var DEFAULT_Y: float
+@export var default_y: float
 @export_enum("Up:-1", "Down:1") var ground_position: int = 1
 
 var _previous_camera_rotation: float
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		global_position = global_position_rotated.rotated(-LevelManager.player.gameplay_rotation)
 	else:
 		global_position = global_position.lerp(
-			Vector2(global_position.x, DEFAULT_Y),
+			Vector2(global_position.x, default_y),
 			0.2 * delta * 60,
 		)
 	_previous_camera_rotation = LevelManager.player_camera.rotation
