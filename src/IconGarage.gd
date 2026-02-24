@@ -53,7 +53,7 @@ func _ready() -> void:
 
 		var textures_dir: PackedStringArray
 		match icon_type:
-			PreviewIcon.Icon.WAVE, PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
+			PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
 				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_directories()
 			_:
 				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_files()
@@ -65,14 +65,14 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	var loaded_preview_icon = load("res://scenes/components/game_components/PreviewIcon.tscn")
+	var loaded_preview_icon: PackedScene = load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
 
-	for icon_type in icons:
+	for icon_type: PreviewIcon.Icon in icons:
 		if icon_type != tab:
 			continue
-		for icon in icons[icon_type]:
+		for icon: String in icons[icon_type]:
 			var button := BouncyButton.new()
 			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
 			preview_icon.gamemode = icon_type
