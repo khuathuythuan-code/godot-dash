@@ -17,7 +17,7 @@ signal practice_mode_toggled(toggled_on: bool)
 var suspended: bool
 var tween: Tween
 var settings_were_open: bool
-var proceed_through_unsuspend: bool
+var proceed_through_unsuspend: bool = true
 
 
 func _ready() -> void:
