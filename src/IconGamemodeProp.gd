@@ -13,34 +13,18 @@ enum PlatformerState {
 
 
 func _ready() -> void:
-	var icon_type = gamemode as int
-	icon_type = icon_type as PreviewIcon.Icon
+	var icon_type: PreviewIcon.Icon = gamemode as int as PreviewIcon.Icon
 	if icon_type == PreviewIcon.Icon.SHIP and platformer == PlatformerState.PLATFORMER_ONLY:
 		icon_type = PreviewIcon.Icon.JETPACK
 	match icon_type:
-		PreviewIcon.Icon.CUBE, PreviewIcon.Icon.BALL, PreviewIcon.Icon.UFO, PreviewIcon.Icon.SHIP, PreviewIcon.Icon.JETPACK:
-			var icon: Texture2D = load(Config.icons[icon_type]["path"])
-			for child in get_children():
-				if child is Sprite2D:
-					child.texture = icon
-					break
-		PreviewIcon.Icon.WAVE:
-			var icon: Texture2D = load(Config.icons[icon_type]["path"].path_join("Wave.svg"))
-			for child in get_children():
-				if child is Sprite2D:
-					child.texture = icon
-					break
 		PreviewIcon.Icon.SWING:
-			var icon: Texture2D = load(Config.icons[icon_type]["path"].path_join("Swing.svg"))
-			for child in get_children():
-				if child is Sprite2D:
-					child.texture = icon
-					break
+			$"SwingGlow".texture = load(Config.icons[icon_type].path.path_join("SwingGlow.svg"))
+			$"SwingNoGlow".texture = load(Config.icons[icon_type].path.path_join("SwingNoGlow.svg"))
 		PreviewIcon.Icon.SPIDER:
-			var head_sprite: Texture2D = load(Config.icons[icon_type]["path"].path_join("Spider_Head.svg"))
-			var head_glow_sprite: Texture2D = load(Config.icons[icon_type]["path"].path_join("Spider_Head-glow.svg"))
-			var leg_sprite: Texture2D = load(Config.icons[icon_type]["path"].path_join("Spider_Leg.svg"))
-			var leg_glow_sprite: Texture2D = load(Config.icons[icon_type]["path"].path_join("Spider_Leg-glow.svg"))
+			var head_sprite: Texture2D = load(Config.icons[icon_type].path.path_join("Spider_Head.svg"))
+			var head_glow_sprite: Texture2D = load(Config.icons[icon_type].path.path_join("Spider_Head-glow.svg"))
+			var leg_sprite: Texture2D = load(Config.icons[icon_type].path.path_join("Spider_Leg.svg"))
+			var leg_glow_sprite: Texture2D = load(Config.icons[icon_type].path.path_join("Spider_Leg-glow.svg"))
 			for part in get_node(^"SpiderSprites").get_children():
 				if not part is Marker2D:
 					continue
@@ -50,3 +34,7 @@ func _ready() -> void:
 					continue
 				part.get_node(^"SpiderLeg").texture = leg_sprite
 				part.get_node(^"SpiderLeg-glow").texture = leg_glow_sprite
+		_:
+			var icon: Texture2D = load(Config.icons[icon_type].path)
+			var sprite: Sprite2D = NodeUtils.get_child_of_type(self, Sprite2D)
+			sprite.texture = icon
