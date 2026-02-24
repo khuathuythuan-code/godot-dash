@@ -36,10 +36,10 @@ func _ready() -> void:
 		$GameScene.fade_screen.fade_out()
 		(
 			create_tween() \
-			.tween_property($EditorCamera, ^"zoom", Vector2.ONE * 0.8, Config.transition_duration) \
+			.tween_property($EditorCamera, ^"zoom", PlayerCamera.DEFAULT_ZOOM, Config.transition_duration) \
 			.set_ease(Tween.EASE_OUT) \
 			.set_trans(Tween.TRANS_EXPO) \
-			.from(Vector2.ONE * 0.4)
+			.from(PlayerCamera.DEFAULT_ZOOM / 2.0)
 		)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 

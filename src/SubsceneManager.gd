@@ -28,6 +28,7 @@ static var editor_scene: PackedScene
 @export_group("PhantomCameras")
 @export var quit_game_camera: PhantomCamera2D
 @export var title_screen_camera: PhantomCamera2D
+@export var from_editor_camera: PhantomCamera2D
 
 @export_group("Title Screen Components")
 @export var title_screen_layer: CanvasLayer
@@ -76,6 +77,10 @@ func _ready() -> void:
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()
+	await ready
+	quit_game_camera.set_tween_duration(Config.transition_duration)
+	title_screen_camera.set_tween_duration(Config.transition_duration)
+	from_editor_camera.set_tween_duration(Config.transition_duration)
 
 
 func _input(event: InputEvent) -> void:
@@ -88,14 +93,14 @@ func _input(event: InputEvent) -> void:
 
 func zoom_in_title_screen_layer() -> void:
 	var tween: Tween = create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE * 4.0, 0.5)
-	tween.tween_property(title_screen_layer, ^"offset", -camera.get_viewport_rect().size * sqrt(2.0), 0.5)
+	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE * 4.0, Config.transition_duration)
+	tween.tween_property(title_screen_layer, ^"offset", -camera.get_viewport_rect().size * sqrt(2.0), Config.transition_duration)
 
 
 func zoom_out_title_screen_layer() -> void:
 	var tween: Tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE, 0.5).from(Vector2.ONE * 2.0)
-	tween.tween_property(title_screen_layer, ^"offset", Vector2.ZERO, 0.5).from(-camera.get_viewport_rect().size / 2.0)
+	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE, Config.transition_duration).from(Vector2.ONE * 2.0)
+	tween.tween_property(title_screen_layer, ^"offset", Vector2.ZERO, Config.transition_duration).from(-camera.get_viewport_rect().size / 2.0)
 
 
 func _return_to_title_screen() -> void:
