@@ -6390,8 +6390,7 @@ metadata/_edit_lock_ = true
 
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
-position = Vector2(640, 256)
-offset = Vector2(640, 413)
+offset = Vector2(1280, 669)
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 script = ExtResource("6_wcytj")
