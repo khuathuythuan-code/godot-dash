@@ -798,7 +798,7 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
@@ -812,6 +812,7 @@ settings_panel = NodePath("../TitleScreenLayer/TitleScreen/Settings")
 settings_menu = NodePath("../TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu")
 quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../CameraCenterParent/TitleScreenCamera")
+title_screen_layer = NodePath("../TitleScreenLayer")
 title_screen_background = NodePath("../Node2D/BackgroundParallax")
 title_screen_ground = NodePath("../Node2D/GroundDownParallax")
 menu_icon = NodePath("../Node2D/MenuIcon")

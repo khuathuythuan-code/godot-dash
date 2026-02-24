@@ -83,6 +83,7 @@ func _play_level(level_name: String) -> void:
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 	fade_screen.fade_in()
 	subscene_manager.history.change_phantomcamera(subscene_manager.active_pcam, subscene_manager.quit_game_camera)
+	subscene_manager.zoom_in_title_screen_layer()
 	await get_tree().create_timer(0.5).timeout
 	LevelManager.current_level_name = name
 	LevelManager.attempt = 0

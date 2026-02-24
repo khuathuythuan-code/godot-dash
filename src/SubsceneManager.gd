@@ -30,6 +30,7 @@ static var editor_scene: PackedScene
 @export var title_screen_camera: PhantomCamera2D
 
 @export_group("Title Screen Components")
+@export var title_screen_layer: CanvasLayer
 @export var title_screen_background: Parallax2D
 @export var title_screen_ground: Parallax2D
 @export var menu_icon: MenuIcon
@@ -67,6 +68,7 @@ func _ready() -> void:
 			.set_ease(Tween.EASE_OUT) \
 			.set_trans(Tween.TRANS_EXPO)
 		)
+		zoom_out_title_screen_layer()
 		await _camera_tween.finished
 		camera.add_child(PhantomCameraHost.new())
 	else:
@@ -82,6 +84,18 @@ func _input(event: InputEvent) -> void:
 			_on_quit_game_pressed()
 		else:
 			_return_to_title_screen()
+
+
+func zoom_in_title_screen_layer() -> void:
+	var tween: Tween = create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE * 4.0, 0.5)
+	tween.tween_property(title_screen_layer, ^"offset", -camera.get_viewport_rect().size * sqrt(2.0), 0.5)
+
+
+func zoom_out_title_screen_layer() -> void:
+	var tween: Tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(title_screen_layer, ^"scale", Vector2.ONE, 0.5).from(Vector2.ONE * 2.0)
+	tween.tween_property(title_screen_layer, ^"offset", Vector2.ZERO, 0.5).from(-camera.get_viewport_rect().size / 2.0)
 
 
 func _return_to_title_screen() -> void:
@@ -155,15 +169,13 @@ func _on_editor_pressed() -> void:
 	$"../MenuLoop".playing = false
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
 	history.change_phantomcamera(active_pcam, quit_game_camera)
+	zoom_in_title_screen_layer()
 	fade_screen.fade_in()
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Creating a level")
 		DiscordRPCHandler.refresh()
-	if Editor.snapshot.can_instantiate():
-		get_tree().change_scene_to_packed(Editor.snapshot)
-	else:
-		get_tree().change_scene_to_packed(AssetManager.editor_packed)
+	get_tree().change_scene_to_packed(AssetManager.editor_packed)
 
 
 func _on_quit_game_pressed() -> void:
@@ -171,6 +183,7 @@ func _on_quit_game_pressed() -> void:
 		return
 	fade_screen.fade_in()
 	history.change_phantomcamera(active_pcam, quit_game_camera)
+	zoom_in_title_screen_layer()
 	await fade_screen.fade_finished
 	get_tree().quit()
 
