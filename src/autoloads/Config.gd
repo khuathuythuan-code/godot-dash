@@ -123,16 +123,16 @@ var menu_loop: String:
 # Icons
 @export_group("Icon")
 @export var icons: Dictionary[PreviewIcon.Icon, Dictionary] = {
-	PreviewIcon.Icon.CUBE: { "path" ="res://assets/textures/player/cube/Cube.svg" },
+	PreviewIcon.Icon.CUBE: { "path" ="res://assets/textures/player/cube/Cube1.svg" },
 	PreviewIcon.Icon.SHIP: { "path" ="res://assets/textures/player/ship/Ship1.svg" },
-	PreviewIcon.Icon.JETPACK: { "path" ="res://assets/textures/player/jetpack/Jetpack.svg" },
-	PreviewIcon.Icon.UFO: { "path" ="res://assets/textures/player/ufo/Ufo.svg" },
+	PreviewIcon.Icon.JETPACK: { "path" ="res://assets/textures/player/jetpack/Jetpack1.svg" },
+	PreviewIcon.Icon.UFO: { "path" ="res://assets/textures/player/ufo/Ufo1.svg" },
 	PreviewIcon.Icon.BALL: { "path" ="res://assets/textures/player/ball/Ball1.svg" },
 	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave1/" },
-	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube.svg" },
+	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube1.svg" },
 	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
 	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },
-	PreviewIcon.Icon.TRAIL: { "path" ="res://assets/textures/player/trail/Trail0.png" },
+	PreviewIcon.Icon.TRAIL: { "path" ="res://assets/textures/player/trail/Trail1.png" },
 	PreviewIcon.Icon.DEATH_EFFECT: { "path" ="res://assets/textures/player/death_effect/DeathEffect1/" },
 }
 
