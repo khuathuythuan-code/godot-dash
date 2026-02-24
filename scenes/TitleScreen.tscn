@@ -623,7 +623,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.8, 0.8)
 gamemode = 8
-icon_path = "res://assets/textures/player/jetpack/Jetpack.svg"
+icon_path = "res://assets/textures/player/jetpack/Jetpack1.svg"
 icon_scale = 0.75
 
 [node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("21_60dxp")]
@@ -635,13 +635,13 @@ icon_scale = 0.75
 [node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 2
-icon_path = "res://assets/textures/player/ufo/Ufo.svg"
+icon_path = "res://assets/textures/player/ufo/Ufo1.svg"
 icon_scale = 0.75
 
 [node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("21_60dxp")]
 layout_mode = 2
 gamemode = 4
-icon_path = "res://assets/textures/player/wave/Wave1"
+icon_path = "res://assets/textures/player/wave/Wave1.svg"
 icon_scale = 0.75
 
 [node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1523449182]
