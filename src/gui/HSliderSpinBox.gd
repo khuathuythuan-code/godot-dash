@@ -14,6 +14,7 @@ signal interaction_ended(value: float, previous: float)
 @export var allow_lesser: bool
 @export var prefix: String
 @export var suffix: String
+@export var tick_count: int
 @export var select_all_on_focus: bool
 @export var editable: bool:
 	set(value):
@@ -90,6 +91,7 @@ func update_internals() -> void:
 	spinbox.suffix = suffix
 	spinbox.select_all_on_focus = select_all_on_focus
 	spinbox.get_line_edit().expand_to_text_length = expand_to_text_length
+	hslider.tick_count = tick_count
 
 
 func set_value(new_value: float) -> void:

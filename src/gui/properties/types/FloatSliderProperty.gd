@@ -15,6 +15,7 @@ signal interaction_ended(value: float, previous: float)
 @export var allow_greater: bool
 @export var prefix: String
 @export var suffix: String
+@export var slider_tick_count: int
 @export var spinbox_width: float = 90.0
 @export var expand_to_text_length: bool
 @warning_ignore("unused_private_class_variable")
@@ -69,6 +70,7 @@ func refresh() -> void:
 	input.allow_lesser = allow_lesser
 	input.prefix = prefix
 	input.suffix = suffix
+	input.tick_count = slider_tick_count
 	input.select_all_on_focus = true
 	input.spinbox_width = spinbox_width
 	input.expand_to_text_length = expand_to_text_length
