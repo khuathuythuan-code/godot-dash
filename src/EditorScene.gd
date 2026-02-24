@@ -20,6 +20,7 @@ var level: Level:
 		level = value
 		$EditHandler.level = value
 var editor_actions: int
+var just_stopped_playtest: bool
 
 @onready var placed_objects_collider := $PlacedObjectsCollider as Area2D
 
@@ -196,6 +197,9 @@ func stop_playtest() -> void:
 	%Playtest.disabled = false
 	Editor.viewport.remove_cursor_shape_override()
 	LevelManager.touchscreen_controls.disable_platformer()
+	just_stopped_playtest = true
+	await get_tree().process_frame
+	just_stopped_playtest = false
 
 
 func _fade_leave(_action: Variant = null) -> void:

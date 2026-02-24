@@ -43,7 +43,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not level or LevelManager.level_playing:
+	if not level or LevelManager.level_playing or Editor.root.just_stopped_playtest:
 		return
 	if object_move_cooldown > 0:
 		object_move_cooldown -= delta
