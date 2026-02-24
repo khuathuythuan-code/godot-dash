@@ -29,7 +29,6 @@ func _ready() -> void:
 		$EditorGridParallax/EditorGrid.hide()
 		load_level()
 		start_level()
-	await get_tree().create_timer(0.1).timeout
 
 
 func load_level() -> void:
@@ -63,9 +62,9 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
+	LevelManager.player_camera.snap_view()
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
 	if LevelManager.attempt == 0 and not Editor.in_editor:
-		await get_tree().create_timer(0.2).timeout
 		$FadeScreen.fade_out()
 		await $FadeScreen.fade_finished
 	for level in $Level.get_children():
@@ -96,13 +95,13 @@ func reset() -> void:
 	LevelManager.player.queue_free()
 	LevelManager.player_duals.map(NodeUtils.free_node)
 	LevelManager.player_duals.clear()
-	LevelManager.player_camera.limit_left = -10000000
-	LevelManager.player_camera.limit_top = -10000000
-	LevelManager.player_camera.limit_right = 10000000
-	LevelManager.player_camera.limit_bottom = 10000000
 	var new_player: Player = AssetManager.player_packed.instantiate()
 	add_child(new_player)
 	var player_camera: PlayerCamera = LevelManager.player_camera
+	player_camera.limit_left = -10000000
+	player_camera.limit_top = -10000000
+	player_camera.limit_right = 10000000
+	player_camera.limit_bottom = 10000000
 	player_camera.player = new_player
 	player_camera.center_on_player_at_0x_speed = true
 	player_camera.static_factor = Vector2.ZERO

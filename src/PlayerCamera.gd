@@ -31,10 +31,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not LevelManager.level_playing or player.dead:
+	if not (LevelManager.level_playing or is_snapping_view) or player.dead:
 		return
 	queue_redraw()
-	var framerate_compensation := delta * 60.0
+	var framerate_compensation: float = delta * 60.0
 	smoothed_gameplay_rotation = lerp_angle(smoothed_gameplay_rotation, player.gameplay_rotation, 0.1 * framerate_compensation if not is_snapping_view else 1.0)
 
 	var player_distance = player.position - position
