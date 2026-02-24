@@ -1,10 +1,18 @@
 extends Line2D
 
-@export_category('Trail')
-@export var length: int = 10
+enum Mode {
+	LENGTH,
+	TIME,
+}
 
-@onready var parent: Node2D = get_parent()
+@export_category('Trail')
+@export var mode: Mode = Mode.LENGTH
+@export var length: int = 10
+@export var time: float = 1.0
+
+@onready var parent: Node = get_parent()
 var offset := Vector2.ZERO
+var add_points: bool = true
 
 
 func _ready() -> void:
@@ -12,10 +20,20 @@ func _ready() -> void:
 	top_level = true
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	global_position = Vector2.ZERO
 	var point: Vector2 = parent.global_position + offset
-	if points.is_empty() or point != points[0]:
-		add_point(point, 0)
-	if get_point_count() > length / abs(Engine.time_scale):
-		remove_point(get_point_count() - 1)
+	match mode:
+		Mode.LENGTH:
+			if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
+				add_point(point, 0)
+			if get_point_count() > length / abs(Engine.time_scale) or not add_points:
+				remove_point(get_point_count() - 1)
+		Mode.TIME:
+			var new_length: int = time / delta
+			if abs(new_length - length) % 5 == 0 or abs(new_length - length) > 3:
+				length = new_length
+			if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
+				add_point(point, 0)
+			if get_point_count() > length / abs(Engine.time_scale) or not add_points:
+				remove_point(get_point_count() - 1)

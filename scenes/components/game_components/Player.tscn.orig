@@ -29,13 +29,21 @@
 [ext_resource type="Texture2D" uid="uid://bpy13a0h4xapo" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect07.png" id="12_3a4d0"]
 [ext_resource type="Texture2D" uid="uid://46uma0gih3kj" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame11.png" id="12_m0gkk"]
 [ext_resource type="Texture2D" uid="uid://c4r0y3sf05frk" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame12.png" id="13_v1y8k"]
+<<<<<<< HEAD
+[ext_resource type="Texture2D" uid="uid://ueo08l1tglg1" path="res://assets/textures/player/death_effect/DeathEffect8.png" id="13_wjvdp"]
+[ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect9.png" id="14_ytq4k"]
+[ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect10.png" id="15_tt21x"]
+[ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect11.png" id="16_4ncex"]
+[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
+[ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trails/Trail0.png" id="17_6n35y"]
+[ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect12.png" id="17_ctfuu"]
+=======
 [ext_resource type="Texture2D" uid="uid://ueo08l1tglg1" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect08.png" id="13_wjvdp"]
 [ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect09.png" id="14_ytq4k"]
 [ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect10.png" id="15_tt21x"]
 [ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect11.png" id="16_4ncex"]
-[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
-[ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trail/Trail0.png" id="17_6n35y"]
 [ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect12.png" id="17_ctfuu"]
+>>>>>>> a5e3d7a6b71e4eab83e38062d15dfe0ad5442662
 [ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
 [ext_resource type="Texture2D" uid="uid://dnpykktg8amk8" path="res://assets/textures/player/ufo/Ufo.svg" id="18_nmour"]
 [ext_resource type="Texture2D" uid="uid://cf2nqx4cn1p4r" path="res://assets/textures/player/wave/Wave1/Wave.svg" id="19_8jrwm"]

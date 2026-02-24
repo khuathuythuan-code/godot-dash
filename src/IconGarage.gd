@@ -44,8 +44,8 @@ func _ready() -> void:
 				icon_type = PreviewIcon.Icon.SPIDER
 			"swing":
 				icon_type = PreviewIcon.Icon.SWING
-			# "trail": Not on this branch
-			# icon_type = PreviewIcon.Icon.TRAIL
+			"trail":
+				icon_type = PreviewIcon.Icon.TRAIL
 			"death_effect":
 				icon_type = PreviewIcon.Icon.DEATH_EFFECT
 			_:
@@ -99,7 +99,6 @@ func update_icons() -> void:
 	# preview_icons.get_node(^"Robot").icon_path = Config.icons[PreviewIcon.Icon.ROBOT]["path"]
 	preview_icons.get_node(^"Spider").icon_path = Config.icons[PreviewIcon.Icon.SPIDER]["path"]
 	preview_icons.get_node(^"Swing").icon_path = Config.icons[PreviewIcon.Icon.SWING]["path"]
-	# preview_icons.get_node(^"Trail").icon_path = Config.icons[PreviewIcon.Icon.TRAIL]["path"]
 	# preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"]
 
 

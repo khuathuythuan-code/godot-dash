@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider1/Spider.svg" id="3_4aqbe"]
 [ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="4_junqh"]
 [ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="5_yr6x6"]
+[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="6_yr6x6"]
+[ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trail/Trail0.png" id="7_h537d"]
+[ext_resource type="Script" uid="uid://b81c0tveqh8i8" path="res://addons/trail_2d/trail_2d.gd" id="8_fm7vr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hx1qv"]
 animations = [{
@@ -13,6 +16,10 @@ animations = [{
 "name": &"default",
 "speed": 30.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ptdrb"]
+shader = ExtResource("6_yr6x6")
+shader_parameter/bias = 0.9
 
 [node name="PreviewIcon" type="BoxContainer" unique_id=808775852]
 size_flags_horizontal = 3
@@ -130,3 +137,22 @@ size_flags_vertical = 4
 [node name="Death Effect" type="AnimatedSprite2D" parent="Death Effect" unique_id=858317879]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_hx1qv")
+
+[node name="Trail" type="Control" parent="." unique_id=1732852616]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="Trail" type="Line2D" parent="Trail" unique_id=2027714882]
+unique_name_in_owner = true
+process_mode = 4
+z_index = 4096
+material = SubResource("ShaderMaterial_ptdrb")
+width = 43.0
+texture = ExtResource("7_h537d")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("8_fm7vr")
+length = 0
+metadata/_custom_type_script = "uid://b81c0tveqh8i8"
