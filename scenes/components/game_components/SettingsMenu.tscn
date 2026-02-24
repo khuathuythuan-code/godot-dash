@@ -87,7 +87,6 @@ script = ExtResource("4_y26le")
 metadata/_custom_type_script = "uid://5wf1ujgda80e"
 
 [node name="Graphics" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=1078651350]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -243,7 +242,6 @@ script = ExtResource("10_vf3uf")
 default = 0.5
 max_value = 5.0
 suffix = "s"
-slider_tick_count = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Transition Duration" unique_id=1598599333]
@@ -424,7 +422,6 @@ max_value = 50.0
 step = 0.1
 allow_greater = true
 suffix = "cells"
-slider_tick_count = null
 spinbox_width = 120.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
@@ -452,6 +449,7 @@ theme_type_variation = &"GroupButton"
 text = "Apply and Reload"
 
 [node name="Audio" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=683759099]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
