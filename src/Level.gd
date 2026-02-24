@@ -134,6 +134,7 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 func _ready() -> void:
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
+	stopwatch.paused = true
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
 	AssetManager.load_song_threaded_request(song_path)
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -184,6 +185,7 @@ func start_level() -> void:
 	if get_tree().paused:
 		await LevelManager.pause_menu.unpaused
 	song_player.play(song_start_time)
+	stopwatch.reset()
 	stopwatch.paused = false
 	LevelManager.level_playing = true
 
@@ -196,8 +198,9 @@ func stop_level() -> void:
 
 
 func stop_timer() -> void:
-	if Editor.in_editor:
-		LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
+	if not Editor.in_editor:
+		return
+	LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
 
 
 func setup_color_channel_watchers() -> void:

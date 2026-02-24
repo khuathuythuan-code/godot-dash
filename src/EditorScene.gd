@@ -159,6 +159,7 @@ func start_playtest() -> void:
 	$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
 	%ColorChannelEditor.hide_properties()
 	await get_tree().process_frame
+	level.start_position = LevelManager.player.position
 	Editor.level_data_snapshot = level.to_data()
 	Editor.snapshot.pack(self)
 	%MenuBarContainer.hide()
@@ -167,15 +168,14 @@ func start_playtest() -> void:
 	%RenderModes.hide()
 	%LevelSettings.hide()
 	%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
-	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 	$GameScene/PercentageLayer.show()
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 	$GameScene.pause_menu.practice_button.show()
 	$GameScene.pause_menu.restart_button.show()
 	LevelManager.touchscreen_controls.visible = Config.is_touch_screen
 	$LevelOperationsHandler.pause_autosave()
-	level.start_position = LevelManager.player.position
 	$GameScene.start_level()
+	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func stop_playtest() -> void:

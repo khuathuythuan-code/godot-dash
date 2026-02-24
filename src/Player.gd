@@ -269,7 +269,8 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 		$GroundCollider.shape = slope_collider
 		$SolidOverlapCheck/SolidOverlapCheckCollider.shape = slope_collider
 	if not is_refine_iteration:
-		if is_floor and not dash_control:
+		var level_just_started: bool = LevelManager.current_level and LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time() * 2.0
+		if is_floor and not dash_control and not level_just_started:
 			var ground_hit_particles: GPUParticles2D = GROUND_HIT_PARTICLE.instantiate()
 			%GroundParticles.add_child(ground_hit_particles)
 
