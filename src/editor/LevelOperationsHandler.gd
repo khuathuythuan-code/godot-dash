@@ -56,11 +56,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func pause_autosave() -> void:
-	$AutosaveTimer.stop()
+	$AutosaveTimer.paused = true
 
 
 func unpause_autosave() -> void:
-	$AutosaveTimer.start(Config.autosave_delay * 60.0)
+	$AutosaveTimer.paused = false
 
 
 func _on_level_index_pressed(index: int) -> void:
