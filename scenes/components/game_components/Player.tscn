@@ -732,7 +732,7 @@ visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 7
 
-[node name="Swing-glow" type="Sprite2D" parent="Icon/Swing" unique_id=248484907]
+[node name="SwingGlow" type="Sprite2D" parent="Icon/Swing" unique_id=248484907]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_6vub1")
 
@@ -779,7 +779,7 @@ amount = 64
 texture = ExtResource("5_qm8k0")
 process_material = SubResource("ParticleProcessMaterial_vov5s")
 
-[node name="Swing-NoGlow" type="Sprite2D" parent="Icon/Swing" unique_id=1790209392]
+[node name="SwingNoGlow" type="Sprite2D" parent="Icon/Swing" unique_id=1790209392]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_qd53y")
 

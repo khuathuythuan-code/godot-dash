@@ -90,46 +90,27 @@ func refresh() -> void:
 
 
 func update_icons() -> void:
-	preview_icons.get_node(^"Cube").icon_path = Config.icons[PreviewIcon.Icon.CUBE]["path"]
-	preview_icons.get_node(^"Ship/Ship").icon_path = Config.icons[PreviewIcon.Icon.SHIP]["path"]
-	preview_icons.get_node(^"Ship/Jetpack").icon_path = Config.icons[PreviewIcon.Icon.JETPACK]["path"]
-	preview_icons.get_node(^"UFO").icon_path = Config.icons[PreviewIcon.Icon.UFO]["path"]
-	preview_icons.get_node(^"Ball").icon_path = Config.icons[PreviewIcon.Icon.BALL]["path"]
-	preview_icons.get_node(^"Wave").icon_path = Config.icons[PreviewIcon.Icon.WAVE]["path"]
-	# preview_icons.get_node(^"Robot").icon_path = Config.icons[PreviewIcon.Icon.ROBOT]["path"]
-	preview_icons.get_node(^"Spider").icon_path = Config.icons[PreviewIcon.Icon.SPIDER]["path"]
-	preview_icons.get_node(^"Swing").icon_path = Config.icons[PreviewIcon.Icon.SWING]["path"]
-	# preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"]
+	preview_icons.get_node(^"Cube").icon_path = Config.icons[PreviewIcon.Icon.CUBE].path
+	preview_icons.get_node(^"Ship/Ship").icon_path = Config.icons[PreviewIcon.Icon.SHIP].path
+	preview_icons.get_node(^"Ship/Jetpack").icon_path = Config.icons[PreviewIcon.Icon.JETPACK].path
+	preview_icons.get_node(^"UFO").icon_path = Config.icons[PreviewIcon.Icon.UFO].path
+	preview_icons.get_node(^"Ball").icon_path = Config.icons[PreviewIcon.Icon.BALL].path
+	preview_icons.get_node(^"Wave").icon_path = Config.icons[PreviewIcon.Icon.WAVE].path
+	# preview_icons.get_node(^"Robot").icon_path = Config.icons[PreviewIcon.Icon.ROBOT].path
+	preview_icons.get_node(^"Spider").icon_path = Config.icons[PreviewIcon.Icon.SPIDER].path
+	preview_icons.get_node(^"Swing").icon_path = Config.icons[PreviewIcon.Icon.SWING].path
+	# preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path
 
 
 func _on_icon_pressed(icon: PreviewIcon) -> void:
+	Config.icons[icon.gamemode].path = icon.icon_path
 	match icon.gamemode:
-		PreviewIcon.Icon.CUBE:
-			Config.icons[PreviewIcon.Icon.CUBE]["path"] = icon.icon_path
 		PreviewIcon.Icon.SHIP:
-			Config.icons[PreviewIcon.Icon.SHIP]["path"] = icon.icon_path
 			preview_icons.get_node(^"Ship/Ship").show()
 			preview_icons.get_node(^"Ship/Jetpack").hide()
 		PreviewIcon.Icon.JETPACK:
-			Config.icons[PreviewIcon.Icon.JETPACK]["path"] = icon.icon_path
 			preview_icons.get_node(^"Ship/Ship").hide()
 			preview_icons.get_node(^"Ship/Jetpack").show()
-		PreviewIcon.Icon.UFO:
-			Config.icons[PreviewIcon.Icon.UFO]["path"] = icon.icon_path
-		PreviewIcon.Icon.BALL:
-			Config.icons[PreviewIcon.Icon.BALL]["path"] = icon.icon_path
-		PreviewIcon.Icon.WAVE:
-			Config.icons[PreviewIcon.Icon.WAVE]["path"] = icon.icon_path
-		PreviewIcon.Icon.ROBOT:
-			Config.icons[PreviewIcon.Icon.ROBOT]["path"] = icon.icon_path
-		PreviewIcon.Icon.SPIDER:
-			Config.icons[PreviewIcon.Icon.SPIDER]["path"] = icon.icon_path
-		PreviewIcon.Icon.SWING:
-			Config.icons[PreviewIcon.Icon.SWING]["path"] = icon.icon_path
-		PreviewIcon.Icon.TRAIL:
-			Config.icons[PreviewIcon.Icon.TRAIL]["path"] = icon.icon_path
-		PreviewIcon.Icon.DEATH_EFFECT:
-			Config.icons[PreviewIcon.Icon.DEATH_EFFECT]["path"] = icon.icon_path
 	Config.save()
 	update_icons()
 
@@ -162,11 +143,7 @@ func _on_tab_changed(value: int) -> void:
 
 
 func _on_ship_pressed() -> void:
-	var ship_sprite := preview_icons.get_node(^"Ship/Ship")
-	var jetpack_sprite := preview_icons.get_node(^"Ship/Jetpack")
-	if ship_sprite.visible:
-		ship_sprite.hide()
-		jetpack_sprite.show()
-	else:
-		ship_sprite.show()
-		jetpack_sprite.hide()
+	var ship_sprite: CanvasItem = preview_icons.get_node(^"Ship/Ship")
+	var jetpack_sprite: CanvasItem = preview_icons.get_node(^"Ship/Jetpack")
+	ship_sprite.visible = not ship_sprite.visible
+	jetpack_sprite.visible = not jetpack_sprite.visible
