@@ -22,11 +22,11 @@ signal interaction_ended(value: float, previous: float)
 			return
 		for _range in [hslider, spinbox]:
 			_range.editable = value
-@export var slider_width: float = 256.0:
+@export var spinbox_width: float = 90.0:
 	set(value):
-		slider_width = value
-		if hslider != null:
-			hslider.custom_minimum_size.x = value
+		spinbox_width = value
+		if spinbox != null:
+			spinbox.custom_minimum_size.x = value
 @export var expand_to_text_length: bool
 
 var hslider: HSlider
@@ -51,7 +51,7 @@ var _slider_previous_value: float
 func _ready() -> void:
 	alignment = ALIGNMENT_CENTER
 	hslider = NodeUtils.get_node_or_add(self, "HSlider", HSlider, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)
-	hslider.custom_minimum_size.x = slider_width
+	hslider.custom_minimum_size.x = spinbox_width
 	hslider.size_flags_vertical = Control.SIZE_FILL
 	hslider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	spinbox = NodeUtils.get_node_or_add(self, "SpinBox", SpinBox, NodeUtils.INTERNAL | NodeUtils.SET_OWNER)

@@ -12,37 +12,37 @@
 [ext_resource type="Texture2D" uid="uid://bqtjw0dj4adi0" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame4.png" id="5_5qxcb"]
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_dvha5"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="5_qm8k0"]
-[ext_resource type="Texture2D" uid="uid://c4eickhp3v3uy" path="res://assets/textures/player/swing/SwingGlow.svg" id="6_6vub1"]
-[ext_resource type="Texture2D" uid="uid://blyx75lqpafjt" path="res://assets/textures/player/death_effect/DeathEffect1.png" id="6_7vph0"]
+[ext_resource type="Texture2D" uid="uid://c4eickhp3v3uy" path="res://assets/textures/player/swing/Swing1/SwingGlow.svg" id="6_6vub1"]
+[ext_resource type="Texture2D" uid="uid://blyx75lqpafjt" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect01.png" id="6_7vph0"]
 [ext_resource type="Texture2D" uid="uid://5b4w3lcvvo7y" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame5.png" id="6_owbcc"]
-[ext_resource type="Texture2D" uid="uid://d3amssdvmvmr7" path="res://assets/textures/player/death_effect/DeathEffect2.png" id="7_6qmxy"]
+[ext_resource type="Texture2D" uid="uid://d3amssdvmvmr7" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect02.png" id="7_6qmxy"]
 [ext_resource type="Texture2D" uid="uid://desukkfdjcyt6" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame6.png" id="7_pyfou"]
-[ext_resource type="Texture2D" uid="uid://crdnjnclglcuc" path="res://assets/textures/player/swing/SwingNoGlow.svg" id="7_qd53y"]
+[ext_resource type="Texture2D" uid="uid://crdnjnclglcuc" path="res://assets/textures/player/swing/Swing1/SwingNoGlow.svg" id="7_qd53y"]
 [ext_resource type="Texture2D" uid="uid://jlphwup1ny0n" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame7.png" id="8_7k8wd"]
-[ext_resource type="Texture2D" uid="uid://b320v0xosyxbe" path="res://assets/textures/player/death_effect/DeathEffect3.png" id="8_mvuhw"]
+[ext_resource type="Texture2D" uid="uid://b320v0xosyxbe" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect03.png" id="8_mvuhw"]
 [ext_resource type="Texture2D" uid="uid://bn7xmnthn03vd" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame8.png" id="9_1v0ar"]
-[ext_resource type="Texture2D" uid="uid://cir8movmh6iqs" path="res://assets/textures/player/death_effect/DeathEffect4.png" id="9_6ucl4"]
+[ext_resource type="Texture2D" uid="uid://cir8movmh6iqs" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect04.png" id="9_6ucl4"]
 [ext_resource type="Texture2D" uid="uid://7i2o538tocnk" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame9.png" id="10_75sd8"]
-[ext_resource type="Texture2D" uid="uid://cde8d3baybtg3" path="res://assets/textures/player/death_effect/DeathEffect5.png" id="10_ahecb"]
+[ext_resource type="Texture2D" uid="uid://cde8d3baybtg3" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect05.png" id="10_ahecb"]
 [ext_resource type="Texture2D" uid="uid://csm0u7ad5qmwv" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame10.png" id="11_3oskt"]
-[ext_resource type="Texture2D" uid="uid://c8v2272sja861" path="res://assets/textures/player/death_effect/DeathEffect6.png" id="11_hi4a5"]
-[ext_resource type="Texture2D" uid="uid://bpy13a0h4xapo" path="res://assets/textures/player/death_effect/DeathEffect7.png" id="12_3a4d0"]
+[ext_resource type="Texture2D" uid="uid://c8v2272sja861" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect06.png" id="11_hi4a5"]
+[ext_resource type="Texture2D" uid="uid://bpy13a0h4xapo" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect07.png" id="12_3a4d0"]
 [ext_resource type="Texture2D" uid="uid://46uma0gih3kj" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame11.png" id="12_m0gkk"]
 [ext_resource type="Texture2D" uid="uid://c4r0y3sf05frk" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame12.png" id="13_v1y8k"]
-[ext_resource type="Texture2D" uid="uid://ueo08l1tglg1" path="res://assets/textures/player/death_effect/DeathEffect8.png" id="13_wjvdp"]
-[ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect9.png" id="14_ytq4k"]
-[ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect10.png" id="15_tt21x"]
-[ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect11.png" id="16_4ncex"]
+[ext_resource type="Texture2D" uid="uid://ueo08l1tglg1" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect08.png" id="13_wjvdp"]
+[ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect09.png" id="14_ytq4k"]
+[ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect10.png" id="15_tt21x"]
+[ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect11.png" id="16_4ncex"]
 [ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
 [ext_resource type="Texture2D" uid="uid://b0nl3s1dje715" path="res://assets/textures/player/trails/Trail0.png" id="17_6n35y"]
-[ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect12.png" id="17_ctfuu"]
+[ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect12.png" id="17_ctfuu"]
 [ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
 [ext_resource type="Texture2D" uid="uid://dnpykktg8amk8" path="res://assets/textures/player/ufo/Ufo.svg" id="18_nmour"]
-[ext_resource type="Texture2D" uid="uid://cf2nqx4cn1p4r" path="res://assets/textures/player/wave/Wave.svg" id="19_8jrwm"]
-[ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Parts/Spider_Head-glow.svg" id="19_w1emf"]
-[ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider.svg" id="20_bb8qe"]
-[ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Parts/Spider_Leg-glow.svg" id="21_fajhm"]
-[ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Parts/Spider_Leg.svg" id="22_2ro0i"]
+[ext_resource type="Texture2D" uid="uid://cf2nqx4cn1p4r" path="res://assets/textures/player/wave/Wave1/Wave.svg" id="19_8jrwm"]
+[ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Spider1/Spider_Head-glow.svg" id="19_w1emf"]
+[ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider1/Spider.svg" id="20_bb8qe"]
+[ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="21_fajhm"]
+[ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="22_2ro0i"]
 [ext_resource type="AnimationLibrary" uid="uid://cuomby61m2774" path="res://resources/SpiderAnimations.tres" id="23_244xe"]
 [ext_resource type="Texture2D" uid="uid://cfwfqja2lpecd" path="res://assets/textures/player/jetpack/Jetpack.svg" id="27_vov5s"]
 [ext_resource type="Texture2D" uid="uid://cclfd4gmsd4a0" path="res://assets/textures/player/FireBoost.svg" id="29_475ha"]
@@ -135,12 +135,12 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_244xe"]
 curve = SubResource("Curve_vov5s")
 
-[sub_resource type="Curve" id="Curve_244xe"]
+[sub_resource type="Curve" id="Curve_yieav"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_vov5s"]
-curve = SubResource("Curve_244xe")
+curve = SubResource("Curve_yieav")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_244xe"]
 lifetime_randomness = 1.0
@@ -218,7 +218,7 @@ node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"Animation",
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3t6xh"]
-graph_offset = Vector2(-318, -36)
+graph_offset = Vector2(-633.76025, 99.5654)
 nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_j3k2l")
 nodes/PlayerSpeed/position = Vector2(20, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ksqvo")
@@ -317,17 +317,24 @@ states/run/position = Vector2(360, 221)
 states/walk/node = SubResource("AnimationNodeBlendTree_3t6xh")
 states/walk/position = Vector2(256, 100)
 transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_j87l4"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_ux6am"), "idle", "idle-alt", SubResource("AnimationNodeStateMachineTransition_xjiwe"), "idle-alt", "idle", SubResource("AnimationNodeStateMachineTransition_3ow27"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_oqq0p"), "idle-alt", "jump", SubResource("AnimationNodeStateMachineTransition_102cw"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_f8c6o"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ti1vy"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_333xh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_y725x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_d8wj8"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_hfsl1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cnpoe"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_w0b68"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_w21ie"), "fall", "walk", SubResource("AnimationNodeStateMachineTransition_36kv4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_b4v22"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_87vic"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_i1yrl"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_eidpu"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_vccgf")]
-graph_offset = Vector2(-13.371094, -31.914063)
+graph_offset = Vector2(-220.6618, 11.0859375)
 
-[sub_resource type="CurveTexture" id="CurveTexture_fruiv"]
+[sub_resource type="CurveTexture" id="CurveTexture_k4whp"]
 curve = SubResource("Curve_vov5s")
 
 [sub_resource type="Gradient" id="Gradient_244xe"]
 offsets = PackedFloat32Array(0, 0.6456502)
 colors = PackedColorArray(1.353256, 1.2197721, 0, 1, 1, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fruiv"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dmk7f"]
 gradient = SubResource("Gradient_244xe")
+
+[sub_resource type="Curve" id="Curve_244xe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6n35y"]
+curve = SubResource("Curve_244xe")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vov5s"]
 lifetime_randomness = 1.0
@@ -340,9 +347,9 @@ initial_velocity_max = 160.0
 gravity = Vector3(0, 10, 0)
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_vov5s")
-color_ramp = SubResource("GradientTexture1D_fruiv")
-alpha_curve = SubResource("CurveTexture_fruiv")
+scale_curve = SubResource("CurveTexture_6n35y")
+color_ramp = SubResource("GradientTexture1D_dmk7f")
+alpha_curve = SubResource("CurveTexture_k4whp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8d76"]
 size = Vector2(126, 126)
@@ -560,93 +567,91 @@ collide_with_areas = true
 [node name="SpiderTrailSpawnPoint" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1966975195]
 position = Vector2(0, 64)
 
-[node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1437256854]
+[node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1957238328]
 metadata/_edit_lock_ = true
 
-[node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=678229343]
+[node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1215883236]
 position = Vector2(21, 8)
 rotation = 0.0330985
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=390644432]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=403274015]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=1889692412]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=965830863]
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=905109566]
+[node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1235814377]
 position = Vector2(58, 9)
 rotation = -0.204853
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=1219995926]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=674233427]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=351682121]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=1297745958]
 modulate = Color(0.62, 0.62, 0.5, 1)
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1221838451]
+[node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1218811074]
 position = Vector2(8, -14)
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1123283173]
+[node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1459056244]
 z_index = -1
 texture = ExtResource("19_w1emf")
 
-[node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1645860533]
+[node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1205236476]
 texture = ExtResource("20_bb8qe")
 
-[node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=166204152]
+[node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=2090889761]
 position = Vector2(-30, 12)
 rotation = 0.751096
 scale = Vector2(0.25, 0.305)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=470303584]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1084466350]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1032391879]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1157656146]
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1181714659]
+[node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=918424365]
 position = Vector2(-9, 8)
 rotation = 0.0693143
 scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
-[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=2087875789]
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1756458607]
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
-[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=282204352]
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1434132859]
 position = Vector2(0, 100)
 texture = ExtResource("22_2ro0i")
 
-[node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites" unique_id=131212605]
+[node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites" unique_id=287943173]
 libraries/ = ExtResource("23_244xe")
 playback_default_blend_time = 1.0
 next/RESET = &"walk"
 blend_times = [&"RESET", &"RESET", 1.0, &"RESET", &"walk", 1.0, &"walk", &"walk", 1.0]
 
 [node name="SpiderStateMachine" type="AnimationTree" parent="Icon/Spider" unique_id=859358445]
-root_node = NodePath("../SpiderSprites")
 tree_root = SubResource("AnimationNodeStateMachine_vvc3a")
-anim_player = NodePath("../SpiderSprites/SpiderAnimation")
 parameters/fall/TimeScale/scale = 4.0
 parameters/jump/TimeScale/scale = 4.0
 parameters/run/PlayerSpeed/scale = 1.0

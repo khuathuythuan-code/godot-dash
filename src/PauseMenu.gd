@@ -154,6 +154,9 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	practice_mode_toggled.emit(toggled_on)
 	if not toggled_on:
 		NodeUtils.free_children(LevelManager.game_scene.checkpoint_parent)
+	elif LevelManager.player:
+		var player: Player = LevelManager.player
+		player.last_automatic_checkpoint_position = Vector2.INF
 	_on_continue_pressed()
 
 
@@ -162,7 +165,7 @@ func _on_play_pressed() -> void:
 		Editor.root.stop_playtest()
 	Editor.root.level_operations_handler.save_level()
 	_on_continue_pressed()
-	var fade_screen: FadeScreen = Editor.root.get_node(^"FadeScreenLayer/FadeScreen")
+	var fade_screen: FadeScreen = Editor.root.fade_screen
 	fade_screen.fade_in(0.5)
 	await fade_screen.fade_finished
 	if DiscordRPCManager.available:

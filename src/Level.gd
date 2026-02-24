@@ -161,17 +161,18 @@ func start_level() -> void:
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode
 	LevelManager.player.global_position = start_position
+	LevelManager.player.last_automatic_checkpoint_position = start_position
 	if platformer:
 		LevelManager.touchscreen_controls.enable_platformer(start_internal_gamemode == Player.Gamemode.WAVE)
 	else:
 		LevelManager.touchscreen_controls.disable_platformer()
 
 	LevelManager.ground_up.show()
-	if LevelManager.player_camera != null and get_viewport().get_camera_2d() == LevelManager.player_camera:
+	if LevelManager.player_camera and get_viewport().get_camera_2d() == LevelManager.player_camera:
 		LevelManager.player_camera.freefly = start_freefly
 	if not start_freefly:
 		GroundData.center = Constants.DEFAULT_PLAYER_POSITION
-		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * LevelManager.CELL_SIZE * 0.5
+		GroundData.distance = GroundMoverComponent.LOCKEDFLY_GAMEMODE_GRID_HEIGHTS[start_internal_gamemode] * Constants.CELL_SIZE * 0.5
 		if Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance > LevelManager.ground_down.DEFAULT_Y:
 			GroundData.offset = (Constants.DEFAULT_PLAYER_POSITION.y + GroundData.distance) - LevelManager.ground_down.DEFAULT_Y
 		else:
@@ -240,7 +241,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"rating": rating,
 		"flashing_lights": flashing_lights,
 		"is_editable": is_editable,
-		"song_path": song_path,
+		"song_path": practice.call(song_path, song_player.stream.resource_path if song_player.stream else song_path),
 		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
 		"platformer": platformer,
 		"start_position": Serialize.Vector2(LevelManager.player.global_position),

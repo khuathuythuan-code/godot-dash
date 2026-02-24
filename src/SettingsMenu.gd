@@ -1,4 +1,4 @@
-extends TabContainer
+extends Container
 
 class_name SettingsMenu
 
@@ -6,7 +6,6 @@ signal closed
 
 
 func _ready() -> void:
-	self.current_tab = 0
 	Engine.max_fps = int(Config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))

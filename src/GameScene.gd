@@ -23,9 +23,6 @@ func _ready() -> void:
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		$PauseMenuLayer/PauseMenu.leave.connect(_leave_level)
-		if LevelManager.attempt == 0:
-			$FadeScreenLayer/FadeScreen.show()
-			$FadeScreenLayer/FadeScreen.modulate = Color("000000ff")
 		$EditorGridParallax/EditorGrid.hide()
 		load_level()
 		start_level()
@@ -65,8 +62,8 @@ func start_level() -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), false)
 	if LevelManager.attempt == 0:
 		await get_tree().create_timer(0.2).timeout
-		$FadeScreenLayer/FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
-		await $FadeScreenLayer/FadeScreen.fade_finished
+		$FadeScreen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		await $FadeScreen.fade_finished
 	for level in $Level.get_children():
 		level.start_level()
 	LevelManager.attempt += 1
@@ -115,7 +112,7 @@ func _leave_level() -> void:
 		level.stop_level()
 	LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 	LevelManager.player_camera.process_mode = Node.PROCESS_MODE_DISABLED
-	$FadeScreenLayer/FadeScreen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	$FadeScreen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 
 
 static func get_camera_rect(camera: Camera2D, viewport: Viewport) -> Rect2:

@@ -130,13 +130,13 @@ func _physics_process(delta: float) -> void:
 func move_selection(distance: Vector2):
 	var move_object := func(_selection: Selection):
 		for _object: Node2D in _selection.to_array():
-			_object.global_position += distance * LevelManager.CELL_SIZE
-		selection_pivot += distance * LevelManager.CELL_SIZE
+			_object.global_position += distance * Constants.CELL_SIZE
+		selection_pivot += distance * Constants.CELL_SIZE
 		moved_selection_cells.emit(distance)
 	var unmove_object := func(_selection: Selection):
 		for _object: Node2D in _selection.to_array():
-			_object.global_position -= distance * LevelManager.CELL_SIZE
-		selection_pivot -= distance * LevelManager.CELL_SIZE
+			_object.global_position -= distance * Constants.CELL_SIZE
+		selection_pivot -= distance * Constants.CELL_SIZE
 		moved_selection_cells.emit(-distance)
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Moved objects %s units" % distance)
@@ -351,7 +351,7 @@ func paste_selection() -> void:
 	var move_objects_to_new_screen_center = func(object: Node2D):
 		if object is Player:
 			return
-		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(LevelManager.CELL_SIZE)
+		object.global_position += (get_viewport().get_camera_2d().get_screen_center_position() - clipboard_camera_position).snappedf(Constants.CELL_SIZE)
 
 	var new_selection: Selection = clipboard.map(_clone_object)
 	new_selection.for_each(move_objects_to_new_screen_center)

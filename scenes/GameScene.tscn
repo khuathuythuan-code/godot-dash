@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
 [ext_resource type="Script" uid="uid://df58p5n7dllpj" path="res://src/WorldEnvironment.gd" id="17_21xg8"]
-[ext_resource type="Script" path="res://src/TouchscreenControls.gd" id="17_iaegw"]
+[ext_resource type="Script" uid="uid://b0xmfrq6wj4dc" path="res://src/TouchScreenControls.gd" id="17_iaegw"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="18_2gh7q"]
 [ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
 [ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]
@@ -53,13 +53,6 @@ font_size = 48
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Environment" id="Environment_4phyr"]
-background_mode = 3
-background_canvas_max_layer = 50
-glow_enabled = true
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1npfk"]
 content_margin_left = 13.0
 content_margin_top = 13.0
@@ -74,10 +67,10 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nmf6"]
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 42
-corner_radius_top_right = 42
-corner_radius_bottom_right = 42
-corner_radius_bottom_left = 42
+corner_radius_top_left = 52
+corner_radius_top_right = 52
+corner_radius_bottom_right = 52
+corner_radius_bottom_left = 52
 corner_detail = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk0vr"]
@@ -98,6 +91,13 @@ corner_radius_top_right = 42
 corner_radius_bottom_right = 42
 corner_radius_bottom_left = 42
 corner_detail = 12
+
+[sub_resource type="Environment" id="Environment_4phyr"]
+background_mode = 3
+background_canvas_max_layer = 50
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
 
 [node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent")]
 physics_interpolation_mode = 2
@@ -150,11 +150,11 @@ primary_line_thickness = 3.0
 [node name="Level" type="Node2D" parent="." unique_id=412428242]
 position = Vector2(640, 925)
 
+[node name="CheckpointParent" type="Node2D" parent="." unique_id=747964933]
+
 [node name="Player" parent="." unique_id=758830337 instance=ExtResource("3_22pbm")]
 unique_name_in_owner = true
 position = Vector2(640, 860)
-
-[node name="CheckpointParent" type="Node2D" parent="." unique_id=747964933]
 
 [node name="GroundDownParallax" type="Parallax2D" parent="." unique_id=2138827315]
 repeat_size = Vector2(24000, 0)
@@ -277,17 +277,6 @@ text = "Infinite"
 label_settings = SubResource("LabelSettings_21xg8")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="PauseMenuLayer" parent="." unique_id=992005032 instance=ExtResource("9_vv033")]
-layer = 102
-visible = false
-
-[node name="FadeScreenLayer" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220297200]
-environment = SubResource("Environment_4phyr")
-camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
-script = ExtResource("17_21xg8")
 
 [node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
 process_mode = 3
@@ -413,5 +402,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("22_1npfk")
 expand_mode = 5
+
+[node name="PauseMenuLayer" parent="." unique_id=992005032 instance=ExtResource("9_vv033")]
+layer = 102
+visible = false
+
+[node name="FadeScreen" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220297200]
+environment = SubResource("Environment_4phyr")
+camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
+script = ExtResource("17_21xg8")
 
 [connection signal="pressed" from="TouchscreenControlsLayer/Pause" to="TouchscreenControlsLayer" method="_pause"]

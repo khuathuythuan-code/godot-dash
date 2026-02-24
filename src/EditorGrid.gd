@@ -8,7 +8,7 @@ const LINE_COLOR_SECONDARY := Color("ffffff", 0.3)
 const LINE_WIDTH_PRIMARY := 4.0
 const LINE_WIDTH_SECONDARY := 2.0
 
-@export var grid_size := Vector2i.ONE * LevelManager.CELL_SIZE:
+@export var grid_size := Vector2i.ONE * Constants.CELL_SIZE:
 	set(value):
 		grid_size = value
 		queue_redraw()
@@ -18,7 +18,7 @@ const LINE_WIDTH_SECONDARY := 2.0
 		primary_line_every = value
 		queue_redraw()
 
-@export var cell_size := Vector2.ONE * LevelManager.CELL_SIZE:
+@export var cell_size := Vector2.ONE * Constants.CELL_SIZE:
 	set(value):
 		cell_size = value
 		queue_redraw()

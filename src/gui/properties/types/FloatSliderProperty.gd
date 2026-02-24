@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name FloatSliderProperty
 
 signal value_changed(value: float)
@@ -14,7 +15,7 @@ signal interaction_ended(value: float, previous: float)
 @export var allow_greater: bool
 @export var prefix: String
 @export var suffix: String
-@export var slider_width: float = 100.0
+@export var spinbox_width: float = 90.0
 @export var expand_to_text_length: bool
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
@@ -32,9 +33,11 @@ func _ready() -> void:
 	line_edit.text_submitted.connect(submitted_release_focus)
 	line_edit.editing_toggled.connect(unedit_release_focus)
 	refresh()
-	NodeUtils \
+	(
+		NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
+	)
 
 
 func set_value(new_value: float) -> void:
@@ -67,7 +70,7 @@ func refresh() -> void:
 	input.prefix = prefix
 	input.suffix = suffix
 	input.select_all_on_focus = true
-	input.slider_width = slider_width
+	input.spinbox_width = spinbox_width
 	input.expand_to_text_length = expand_to_text_length
 	input.update_internals()
 	if Engine.is_editor_hint():

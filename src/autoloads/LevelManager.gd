@@ -1,7 +1,6 @@
 extends Node
 
-const CELL_SIZE: int = 128
-
+@warning_ignore("unused_signal")
 signal update_hsv_watchers
 
 var game_scene: GameScene
@@ -22,7 +21,7 @@ var level_song_player: AudioStreamPlayer
 var platformer: bool = false
 var practice_mode: bool = false
 var practice_level_snapshots: Array[Dictionary]
-var touchscreen_controls: CanvasLayer
+var touchscreen_controls: TouchScreenControls
 
 
 func _ready() -> void:

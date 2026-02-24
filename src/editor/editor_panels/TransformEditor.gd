@@ -45,7 +45,7 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		current_rotation = first_object_ref.global_rotation_degrees
 		z_index_property.set_value_no_signal(float(first_object_ref.z_index))
 		scale_property.set_value_no_signal(first_object_ref.scale)
-		position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+		position_property.set_value_no_signal((average_position / Constants.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 		rotation_property.set_value_no_signal(current_rotation)
 		same_scale = true
 		same_rotation = true
@@ -71,7 +71,7 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	var object_positions: Array[Vector2]
 	object_positions.assign(current_selection.map_generic(func(object: Node2D): return LevelManager.current_level.to_local(object.global_position)))
 	average_position = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
-	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+	position_property.set_value_no_signal((average_position / Constants.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 	var object_rotations: Array[float]
 	object_rotations.assign(current_selection.map_generic(func(object: Node2D): return object.rotation_degrees))
@@ -90,8 +90,8 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 
 
 func _on_edit_handler_moved_selection_cells(distance: Vector2) -> void:
-	average_position += distance * LevelManager.CELL_SIZE
-	position_property.set_value_no_signal((average_position / LevelManager.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
+	average_position += distance * Constants.CELL_SIZE
+	position_property.set_value_no_signal((average_position / Constants.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 
 
 func _on_edit_handler_rotated_selection_degrees(angle_degrees: float) -> void:
@@ -108,7 +108,7 @@ func _on_edit_handler_z_index_changed(z_index_delta: int) -> void:
 
 
 func _on_position_value_changed(new_position: Vector2) -> void:
-	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / LevelManager.CELL_SIZE
+	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / Constants.CELL_SIZE
 	edit_handler.move_selection(distance)
 	# No need to update the relative transforms since the pivot and objects move the same amount
 

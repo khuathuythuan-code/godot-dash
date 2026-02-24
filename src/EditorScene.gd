@@ -14,6 +14,7 @@ enum EditorAction {
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
+@export var fade_screen: FadeScreen
 
 var level: Level:
 	set(value):
@@ -33,10 +34,7 @@ func _ready() -> void:
 	Editor.viewport = %EditorViewport
 
 	if SceneManager.from_title_screen():
-		var _fade_screen = $FadeScreenLayer/FadeScreen
-		_fade_screen.show()
-		_fade_screen.modulate = Color("000000ff")
-		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		create_tween().tween_property($EditorCamera, "zoom", Vector2.ONE * 0.8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO).from(Vector2.ONE * 0.4)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
@@ -171,6 +169,7 @@ func start_playtest() -> void:
 	$GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Restart").show()
 	LevelManager.touchscreen_controls.visible = Config.is_touch_screen
 	$LevelOperationsHandler.pause_autosave()
+	level.start_position = LevelManager.player.position
 	$GameScene.start_level()
 
 
@@ -182,7 +181,7 @@ func stop_playtest() -> void:
 	var new_player: Player = LevelManager.player
 	_ready() # sets `level`
 	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
-	new_player.position = level.start_position
+	new_player.global_position = level.start_position
 	%LevelSettings.refresh_saveloads(level)
 	NodeUtils.free_children($GameScene.checkpoint_parent)
 	var practice_button: Button = $GameScene/PauseMenuLayer/PauseMenu.get_node(^"%Practice")
@@ -197,9 +196,7 @@ func stop_playtest() -> void:
 
 func _fade_leave(_action: Variant = null) -> void:
 	$GameScene/PauseMenuLayer/PauseMenu.unsuspend()
-	var _fade_screen = $FadeScreenLayer/FadeScreen
-	_fade_screen.show()
-	_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
 	await create_tween().tween_property($EditorCamera, "zoom", $EditorCamera.zoom / 2, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO).finished
 
 

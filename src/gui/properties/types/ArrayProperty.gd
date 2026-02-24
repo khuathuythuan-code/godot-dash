@@ -80,7 +80,7 @@ func refresh() -> void:
 
 
 func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
-	if items.get_child_count() + 1 > maximum_size and not or_greater:
+	if _value.size() + 1 > maximum_size and not or_greater:
 		return
 	var item = ArrayPropertyItem.new(item_template.instantiate())
 	item.property.show()
@@ -98,7 +98,7 @@ func add_item(idx: int, options: int = 0) -> ArrayPropertyItem:
 			_previous[item.get_index()] = previous
 			interaction_ended.emit(_value, _previous)
 	)
-	item.name = str(idx if idx > 0 else items.get_child_count())
+	item.name = str(idx if idx >= 0 else items.get_child_count())
 	items.add_child(item)
 	var previous_value: Array = _value.duplicate()
 	if idx > 0:
@@ -145,7 +145,6 @@ func set_value(value: Array) -> void:
 func set_value_no_signal(value: Array) -> void:
 	var new_value = value.duplicate()
 	NodeUtils.free_children(items)
-	await get_tree().process_frame
 	_value = []
 	if new_value.size() < minimum_size:
 		for i in range(minimum_size):

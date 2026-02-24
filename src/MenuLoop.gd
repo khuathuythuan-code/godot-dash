@@ -28,3 +28,4 @@ func _on_config_menu_loop_changed(menu_loop: String) -> void:
 	stream = AssetManager.load_song_threaded_get(menu_loop)
 	playing = was_playing
 	seek(seek_to)
+	finished.connect(play)

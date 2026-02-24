@@ -15,12 +15,13 @@ static var editor_scene: PackedScene
 @export var camera: Camera2D
 @export var active_pcam: PhantomCamera2D # Active PhantomCamera2D when the scene enters the tree
 @export var history: PhantomCameraHistory
-@export var fade_screen_layer: CanvasLayer
+@export var fade_screen: FadeScreen
 @export var menu_loop: AudioStreamPlayer
 
 @export_group("Subscenes")
 @export var level_selector: TitleScreenPanel
 @export var community_menu: TitleScreenPanel
+@export var icon_garage: TitleScreenPanel
 @export var settings_panel: TitleScreenPanel
 @export var settings_menu: TabContainer
 
@@ -57,8 +58,7 @@ func _ready() -> void:
 		# HACK: Manual animation because PhantomCamera gets in the way
 		camera.global_position = active_pcam.global_position
 		camera.get_node(^"PhantomCameraHost").queue_free()
-		var _fade_screen = fade_screen_layer.get_child(0)
-		_fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
+		fade_screen.fade_out(0.5, Tween.EASE_OUT, Tween.TRANS_SINE)
 		_camera_tween = create_tween()
 		(
 			_camera_tween.tween_property(camera, "zoom", PlayerCamera.DEFAULT_ZOOM, 0.5).from(Vector2.ONE * 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
@@ -84,7 +84,7 @@ func _return_to_title_screen() -> void:
 	_toggle_background_sprites_autoscroll(true)
 	_current_subscene = SubScene.TITLE_SCREEN
 	_change_background_color(_base_background_color)
-	for object in [level_selector, community_menu, settings_panel]:
+	for object in [level_selector, community_menu, settings_panel, icon_garage]:
 		if object.visible:
 			object.hide_tween()
 
@@ -127,6 +127,15 @@ func _on_go_to_community_menu_pressed() -> void:
 	_current_subscene = SubScene.COMMUNITY_MENU
 
 
+func _on_go_to_icon_garage_pressed() -> void:
+	if icon_garage.visible:
+		_return_to_title_screen()
+		return
+	_return_to_title_screen()
+	icon_garage.show_tween()
+	_current_subscene = SubScene.ICON_GARAGE
+
+
 func _on_settings_pressed() -> void:
 	if settings_panel.visible:
 		_return_to_title_screen()
@@ -137,29 +146,29 @@ func _on_settings_pressed() -> void:
 
 
 func _on_editor_pressed() -> void:
-	var _fade_screen = fade_screen_layer.get_child(0)
-	if not _fade_screen.is_fading:
-		$"../MenuLoop".playing = false
-		SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
-		_fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
-		history.change_phantomcamera(active_pcam, quit_game_camera)
-		await _fade_screen.fade_finished
-		if DiscordRPCManager.available:
-			DiscordRPCHandler.set_details("Creating a level")
-			DiscordRPCHandler.refresh()
-		if Editor.snapshot.can_instantiate():
-			get_tree().change_scene_to_packed(Editor.snapshot)
-		else:
-			get_tree().change_scene_to_packed(AssetManager.editor_packed)
+	if fade_screen.is_fading:
+		return
+	$"../MenuLoop".playing = false
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
+	history.change_phantomcamera(active_pcam, quit_game_camera)
+	fade_screen.fade_in(0.5, Tween.EASE_IN, Tween.TRANS_SINE)
+	await fade_screen.fade_finished
+	if DiscordRPCManager.available:
+		DiscordRPCHandler.set_details("Creating a level")
+		DiscordRPCHandler.refresh()
+	if Editor.snapshot.can_instantiate():
+		get_tree().change_scene_to_packed(Editor.snapshot)
+	else:
+		get_tree().change_scene_to_packed(AssetManager.editor_packed)
 
 
 func _on_quit_game_pressed() -> void:
-	var _fade_screen = fade_screen_layer.get_child(0)
-	if not _fade_screen.is_fading:
-		_fade_screen.fade_in(0.5, Tween.EASE_IN_OUT, Tween.TRANS_EXPO)
-		history.change_phantomcamera(active_pcam, quit_game_camera)
-		await _fade_screen.fade_finished
-		get_tree().quit()
+	if fade_screen.is_fading:
+		return
+	fade_screen.fade_in(0.5, Tween.EASE_IN_OUT, Tween.TRANS_EXPO)
+	history.change_phantomcamera(active_pcam, quit_game_camera)
+	await fade_screen.fade_finished
+	get_tree().quit()
 
 
 func _on_back_button_pressed() -> void:

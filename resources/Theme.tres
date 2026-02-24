@@ -10,7 +10,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-corner_detail = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jaexg"]
@@ -99,12 +98,16 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d60o6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rr233"]
 content_margin_left = 8.0
 content_margin_top = 5.0
 content_margin_right = 8.0
 content_margin_bottom = 5.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xxxg4"]
@@ -173,6 +176,14 @@ content_margin_top = 5.0
 content_margin_right = 8.0
 content_margin_bottom = 5.0
 bg_color = Color(0.225, 0.225, 0.225, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d60o6"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_detail = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7gu6"]
 content_margin_left = 8.0
@@ -292,6 +303,13 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
+bg_color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rrh8"]
 content_margin_left = 15.0
@@ -414,7 +432,7 @@ FoldableContainer/styles/title_panel = SubResource("StyleBoxFlat_f1p5x")
 GroupButton/base_type = &"Button"
 GroupButton/styles/disabled = SubResource("StyleBoxFlat_hkfic")
 GroupButton/styles/hover = SubResource("StyleBoxFlat_yd5pb")
-GroupButton/styles/normal = SubResource("StyleBoxFlat_d60o6")
+GroupButton/styles/normal = SubResource("StyleBoxFlat_rr233")
 GroupButton/styles/pressed = SubResource("StyleBoxFlat_xxxg4")
 HSeparator/styles/separator = SubResource("StyleBoxLine_10srq")
 LevelPanel/base_type = &"Button"
@@ -459,6 +477,10 @@ TitleScreenCommunityLevelListButton/fonts/font = SubResource("FontVariation_2n7u
 TitleScreenCommunityLevelListButton/styles/hover = SubResource("StyleBoxFlat_muv14")
 TitleScreenCommunityLevelListButton/styles/normal = SubResource("StyleBoxFlat_fowr3")
 TitleScreenCommunityLevelListButton/styles/pressed = SubResource("StyleBoxFlat_bqdbf")
+TitleScreenPanel/base_type = &"PanelContainer"
+TitleScreenPanel/styles/panel = SubResource("StyleBoxFlat_60dxp")
+TitleScreenVBox/base_type = &"VBoxContainer"
+TitleScreenVBox/constants/separation = 10
 Toast/base_type = &"Button"
 Toast/styles/disabled = SubResource("StyleBoxFlat_5rrh8")
 Toast/styles/hover = SubResource("StyleBoxFlat_hdsbt")
