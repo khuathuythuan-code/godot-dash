@@ -11,6 +11,8 @@ enum FadeType {
 	FADE_OUT,
 }
 
+var fade_tween: Tween
+
 
 func _ready() -> void:
 	$ColorRect.color = Color.BLACK
@@ -20,7 +22,9 @@ func _ready() -> void:
 func fade_in() -> void:
 	is_fading = true
 	show()
-	var fade_tween = get_tree().create_tween()
+	if fade_tween:
+		fade_tween.kill()
+	fade_tween = create_tween()
 	(
 		fade_tween \
 		.tween_property($ColorRect, ^"color", Color.BLACK, Config.transition_duration) \
@@ -36,7 +40,9 @@ func fade_in() -> void:
 func fade_out() -> void:
 	is_fading = true
 	show()
-	var fade_tween = get_tree().create_tween()
+	if fade_tween:
+		fade_tween.kill()
+	fade_tween = create_tween()
 	(
 		fade_tween \
 		.tween_property($ColorRect, ^"color", Color.hex(0x00000000), Config.transition_duration) \
