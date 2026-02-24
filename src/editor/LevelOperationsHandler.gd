@@ -97,8 +97,7 @@ func _new_level() -> void:
 	var new_level := Level.new()
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
-	Editor.version_history = UndoRedo.new()
-	Editor.clipboard = Selection.new()
+	Editor.clear_data()
 	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
@@ -113,7 +112,7 @@ func _new_level() -> void:
 
 	level_loaded.emit(new_level)
 	# Reset camera to default position
-	editor.editor_camera.offset = Vector2(640.0, 413.0)
+	editor.editor_camera.offset = Vector2(1280.0, 669.0)
 	editor.editor_camera.zoom_factor = 1.25
 	editor.editor_camera.zoom = Vector2.ONE * 0.8
 	$AutosaveTimer.stop()
