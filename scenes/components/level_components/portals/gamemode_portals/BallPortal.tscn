@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_dnjdv"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="2_n641x"]
 [ext_resource type="Texture2D" uid="uid://d3bxk0igncw1" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalBack.png" id="2_u2e3e"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_bjtqn"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_dnjdv"]
 [ext_resource type="Texture2D" uid="uid://dd1s2apollksy" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalFront.png" id="3_natvh"]
 [ext_resource type="Texture2D" uid="uid://bosd0l1hcaf2j" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalIndicatorBG.png" id="4_mlyd2"]
 [ext_resource type="Texture2D" uid="uid://cklcutl8rj5wr" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalIndicatorIcon.png" id="5_ks1gp"]
@@ -15,12 +15,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cghk8"]
 size = Vector2(128, 384)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hxhbg"]
-resource_local_to_scene = true
-shader = ExtResource("3_bjtqn")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
 
 [node name="BallPortal" type="Area2D" unique_id=275774428]
 collision_layer = 8
@@ -35,7 +29,7 @@ shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1940266231]
-material = SubResource("ShaderMaterial_hxhbg")
+material = ExtResource("3_dnjdv")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=316853962]
 z_index = -1
@@ -68,8 +62,9 @@ script = ExtResource("8_lk0h8")
 script = ExtResource("9_01rjw")
 _gamemode = 3
 
-[node name="PulseWhite" type="Node" parent="." unique_id=561051832]
+[node name="PulseWhite" type="Node" parent="." unique_id=561051832 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_ekq6g")
+pulse_target = NodePath("../Sprites")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=166657224]

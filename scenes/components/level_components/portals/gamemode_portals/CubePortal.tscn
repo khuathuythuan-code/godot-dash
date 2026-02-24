@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_ox385"]
 [ext_resource type="Texture2D" uid="uid://2etpothgo1kw" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalBack.png" id="2_n76ru"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_li1qe"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_ox385"]
 [ext_resource type="Texture2D" uid="uid://bxjs1u44gok7c" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalFront.png" id="3_vk6wf"]
 [ext_resource type="Texture2D" uid="uid://b5wb53yuxv3qm" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalIndicatorBG.png" id="4_7vbrb"]
 [ext_resource type="Texture2D" uid="uid://3mefye2oh6jy" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalIndicatorIcon.png" id="5_4knf6"]
@@ -15,12 +15,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cghk8"]
 size = Vector2(128, 384)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wigfn"]
-resource_local_to_scene = true
-shader = ExtResource("3_li1qe")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
 
 [node name="CubePortal" type="Area2D" unique_id=440242133]
 collision_layer = 8
@@ -35,7 +29,8 @@ shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=970842863]
-material = SubResource("ShaderMaterial_wigfn")
+material = ExtResource("3_ox385")
+instance_shader_parameters/factor = 0.0
 
 [node name="CubePortalBack" type="Sprite2D" parent="Sprites" unique_id=581222983]
 z_index = -1
@@ -67,8 +62,9 @@ script = ExtResource("8_4wp27")
 [node name="GamemodeChangerComponent" type="Node" parent="." unique_id=1603705542]
 script = ExtResource("9_g22vt")
 
-[node name="PulseWhite" type="Node" parent="." unique_id=1563924796]
+[node name="PulseWhite" type="Node" parent="." unique_id=1563924796 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_sjwk2")
+pulse_target = NodePath("../Sprites")
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=1362061287]
 script = ExtResource("12_re3iv")

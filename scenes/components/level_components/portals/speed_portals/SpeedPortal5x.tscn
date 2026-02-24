@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_d7c5a"]
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_va7rq"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_yah2m"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_vwgar"]
 [ext_resource type="Texture2D" uid="uid://b8gagycaqj5bl" path="res://assets/textures/portals/speed_portals/SpeedPortal5x.svg" id="4_n3fdh"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="6_dxmgn"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="7_r8soy"]
@@ -25,12 +25,6 @@ scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_0y2x4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k1gh"]
-resource_local_to_scene = true
-shader = ExtResource("3_yah2m")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i884s"]
 size = Vector2(318, 226)
 
@@ -43,7 +37,7 @@ modulate = Color(0.117647, 0.419608, 1, 1)
 process_material = SubResource("ParticleProcessMaterial_usv2p")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=623710498]
-material = SubResource("ShaderMaterial_3k1gh")
+material = ExtResource("3_vwgar")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_n3fdh")
 
@@ -55,8 +49,9 @@ debug_color = Color(0, 1, 0, 0)
 script = ExtResource("6_dxmgn")
 no_blending = true
 
-[node name="PulseWhite" type="Node" parent="." unique_id=1326968677]
+[node name="PulseWhite" type="Node" parent="." unique_id=1326968677 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("7_r8soy")
+pulse_target = NodePath("../Sprite")
 
 [node name="SpeedChangerComponent" type="Node" parent="." unique_id=686806589]
 script = ExtResource("8_b2lc0")

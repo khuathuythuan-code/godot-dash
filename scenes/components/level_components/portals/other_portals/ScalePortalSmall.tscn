@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_gq85d"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="2_nhqe7"]
 [ext_resource type="Texture2D" uid="uid://dgxusv262ihsp" path="res://assets/textures/portals/other_portals/scale_portal_normal/ScalePortalNormalBack.png" id="2_q1isf"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="2_u1bij"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_gq85d"]
 [ext_resource type="Texture2D" uid="uid://cgh6cf5sa4uce" path="res://assets/textures/portals/other_portals/scale_portal_normal/ScalePortalNormalFront.png" id="3_rtfwu"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="9_64nrp"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="10_jwown"]
@@ -11,12 +11,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cghk8"]
 size = Vector2(128, 384)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur3sr"]
-resource_local_to_scene = true
-shader = ExtResource("2_u1bij")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
 
 [node name="ScalePortalSmall" type="Area2D" unique_id=1410035192]
 collision_layer = 8
@@ -31,7 +25,7 @@ shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=315003448]
-material = SubResource("ShaderMaterial_ur3sr")
+material = ExtResource("3_gq85d")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=906843843]
 z_index = -1
@@ -49,8 +43,9 @@ texture = ExtResource("3_rtfwu")
 [node name="PulseCircle" type="Node2D" parent="." unique_id=105463857]
 script = ExtResource("9_64nrp")
 
-[node name="PulseWhite" type="Node" parent="." unique_id=360882557]
+[node name="PulseWhite" type="Node" parent="." unique_id=360882557 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("10_jwown")
+pulse_target = NodePath("../Sprites")
 
 [node name="PlayerScaleChangerComponent" type="Node" parent="." unique_id=1447976618]
 script = ExtResource("11_gnuak")

@@ -1,29 +1,27 @@
 extends Node
+
 class_name PulseWhite
 
-var _factor: float
-var _pulse_target: Node2D
-
+@export var pulse_target: Node2D
 @onready var parent := get_parent() as Interactable
+var _factor: float
 
 
 func _ready() -> void:
 	parent.interacted.connect(pulse)
-	_pulse_target = get_node_or_null("../Sprites")
-	if _pulse_target == null:
-		_pulse_target = get_node_or_null("../Sprite")
 
 
 func _process(delta: float) -> void:
-	if _factor != 0.0:
-		_factor = move_toward(_factor, 0.0, delta * 6)
-		_pulse_target.material.set_shader_parameter("factor", _factor)
-	else:
-		_pulse_target.use_parent_material = true
+	if is_zero_approx(_factor):
+		return
+	_factor = move_toward(_factor, 0.0, delta * 6)
+	pulse_target.set_instance_shader_parameter(&"factor", _factor)
+	if pulse_target.get_child_count() > 0:
+		for child: Node2D in pulse_target.get_children():
+			child.set_instance_shader_parameter(&"factor", _factor)
 
 
 func pulse(_player: Player) -> void:
 	if parent.has(NoEffectsComponent):
 		return
-	_pulse_target.use_parent_material = false
 	_factor = 1.0

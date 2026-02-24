@@ -3,20 +3,14 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_3sgph"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="2_6nd4y"]
 [ext_resource type="PackedScene" uid="uid://l2ofoyvoxbr2" path="res://scenes/components/game_components/TargetLink.tscn" id="2_g4fee"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_c01u1"]
 [ext_resource type="Texture2D" uid="uid://dpymoijvgn47q" path="res://assets/textures/portals/other_portals/teleportal_in/TeleportalInBack.png" id="4_62kgg"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="4_wo8fp"]
 [ext_resource type="Texture2D" uid="uid://bjkrqus0iq7o2" path="res://assets/textures/portals/other_portals/teleportal_in/TeleportalInFront.png" id="5_toxp5"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="7_vbgas"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_wo8fp"]
 [ext_resource type="Script" uid="uid://i73oidoqs007" path="res://src/interactables/public_components/TeleportComponent.gd" id="8_crgvb"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="9_rk7d5"]
 [ext_resource type="Script" uid="uid://b1h4lmrngdiim" path="res://src/interactables/public_components/TargetObjectComponent.gd" id="10_ohmk0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg8ge"]
-resource_local_to_scene = true
-shader = ExtResource("3_c01u1")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k1q4x"]
 size = Vector2(106, 384)
@@ -31,7 +25,7 @@ script = ExtResource("1_3sgph")
 modulate = Color(0.356863, 0.85098, 1, 1)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=949046477]
-material = SubResource("ShaderMaterial_bg8ge")
+material = ExtResource("4_wo8fp")
 
 [node name="TeleportalInBack" type="Sprite2D" parent="Sprites" unique_id=1053903692]
 z_index = -1
@@ -55,8 +49,9 @@ type = 8
 [node name="PulseCircle" type="Node2D" parent="." unique_id=162269336]
 script = ExtResource("9_rk7d5")
 
-[node name="PulseWhite" type="Node" parent="." unique_id=386628352]
+[node name="PulseWhite" type="Node" parent="." unique_id=386628352 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("7_vbgas")
+pulse_target = NodePath("../Sprites")
 
 [node name="TargetObjectComponent" type="Node" parent="." unique_id=77900328]
 script = ExtResource("10_ohmk0")

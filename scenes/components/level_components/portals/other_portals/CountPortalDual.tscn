@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_lt2hg"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="2_orkb7"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_tsh4p"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_lt2hg"]
 [ext_resource type="Texture2D" uid="uid://c4ex0v5xsqcma" path="res://assets/textures/portals/other_portals/count_portal_dual/CountPortalDualBack.png" id="4_wghhi"]
 [ext_resource type="Texture2D" uid="uid://djl51mcjms05k" path="res://assets/textures/portals/other_portals/count_portal_dual/CountPortalDualFront.png" id="5_vi280"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="7_h7re3"]
@@ -11,12 +11,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cghk8"]
 size = Vector2(128, 384)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur3sr"]
-resource_local_to_scene = true
-shader = ExtResource("3_tsh4p")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
 
 [node name="CountPortalDual" type="Area2D" unique_id=556977284]
 collision_layer = 8
@@ -31,7 +25,7 @@ shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1534524972]
-material = SubResource("ShaderMaterial_ur3sr")
+material = ExtResource("3_lt2hg")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=1706234867]
 z_index = -1
@@ -49,8 +43,9 @@ texture = ExtResource("5_vi280")
 [node name="PulseCircle" type="Node2D" parent="." unique_id=1998380154]
 script = ExtResource("7_h7re3")
 
-[node name="PulseWhite" type="Node" parent="." unique_id=941162974]
+[node name="PulseWhite" type="Node" parent="." unique_id=941162974 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("8_7bsqi")
+pulse_target = NodePath("../Sprites")
 
 [node name="PlayerCountChangerComponent" type="Node" parent="." unique_id=1843468024]
 script = ExtResource("9_orkb7")

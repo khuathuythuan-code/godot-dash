@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_4vx8i"]
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_36ths"]
 [ext_resource type="Texture2D" uid="uid://bh5xvhek8i1m6" path="res://assets/textures/portals/speed_portals/SpeedPortal05x.svg" id="2_hh1xf"]
-[ext_resource type="Shader" uid="uid://dyxk030ey5wno" path="res://resources/shaders/ColorPulse.gdshader" id="3_acq6p"]
+[ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_bnl8i"]
 [ext_resource type="Texture2D" uid="uid://dxweksgnsj14o" path="res://assets/textures/CircleOutline.svg" id="5_8glu3"]
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_482be"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="7_v82qu"]
@@ -27,12 +27,6 @@ scale_min = 0.5
 scale_max = 0.5
 scale_curve = SubResource("CurveTexture_0y2x4")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3k1gh"]
-resource_local_to_scene = true
-shader = ExtResource("3_acq6p")
-shader_parameter/pulse_color = Color(1, 1, 1, 1)
-shader_parameter/factor = 0.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w2qhc"]
 size = Vector2(144, 174)
 
@@ -45,7 +39,7 @@ modulate = Color(1, 0.882353, 0, 1)
 process_material = SubResource("ParticleProcessMaterial_8cooc")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1216047457]
-material = SubResource("ShaderMaterial_3k1gh")
+material = ExtResource("3_bnl8i")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_hh1xf")
 
@@ -63,8 +57,9 @@ texture = ExtResource("5_8glu3")
 script = ExtResource("7_v82qu")
 no_blending = true
 
-[node name="PulseWhite" type="Node" parent="." unique_id=1030343636]
+[node name="PulseWhite" type="Node" parent="." unique_id=1030343636 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("8_snj24")
+pulse_target = NodePath("../Sprite")
 
 [node name="SpeedChangerComponent" type="Node" parent="." unique_id=1816383794]
 script = ExtResource("9_xohr6")

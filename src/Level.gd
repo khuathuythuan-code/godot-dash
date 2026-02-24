@@ -448,4 +448,6 @@ static func apply_enter_effect(object_child: Node) -> void:
 		or object_child is Line2D
 	):
 		return
+	if object_child.material:
+		return
 	object_child.material = AssetManager.fade_enter_effect
