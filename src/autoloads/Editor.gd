@@ -22,3 +22,12 @@ var delete: bool = false
 func is_text_input_focused() -> bool:
 	var focus_owner: Control = get_viewport().gui_get_focus_owner()
 	return focus_owner is LineEdit or focus_owner is TextEdit
+
+
+func clear_data() -> void:
+	snapshot = PackedScene.new()
+	level_data_snapshot.clear()
+	level_file_name = ""
+	level_history_version = 1
+	version_history = UndoRedo.new()
+	clipboard = Selection.new()

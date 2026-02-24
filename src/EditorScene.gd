@@ -141,7 +141,7 @@ func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) 
 
 
 func level_was_modified() -> bool:
-	if not level:
+	if not level or not Editor.version_history:
 		return false
 	return Editor.version_history.get_version() > Editor.level_history_version
 
@@ -199,6 +199,7 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
+	Editor.clear_data()
 	$GameScene.fade_screen.fade_in()
 	(
 		create_tween() \
@@ -226,8 +227,7 @@ func _on_leave_pressed() -> void:
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
-	Editor.level_data_snapshot.clear()
-	Editor.level_history_version = -1
+	Editor.clear_data()
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()
