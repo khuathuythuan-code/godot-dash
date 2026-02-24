@@ -73,10 +73,10 @@ enum ParticlePreprocessing {
 @export_group("Audio")
 
 @export_subgroup("Volume")
-@export_range(0, 1, .05) var master_audio_level: float = 1.0
-@export_range(0, 1, .05) var music_audio_level: float = 1.0
-@export_range(0, 1, .05) var game_sfx_audio_level: float = 1.0
-@export_range(0, 1, .05) var in_level_sfx_audio_level: float = 1.0
+@export_range(0, 100, 5) var master_audio_level: int = 100
+@export_range(0, 100, 5) var music_audio_level: int = 100
+@export_range(0, 100, 5) var game_sfx_audio_level: int = 100
+@export_range(0, 100, 5) var in_level_sfx_audio_level: int = 100
 @export var mute_game_on_unfocus: bool = true
 
 @export_subgroup("Music")
@@ -132,7 +132,7 @@ var menu_loop: String:
 	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube.svg" },
 	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
 	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },
-	PreviewIcon.Icon.TRAIL: { "path" = "res://assets/textures/player/trail/Trail0.png"},
+	PreviewIcon.Icon.TRAIL: { "path" ="res://assets/textures/player/trail/Trail0.png" },
 	PreviewIcon.Icon.DEATH_EFFECT: { "path" ="res://assets/textures/player/death_effect/DeathEffect1/" },
 }
 
@@ -203,7 +203,7 @@ func _init():
 func _notification(what):
 	if mute_game_on_unfocus:
 		if what == NOTIFICATION_APPLICATION_FOCUS_IN:
-			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(master_audio_level))
+			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(master_audio_level / 100.0))
 		elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 			AudioServer.set_bus_volume_db(AudioServer.get_bus_index(&"Master"), linear_to_db(0.0))
 

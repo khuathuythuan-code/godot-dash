@@ -87,6 +87,7 @@ script = ExtResource("4_y26le")
 metadata/_custom_type_script = "uid://5wf1ujgda80e"
 
 [node name="Graphics" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=1078651350]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,6 +243,7 @@ script = ExtResource("10_vf3uf")
 default = 0.5
 max_value = 5.0
 suffix = "s"
+slider_tick_count = null
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Transition Duration" unique_id=1598599333]
@@ -422,6 +424,7 @@ max_value = 50.0
 step = 0.1
 allow_greater = true
 suffix = "cells"
+slider_tick_count = null
 spinbox_width = 120.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
@@ -449,7 +452,6 @@ theme_type_variation = &"GroupButton"
 text = "Apply and Reload"
 
 [node name="Audio" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=683759099]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -486,8 +488,10 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("10_vf3uf")
-default = 1.0
-max_value = 1.0
+default = 100.0
+step = 5.0
+suffix = "%"
+slider_tick_count = 11
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Master" unique_id=642482444]
@@ -499,8 +503,10 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("10_vf3uf")
-default = 1.0
-max_value = 1.0
+default = 100.0
+step = 5.0
+suffix = "%"
+slider_tick_count = 11
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Music" unique_id=2064338932]
@@ -512,8 +518,10 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("10_vf3uf")
-default = 1.0
-max_value = 1.0
+default = 100.0
+step = 5.0
+suffix = "%"
+slider_tick_count = 11
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Game SFX" unique_id=943003920]
@@ -525,8 +533,10 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("10_vf3uf")
-min_value = 1.0
-max_value = 1.0
+default = 100.0
+step = 5.0
+suffix = "%"
+slider_tick_count = 11
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Audio/SmoothScrollContainer/VBoxContainer/Volume/VBoxContainer/Level SFX" unique_id=1570908205]
