@@ -8,6 +8,7 @@ signal interaction_ended(value: int, previous: int)
 
 @export var default: int
 @export var fields: PackedStringArray
+@export var icons: Array[Texture2D]
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
@@ -51,6 +52,7 @@ func refresh() -> void:
 	label.text = name
 	input.custom_minimum_size.y = MIN_HEIGHT
 	input.variants = fields
+	input.icons = icons
 	input.default = default
 	input.update()
 	if Engine.is_editor_hint():

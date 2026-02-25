@@ -8,6 +8,7 @@ signal interaction_ended(new_variant: int, previous_variant: int)
 
 @export var default: int
 @export var variants: PackedStringArray
+@export var icons: Array[Texture2D]
 @export var vertical: bool = false
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Update") var _update = update
@@ -33,11 +34,15 @@ func update() -> void:
 	if box_container.get_child_count() > 0:
 		NodeUtils.free_children(box_container)
 		await get_tree().process_frame
+	assert(variants.size() == icons.size(), "Variant and icon count must match")
 	for i: int in variants.size():
 		var enum_variant: String = variants[i]
+		var icon: Texture2D = icons[i]
 		var button: Button = Button.new()
 		button.theme_type_variation = &"OneLineEnumButton"
 		button.text = enum_variant
+		button.icon = icon
+		button.expand_icon = true
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.toggle_mode = true
 		button.button_group = button_group
