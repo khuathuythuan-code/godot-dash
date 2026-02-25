@@ -62,7 +62,7 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
-	var level: Level = $Level.get_child(0)
+	var level: Level = LevelManager.current_level
 	level.prepare_external_data()
 	LevelManager.player_camera.snap_view()
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
@@ -81,6 +81,8 @@ func restart_level() -> void:
 	else:
 		reset()
 		load_level()
+		if not LevelManager.current_level.is_node_ready():
+			await LevelManager.current_level.ready
 		start_level()
 
 

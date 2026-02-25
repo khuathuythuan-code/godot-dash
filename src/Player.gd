@@ -920,7 +920,7 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 
 func _player_death() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	dead = true
 	last_automatic_checkpoint_position = position
 	$Icon.hide()

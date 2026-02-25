@@ -53,9 +53,11 @@ func load_song(path: String) -> AudioStream:
 
 
 func load_song_threaded_request(path: String) -> Error:
+	if path in loaded_songs:
+		return OK
 	if path.is_empty() or path == null:
 		return ERR_FILE_BAD_PATH
-	if thread == null:
+	if not thread:
 		thread = Thread.new()
 	if thread.is_started():
 		thread.wait_to_finish()
@@ -67,6 +69,7 @@ func load_song_threaded_get(path: String) -> AudioStream:
 		return null
 	if thread.is_started():
 		thread.wait_to_finish()
+	print_debug(loaded_songs[path])
 	return loaded_songs[path]
 
 

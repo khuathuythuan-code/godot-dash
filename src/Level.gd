@@ -100,8 +100,7 @@ const START_SPEED: Array[float] = [
 @export_storage var color_channels: Array[ColorChannelData]
 @export_storage var duration: float
 
-@onready var song_player := AudioStreamPlayer.new()
-
+var song_player: AudioStreamPlayer
 var stopwatch: Stopwatch
 var camera_rect: Rect2
 var music_scale: float = 1.0
@@ -137,8 +136,9 @@ func _ready() -> void:
 	stopwatch.paused = true
 	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
 	AssetManager.load_song_threaded_request(song_path)
+	song_player = AudioStreamPlayer.new()
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
-	song_player.set_bus("Music")
+	song_player.set_bus(&"Music")
 	song_player.name = "Song Player"
 	LevelManager.level_song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
@@ -188,6 +188,7 @@ func start_level() -> void:
 	stopwatch.reset()
 	stopwatch.paused = false
 	LevelManager.level_playing = true
+	print_debug(song_player.stream)
 
 
 func stop_level() -> void:
