@@ -74,7 +74,8 @@ func _process(_delta: float) -> void:
 			state = State.ENABLED
 		if state == State.FORCED:
 			state = State.DISABLED
-	force_inputs_focus()
+	if not is_removing:
+		force_inputs_focus()
 	if state == State.FORCED:
 		snap_interval_input.set_value_no_signal(45.0 if Input.is_key_pressed(KEY_CTRL) else 0.001)
 	if state and not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
@@ -151,6 +152,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 
 
 func remove_gizmo(reset_angle: bool = false) -> void:
+	is_removing = true
 	Editor.viewport.remove_cursor_shape_override()
 	state = State.DISABLED
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

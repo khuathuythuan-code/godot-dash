@@ -266,6 +266,7 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 
 
 func remove_gizmo(reset: bool = false) -> void:
+	is_removing = true
 	Editor.viewport.remove_cursor_shape_override()
 	state = State.DISABLED
 	has_hovered_handle = false

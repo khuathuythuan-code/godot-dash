@@ -1,5 +1,6 @@
 @abstract
 extends Control
+
 class_name Gizmo
 
 @warning_ignore("unused_signal")
@@ -15,6 +16,7 @@ var quick_gizmo_value_input: QuickGizmoValueInput
 var gizmo_scale: float
 var state: State
 var is_quick: bool
+var is_removing: bool
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -42,9 +44,12 @@ func has_quick_value() -> bool:
 
 @abstract func remove_gizmo(reset: bool = false) -> void
 
+
 @abstract func is_enabled() -> bool
 
+
 @abstract func any_handle_hovered() -> bool
+
 
 ## Runs after [method Gizmo.quick]
 @abstract func _quick() -> void
