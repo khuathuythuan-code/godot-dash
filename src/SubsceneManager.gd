@@ -11,12 +11,14 @@ enum SubScene {
 }
 
 static var editor_scene: PackedScene
+static var is_first_load: bool = true
 
 @export var camera: Camera2D
 @export var active_pcam: PhantomCamera2D # Active PhantomCamera2D when the scene enters the tree
 @export var history: PhantomCameraHistory
 @export var fade_screen: FadeScreen
 @export var menu_loop: AudioStreamPlayer
+@export var splash: Control
 
 @export_group("Subscenes")
 @export var level_selector: TitleScreenPanel
@@ -74,6 +76,16 @@ func _ready() -> void:
 		camera.add_child(PhantomCameraHost.new())
 	else:
 		active_pcam.set_priority(PhantomCameraHistory.Status.CURRENT_ACTIVE)
+	if Config.transition_duration > 0.0 and is_first_load:
+		splash.show()
+		var splash_tween: Tween = create_tween()
+		(
+			splash_tween \
+			.tween_property(splash, ^"modulate:a", 0.0, Config.transition_duration) \
+			.set_ease(Tween.EASE_IN_OUT) \
+			.set_trans(Tween.TRANS_SINE)
+		)
+		splash_tween.tween_callback(splash.hide)
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")
 		DiscordRPCHandler.refresh()
@@ -81,6 +93,7 @@ func _ready() -> void:
 	quit_game_camera.set_tween_duration(Config.transition_duration)
 	title_screen_camera.set_tween_duration(Config.transition_duration)
 	from_editor_camera.set_tween_duration(Config.transition_duration)
+	is_first_load = false
 
 
 func _input(event: InputEvent) -> void:

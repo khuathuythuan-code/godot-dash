@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="22_juc6n"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="22_tuyt1"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="24_60dxp"]
+[ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="25_p8bvb"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="28_wlgas"]
 [ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="30_ucf7r"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="31_n61qu"]
@@ -210,7 +211,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="MainPanel" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=2063761728]
-z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -289,7 +289,6 @@ text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1262912517]
 visible = false
-z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -319,7 +318,6 @@ vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1806156210]
 visible = false
-z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -474,7 +472,6 @@ autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
 visible = false
-z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -538,7 +535,7 @@ top_level = false
 clip_children = 0
 light_mask = 1
 visibility_layer = 1
-z_index = 1000
+z_index = 0
 z_as_relative = true
 y_sort_enabled = false
 texture_filter = 0
@@ -686,7 +683,6 @@ columns = 10
 
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1153421102]
 visible = false
-z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1
@@ -708,6 +704,27 @@ layout_mode = 2
 
 [node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" unique_id=917759721 instance=ExtResource("12_p8bvb")]
 layout_mode = 2
+
+[node name="Splash" type="ColorRect" parent="TitleScreenLayer" unique_id=260362477]
+visible = false
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14117648, 0.14117648, 0.14117648, 1)
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/Splash" unique_id=488103242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("25_p8bvb")
+expand_mode = 5
+stretch_mode = 5
 
 [node name="FadeScreen" parent="." unique_id=1242859628 instance=ExtResource("1_p8bvb")]
 
@@ -791,13 +808,14 @@ script = ExtResource("28_wlgas")
 bus = &"Music"
 script = ExtResource("32_1ska7")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
 script = ExtResource("30_ucf7r")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
 history = NodePath("PhantomCamera2DHistory")
 fade_screen = NodePath("../FadeScreen")
 menu_loop = NodePath("../MenuLoop")
+splash = NodePath("../TitleScreenLayer/Splash")
 level_selector = NodePath("../TitleScreenLayer/TitleScreen/LevelSelector")
 community_menu = NodePath("../TitleScreenLayer/TitleScreen/Community")
 icon_garage = NodePath("../TitleScreenLayer/TitleScreen/Icon Garage")
@@ -813,14 +831,6 @@ menu_icon = NodePath("../Node2D/MenuIcon")
 menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("31_n61qu")]
-
-[node name="TextureRect" type="TextureRect" parent="." unique_id=488103242]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
