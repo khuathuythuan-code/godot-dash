@@ -1,4 +1,5 @@
 extends AudioStreamPlayer
+
 class_name MenuLoop
 
 static var default_menu_loop: AudioStream
@@ -13,6 +14,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	play()
 
 
