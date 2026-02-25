@@ -954,7 +954,7 @@ func _handle_checkpoint_placement(practice_mode: bool = LevelManager.practice_mo
 			return
 		if is_on_floor_only():
 			place_checkpoint().use_auto_sprite().done()
-		elif _is_flying_gamemode:
+		elif _is_flying_gamemode or internal_gamemode == Gamemode.UFO:
 			place_checkpoint().use_auto_sprite().done()
 		else:
 			return
