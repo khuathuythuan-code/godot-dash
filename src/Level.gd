@@ -188,7 +188,6 @@ func start_level() -> void:
 	stopwatch.reset()
 	stopwatch.paused = false
 	LevelManager.level_playing = true
-	print_debug(song_player.stream)
 
 
 func stop_level() -> void:
