@@ -63,7 +63,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
-	$EditHandler.editor_mode = %EditorModes
+	$EditHandler.editor_modes = %EditorModes
 	%MenuBarContainer.show()
 	LevelManager.touchscreen_controls.hide()
 

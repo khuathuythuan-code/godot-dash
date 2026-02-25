@@ -26,7 +26,7 @@ var level: Level
 var clipboard_camera_position: Vector2
 var object_move_cooldown: float
 var placed_objects_collider: Area2D
-var editor_mode: TabContainer
+var editor_modes: TabContainer
 var selection_index := 0
 var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
@@ -56,7 +56,7 @@ func _physics_process(delta: float) -> void:
 
 	var gizmo_in_use: bool = gizmo and (gizmo.is_enabled() or gizmo.any_handle_hovered())
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == Editor.viewport:
-		if editor_mode.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or not any_gizmo_is_open()):
+		if editor_modes.get_current_tab_control().name == "Edit" and not gizmo_in_use and (not Config.is_touch_screen or not any_gizmo_is_open()):
 			_update_selection()
 		var can_use_actions: bool = (
 			not selection.is_empty() and not (
