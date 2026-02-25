@@ -473,6 +473,7 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
+visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -812,6 +813,14 @@ menu_icon = NodePath("../Node2D/MenuIcon")
 menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("31_n61qu")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=488103242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
