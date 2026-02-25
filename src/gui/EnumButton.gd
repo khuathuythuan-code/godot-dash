@@ -10,6 +10,7 @@ signal interaction_ended(new_variant: int, previous_variant: int)
 @export var variants: PackedStringArray
 @export var icons: Array[Texture2D]
 @export var vertical: bool = false
+@export var as_tab_container: bool = false
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Update") var _update = update
 
@@ -24,17 +25,19 @@ func _ready() -> void:
 	box_container.add_theme_constant_override(&"separation", 0)
 	add_child(box_container)
 	button_group = ButtonGroup.new()
-	theme_type_variation = &"ClipMaskPanel"
 	clip_children = CanvasItem.CLIP_CHILDREN_ONLY
 	update()
 
 
 func update() -> void:
+	theme_type_variation = &"ClipMaskPanel" if not as_tab_container else &"RoundedEnumButton"
+	custom_minimum_size.y = 0.0 if not as_tab_container else 36.0
 	box_container.vertical = vertical
 	if box_container.get_child_count() > 0:
 		NodeUtils.free_children(box_container)
 		await get_tree().process_frame
-	assert(variants.size() == icons.size(), "Variant and icon count must match")
+	variants.resize(maxi(variants.size(), icons.size()))
+	icons.resize(maxi(variants.size(), icons.size()))
 	for i: int in variants.size():
 		var enum_variant: String = variants[i]
 		var icon: Texture2D = icons[i]
@@ -46,6 +49,7 @@ func update() -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.toggle_mode = true
 		button.button_group = button_group
+		button.custom_minimum_size = Vector2.ONE * custom_minimum_size.y
 		button.toggled.connect(
 			func(toggled_on: bool):
 				if not toggled_on:

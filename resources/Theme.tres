@@ -232,6 +232,14 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqpj2"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8t62t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o1vdk"]
@@ -460,6 +468,8 @@ Panel/styles/panel = SubResource("StyleBoxFlat_2efnh")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_2efnh")
 PropertyLabel/base_type = &"Label"
 PropertyLabel/font_sizes/font_size = 12
+RoundedEnumButton/base_type = &"PanelContainer"
+RoundedEnumButton/styles/panel = SubResource("StyleBoxFlat_eqpj2")
 TabBar/styles/tab_focus = SubResource("StyleBoxEmpty_8t62t")
 TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_o1vdk")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_jaexg")

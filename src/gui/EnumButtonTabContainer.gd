@@ -1,4 +1,4 @@
-extends Control
+extends BoxContainer
 
 class_name EnumButtonTabContainer
 

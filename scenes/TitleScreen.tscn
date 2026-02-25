@@ -93,14 +93,6 @@ corner_radius_bottom_left = 10
 corner_detail = 5
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60dxp"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-anti_aliasing = false
-
 [sub_resource type="Resource" id="Resource_tuyt1"]
 script = ExtResource("22_juc6n")
 
@@ -481,7 +473,6 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
-visible = false
 z_index = 128
 material = ExtResource("8_65pcn")
 layout_mode = 1
@@ -669,10 +660,11 @@ icon_scale = 0.75
 clip_children = 1
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
-theme_type_variation = &"ClipMaskPanel"
-theme_override_styles/panel = SubResource("StyleBoxFlat_60dxp")
+theme_type_variation = &"RoundedEnumButton"
 script = ExtResource("24_60dxp")
 variants = PackedStringArray("Cube", "Ship", "Jetpack", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing", "Trail", "Death Effect")
+icons = Array[Texture2D]([null, null, null, null, null, null, null, null, null, null, null])
+as_tab_container = true
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1366781961]

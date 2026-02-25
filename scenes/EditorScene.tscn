@@ -261,6 +261,7 @@
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
 [ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpoint.tscn" id="225_n63fl"]
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
+[ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="243_vp4xm"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -759,6 +760,7 @@ grow_horizontal = 0
 
 [node name="EditorModes" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer" unique_id=1251313673]
 unique_name_in_owner = true
+visible = false
 texture_filter = 4
 material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
@@ -6120,6 +6122,17 @@ script = ExtResource("4_gl2yd")
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer" unique_id=1499490189]
+layout_mode = 2
+
+[node name="EnumButton" type="PanelContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/VBoxContainer" unique_id=1725665673]
+clip_children = 1
+layout_mode = 2
+theme_type_variation = &"ClipMaskPanel"
+script = ExtResource("243_vp4xm")
+variants = PackedStringArray("Place", "Edit", "Selection Filters")
+metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
 [node name="SidePanel" type="PanelContainer" parent="EditorUI/EditorContainer" unique_id=166554457]
 unique_name_in_owner = true

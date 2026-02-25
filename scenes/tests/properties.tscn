@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="7_4ovid"]
 [ext_resource type="Script" uid="uid://bm3bhys0ur0ns" path="res://src/gui/properties/types/NodeProperty.gd" id="8_eapbg"]
 [ext_resource type="Script" uid="uid://3na5h1vigpxe" path="res://src/gui/properties/types/FileProperty.gd" id="9_eabr2"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="10_htt1w"]
 [ext_resource type="Script" uid="uid://d3j6obbost55b" path="res://src/gui/properties/types/ArrayProperty.gd" id="10_jpvj5"]
 [ext_resource type="PackedScene" uid="uid://ccy88idi6rrkp" path="res://scenes/components/game_components/resource_properties/SpawnedTriggerProperty.tscn" id="12_ostnf"]
 [ext_resource type="Script" uid="uid://s3yc0qgg4nal" path="res://src/resources/SpawnedTrigger.gd" id="13_iyxla"]
@@ -17,7 +18,7 @@
 [ext_resource type="Script" uid="uid://cfmafqjh1b675" path="res://src/gui/properties/types/FlagsProperty.gd" id="15_pssp5"]
 [ext_resource type="Script" uid="uid://cwu2m4yu7an50" path="res://src/gui/properties/types/OneLineEnumProperty.gd" id="17_htt1w"]
 
-[sub_resource type="Resource" id="Resource_7kfuq"]
+[sub_resource type="Resource" id="Resource_4tfqb"]
 resource_local_to_scene = true
 script = ExtResource("13_iyxla")
 
@@ -129,6 +130,7 @@ layout_mode = 2
 vertical = true
 script = ExtResource("17_htt1w")
 fields = PackedStringArray("Object", "Material", "Rendered")
+icons = Array[Texture2D]([ExtResource("10_htt1w"), null, null])
 
 [node name="Node2DProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1155177334]
 custom_minimum_size = Vector2(0, 32)
@@ -156,7 +158,7 @@ metadata/_custom_type_script = "uid://d3j6obbost55b"
 
 [node name="ResourceProperty" parent="CenterContainer/VBoxContainer" unique_id=2140278759 instance=ExtResource("12_ostnf")]
 layout_mode = 2
-default = SubResource("Resource_7kfuq")
+default = SubResource("Resource_4tfqb")
 
 [node name="MultilineStringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=52310013]
 custom_minimum_size = Vector2(0, 32)
