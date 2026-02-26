@@ -19,6 +19,7 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	AllowWaveSlideComponent,
 	HideMarkersComponent,
 	LevelCheckpointComponent,
+	SpiderDashComponent,
 ]
 
 # Querying this at runtime is overkill
