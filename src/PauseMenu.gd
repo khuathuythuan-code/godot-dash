@@ -169,7 +169,8 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 	# Forward the signal to toggle the visibility of the touchscreen practice UI in GameScene
 	practice_mode_toggled.emit(toggled_on)
 	if not toggled_on:
-		NodeUtils.free_children(LevelManager.game_scene.checkpoint_parent)
+		LevelManager.practice_level_snapshots.clear()
+		LevelManager.game_scene.restart_level()
 	elif LevelManager.player:
 		var player: Player = LevelManager.player
 		player.last_automatic_checkpoint_position = Vector2.INF
