@@ -234,6 +234,7 @@ func register_required_font(old_path: String, new_path: String) -> void:
 
 func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 	var practice := func(practice_off: Variant, practice_on: Variant): return practice_on if reason == SerializeReason.PRACTICE_ATTEMPT else practice_off
+	var player: Player = LevelManager.player
 	var data: Dictionary = {
 		"game_version": ProjectSettings.get_setting("application/config/version"),
 		"name": name,
@@ -246,16 +247,16 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"song_path": practice.call(song_path, song_player.stream.resource_path if song_player.stream else song_path),
 		"song_start_time": practice.call(song_start_time, song_player.get_playback_position()),
 		"platformer": platformer,
-		"start_position": Serialize.Vector2(LevelManager.player.global_position),
-		"start_internal_gamemode": practice.call(start_internal_gamemode, LevelManager.player.internal_gamemode),
-		"start_displayed_gamemode": practice.call(start_displayed_gamemode, LevelManager.player.displayed_gamemode),
+		"start_position": Serialize.Vector2(player.global_position),
+		"start_internal_gamemode": practice.call(start_internal_gamemode, player.internal_gamemode),
+		"start_displayed_gamemode": practice.call(start_displayed_gamemode, player.displayed_gamemode),
 		"start_freefly": practice.call(start_freefly, LevelManager.player_camera.freefly),
-		"start_speed": practice.call(start_speed, LevelManager.player.speed_multiplier),
+		"start_speed": practice.call(start_speed, player.speed_multiplier),
 		"start_speed_preset": start_speed_preset,
-		"start_reverse": start_reverse,
-		"start_gameplay_rotation_degrees": start_gameplay_rotation_degrees,
-		"start_gravity_multiplier": start_gravity_multiplier,
-		"start_gravity_flip": start_gravity_flip,
+		"start_reverse": practice.call(start_reverse, player.horizontal_direction < 0),
+		"start_gameplay_rotation_degrees": practice.call(start_gameplay_rotation_degrees, player.gameplay_rotation_degrees),
+		"start_gravity_multiplier": practice.call(start_gravity_multiplier, player.gravity_multiplier),
+		"start_gravity_flip": practice.call(start_gravity_flip, player.gravity_flip),
 		"default_background_color": default_background_color.to_rgba32(),
 		"default_ground_color": default_ground_color.to_rgba32(),
 		"default_line_color": default_line_color.to_rgba32(),
