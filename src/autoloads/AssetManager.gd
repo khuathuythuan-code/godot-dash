@@ -69,7 +69,6 @@ func load_song_threaded_get(path: String) -> AudioStream:
 		return null
 	if thread.is_started():
 		thread.wait_to_finish()
-	print_debug(loaded_songs[path])
 	return loaded_songs[path]
 
 
