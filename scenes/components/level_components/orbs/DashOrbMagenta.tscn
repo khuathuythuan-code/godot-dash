@@ -56,6 +56,9 @@ script = ExtResource("4_w7bt3")
 [node name="PulseCircle" type="Node2D" parent="." unique_id=1428799809]
 script = ExtResource("5_tgwkr")
 
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=1365776200]
+script = ExtResource("10_y60uf")
+
 [node name="FireDashComponent" type="Node" parent="." unique_id=2002654548]
 script = ExtResource("7_35cbg")
 
@@ -67,9 +70,6 @@ script = ExtResource("10_0a3a8")
 
 [node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=352778780]
 script = ExtResource("9_tqky4")
-
-[node name="DirectionChangerComponent" type="Node" parent="." unique_id=1365776200]
-script = ExtResource("10_y60uf")
 
 [node name="EditorSelectionCollider" parent="." unique_id=480540917 instance=ExtResource("12_vy66y")]
 type = 8

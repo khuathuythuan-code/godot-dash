@@ -53,11 +53,11 @@ script = ExtResource("5_ndqdo")
 [node name="PulseCircle" type="Node2D" parent="." unique_id=267045624]
 script = ExtResource("6_kltjm")
 
+[node name="DirectionChangerComponent" type="Node" parent="." unique_id=1419130451]
+script = ExtResource("10_5fmuc")
+
 [node name="FireDashComponent" type="Node" parent="." unique_id=2012090557]
 script = ExtResource("8_1gryp")
 
 [node name="FireDashPathFollowSpeed" type="Node" parent="FireDashComponent" unique_id=678954633]
 script = ExtResource("10_bufb6")
-
-[node name="DirectionChangerComponent" type="Node" parent="." unique_id=1419130451]
-script = ExtResource("10_5fmuc")
