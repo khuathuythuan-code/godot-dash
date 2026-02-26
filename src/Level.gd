@@ -265,9 +265,9 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"duration": duration,
 		"objects": [],
 		"player_data": {
-			"groups": LevelManager.player.get_groups(),
-			"hsv": LevelManager.player.get_node(^"HSVWatcher").to_data(),
-			"z_index": LevelManager.player.z_index,
+			"groups": player.get_groups(),
+			"hsv": player.get_node(^"HSVWatcher").to_data(),
+			"z_index": player.z_index,
 		},
 	}
 	if reason == SerializeReason.PRACTICE_ATTEMPT:
