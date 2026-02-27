@@ -17,12 +17,15 @@ vec3 rgb2hsv(vec3 c) {
 }
 
 void fragment() {
+	vec4 color;
+	float alpha = 1.0;
 	if (menu_blur) {
-		vec4 blurred = texture(SCREEN_TEXTURE, SCREEN_UV, lod) * lightness;
-		float use_original_color = step(rgb2hsv(COLOR.xyz).z, 0.3);
-		COLOR.rgb = mix(COLOR.rgb, blurred.rgb, use_original_color);
-		COLOR.a = mix(COLOR.a, 1.0, use_original_color);
+		color = texture(SCREEN_TEXTURE, SCREEN_UV, lod) * lightness;
 	} else {
-		COLOR.a = COLOR.a * 1.1;
+		color = texture(SCREEN_TEXTURE, SCREEN_UV) * lightness;
+		alpha = 1.2;
 	}
+	float use_original_color = step(rgb2hsv(COLOR.xyz).z, 0.3);
+	COLOR.rgb = mix(COLOR.rgb, color.rgb, use_original_color);
+	COLOR.a = mix(COLOR.a, alpha, use_original_color);
 }
