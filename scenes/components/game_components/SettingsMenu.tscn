@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_ivev1"]
 [ext_resource type="Script" uid="uid://86h6yxdj6auo" path="res://src/SettingsMenu.gd" id="3_rvg0e"]
-[ext_resource type="Script" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
+[ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="6_p6jor"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="7_ndunm"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_ndunm"]
@@ -223,7 +223,16 @@ script = ExtResource("6_p6jor")
 config_property = &"menu_blur"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Blur Strength" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1824071719]
+[node name="Interface" type="FoldableContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer" unique_id=708194891]
+layout_mode = 2
+mouse_filter = 1
+title = "Interface"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface" unique_id=78980704]
+layout_mode = 2
+
+[node name="Background Blur Strength" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer" unique_id=1824071719]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -234,12 +243,12 @@ step = 0.1
 allow_greater = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Blur Strength" unique_id=66653969]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer/Background Blur Strength" unique_id=66653969]
 script = ExtResource("6_p6jor")
 config_property = &"blur_strength"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="UI Color" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=33437]
+[node name="Interface Color" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer" unique_id=33437]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -247,12 +256,12 @@ script = ExtResource("12_bi686")
 default = Color(0.50140655, 0.5014065, 0.5014065, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/UI Color" unique_id=1969880900]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer/Interface Color" unique_id=1969880900]
 script = ExtResource("6_p6jor")
 config_property = &"ui_color"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Transition Duration" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=168407974]
+[node name="Transition Duration" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer" unique_id=168407974]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -262,7 +271,7 @@ max_value = 5.0
 suffix = "s"
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Transition Duration" unique_id=1598599333]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Interface/VBoxContainer/Transition Duration" unique_id=1598599333]
 script = ExtResource("6_p6jor")
 config_property = &"transition_duration"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
