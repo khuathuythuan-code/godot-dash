@@ -130,8 +130,9 @@ func build_ui(interactables: Selection) -> void:
 				last_section.show.call_deferred()
 			if i < displayed_components.size() - 1:
 				ui_root.add_child(HSeparator.new())
-		components_root.add_child(ui_root)
-		components_root.visible = components_root.get_child_count() > 0
+		components_root.visible = ui_root.get_child_count() > 0
+		if components_root.visible:
+			components_root.add_child(ui_root)
 		if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
 			separator.hide()
 			markers_root.hide()
