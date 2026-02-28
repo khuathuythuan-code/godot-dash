@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="4_bviuh"]
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="5_h0l2k"]
 [ext_resource type="Script" uid="uid://cqkay7r3kwd6f" path="res://src/interactables/public_components/JumpBoostComponent.gd" id="7_vbccn"]
+[ext_resource type="Script" uid="uid://dsrhynpnvau8u" path="res://src/interactables/private_components/PulseScale.gd" id="7_xtcx4"]
 [ext_resource type="Script" uid="uid://df636dbhnu65v" path="res://src/interactables/public_components/GravityFlipChangerComponent.gd" id="8_knu32"]
 [ext_resource type="Script" uid="uid://vrgtsmh26uj3" path="res://src/interactables/private_components/GravityTextureFlip.gd" id="9_pskmb"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="10_34hr5"]
@@ -48,6 +49,11 @@ script = ExtResource("4_bviuh")
 [node name="PulseRing" type="Node2D" parent="." unique_id=1953461509]
 scale = Vector2(1.2, 1.2)
 script = ExtResource("5_h0l2k")
+
+[node name="PulseScale" type="Node" parent="." unique_id=961229016 node_paths=PackedStringArray("sprite")]
+script = ExtResource("7_xtcx4")
+sprite = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://dsrhynpnvau8u"
 
 [node name="JumpBoostComponent" type="Node" parent="." unique_id=2094736802]
 script = ExtResource("7_vbccn")
