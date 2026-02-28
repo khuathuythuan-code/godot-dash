@@ -24,6 +24,7 @@ func get_current_scene() -> Scene:
 func in_title_screen() -> bool:
 	return _current == Scene.TITLE_SCREEN
 
+
 func in_editor() -> bool:
 	return _current == Scene.EDITOR
 
