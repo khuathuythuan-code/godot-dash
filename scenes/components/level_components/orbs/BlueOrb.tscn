@@ -32,6 +32,9 @@ texture = ExtResource("2_iiq7e")
 [node name="MusicScale" type="Node" parent="Sprite" unique_id=226626779]
 script = ExtResource("3_wcw6k")
 
+[node name="GravityTextureFlip" type="Node" parent="Sprite" unique_id=432215121]
+script = ExtResource("9_pskmb")
+
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=96720604]
 scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_jwypc")
@@ -53,9 +56,6 @@ jump_boost = -0.706
 [node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=770519654]
 script = ExtResource("8_knu32")
 flip_state = 2
-
-[node name="GravityTextureFlip" type="Node" parent="." unique_id=432215121]
-script = ExtResource("9_pskmb")
 
 [node name="DirectionChangerComponent" type="Node" parent="." unique_id=1115850441]
 script = ExtResource("10_34hr5")
