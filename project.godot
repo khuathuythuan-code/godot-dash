@@ -412,11 +412,7 @@ blur_strength={
 "type": "float",
 "value": 3.0
 }
-ui_lightness={
-"type": "float",
-"value": 0.5
-}
-ui_alpha={
-"type": "float",
-"value": 1.0
+ui_color={
+"type": "color",
+"value": Color(0.5019608, 0.5019608, 0.5019608, 1)
 }
