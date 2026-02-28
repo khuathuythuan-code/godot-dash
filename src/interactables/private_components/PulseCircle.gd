@@ -1,9 +1,12 @@
 extends Node2D
+
 class_name PulseCircle
 
 const RADIUS := 128 * 1.25
 
 @export var no_blending := false
+
+var tween: Tween
 
 @onready var parent := get_parent() as Interactable
 
@@ -30,8 +33,9 @@ func pulse(_player: Player) -> void:
 	if parent.has(NoEffectsComponent):
 		return
 	show()
-	var pulse_tween := create_tween().set_parallel()
-	pulse_tween.tween_property(self, ^"_radius", 0.0, 0.25)
-	await pulse_tween.finished
+	if tween:
+		tween.kill()
+	tween = create_tween().set_parallel()
+	tween.tween_property(self, ^"_radius", 0.0, 0.25).from(RADIUS)
+	await tween.finished
 	hide()
-	_radius = RADIUS
