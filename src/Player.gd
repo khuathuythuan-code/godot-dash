@@ -205,7 +205,7 @@ func _physics_process(delta: float) -> void:
 	if displayed_gamemode in [Gamemode.SHIP, Gamemode.SWING, Gamemode.UFO]:
 		%Trail.add_points = true
 	if %Trail.add_points:
-		%Trail.material.set_shader_parameter("bias", float(%Trail.get_point_count()) / float(%Trail.length) * 1.2)
+		%Trail.material.set_shader_parameter(&"bias", float(%Trail.get_point_count()) / float(%Trail.length) * 1.2)
 	match displayed_gamemode:
 		Gamemode.SPIDER:
 			_update_spider_state_machine(jump_state)
