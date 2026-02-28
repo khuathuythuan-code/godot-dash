@@ -53,7 +53,7 @@ enum ParticlePreprocessing {
 @export var bloom: bool = true
 @export var menu_blur: bool = true
 @export var blur_strength: float = 3
-@export var ui_color: Color = Color8(128, 128, 128, 128)
+@export var ui_color: Color = Color("#808080")
 @export var transition_duration: float = 0.5
 
 # Performance
