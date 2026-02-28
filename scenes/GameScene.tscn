@@ -282,10 +282,12 @@ vertical_alignment = 1
 
 [node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
 process_mode = 3
+layer = 91
+visible = false
 script = ExtResource("17_iaegw")
 
 [node name="Pause" type="Button" parent="TouchscreenControlsLayer" unique_id=728533107]
-modulate = Color(0.59, 0.59, 0.59, 1)
+modulate = Color(1, 1, 1, 0.14117648)
 material = ExtResource("18_2gh7q")
 anchors_preset = 1
 anchor_left = 1.0
@@ -298,9 +300,20 @@ grow_horizontal = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_1npfk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1npfk")
 theme_override_styles/hover = SubResource("StyleBoxFlat_1npfk")
-icon = ExtResource("19_a5tct")
 icon_alignment = 1
 expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="TouchscreenControlsLayer/Pause" unique_id=1195841252]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_a5tct")
+expand_mode = 3
 
 [node name="LeftRight" type="PanelContainer" parent="TouchscreenControlsLayer" unique_id=452245364]
 material = ExtResource("18_2gh7q")

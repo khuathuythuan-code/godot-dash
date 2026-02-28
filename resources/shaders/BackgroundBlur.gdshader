@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 global uniform bool menu_blur = true;
+global uniform float blur_strength : hint_range(0.0, 5) = 3.0;
+global uniform vec4 ui_color : source_color;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-uniform float lod: hint_range(0.0, 5) = 0.0;
-uniform float lightness: hint_range(0.0, 1.0, 0.01) = 0.5;
 
 
 vec3 rgb2hsv(vec3 c) {
@@ -17,12 +17,15 @@ vec3 rgb2hsv(vec3 c) {
 }
 
 void fragment() {
+	float use_original_color = step(rgb2hsv(COLOR.xyz).z, 0.3);
 	if (menu_blur) {
-		vec4 blurred = texture(SCREEN_TEXTURE, SCREEN_UV, lod) * lightness;
-		float use_original_color = step(rgb2hsv(COLOR.xyz).z, 0.3);
+		vec4 blurred = texture(SCREEN_TEXTURE, SCREEN_UV, blur_strength) * ui_color;
 		COLOR.rgb = mix(COLOR.rgb, blurred.rgb, use_original_color);
-		COLOR.a = mix(COLOR.a, 1.0, use_original_color);
+		COLOR.a = mix(COLOR.a, ui_color.a, use_original_color);
 	} else {
-		COLOR.a = COLOR.a * 1.1;
+		if (use_original_color != 0.0) {
+			COLOR.a = ui_color.a;
+			COLOR.rgb = vec3(ui_color.rgb);
+		}
 	}
 }
