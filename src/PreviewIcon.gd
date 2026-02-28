@@ -44,29 +44,29 @@ func _refresh() -> void:
 	match gamemode:
 		Icon.SWING:
 			$Sprite.show()
-			$Sprite.texture = load(icon_path.path_join("Swing.svg"))
-		Icon.DEATH_EFFECT:
+			$Sprite.texture = IconUtils.load_icon(icon_path.path_join("Swing.svg"))
+		Icon.DEATH_EFFECT:	
 			$"Death Effect".show()
 			for icon in DirAccess.open(icon_path).get_files():
 				if icon.contains(".import"):
 					continue
-				var frame: Texture2D = load(icon_path + "/" + icon)
+				var frame: Texture2D = IconUtils.load_icon(icon_path + "/" + icon)
 				$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
 				$"Death Effect/Death Effect".scale = Vector2.ONE * 0.25 * icon_scale
 				$"Death Effect/Death Effect".play(&"default")
 		Icon.TRAIL:
 			$Trail.show()
-			$Trail/Trail.texture = load(icon_path)
+			$Trail/Trail.texture = IconUtils.load_icon(icon_path)
 			$Trail/Trail.width = $Trail/Trail.texture.get_height()
 			$Trail/Trail.clear_points()
 			$Trail/Trail.add_point(global_position + Vector2(2, custom_minimum_size.y / 2))
 			$Trail/Trail.add_point(global_position + Vector2(custom_minimum_size.x, custom_minimum_size.y / 2))
 		Icon.SPIDER:
 			$Spider.show()
-			var head_sprite: Texture2D = load(icon_path.path_join("Spider_Head.svg"))
-			var head_glow_sprite: Texture2D = load(icon_path.path_join("Spider_Head-glow.svg"))
-			var leg_sprite: Texture2D = load(icon_path.path_join("Spider_Leg.svg"))
-			var leg_glow_sprite: Texture2D = load(icon_path.path_join("Spider_Leg-glow.svg"))
+			var head_sprite: Texture2D = IconUtils.load_icon(icon_path.path_join("Spider_Head.svg"))
+			var head_glow_sprite: Texture2D = IconUtils.load_icon(icon_path.path_join("Spider_Head-glow.svg"))
+			var leg_sprite: Texture2D = IconUtils.load_icon(icon_path.path_join("Spider_Leg.svg"))
+			var leg_glow_sprite: Texture2D = IconUtils.load_icon(icon_path.path_join("Spider_Leg-glow.svg"))
 			for part in $Spider/Spider.get_children():
 				if part.name == "Head":
 					part.get_node(^"Spider").texture = head_sprite
@@ -77,4 +77,7 @@ func _refresh() -> void:
 			$Spider/Spider.scale = Vector2.ONE * icon_scale
 		_:
 			$Sprite.show()
-			$Sprite.texture = load(icon_path)
+			$Sprite.texture = IconUtils.load_icon(icon_path)
+
+
+	

@@ -22,45 +22,58 @@ var tab: PreviewIcon.Icon = PreviewIcon.Icon.CUBE
 
 
 func _ready() -> void:
-	var icon_path := DirAccess.open(Constants.ICON_DIR)
-	for type_dir in icon_path.get_directories():
-		var icon_type: PreviewIcon.Icon
-		match type_dir:
-			"cube":
-				icon_type = PreviewIcon.Icon.CUBE
-			"ship":
-				icon_type = PreviewIcon.Icon.SHIP
-			"jetpack":
-				icon_type = PreviewIcon.Icon.JETPACK
-			"ufo":
-				icon_type = PreviewIcon.Icon.UFO
-			"ball":
-				icon_type = PreviewIcon.Icon.BALL
-			"wave":
-				icon_type = PreviewIcon.Icon.WAVE
-			# "robot": Non existant
-			# 	icon_type = PreviewIcon.Icon.ROBOT
-			"spider":
-				icon_type = PreviewIcon.Icon.SPIDER
-			"swing":
-				icon_type = PreviewIcon.Icon.SWING
-			"trail":
-				icon_type = PreviewIcon.Icon.TRAIL
-			"death_effect":
-				icon_type = PreviewIcon.Icon.DEATH_EFFECT
-			_:
-				continue
+	if not DirAccess.dir_exists_absolute(Constants.CUSTOM_ICON_DIR):
+		DirAccess.make_dir_recursive_absolute(Constants.CUSTOM_ICON_DIR)
+	for directory: String in ["cube", "ship", "jetpack", "ufo", "ball", "wave", "spider", "trail", "death_effect"]:
+		directory = Constants.CUSTOM_ICON_DIR + directory	
+		if not DirAccess.dir_exists_absolute(directory):
+			DirAccess.make_dir_recursive_absolute(directory)
+	reload()
 
-		var textures_dir: PackedStringArray
-		match icon_type:
-			PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
-				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_directories()
-			_:
-				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_files()
-		for icon: String in textures_dir:
-			if icon.contains(".import"):
-				continue
-			icons[icon_type].append(Constants.ICON_DIR.path_join(type_dir).path_join(icon))
+
+func reload() -> void:
+	for icon_type: PreviewIcon.Icon in icons:
+		icons[icon_type].clear()
+	for icon_path in [Constants.ICON_DIR, Constants.CUSTOM_ICON_DIR]:
+		var opened_icon_path: DirAccess = DirAccess.open(icon_path)
+		for type_dir in opened_icon_path.get_directories():
+			var icon_type: PreviewIcon.Icon
+			match type_dir:
+				"cube":
+					icon_type = PreviewIcon.Icon.CUBE
+				"ship":
+					icon_type = PreviewIcon.Icon.SHIP
+				"jetpack":
+					icon_type = PreviewIcon.Icon.JETPACK
+				"ufo":
+					icon_type = PreviewIcon.Icon.UFO
+				"ball":
+					icon_type = PreviewIcon.Icon.BALL
+				"wave":
+					icon_type = PreviewIcon.Icon.WAVE
+				# "robot": Non existant
+				# 	icon_type = PreviewIcon.Icon.ROBOT
+				"spider":
+					icon_type = PreviewIcon.Icon.SPIDER
+				"swing":
+					icon_type = PreviewIcon.Icon.SWING
+				"trail":
+					icon_type = PreviewIcon.Icon.TRAIL
+				"death_effect":
+					icon_type = PreviewIcon.Icon.DEATH_EFFECT
+				_:
+					continue
+
+			var textures_dir: PackedStringArray
+			match icon_type:
+				PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
+					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_directories()
+				_:
+					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_files()
+			for icon: String in textures_dir:
+				if icon.contains(".import"):
+					continue
+				icons[icon_type].append(icon_path.path_join(type_dir).path_join(icon))
 	refresh()
 
 
