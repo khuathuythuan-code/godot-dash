@@ -282,6 +282,8 @@ vertical_alignment = 1
 
 [node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
 process_mode = 3
+layer = 91
+visible = false
 script = ExtResource("17_iaegw")
 
 [node name="Pause" type="Button" parent="TouchscreenControlsLayer" unique_id=728533107]
