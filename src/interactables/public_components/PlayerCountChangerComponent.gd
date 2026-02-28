@@ -17,7 +17,7 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func set_player_count(player: Player) -> void:
-	var dual_count := _player_count - 1
+	var dual_count: int = _player_count - 1
 	if dual_count < len(LevelManager.player_duals):
 		if dual_count == 0 and player.dual_index > 0:
 			# Movement
@@ -38,19 +38,17 @@ func set_player_count(player: Player) -> void:
 			LevelManager.player_duals.pop_back().queue_free()
 			duals_to_free -= 1
 	else:
-		var duals_to_create := dual_count - len(LevelManager.player_duals)
+		var duals_to_create: int = dual_count - len(LevelManager.player_duals)
 		var dual_index: int = 0
 		while duals_to_create > 0:
 			dual_index += 1
-			var player_instance := load("res://scenes/components/game_components/Player.tscn").instantiate() as Player
+			var player_instance: Player = AssetManager.player_packed.instantiate()
 			player_instance.dual_index = dual_index
-			LevelManager.game_scene.add_child(player_instance)
+			LevelManager.game_scene.add_child.call_deferred(player_instance)
 			# Movement
-			var normalized_parent_global_position := parent.global_position.rotated(-LevelManager.player.gameplay_rotation)
-			var normalized_player_global_position := LevelManager.player.global_position.rotated(-LevelManager.player.gameplay_rotation)
 			player_instance.global_position = Vector2(
-				normalized_player_global_position.x,
-				normalized_parent_global_position.y,
+				LevelManager.player.global_position.rotated(-LevelManager.player.gameplay_rotation).x,
+				parent.global_position.rotated(-LevelManager.player.gameplay_rotation).y,
 			).rotated(LevelManager.player.gameplay_rotation)
 			player_instance.velocity = LevelManager.player.velocity
 			player_instance.gameplay_rotation = LevelManager.player.gameplay_rotation
