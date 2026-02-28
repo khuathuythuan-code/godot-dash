@@ -10,6 +10,8 @@ func _ready() -> void:
 	DisplayServer.window_set_vsync_mode(Config.vsync)
 	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	RenderingServer.global_shader_parameter_set("menu_blur", Config.menu_blur)
+	RenderingServer.global_shader_parameter_set("blur_strength", Config.blur_strength)
+	RenderingServer.global_shader_parameter_set("blur_lightness", Config.blur_lightness)
 	_on_texture_filtering_value_changed(Config.texture_filtering)
 	_on_touch_screen_mode_value_changed(Config.touch_screen_mode)
 	_on_window_mode_value_changed(Config.window_mode)

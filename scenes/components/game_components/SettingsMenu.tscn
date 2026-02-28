@@ -224,6 +224,40 @@ script = ExtResource("6_p6jor")
 config_property = &"menu_blur"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
+[node name="Blur Strength" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1824071719]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("10_vf3uf")
+default = 3.0
+max_value = 5.0
+step = 0.1
+allow_greater = true
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Blur Strength" unique_id=66653969]
+script = ExtResource("6_p6jor")
+config_property = &"blur_strength"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Blur Lightness" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1564156294]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+tooltip_text = "Works with blur disabled."
+vertical = true
+script = ExtResource("10_vf3uf")
+default = 0.5
+max_value = 1.0
+step = 0.01
+allow_lesser = true
+allow_greater = true
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Blur Lightness" unique_id=1969880900]
+script = ExtResource("6_p6jor")
+config_property = &"blur_lightness"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
 [node name="Transition Duration" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=168407974]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
