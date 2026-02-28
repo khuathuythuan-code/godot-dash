@@ -363,6 +363,7 @@ size = Vector2(128, 128)
 radius = 64.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7s6i"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
