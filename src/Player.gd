@@ -200,7 +200,7 @@ func _physics_process(delta: float) -> void:
 	# Sprite updates
 	_rotate_sprite_degrees(delta, jump_state)
 	%GroundParticles.emitting = is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control
-	if is_on_floor() and not is_zero_approx(velocity.rotated(-gameplay_rotation).x) and not dash_control or displayed_gamemode == Gamemode.WAVE:
+	if is_on_floor() and not dash_control or displayed_gamemode == Gamemode.WAVE:
 		%Trail.add_points = false
 	if displayed_gamemode in [Gamemode.SHIP, Gamemode.SWING, Gamemode.UFO]:
 		%Trail.add_points = true
