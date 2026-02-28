@@ -30,7 +30,6 @@ material = ExtResource("3_lt2hg")
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=1706234867]
 z_index = -1
 use_parent_material = true
-position = Vector2(1, 0)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_wghhi")
 
