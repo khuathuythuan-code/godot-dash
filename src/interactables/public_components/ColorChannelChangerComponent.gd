@@ -7,6 +7,8 @@ enum ColorSpace {
 	OKLAB,
 }
 
+const Type = TargetColorChannelComponent.Type
+
 @export var color: Color = Color.WHITE
 @export_enum("sRGB", "Oklab") var color_space: int = ColorSpace.OKLAB
 @export var reset_color: bool = false:
@@ -38,7 +40,6 @@ func _ready() -> void:
 
 
 func _validate_property(property: Dictionary) -> void:
-	var Type = TargetColorChannelComponent.Type
 	if _type != Type.CUSTOM and property.name in ["Modulation", "hue", "saturation", "value", "intensity", "alpha"]:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 	if _type != Type.LEVEL and property.name == "reset_color":
@@ -56,7 +57,6 @@ func start(_player: Player) -> void:
 	var target_color_channel_component: TargetColorChannelComponent = parent.query(TargetColorChannelComponent)
 	_type = target_color_channel_component.channel_type
 	# enum alias
-	var Type = TargetColorChannelComponent.Type
 	match target_color_channel_component.channel_type:
 		Type.CUSTOM:
 			var with_channel := func(element: ColorChannelData, channel: String): return element.associated_group == channel
@@ -90,10 +90,10 @@ func start(_player: Player) -> void:
 
 func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 	var weight: float = parent.query(EasingComponent).weights[player]
-	var Type = TargetColorChannelComponent.Type
 	match _type:
 		Type.CUSTOM:
 			if not color_channel:
+				breakpoint
 				return
 			color_channel.color = gradient.sample(weight)
 			color_channel.hsv_shift[0] += (hue - initial_color_channel.hsv_shift[0]) * weight_delta
@@ -101,6 +101,7 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 			color_channel.hsv_shift[2] += (value - initial_color_channel.hsv_shift[2]) * weight_delta
 			color_channel.intensity += (intensity - initial_color_channel.intensity) * weight_delta
 			color_channel.alpha += (alpha - initial_color_channel.alpha) * weight_delta
+			color_channel.emit_changed()
 		Type.LEVEL:
 			var Channel = Constants.SpecialColorChannel
 			var level: Level = LevelManager.current_level
@@ -119,6 +120,6 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 					pass
 
 
-func _on_target_color_channel_type_changed(type: TargetColorChannelComponent.Type) -> void:
+func _on_target_color_channel_type_changed(type: Type) -> void:
 	_type = type
 	notify_property_list_changed()
