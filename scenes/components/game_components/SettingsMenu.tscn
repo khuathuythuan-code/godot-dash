@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_ivev1"]
 [ext_resource type="Script" uid="uid://86h6yxdj6auo" path="res://src/SettingsMenu.gd" id="3_rvg0e"]
-[ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
+[ext_resource type="Script" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="6_p6jor"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="7_ndunm"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_ndunm"]
@@ -78,7 +78,6 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 0
 script = ExtResource("4_y26le")
-metadata/_custom_type_script = "uid://5wf1ujgda80e"
 
 [node name="Graphics" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=1078651350]
 layout_mode = 2
@@ -240,10 +239,9 @@ script = ExtResource("6_p6jor")
 config_property = &"blur_strength"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Blur Lightness" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1564156294]
+[node name="UI Lightness" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1564156294]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-tooltip_text = "Works with blur disabled."
 vertical = true
 script = ExtResource("10_vf3uf")
 default = 0.5
@@ -253,9 +251,24 @@ allow_lesser = true
 allow_greater = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/Blur Lightness" unique_id=1969880900]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/UI Lightness" unique_id=1969880900]
 script = ExtResource("6_p6jor")
-config_property = &"blur_lightness"
+config_property = &"ui_lightness"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="UI Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=1998607565]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("10_vf3uf")
+default = 1.0
+max_value = 1.0
+step = 0.01
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer/UI Alpha" unique_id=1341403569]
+script = ExtResource("6_p6jor")
+config_property = &"ui_alpha"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="Transition Duration" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Post-processing/VBoxContainer" unique_id=168407974]

@@ -408,11 +408,15 @@ menu_blur={
 "type": "bool",
 "value": true
 }
-blur_lightness={
-"type": "float",
-"value": 0.5
-}
 blur_strength={
 "type": "float",
 "value": 3.0
+}
+ui_lightness={
+"type": "float",
+"value": 0.5
+}
+ui_alpha={
+"type": "float",
+"value": 1.0
 }

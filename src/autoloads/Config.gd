@@ -53,7 +53,8 @@ enum ParticlePreprocessing {
 @export var bloom: bool = true
 @export var menu_blur: bool = true
 @export var blur_strength: float = 3
-@export var blur_lightness: float = 0.5
+@export var ui_lightness: float = 0.5
+@export var ui_alpha: float = 0.5
 @export var transition_duration: float = 0.5
 
 # Performance
@@ -153,7 +154,8 @@ func _init():
 	bloom = config_file.get_value("Graphics", "bloom", bloom)
 	menu_blur = config_file.get_value("Graphics", "menu_blur", menu_blur)
 	blur_strength = config_file.get_value("Graphics", "blur_strength", blur_strength)
-	blur_lightness = config_file.get_value("Graphics", "blur_lightness", blur_lightness)
+	ui_lightness = config_file.get_value("Graphics", "ui_lightness", ui_lightness)
+	ui_alpha = config_file.get_value("Graphics", "ui_alpha", ui_alpha)
 	transition_duration = config_file.get_value("Graphics", "transition_duration", transition_duration)
 
 	# Performance
@@ -222,7 +224,8 @@ func save() -> void:
 	config_file.set_value("Graphics", "bloom", bloom)
 	config_file.set_value("Graphics", "menu_blur", menu_blur)
 	config_file.set_value("Graphics", "blur_strength", blur_strength)
-	config_file.set_value("Graphics", "blur_lightness", blur_lightness)
+	config_file.set_value("Graphics", "ui_lightness", ui_lightness)
+	config_file.set_value("Graphics", "ui_alpha", ui_alpha)
 	config_file.set_value("Graphics", "transition_duration", transition_duration)
 
 	# Performance
