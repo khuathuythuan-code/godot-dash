@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_ivev1"]
 [ext_resource type="Script" uid="uid://86h6yxdj6auo" path="res://src/SettingsMenu.gd" id="3_rvg0e"]
-[ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
+[ext_resource type="Script" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="6_p6jor"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="7_ndunm"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_ndunm"]
