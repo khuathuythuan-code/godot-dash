@@ -1,4 +1,5 @@
 extends Component
+
 class_name EndLevelComponent
 
 const TRANSITION_DURATION := 1.0
@@ -58,3 +59,4 @@ func _on_static_easing_finished(player: Player) -> void:
 
 func _on_shake_easing_finished(_player: Player) -> void:
 	LevelManager.current_level.stop_level()
+	LevelManager.game_scene.pause_menu.toggle_pause_menu()
