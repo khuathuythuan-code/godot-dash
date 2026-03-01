@@ -43,7 +43,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				$Settings.show_tween()
 
 
-func _notification(what):
+func _notification(what: int) -> void:
 	if not is_inside_tree():
 		return
 	if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
@@ -147,7 +147,7 @@ func _on_edit_pressed() -> void:
 	SceneManager.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	LevelManager.current_level.process_mode = Node.PROCESS_MODE_DISABLED
-	var fade_screen = LevelManager.game_scene.fade_screen
+	var fade_screen: FadeScreen = LevelManager.game_scene.fade_screen
 	get_tree().paused = false
 	LevelManager.level_playing = false
 	fade_screen.fade_in()
