@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cddn6sfd4abug" path="res://assets/textures/orbs/ToggleOrbFill.svg" id="3_2jqxi"]
 [ext_resource type="Script" uid="uid://cx0n1qip15t20" path="res://src/interactables/private_components/MusicScale.gd" id="3_8a4sg"]
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="8_8h2d8"]
+[ext_resource type="Script" uid="uid://dsrhynpnvau8u" path="res://src/interactables/private_components/PulseScale.gd" id="8_e5eow"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="9_hfjph"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_4mcye"]
 [ext_resource type="Script" uid="uid://b0qdkfpjncyhk" path="res://src/interactables/private_components/VariableFillColor.gd" id="11_fi63b"]
@@ -48,6 +49,16 @@ script = ExtResource("8_8h2d8")
 
 [node name="PulseCircle" type="Node2D" parent="." unique_id=125014924]
 script = ExtResource("9_hfjph")
+
+[node name="PulseScaleBase" type="Node" parent="." unique_id=539133578 node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_e5eow")
+sprite = NodePath("../Base")
+metadata/_custom_type_script = "uid://dsrhynpnvau8u"
+
+[node name="PulseScaleFill" type="Node" parent="." unique_id=208682366 node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_e5eow")
+sprite = NodePath("../Fill")
+metadata/_custom_type_script = "uid://dsrhynpnvau8u"
 
 [node name="DirectionChangerComponent" type="Node" parent="." unique_id=535142037]
 script = ExtResource("12_j5u27")

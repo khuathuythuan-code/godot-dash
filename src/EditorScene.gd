@@ -110,10 +110,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"ui_redo", true):
-		Editor.version_history.redo()
-	elif event.is_action_pressed(&"ui_undo", true):
-		Editor.version_history.undo()
+	if not edit_handler.any_gizmo_is_open():
+		if event.is_action_pressed(&"ui_redo", true):
+			Editor.version_history.redo()
+		elif event.is_action_pressed(&"ui_undo", true):
+			Editor.version_history.undo()
 	elif event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
 
