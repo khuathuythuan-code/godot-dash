@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bc0koikb5w121" path="res://src/interactables/public_components/SpiderDashComponent.gd" id="8_l1cqj"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="9_4tc0m"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="10_3j7g6"]
+[ext_resource type="Script" uid="uid://dsrhynpnvau8u" path="res://src/interactables/private_components/PulseScale.gd" id="10_jlgng"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jwypc"]
 size = Vector2(128, 128)
@@ -61,6 +62,11 @@ script = ExtResource("6_1iri4")
 
 [node name="PulseRing" type="Node2D" parent="." unique_id=1398901236]
 script = ExtResource("7_y3ytb")
+
+[node name="PulseScale" type="Node" parent="." unique_id=801613409 node_paths=PackedStringArray("sprite")]
+script = ExtResource("10_jlgng")
+sprite = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://dsrhynpnvau8u"
 
 [node name="SpiderDashComponent" type="Node" parent="." unique_id=661361330]
 script = ExtResource("8_l1cqj")

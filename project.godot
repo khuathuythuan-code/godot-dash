@@ -408,3 +408,11 @@ menu_blur={
 "type": "bool",
 "value": true
 }
+blur_strength={
+"type": "float",
+"value": 3.0
+}
+ui_color={
+"type": "color",
+"value": Color(0.5019608, 0.5019608, 0.5019608, 1)
+}

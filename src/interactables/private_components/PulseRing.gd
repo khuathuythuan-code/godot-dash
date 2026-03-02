@@ -1,5 +1,8 @@
 extends Node2D
+
 class_name PulseRing
+
+var tween: Tween
 
 var _radius: float:
 	set(value):
@@ -19,13 +22,13 @@ func pulse(_player: Player) -> void:
 	if parent.has(NoEffectsComponent):
 		return
 	show()
-	var pulse_tween := create_tween().set_parallel()
-	pulse_tween.tween_property(self, ^"_radius", 128 * 1.5, 0.25)
-	pulse_tween.tween_property(self, ^"_alpha", 0.0, 0.25)
-	await pulse_tween.finished
+	if tween:
+		tween.kill()
+	tween = create_tween().set_parallel()
+	tween.tween_property(self, ^"_radius", 128 * 1.5, 0.25).from(0.0)
+	tween.tween_property(self, ^"_alpha", 0.0, 0.25).from(1.0)
+	await tween.finished
 	hide()
-	_alpha = 1.0
-	_radius = 0.0
 
 
 func _draw() -> void:

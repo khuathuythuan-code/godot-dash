@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dqxlkk6473fv0" path="res://src/interactables/private_components/RemoveMaterial.gd" id="5_r8bs4"]
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="6_5y7xc"]
 [ext_resource type="Script" uid="uid://crvw7wonis42n" path="res://src/interactables/public_components/DirectionChangerComponent.gd" id="8_0hmq7"]
+[ext_resource type="Script" uid="uid://dsrhynpnvau8u" path="res://src/interactables/private_components/PulseScale.gd" id="8_lfb24"]
 [ext_resource type="Script" uid="uid://uatxmfuua4wq" path="res://src/interactables/public_components/TextureRotateComponent.gd" id="8_pj4c0"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="11_my48n"]
 
@@ -18,10 +19,6 @@ size = Vector2(128, 128)
 [node name="BlackOrb" type="Area2D" unique_id=480294807]
 collision_layer = 8
 script = ExtResource("1_0mkth")
-
-[node name="PulseCircle" type="Node2D" parent="." unique_id=815834237]
-script = ExtResource("5_7wk6a")
-no_blending = true
 
 [node name="ParticleEmitter" parent="." unique_id=1104780241 instance=ExtResource("2_vhs35")]
 modulate = Color(0.12, 0.12, 0.12, 1)
@@ -45,8 +42,18 @@ scale = Vector2(1.2, 1.2)
 shape = SubResource("RectangleShape2D_jwypc")
 debug_color = Color(0, 1, 0, 0)
 
+[node name="PulseCircle" type="Node2D" parent="." unique_id=815834237]
+modulate = Color(1, 1, 1, 0.5)
+script = ExtResource("5_7wk6a")
+no_blending = true
+
 [node name="PulseRing" type="Node2D" parent="." unique_id=96829764]
 script = ExtResource("6_5y7xc")
+
+[node name="PulseScale" type="Node" parent="." unique_id=1704933910 node_paths=PackedStringArray("sprite")]
+script = ExtResource("8_lfb24")
+sprite = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://dsrhynpnvau8u"
 
 [node name="JumpBoostComponent" type="Node" parent="." unique_id=2131078198]
 script = ExtResource("2_lpdi7")
