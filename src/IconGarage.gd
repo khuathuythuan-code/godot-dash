@@ -81,24 +81,21 @@ func refresh() -> void:
 	var loaded_preview_icon: PackedScene = load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
-
-	for icon_type: PreviewIcon.Icon in icons:
-		if icon_type != tab:
-			continue
-		for icon: String in icons[icon_type]:
-			var button := BouncyButton.new()
-			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
-			preview_icon.gamemode = icon_type
-			preview_icon.icon_path = icon
-			preview_icon.icon_scale = 0.5
-			preview_icon.custom_minimum_size = Vector2(96, 96)
-			preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-			button.z_index = 4096
-			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			button.custom_minimum_size = Vector2(96, 96)
-			icon_selector.add_child(button)
-			button.add_child(preview_icon)
-			button.pressed.connect(_on_icon_pressed.bind(preview_icon))
+	var icon_type: PreviewIcon.Icon = tab
+	for icon: String in icons[icon_type]:
+		var button := BouncyButton.new()
+		var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
+		preview_icon.gamemode = icon_type
+		preview_icon.icon_path = icon
+		preview_icon.icon_scale = 0.5
+		preview_icon.custom_minimum_size = Vector2(96, 96)
+		preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+		button.z_index = 4096
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.custom_minimum_size = Vector2(96, 96)
+		icon_selector.add_child(button)
+		button.add_child(preview_icon)
+		button.pressed.connect(_on_icon_pressed.bind(preview_icon))
 	update_icons()
 
 
@@ -125,6 +122,7 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 			preview_icons.get_node(^"Ship/Ship").hide()
 			preview_icons.get_node(^"Ship/Jetpack").show()
 	Config.save()
+	AssetManager.load_icons([icon.gamemode])
 	update_icons()
 
 
