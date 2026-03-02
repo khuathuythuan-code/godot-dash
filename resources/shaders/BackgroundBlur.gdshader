@@ -24,8 +24,7 @@ void fragment() {
 		COLOR.a = mix(COLOR.a, ui_color.a, use_original_color);
 	} else {
 		if (use_original_color != 0.0) {
-			COLOR.a = ui_color.a;
-			COLOR.rgb = vec3(ui_color.rgb);
+			COLOR = ui_color;
 		}
 	}
 }

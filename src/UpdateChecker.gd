@@ -6,7 +6,7 @@ var new_version: String
 
 
 func _ready() -> void:
-	if !Config.check_for_updates:
+	if not Config.check_for_updates:
 		text = version
 		return
 	pressed.connect(_on_pressed)
