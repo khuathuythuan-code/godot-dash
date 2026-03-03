@@ -31,6 +31,7 @@ var selection_index := 0
 var cursor_position_snapped: Vector2
 var previous_cursor_position_snapped: Vector2
 var selection_pivot: Vector2
+var selection_pivot_with_player: Vector2
 var gizmo: Gizmo
 
 @onready var selection := Selection.new()
@@ -116,6 +117,10 @@ func _physics_process(delta: float) -> void:
 				_on_scale_pressed()
 			elif Input.is_action_just_pressed(&"editor_quick_scale", true):
 				_on_scale_pressed(true)
+			if Input.is_action_just_pressed(&"editor_move", true):
+				_on_move_pressed()
+			elif Input.is_action_just_pressed(&"editor_quick_move", true):
+				_on_move_pressed(true)
 			if Input.is_action_just_pressed(&"editor_increase_z_index"):
 				shift_z_index(true)
 			elif Input.is_action_just_pressed(&"editor_decrease_z_index"):
@@ -127,19 +132,22 @@ func _physics_process(delta: float) -> void:
 	previous_cursor_position_snapped = cursor_position_snapped
 
 
-func move_selection(distance: Vector2):
+func move_selection(distance_cells: Vector2, version_history: bool = true) -> void:
 	var move_object := func(_selection: Selection):
 		for _object: Node2D in _selection.to_array():
-			_object.global_position += distance * Constants.CELL_SIZE
-		selection_pivot += distance * Constants.CELL_SIZE
-		moved_selection_cells.emit(distance)
+			_object.global_position += distance_cells * Constants.CELL_SIZE
+			selection_pivot += distance_cells * Constants.CELL_SIZE
+		moved_selection_cells.emit(distance_cells) 
 	var unmove_object := func(_selection: Selection):
 		for _object: Node2D in _selection.to_array():
-			_object.global_position -= distance * Constants.CELL_SIZE
-		selection_pivot -= distance * Constants.CELL_SIZE
-		moved_selection_cells.emit(-distance)
+			_object.global_position -= distance_cells * Constants.CELL_SIZE
+		selection_pivot -= distance_cells * Constants.CELL_SIZE
+		moved_selection_cells.emit(-distance_cells)
+	if not version_history:
+		move_object.call(selection)
+		return
 	var selection_snapshot: Selection = selection.clone()
-	Editor.version_history.create_action("Moved objects %s units" % distance)
+	Editor.version_history.create_action("Moved objects %s units" % distance_cells)
 	Editor.version_history.add_do_method(move_object.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(unmove_object.bind(selection_snapshot))
 	Editor.version_history.commit_action()
@@ -428,6 +436,13 @@ func update_pivot() -> void:
 	else:
 		# Take the mean of the position of all objects
 		var object_positions := (
+			selection \
+			.map_generic(func(object: Node2D): return object.global_position)
+		)
+		if object_positions.is_empty():
+			return
+		selection_pivot_with_player = ArrayUtils.transform(object_positions, ArrayUtils.Transformation.MEAN, true)
+		object_positions = (
 			selection \
 			.filter(is_not_player) \
 			.map_generic(func(object: Node2D): return object.global_position)
@@ -724,6 +739,21 @@ static func scale_transform_local(
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
 	)
+
+
+func _on_move_pressed(quick: bool = false):
+	if selection.is_empty():
+		return
+	if any_gizmo_is_open():
+		remove_gizmo()
+	update_pivot()
+	gizmo = MoveGizmo.new()
+	gizmo.global_position = selection_pivot_with_player
+	gizmo.is_quick = quick
+	gizmo_layer.add_child(gizmo)
+	gizmo.position_changed.connect(move_selection.bind(false))
+	gizmo.confirmed.connect(move_selection.bind(true))
+	NodeUtils.connect_once(selection_changed, remove_gizmo)
 
 
 static func add_selection_highlight(object: Node2D, as_duplicate: bool = false) -> void:
