@@ -6,8 +6,6 @@ signal scale_changed(position: Vector2, transform: Transform2D, rotation: float,
 
 const AxisConstraint = QuickGizmoValueInput.AxisConstraint
 
-static var HANDLE_RADIUS: float = 8.0
-
 var handles: Array[Handle] = [
 	# Resize handles
 	Handle.new(Vector2(-1.0, -1.0), Handle.Type.CORNER, 0),
@@ -68,8 +66,6 @@ func _init(_bounding_box: Transform2D) -> void:
 
 
 func _ready() -> void:
-	if Config.is_touch_screen:
-		HANDLE_RADIUS = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
 	tween = create_tween()

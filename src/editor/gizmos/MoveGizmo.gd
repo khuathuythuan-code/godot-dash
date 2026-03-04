@@ -98,25 +98,31 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	if outline:
 		color.a /= 2
 	var horizontal_axis_color: Color = color
-	if is_horizontal_axis_hovered():
+	if is_horizontal_axis_hovered() or used_axis & Constants.AxisBitflag.X:
 		horizontal_axis_color.a /= 2
 	var vertical_axis_color: Color = color
-	if is_vertical_axis_hovered():
+	if is_vertical_axis_hovered() or used_axis & Constants.AxisBitflag.Y:
 		vertical_axis_color.a /= 2
 	var length: int = 102 if outline else 100
 	var width: int = 5 if outline else 1
 
-	var constrained_axis: Constants.Axis = get_constrained_axis()
-	if constrained_axis == Constants.Axis.X:
-		horizontal_axis_color.a /= 2
-		draw_line(Vector2(2000, 0), Vector2(-2000, 0), Color.RED if not outline else horizontal_axis_color, width, true)
-	elif constrained_axis == Constants.Axis.Y:
-		vertical_axis_color.a /= 2
-		draw_line(Vector2(0, 2000), Vector2(0, -2000), Color.GREEN if not outline else vertical_axis_color, width, true)
+	if is_quick:
+		var constrained_axis: Constants.Axis = get_constrained_axis()
+		if constrained_axis == Constants.Axis.X:
+			horizontal_axis_color.a /= 2
+			draw_line(Vector2(2000, 0), Vector2(-2000, 0), Color.RED if not outline else horizontal_axis_color, width, true)
+		elif constrained_axis == Constants.Axis.Y:
+			vertical_axis_color.a /= 2
+			draw_line(Vector2(0, 2000), Vector2(0, -2000), Color.GREEN if not outline else vertical_axis_color, width, true)
 
 	draw_line(Vector2(length, 0), Vector2(-length, 0), horizontal_axis_color, width, true)
 	draw_line(Vector2(0, length), Vector2(0, -length), vertical_axis_color, width, true)
-	draw_circle(Vector2.ZERO, width + 1.5 if outline else width + 3.0, color, true, -1, true)
+
+	if outline:
+		draw_circle(Vector2.ZERO, HANDLE_RADIUS, color, false, 6.0)
+	else:
+		draw_circle(Vector2.ZERO, HANDLE_RADIUS, color, true)
+
 	for direction in [0, 90, 180, 270]:
 		var points: PackedVector2Array = ([
 				Vector2(103.5, -11.5),
