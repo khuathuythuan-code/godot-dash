@@ -14,6 +14,14 @@ var initial_horizontal_axis_position: float = 0
 var initial_vertical_axis_position: float = 0
 var initial_mouse_position: Vector2
 var initial_position: Vector2
+var constrained_axis: Constants.Axis:
+	get():
+		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) or abs(abs(global_position.x - initial_position.x) - abs(global_position.y - initial_position.y)) < 50 / get_viewport().get_camera_2d().zoom.x:
+			return Constants.Axis.BOTH
+		elif abs(global_position.x - initial_position.x) > abs(global_position.y - initial_position.y):
+			return Constants.Axis.X
+		else:
+			return Constants.Axis.Y
 var tween: Tween
 var snapping: bool:
 	get():
@@ -21,6 +29,8 @@ var snapping: bool:
 
 
 func _ready() -> void:
+	if get_viewport().get_camera_2d() is MapCamera2D:
+		get_viewport().get_camera_2d().drag = false
 	state = State.ENABLED
 	initial_mouse_position = get_global_mouse_position()
 	initial_position = global_position
@@ -52,7 +62,14 @@ func _process(_delta: float) -> void:
 		return
 	var _global_position = global_position
 	if is_quick:
-		global_position = initial_position + get_global_mouse_position() - initial_mouse_position	
+		if constrained_axis == Constants.Axis.X:
+			global_position.y = initial_position.y
+			global_position.x = initial_position.x + get_global_mouse_position().x - initial_mouse_position.x
+		elif constrained_axis == Constants.Axis.Y:
+			global_position.x = initial_position.x
+			global_position.y = initial_position.y + get_global_mouse_position().y - initial_mouse_position.y
+		else:
+			global_position = initial_position + get_global_mouse_position() - initial_mouse_position
 	else:
 		if horizontal_axis_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and initial_horizontal_axis_position == 0:
 			initial_horizontal_axis_position = get_global_mouse_position().x - global_position.x
@@ -102,11 +119,19 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 			draw_polyline(points, horizontal_axis_color, width, true)
 		else:
 			draw_polyline(points, vertical_axis_color, width, true)
+	if constrained_axis == Constants.Axis.X:
+		horizontal_axis_color.a /= 2
+		draw_line(Vector2(2000, 0), Vector2(-2000, 0), horizontal_axis_color, width, true)
+	elif constrained_axis == Constants.Axis.Y:
+		vertical_axis_color.a /= 2
+		draw_line(Vector2(0, 2000), Vector2(0, -2000), vertical_axis_color, width, true)
 
 
 func remove_gizmo(reset: bool = false) -> void:
 	if is_removing:
 		return
+	if get_viewport().get_camera_2d() is MapCamera2D:
+		get_viewport().get_camera_2d().drag = true
 	Editor.viewport.remove_cursor_shape_override()
 	is_removing = true
 	state = State.DISABLED
