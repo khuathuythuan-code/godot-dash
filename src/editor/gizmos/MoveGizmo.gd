@@ -36,8 +36,10 @@ func _process(_delta: float) -> void:
 	queue_redraw()
 	if is_removing:
 		return
+
 	var horizontal_axis_hovered: bool = is_horizontal_axis_hovered()
 	var vertical_axis_hovered: bool = is_vertical_axis_hovered()
+
 	var constrained_axis: Constants.Axis = get_constrained_axis()
 	if (horizontal_axis_hovered and vertical_axis_hovered) or used_axis == Constants.AxisBitflag.X | Constants.AxisBitflag.Y:
 		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_MOVE)
@@ -47,6 +49,7 @@ func _process(_delta: float) -> void:
 		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_VSPLIT)
 	else:
 		Editor.viewport.remove_cursor_shape_override()
+
 	var previous_global_position: Vector2 = global_position
 	if is_quick:
 		if constrained_axis == Constants.Axis.X:
