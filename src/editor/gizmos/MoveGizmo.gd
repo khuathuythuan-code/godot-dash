@@ -9,6 +9,7 @@ var initial_global_position: Vector2
 var transform_initial_global_position: Vector2
 var tween: Tween
 var used_axis: int = Constants.AxisBitflag.NONE
+var mwheel_axis_constraint: Constants.Axis
 
 
 func _ready() -> void:
@@ -26,6 +27,15 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if get_viewport().get_camera_2d():
+		scale.x = 1 / get_viewport().get_camera_2d().zoom.x
+		scale.y = 1 / get_viewport().get_camera_2d().zoom.y
+		scale *= gizmo_scale
+	else:
+		scale = Vector2.ONE * gizmo_scale
+	queue_redraw()
+	if is_removing:
+		return
 	var horizontal_axis_hovered: bool = is_horizontal_axis_hovered()
 	var vertical_axis_hovered: bool = is_vertical_axis_hovered()
 	var constrained_axis: Constants.Axis = get_constrained_axis()
@@ -37,15 +47,6 @@ func _process(_delta: float) -> void:
 		Editor.viewport.override_cursor_shape(CursorShape.CURSOR_VSPLIT)
 	else:
 		Editor.viewport.remove_cursor_shape_override()
-	if get_viewport().get_camera_2d():
-		scale.x = 1 / get_viewport().get_camera_2d().zoom.x
-		scale.y = 1 / get_viewport().get_camera_2d().zoom.y
-		scale *= gizmo_scale
-	else:
-		scale = Vector2.ONE * gizmo_scale
-	queue_redraw()
-	if is_removing:
-		return
 	var previous_global_position: Vector2 = global_position
 	if is_quick:
 		if constrained_axis == Constants.Axis.X:
@@ -73,11 +74,13 @@ func _process(_delta: float) -> void:
 		if used_axis & Constants.AxisBitflag.Y:
 			global_position.y = transform_initial_global_position.y + get_global_mouse_position().y - initial_mouse_position.y
 
-		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-			used_axis = Constants.AxisBitflag.NONE
 	var is_gizmo_in_use: bool = used_axis != Constants.AxisBitflag.NONE
 	if is_snapping() and is_gizmo_in_use:
 		global_position = (global_position - initial_global_position).snappedf(Constants.CELL_SIZE) + initial_global_position
+
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		used_axis = Constants.AxisBitflag.NONE
+
 	position_changed.emit((global_position - previous_global_position) / Constants.CELL_SIZE)
 
 
@@ -102,24 +105,32 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		vertical_axis_color.a /= 2
 	var length: int = 102 if outline else 100
 	var width: int = 5 if outline else 1
+
+	var constrained_axis: Constants.Axis = get_constrained_axis()
+	if constrained_axis == Constants.Axis.X:
+		horizontal_axis_color.a /= 2
+		draw_line(Vector2(2000, 0), Vector2(-2000, 0), Color.RED if not outline else horizontal_axis_color, width, true)
+	elif constrained_axis == Constants.Axis.Y:
+		vertical_axis_color.a /= 2
+		draw_line(Vector2(0, 2000), Vector2(0, -2000), Color.GREEN if not outline else vertical_axis_color, width, true)
+
 	draw_line(Vector2(length, 0), Vector2(-length, 0), horizontal_axis_color, width, true)
 	draw_line(Vector2(0, length), Vector2(0, -length), vertical_axis_color, width, true)
 	draw_circle(Vector2.ZERO, width + 1.5 if outline else width + 3.0, color, true, -1, true)
 	for direction in [0, 90, 180, 270]:
-		var points: PackedVector2Array = [Vector2(103.5, -11.5), Vector2(115, 0), Vector2(103.5, 11.5)] if outline else [Vector2(105, -10), Vector2(115, 0), Vector2(105, 10)]
-		for point in points:
-			points.set(points.find(point), point.rotated(deg_to_rad(direction)))
+		var points: PackedVector2Array = ([
+				Vector2(103.5, -11.5),
+				Vector2(115, 0),
+				Vector2(103.5, 11.5),
+			] if outline else [
+				Vector2(105, -10),
+				Vector2(115, 0),
+				Vector2(105, 10),
+			] ).map(func(point: Vector2): return point.rotated(deg_to_rad(direction)))
 		if direction % 180 == 0:
 			draw_polyline(points, horizontal_axis_color, width, true)
 		else:
 			draw_polyline(points, vertical_axis_color, width, true)
-	var constrained_axis: Constants.Axis = get_constrained_axis()
-	if constrained_axis == Constants.Axis.X:
-		horizontal_axis_color.a /= 2
-		draw_line(Vector2(2000, 0), Vector2(-2000, 0), horizontal_axis_color, width, true)
-	elif constrained_axis == Constants.Axis.Y:
-		vertical_axis_color.a /= 2
-		draw_line(Vector2(0, 2000), Vector2(0, -2000), vertical_axis_color, width, true)
 
 
 func remove_gizmo(reset: bool = false) -> void:
@@ -127,10 +138,10 @@ func remove_gizmo(reset: bool = false) -> void:
 		return
 	if get_viewport().get_camera_2d() is MapCamera2D:
 		get_viewport().get_camera_2d().drag = true
-	Editor.viewport.remove_cursor_shape_override()
 	is_removing = true
 	state = State.DISABLED
 	used_axis = Constants.AxisBitflag.NONE
+	Editor.viewport.remove_cursor_shape_override()
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()
 	var do_reset_position := func(_position: Vector2):
@@ -173,11 +184,12 @@ func is_snapping() -> bool:
 
 func get_constrained_axis() -> Constants.Axis:
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) or abs(abs(global_position.x - initial_global_position.x) - abs(global_position.y - initial_global_position.y)) < 50 / get_viewport().get_camera_2d().zoom.x:
-		return Constants.Axis.BOTH
+		mwheel_axis_constraint = Constants.Axis.BOTH
 	elif abs(global_position.x - initial_global_position.x) > abs(global_position.y - initial_global_position.y):
-		return Constants.Axis.X
+		mwheel_axis_constraint = Constants.Axis.X
 	else:
-		return Constants.Axis.Y
+		mwheel_axis_constraint = Constants.Axis.Y
+	return mwheel_axis_constraint
 
 
 func _quick() -> void:
