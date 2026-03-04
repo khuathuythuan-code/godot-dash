@@ -69,9 +69,9 @@ func _process(_delta: float) -> void:
 			transform_initial_global_position = global_position
 
 		if used_axis & Constants.AxisBitflag.X:
-			global_position.x = initial_global_position.x + get_global_mouse_position().x - transform_initial_global_position.x
+			global_position.x = transform_initial_global_position.x + get_global_mouse_position().x - initial_mouse_position.x
 		if used_axis & Constants.AxisBitflag.Y:
-			global_position.y = initial_global_position.y + get_global_mouse_position().y - transform_initial_global_position.y
+			global_position.y = transform_initial_global_position.y + get_global_mouse_position().y - initial_mouse_position.y
 
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			used_axis = Constants.AxisBitflag.NONE
