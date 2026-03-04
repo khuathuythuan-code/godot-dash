@@ -52,9 +52,7 @@ func _process(_delta: float) -> void:
 		return
 	var _global_position = global_position
 	if is_quick:
-		global_position = initial_position + get_global_mouse_position() - initial_mouse_position
-		if snapping:
-			global_position = (round((global_position - initial_position) / Constants.CELL_SIZE) * Constants.CELL_SIZE) + initial_position
+		global_position = initial_position + get_global_mouse_position() - initial_mouse_position	
 	else:
 		if horizontal_axis_hovered and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and initial_horizontal_axis_position == 0:
 			initial_horizontal_axis_position = get_global_mouse_position().x - global_position.x
@@ -67,6 +65,8 @@ func _process(_delta: float) -> void:
 		if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			initial_horizontal_axis_position = 0
 			initial_vertical_axis_position = 0
+	if snapping:
+		global_position = (round((global_position - initial_position) / Constants.CELL_SIZE) * Constants.CELL_SIZE) + initial_position
 	position_changed.emit((global_position - _global_position) / Constants.CELL_SIZE)
 
 
