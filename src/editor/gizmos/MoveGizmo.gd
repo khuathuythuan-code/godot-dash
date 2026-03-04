@@ -151,7 +151,7 @@ func remove_gizmo(reset: bool = false) -> void:
 	tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	tween.set_parallel()
 	var do_reset_position := func(_position: Vector2):
-		var position_delta = _position - global_position
+		var position_delta: Vector2 = _position - global_position
 		global_position += position_delta
 		position_changed.emit(position_delta / Constants.CELL_SIZE)
 	tween.tween_property(self, ^"gizmo_scale", 0.0, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
