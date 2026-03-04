@@ -137,7 +137,7 @@ func move_selection(distance_cells: Vector2, version_history: bool = true) -> vo
 		for _object: Node2D in _selection.to_array():
 			_object.global_position += distance_cells * Constants.CELL_SIZE
 			selection_pivot += distance_cells * Constants.CELL_SIZE
-		moved_selection_cells.emit(distance_cells) 
+		moved_selection_cells.emit(distance_cells)
 	var unmove_object := func(_selection: Selection):
 		for _object: Node2D in _selection.to_array():
 			_object.global_position -= distance_cells * Constants.CELL_SIZE
@@ -749,7 +749,8 @@ func _on_move_pressed(quick: bool = false):
 	update_pivot()
 	gizmo = MoveGizmo.new()
 	gizmo.global_position = selection_pivot_with_player
-	gizmo.is_quick = quick
+	if quick:
+		gizmo.quick(keychord_display, "Moving", " units", false)
 	gizmo_layer.add_child(gizmo)
 	gizmo.position_changed.connect(move_selection.bind(false))
 	gizmo.confirmed.connect(move_selection.bind(true))
