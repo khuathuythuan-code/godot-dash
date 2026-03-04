@@ -52,14 +52,15 @@ func _process(_delta: float) -> void:
 
 	var previous_global_position: Vector2 = global_position
 	if is_quick:
+		var quick_value: float = quick_gizmo_value_input.value * Constants.CELL_SIZE
 		if constrained_axis == Constants.Axis.X:
 			used_axis = Constants.AxisBitflag.X
 			global_position.y = initial_global_position.y
-			global_position.x = initial_global_position.x + get_global_mouse_position().x - initial_mouse_position.x
+			global_position.x = initial_global_position.x + (quick_value if is_finite(quick_value) else get_global_mouse_position().x - initial_mouse_position.x)
 		elif constrained_axis == Constants.Axis.Y:
 			used_axis = Constants.AxisBitflag.Y
 			global_position.x = initial_global_position.x
-			global_position.y = initial_global_position.y + get_global_mouse_position().y - initial_mouse_position.y
+			global_position.y = initial_global_position.y + (-quick_value if is_finite(quick_value) else get_global_mouse_position().y - initial_mouse_position.y)
 		else:
 			used_axis = Constants.AxisBitflag.X | Constants.AxisBitflag.Y
 			global_position = initial_global_position + get_global_mouse_position() - initial_mouse_position
@@ -165,6 +166,8 @@ func remove_gizmo(reset: bool = false) -> void:
 		var distance_from_start: Vector2 = initial_global_position - global_position
 		position_changed.emit(distance_from_start / Constants.CELL_SIZE)
 		confirmed.emit(-distance_from_start / Constants.CELL_SIZE)
+	if quick_gizmo_value_input:
+		quick_gizmo_value_input.keychord_display.text = ""
 	await tween.finished
 	queue_free()
 
@@ -192,13 +195,23 @@ func is_snapping() -> bool:
 
 
 func get_constrained_axis() -> Constants.Axis:
+	const AxisConstraint = QuickGizmoValueInput.AxisConstraint
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) or abs(abs(global_position.x - initial_global_position.x) - abs(global_position.y - initial_global_position.y)) < 50 / get_viewport().get_camera_2d().zoom.x:
 		mwheel_axis_constraint = Constants.Axis.BOTH
 	elif abs(global_position.x - initial_global_position.x) > abs(global_position.y - initial_global_position.y):
 		mwheel_axis_constraint = Constants.Axis.X
 	else:
 		mwheel_axis_constraint = Constants.Axis.Y
-	return mwheel_axis_constraint
+	if not quick_gizmo_value_input or quick_gizmo_value_input.axis_constraint == AxisConstraint.NONE:
+		return mwheel_axis_constraint
+	else:
+		match quick_gizmo_value_input.axis_constraint:
+			AxisConstraint.GLOBAL_X, AxisConstraint.LOCAL_X:
+				return Constants.Axis.X
+			AxisConstraint.GLOBAL_Y, AxisConstraint.LOCAL_Y:
+				return Constants.Axis.Y
+			_:
+				return Constants.Axis.BOTH
 
 
 func _quick() -> void:
