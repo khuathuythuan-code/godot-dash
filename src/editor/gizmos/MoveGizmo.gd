@@ -13,7 +13,7 @@ var mwheel_axis_constraint: Constants.Axis
 
 
 func _ready() -> void:
-	if get_viewport().get_camera_2d() is MapCamera2D:
+	if get_viewport().get_camera_2d() is MapCamera2D and is_quick:
 		get_viewport().get_camera_2d().drag = false
 	state = State.ENABLED
 	initial_mouse_position = get_global_mouse_position()
