@@ -2,9 +2,11 @@ extends Object
 
 class_name NodeUtils
 
-const INTERNAL := 1 << 0
-const SET_OWNER := 1 << 1
-const FORCE_READABLE_NAME := 1 << 2
+enum {
+	INTERNAL = 1 << 0,
+	SET_OWNER = 1 << 1,
+	FORCE_READABLE_NAME = 1 << 2,
+}
 
 
 # Note: passing a value for the type parameter causes a crash
