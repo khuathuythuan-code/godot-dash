@@ -80,7 +80,10 @@ func _process(_delta: float) -> void:
 
 	var is_gizmo_in_use: bool = used_axis != Constants.AxisBitflag.NONE
 	if is_snapping() and is_gizmo_in_use:
-		global_position = (global_position - initial_global_position).snappedf(Constants.CELL_SIZE) + initial_global_position
+		if used_axis & Constants.AxisBitflag.X:
+			global_position.x = snappedf(global_position.x - initial_global_position.x, Constants.CELL_SIZE) + initial_global_position.x
+		if used_axis & Constants.AxisBitflag.Y:
+			global_position.y = snappedf(global_position.y - initial_global_position.y, Constants.CELL_SIZE) + initial_global_position.y
 
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		used_axis = Constants.AxisBitflag.NONE
