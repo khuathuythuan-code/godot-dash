@@ -196,9 +196,10 @@ func is_snapping() -> bool:
 
 func get_constrained_axis() -> Constants.Axis:
 	const AxisConstraint = QuickGizmoValueInput.AxisConstraint
-	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE) or abs(abs(global_position.x - initial_global_position.x) - abs(global_position.y - initial_global_position.y)) < 50 / get_viewport().get_camera_2d().zoom.x:
+	var abs_distance_from_start: Vector2 = abs(transform_initial_global_position + get_global_mouse_position() - initial_mouse_position)
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		mwheel_axis_constraint = Constants.Axis.BOTH
-	elif abs(global_position.x - initial_global_position.x) > abs(global_position.y - initial_global_position.y):
+	elif abs_distance_from_start.x > abs_distance_from_start.y:
 		mwheel_axis_constraint = Constants.Axis.X
 	else:
 		mwheel_axis_constraint = Constants.Axis.Y
