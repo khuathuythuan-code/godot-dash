@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 
 	var previous_global_position: Vector2 = global_position
 	if is_quick:
-		var quick_value: float = quick_gizmo_value_input.value * Constants.CELL_SIZE
+		var quick_value: float = quick_gizmo_value_input.value * Constants.CELL_SIZE if quick_gizmo_value_input.has_value() else NAN
 		if constrained_axis == Constants.Axis.X:
 			used_axis = Constants.AxisBitflag.X
 			global_position.y = initial_global_position.y
