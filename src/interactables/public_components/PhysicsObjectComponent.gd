@@ -2,13 +2,13 @@ extends Node
 
 class_name PhysicsObjectComponent
 
-@export var physics_object: bool = false
-@export var mass: float = 1.0
-@export var friction: float = 1.0
-@export var rough: bool = false
-@export var bounce: float = 0.0
-@export var absorbent: bool = false
-@export var gravity_scale: float = 1.0
+var physics_object: bool = false
+var mass: float = 1.0
+var friction: float = 1.0
+var rough: bool = false
+var bounce: float = 0.0
+var absorbent: bool = false
+var gravity_scale: float = 1.0
 
 
 func _ready() -> void:
@@ -33,9 +33,8 @@ func _start() -> void:
 	if not physics_object or get_parent() is RigidBody2D:
 		return
 	var previous_parent: StaticBody2D = get_parent()
-	for child in NodeUtils.get_children_of_type(previous_parent, Node2D):
+	for child: Node2D in NodeUtils.get_children_of_type(previous_parent, Node2D):
 		child.scale *= previous_parent.scale
-	NodeUtils.get_child_of_type(previous_parent, NinePatchSprite2DAbsoluteSize).scale = previous_parent.scale
 	var new_parent: RigidBody2D = RigidBody2D.new()
 	new_parent.transform = previous_parent.transform
 	new_parent.collision_mask = 2103
@@ -47,10 +46,11 @@ func _start() -> void:
 	new_parent.physics_material_override.absorbent = absorbent
 	new_parent.gravity_scale = gravity_scale
 	previous_parent.replace_by(new_parent)
-	previous_parent.queue_free()
 	var nine_patch_sprite_2d_absolute_size: NinePatchSprite2DAbsoluteSize = NodeUtils.get_child_of_type(new_parent, NinePatchSprite2DAbsoluteSize)
 	if nine_patch_sprite_2d_absolute_size:
 		nine_patch_sprite_2d_absolute_size.parent = new_parent
+		nine_patch_sprite_2d_absolute_size.scale = previous_parent.scale
+	previous_parent.queue_free()
 
 
 func use_data(data: Dictionary) -> void:
