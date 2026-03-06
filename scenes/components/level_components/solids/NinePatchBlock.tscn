@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://sv2oa8nvx3ob" path="res://addons/nine_patch_sprite_2d/nine_patch_sprite_2d.gd" id="3_5g55o"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="4_a151s"]
 [ext_resource type="Script" uid="uid://cjdpf2wcxjfb1" path="res://src/NinePatchSprite2DAbsoluteSize.gd" id="4_cpky5"]
+[ext_resource type="Script" uid="uid://co07p647ncgri" path="res://src/interactables/public_components/PhysicsObjectComponent.gd" id="5_jf4a5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4sak"]
 size = Vector2(130, 130)
@@ -40,3 +41,7 @@ debug_color = Color(0, 0.071, 0.702, 0.25)
 [node name="NinePatchSprite2DAbsoluteSize" type="Node" parent="." unique_id=867252642 node_paths=PackedStringArray("nine_patch_sprite")]
 script = ExtResource("4_cpky5")
 nine_patch_sprite = NodePath("../Base")
+
+[node name="PhysicsObjectComponent" type="Node" parent="." unique_id=92400897]
+script = ExtResource("5_jf4a5")
+metadata/_custom_type_script = "uid://co07p647ncgri"

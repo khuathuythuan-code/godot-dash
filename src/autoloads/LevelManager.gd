@@ -2,6 +2,8 @@ extends Node
 
 @warning_ignore("unused_signal")
 signal update_hsv_watchers
+@warning_ignore("unused_signal")
+signal level_started
 
 var game_scene: GameScene
 var current_level: Level
@@ -9,7 +11,11 @@ var current_level_path: String
 var current_level_name: String
 var current_level_duration: float = INF
 var attempt: int
-var level_playing: bool
+var level_playing: bool:
+	set(value):
+		if value == true:
+			level_started.emit()
+		level_playing = value
 var pause_menu: PauseMenu
 var player: Player
 var player_duals: Array[Player]
