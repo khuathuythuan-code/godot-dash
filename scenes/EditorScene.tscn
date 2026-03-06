@@ -6383,11 +6383,12 @@ max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Physics" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody" unique_id=1358505846]
+visible = false
 layout_mode = 2
 mouse_filter = 1
 title = "Physics"
 title_alignment = 1
-foldable_group = SubResource("FoldableGroup_c6gj0")
+foldable_group = SubResource("FoldableGroup_dl3g1")
 
 [node name="PhysicsEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics" unique_id=18298371 node_paths=PackedStringArray("physics_object_property", "mass_property", "friction_property", "rough_property", "bounce_property", "absorbent_property", "gravity_scale_property")]
 layout_mode = 2
@@ -6701,10 +6702,10 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Interactable/InteractableEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Interactable/InteractableEditor" method="_on_level_operations_handler_level_loaded"]
