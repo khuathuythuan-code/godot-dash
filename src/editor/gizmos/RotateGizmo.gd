@@ -7,7 +7,6 @@ signal angle_changed(degrees: float)
 const DIVISORS_OF_360 := [0.001, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 30, 36, 40, 45, 60, 72, 90, 120, 180, 360]
 
 @export var radius: float = 128.0
-@export var handle_radius: float = 8.0
 
 var handle_hovered: bool
 var tween: Tween
@@ -22,9 +21,6 @@ var quick_rotation_initial_angle: float
 
 
 func _ready() -> void:
-	# Set handle_radius
-	if Config.is_touch_screen:
-		handle_radius = 24.0
 	Editor.shortcut_blocker = self
 	get_viewport().gui_release_focus()
 	tween = create_tween()
@@ -64,7 +60,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	handle_hovered = get_local_mouse_position().distance_to(handle_position) - handle_radius < 0
+	handle_hovered = get_local_mouse_position().distance_to(handle_position) - HANDLE_RADIUS < 0
 	angle_input.position = Vector2.RIGHT * radius * 1.3 + Vector2.UP * angle_input.size.y * 0.5
 	snap_interval_input.position = Vector2.RIGHT * radius * 1.3 + Vector2.UP * snap_interval_input.size.y * 0.5 + Vector2.UP * angle_input.size.y
 	input_panel.position = snap_interval_input.position + (Vector2.LEFT + Vector2.UP) * 10.0
@@ -124,9 +120,9 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 	if state:
 		handle_color.a /= 2
 	if outline:
-		draw_circle(handle_position, handle_radius, handle_color, false, 6.0)
+		draw_circle(handle_position, HANDLE_RADIUS, handle_color, false, 6.0)
 	else:
-		draw_circle(handle_position, handle_radius, handle_color, true)
+		draw_circle(handle_position, HANDLE_RADIUS, handle_color, true)
 	# Snap tick marks
 	var snap_interval := snap_interval_input.get_value()
 	if snap_interval < 5.0:
