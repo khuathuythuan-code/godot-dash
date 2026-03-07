@@ -9,32 +9,24 @@ var rough: bool = false
 var bounce: float = 0.0
 var absorbent: bool = false
 var gravity_scale: float = 1.0
+var linear_velocity: Vector2 = Vector2.ZERO
+var angular_velocity: float = 0.0
+var scale: Vector2 = Vector2.ONE
 
 
 func _ready() -> void:
 	LevelManager.level_started.connect(_start)
-	update_meta()
-
-
-func update_meta() -> void:
-	var data: Dictionary = {
-		"physics_object": physics_object,
-		"mass": mass,
-		"friction": friction,
-		"rough": rough,
-		"bounce": bounce,
-		"absorbent": absorbent,
-		"gravity_scale": gravity_scale,
-	}
-	get_parent().set_meta("physics", data)
+	get_parent().set_meta("physics", true)
 
 
 func _start() -> void:
 	if not physics_object or get_parent() is RigidBody2D:
 		return
 	var previous_parent: StaticBody2D = get_parent()
+	if previous_parent.scale != Vector2.ONE:
+		scale = previous_parent.scale
 	for child: Node2D in NodeUtils.get_children_of_type(previous_parent, Node2D):
-		child.scale *= previous_parent.scale
+		child.scale *= scale
 	var new_parent: RigidBody2D = RigidBody2D.new()
 	new_parent.transform = previous_parent.transform
 	new_parent.collision_mask = 2103
@@ -45,12 +37,31 @@ func _start() -> void:
 	new_parent.physics_material_override.bounce = bounce
 	new_parent.physics_material_override.absorbent = absorbent
 	new_parent.gravity_scale = gravity_scale
+	new_parent.set_meta("physics", true)
+	new_parent.linear_velocity = linear_velocity
+	new_parent.angular_velocity = angular_velocity
 	previous_parent.replace_by(new_parent)
 	var nine_patch_sprite_2d_absolute_size: NinePatchSprite2DAbsoluteSize = NodeUtils.get_child_of_type(new_parent, NinePatchSprite2DAbsoluteSize)
 	if nine_patch_sprite_2d_absolute_size:
 		nine_patch_sprite_2d_absolute_size.parent = new_parent
-		nine_patch_sprite_2d_absolute_size.scale = previous_parent.scale
+		nine_patch_sprite_2d_absolute_size.scale = scale
 	previous_parent.queue_free()
+
+
+func get_data() -> Dictionary:
+	var data: Dictionary = {
+		"physics_object": physics_object,
+		"mass": mass,
+		"friction": friction,
+		"rough": rough,
+		"bounce": bounce,
+		"absorbent": absorbent,
+		"gravity_scale": gravity_scale,
+		"linear_velocity": get_parent().linear_velocity if get_parent() is RigidBody2D else linear_velocity,
+		"angular_velocity": get_parent().angular_velocity if get_parent() is RigidBody2D else angular_velocity,
+		"scale": get_parent().scale if get_parent() is StaticBody2D else scale,
+	}
+	return data
 
 
 func use_data(data: Dictionary) -> void:
@@ -61,4 +72,6 @@ func use_data(data: Dictionary) -> void:
 	bounce = data.bounce
 	absorbent = data.absorbent
 	gravity_scale = data.gravity_scale
-	update_meta()
+	linear_velocity = data.linear_velocity
+	angular_velocity = data.angular_velocity
+	scale = data.scale

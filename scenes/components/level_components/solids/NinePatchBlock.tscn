@@ -45,3 +45,5 @@ nine_patch_sprite = NodePath("../Base")
 [node name="PhysicsObjectComponent" type="Node" parent="." unique_id=92400897]
 script = ExtResource("5_jf4a5")
 metadata/_custom_type_script = "uid://co07p647ncgri"
+
+[node name="RigidBody2D" type="RigidBody2D" parent="PhysicsObjectComponent" unique_id=43029120]

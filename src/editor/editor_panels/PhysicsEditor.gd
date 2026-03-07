@@ -21,7 +21,7 @@ func _on_edit_handler_selection_changed(_selection: Selection) -> void:
 		get_parent().hide()
 		return
 	get_parent().show()
-	var data: Dictionary = solid_objects.first().get_meta(&"physics")
+	var data: Dictionary = NodeUtils.get_child_of_type(solid_objects.first(), PhysicsObjectComponent).get_data()
 	physics_object_property.set_value_no_signal(data.physics_object)
 	mass_property.set_value_no_signal(data.mass)
 	friction_property.set_value_no_signal(data.friction)
@@ -38,7 +38,6 @@ func _on_physics_object_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.physics_object = value
-			component.update_meta()
 	)
 
 
@@ -49,7 +48,6 @@ func _on_mass_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.mass = value
-			component.update_meta()
 	)
 
 
@@ -60,7 +58,6 @@ func _on_friction_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.friction = value
-			component.update_meta()
 	)
 
 
@@ -71,7 +68,6 @@ func _on_rough_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.rough = value
-			component.update_meta()
 	)
 
 
@@ -82,7 +78,6 @@ func _on_bounce_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.bounce = value
-			component.update_meta()
 	)
 
 
@@ -93,7 +88,6 @@ func _on_absorbent_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.absorbent = value
-			component.update_meta()
 	)
 
 
@@ -104,5 +98,4 @@ func _on_gravity_scale_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			component.gravity_scale = value
-			component.update_meta()
 	)
