@@ -16,12 +16,12 @@ var solid_objects: Selection = Selection.new()
 
 
 func _on_edit_handler_selection_changed(_selection: Selection) -> void:
-	solid_objects = _selection.filter(func(object): return object is StaticBody2D)
+	solid_objects = _selection.filter(func(object): return object.has_meta(&"physics"))
 	if solid_objects.is_empty():
 		get_parent().hide()
 		return
 	get_parent().show()
-	var data: Dictionary = solid_objects.first().get_meta("physics")
+	var data: Dictionary = solid_objects.first().get_meta(&"physics")
 	physics_object_property.set_value_no_signal(data.physics_object)
 	mass_property.set_value_no_signal(data.mass)
 	friction_property.set_value_no_signal(data.friction)
