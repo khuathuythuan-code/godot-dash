@@ -82,7 +82,7 @@ func refresh() -> void:
 	for child in icon_selector.get_children():
 		child.queue_free()
 	var icon_type: PreviewIcon.Icon = tab
-	for i in 1000:
+	for i in 10000:
 		for icon: String in icons[icon_type]:
 			var button := BouncyButton.new()
 			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
