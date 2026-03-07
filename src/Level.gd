@@ -425,7 +425,6 @@ static func from_data(data: Dictionary) -> Level:
 		# Physics
 		if object_data.has("physics"):
 			NodeUtils.get_child_of_type(object, PhysicsObjectComponent).use_data(object_data.physics)
-			print(object_data.physics)
 		# Interactables
 		if object is Interactable:
 			if object_data.has("components"):
