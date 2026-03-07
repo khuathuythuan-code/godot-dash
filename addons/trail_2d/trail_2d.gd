@@ -40,6 +40,6 @@ func _physics_process(delta: float) -> void:
 		length = lerp(new_length, length, 0.1)
 		if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
 			add_point(point, 0)
-		if get_point_count() > length / abs(Engine.time_scale) or not add_points:
+		if get_point_count() > length or not add_points:
 			remove_point(get_point_count() - 1)
 
