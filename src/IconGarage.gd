@@ -22,16 +22,16 @@ var tab: PreviewIcon.Icon = PreviewIcon.Icon.CUBE
 
 
 func _ready() -> void:
+	reload()
+
+
+func reload() -> void:
 	if not DirAccess.dir_exists_absolute(Constants.CUSTOM_ICON_DIR):
 		DirAccess.make_dir_recursive_absolute(Constants.CUSTOM_ICON_DIR)
 	for directory: String in ["cube", "ship", "jetpack", "ufo", "ball", "wave", "spider", "trail", "death_effect"]:
 		directory = Constants.CUSTOM_ICON_DIR + directory	
 		if not DirAccess.dir_exists_absolute(directory):
 			DirAccess.make_dir_recursive_absolute(directory)
-	reload()
-
-
-func reload() -> void:
 	for icon_type: PreviewIcon.Icon in icons:
 		icons[icon_type].clear()
 	for icon_path in [Constants.ICON_DIR, Constants.CUSTOM_ICON_DIR]:
@@ -82,20 +82,21 @@ func refresh() -> void:
 	for child in icon_selector.get_children():
 		child.queue_free()
 	var icon_type: PreviewIcon.Icon = tab
-	for icon: String in icons[icon_type]:
-		var button := BouncyButton.new()
-		var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
-		preview_icon.gamemode = icon_type
-		preview_icon.icon_path = icon
-		preview_icon.icon_scale = 0.5
-		preview_icon.custom_minimum_size = Vector2(96, 96)
-		preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-		button.z_index = 4096
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.custom_minimum_size = Vector2(96, 96)
-		icon_selector.add_child(button)
-		button.add_child(preview_icon)
-		button.pressed.connect(_on_icon_pressed.bind(preview_icon))
+	for i in 1000:
+		for icon: String in icons[icon_type]:
+			var button := BouncyButton.new()
+			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
+			preview_icon.gamemode = icon_type
+			preview_icon.icon_path = icon
+			preview_icon.icon_scale = 0.5
+			preview_icon.custom_minimum_size = Vector2(96, 96)
+			preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+			button.z_index = 4096
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			button.custom_minimum_size = Vector2(96, 96)
+			button.add_child(preview_icon)
+			icon_selector.add_child(button)
+			button.pressed.connect(_on_icon_pressed.bind(preview_icon))
 	update_icons()
 
 
