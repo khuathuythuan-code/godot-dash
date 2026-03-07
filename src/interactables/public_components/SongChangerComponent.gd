@@ -16,6 +16,9 @@ var song_path: String:
 		song_path = value
 		AssetManager.load_song_threaded_request(value)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start: float
+@export_custom(PROPERTY_HINT_TOOL_BUTTON, "Preview,Play") var preview: Callable = start_preview
+
+var is_previewing: bool
 
 
 func _ready() -> void:
@@ -24,7 +27,24 @@ func _ready() -> void:
 	parent.interacted.connect(start)
 
 
-func start(_player: Player) -> void:
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "preview" and is_previewing:
+		property.hint_string = "Preview,Stop"
+
+
+func start(_player: Player = null) -> void:
 	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(song_path)
 	LevelManager.level_song_player.stream.resource_path = song_path
 	LevelManager.level_song_player.play(song_start)
+
+
+func start_preview() -> void:
+	if is_previewing:
+		is_previewing = false
+		notify_property_list_changed()
+		LevelManager.level_song_player.stop()
+		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(LevelManager.current_level.song_path)
+		return
+	is_previewing = true
+	notify_property_list_changed()
+	start()

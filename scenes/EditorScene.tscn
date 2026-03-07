@@ -261,6 +261,7 @@
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
 [ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpoint.tscn" id="225_n63fl"]
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
+[ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -764,10 +765,11 @@ material = ExtResource("3_m55bu")
 custom_minimum_size = Vector2(0, 312)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("5_gehis")
-current_tab = 0
+current_tab = 1
 script = ExtResource("4_2at5j")
 
 [node name="Place" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes" unique_id=1305178759]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 0
@@ -5893,7 +5895,6 @@ script = ExtResource("3_d5qub")
 icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
 
 [node name="Edit" type="TabContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes" unique_id=758895378]
-visible = false
 layout_mode = 2
 current_tab = 0
 script = ExtResource("4_2at5j")
@@ -5958,8 +5959,11 @@ size_flags_horizontal = 3
 step_variant = 2
 label = "10 tiles"
 
-[node name="AdditionalControlsRight" type="VBoxContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer" unique_id=583517474]
+[node name="AdditionalControlsRight" type="FlowContainer" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer" unique_id=358310241]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 alignment = 1
 
 [node name="FlipH" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight" unique_id=438453594]
@@ -5990,6 +5994,14 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 focus_mode = 0
 icon = ExtResource("60_46ckf")
+text_overrun_behavior = 1
+expand_icon = true
+
+[node name="MoveFree" type="Button" parent="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight" unique_id=223545279]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("240_vp4xm")
 text_overrun_behavior = 1
 expand_icon = true
 
@@ -6574,6 +6586,7 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/FlipV" to="EditHandler" method="_on_flip_v_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/RotateFree" to="EditHandler" method="_on_rotate_free_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/ScaleFree" to="EditHandler" method="_on_scale_pressed"]
+[connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Integer Steps/HBoxContainer/AdditionalControlsRight/MoveFree" to="EditHandler" method="_on_move_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft90" to="EditHandler" method="_on_rotate_left_90_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateRight90" to="EditHandler" method="_on_rotate_right_90_pressed"]
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsLeft/RotateLeft45" to="EditHandler" method="_on_rotate_left_45_pressed"]

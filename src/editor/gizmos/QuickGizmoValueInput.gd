@@ -1,4 +1,5 @@
 extends Node
+
 class_name QuickGizmoValueInput
 
 signal value_changed(value: float)
