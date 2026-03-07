@@ -28,8 +28,6 @@ var last_position: Vector2
 
 
 func _ready() -> void:
-	await get_tree().process_frame
-	last_position = global_position
 	_refresh()
 
 
