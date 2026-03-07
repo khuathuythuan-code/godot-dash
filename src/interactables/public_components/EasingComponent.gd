@@ -2,13 +2,15 @@ extends Component
 
 class_name EasingComponent
 
-signal progressed(weight_delta: float)
+signal progressed(player: Player, weight_delta: float)
 signal finished(player: Player)
 signal restored(player: Player)
 
 @export_range(0.0, 10.0, 0.01, "or_greater", "suffix:s") var duration: float = 1.0
 @export var easing_type: Tween.EaseType = Tween.EASE_IN_OUT
 @export var easing_transition: Tween.TransitionType
+@export_custom(PROPERTY_HINT_TOOL_BUTTON, "Preview,Play") var preview: Callable = start_preview
+
 @export_group("Activation")
 @export var keep_active: bool ## Keep the easing active after it completes.
 @export var trigger_for_one_player: bool = true
@@ -18,6 +20,7 @@ signal restored(player: Player)
 @export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var elapsed_time: Dictionary[NodePath, float]
 
+var is_previewing: bool
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
 var _previous_weights: Dictionary[Player, float]
@@ -40,6 +43,8 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage |= PROPERTY_USAGE_READ_ONLY
 		trigger_for_one_player = true
 		ignore_time_scale = true
+	elif property.name == "preview" and is_previewing:
+		property.hint_string = "Preview,Stop"
 
 
 func _field_to_data(field_name: String) -> Variant:
@@ -62,7 +67,7 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 func start(player: Player) -> void:
 	if trigger_for_one_player and tweens.size() == 1:
 		return
-	tweens.set(player, create_tween())
+	tweens[player] = create_tween()
 	reset(player)
 	var tween_weight := func(value: float): weights[player] = value
 	tweens[player].set_process_mode(Tween.TWEEN_PROCESS_PHYSICS if _use_physics_process else Tween.TWEEN_PROCESS_IDLE)
@@ -101,6 +106,26 @@ func is_inactive_any() -> bool:
 func reset(player: Player) -> void:
 	weights[player] = 0.0
 	_previous_weights[player] = 0.0
+
+
+func start_preview() -> void:
+	if is_previewing:
+		is_previewing = false
+		tweens[LevelManager.player].kill()
+		tweens.erase(LevelManager.player)
+		stop_preview(LevelManager.player)
+		return
+	is_previewing = true
+	notify_property_list_changed()
+	finished.connect(stop_preview)
+	parent.interacted.emit(LevelManager.player)
+
+
+func stop_preview(player: Player) -> void:
+	progressed.emit(player, -weights[player])
+	reset(player)
+	is_previewing = false
+	notify_property_list_changed()
 
 
 func get_elapsed_time() -> Dictionary[NodePath, float]:

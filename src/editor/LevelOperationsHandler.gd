@@ -153,7 +153,7 @@ func _open_level(path: String) -> void:
 	Toasts.new_toast("Opened level " + path.get_file().get_basename())
 	color_channel_editor.populate_item_list()
 	# Reset camera to default position
-	editor.editor_camera.offset = Vector2(640.0, 413.0)
+	editor.editor_camera.offset = Vector2(1280.0, 669.0)
 	editor.editor_camera.zoom_factor = 1.25
 	editor.editor_camera.zoom = PlayerCamera.DEFAULT_ZOOM
 	$AutosaveTimer.stop()

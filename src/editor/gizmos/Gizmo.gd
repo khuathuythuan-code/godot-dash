@@ -6,6 +6,8 @@ class_name Gizmo
 @warning_ignore("unused_signal")
 signal confirmed(final_value: Variant)
 
+static var HANDLE_RADIUS: float = 8.0
+
 enum State {
 	DISABLED,
 	ENABLED,
@@ -17,6 +19,10 @@ var gizmo_scale: float
 var state: State
 var is_quick: bool
 var is_removing: bool
+
+
+func _init() -> void:
+	HANDLE_RADIUS = 8.0 if not Config.is_touch_screen else 24.0
 
 
 func _unhandled_input(event: InputEvent) -> void:
