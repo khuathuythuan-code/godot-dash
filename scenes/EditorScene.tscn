@@ -261,8 +261,8 @@
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
 [ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpoint.tscn" id="225_n63fl"]
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
-[ext_resource type="Script" uid="uid://cvj1a1dockiqv" path="res://src/editor/editor_panels/PhysicsEditor.gd" id="253_vp4xm"]
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
+[ext_resource type="Script" uid="uid://cvj1a1dockiqv" path="res://src/editor/editor_panels/PhysicsEditor.gd" id="253_vp4xm"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
