@@ -130,7 +130,7 @@ var menu_loop: String:
 	PreviewIcon.Icon.JETPACK: { "path" ="res://assets/textures/player/jetpack/Jetpack1.svg" },
 	PreviewIcon.Icon.UFO: { "path" ="res://assets/textures/player/ufo/Ufo1.svg" },
 	PreviewIcon.Icon.BALL: { "path" ="res://assets/textures/player/ball/Ball1.svg" },
-	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave1/" },
+	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave1.svg" },
 	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube1.svg" },
 	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
 	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },

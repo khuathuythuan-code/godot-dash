@@ -30,11 +30,16 @@ func _process(delta: float) -> void:
 				add_point(point, 0)
 			if get_point_count() > length / abs(Engine.time_scale) or not add_points:
 				remove_point(get_point_count() - 1)
-		Mode.TIME:
-			var new_length: int = time / delta
-			if abs(new_length - length) % 5 == 0 or abs(new_length - length) > 3:
-				length = new_length
-			if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
-				add_point(point, 0)
-			if get_point_count() > length / abs(Engine.time_scale) or not add_points:
-				remove_point(get_point_count() - 1)
+
+
+func _physics_process(delta: float) -> void:
+	if mode == Mode.TIME:
+		global_position = Vector2.ZERO
+		var point: Vector2 = parent.global_position + offset
+		var new_length: int = round(time / delta)
+		length = lerp(new_length, length, 0.1)
+		if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
+			add_point(point, 0)
+		if get_point_count() > length or not add_points:
+			remove_point(get_point_count() - 1)
+
