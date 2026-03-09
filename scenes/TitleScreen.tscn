@@ -499,7 +499,6 @@ theme_type_variation = &"TitleScreenVBox"
 script = ExtResource("20_1ska7")
 preview_icons = NodePath("PanelContainer/HBoxContainer")
 icon_selector = NodePath("SmoothScrollContainer/GridContainer")
-metadata/_custom_type_script = "uid://driqqpbqw61rh"
 
 [node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1548300878]
 custom_minimum_size = Vector2(0, 150)
@@ -681,6 +680,24 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 10
 
+[node name="HSeparator2" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1335947968]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=489407561]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer" unique_id=193597935]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("9_5h1vy")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
+text = "Refresh"
+autowrap_mode = 3
+
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1153421102]
 visible = false
 material = ExtResource("8_65pcn")
@@ -843,4 +860,5 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="refresh"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_ship_pressed"]
 [connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_tab_changed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="reload"]
 [connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
