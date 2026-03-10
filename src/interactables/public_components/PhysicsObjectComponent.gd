@@ -30,6 +30,7 @@ func _start() -> void:
 	for child: Node2D in NodeUtils.get_children_of_type(previous_parent, Node2D):
 		child.scale *= scale
 	var new_parent: RigidBody2D = RigidBody2D.new()
+	new_parent.set_meta("physics", true)
 	new_parent.transform = previous_parent.transform
 	new_parent.collision_mask = 2103
 	if not pushable_by_player:
@@ -41,9 +42,10 @@ func _start() -> void:
 	new_parent.physics_material_override.bounce = bounce
 	new_parent.physics_material_override.absorbent = absorbent
 	new_parent.gravity_scale = gravity_scale
-	new_parent.set_meta("physics", true)
 	new_parent.linear_velocity = linear_velocity
 	new_parent.angular_velocity = angular_velocity
+	for group in previous_parent.get_groups():
+		new_parent.add_to_group(group)
 	previous_parent.replace_by(new_parent)
 	var nine_patch_sprite_2d_absolute_size: NinePatchSprite2DAbsoluteSize = NodeUtils.get_child_of_type(new_parent, NinePatchSprite2DAbsoluteSize)
 	if nine_patch_sprite_2d_absolute_size:

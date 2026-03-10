@@ -7,6 +7,8 @@ const ATTRIBUTE_PATH_ROOT: String = "res://src/attributes/"
 
 
 func _enter_tree() -> void:
+	if get_parent() is RigidBody2D:
+		queue_free()
 	register()
 
 
