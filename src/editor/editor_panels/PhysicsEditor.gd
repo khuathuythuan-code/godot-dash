@@ -11,6 +11,7 @@ class_name PhysicsEditor
 @export var bounce_property: FloatProperty
 @export var absorbent_property: BoolProperty
 @export var gravity_scale_property: FloatProperty
+@export var pushable_by_player_property: BoolProperty
 
 var solid_objects: Selection = Selection.new()
 
@@ -33,6 +34,7 @@ func update() -> void:
 	bounce_property.set_value_no_signal(data.bounce)
 	absorbent_property.set_value_no_signal(data.absorbent)
 	gravity_scale_property.set_value_no_signal(data.gravity_scale)
+	pushable_by_player_property.set_value_no_signal(data.pushable_by_player)
 
 
 func _on_physics_object_value_changed(value: bool) -> void:
@@ -233,6 +235,35 @@ func _on_gravity_scale_value_changed(value: float) -> void:
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set gravity scale to %s on %s objects" % [value, selection_snapshot_size])
+	Editor.version_history.add_do_method(do_change_value.bind(selection_snapshot))
+	Editor.version_history.add_undo_method(undo_change_value.bind(old_values))
+	Editor.version_history.commit_action()
+
+
+func _on_pushable_by_player_value_changed(value: bool) -> void:
+	if solid_objects.is_empty():
+		return
+	var do_change_value := func(selection: Selection):
+		selection.for_each(
+			func(object: Object):
+				var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
+				component.pushable_by_player = value
+		)
+		update()
+	var undo_change_value := func(values: Dictionary[NodePath, bool]):
+		for path: NodePath in values:
+			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(Editor.root.get_node(path), PhysicsObjectComponent)
+			component.pushable_by_player = values[path]
+		update()
+	var old_values: Dictionary[NodePath, bool]
+	solid_objects.for_each(
+		func(object: Object):
+			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
+			old_values[Editor.root.get_path_to(object)] = component.pushable_by_player
+			)
+	var selection_snapshot: Selection = solid_objects.clone()
+	var selection_snapshot_size: int = selection_snapshot.size()
+	Editor.version_history.create_action("Set pushable by player to %s on %s objects" % [value, selection_snapshot_size])
 	Editor.version_history.add_do_method(do_change_value.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(undo_change_value.bind(old_values))
 	Editor.version_history.commit_action()

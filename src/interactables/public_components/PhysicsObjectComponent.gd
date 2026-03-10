@@ -9,6 +9,8 @@ var rough: bool = false
 var bounce: float = 0.0
 var absorbent: bool = false
 var gravity_scale: float = 1.0
+var pushable_by_player: bool = true
+
 var linear_velocity: Vector2 = Vector2.ZERO
 var angular_velocity: float = 0.0
 var scale: Vector2 = Vector2.ONE
@@ -30,6 +32,8 @@ func _start() -> void:
 	var new_parent: RigidBody2D = RigidBody2D.new()
 	new_parent.transform = previous_parent.transform
 	new_parent.collision_mask = 2103
+	if not pushable_by_player:
+		new_parent.collision_layer = 2
 	new_parent.mass = mass
 	new_parent.physics_material_override = PhysicsMaterial.new()
 	new_parent.physics_material_override.friction = friction
@@ -57,6 +61,7 @@ func get_data() -> Dictionary:
 		"bounce": bounce,
 		"absorbent": absorbent,
 		"gravity_scale": gravity_scale,
+		"pushable_by_player": pushable_by_player,
 		"linear_velocity": Serialize.Vector2(get_parent().linear_velocity) if get_parent() is RigidBody2D else Serialize.Vector2(linear_velocity),
 		"angular_velocity": get_parent().angular_velocity if get_parent() is RigidBody2D else angular_velocity,
 		"scale": Serialize.Vector2(get_parent().scale) if get_parent() is StaticBody2D else Serialize.Vector2(scale),
@@ -72,6 +77,7 @@ func use_data(data: Dictionary) -> void:
 	bounce = data.bounce
 	absorbent = data.absorbent
 	gravity_scale = data.gravity_scale
+	pushable_by_player = data.pushable_by_player
 	linear_velocity = Deserialize.Vector2(data.linear_velocity)
 	angular_velocity = data.angular_velocity
 	scale = Deserialize.Vector2(data.scale)

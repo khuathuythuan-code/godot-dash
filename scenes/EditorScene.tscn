@@ -6402,7 +6402,7 @@ title = "Physics"
 title_alignment = 1
 foldable_group = SubResource("FoldableGroup_dl3g1")
 
-[node name="PhysicsEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics" unique_id=18298371 node_paths=PackedStringArray("physics_object_property", "mass_property", "friction_property", "rough_property", "bounce_property", "absorbent_property", "gravity_scale_property")]
+[node name="PhysicsEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics" unique_id=18298371 node_paths=PackedStringArray("physics_object_property", "mass_property", "friction_property", "rough_property", "bounce_property", "absorbent_property", "gravity_scale_property", "pushable_by_player_property")]
 layout_mode = 2
 script = ExtResource("253_vp4xm")
 physics_object_property = NodePath("Physics Object")
@@ -6412,6 +6412,7 @@ rough_property = NodePath("Rough")
 bounce_property = NodePath("Bounce")
 absorbent_property = NodePath("Absorbent")
 gravity_scale_property = NodePath("Gravity Scale")
+pushable_by_player_property = NodePath("Pushable by Player")
 
 [node name="Physics Object" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1774094891]
 custom_minimum_size = Vector2(0, 32)
@@ -6478,6 +6479,14 @@ step = 0.1
 allow_lesser = true
 allow_greater = true
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Pushable by Player" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=928688179]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("179_0v0om")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
 [node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
@@ -6705,6 +6714,7 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/Bounce" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_bounce_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/Absorbent" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_absorbent_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/Gravity Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_gravity_scale_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/Pushable by Player" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" method="_on_pushable_by_player_value_changed"]
 [connection signal="deleted_selection" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_deleted_selection"]
 [connection signal="moved_selection_cells" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Transform/TransformEditor" method="_on_edit_handler_moved_selection_cells"]
 [connection signal="resized_selection" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Transform/TransformEditor" method="_on_edit_handler_resized_selection"]
