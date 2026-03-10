@@ -73,6 +73,8 @@ func rebuild_ui(interactables: Selection) -> void:
 
 
 func build_ui(interactables: Selection) -> void:
+	if not Editor.root.level:
+		return
 	var first_interactable: Interactable = interactables.first()
 	var ui_root := VBoxContainer.new()
 	var should_component_be_displayed := func(component: Component):
