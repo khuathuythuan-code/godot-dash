@@ -290,6 +290,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 			object_data.texture_override = object.get_meta(&"texture_override")
 		if object.has_meta(&"attributes"):
 			object_data.attributes = object.get_meta(&"attributes")
+		if object.has_meta(&"physics"):
+			object_data.physics = NodeUtils.get_child_of_type(object, PhysicsObjectComponent).get_data()
 		if object is Interactable:
 			object_data.components = object.components_to_data(reason)
 			object_data.markers = object.markers_to_data()
@@ -420,6 +422,9 @@ static func from_data(data: Dictionary) -> Level:
 			for attribute: String in attributes:
 				var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
 				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+		# Physics
+		if object_data.has("physics"):
+			NodeUtils.get_child_of_type(object, PhysicsObjectComponent).use_data(object_data.physics)
 		# Interactables
 		if object is Interactable:
 			if object_data.has("components"):

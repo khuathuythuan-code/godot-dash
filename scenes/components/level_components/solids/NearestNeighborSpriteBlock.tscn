@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://g7enss6gpbo8" path="res://assets/textures/solids/fill_blocks/FillBlock01.svg" id="1_ll2k6"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="3_btrs8"]
+[ext_resource type="Script" uid="uid://co07p647ncgri" path="res://src/interactables/public_components/PhysicsObjectComponent.gd" id="3_ll2k6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4sak"]
 size = Vector2(130, 130)
@@ -21,3 +22,7 @@ shape = SubResource("RectangleShape2D_s4sak")
 debug_color = Color(0, 0.071, 0.702, 0.25)
 
 [node name="EditorSelectionCollider" parent="." unique_id=1938096550 instance=ExtResource("3_btrs8")]
+
+[node name="PhysicsObjectComponent" type="Node" parent="." unique_id=344441881]
+script = ExtResource("3_ll2k6")
+metadata/_custom_type_script = "uid://co07p647ncgri"
