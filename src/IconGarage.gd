@@ -22,45 +22,58 @@ var tab: PreviewIcon.Icon = PreviewIcon.Icon.CUBE
 
 
 func _ready() -> void:
-	var icon_path := DirAccess.open(Constants.ICON_DIR)
-	for type_dir in icon_path.get_directories():
-		var icon_type: PreviewIcon.Icon
-		match type_dir:
-			"cube":
-				icon_type = PreviewIcon.Icon.CUBE
-			"ship":
-				icon_type = PreviewIcon.Icon.SHIP
-			"jetpack":
-				icon_type = PreviewIcon.Icon.JETPACK
-			"ufo":
-				icon_type = PreviewIcon.Icon.UFO
-			"ball":
-				icon_type = PreviewIcon.Icon.BALL
-			"wave":
-				icon_type = PreviewIcon.Icon.WAVE
-			# "robot": Non existant
-			# 	icon_type = PreviewIcon.Icon.ROBOT
-			"spider":
-				icon_type = PreviewIcon.Icon.SPIDER
-			"swing":
-				icon_type = PreviewIcon.Icon.SWING
-			"trail":
-				icon_type = PreviewIcon.Icon.TRAIL
-			"death_effect":
-				icon_type = PreviewIcon.Icon.DEATH_EFFECT
-			_:
-				continue
+	reload()
 
-		var textures_dir: PackedStringArray
-		match icon_type:
-			PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
-				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_directories()
-			_:
-				textures_dir = DirAccess.open(Constants.ICON_DIR.path_join(type_dir)).get_files()
-		for icon: String in textures_dir:
-			if icon.contains(".import"):
-				continue
-			icons[icon_type].append(Constants.ICON_DIR.path_join(type_dir).path_join(icon))
+
+func reload() -> void:
+	if not DirAccess.dir_exists_absolute(Constants.CUSTOM_ICON_DIR):
+		DirAccess.make_dir_recursive_absolute(Constants.CUSTOM_ICON_DIR)
+	for directory: String in ["cube", "ship", "jetpack", "ufo", "ball", "wave", "spider", "trail", "death_effect"]:
+		directory = Constants.CUSTOM_ICON_DIR + directory	
+		if not DirAccess.dir_exists_absolute(directory):
+			DirAccess.make_dir_recursive_absolute(directory)
+	for icon_type: PreviewIcon.Icon in icons:
+		icons[icon_type].clear()
+	for icon_path in [Constants.ICON_DIR, Constants.CUSTOM_ICON_DIR]:
+		var opened_icon_path: DirAccess = DirAccess.open(icon_path)
+		for type_dir in opened_icon_path.get_directories():
+			var icon_type: PreviewIcon.Icon
+			match type_dir:
+				"cube":
+					icon_type = PreviewIcon.Icon.CUBE
+				"ship":
+					icon_type = PreviewIcon.Icon.SHIP
+				"jetpack":
+					icon_type = PreviewIcon.Icon.JETPACK
+				"ufo":
+					icon_type = PreviewIcon.Icon.UFO
+				"ball":
+					icon_type = PreviewIcon.Icon.BALL
+				"wave":
+					icon_type = PreviewIcon.Icon.WAVE
+				# "robot": Non existant
+				# 	icon_type = PreviewIcon.Icon.ROBOT
+				"spider":
+					icon_type = PreviewIcon.Icon.SPIDER
+				"swing":
+					icon_type = PreviewIcon.Icon.SWING
+				"trail":
+					icon_type = PreviewIcon.Icon.TRAIL
+				"death_effect":
+					icon_type = PreviewIcon.Icon.DEATH_EFFECT
+				_:
+					continue
+
+			var textures_dir: PackedStringArray
+			match icon_type:
+				PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
+					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_directories()
+				_:
+					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_files()
+			for icon: String in textures_dir:
+				if icon.contains(".import"):
+					continue
+				icons[icon_type].append(icon_path.path_join(type_dir).path_join(icon))
 	refresh()
 
 
@@ -68,24 +81,21 @@ func refresh() -> void:
 	var loaded_preview_icon: PackedScene = load("res://scenes/components/game_components/PreviewIcon.tscn")
 	for child in icon_selector.get_children():
 		child.queue_free()
-
-	for icon_type: PreviewIcon.Icon in icons:
-		if icon_type != tab:
-			continue
-		for icon: String in icons[icon_type]:
-			var button := BouncyButton.new()
-			var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
-			preview_icon.gamemode = icon_type
-			preview_icon.icon_path = icon
-			preview_icon.icon_scale = 0.5
-			preview_icon.custom_minimum_size = Vector2(96, 96)
-			preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
-			button.z_index = 4096
-			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			button.custom_minimum_size = Vector2(96, 96)
-			icon_selector.add_child(button)
-			button.add_child(preview_icon)
-			button.pressed.connect(_on_icon_pressed.bind(preview_icon))
+	var icon_type: PreviewIcon.Icon = tab
+	for icon: String in icons[icon_type]:
+		var button := BouncyButton.new()
+		var preview_icon: PreviewIcon = loaded_preview_icon.instantiate()
+		preview_icon.gamemode = icon_type
+		preview_icon.icon_path = icon
+		preview_icon.icon_scale = 0.5
+		preview_icon.custom_minimum_size = Vector2(96, 96)
+		preview_icon.get_node(^"Sprite").expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+		button.z_index = 4096
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.custom_minimum_size = Vector2(96, 96)
+		button.add_child(preview_icon)
+		icon_selector.add_child(button)
+		button.pressed.connect(_on_icon_pressed.bind(preview_icon))
 	update_icons()
 
 
@@ -112,6 +122,7 @@ func _on_icon_pressed(icon: PreviewIcon) -> void:
 			preview_icons.get_node(^"Ship/Ship").hide()
 			preview_icons.get_node(^"Ship/Jetpack").show()
 	Config.save()
+	AssetManager.load_icons([icon.gamemode])
 	update_icons()
 
 

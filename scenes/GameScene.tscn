@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
 [ext_resource type="Script" uid="uid://df58p5n7dllpj" path="res://src/WorldEnvironment.gd" id="17_21xg8"]
-[ext_resource type="Script" uid="uid://b0xmfrq6wj4dc" path="res://src/TouchScreenControls.gd" id="17_iaegw"]
+[ext_resource type="Script" path="res://src/TouchScreenControls.gd" id="17_iaegw"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="18_2gh7q"]
 [ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
 [ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]

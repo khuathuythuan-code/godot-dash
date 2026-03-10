@@ -7,7 +7,7 @@ var thread: Thread
 
 var loaded_songs: Dictionary[String, AudioStream]
 var loaded_fonts: Dictionary[String, Font]
-
+var loaded_icons: Dictionary[PreviewIcon.Icon, Dictionary]
 var player_packed: PackedScene
 var title_screen_packed: PackedScene
 var editor_packed: PackedScene
@@ -32,6 +32,7 @@ func _ready() -> void:
 	fade_enter_loaded.emit()
 	fade_enter_effect_canvas_group = ResourceLoader.load_threaded_get("res://resources/FadeEnterEffectCanvasGroup.tres")
 	fade_enter_canvas_group_loaded.emit()
+	load_icons()
 
 
 func load_song(path: String) -> AudioStream:
@@ -93,6 +94,62 @@ func load_font(path: String) -> FontFile:
 	loaded_font.msdf_size = 128
 	loaded_fonts[path] = loaded_font
 	return loaded_font
+
+
+func load_image(path: String) -> Texture2D:
+	if path.contains("res://"):
+		return load(path)
+	var image := Image.load_from_file(path)
+	if image == null:
+		if path == "":
+			path = "null"
+		Toasts.error("texture not found at path: " + path)
+		return load("res://assets/textures/guis/title_screen/placeholder.svg")
+	image.generate_mipmaps()
+	return ImageTexture.create_from_image(image)
+
+
+func load_icon(path: String, icon: PreviewIcon.Icon) -> Texture2D:
+	if path.contains(loaded_icons[icon]["path"]):
+		match icon:
+			PreviewIcon.Icon.SPIDER:
+				if path.contains("Spider_Head.svg"):
+					return loaded_icons[icon]["head_sprite"]
+				if path.contains("Spider_Head-glow.svg"):
+					return loaded_icons[icon]["head_glow"]
+				if path.contains("Spider_Leg.svg"):
+					return loaded_icons[icon]["leg_sprite"]
+				if path.contains("Spider_Leg-glow.svg"):
+					return loaded_icons[icon]["leg_glow"]
+			PreviewIcon.Icon.DEATH_EFFECT:
+				for frame in loaded_icons[icon]["sprite"]:
+					if frame["path"] == path:
+						return frame["path"]
+			_:
+				return loaded_icons[icon]["sprite"]
+	return load_image(path)
+
+
+func load_icons(icons: Array = PreviewIcon.Icon.values()) -> void:
+	for icon in icons:
+		var icon_path: String = Config.icons[icon]["path"]
+		loaded_icons.get_or_add(icon, {})
+		loaded_icons[icon]["path"] = icon_path
+		match icon:
+			PreviewIcon.Icon.SWING:
+				loaded_icons[icon]["sprite"] = load_image(icon_path.path_join("Swing.svg"))
+			PreviewIcon.Icon.DEATH_EFFECT:
+				for frame in DirAccess.open(icon_path).get_files():
+					if frame.contains(".import"):
+						continue
+					loaded_icons[icon].get_or_add("sprite", []).append({"sprite" = load_image(icon_path + "/" + frame), "path" = icon_path + "/" + frame})
+			PreviewIcon.Icon.SPIDER:
+				loaded_icons[icon]["head_sprite"] = load_image(icon_path.path_join("Spider_Head.svg"))
+				loaded_icons[icon]["head_glow"] = load_image(icon_path.path_join("Spider_Head-glow.svg"))
+				loaded_icons[icon]["leg_sprite"] = load_image(icon_path.path_join("Spider_Leg.svg"))
+				loaded_icons[icon]["leg_glow"] = load_image(icon_path.path_join("Spider_Leg-glow.svg"))
+			_:
+				loaded_icons[icon]["sprite"] = load_image(icon_path)
 
 
 func _exit_tree() -> void:
