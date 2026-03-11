@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect09.png" id="14_ytq4k"]
 [ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect10.png" id="15_tt21x"]
 [ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect11.png" id="16_4ncex"]
-[ext_resource type="Shader" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
+[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
 [ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect12.png" id="17_ctfuu"]
 [ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
 [ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="19_244xe"]
@@ -166,6 +166,7 @@ shader_parameter/bias = 0.9
 animation = &"fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_omwfa"]
+graph_offset = Vector2(-247.48535, 70.02641)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_g4xb6")
 nodes/TimeScale/position = Vector2(120, 120)
 nodes/fall/node = SubResource("AnimationNodeAnimation_ssp1h")
@@ -217,7 +218,7 @@ node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"Animation",
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3t6xh"]
-graph_offset = Vector2(-633.76025, 99.5654)
+graph_offset = Vector2(-269.39426, -82.39989)
 nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_j3k2l")
 nodes/PlayerSpeed/position = Vector2(20, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ksqvo")
@@ -316,7 +317,7 @@ states/run/position = Vector2(360, 221)
 states/walk/node = SubResource("AnimationNodeBlendTree_3t6xh")
 states/walk/position = Vector2(256, 100)
 transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_j87l4"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_ux6am"), "idle", "idle-alt", SubResource("AnimationNodeStateMachineTransition_xjiwe"), "idle-alt", "idle", SubResource("AnimationNodeStateMachineTransition_3ow27"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_oqq0p"), "idle-alt", "jump", SubResource("AnimationNodeStateMachineTransition_102cw"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_f8c6o"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ti1vy"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_333xh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_y725x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_d8wj8"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_hfsl1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cnpoe"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_w0b68"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_w21ie"), "fall", "walk", SubResource("AnimationNodeStateMachineTransition_36kv4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_b4v22"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_87vic"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_i1yrl"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_eidpu"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_vccgf")]
-graph_offset = Vector2(-220.6618, 11.0859375)
+graph_offset = Vector2(-56.314148, -184.89453)
 
 [sub_resource type="CurveTexture" id="CurveTexture_k4whp"]
 curve = SubResource("Curve_vov5s")
@@ -538,6 +539,7 @@ length = 0
 [node name="Icon" type="Node2D" parent="." unique_id=1476032725]
 
 [node name="Cube" type="Node2D" parent="Icon" unique_id=1897038084]
+visible = false
 script = ExtResource("2_sxyn3")
 
 [node name="CubeIcon" type="Sprite2D" parent="Icon/Cube" unique_id=1996823347]
@@ -554,7 +556,6 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("19_244xe")
 
 [node name="Spider" type="Node2D" parent="Icon" unique_id=1699397179]
-visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 6
 
@@ -650,7 +651,9 @@ next/RESET = &"walk"
 blend_times = [&"RESET", &"RESET", 1.0, &"RESET", &"walk", 1.0, &"walk", &"walk", 1.0]
 
 [node name="SpiderStateMachine" type="AnimationTree" parent="Icon/Spider" unique_id=859358445]
+root_node = NodePath("../SpiderSprites")
 tree_root = SubResource("AnimationNodeStateMachine_vvc3a")
+anim_player = NodePath("../SpiderSprites/SpiderAnimation")
 parameters/fall/TimeScale/scale = 4.0
 parameters/jump/TimeScale/scale = 4.0
 parameters/run/PlayerSpeed/scale = 1.0

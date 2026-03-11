@@ -1,6 +1,5 @@
-extends CharacterBody2D
-
 class_name Player
+extends CharacterBody2D
 
 signal hit_ceiling(player: Player)
 
@@ -908,15 +907,15 @@ func _update_spider_state_machine(jump_state: int) -> void:
 	# `jump` was moved to _compute_velocity to only be triggered with orbs and pads
 	# _spider_state_machine.travel("jump")
 	if dash_control or (jump_state == -1 and not is_on_floor() and not is_on_ceiling() and not is_on_wall() and not $GroundCollider.shape is CircleShape2D):
-		_spider_state_machine.travel("fall")
+		_spider_state_machine.travel(&"fall")
 	elif speed_multiplier == 0 or get_direction() == 0:
-		_spider_state_machine.travel("idle")
+		_spider_state_machine.travel(&"idle")
 	elif speed_multiplier >= 1.849:
 		_spider_animation_tree["parameters/run/PlayerSpeed/scale"] = speed_multiplier / 1.849
-		_spider_state_machine.travel("run")
+		_spider_state_machine.travel(&"run")
 	else:
 		_spider_animation_tree["parameters/walk/PlayerSpeed/scale"] = speed_multiplier
-		_spider_state_machine.travel("walk")
+		_spider_state_machine.travel(&"walk")
 
 
 func _player_death() -> void:
