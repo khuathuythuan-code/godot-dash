@@ -539,7 +539,6 @@ length = 0
 [node name="Icon" type="Node2D" parent="." unique_id=1476032725]
 
 [node name="Cube" type="Node2D" parent="Icon" unique_id=1897038084]
-visible = false
 script = ExtResource("2_sxyn3")
 
 [node name="CubeIcon" type="Sprite2D" parent="Icon/Cube" unique_id=1996823347]
@@ -556,6 +555,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("19_244xe")
 
 [node name="Spider" type="Node2D" parent="Icon" unique_id=1699397179]
+visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 6
 
