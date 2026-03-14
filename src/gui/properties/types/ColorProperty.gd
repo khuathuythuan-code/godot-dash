@@ -1,5 +1,6 @@
 @tool
 extends Property
+
 class_name ColorProperty
 
 signal value_changed(value: Color)
@@ -22,9 +23,11 @@ func _ready() -> void:
 	input.popup_closed.connect(func(): interaction_ended.emit(input.get_pick_color(), _previous_color))
 	renamed.connect(refresh)
 	refresh()
-	NodeUtils \
+	(
+		NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
+	)
 
 
 func set_value(new_value: Color) -> void:
@@ -50,6 +53,9 @@ func reset() -> void:
 func refresh() -> void:
 	label.text = name
 	input.custom_minimum_size.y = MIN_HEIGHT
+	var color_picker: PopupPanel = input.get_popup()
+	var color_picker_panel: Panel = color_picker.get_child(0, true)
+	color_picker_panel.material = load("res://resources/SimpleBlurMaterial.tres")
 	if Engine.is_editor_hint():
 		reset()
 
