@@ -4,7 +4,7 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_r47on"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_ivev1"]
 [ext_resource type="Script" uid="uid://86h6yxdj6auo" path="res://src/SettingsMenu.gd" id="3_rvg0e"]
-[ext_resource type="Script" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
+[ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="4_y26le"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="6_p6jor"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="7_ndunm"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="9_ndunm"]
@@ -451,6 +451,28 @@ metadata/_custom_type_script = "uid://c73uilol0rw1g"
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Practice/VBoxContainer/Automatic Checkpoint Distance" unique_id=1438187978]
 script = ExtResource("6_p6jor")
 config_property = &"automatic_checkpoint_distance"
+metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[node name="Replays" type="FoldableContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer" unique_id=152711842]
+layout_mode = 2
+mouse_filter = 1
+title = "Replays"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays" unique_id=560985232]
+layout_mode = 2
+
+[node name="Replays" type="BoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays/VBoxContainer" unique_id=1524859642]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays/VBoxContainer/Replays" unique_id=965428199]
+script = ExtResource("6_p6jor")
+config_property = &"replays_enabled"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [node name="HSeparator" type="HSeparator" parent="EnumButtonTabContainer/Gameplay" unique_id=807865401]

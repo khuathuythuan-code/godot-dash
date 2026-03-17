@@ -138,6 +138,10 @@ var menu_loop: String:
 	PreviewIcon.Icon.DEATH_EFFECT: { "path" ="res://assets/textures/player/death_effect/DeathEffect1/" },
 }
 
+# Replays
+@export_group("Replay")
+@export var replays_enabled: bool = true
+
 var config_file: ConfigFile = ConfigFile.new()
 
 
