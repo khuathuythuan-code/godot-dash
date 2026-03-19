@@ -56,6 +56,7 @@ func refresh() -> void:
 	input.custom_minimum_size.y = MIN_HEIGHT
 	for field in fields:
 		input.add_item(field if Config.enable_easter_eggs else field.trim_prefix("Trans "))
+	input.get_popup().allow_search = true
 	if Engine.is_editor_hint():
 		reset()
 
