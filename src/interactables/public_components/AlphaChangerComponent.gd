@@ -13,7 +13,7 @@ enum Mode {
 		mode = value
 		notify_property_list_changed()
 @export_range(0.0, 1.0, 0.01, "slider") var alpha: float = 1.0
-@export var copy_target: Node2D
+@export var copy_target: NodePath
 @export_range(0.0, 1.0, 0.01, "or_greater") var copy_multiplier: float
 
 @export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
@@ -77,8 +77,12 @@ func start(_player: Player) -> void:
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 	if mode == Mode.COPY and copy_target == null and Editor.in_editor:
 		Toasts.error("In %s: copy target is unset" % parent.name)
-	if copy_target:
-		copy_target_hsv_watcher = BaseDetailHandler.use_hsv_watcher(copy_target)
+	if not copy_target.is_empty() or true:
+		var copy_target_ref: Node = LevelManager.current_level.get_node_or_null(copy_target)
+		if not copy_target_ref:
+			Toasts.error("In %s: invalid copy target" % parent.name)
+			return
+		copy_target_hsv_watcher = BaseDetailHandler.use_hsv_watcher(copy_target_ref)
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
