@@ -5,7 +5,6 @@ class_name AlphaChangerComponent
 enum Mode {
 	SET,
 	MULTIPLY,
-	DIVIDE,
 	COPY,
 }
 
