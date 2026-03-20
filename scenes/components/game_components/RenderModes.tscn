@@ -2,7 +2,9 @@
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_mt01j"]
 [ext_resource type="Script" uid="uid://tb1aau87yyxd" path="res://src/RenderModes.gd" id="2_60r7y"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="2_erwi1"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_60r7y"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="3_qac3c"]
 [ext_resource type="Texture2D" uid="uid://cxj57i2flcpss" path="res://assets/textures/godot_editor_icons/FoldLeft.svg" id="4_s5wda"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="5_5oygk"]
 
@@ -33,11 +35,19 @@ bg_color = Color(0.22352941, 0.22352941, 0.22352941, 0.6)
 corner_radius_top_left = 14
 corner_radius_bottom_left = 14
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s5wda"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBox" id="StyleBox_1nuyr"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("3_qac3c")
+color = Color(0, 0, 0, 1)
+corner_detail = 5
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
-corner_detail = 5
+shadow_blur = 0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qac3c"]
@@ -105,10 +115,11 @@ stretch_mode = 2
 clip_children = 1
 layout_mode = 2
 theme_type_variation = &"ClipMaskPanel"
-theme_override_styles/panel = SubResource("StyleBoxFlat_s5wda")
+theme_override_styles/panel = SubResource("StyleBox_1nuyr")
 script = ExtResource("3_60r7y")
 default = 2
 variants = PackedStringArray("Object", "Material", "Rendered")
+icons = Array[Texture2D]([null, null, null])
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
 [node name="Options" type="PanelContainer" parent="VBoxContainer" unique_id=1388843025]
