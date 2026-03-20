@@ -2,6 +2,8 @@ extends Resource
 class_name Replay
 
 @export var replay: Array[PackedInt32Array] = [] # [jump_pressed as int, direction]
+@export var level: String = "Level"
+
 
 func reset() -> void:
 	replay.clear()

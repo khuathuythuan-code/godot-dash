@@ -140,7 +140,6 @@ var menu_loop: String:
 
 # Replays
 @export_group("Replay")
-@export var replays_enabled: bool = true
 
 var config_file: ConfigFile = ConfigFile.new()
 

@@ -143,7 +143,7 @@ var _snap_sprite_rotation_frames: int
 
 var physics_tick: int = 0
 var replay: Replay = Replay.new()
-var in_replay: bool = true
+var in_replay: bool = false
 
 func _ready() -> void:
 	if %DebugOverlays:
@@ -169,14 +169,12 @@ func _ready() -> void:
 		LevelManager.player_duals.append(self)
 	apply_floor_snap()
 	_set_particles_visibility.call_deferred()
-	if Config.replays_enabled and not self is MenuIcon and not LevelManager.practice_mode:
+	if not self is MenuIcon and not LevelManager.practice_mode:
 		physics_tick = 0
-		replay.reset()
-		await get_tree().physics_frame
-		if not DirAccess.dir_exists_absolute(Constants.REPLAYS_DIR):
-			DirAccess.make_dir_recursive_absolute(Constants.REPLAYS_DIR)
-		if in_replay and FileAccess.file_exists(Constants.REPLAYS_DIR + (LevelManager.current_level.name) + ".res"):
-			replay = load(Constants.REPLAYS_DIR + (LevelManager.current_level.name) + ".res")
+		await get_tree().process_frame
+		if not in_replay:
+			replay.reset()
+			replay.level = LevelManager.current_level.name
 
 
 func _physics_process(delta: float) -> void:
@@ -188,7 +186,7 @@ func _physics_process(delta: float) -> void:
 	var jump_state
 	jump_state = _get_jump_state()
 
-	if in_replay and Config.replays_enabled and not self is MenuIcon and replay.replay.size() > physics_tick:
+	if in_replay and not self is MenuIcon and replay.replay.size() > physics_tick:
 		match replay.replay[physics_tick][0]:
 			1:
 				Input.action_press("jump")
@@ -273,7 +271,7 @@ func _physics_process(delta: float) -> void:
 	if LevelManager.level_playing:
 		_handle_checkpoint_placement()
 	physics_tick += 1
-	if Config.replays_enabled and not in_replay:
+	if not in_replay:
 		replay.replay.append(PackedInt32Array([_get_jump_state(), get_direction()]))
 
 
@@ -966,8 +964,6 @@ func _player_death() -> void:
 	$DashParticles.emitting = false
 	%GroundParticles.emitting = false
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
-	if Config.replays_enabled and not in_replay:
-		replay.save(LevelManager.current_level.name)
 
 
 func _on_death_restart() -> void:

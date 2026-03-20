@@ -17,6 +17,7 @@ signal practice_mode_toggled(toggled_on: bool)
 var suspended: bool
 var tween: Tween
 var settings_were_open: bool
+var replays_were_open: bool
 var proceed_through_unsuspend: bool = true
 
 
@@ -24,6 +25,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	LevelManager.pause_menu = self
 	$Settings.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
+	$Replays.get_node(^"MarginContainer/ReplaysMenu/SmoothScrollContainer/ReplayPanelLoader").replay_started.connect(toggle_pause_menu)
 	update_buttons_visibility.call_deferred()
 
 
@@ -36,11 +38,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		if visible:
 			hide_tween()
 			settings_were_open = $Settings.visible
+			replays_were_open = $Settings.visible
 			$Settings.hide_tween()
+			$Replays.hide_tween()
 		else:
 			show_tween()
 			if settings_were_open:
 				$Settings.show_tween()
+			if replays_were_open:
+				$Replays.show_tween()
 
 
 func _notification(what: int) -> void:
@@ -89,13 +95,18 @@ func toggle_pause_menu() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		if settings_were_open:
 			$Settings.show_tween()
+		if replays_were_open:
+			$Replays.show_tween()
 		show_tween()
 	else:
 		unpaused.emit()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 		settings_were_open = $Settings.visible
+		replays_were_open = $Replays.visible
 		if $Settings.visible:
 			$Settings.hide_tween()
+		if $Replays.visible:
+			$Replays.hide_tween()
 		hide_tween()
 
 
@@ -162,6 +173,8 @@ func _on_settings_pressed() -> void:
 		$Settings.hide_tween()
 		return
 	$Settings.show_tween()
+	if $Replays.visible:
+		$Replays.hide_tween()
 
 
 func _on_practice_toggled(toggled_on: bool) -> void:
@@ -175,6 +188,15 @@ func _on_practice_toggled(toggled_on: bool) -> void:
 		var player: Player = LevelManager.player
 		player.last_automatic_checkpoint_position = Vector2.INF
 	toggle_pause_menu()
+
+
+func _on_replays_pressed() -> void:
+	if $Replays.visible:
+		$Replays.hide_tween()
+		return
+	$Replays.show_tween()
+	if $Settings.visible:
+		$Settings.hide_tween()
 
 
 func _on_save_and_play_pressed() -> void:
