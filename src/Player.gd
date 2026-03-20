@@ -175,6 +175,11 @@ func _ready() -> void:
 		if not in_replay:
 			replay.reset()
 			replay.level = LevelManager.current_level.name
+	Input.action_release("move_left")
+	Input.action_release("move_right")
+	Input.action_release("jump")
+	Input.action_release("platformer_wave_down")
+
 
 
 func _physics_process(delta: float) -> void:
@@ -186,6 +191,10 @@ func _physics_process(delta: float) -> void:
 	var jump_state
 	jump_state = _get_jump_state()
 
+	if not in_replay:
+		var replay_jump_state: int = int(Input.is_action_pressed("jump")) if not Input.is_action_pressed("platformer_wave_down") else -1
+		replay.replay.append(PackedInt32Array([replay_jump_state, get_direction()]))
+	
 	if in_replay and not self is MenuIcon and replay.replay.size() > physics_tick:
 		match replay.replay[physics_tick][0]:
 			1:
@@ -271,8 +280,6 @@ func _physics_process(delta: float) -> void:
 	if LevelManager.level_playing:
 		_handle_checkpoint_placement()
 	physics_tick += 1
-	if not in_replay:
-		replay.replay.append(PackedInt32Array([_get_jump_state(), get_direction()]))
 
 
 func _should_process() -> bool:
