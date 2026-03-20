@@ -523,44 +523,84 @@ colors = PackedColorArray(0.490196, 0.8, 0.960784, 1, 0.929412, 0.670588, 0.7254
 gradient = SubResource("Gradient_ostnf")
 fill_to = Vector2(1, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iyxla"]
+[sub_resource type="StyleBox" id="StyleBox_643mk"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 3.0
 content_margin_top = 3.0
 content_margin_right = 3.0
 content_margin_bottom = 3.0
+script = ExtResource("2_f1p5x")
+color = Color(1, 1, 1, 0.3)
 texture = SubResource("GradientTexture2D_iyxla")
-modulate_color = Color(1, 1, 1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7kfuq"]
+[sub_resource type="StyleBox" id="StyleBox_hdsbt"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 3.0
 content_margin_top = 3.0
 content_margin_right = 3.0
 content_margin_bottom = 3.0
+script = ExtResource("2_f1p5x")
+color = Color(0.8, 0.8, 0.8, 1)
 texture = SubResource("GradientTexture2D_iyxla")
-modulate_color = Color(0.8, 0.8, 0.8, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tfqb"]
+[sub_resource type="StyleBox" id="StyleBox_hkfic"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 3.0
 content_margin_top = 3.0
 content_margin_right = 3.0
 content_margin_bottom = 3.0
+script = ExtResource("2_f1p5x")
+color = Color(0.5, 0.5, 0.5, 1)
 texture = SubResource("GradientTexture2D_iyxla")
-modulate_color = Color(0.5, 0.5, 0.5, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pssp5"]
-content_margin_left = 3.0
-content_margin_top = 3.0
-content_margin_right = 3.0
-content_margin_bottom = 3.0
-texture = SubResource("GradientTexture2D_iyxla")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cjwly"]
+gradient = SubResource("Gradient_ostnf")
+fill_to = Vector2(1, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_usmye"]
+[sub_resource type="StyleBox" id="StyleBox_5rrh8"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 3.0
 content_margin_top = 3.0
 content_margin_right = 3.0
 content_margin_bottom = 3.0
+script = ExtResource("2_f1p5x")
+color = Color(1, 1, 1, 1)
+texture = SubResource("GradientTexture2D_cjwly")
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+metadata/_custom_type_script = "uid://bkl6g25jwb47h"
+
+[sub_resource type="StyleBox" id="StyleBox_jbwkd"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 3.0
+script = ExtResource("2_f1p5x")
 texture = SubResource("GradientTexture2D_iyxla")
-modulate_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qg2e3"]
 
@@ -657,10 +697,10 @@ TransButton/colors/icon_hover_pressed_color = Color(0, 0, 0, 1)
 TransButton/colors/icon_normal_color = Color(0, 0, 0, 1)
 TransButton/colors/icon_pressed_color = Color(0, 0, 0, 1)
 TransButton/constants/outline_size = 1
-TransButton/styles/disabled = SubResource("StyleBoxTexture_iyxla")
-TransButton/styles/hover = SubResource("StyleBoxTexture_7kfuq")
-TransButton/styles/hover_pressed = SubResource("StyleBoxTexture_4tfqb")
-TransButton/styles/normal = SubResource("StyleBoxTexture_pssp5")
-TransButton/styles/pressed = SubResource("StyleBoxTexture_usmye")
+TransButton/styles/disabled = SubResource("StyleBox_643mk")
+TransButton/styles/hover = SubResource("StyleBox_hdsbt")
+TransButton/styles/hover_pressed = SubResource("StyleBox_hkfic")
+TransButton/styles/normal = SubResource("StyleBox_5rrh8")
+TransButton/styles/pressed = SubResource("StyleBox_jbwkd")
 Tree/styles/focus = SubResource("StyleBoxEmpty_qg2e3")
 VSeparator/styles/separator = SubResource("StyleBoxLine_jaexg")
