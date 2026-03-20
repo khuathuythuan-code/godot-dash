@@ -83,6 +83,7 @@ static func from_property_list_field(type: Variant.Type, field: Dictionary) -> P
 			if array_type == TYPE_OBJECT and array_hint == PROPERTY_HINT_RESOURCE_TYPE:
 				packed = load("res://scenes/components/game_components/resource_properties/" + array_hint_string + "Property.tscn")
 			property.item_template = packed
+	assert(property != null)
 	return property
 
 
