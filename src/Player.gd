@@ -177,10 +177,6 @@ func _ready() -> void:
 			DirAccess.make_dir_recursive_absolute(Constants.REPLAYS_DIR)
 		if in_replay and FileAccess.file_exists(Constants.REPLAYS_DIR + (LevelManager.current_level.name) + ".res"):
 			replay = load(Constants.REPLAYS_DIR + (LevelManager.current_level.name) + ".res")
-	Input.action_release("move_left")
-	Input.action_release("move_right")
-	Input.action_release("jump")
-	Input.action_release("platformer_wave_down")
 
 
 func _physics_process(delta: float) -> void:
