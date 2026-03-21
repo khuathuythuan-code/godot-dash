@@ -12,8 +12,10 @@
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="9_5h1vy"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="9_08fpa"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="12_65pcn"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="13_1ska7"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
 [ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="17_6ogcu"]
@@ -52,23 +54,81 @@ variation_opentype = {
 font = SubResource("FontVariation_0d6if")
 font_size = 64
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dchwh"]
+[sub_resource type="StyleBox" id="StyleBox_507xd"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 12.0
+content_margin_top = -1.0
 content_margin_right = 12.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+content_margin_bottom = -1.0
+script = ExtResource("13_1ska7")
+color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hvy54"]
+[sub_resource type="StyleBox" id="StyleBox_02qso"]
+resource_local_to_scene = false
+resource_name = ""
 content_margin_left = 12.0
+content_margin_top = -1.0
 content_margin_right = 12.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+content_margin_bottom = -1.0
+script = ExtResource("13_1ska7")
+color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBox" id="StyleBox_fm4nh"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_1ska7")
+color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBox" id="StyleBox_3yl86"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_1ska7")
+color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk6fi"]
 content_margin_left = 12.0
@@ -349,7 +409,7 @@ theme_override_constants/separation = 6
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
+theme_override_styles/normal = SubResource("StyleBox_507xd")
 placeholder_text = "Search..."
 right_icon = ExtResource("13_0d6if")
 script = ExtResource("14_hvy54")
@@ -359,9 +419,9 @@ metadata/_custom_type_script = "uid://y1hecem53675"
 
 [node name="SortBy" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1818962724]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hvy54")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jk6fi")
+theme_override_styles/normal = SubResource("StyleBox_02qso")
+theme_override_styles/pressed = SubResource("StyleBox_fm4nh")
+theme_override_styles/hover = SubResource("StyleBox_3yl86")
 selected = 0
 item_count = 4
 popup/item_0/text = "Alphabetically"
@@ -375,8 +435,8 @@ popup/item_3/id = 3
 
 [node name="Order" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1969587000]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_dchwh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hvy54")
+theme_override_styles/normal = SubResource("StyleBox_02qso")
+theme_override_styles/pressed = SubResource("StyleBox_fm4nh")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jk6fi")
 selected = 0
 item_count = 2

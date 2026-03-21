@@ -2,24 +2,43 @@
 
 [ext_resource type="Script" uid="uid://bxe5tqovuq4bo" path="res://src/LevelPanel.gd" id="1_bhvlt"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_grurr"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="2_q1nc0"]
 [ext_resource type="FontFile" uid="uid://bfr3bu421t5nl" path="res://assets/fonts/OutfitRegular.ttf" id="3_bhvlt"]
 [ext_resource type="Texture2D" uid="uid://kb53hjd3amp0" path="res://assets/textures/godot_editor_icons/Edit.svg" id="3_nvobf"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="3_x5v4x"]
 [ext_resource type="Texture2D" uid="uid://gy6l77hg4e5d" path="res://assets/textures/guis/title_screen/flashing-lights-warning.svg" id="4_810tx"]
 [ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="4_bhvlt"]
 [ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="6_bhvlt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkbwf"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="Resource" id="Resource_x65bq"]
+script = ExtResource("2_q1nc0")
+color = Color(1, 1, 1, 1)
+width_left = 3
+width_top = 3
+width_right = 3
+width_bottom = 3
+
+[sub_resource type="StyleBox" id="StyleBox_0trlr"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("3_x5v4x")
+color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+borders = Array[ExtResource("2_q1nc0")]([SubResource("Resource_x65bq")])
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+anti_aliasing = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_bhvlt"]
 font = ExtResource("3_bhvlt")
@@ -87,7 +106,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = -10.0
 offset_bottom = -10.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_pkbwf")
+theme_override_styles/panel = SubResource("StyleBox_0trlr")
 
 [node name="Rating" type="Label" parent="Play/Outline" unique_id=722575495]
 layout_mode = 1
