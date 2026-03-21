@@ -453,28 +453,6 @@ script = ExtResource("6_p6jor")
 config_property = &"automatic_checkpoint_distance"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
-[node name="Replays" type="FoldableContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer" unique_id=152711842]
-layout_mode = 2
-mouse_filter = 1
-title = "Replays"
-title_alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays" unique_id=560985232]
-layout_mode = 2
-
-[node name="Replays" type="BoxContainer" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays/VBoxContainer" unique_id=1524859642]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("11_egxjo")
-default = true
-metadata/_custom_type_script = "uid://bss8ppxnt7gio"
-
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Gameplay/SmoothScrollContainer/VBoxContainer/Replays/VBoxContainer/Replays" unique_id=965428199]
-script = ExtResource("6_p6jor")
-config_property = &"replays_enabled"
-metadata/_custom_type_script = "uid://ckqgnvpbftev7"
-
 [node name="HSeparator" type="HSeparator" parent="EnumButtonTabContainer/Gameplay" unique_id=807865401]
 layout_mode = 2
 size_flags_vertical = 8
