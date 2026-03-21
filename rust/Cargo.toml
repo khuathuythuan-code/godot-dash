@@ -1,13 +1,15 @@
 [package]
 name = "godot-rust-utils"
 version = "0.1.0"
+# We use the let-chains feature, which was stabilised in 1.88 in the 2024 edition.
 edition = "2024"
+rust-version = "1.88"
 
 [lib]
 crate-type = ["cdylib"] # Compile this crate to a dynamic C library.
 
 [dependencies]
-godot = { version = "0.4.2", features = [
+godot = { version = "0.4.5", features = [
   "experimental-threads",
   "register-docs",
 ] }

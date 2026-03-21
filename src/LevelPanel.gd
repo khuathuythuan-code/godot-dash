@@ -5,6 +5,7 @@ class_name LevelPanel
 @export var title: Label
 @export var creator: Label
 @export var description: Label
+@export var version: Label
 @export var rating_outline: Panel
 @export var rating: Label
 @export var flashing_lights: HBoxContainer

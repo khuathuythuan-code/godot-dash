@@ -40,6 +40,9 @@ func refresh() -> void:
 		panel.title.text = level_name
 		panel.creator.text = level_data.creator
 		panel.description.text = level_data.description
+		panel.version.text = "v" + level_data.game_version
+		if level_data.game_version != ProjectSettings.get_setting("application/config/version"):
+			panel.version.modulate = Color.RED
 		panel.rating.text = str(int(level_data.rating)) if level_data.rating != -1 else "?"
 		panel.rating_outline.modulate = rating_colors.get_color(level_data.rating + 1)
 		if not level_data.flashing_lights:
