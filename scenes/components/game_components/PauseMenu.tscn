@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_6oxby"]
 [ext_resource type="Script" uid="uid://dklkgkt30unai" path="res://src/PauseMenu.gd" id="1_aoxbt"]
+[ext_resource type="PackedScene" uid="uid://deehxyexprt42" path="res://scenes/components/game_components/ReplaysMenu.tscn" id="3_y2pdr"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="6_wvbob"]
 
@@ -68,6 +69,14 @@ theme_type_variation = &"TitleScreenButton"
 toggle_mode = true
 text = "Practice"
 
+[node name="Replays" type="Button" parent="Menu/VBoxContainer" unique_id=1247098859]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+toggle_mode = true
+text = "Replays"
+
 [node name="Edit" type="Button" parent="Menu/VBoxContainer" unique_id=840835775]
 visible = false
 custom_minimum_size = Vector2(500, 75)
@@ -121,9 +130,33 @@ layout_mode = 2
 [node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
 layout_mode = 2
 
+[node name="Replays" type="PanelContainer" parent="." unique_id=1455180078]
+visible = false
+z_index = 128
+material = ExtResource("1_6oxby")
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleScreenPanel"
+script = ExtResource("5_018eo")
+
+[node name="MarginContainer" type="MarginContainer" parent="Replays" unique_id=2132131339]
+layout_mode = 2
+
+[node name="ReplaysMenu" parent="Replays/MarginContainer" unique_id=1168452285 instance=ExtResource("3_y2pdr")]
+layout_mode = 2
+
 [connection signal="pressed" from="Menu/VBoxContainer/Resume" to="." method="toggle_pause_menu"]
 [connection signal="pressed" from="Menu/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="toggled" from="Menu/VBoxContainer/Practice" to="." method="_on_practice_toggled"]
+[connection signal="pressed" from="Menu/VBoxContainer/Replays" to="." method="_on_replays_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Save And Play" to="." method="_on_save_and_play_pressed"]
 [connection signal="pressed" from="Menu/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

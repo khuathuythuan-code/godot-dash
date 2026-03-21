@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5g3ab1px7wu0"]
 
 [node name="ToastLayer" type="CanvasLayer" unique_id=531434118]
-layer = 101
+layer = 4096
 
 [node name="ToastContainer" type="VBoxContainer" parent="." unique_id=2038889404]
 anchors_preset = 10

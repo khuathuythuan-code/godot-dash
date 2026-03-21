@@ -141,6 +141,9 @@ var _snap_sprite_rotation_frames: int
 
 @onready var last_automatic_checkpoint_position: Vector2 = position
 
+var physics_tick: int = 0
+var replay: Replay = Replay.new()
+var in_replay: bool = false
 
 func _ready() -> void:
 	if %DebugOverlays:
@@ -166,6 +169,17 @@ func _ready() -> void:
 		LevelManager.player_duals.append(self)
 	apply_floor_snap()
 	_set_particles_visibility.call_deferred()
+	if not self is MenuIcon and not LevelManager.practice_mode:
+		physics_tick = 0
+		await get_tree().process_frame
+		if not in_replay:
+			replay.reset()
+			replay.level = LevelManager.current_level.name
+	Input.action_release("move_left")
+	Input.action_release("move_right")
+	Input.action_release("jump")
+	Input.action_release("platformer_wave_down")
+
 
 
 func _physics_process(delta: float) -> void:
@@ -174,8 +188,35 @@ func _physics_process(delta: float) -> void:
 
 	# Get velocity
 	up_direction = Vector2.UP.rotated(gameplay_rotation) * gravity_flip
-	var jump_state = _get_jump_state()
-	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D)
+	var jump_state
+	jump_state = _get_jump_state()
+
+	if not in_replay:
+		var replay_jump_state: int = int(Input.is_action_pressed("jump")) if not Input.is_action_pressed("platformer_wave_down") else -1
+		replay.replay.append(PackedInt32Array([replay_jump_state, get_direction()]))
+	
+	if in_replay and not self is MenuIcon and replay.replay.size() > physics_tick:
+		match replay.replay[physics_tick][0]:
+			1:
+				Input.action_press("jump")
+				Input.action_release("platformer_wave_down")
+			-1:
+				Input.action_press("platformer_wave_down")
+			_:
+				Input.action_release("jump")
+				Input.action_release("platformer_wave_down")
+		match replay.replay[physics_tick][1]:
+			1:
+				Input.action_press("move_right")
+				Input.action_release("move_left")
+			-1:
+				Input.action_press("move_left")
+				Input.action_release("move_right")
+			_:
+				Input.action_release("move_left")
+				Input.action_release("move_right")
+
+	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D) 
 
 	# Slope collision resolution
 	# Reset collision shape and set it back to the slope collider if needed
@@ -238,6 +279,7 @@ func _physics_process(delta: float) -> void:
 
 	if LevelManager.level_playing:
 		_handle_checkpoint_placement()
+	physics_tick += 1
 
 
 func _should_process() -> bool:

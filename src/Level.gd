@@ -327,6 +327,8 @@ func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> 
 func _get_practice_data() -> Dictionary:
 	var practice_data: Dictionary = { }
 	practice_data.player_velocity = LevelManager.player.velocity
+	practice_data.replay = LevelManager.player.replay
+	practice_data.physics_tick = LevelManager.player.physics_tick
 	return practice_data
 
 
@@ -370,7 +372,10 @@ static func from_data(data: Dictionary) -> Level:
 
 	if data.has("practice_data"):
 		var practice_data: Dictionary = data.practice_data
+		practice_data.replay.replay = practice_data.replay.replay.slice(0, practice_data.physics_tick)
 		LevelManager.player.velocity = practice_data.player_velocity
+		LevelManager.player.replay = practice_data.replay
+		LevelManager.player.physics_tick = practice_data.physics_tick
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
