@@ -67,6 +67,14 @@ func _get_jump_state() -> int:
 	return jump_state
 
 
+func _playback_replay() -> void:
+	return
+
+
+func _reset_replay() -> void:
+	return
+
+
 func _player_death() -> void:
 	if dead:
 		return

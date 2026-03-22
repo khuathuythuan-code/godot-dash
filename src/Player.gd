@@ -76,6 +76,7 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var slope_collider: CircleShape2D
 
 # Public
+var dead: bool
 var coyote_time: float
 var rebound_velocity: float
 var gameplay_rotation_degrees: float = 0.0
@@ -126,11 +127,15 @@ var no_auto_checkpoints_count: int:
 var orb_queue: Array[OrbInteractable]
 var pad_queue: Array[PadInteractable]
 
+# Replay
+var replay_physics_tick: int = 0
+var replay: Replay = Replay.new()
+var in_replay: bool = false
+
 # Private
 var _spider_dash_frames: int = 0
 var _slope_exit_velocity_frames: int = 0
 var _click_buffer_state: ClickBufferState
-var dead: bool
 var _is_flying_gamemode: bool
 var _wave_rotation_degrees_goal: float
 var _deferred_velocity_redirect: bool
@@ -141,9 +146,6 @@ var _snap_sprite_rotation_frames: int
 
 @onready var last_automatic_checkpoint_position: Vector2 = position
 
-var physics_tick: int = 0
-var replay: Replay = Replay.new()
-var in_replay: bool = false
 
 func _ready() -> void:
 	if %DebugOverlays:
@@ -169,17 +171,64 @@ func _ready() -> void:
 		LevelManager.player_duals.append(self)
 	apply_floor_snap()
 	_set_particles_visibility.call_deferred()
-	if not self is MenuIcon and not LevelManager.practice_mode:
-		physics_tick = 0
-		await get_tree().process_frame
-		if not in_replay:
-			replay.reset()
-			replay.level = LevelManager.current_level.name
-	Input.action_release("move_left")
-	Input.action_release("move_right")
-	Input.action_release("jump")
-	Input.action_release("platformer_wave_down")
+	_reset_replay()
 
+
+func defer_snap_sprite_rotation() -> void:
+	_snap_sprite_rotation = true
+	_snap_sprite_rotation_frames = 16
+
+
+func update_player_scale(tweened: bool) -> void:
+	var player_scale_value: Vector2
+	match player_scale:
+		PlayerScale.MINI:
+			player_scale_value = PLAYER_SCALE_MINI
+		PlayerScale.NORMAL:
+			player_scale_value = PLAYER_SCALE_NORMAL
+		PlayerScale.BIG:
+			player_scale_value = PLAYER_SCALE_BIG
+	if displayed_gamemode == Gamemode.WAVE:
+		player_scale_value *= PLAYER_SCALE_WAVE
+	if not tweened:
+		scale = player_scale_value
+		if not is_node_ready():
+			await ready
+		%Trail.width = %Trail.texture.get_width() * scale.y
+		return
+	(
+		create_tween() \
+		.set_parallel() \
+		.tween_property(self, ^"scale", player_scale_value, 0.25) \
+		.tween_property(%Trail, ^"width", %Trail.texture.get_width() * scale.y, 0.25) \
+		.set_ease(Tween.EASE_OUT) \
+		.set_trans(Tween.TRANS_BACK)
+	)
+
+
+func place_checkpoint() -> CheckpointPlacementBuilder:
+	return CheckpointPlacementBuilder.new(self)
+
+
+func stop_dash() -> void:
+	$DashParticles.emitting = false
+	$DashFlame.hide()
+	dash_control = null
+
+
+func get_direction() -> int:
+	var direction: int
+	if LevelManager.platformer:
+		direction = int(Input.get_axis(&"move_left", &"move_right"))
+		if direction != 0:
+			horizontal_direction = direction
+	else:
+		direction = horizontal_direction
+	return direction
+
+
+func get_spider_trail_global_position() -> Vector2:
+	return $Icon/Spider/SpiderCast/SpiderTrailSpawnPoint.global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -188,35 +237,16 @@ func _physics_process(delta: float) -> void:
 
 	# Get velocity
 	up_direction = Vector2.UP.rotated(gameplay_rotation) * gravity_flip
-	var jump_state
-	jump_state = _get_jump_state()
+	var jump_state: int = _get_jump_state()
 
 	if not in_replay:
-		var replay_jump_state: int = int(Input.is_action_pressed("jump")) if not Input.is_action_pressed("platformer_wave_down") else -1
-		replay.replay.append(PackedInt32Array([replay_jump_state, get_direction()]))
-	
-	if in_replay and not self is MenuIcon and replay.replay.size() > physics_tick:
-		match replay.replay[physics_tick][0]:
-			1:
-				Input.action_press("jump")
-				Input.action_release("platformer_wave_down")
-			-1:
-				Input.action_press("platformer_wave_down")
-			_:
-				Input.action_release("jump")
-				Input.action_release("platformer_wave_down")
-		match replay.replay[physics_tick][1]:
-			1:
-				Input.action_press("move_right")
-				Input.action_release("move_left")
-			-1:
-				Input.action_press("move_left")
-				Input.action_release("move_right")
-			_:
-				Input.action_release("move_left")
-				Input.action_release("move_right")
+		var replay_jump_state: int = int(Input.is_action_pressed(&"jump")) if not Input.is_action_pressed(&"platformer_wave_down") else -1
+		replay.data.append(PackedByteArray([replay_jump_state, get_direction()]))
 
-	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D) 
+	if in_replay and replay.data.size() > replay_physics_tick:
+		_playback_replay()
+
+	velocity = _compute_velocity(delta, velocity, get_direction(), jump_state, $GroundCollider.shape is CircleShape2D)
 
 	# Slope collision resolution
 	# Reset collision shape and set it back to the slope collider if needed
@@ -279,7 +309,7 @@ func _physics_process(delta: float) -> void:
 
 	if LevelManager.level_playing:
 		_handle_checkpoint_placement()
-	physics_tick += 1
+	replay_physics_tick += 1
 
 
 func _should_process() -> bool:
@@ -316,7 +346,43 @@ func _handle_collision(collision: KinematicCollision2D, is_refine_iteration: boo
 			%GroundParticles.add_child(ground_hit_particles)
 
 
-func get_floor_angle_signed(last_slide: bool, jump_state: int) -> float:
+func _playback_replay() -> void:
+	match replay.data[replay_physics_tick][0]:
+		1:
+			Input.action_press(&"jump")
+			Input.action_release(&"platformer_wave_down")
+		-1:
+			Input.action_press(&"platformer_wave_down")
+		_:
+			Input.action_release(&"jump")
+			Input.action_release(&"platformer_wave_down")
+	match replay.data[replay_physics_tick][1]:
+		1:
+			Input.action_press(&"move_right")
+			Input.action_release(&"move_left")
+		-1:
+			Input.action_press(&"move_left")
+			Input.action_release(&"move_right")
+		_:
+			Input.action_release(&"move_left")
+			Input.action_release(&"move_right")
+
+
+func _reset_replay() -> void:
+	if LevelManager.practice_mode:
+		return
+	replay_physics_tick = 0
+	await get_tree().process_frame
+	if not in_replay:
+		replay.reset()
+		replay.level_name = LevelManager.current_level.name
+	Input.action_release(&"move_left")
+	Input.action_release(&"move_right")
+	Input.action_release(&"jump")
+	Input.action_release(&"platformer_wave_down")
+
+
+func _get_floor_angle_signed(last_slide: bool, jump_state: int) -> float:
 	var floor_normal: Vector2
 	if last_slide:
 		floor_normal = get_last_slide_collision().get_normal()
@@ -339,21 +405,6 @@ func get_floor_angle_signed(last_slide: bool, jump_state: int) -> float:
 	if is_equal_approx(abs(floor_angle), 90.0):
 		return 0.0
 	return deg_to_rad(floor_angle)
-
-
-func get_direction() -> int:
-	var direction: int
-	if LevelManager.platformer:
-		direction = int(Input.get_axis("move_left", "move_right"))
-		if direction != 0:
-			horizontal_direction = direction
-	else:
-		direction = horizontal_direction
-	return direction
-
-
-func get_spider_trail_global_position() -> Vector2:
-	return $Icon/Spider/SpiderCast/SpiderTrailSpawnPoint.global_position
 
 
 func _get_jump_state() -> int:
@@ -420,7 +471,7 @@ func _compute_velocity(
 
 	#region Slope physics
 	if was_sliding_on_slope and get_last_slide_collision():
-		var floor_angle := get_floor_angle_signed(true, jump_state)
+		var floor_angle := _get_floor_angle_signed(true, jump_state)
 		# 90° collision warp prevention
 		if absf(sin(floor_angle)) < sin(floor_max_angle):
 			slope_velocity.y = tan(-floor_angle) * abs(local_velocity.x) * direction
@@ -466,7 +517,7 @@ func _compute_velocity(
 		(is_on_ceiling() and jump_state >= 0) or
 		(is_on_floor()
 			and get_last_slide_collision() != null
-			and get_floor_angle_signed(true, jump_state) != 0.0
+			and _get_floor_angle_signed(true, jump_state) != 0.0
 			and get_direction() != 0
 			and jump_state == 1 )
 	)
@@ -677,10 +728,10 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 	var dash_horizontal_direction := horizontal_direction if not LevelManager.platformer or dash_control == null else dash_control.initial_horizontal_direction
 	if $GroundCollider.shape is CircleShape2D:
 		if get_floor_normal() != Vector2.ZERO:
-			if not is_zero_approx(get_floor_angle_signed(false, jump_state)):
+			if not is_zero_approx(_get_floor_angle_signed(false, jump_state)):
 				sprite_floor_angle = lerp_angle(
 					sprite_floor_angle,
-					-get_floor_angle_signed(false, jump_state) + gameplay_rotation,
+					-_get_floor_angle_signed(false, jump_state) + gameplay_rotation,
 					delta * 60 * ICON_LERP_FACTOR,
 				)
 		elif last_collision != null and last_collision.get_normal() != Vector2.ZERO:
@@ -834,38 +885,6 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 	#endregion
 
 
-func defer_snap_sprite_rotation() -> void:
-	_snap_sprite_rotation = true
-	_snap_sprite_rotation_frames = 16
-
-
-func update_player_scale(tweened: bool) -> void:
-	var player_scale_value: Vector2
-	match player_scale:
-		PlayerScale.MINI:
-			player_scale_value = PLAYER_SCALE_MINI
-		PlayerScale.NORMAL:
-			player_scale_value = PLAYER_SCALE_NORMAL
-		PlayerScale.BIG:
-			player_scale_value = PLAYER_SCALE_BIG
-	if displayed_gamemode == Gamemode.WAVE:
-		player_scale_value *= PLAYER_SCALE_WAVE
-	if not tweened:
-		scale = player_scale_value
-		if not is_node_ready():
-			await ready
-		%Trail.width = %Trail.texture.get_width() * scale.y
-		return
-	(
-		create_tween() \
-		.set_parallel() \
-		.tween_property(self, ^"scale", player_scale_value, 0.25) \
-		.tween_property(%Trail, ^"width", %Trail.texture.get_width() * scale.y, 0.25) \
-		.set_ease(Tween.EASE_OUT) \
-		.set_trans(Tween.TRANS_BACK)
-	)
-
-
 func _update_swing_fire(delta: float) -> void:
 	if displayed_gamemode != Gamemode.SWING:
 		$Icon/Swing/FireBoostTop/FireParticles.emitting = false
@@ -1002,10 +1021,6 @@ func _handle_checkpoint_placement(practice_mode: bool = LevelManager.practice_mo
 		last_automatic_checkpoint_position = position
 
 
-func place_checkpoint() -> CheckpointPlacementBuilder:
-	return CheckpointPlacementBuilder.new(self)
-
-
 func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:
 	if _spider_dash_frames == 0:
 		$DeathAnimator.play("DeathAnimation")
@@ -1014,12 +1029,6 @@ func _on_kill_collider_solid_body_entered(_body: Node2D) -> void:
 func _on_kill_collider_hazard_area_entered(_area: Area2D) -> void:
 	if _spider_dash_frames == 0:
 		$DeathAnimator.play("DeathAnimation")
-
-
-func stop_dash() -> void:
-	$DashParticles.emitting = false
-	$DashFlame.hide()
-	dash_control = null
 
 
 func _on_solid_overlap_check_body_exited(body: Node2D) -> void:
