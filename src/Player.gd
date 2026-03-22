@@ -171,7 +171,7 @@ func _ready() -> void:
 		LevelManager.player_duals.append(self)
 	apply_floor_snap()
 	_set_particles_visibility.call_deferred()
-	_reset_replay()
+	_reset_replay.call_deferred()
 
 
 func defer_snap_sprite_rotation() -> void:
