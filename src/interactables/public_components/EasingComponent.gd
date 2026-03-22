@@ -20,7 +20,7 @@ signal restored(player: Player)
 @export_custom(PROPERTY_HINT_NONE, "serialize:PRACTICE_ATTEMPT", PROPERTY_USAGE_STORAGE)
 var elapsed_time: Dictionary[NodePath, float]
 
-var is_previewing: bool
+var is_previewing: bool = false
 var tweens: Dictionary[Player, Tween]
 var weights: Dictionary[Player, float]
 var _previous_weights: Dictionary[Player, float]
@@ -65,6 +65,8 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 
 
 func start(player: Player) -> void:
+	if is_previewing:
+		stop_preview()
 	if trigger_for_one_player and tweens.size() == 1:
 		return
 	tweens[player] = create_tween()
@@ -109,23 +111,23 @@ func reset(player: Player) -> void:
 
 
 func start_preview() -> void:
+	var player: Player = LevelManager.player
 	if is_previewing:
-		is_previewing = false
-		tweens[LevelManager.player].kill()
-		tweens.erase(LevelManager.player)
-		stop_preview(LevelManager.player)
+		stop_preview()
 		return
 	is_previewing = true
 	notify_property_list_changed()
-	finished.connect(stop_preview)
-	parent.interacted.emit(LevelManager.player)
+	finished.connect(_on_preview_end, CONNECT_ONE_SHOT)
+	parent.interacted.emit(player)
 
 
-func stop_preview(player: Player) -> void:
-	progressed.emit(player, -weights[player])
-	reset(player)
+func stop_preview() -> void:
+	var player: Player = LevelManager.player
 	is_previewing = false
-	notify_property_list_changed()
+	if player in tweens:
+		tweens[player].kill()
+		tweens.erase(player)
+		_on_preview_end(player)
 
 
 func get_elapsed_time() -> Dictionary[NodePath, float]:
@@ -141,3 +143,10 @@ func restore_from_elapsed_time() -> void:
 		start(player)
 		restored.emit(player)
 		tweens[player].custom_step(elapsed_time[player_path])
+
+
+func _on_preview_end(player: Player) -> void:
+	progressed.emit(player, -weights[player])
+	reset(player)
+	is_previewing = false
+	notify_property_list_changed()
