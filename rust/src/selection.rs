@@ -1,6 +1,5 @@
-use std::collections::HashSet;
-
 use godot::prelude::*;
+use ordermap::OrderSet;
 
 use crate::pathref::PathRef;
 
@@ -8,16 +7,14 @@ use crate::pathref::PathRef;
 /// A wrapper type for Rust's `HashSet`. Works like an [Array] of [PathRef]s but all objects are
 /// unique.
 pub struct Selection {
-    inner: HashSet<PathRef>,
-    first: Option<PathRef>,
+    inner: OrderSet<PathRef>,
 }
 
 #[godot_api]
 impl IRefCounted for Selection {
     fn init(_: Base<RefCounted>) -> Selection {
         Selection {
-            inner: HashSet::new(),
-            first: None,
+            inner: OrderSet::new(),
         }
     }
     fn to_string(&self) -> GString {
@@ -42,7 +39,6 @@ impl Selection {
                 .iter_shared()
                 .map(|node| PathRef::from_ref(node))
                 .collect(),
-            first: array.front().map(|node| PathRef::from_ref(node)),
         })
     }
     #[func]
@@ -54,8 +50,7 @@ impl Selection {
     /// ```
     fn from_object(object: Gd<Node2D>) -> Gd<Self> {
         Gd::from_object(Self {
-            inner: HashSet::from([PathRef::from_ref(object.clone())]),
-            first: Some(PathRef::from_ref(object)),
+            inner: OrderSet::from([PathRef::from_ref(object.clone())]),
         })
     }
     #[func]
@@ -75,46 +70,34 @@ impl Selection {
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **or** in `other`.
     fn union(&self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<PathRef> = self.inner.union(&other.bind().inner).cloned().collect();
-        Gd::from_object(Self {
-            inner,
-            first: self.first.clone().or(other.bind().first.clone()),
-        })
+        let inner: OrderSet<PathRef> = self.inner.union(&other.bind().inner).cloned().collect();
+        Gd::from_object(Self { inner })
     }
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **and** in `other`.
     fn intersection(&self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<PathRef> = self
+        let inner: OrderSet<PathRef> = self
             .inner
             .intersection(&other.bind().inner)
             .cloned()
             .collect();
-        Gd::from_object(Self {
-            inner,
-            first: self.first.clone().or(other.bind().first.clone()),
-        })
+        Gd::from_object(Self { inner })
     }
     #[func]
     /// Creates a new [Selection] with elements that are in `self` **and not** in `other`.
     fn difference(&mut self, other: Gd<Self>) -> Gd<Self> {
-        let inner: HashSet<PathRef> = self
+        let inner: OrderSet<PathRef> = self
             .inner
             .difference(&other.bind().inner)
             .cloned()
             .collect();
-        Gd::from_object(Self {
-            inner,
-            first: self.first.clone().or(other.bind().first.clone()),
-        })
+        Gd::from_object(Self { inner })
     }
     #[func]
     /// Adds an element to the selection.
     fn insert(&mut self, object: Gd<Node2D>) {
         let path_ref = PathRef::from_ref(object.clone());
         self.inner.insert(path_ref.clone());
-        if self.first.is_none() {
-            self.first = Some(path_ref)
-        }
     }
     #[func]
     /// Check if an element exists in the selection.
@@ -132,23 +115,21 @@ impl Selection {
     #[func]
     /// Returns the first element of the selection, or `null` if there is none.
     fn first(&mut self) -> Option<Gd<Node2D>> {
-        match &mut self.first {
-            Some(path_ref) => path_ref.into_ref(),
-            None => None,
-        }
+        self.inner
+            .first()
+            .map(|path_ref| path_ref.into_ref())
+            .flatten()
     }
     #[func]
     /// Removes all elements from the selection.
     fn clear(&mut self) {
         self.inner.clear();
-        self.first = None;
     }
     #[func]
     /// Creates a copy of the selection. The elements are unchanged.
     fn clone(&self) -> Gd<Self> {
         Gd::from_object(Self {
             inner: self.inner.clone(),
-            first: self.first.clone(),
         })
     }
     #[func]
@@ -203,23 +184,17 @@ impl Selection {
     /// Like [method Selection.map_generic], but returns another [Selection].
     /// This implies `method` needs to return a [Node2D].
     fn map(&self, method: Callable) -> Gd<Self> {
-        let mut first: Option<PathRef> = None;
-        let inner: HashSet<PathRef> = self
+        let inner: OrderSet<PathRef> = self
             .inner
             .clone()
             .iter()
             .flat_map(|path_ref| {
                 let node_ref = path_ref.clone().into_ref();
                 let new_node_ref = method.call(vslice![node_ref]).to::<Gd<Node2D>>();
-                if let Some(first_ref) = self.first.clone()
-                    && first_ref.clone().into_ref() == node_ref
-                {
-                    first = Some(PathRef::from_ref(new_node_ref.clone()));
-                }
                 Some(PathRef::from_ref(new_node_ref))
             })
             .collect();
-        Gd::from_object(Self { inner, first })
+        Gd::from_object(Self { inner })
     }
     #[func]
     /// See [method Array.map].
@@ -251,7 +226,7 @@ impl Selection {
     /// See [method Array.filter].
     /// Produces a new [Selection] with elements where `method.call(element) returns `true`.
     fn filter(&self, method: Callable) -> Gd<Self> {
-        let inner: HashSet<PathRef> = self
+        let inner: OrderSet<PathRef> = self
             .inner
             .clone()
             .into_iter()
@@ -262,10 +237,7 @@ impl Selection {
                     .is_some_and(|node| method.call(vslice![node]).to::<bool>())
             })
             .collect();
-        Gd::from_object(Self {
-            inner,
-            first: self.first.clone(),
-        })
+        Gd::from_object(Self { inner })
     }
     #[func]
     /// See [method Array.reduce].

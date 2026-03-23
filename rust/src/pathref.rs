@@ -15,8 +15,9 @@ impl PathRef {
         let inner = script.instantiate(&[reference.to_variant()]).to();
         PathRef(inner)
     }
-    pub fn into_ref(&mut self) -> Option<Gd<Node2D>> {
-        self.0.call("to_ref", &[]).to()
+    pub fn into_ref(&self) -> Option<Gd<Node2D>> {
+        // Cloning a pointer is fine
+        self.0.clone().call("to_ref", &[]).to()
     }
     pub fn get_ref(&self) -> Option<Gd<Node2D>> {
         self.0.get("_ref").to()
