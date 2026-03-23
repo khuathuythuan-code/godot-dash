@@ -64,12 +64,13 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 func update_object_name(new_name: String):
 	var object: Node2D = $"../EditHandler".selection.first()
 	var previous_name: String = object.name
+	var sanitized_new_name: String = new_name.validate_node_name()
 	var path_ref := PathRef.new(object)
-	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, new_name])
+	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, sanitized_new_name])
 	Editor.version_history.add_do_method(
 		func():
-			path_ref.to_ref().name = new_name
-			object_name.text = new_name
+			path_ref.to_ref().name = sanitized_new_name
+			object_name.text = sanitized_new_name
 	)
 	Editor.version_history.add_undo_method(
 		func():
