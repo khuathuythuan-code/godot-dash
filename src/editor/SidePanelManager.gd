@@ -69,12 +69,12 @@ func update_object_name(new_name: String):
 	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, sanitized_new_name])
 	Editor.version_history.add_do_method(
 		func():
-			path_ref.to_ref().name = sanitized_new_name
+			path_ref.rename(sanitized_new_name)
 			object_name.text = sanitized_new_name
 	)
 	Editor.version_history.add_undo_method(
 		func():
-			path_ref.to_ref().name = previous_name
+			path_ref.rename(previous_name)
 			object_name.text = previous_name
 	)
 	Editor.version_history.commit_action()
