@@ -17,7 +17,7 @@ font_size = 64
 process_mode = 3
 layer = 101
 script = ExtResource("1_aoxbt")
-level_name_label = NodePath("Menu/VBoxContainer/LevelName")
+level_name_label = NodePath("Menu/VBoxContainer/MarginContainer/LevelName")
 restart_button = NodePath("Menu/VBoxContainer/Restart")
 practice_button = NodePath("Menu/VBoxContainer/Practice")
 edit_button = NodePath("Menu/VBoxContainer/Edit")
@@ -37,11 +37,20 @@ layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="LevelName" type="Label" parent="Menu/VBoxContainer" unique_id=1687682951]
+[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer" unique_id=370218651]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="LevelName" type="Label" parent="Menu/VBoxContainer/MarginContainer" unique_id=1687682951]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Level Name"
 label_settings = SubResource("LabelSettings_ibsmc")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Spacer" type="Control" parent="Menu/VBoxContainer" unique_id=98440856]
 custom_minimum_size = Vector2(0, 15)
