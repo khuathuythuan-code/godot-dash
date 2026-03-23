@@ -1,6 +1,5 @@
-extends PanelContainer
-
 class_name ColorChannelItem
+extends PanelContainer
 
 const COLOR_PREVIEW_DISABLED := Color("#00000080")
 

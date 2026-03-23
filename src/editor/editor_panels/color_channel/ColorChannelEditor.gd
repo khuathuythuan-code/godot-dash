@@ -1,6 +1,5 @@
-extends Control
-
 class_name ColorChannelEditor
+extends Control
 
 @export var button_group: ButtonGroup
 @export var separator: HSeparator

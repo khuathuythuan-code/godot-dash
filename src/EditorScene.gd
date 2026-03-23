@@ -1,6 +1,5 @@
-extends Control
-
 class_name EditorScene
+extends Control
 
 enum EditorAction {
 	SWIPE = 1 << 0,
