@@ -65,8 +65,8 @@ func _field_from_data(field_name: String, field_data: Variant) -> void:
 
 
 func start(player: Player) -> void:
-	if is_previewing:
-		stop_preview()
+	if LevelManager.level_playing and is_previewing:
+		stop_preview(player)
 	if trigger_for_one_player and tweens.size() == 1:
 		return
 	tweens[player] = create_tween()
@@ -113,7 +113,7 @@ func reset(player: Player) -> void:
 func start_preview() -> void:
 	var player: Player = LevelManager.player
 	if is_previewing:
-		stop_preview()
+		stop_preview(player)
 		return
 	is_previewing = true
 	notify_property_list_changed()
@@ -121,13 +121,12 @@ func start_preview() -> void:
 	parent.interacted.emit(player)
 
 
-func stop_preview() -> void:
-	var player: Player = LevelManager.player
+func stop_preview(player: Player) -> void:
 	is_previewing = false
 	if player in tweens:
+		_on_preview_end(player)
 		tweens[player].kill()
 		tweens.erase(player)
-		_on_preview_end(player)
 
 
 func get_elapsed_time() -> Dictionary[NodePath, float]:
