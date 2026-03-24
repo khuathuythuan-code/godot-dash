@@ -13,6 +13,7 @@ signal practice_mode_toggled(toggled_on: bool)
 @export var practice_button: Button
 @export var edit_button: Button
 @export var play_button: Button
+@export var replay_button: Button
 
 var suspended: bool
 var tween: Tween
@@ -61,6 +62,7 @@ func update_buttons_visibility() -> void:
 	practice_button.visible = not Editor.in_editor
 	edit_button.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
 	play_button.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
+	replay_button.visible = not Editor.in_editor
 
 
 func unsuspend(proceed_through: bool) -> void:
