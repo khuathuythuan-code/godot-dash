@@ -372,7 +372,7 @@ static func from_data(data: Dictionary) -> Level:
 
 	if data.has("practice_data"):
 		var practice_data: Dictionary = data.practice_data
-		practice_data.replay.replay = practice_data.replay.replay.slice(0, practice_data.physics_tick)
+		practice_data.replay.data = practice_data.replay.data.slice(0, practice_data.physics_tick)
 		LevelManager.player.velocity = practice_data.player_velocity
 		LevelManager.player.replay = practice_data.replay
 		LevelManager.player.replay_physics_tick = practice_data.physics_tick

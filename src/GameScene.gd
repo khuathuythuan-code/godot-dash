@@ -34,6 +34,9 @@ func _ready() -> void:
 func load_level() -> void:
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	assert(not LevelManager.current_level_path.is_empty() or should_use_practice_snapshot)
+	if not should_use_practice_snapshot:
+		for checkpoint in checkpoint_parent.get_children():
+			checkpoint.queue_free()
 	if LevelManager.current_level_path != cached_level_path:
 		cached_level_path = LevelManager.current_level_path
 		var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
