@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c74ll20dwcp1l" path="res://src/editor/editor_panels/color_channel/ColorChannelItem.gd" id="1_2ntyf"]
 [ext_resource type="ButtonGroup" uid="uid://cev0xn2madcx2" path="res://resources/ColorChannelItemButtonGroup.tres" id="2_t5ace"]
-[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="3_8fjmm"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/icons/godot/Remove.svg" id="3_8fjmm"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1h1sw"]
 

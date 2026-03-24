@@ -22,7 +22,7 @@ func _ready() -> void:
 	property.interaction_ended.connect(func(value, previous): interaction_ended.emit(value, previous))
 
 	delete_button = NodeUtils.get_node_or_add(self, "Delete", Button, NodeUtils.INTERNAL)
-	delete_button.icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
+	delete_button.icon = preload("res://assets/textures/icons/godot/Remove.svg")
 	delete_button.custom_minimum_size.x = 24.0
 	delete_button.expand_icon = true
 	delete_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER

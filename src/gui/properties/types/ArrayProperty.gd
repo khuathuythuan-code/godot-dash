@@ -34,7 +34,7 @@ func _ready() -> void:
 	items.set_meta("array_property", self)
 	items.reordered.connect(refresh_item_names)
 	add = NodeUtils.get_node_or_add(vbox, "Add", Button, NodeUtils.INTERNAL)
-	add.icon = preload("res://assets/textures/godot_editor_icons/Add.svg")
+	add.icon = preload("res://assets/textures/icons/godot/Add.svg")
 	add.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add.custom_minimum_size.x = custom_minimum_size.y
 	add.pressed.connect(add_item.bind(-1))

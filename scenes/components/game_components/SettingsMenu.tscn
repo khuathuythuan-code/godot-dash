@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cfmafqjh1b675" path="res://src/gui/properties/types/FlagsProperty.gd" id="10_bi686"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="10_egxjo"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="10_vf3uf"]
-[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="11_bi686"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="11_bi686"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="11_egxjo"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="12_bi686"]
 [ext_resource type="Script" uid="uid://3na5h1vigpxe" path="res://src/gui/properties/types/FileProperty.gd" id="12_c7um1"]

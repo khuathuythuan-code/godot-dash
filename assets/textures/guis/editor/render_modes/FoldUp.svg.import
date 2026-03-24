@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tybg8d6qahw6"
-path="res://.godot/imported/FoldDown.svg-bda6aa685341fc8edc7f58a60487fb9b.ctex"
+uid="uid://bw4rwcqfg3bpq"
+path="res://.godot/imported/FoldUp.svg-b67146f51980f0ff5501bfd95931cb9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/FoldDown.svg"
-dest_files=["res://.godot/imported/FoldDown.svg-bda6aa685341fc8edc7f58a60487fb9b.ctex"]
+source_file="res://assets/textures/guis/editor/render_modes/FoldUp.svg"
+dest_files=["res://.godot/imported/FoldUp.svg-b67146f51980f0ff5501bfd95931cb9e.ctex"]
 
 [params]
 

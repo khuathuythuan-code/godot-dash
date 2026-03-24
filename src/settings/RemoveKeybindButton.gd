@@ -1,4 +1,5 @@
 extends Button
+
 class_name RemoveKeybindButton
 
 var keybind_loader: KeybindLoader
@@ -11,7 +12,7 @@ func _init(_keybind_loader: KeybindLoader, _input_event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	icon = preload("res://assets/textures/godot_editor_icons/Remove.svg")
+	icon = preload("res://assets/textures/icons/godot/Remove.svg")
 	icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	pressed.connect(_on_button_pressed)
 	expand_icon = true

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="2_erwi1"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="3_60r7y"]
 [ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="3_qac3c"]
-[ext_resource type="Texture2D" uid="uid://cxj57i2flcpss" path="res://assets/textures/godot_editor_icons/FoldLeft.svg" id="4_s5wda"]
+[ext_resource type="Texture2D" uid="uid://cxj57i2flcpss" path="res://assets/textures/guis/editor/render_modes/FoldLeft.svg" id="4_s5wda"]
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="5_5oygk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dqjdx"]

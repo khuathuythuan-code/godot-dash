@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6iyxpdqsgsoq"
-path="res://.godot/imported/FoldRight.svg-9892542ae6dc4de37f301eed23645d2e.ctex"
+uid="uid://kb53hjd3amp0"
+path="res://.godot/imported/Edit.svg-818fc1c7921d97b2c13e92eb2d1314f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/FoldRight.svg"
-dest_files=["res://.godot/imported/FoldRight.svg-9892542ae6dc4de37f301eed23645d2e.ctex"]
+source_file="res://assets/textures/icons/godot/Edit.svg"
+dest_files=["res://.godot/imported/Edit.svg-818fc1c7921d97b2c13e92eb2d1314f2.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="12_08fpa"]
 [ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="12_65pcn"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="12_p8bvb"]
-[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="13_0d6if"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="13_0d6if"]
 [ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="13_1ska7"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="14_hvy54"]
 [ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="15_hvy54"]
@@ -377,7 +377,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1806156210]
-visible = false
 material = ExtResource("8_65pcn")
 layout_mode = 1
 anchors_preset = -1

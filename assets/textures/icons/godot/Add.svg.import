@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw4rwcqfg3bpq"
-path="res://.godot/imported/FoldUp.svg-3d13567c4998f38e0346ce0f11cbf816.ctex"
+uid="uid://osgs1eafbggt"
+path="res://.godot/imported/Add.svg-ce85af36e8a5dbaa4492c0c20bbf7ae4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/FoldUp.svg"
-dest_files=["res://.godot/imported/FoldUp.svg-3d13567c4998f38e0346ce0f11cbf816.ctex"]
+source_file="res://assets/textures/icons/godot/Add.svg"
+dest_files=["res://.godot/imported/Add.svg-ce85af36e8a5dbaa4492c0c20bbf7ae4.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

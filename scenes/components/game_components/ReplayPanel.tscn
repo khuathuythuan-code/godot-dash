@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ccktucjw1vhvh" path="res://src/ReplayPanel.gd" id="1_jsun4"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="3_y4k4b"]
-[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/godot_editor_icons/Remove.svg" id="7_85fxc"]
+[ext_resource type="Texture2D" uid="uid://w3rxkgn0estq" path="res://assets/textures/icons/godot/Remove.svg" id="7_85fxc"]
 
 [sub_resource type="FontVariation" id="FontVariation_810tx"]
 variation_opentype = {

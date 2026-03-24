@@ -2,8 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="1_b71ym"]
 [ext_resource type="Script" uid="uid://u5n6v8qenvt6" path="res://src/editor/editor_panels/GroupEditor.gd" id="1_laiw3"]
-[ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/godot_editor_icons/Add.svg" id="3_dlgkp"]
-[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="3_vvypi"]
+[ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/icons/godot/Add.svg" id="3_dlgkp"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="3_vvypi"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="4_xkqcn"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="6_ibtip"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="7_1melt"]

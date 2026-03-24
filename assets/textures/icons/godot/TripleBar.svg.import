@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dboy80qi78ljv"
-path="res://.godot/imported/Stop.svg-f542e2b4399815aa6ec69df70bb1a09d.ctex"
+uid="uid://c88nniclu0mts"
+path="res://.godot/imported/TripleBar.svg-831ea786618833bb9252383bb7bb9ff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/godot_editor_icons/Stop.svg"
-dest_files=["res://.godot/imported/Stop.svg-f542e2b4399815aa6ec69df70bb1a09d.ctex"]
+source_file="res://assets/textures/icons/godot/TripleBar.svg"
+dest_files=["res://.godot/imported/TripleBar.svg-831ea786618833bb9252383bb7bb9ff8.ctex"]
 
 [params]
 

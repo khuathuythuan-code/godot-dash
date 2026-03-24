@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="6_gn1b0"]
 [ext_resource type="Script" uid="uid://dio03ib62x52j" path="res://src/ReplayPanelLoader.gd" id="6_jd2xo"]
 [ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="7_mckxg"]
-[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/godot_editor_icons/Search.svg" id="16_nya57"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="16_nya57"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="17_qty6d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_higv0"]
