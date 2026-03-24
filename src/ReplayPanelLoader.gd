@@ -82,6 +82,8 @@ func reorder() -> void:
 
 func _start_replay(path: String) -> void:
 	if LevelManager.level_playing:
+		LevelManager.practice_mode = false
+		LevelManager.practice_level_snapshots.clear()
 		LevelManager.game_scene.restart_level()
 		LevelManager.player.replay = load(Constants.REPLAYS_DIR.path_join(path))
 		LevelManager.player.in_replay = true
