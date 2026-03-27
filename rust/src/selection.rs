@@ -211,8 +211,7 @@ impl Selection {
     #[func]
     /// Like [method Selection.map_generic], but it produces a [Dictionary] with,
     /// for each element, keys and values being `element` and `method.call(element)`.
-    fn map_generic_dict(&self, method: Callable) -> VarDictionary {
-        // Typed dictionaries aren't supported in godot-rust yet
+    fn map_generic_dict(&self, method: Callable) -> Dictionary<Gd<Node2D>, Variant> {
         self.inner
             .clone()
             .into_iter()
