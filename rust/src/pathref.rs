@@ -2,10 +2,6 @@ use std::hash::Hash;
 
 use godot::{classes::GDScript, prelude::*};
 
-pub const EDITOR: &str = "Editor";
-pub const EDITOR_ROOT: &str = "root";
-pub const LEVEL_ROOT: &str = "level";
-
 #[derive(Eq, Clone)]
 pub struct PathRef(Gd<RefCounted>);
 
