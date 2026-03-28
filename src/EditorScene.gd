@@ -68,6 +68,7 @@ func _ready() -> void:
 
 	if not Editor.version_history:
 		Editor.version_history = UndoRedo.new()
+
 	if not Editor.level_data_snapshot.is_empty():
 		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
 		%ColorChannelEditor.clear_item_list()
@@ -181,7 +182,8 @@ func start_playtest() -> void:
 
 func stop_playtest() -> void:
 	%Playtest.disabled = true
-	$GameScene.reset()
+	if not Editor.level_data_snapshot.is_empty():
+		$GameScene.reset()
 	LevelManager.practice_mode = false
 	LevelManager.practice_level_snapshots.clear()
 	var new_player: Player = LevelManager.player
@@ -203,6 +205,7 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
+	breakpoint
 	Editor.clear_data()
 	$GameScene.fade_screen.fade_in()
 	(

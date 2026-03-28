@@ -1,5 +1,5 @@
-extends Node2D
 class_name TriggerGroupBoundingBox
+extends Node2D
 
 var bounding_boxes: Dictionary[Interactable, GroupBoundingBox]
 
@@ -10,10 +10,12 @@ class GroupBoundingBox:
 	var rect: Rect2
 	var position: Vector2
 
+
 	func _init(_rect: Rect2, _position: Vector2) -> void:
 		rect = _rect
 		position = _position
-	
+
+
 	func _to_string() -> String:
 		return "[R: %s P: %s]" % [rect, position]
 
@@ -44,10 +46,12 @@ func update_bounding_boxes(selection: Selection) -> void:
 			if target_group.is_empty():
 				continue
 			var objects_in_group: Array[CollisionObject2D]
-			objects_in_group.assign(get_tree()
-					.get_nodes_in_group(target_group)
-					.filter(func(group_object: Node): return group_object is CollisionObject2D)
-					.map(EditHandler.get_object_selection_collider))
+			objects_in_group.assign(
+				get_tree() \
+				.get_nodes_in_group(target_group) \
+				.filter(func(group_object: Node): return group_object is CollisionObject2D) \
+				.map(EditHandler.get_object_selection_collider),
+			)
 			if objects_in_group.is_empty():
 				continue
 			var objects_center: Vector2 = ArrayUtils.transform(objects_in_group.map(func(group_object: Node2D): return group_object.global_position), ArrayUtils.Transformation.MEAN, true)
