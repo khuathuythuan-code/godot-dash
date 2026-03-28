@@ -81,8 +81,8 @@ func _on_level_index_pressed(index: int) -> void:
 		4: # Save As
 			save_as_dialog.show()
 		5: # Export
-			if not Editor.level_file_name.is_empty():
-				export_dialog.set_current_file(Editor.level_file_name.get_basename())
+			if not Editor.level_file_path.is_empty():
+				export_dialog.set_current_file(Editor.level_file_path.get_basename())
 			export_dialog.show()
 		7: # Level Options
 			level_settings.show()
@@ -102,7 +102,7 @@ func _new_level() -> void:
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
 	LevelManager.current_level_duration = INF
-	Editor.level_file_name = ""
+	Editor.level_file_path = ""
 	# Reset player
 	LevelManager.player.position = Constants.DEFAULT_PLAYER_POSITION
 	for group in LevelManager.player.get_groups():
@@ -203,11 +203,11 @@ static func _import_overwrite(level_path: String, buffer: PackedByteArray) -> vo
 
 
 func save_level() -> void:
-	if Editor.level_file_name.is_empty():
+	if Editor.level_file_path.is_empty():
 		save_as_dialog.show()
 		return # save_level will get called again by the dialog
 	LevelManager.game_scene.pause_menu.play_button.show()
-	var file_name: String = Editor.level_file_name
+	var file_name: String = Editor.level_file_path
 	editor.level.name = file_name.get_basename()
 	var level_data: Dictionary = editor.level.to_data()
 	if not LevelManager.level_playing:
@@ -245,7 +245,7 @@ func _on_import_and_open_level_dialog_file_selected(path: String) -> void:
 
 
 func _on_save_level_as_dialog_file_selected(path: String) -> void:
-	Editor.level_file_name = path.get_file()
+	Editor.level_file_path = path.get_file()
 	editor.level.name = path.get_file().get_basename()
 	save_level()
 
@@ -339,7 +339,7 @@ Error:
 		push_error("Unexpected data")
 		return null
 	var level: Level = Level.from_data(json.data)
-	Editor.level_file_name = path.get_file()
+	Editor.level_file_path = path.get_file()
 	return level
 
 

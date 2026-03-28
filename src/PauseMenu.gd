@@ -60,7 +60,7 @@ func update_buttons_visibility() -> void:
 	restart_button.visible = not Editor.in_editor
 	practice_button.visible = not Editor.in_editor
 	edit_button.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
-	play_button.visible = Editor.in_editor and not Editor.level_file_name.is_empty()
+	play_button.visible = Editor.in_editor and not Editor.level_file_path.is_empty()
 	replay_button.visible = not Editor.in_editor
 
 
@@ -211,8 +211,8 @@ func _on_save_and_play_pressed() -> void:
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Playing a level")
 		DiscordRPCHandler.refresh()
-	LevelManager.current_level_name = Editor.level_file_name.get_basename()
+	LevelManager.current_level_name = Editor.level_file_path.get_basename()
 	LevelManager.attempt = 0
-	LevelManager.current_level_path = Constants.LEVEL_DIR + Editor.level_file_name
+	LevelManager.current_level_path = Constants.LEVEL_DIR + Editor.level_file_path
 	SceneManager.set_current_scene(SceneManager.Scene.LEVEL)
 	get_tree().change_scene_to_packed(AssetManager.game_scene_packed)

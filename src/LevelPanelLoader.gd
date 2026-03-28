@@ -101,7 +101,7 @@ func _edit_level(level_file_name: String) -> void:
 	var file := FileAccess.open(Constants.LEVEL_DIR + level_file_name, FileAccess.READ)
 	var json_string: String = file.get_as_text()
 	file.close()
-	Editor.level_file_name = level_file_name
+	Editor.level_file_path = level_file_name
 	Editor.level_data_snapshot = JSON.parse_string(json_string)
 	subscene_manager._on_editor_pressed()
 

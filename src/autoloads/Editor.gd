@@ -7,7 +7,7 @@ var in_editor: bool:
 var clipboard: Selection
 var snapshot := PackedScene.new()
 var level_data_snapshot: Dictionary
-var level_file_name: String
+var level_file_path: String
 var level_history_version: int = 1
 var shortcut_blocker: Node
 var viewport: EditorViewport
@@ -27,7 +27,7 @@ func is_text_input_focused() -> bool:
 func clear_data() -> void:
 	snapshot = PackedScene.new()
 	level_data_snapshot.clear()
-	level_file_name = ""
+	level_file_path = ""
 	level_history_version = 1
 	version_history = UndoRedo.new()
 	clipboard = Selection.new()
