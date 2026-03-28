@@ -34,9 +34,9 @@ const START_SPEED: Array[float] = [
 
 @export_file var song_path: String:
 	set(value):
-		register_required_song(song_path, value)
-		song_path = value
-		AssetManager.load_song_threaded_request(value)
+		register_required_song(song_path, value.get_file())
+		song_path = value.get_file()
+		AssetManager.load_song_threaded_request(Constants.SONG_DIR + value.get_file())
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start_time: float
 @export var default_font: String:
 	set(value):
@@ -151,7 +151,7 @@ func _process(_delta: float) -> void:
 
 
 func prepare_external_data() -> void:
-	song_player.stream = AssetManager.load_song_threaded_get(song_path)
+	song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + song_path)
 	LevelManager.platformer = platformer
 	LevelManager.player.internal_gamemode = start_internal_gamemode
 	LevelManager.player.displayed_gamemode = start_displayed_gamemode

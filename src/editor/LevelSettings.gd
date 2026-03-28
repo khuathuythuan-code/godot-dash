@@ -34,18 +34,18 @@ func _on_preview_pressed() -> void:
 		is_previewing = false
 		preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
 		LevelManager.level_song_player.stop()
-		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(LevelManager.current_level.song_path)
+		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
 		return
 
 	is_previewing = not is_previewing
 	if is_previewing:
 		preview_button.icon = load("res://assets/textures/icons/godot/Stop.svg")
-		LevelManager.level_song_player.stream = AssetManager.load_song(song_path.get_value())
+		LevelManager.level_song_player.stream = AssetManager.load_song(Constants.SONG_DIR + song_path.get_value().get_file())
 		LevelManager.level_song_player.play(song_start_offset.get_value())
 	else:
 		preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
 		LevelManager.level_song_player.stop()
-		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(LevelManager.current_level.song_path)
+		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
 
 
 func _on_default_font_value_changed(value: String) -> void:
