@@ -862,7 +862,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		else:
 			ball_grounded_look_factor = lerpf(ball_grounded_look_factor, 0.0, 10 * delta)
 		$Icon/Ball.set_meta(&"ball_grounded_look_factor", ball_grounded_look_factor)
-		var ball_rotation_in_air: float = abs(sin(($Icon/Ball.rotation * TAU) / deg_to_rad(72 * 2)))
+		var ball_rotation_in_air: float = Math.polar_polygon_normalized($Icon/Ball.rotation + deg_to_rad(72.0 / 2.0), 5, 2.0)
 		$Icon/Ball.position = Vector2(0.0, lerpf(0.0, lerpf(0, 10, ball_rotation_in_air), ball_grounded_look_factor)).rotated(gameplay_rotation)
 	#endregion
 
