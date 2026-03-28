@@ -1,7 +1,8 @@
-extends LabelSettings
 class_name TextSettings
+extends LabelSettings
 
-@export var _font_path: String: set = set_font_path
+@export var _font_path: String:
+	set = set_font_path
 
 
 func _init(path: String = "") -> void:
