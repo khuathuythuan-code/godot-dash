@@ -67,6 +67,8 @@ func clear_ui() -> void:
 
 
 func rebuild_ui(interactables: Selection) -> void:
+	if not interactables.is_identical(get_latest_selected_interactables()):
+		return
 	clear_ui()
 	build_ui(interactables)
 
@@ -209,6 +211,14 @@ func connect_ui(interactables: Selection, ui_root: Control) -> void:
 					interactables,
 				),
 			)
+
+
+func get_latest_selected_interactables() -> Selection:
+	var selection: Selection = Editor.root.edit_handler.selection
+	var filtered_selection: Selection = selection.map(player_to_interactable)
+	if filtered_selection.is_empty() or not filtered_selection.all(is_interactable):
+		return null
+	return filtered_selection
 
 
 func save_property(value: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
