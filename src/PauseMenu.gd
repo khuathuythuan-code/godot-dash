@@ -153,6 +153,7 @@ func _on_edit_pressed() -> void:
 	var json_string: String = file.get_as_text()
 	file.close()
 	Editor.level_data_snapshot = JSON.parse_string(json_string)
+	Editor.level_file_path = LevelManager.current_level_path.get_file()
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Creating a level")
 		DiscordRPCHandler.refresh()
