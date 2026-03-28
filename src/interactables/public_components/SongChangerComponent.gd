@@ -9,21 +9,21 @@ class_name SongChangerComponent
 	"load_root:user://created_levels/songs/", # Custom data
 	"import_to:user://created_levels/songs/", # Custom data
 )
-var song_path: String:
+var path: String:
 	set(value):
 		if LevelManager.current_level:
-			LevelManager.current_level.register_required_song(song_path, value)
-		song_path = value
+			LevelManager.current_level.register_required_song(path, value)
+		path = value
 		AssetManager.load_song_threaded_request(value)
-@export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start: float
+@export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var start_offset: float
 @export_custom(PROPERTY_HINT_TOOL_BUTTON, "Preview,Play") var preview: Callable = start_preview
 
 var is_previewing: bool
 
 
 func _ready() -> void:
-	# don't make the request twice, the song_path setter will run at _init
-	LevelManager.current_level.register_required_song(song_path, song_path)
+	# don't make the request twice, the path setter will run at _init
+	LevelManager.current_level.register_required_song(path, path)
 	parent.interacted.connect(start)
 
 
@@ -33,9 +33,9 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func start(_player: Player = null) -> void:
-	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(song_path)
-	LevelManager.level_song_player.stream.resource_path = song_path
-	LevelManager.level_song_player.play(song_start)
+	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(path)
+	LevelManager.level_song_player.stream.resource_path = path
+	LevelManager.level_song_player.play(start_offset)
 
 
 func start_preview() -> void:

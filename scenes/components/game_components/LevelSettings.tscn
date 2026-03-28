@@ -66,7 +66,7 @@ title = "Song"
 [node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song" unique_id=241849637]
 layout_mode = 2
 
-[node name="Song" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer" unique_id=561288785]
+[node name="Path" type="BoxContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer" unique_id=561288785]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -76,7 +76,7 @@ load_root = "user://created_levels/songs/"
 import_to = "user://created_levels/songs/"
 metadata/_custom_type_script = "uid://3na5h1vigpxe"
 
-[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Song" unique_id=1583453944]
+[node name="PropertySaveLoad" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Path" unique_id=1583453944]
 script = ExtResource("10_2dtee")
 config_property = &"song_path"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
