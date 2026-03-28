@@ -1,6 +1,5 @@
-extends Node
-
 class_name MusicScale
+extends Node
 
 @onready var parent: Node2D = get_parent()
 @onready var initial_scale: Vector2 = parent.scale

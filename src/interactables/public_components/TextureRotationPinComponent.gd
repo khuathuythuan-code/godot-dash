@@ -1,7 +1,6 @@
 @tool
-extends Component
-
 class_name TextureRotationPinComponent
+extends Component
 
 @export var pinned: CanvasItem
 @export var pin_to_gameplay_rotation := false
