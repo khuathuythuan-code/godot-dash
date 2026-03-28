@@ -261,6 +261,13 @@ content_margin_right = 8.0
 content_margin_bottom = 5.0
 bg_color = Color(0.225, 0.225, 0.225, 0.6)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa72w"]
+content_margin_left = 8.0
+content_margin_top = 5.0
+content_margin_right = 8.0
+content_margin_bottom = 5.0
+bg_color = Color(0.4, 0.4, 0.4, 0.6)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d60o6"]
 content_margin_left = 8.0
 content_margin_top = 5.0
@@ -678,6 +685,7 @@ MarginContainer/constants/margin_top = 10
 OneLineEnumButton/base_type = &"Button"
 OneLineEnumButton/styles/disabled = SubResource("StyleBoxFlat_xsqcr")
 OneLineEnumButton/styles/hover = SubResource("StyleBoxFlat_6n2a8")
+OneLineEnumButton/styles/hover_pressed = SubResource("StyleBoxFlat_oa72w")
 OneLineEnumButton/styles/normal = SubResource("StyleBoxFlat_d60o6")
 OneLineEnumButton/styles/pressed = SubResource("StyleBoxFlat_a7gu6")
 PaddedLineEdit/base_type = &"LineEdit"
