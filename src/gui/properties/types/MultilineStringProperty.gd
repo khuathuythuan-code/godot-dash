@@ -1,6 +1,6 @@
 @tool
-extends Property
 class_name MultilineStringProperty
+extends Property
 
 signal value_changed(value: String)
 signal interaction_ended(value: String, previous: String)
@@ -18,18 +18,22 @@ func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", TextEdit, NodeUtils.INTERNAL)
 	input.text_changed.connect(func(): value_changed.emit(input.get_text()))
-	input.focus_entered.connect(func(): 
-		Editor.shortcut_blocker = input
-		_previous_text = input.get_text())
-	input.focus_exited.connect(func():
-		Editor.shortcut_blocker = null
-		_value = input.get_text()
-		interaction_ended.emit(input.get_text(), _previous_text))
+	input.focus_entered.connect(
+		func():
+			Editor.shortcut_blocker = input
+			_previous_text = input.get_text()
+	)
+	input.focus_exited.connect(
+		func():
+			Editor.shortcut_blocker = null
+			_value = input.get_text()
+			interaction_ended.emit(input.get_text(), _previous_text)
+	)
 	renamed.connect(refresh)
 	refresh()
 	NodeUtils \
-		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
-		.set_input(input)
+	.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
+	.set_input(input)
 
 
 func _input(event: InputEvent) -> void:

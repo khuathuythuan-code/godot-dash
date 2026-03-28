@@ -1,6 +1,6 @@
 @tool
-extends Property
 class_name StringProperty
+extends Property
 
 signal value_changed(value: String)
 signal interaction_ended(value: String, previous: String)
@@ -22,12 +22,18 @@ func _ready() -> void:
 	input.text_submitted.connect(func(new_value: String): interaction_ended.emit(new_value, _previous_text))
 	input.text_submitted.connect(submitted_release_focus)
 	input.editing_toggled.connect(unedit_release_focus)
-	input.editing_toggled.connect(func(toggled_on: bool): if toggled_on: _previous_text = input.text)
+	input.editing_toggled.connect(
+		func(toggled_on: bool):
+			if toggled_on:
+				_previous_text = input.text
+	)
 	renamed.connect(refresh)
 	refresh()
-	NodeUtils \
+	(
+		NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
+	)
 
 
 func set_value(new_value: String) -> void:
