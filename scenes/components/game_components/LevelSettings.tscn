@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dd8enor6efbjp" path="res://src/gui/properties/components/PropertyValueThemeDefaultFont.gd" id="7_2dtee"]
 [ext_resource type="Texture2D" uid="uid://buqrmvu2n56ri" path="res://assets/textures/icons/godot/Play.svg" id="7_jvsdk"]
 [ext_resource type="Script" uid="uid://djfsy06pkw4ju" path="res://src/gui/properties/types/EnumProperty.gd" id="9_bmwhr"]
+[ext_resource type="Script" uid="uid://u6bg45iwy21r" path="res://src/resources/TextSettings.gd" id="9_bo0r5"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="9_ikfu3"]
 [ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="9_jvsdk"]
 [ext_resource type="Script" uid="uid://ckqgnvpbftev7" path="res://src/gui/properties/components/PropertySaveLoad.gd" id="10_2dtee"]
@@ -14,6 +15,11 @@
 [ext_resource type="Script" uid="uid://bwcwfobfohbsd" path="res://src/gui/properties/types/ColorProperty.gd" id="11_jvsdk"]
 [ext_resource type="Script" uid="uid://bss8ppxnt7gio" path="res://src/gui/properties/types/BoolProperty.gd" id="12_am3gx"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_e6gxs"]
+font_size = 24
+script = ExtResource("9_bo0r5")
+metadata/_custom_type_script = "uid://u6bg45iwy21r"
+
 [sub_resource type="InputEventAction" id="InputEventAction_bmwhr"]
 action = &"ui_cancel"
 pressed = true
@@ -21,7 +27,7 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_am3gx"]
 events = [SubResource("InputEventAction_bmwhr")]
 
-[node name="LevelSettings" type="CenterContainer" unique_id=1050656253 node_paths=PackedStringArray("song_path", "song_start_offset", "preview_button")]
+[node name="LevelSettings" type="CenterContainer" unique_id=1050656253 node_paths=PackedStringArray("song_path", "song_start_offset", "preview_button", "font_preview")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,6 +39,7 @@ script = ExtResource("1_ikfu3")
 song_path = NodePath("TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Path")
 song_start_offset = NodePath("TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Start Offset")
 preview_button = NodePath("TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Preview")
+font_preview = NodePath("TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/PanelContainer/MarginContainer/FontPreview")
 
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1686766034]
 material = ExtResource("1_0trr5")
@@ -126,6 +133,18 @@ metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 [node name="PropertyValueThemeDefaultFont" type="Node" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font" unique_id=714639320]
 script = ExtResource("7_2dtee")
 metadata/_custom_type_script = "uid://dd8enor6efbjp"
+
+[node name="PanelContainer" type="PanelContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer" unique_id=1226964936]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/PanelContainer" unique_id=1208079163]
+layout_mode = 2
+
+[node name="FontPreview" type="Label" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/PanelContainer/MarginContainer" unique_id=967719313]
+layout_mode = 2
+text = "The quick brown fox jumped over the lazy dog. 1234567890"
+label_settings = SubResource("LabelSettings_e6gxs")
+autowrap_mode = 3
 
 [node name="Default Look" type="FoldableContainer" parent="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1237378348]
 layout_mode = 2
@@ -252,4 +271,5 @@ shortcut = SubResource("Shortcut_am3gx")
 text = " Close "
 
 [connection signal="pressed" from="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Song/VBoxContainer/Preview" to="." method="_on_preview_pressed"]
+[connection signal="value_changed" from="TabContainer/Level Settings/VBoxContainer/HBoxContainer/VBoxContainer/Assets/VBoxContainer/Default Font" to="." method="_on_default_font_value_changed"]
 [connection signal="pressed" from="TabContainer/Level Settings/VBoxContainer/HBoxContainer2/Close" to="." method="_on_close_pressed"]

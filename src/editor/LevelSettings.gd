@@ -4,6 +4,7 @@ extends Control
 @export var song_path: FileProperty
 @export var song_start_offset: FloatProperty
 @export var preview_button: Button
+@export var font_preview: Label
 
 var saveloads: Array[PropertySaveLoad]
 var is_previewing: bool = false
@@ -45,3 +46,7 @@ func _on_preview_pressed() -> void:
 		preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
 		LevelManager.level_song_player.stop()
 		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(LevelManager.current_level.song_path)
+
+
+func _on_default_font_value_changed(value: String) -> void:
+	font_preview.label_settings.set_font_path(value)
