@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name IconGamemodeProp
+extends Node2D
 
 enum PlatformerState {
 	BOTH,

@@ -101,7 +101,7 @@ func load_image(path: String) -> Texture2D:
 		return load(path)
 	var image := Image.load_from_file(path)
 	if image == null:
-		if path == "":
+		if path.is_empty():
 			path = "null"
 		Toasts.error("texture not found at path: " + path)
 		return load("res://assets/textures/guis/title_screen/placeholder.svg")
@@ -133,7 +133,7 @@ func load_icon(path: String, icon: PreviewIcon.Icon) -> Texture2D:
 func load_icons(icons: Array = PreviewIcon.Icon.values()) -> void:
 	for icon in icons:
 		var icon_path: String = Config.icons[icon]["path"]
-		loaded_icons.get_or_add(icon, {})
+		loaded_icons.get_or_add(icon, { })
 		loaded_icons[icon]["path"] = icon_path
 		match icon:
 			PreviewIcon.Icon.SWING:
@@ -142,7 +142,7 @@ func load_icons(icons: Array = PreviewIcon.Icon.values()) -> void:
 				for frame in DirAccess.open(icon_path).get_files():
 					if frame.contains(".import"):
 						continue
-					loaded_icons[icon].get_or_add("sprite", []).append({"sprite" = load_image(icon_path + "/" + frame), "path" = icon_path + "/" + frame})
+					loaded_icons[icon].get_or_add("sprite", []).append({ "sprite"= load_image(icon_path + "/" + frame), "path"= icon_path + "/" + frame })
 			PreviewIcon.Icon.SPIDER:
 				loaded_icons[icon]["head_sprite"] = load_image(icon_path.path_join("Spider_Head.svg"))
 				loaded_icons[icon]["head_glow"] = load_image(icon_path.path_join("Spider_Head-glow.svg"))
