@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://did756jp8kche" path="res://assets/textures/orbs/BlueOrb.svg" id="2_iiq7e"]
 [ext_resource type="Script" uid="uid://cx0n1qip15t20" path="res://src/interactables/private_components/MusicScale.gd" id="3_wcw6k"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="4_bviuh"]
+[ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="5_7guvo"]
 [ext_resource type="Script" uid="uid://blkbj1no2k35m" path="res://src/interactables/private_components/PulseRing.gd" id="5_h0l2k"]
 [ext_resource type="Script" uid="uid://cqkay7r3kwd6f" path="res://src/interactables/public_components/JumpBoostComponent.gd" id="7_vbccn"]
 [ext_resource type="Script" uid="uid://dsrhynpnvau8u" path="res://src/interactables/private_components/PulseScale.gd" id="7_xtcx4"]
@@ -65,6 +66,14 @@ flip_state = 2
 
 [node name="DirectionChangerComponent" type="Node" parent="." unique_id=1115850441]
 script = ExtResource("10_34hr5")
+
+[node name="TextureRotationPinComponent" type="Node" parent="." unique_id=1078651711 node_paths=PackedStringArray("pinned")]
+script = ExtResource("5_7guvo")
+pinned = NodePath("../Sprite")
+pin_to_gameplay_rotation = true
+pin_scale = false
+sprite_scale = Vector2(0.25, 0.25)
+metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 
 [node name="EditorSelectionCollider" parent="." unique_id=1723981020 instance=ExtResource("11_6vb4f")]
 type = 8
