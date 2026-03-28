@@ -205,7 +205,6 @@ func stop_playtest() -> void:
 
 
 func _fade_leave(_action: Variant = null) -> void:
-	breakpoint
 	Editor.clear_data()
 	$GameScene.fade_screen.fade_in()
 	(

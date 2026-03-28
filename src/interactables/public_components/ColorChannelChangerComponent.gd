@@ -93,7 +93,6 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 	match _type:
 		Type.CUSTOM:
 			if not color_channel:
-				breakpoint
 				return
 			color_channel.color = gradient.sample(weight)
 			color_channel.hsv_shift[0] += (hue - initial_color_channel.hsv_shift[0]) * weight_delta
