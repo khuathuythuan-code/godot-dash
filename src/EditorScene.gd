@@ -211,6 +211,9 @@ func _fade_leave(_action: Variant = null) -> void:
 		.set_ease(Tween.EASE_IN) \
 		.set_trans(Tween.TRANS_EXPO)
 	)
+	if DiscordRPCManager.available:
+		DiscordRPCHandler.set_details("Title Screen")
+		DiscordRPCHandler.refresh()
 	$GameScene.pause_menu.unsuspend(true)
 
 
@@ -231,10 +234,6 @@ func _on_leave_pressed() -> void:
 		$SaveChangesBeforeOpening.custom_action.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		$LevelOperationsHandler.level_saved.connect(_fade_leave, ConnectFlags.CONNECT_ONE_SHOT)
 		return
-	Editor.clear_data()
-	if DiscordRPCManager.available:
-		DiscordRPCHandler.set_details("Title Screen")
-		DiscordRPCHandler.refresh()
 	_fade_leave()
 
 
