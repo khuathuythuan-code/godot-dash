@@ -31,9 +31,11 @@ func _ready() -> void:
 	)
 	renamed.connect(refresh)
 	refresh()
-	NodeUtils \
-	.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
-	.set_input(input)
+	(
+		NodeUtils \
+		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
+		.set_input(input)
+	)
 
 
 func _input(event: InputEvent) -> void:
@@ -42,7 +44,7 @@ func _input(event: InputEvent) -> void:
 
 
 func set_value(new_value: String) -> void:
-	var previous: String = _value
+	var previous: String = _value if _value is String else ""
 	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 	interaction_ended.emit(new_value, previous)
