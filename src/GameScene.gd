@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name GameScene
+extends Node2D
 
 @export var checkpoint_parent: Node2D
 @export var pause_menu: PauseMenu

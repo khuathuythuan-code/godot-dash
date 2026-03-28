@@ -1,6 +1,5 @@
-extends CanvasLayer
-
 class_name PauseMenu
+extends CanvasLayer
 
 signal paused
 signal unpaused

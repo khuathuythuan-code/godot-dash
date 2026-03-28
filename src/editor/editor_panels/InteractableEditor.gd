@@ -1,6 +1,5 @@
-extends Control
-
 class_name InteractableEditor
+extends Control
 
 # Scripts aren't constants but the array shouldn't be modified nontheless.
 static var COMPONENT_BLACKLIST: Array[Script] = [
@@ -73,8 +72,6 @@ func rebuild_ui(interactables: Selection) -> void:
 
 
 func build_ui(interactables: Selection) -> void:
-	if not Editor.root.level:
-		return
 	var first_interactable: Interactable = interactables.first()
 	var ui_root := VBoxContainer.new()
 	var should_component_be_displayed := func(component: Component):
