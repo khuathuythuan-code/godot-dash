@@ -120,7 +120,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified():
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and level_was_modified() and not (LevelManager.level_playing and not get_tree().paused):
 		process_mode = Node.PROCESS_MODE_ALWAYS
 		$SaveChangesBeforeOpening.dialog_text = "Save changes before quitting?"
 		$SaveChangesBeforeOpening.show()
