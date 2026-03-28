@@ -147,7 +147,8 @@ func restore_from_elapsed_time() -> void:
 
 
 func _on_preview_end(player: Player) -> void:
-	progressed.emit(player, -weights[player])
+	var reverse_weight: float = -weights[player]
 	reset(player)
+	progressed.emit(player, reverse_weight)
 	is_previewing = false
 	notify_property_list_changed()
