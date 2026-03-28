@@ -51,6 +51,8 @@ func _field_to_data(field_name: String) -> Variant:
 	match field_name:
 		"elapsed_time":
 			return get_elapsed_time()
+		"preview":
+			return null
 		_:
 			return get(field_name)
 

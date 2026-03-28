@@ -32,6 +32,14 @@ func _validate_property(property: Dictionary) -> void:
 		property.hint_string = "Preview,Stop"
 
 
+func _field_to_data(field_name: String) -> Variant:
+	match field_name:
+		"preview":
+			return null
+		_:
+			return get(field_name)
+
+
 func start(_player: Player = null) -> void:
 	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(path)
 	LevelManager.level_song_player.stream.resource_path = path

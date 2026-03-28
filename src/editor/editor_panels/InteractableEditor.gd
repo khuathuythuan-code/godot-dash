@@ -121,8 +121,7 @@ func build_ui(interactables: Selection) -> void:
 					call_button.text = field.hint_string.get_slice(",", 0)
 					call_button.icon = load("res://assets/textures/icons/godot/%s.svg" % field.hint_string.get_slice(",", 1))
 					call_button.expand_icon = true
-					var method_name: StringName = component.get(field_name).get_method()
-					call_button.pressed.connect(Callable(component, method_name))
+					call_button.pressed.connect(component.get(field_name) as Callable)
 					call_button.custom_minimum_size.y = 34.0
 					if last_section:
 						var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
