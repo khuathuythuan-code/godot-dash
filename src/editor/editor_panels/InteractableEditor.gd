@@ -56,10 +56,10 @@ func _ready() -> void:
 
 func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	clear_ui()
-	var _selection: Selection = selection.map(player_to_interactable)
-	if _selection.is_empty() or not _selection.all(is_interactable):
+	var filtered_selection: Selection = selection.map(player_to_interactable)
+	if filtered_selection.is_empty() or not filtered_selection.all(is_interactable):
 		return
-	build_ui(_selection)
+	build_ui(filtered_selection)
 
 
 func clear_ui() -> void:
