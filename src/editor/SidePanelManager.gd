@@ -4,31 +4,16 @@ extends Node
 @export var side_panel: PanelContainer
 @export var object_name: LineEdit
 
-@export_group("Transform")
-@export var transform_section: FoldableContainer
-
-@export_group("Groups")
-@export var group_section: FoldableContainer
-@export var group_editor: GroupEditor
 @export var group_parent: BoolProperty
 
-@export_group("Interactables")
-@export var interactable_section: FoldableContainer
-
-@export_group("Attributes")
-@export var attributes_section: FoldableContainer
-
 @export_group("Colors")
-@export var color_section: FoldableContainer
-@export var base: StringProperty
-@export var detail: StringProperty
+@export var object_color_properties: VBoxContainer
 @export var hsv_shift: FoldableContainer
 
 
 func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
-	color_section.folded = false
 	_on_edit_handler_selection_changed(Selection.EMPTY())
 
 
@@ -46,17 +31,11 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		group_parent.set_input_state(false)
 
 	var selection_is_empty: bool = selection.is_empty()
+	var is_static_body := func(object: Node2D): return object is StaticBody2D
 	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
 
-	transform_section.visible = not selection_is_empty
-	group_section.visible = not selection_is_empty
-	interactable_section.visible = selection_is_interactable
-	interactable_section.set_deferred(&"folded", not selection_is_interactable)
-	color_section.set_deferred(&"folded", selection_is_interactable)
-	attributes_section.visible = not selection.is_empty() and not selection.any(func(object: Node2D): return object is Player)
-
-	for element in [base, detail, hsv_shift]:
-		element.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
+	object_color_properties.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
 	if selection.size() == 1 and selection.first() is Player:
 		hsv_shift.visible = true
 
