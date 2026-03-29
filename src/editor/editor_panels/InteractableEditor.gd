@@ -88,7 +88,6 @@ func build_ui(interactables: Selection) -> void:
 		build_components_ui(interactables, displayed_components)
 	else:
 		components_root.hide()
-		separator.hide()
 
 	if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
 		separator.hide()
