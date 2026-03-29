@@ -89,3 +89,19 @@ func get_value() -> int:
 func set_input_state(enabled: bool) -> void:
 	for button: Button in box_container.get_children():
 		button.disabled = not enabled
+
+
+func hide_tab(idx: int) -> void:
+	box_container.get_child(idx).hide()
+
+
+func show_tab(idx: int) -> void:
+	box_container.get_child(idx).show()
+
+
+func get_tab_visibility(idx: int) -> bool:
+	return box_container.get_child(idx).visible
+
+
+func set_tab_visibility(idx: int, visibility: bool) -> void:
+	box_container.get_child(idx).visible = visibility
