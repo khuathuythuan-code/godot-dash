@@ -1,6 +1,6 @@
 @tool
-extends BoxContainer
 class_name Vector2SpinBox
+extends BoxContainer
 
 signal value_changed(new_value: Vector2)
 signal interaction_ended(value: Vector2, previous: Vector2)
@@ -12,7 +12,8 @@ signal interaction_ended(value: Vector2, previous: Vector2)
 @export var max_value: float
 @export var allow_greater: bool
 @export var allow_lesser: bool
-@export var prefix: String: set = _set_prefix
+@export var prefix: String:
+	set = _set_prefix
 @export var suffix: String:
 	set(value):
 		suffix = value
@@ -84,7 +85,7 @@ func _set_x(new_value: float) -> void:
 	var previous: Vector2 = _value
 	_value.x = new_value
 	if keep_aspect:
-		_value.y = new_value * 1/aspect_ratio
+		_value.y = new_value * 1 / aspect_ratio
 		spinbox_y.set_value_no_signal(_value.y)
 	value_changed.emit(_value)
 	interaction_ended.emit(_value, previous)

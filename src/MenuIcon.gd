@@ -1,6 +1,5 @@
-extends Player
-
 class_name MenuIcon
+extends Player
 
 var _last_jump: int = 0
 var _last_jump_state: int = false

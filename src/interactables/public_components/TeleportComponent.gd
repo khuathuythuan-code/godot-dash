@@ -1,7 +1,5 @@
-@tool
-extends Component
-
 class_name TeleportComponent
+extends Component
 
 @export var axis: Constants.Axis
 @export var redirect_velocity: bool:

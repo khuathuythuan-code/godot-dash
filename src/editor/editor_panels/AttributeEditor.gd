@@ -1,6 +1,5 @@
-extends VBoxContainer
-
 class_name AttributeEditor
+extends VBoxContainer
 
 static var BOOL_ATTRIBUTES: Array[Script] = [
 	NoTouchAttribute,

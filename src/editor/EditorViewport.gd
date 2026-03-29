@@ -1,6 +1,5 @@
-extends Control
-
 class_name EditorViewport
+extends Control
 
 var _is_cursor_shape_overriden: bool
 var _saved_cursor_shape: CursorShape

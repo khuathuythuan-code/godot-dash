@@ -1,5 +1,5 @@
-extends Area2D
 class_name MenuIconKiller
+extends Area2D
 
 const GRACE_PERIOD: float = 0.05
 

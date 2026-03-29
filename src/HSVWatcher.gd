@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name HSVWatcher
+extends Node2D
 
 enum SelectionHighlight {
 	NONE,

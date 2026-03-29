@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name PulseRing
+extends Node2D
 
 var tween: Tween
 

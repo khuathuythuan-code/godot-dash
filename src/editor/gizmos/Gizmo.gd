@@ -1,7 +1,6 @@
 @abstract
-extends Control
-
 class_name Gizmo
+extends Control
 
 @warning_ignore("unused_signal")
 signal confirmed(final_value: Variant)

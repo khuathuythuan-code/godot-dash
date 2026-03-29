@@ -1,6 +1,5 @@
-extends Camera2D
-
 class_name PlayerCamera
+extends Camera2D
 
 const DEFAULT_ZOOM: Vector2 = Vector2(0.8, 0.8)
 const DEFAULT_OFFSET: Vector2 = Vector2(400.0, 0.0)

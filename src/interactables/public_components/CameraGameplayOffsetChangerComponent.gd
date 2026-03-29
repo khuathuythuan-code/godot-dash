@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraGameplayOffsetChangerComponent
+extends Component
 
 enum Mode {
 	SET,

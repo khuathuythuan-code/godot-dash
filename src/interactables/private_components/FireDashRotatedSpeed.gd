@@ -1,5 +1,5 @@
-extends Node
 class_name RotatedSpeed
+extends Node
 
 @onready var parent := get_parent() as FireDashComponent
 

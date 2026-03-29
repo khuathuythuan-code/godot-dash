@@ -1,5 +1,5 @@
-extends VBoxContainer
 class_name KeybindLoader
+extends VBoxContainer
 
 @export var input_action: String
 

@@ -1,5 +1,5 @@
-extends HideAttribute
 class_name HideDetailAttribute
+extends HideAttribute
 
 @onready var parent := get_parent()
 

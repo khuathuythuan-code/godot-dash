@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name PulseCircle
+extends Node2D
 
 const RADIUS := 128 * 1.25
 

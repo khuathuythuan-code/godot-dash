@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraZoomChangerComponent
+extends Component
 
 enum Mode {
 	SET,

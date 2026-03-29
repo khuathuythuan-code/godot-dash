@@ -1,6 +1,5 @@
-extends CanvasLayer
-
 class_name TouchScreenControls
+extends CanvasLayer
 
 func _ready() -> void:
 	LevelManager.touchscreen_controls = self

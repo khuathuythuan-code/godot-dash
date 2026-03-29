@@ -1,6 +1,5 @@
-extends Attribute
-
 class_name HiddenOutsideEditorAttribute
+extends Attribute
 
 func _ready() -> void:
 	var parent: Node2D = get_parent()

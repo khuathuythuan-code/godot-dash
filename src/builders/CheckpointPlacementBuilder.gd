@@ -1,6 +1,5 @@
-extends Builder
-
 class_name CheckpointPlacementBuilder
+extends Builder
 
 const CHECKPOINT_PREFAB: PackedScene = preload("res://scenes/components/game_components/Checkpoint.tscn")
 

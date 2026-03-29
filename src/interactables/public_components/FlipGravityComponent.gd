@@ -1,6 +1,5 @@
-extends Component
-
 class_name FlipGravityComponent
+extends Component
 
 func _ready() -> void:
 	parent.body_entered.connect(engage_player_for_flip)

@@ -1,5 +1,5 @@
-extends HideAttribute
 class_name HideParticlesAttribute
+extends HideAttribute
 
 @onready var parent := get_parent()
 

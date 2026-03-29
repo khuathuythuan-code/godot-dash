@@ -1,7 +1,6 @@
 @tool
-extends PanelContainer
-
 class_name EnumButton
+extends PanelContainer
 
 signal value_changed(variant_index: int)
 signal interaction_ended(new_variant: int, previous_variant: int)

@@ -1,5 +1,5 @@
-extends Button
 class_name AddKeybindButton
+extends Button
 
 var remapping: bool = false
 var keybind_loader: KeybindLoader

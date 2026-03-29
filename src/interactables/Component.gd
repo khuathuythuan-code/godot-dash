@@ -1,7 +1,6 @@
 @abstract
-extends Node
-
 class_name Component
+extends Node
 
 var parent: Interactable
 

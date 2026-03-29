@@ -1,6 +1,5 @@
-extends Component
-
 class_name AlphaChangerComponent
+extends Component
 
 enum Mode {
 	SET,

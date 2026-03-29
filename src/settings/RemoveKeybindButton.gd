@@ -1,6 +1,5 @@
-extends Button
-
 class_name RemoveKeybindButton
+extends Button
 
 var keybind_loader: KeybindLoader
 var input_event: InputEvent

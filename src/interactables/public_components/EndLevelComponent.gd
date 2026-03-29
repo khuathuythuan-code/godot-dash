@@ -1,6 +1,5 @@
-extends Component
-
 class_name EndLevelComponent
+extends Component
 
 const TRANSITION_DURATION := 1.0
 

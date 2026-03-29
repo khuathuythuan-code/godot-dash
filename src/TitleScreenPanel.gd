@@ -1,6 +1,5 @@
-extends PanelContainer
-
 class_name TitleScreenPanel
+extends PanelContainer
 
 var tween: Tween
 @onready var inital_position: Vector2 = position

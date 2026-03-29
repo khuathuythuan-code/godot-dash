@@ -1,7 +1,5 @@
-@tool
-extends Resource
-
 class_name SpawnedTrigger
+extends Resource
 
 @export var path: NodePath:
 	set(value):

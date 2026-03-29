@@ -1,6 +1,5 @@
-extends Node
-
 class_name PhysicsObjectComponent
+extends Node
 
 var physics_object: bool = false
 var mass: float = 1.0

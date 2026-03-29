@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraRotationChangerComponent
+extends Component
 
 enum Mode {
 	ADD,

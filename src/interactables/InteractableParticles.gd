@@ -1,6 +1,5 @@
-extends GPUParticles2D
-
 class_name InteractableParticles
+extends GPUParticles2D
 
 @export var type: String
 @export_storage var saved_preprocess: float = -1.0

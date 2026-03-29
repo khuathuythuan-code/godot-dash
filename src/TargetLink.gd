@@ -1,7 +1,6 @@
 @tool
-extends Line2D
-
 class_name TargetLink
+extends Line2D
 
 var target: Node2D
 var target_component: TargetObjectComponent

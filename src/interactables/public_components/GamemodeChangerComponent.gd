@@ -1,6 +1,5 @@
-extends Component
-
 class_name GamemodeChangerComponent
+extends Component
 
 enum GamemodeChange {
 	BOTH,

@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name SpiderTrail
+extends Node2D
 
 const TRAIL_HEIGHT: float = 896.0 * 0.75
 

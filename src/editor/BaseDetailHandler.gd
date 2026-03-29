@@ -1,6 +1,5 @@
-extends Node
-
 class_name BaseDetailHandler
+extends Node
 
 @export var base: StringProperty
 @export var detail: StringProperty

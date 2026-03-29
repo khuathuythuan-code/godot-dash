@@ -1,6 +1,5 @@
-extends Component
-
 class_name PlayerScaleChangerComponent
+extends Component
 
 @export var player_scale: Player.PlayerScale
 

@@ -1,6 +1,5 @@
-extends Marker
-
 class_name SingleUsageComponent
+extends Marker
 
 func _ready() -> void:
 	parent.interacted.connect(disable)

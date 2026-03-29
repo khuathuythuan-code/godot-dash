@@ -1,6 +1,5 @@
-extends Interactable
 class_name PadInteractable
-
+extends Interactable
 
 func _ready() -> void:
 	super()

@@ -1,6 +1,5 @@
-extends AudioStreamPlayer
-
 class_name MenuLoop
+extends AudioStreamPlayer
 
 static var default_menu_loop: AudioStream
 

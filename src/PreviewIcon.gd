@@ -1,7 +1,6 @@
 @tool
-extends CenterContainer
-
 class_name PreviewIcon
+extends CenterContainer
 
 enum Icon {
 	CUBE,
@@ -44,7 +43,7 @@ func _refresh() -> void:
 		Icon.SWING:
 			$Sprite.show()
 			$Sprite.texture = AssetManager.load_icon(icon_path.path_join("Swing.svg"), gamemode)
-		Icon.DEATH_EFFECT:	
+		Icon.DEATH_EFFECT:
 			$"Death Effect".show()
 			for icon in DirAccess.open(icon_path).get_files():
 				if icon.contains(".import"):
@@ -77,6 +76,3 @@ func _refresh() -> void:
 		_:
 			$Sprite.show()
 			$Sprite.texture = AssetManager.load_icon(icon_path, gamemode)
-
-
-	

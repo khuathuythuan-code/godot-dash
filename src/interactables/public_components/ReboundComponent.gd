@@ -1,6 +1,5 @@
-extends Component
-
 class_name ReboundComponent
+extends Component
 
 var _velocity: float
 var sprite: Node2D

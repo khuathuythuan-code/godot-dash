@@ -1,5 +1,5 @@
-extends Resource
 class_name ColorChannelData
+extends Resource
 
 @export var copy: bool
 @export var color := Color.WHITE

@@ -1,5 +1,5 @@
-extends Component
 class_name TargetColorChannelComponent
+extends Component
 
 signal type_changed(type: Type)
 signal changed(target_color_channel: String)
@@ -27,7 +27,7 @@ enum Type {
 		target_color_channel = value if color_channel_exists else ""
 		if channel_type == Type.CUSTOM:
 			changed.emit(target_color_channel)
-@export var	target_level_channel: Constants.SpecialColorChannel:
+@export var target_level_channel: Constants.SpecialColorChannel:
 	set(value):
 		target_level_channel = value
 		if channel_type == Type.LEVEL:

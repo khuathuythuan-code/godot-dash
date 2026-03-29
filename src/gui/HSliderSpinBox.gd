@@ -1,7 +1,6 @@
 @tool
-extends HBoxContainer
-
 class_name HSliderSpinBox
+extends HBoxContainer
 
 signal value_changed(value: float)
 signal interaction_ended(value: float, previous: float)

@@ -1,6 +1,5 @@
-extends Node
-
 class_name PlaceHandler
+extends Node
 
 signal object_deleted(object: Node2D)
 

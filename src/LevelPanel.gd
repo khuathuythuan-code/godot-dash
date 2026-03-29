@@ -1,6 +1,5 @@
-extends Control
-
 class_name LevelPanel
+extends Control
 
 @export var title: Label
 @export var creator: Label

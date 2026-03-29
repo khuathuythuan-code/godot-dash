@@ -1,7 +1,6 @@
 @tool
-extends Node2D
-
 class_name EditorGrid
+extends Node2D
 
 const LINE_COLOR_PRIMARY := Color.WHITE
 const LINE_COLOR_SECONDARY := Color("ffffff", 0.3)

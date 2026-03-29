@@ -1,6 +1,5 @@
-extends Component
-
 class_name SongChangerComponent
+extends Component
 
 @export_global_file(
 	"*.mp3",

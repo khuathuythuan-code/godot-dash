@@ -1,6 +1,5 @@
-extends Node
-
 class_name PulseWhite
+extends Node
 
 @export var pulse_target: Node2D
 @onready var parent := get_parent() as Interactable

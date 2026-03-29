@@ -1,6 +1,5 @@
-extends Node
-
 class_name HSVHandler
+extends Node
 
 @export var hue: FloatSliderProperty
 @export var saturation: FloatSliderProperty

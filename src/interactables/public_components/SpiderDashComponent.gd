@@ -1,6 +1,5 @@
-extends Component
-
 class_name SpiderDashComponent
+extends Component
 
 @export var _change_gameplay_rotation: bool
 

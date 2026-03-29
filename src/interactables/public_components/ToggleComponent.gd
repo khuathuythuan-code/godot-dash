@@ -1,6 +1,5 @@
-extends Component
-
 class_name ToggleComponent
+extends Component
 
 signal send_to_group_display(group_name: String)
 

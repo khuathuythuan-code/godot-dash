@@ -1,5 +1,5 @@
-extends Component
 class_name TargetGroupComponent
+extends Component
 
 signal changed(target_group: String)
 

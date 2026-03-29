@@ -1,8 +1,6 @@
-extends Interactable
 class_name OrbInteractable
-
+extends Interactable
 ## `interacted` is emitted when the player jumps on the orb.
-
 
 func _ready() -> void:
 	super()
@@ -16,6 +14,7 @@ func _add_to_player_queue(body: Node2D) -> void:
 		return
 	var player := body as Player
 	player.orb_queue.push_front(self)
+
 
 func _remove_from_player_queue(body: Node2D) -> void:
 	if not body is Player:

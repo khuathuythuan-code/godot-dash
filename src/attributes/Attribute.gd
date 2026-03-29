@@ -1,6 +1,6 @@
 @abstract
-extends Node
 class_name Attribute
+extends Node
 ## Equivalent of Marker for non-Interactable nodes
 
 const ATTRIBUTE_PATH_ROOT: String = "res://src/attributes/"

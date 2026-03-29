@@ -1,7 +1,6 @@
 @tool
-extends Resource
-
 class_name TextureOverride
+extends Resource
 
 enum TextureKind {
 	VECTOR,

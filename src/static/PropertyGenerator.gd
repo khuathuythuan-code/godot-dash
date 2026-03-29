@@ -1,3 +1,4 @@
+@abstract
 class_name PropertyGenerator
 
 static func from_property_list_field(type: Variant.Type, field: Dictionary) -> Property:

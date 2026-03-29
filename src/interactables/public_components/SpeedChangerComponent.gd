@@ -1,9 +1,10 @@
-extends Component
 class_name SpeedChangerComponent
+extends Component
 
 @export var speed: float
 
 var previous_player_speed: float
+
 
 func _ready() -> void:
 	parent.body_entered.connect(set_speed)

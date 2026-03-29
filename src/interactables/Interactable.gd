@@ -1,6 +1,5 @@
-extends Area2D
-
 class_name Interactable
+extends Area2D
 
 @warning_ignore("unused_signal")
 signal interacted(player: Player)

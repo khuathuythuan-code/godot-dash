@@ -1,6 +1,5 @@
-extends VBoxContainer
-
 class_name PhysicsEditor
+extends VBoxContainer
 
 @onready var parent: Node = get_parent()
 
@@ -57,7 +56,7 @@ func _on_physics_object_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.physics_object
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set physics object to %s on %s objects" % [value, selection_snapshot_size])
@@ -86,7 +85,7 @@ func _on_mass_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.mass
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set mass to %s on %s objects" % [value, selection_snapshot_size])
@@ -115,7 +114,7 @@ func _on_friction_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.friction
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set friction to %s on %s objects" % [value, selection_snapshot_size])
@@ -144,7 +143,7 @@ func _on_rough_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.rough
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set rough to %s on %s objects" % [value, selection_snapshot_size])
@@ -173,7 +172,7 @@ func _on_bounce_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.bounce
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set bounce to %s on %s objects" % [value, selection_snapshot_size])
@@ -202,7 +201,7 @@ func _on_absorbent_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.absorbent
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set absorbent to %s on %s objects" % [value, selection_snapshot_size])
@@ -231,7 +230,7 @@ func _on_gravity_scale_value_changed(value: float) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.gravity_scale
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set gravity scale to %s on %s objects" % [value, selection_snapshot_size])
@@ -260,7 +259,7 @@ func _on_pushable_by_player_value_changed(value: bool) -> void:
 		func(object: Object):
 			var component: PhysicsObjectComponent = NodeUtils.get_child_of_type(object, PhysicsObjectComponent)
 			old_values[Editor.root.get_path_to(object)] = component.pushable_by_player
-			)
+	)
 	var selection_snapshot: Selection = solid_objects.clone()
 	var selection_snapshot_size: int = selection_snapshot.size()
 	Editor.version_history.create_action("Set pushable by player to %s on %s objects" % [value, selection_snapshot_size])

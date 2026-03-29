@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name GroundObject
+extends Node2D
 
 const LERP_FACTOR: float = 30
 

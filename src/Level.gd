@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Level
+extends Node2D
 
 @warning_ignore("unused_signal")
 signal default_font_changed

@@ -1,3 +1,4 @@
+@abstract
 class_name Math
 
 static func sec(angle: float) -> float:

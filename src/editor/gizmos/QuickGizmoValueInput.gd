@@ -1,6 +1,5 @@
-extends Node
-
 class_name QuickGizmoValueInput
+extends Node
 
 signal value_changed(value: float)
 signal axis_constraint_changed(axis_constraint: AxisConstraint)

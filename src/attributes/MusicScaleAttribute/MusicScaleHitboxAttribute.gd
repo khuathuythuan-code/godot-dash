@@ -1,7 +1,8 @@
-extends MusicScaleAttribute
 class_name MusicScaleHitboxAttribute
+extends MusicScaleAttribute
 
 @onready var parent := get_parent()
+
 
 func _ready() -> void:
 	var hitbox := parent.get_node_or_null(^"Hitbox")
@@ -15,4 +16,3 @@ func _exit_tree() -> void:
 	if not hitbox:
 		return
 	hitbox.get_node_or_null(^"MusicScale").queue_free()
-

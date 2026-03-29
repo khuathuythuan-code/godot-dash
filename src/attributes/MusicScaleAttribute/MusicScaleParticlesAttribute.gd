@@ -1,6 +1,5 @@
-extends MusicScaleAttribute
-
 class_name MusicScaleParticlesAttribute
+extends MusicScaleAttribute
 
 @onready var parent := get_parent()
 

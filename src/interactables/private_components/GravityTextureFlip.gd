@@ -1,6 +1,5 @@
-extends Node
-
 class_name GravityTextureFlip
+extends Node
 
 @onready var sprite := get_parent() as Sprite2D
 

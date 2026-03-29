@@ -1,6 +1,5 @@
-extends Container
-
 class_name SettingsMenu
+extends Container
 
 signal closed
 

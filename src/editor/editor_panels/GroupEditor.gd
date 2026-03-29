@@ -1,6 +1,5 @@
-extends Control
-
 class_name GroupEditor
+extends Control
 
 const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
 

@@ -1,6 +1,5 @@
-extends Component
-
 class_name GravityFlipChangerComponent
+extends Component
 
 enum FlipState {
 	DOWN,

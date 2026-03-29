@@ -1,6 +1,5 @@
-extends Component
-
 class_name TargetObjectComponent
+extends Component
 
 @export var target: NodePath:
 	set(value):

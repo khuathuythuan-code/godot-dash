@@ -1,6 +1,5 @@
-extends Component
-
 class_name DefaultPlayerDataComponent
+extends Component
 
 @export var platformer: bool:
 	set(value):

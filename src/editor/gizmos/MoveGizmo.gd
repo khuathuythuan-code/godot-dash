@@ -1,6 +1,5 @@
-extends Gizmo
-
 class_name MoveGizmo
+extends Gizmo
 
 signal position_changed(position: Vector2)
 

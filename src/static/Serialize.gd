@@ -1,5 +1,4 @@
-extends Object
-
+@abstract
 class_name Serialize
 ## Serialization functions for builtin types.
 

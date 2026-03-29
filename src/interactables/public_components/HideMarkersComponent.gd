@@ -1,2 +1,2 @@
-extends Marker
 class_name HideMarkersComponent
+extends Marker

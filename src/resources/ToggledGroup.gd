@@ -1,6 +1,6 @@
 @tool
-extends Resource
 class_name ToggledGroup
+extends Resource
 
 enum ToggleState {
 	ON,

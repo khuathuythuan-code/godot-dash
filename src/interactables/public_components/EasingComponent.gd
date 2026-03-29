@@ -1,6 +1,5 @@
-extends Component
-
 class_name EasingComponent
+extends Component
 
 signal progressed(player: Player, weight_delta: float)
 signal finished(player: Player)

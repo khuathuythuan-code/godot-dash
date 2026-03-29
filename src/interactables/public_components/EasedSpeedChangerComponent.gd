@@ -1,6 +1,5 @@
-extends Component
-
 class_name EasedSpeedChangerComponent
+extends Component
 
 signal changed(speed: String)
 

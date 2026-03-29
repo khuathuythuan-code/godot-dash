@@ -1,6 +1,5 @@
-extends Gizmo
-
 class_name ScaleGizmo
+extends Gizmo
 
 signal scale_changed(position: Vector2, transform: Transform2D, rotation: float, is_global_axis: bool)
 

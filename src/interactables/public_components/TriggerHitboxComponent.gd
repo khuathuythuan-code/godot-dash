@@ -1,6 +1,5 @@
-extends Component
-
 class_name TriggerHitboxComponent
+extends Component
 
 enum HitboxShape {
 	LINE,

@@ -1,6 +1,5 @@
-extends Node
-
 class_name PulseScale
+extends Node
 
 @export var sprite: Node2D
 

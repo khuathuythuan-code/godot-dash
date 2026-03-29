@@ -1,6 +1,5 @@
-extends Component
-
 class_name LevelCheckpointComponent
+extends Component
 
 @export var sprite: Sprite2D
 @export var animation_player: AnimationPlayer

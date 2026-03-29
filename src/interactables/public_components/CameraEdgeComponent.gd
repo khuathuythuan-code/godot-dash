@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraEdgeComponent
+extends Component
 
 enum Mode {
 	LIMIT,

@@ -1,5 +1,5 @@
-extends Attribute
 class_name NoTouchAttribute
+extends Attribute
 
 @onready var parent := get_parent() as CollisionObject2D
 

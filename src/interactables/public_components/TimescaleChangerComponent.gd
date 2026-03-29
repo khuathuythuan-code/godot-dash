@@ -1,6 +1,5 @@
-extends Component
-
 class_name TimescaleChangerComponent
+extends Component
 
 signal changed(time_scale: String)
 

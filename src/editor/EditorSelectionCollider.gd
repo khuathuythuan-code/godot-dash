@@ -1,6 +1,5 @@
-extends Area2D
-
 class_name EditorSelectionCollider
+extends Area2D
 
 enum Type {
 	BLOCK,

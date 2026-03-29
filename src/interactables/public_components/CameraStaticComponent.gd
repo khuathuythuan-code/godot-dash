@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraStaticComponent
+extends Component
 
 enum Mode {
 	ENTER,

@@ -1,6 +1,5 @@
-extends Interactable
 class_name TriggerInteractable
-
+extends Interactable
 
 func _ready() -> void:
 	super()

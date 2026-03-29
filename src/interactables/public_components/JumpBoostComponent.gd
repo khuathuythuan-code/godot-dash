@@ -1,5 +1,5 @@
-extends Component
 class_name JumpBoostComponent
+extends Component
 
 @export var jump_boost: float
 

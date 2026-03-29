@@ -1,6 +1,5 @@
-extends Component
-
 class_name GravityMultiplierChangerComponent
+extends Component
 
 signal changed(gravity_multiplier: String)
 

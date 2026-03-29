@@ -1,6 +1,5 @@
-extends VBoxContainer
-
 class_name IconGarage
+extends VBoxContainer
 
 @export var preview_icons: HBoxContainer
 @export var icon_selector: GridContainer
@@ -29,7 +28,7 @@ func reload() -> void:
 	if not DirAccess.dir_exists_absolute(Constants.CUSTOM_ICON_DIR):
 		DirAccess.make_dir_recursive_absolute(Constants.CUSTOM_ICON_DIR)
 	for directory: String in ["cube", "ship", "jetpack", "ufo", "ball", "wave", "spider", "trail", "death_effect"]:
-		directory = Constants.CUSTOM_ICON_DIR + directory	
+		directory = Constants.CUSTOM_ICON_DIR + directory
 		if not DirAccess.dir_exists_absolute(directory):
 			DirAccess.make_dir_recursive_absolute(directory)
 	for icon_type: PreviewIcon.Icon in icons:

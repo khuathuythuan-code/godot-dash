@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraShakeComponent
+extends Component
 
 enum Axis {
 	BOTH,

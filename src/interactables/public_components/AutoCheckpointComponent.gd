@@ -1,6 +1,5 @@
-extends Component
-
 class_name AutoCheckpointComponent
+extends Component
 
 func _ready() -> void:
 	parent.interacted.connect(place_auto_checkpoint)

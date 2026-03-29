@@ -1,6 +1,5 @@
-extends Component
-
 class_name CameraOffsetChangerComponent
+extends Component
 
 enum Mode {
 	ADD,

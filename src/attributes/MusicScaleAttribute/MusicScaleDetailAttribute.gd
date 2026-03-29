@@ -1,5 +1,5 @@
-extends MusicScaleAttribute
 class_name MusicScaleDetailAttribute
+extends MusicScaleAttribute
 
 @onready var parent := get_parent()
 
@@ -23,4 +23,4 @@ func _exit_tree() -> void:
 	if detail is NinePatchSprite2D:
 		var absolute := parent.get_node_or_null("NinePatchSprite2DAbsoluteSize")
 		if absolute:
-			absolute.process_mode = Node.PROCESS_MODE_INHERIT	
+			absolute.process_mode = Node.PROCESS_MODE_INHERIT

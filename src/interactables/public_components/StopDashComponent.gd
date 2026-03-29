@@ -1,6 +1,5 @@
-extends Component
-
 class_name StopDashComponent
+extends Component
 
 func _ready() -> void:
 	parent.interacted.connect(stop_dash)

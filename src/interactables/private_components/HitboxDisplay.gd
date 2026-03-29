@@ -1,5 +1,5 @@
-extends Node2D
 class_name HitboxDisplay
+extends Node2D
 
 @export var hitbox: CollisionShape2D
 @export var color_config_key: String
@@ -20,4 +20,3 @@ func _draw() -> void:
 			draw_rect(Rect2(-rectangle.size / 2, rectangle.size), fill_color)
 		var line when hitbox.shape is SegmentShape2D:
 			draw_line(line.a, line.b, color, 4.0)
-

@@ -1,6 +1,5 @@
-extends Node
-
 class_name EditHandler
+extends Node
 
 signal selection_zone_changed(new_zone: Rect2)
 signal selection_changed(selection: Selection)

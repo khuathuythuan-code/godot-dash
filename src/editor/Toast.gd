@@ -1,6 +1,5 @@
-extends Button
-
 class_name Toast
+extends Button
 
 var lifetime: float
 var persistent: bool

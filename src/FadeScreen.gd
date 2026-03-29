@@ -1,6 +1,5 @@
-extends CanvasLayer
-
 class_name FadeScreen
+extends CanvasLayer
 
 signal fade_finished
 

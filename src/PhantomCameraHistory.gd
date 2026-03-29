@@ -1,6 +1,5 @@
-extends Node
-
 class_name PhantomCameraHistory
+extends Node
 
 enum Status {
 	INACTIVE,

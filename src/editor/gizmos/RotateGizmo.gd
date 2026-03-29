@@ -1,6 +1,5 @@
-extends Gizmo
-
 class_name RotateGizmo
+extends Gizmo
 
 signal angle_changed(degrees: float)
 

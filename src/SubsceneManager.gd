@@ -1,6 +1,5 @@
-extends Node
-
 class_name SubsceneManager
+extends Node
 
 enum SubScene {
 	TITLE_SCREEN,

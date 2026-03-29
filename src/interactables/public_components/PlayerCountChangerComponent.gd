@@ -1,7 +1,5 @@
-@tool
-extends Component
-
 class_name PlayerCountChangerComponent
+extends Component
 
 @export_range(1, 10, 1, "or_greater") var _player_count: int = 1
 @export var same_gravity: bool

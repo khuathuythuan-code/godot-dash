@@ -1,6 +1,5 @@
-extends Component
-
 class_name ScaleChangerComponent
+extends Component
 
 enum Mode {
 	MULTIPLY,

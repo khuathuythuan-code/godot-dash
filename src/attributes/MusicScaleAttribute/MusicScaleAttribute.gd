@@ -1,3 +1,3 @@
 @abstract
-extends Attribute
 class_name MusicScaleAttribute
+extends Attribute

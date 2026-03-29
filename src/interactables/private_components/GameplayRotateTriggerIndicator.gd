@@ -1,5 +1,5 @@
-extends Node2D
 class_name GameplayRotateTriggerIndicator
+extends Node2D
 
 const THICKNESS: float = 8.0
 const POINT_COUNT: int = 50
@@ -31,7 +31,7 @@ func _draw() -> void:
 			_angle_A += LevelManager.player.gameplay_rotation
 		_angle_B = deg_to_rad(parent.gameplay_rotation_changer_component.gameplay_rotation)
 		_color = Color.CYAN if sign(_angle_B - _angle_A) == 1 else Color.MAGENTA
-		_radius = 64 - (THICKNESS/2)
+		_radius = 64 - (THICKNESS / 2)
 		draw_arc(
 			_origin, # origin (local coordinates)
 			_radius, # radius
@@ -40,4 +40,5 @@ func _draw() -> void:
 			POINT_COUNT,
 			_color, # color
 			THICKNESS, # line width
-			ANTIALIASED) # antialiasing
+			ANTIALIASED,
+		) # antialiasing

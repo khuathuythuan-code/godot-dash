@@ -1,5 +1,6 @@
-@tool extends Node
+@tool
 class_name BlockPaletteRef
+extends Node
 
 @export var type: EditorSelectionCollider.Type:
 	set(value):

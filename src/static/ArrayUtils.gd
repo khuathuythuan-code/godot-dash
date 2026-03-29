@@ -1,5 +1,6 @@
-extends Node
+@abstract
 class_name ArrayUtils
+extends Node
 
 enum Transformation {
 	MEAN,
@@ -97,10 +98,10 @@ static func flatten(val: Variant) -> Variant:
 static func _median_float(array: Array) -> float:
 	array.sort()
 	if len(array) % 2 == 1:
-		return array[(len(array))*0.5]
+		return array[(len(array)) * 0.5]
 	else:
-		return (array[len(array)*0.5-1]+array[len(array)*0.5])*0.5
+		return (array[len(array) * 0.5 - 1] + array[len(array) * 0.5]) * 0.5
 
 
 static func _mean_float(array: Array) -> float:
-	return array.reduce(func(accum, number): return accum + number)/len(array)
+	return array.reduce(func(accum, number): return accum + number) / len(array)

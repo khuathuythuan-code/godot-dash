@@ -1,6 +1,5 @@
-extends Component
-
 class_name FireDashComponent
+extends Component
 
 # TODO figure out how to make cyan dash orbs work
 ## Dash orbs _completely_ override the player's velocity.

@@ -1,6 +1,5 @@
-extends Component
-
 class_name ColorChannelChangerComponent
+extends Component
 
 enum ColorSpace {
 	SRGB,

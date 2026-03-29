@@ -1,6 +1,5 @@
-extends Node
-
 class_name LevelOperationsHandler
+extends Node
 
 signal level_loaded(level: Level)
 signal level_saved

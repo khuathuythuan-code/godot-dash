@@ -1,6 +1,5 @@
-extends PanelContainer
-
 class_name RenderMode
+extends PanelContainer
 
 @export_group("Panels")
 @export var enum_button: EnumButton

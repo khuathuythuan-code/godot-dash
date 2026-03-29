@@ -1,6 +1,5 @@
-extends Component
-
 class_name TextComponent
+extends Component
 
 const DEFAULT_TEXT_SETTINGS: TextSettings = preload("res://resources/DefaultTextSettings.tres")
 

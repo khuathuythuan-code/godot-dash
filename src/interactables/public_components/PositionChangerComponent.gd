@@ -1,6 +1,5 @@
-extends Component
-
 class_name PositionChangerComponent
+extends Component
 
 enum Mode {
 	ADD,

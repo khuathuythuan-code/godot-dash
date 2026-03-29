@@ -1,6 +1,5 @@
-extends Component
-
 class_name DirectionChangerComponent
+extends Component
 
 signal direction_changed(new_direction: Direction)
 

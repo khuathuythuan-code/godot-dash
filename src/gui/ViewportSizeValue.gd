@@ -1,5 +1,5 @@
-extends Node
 class_name ViewportSizeValue
+extends Node
 
 @export var property: StringName
 

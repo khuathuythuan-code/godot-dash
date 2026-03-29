@@ -1,6 +1,5 @@
-extends VBoxContainer
-
 class_name TransformEditor
+extends VBoxContainer
 
 @export var edit_handler: EditHandler
 @export var position_property: Vector2Property

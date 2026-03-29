@@ -1,6 +1,5 @@
-extends Component
-
 class_name GameplayRotationChangerComponent
+extends Component
 
 @export_range(-180, 180, 0.01, "degrees", "or_greater", "or_less") var gameplay_rotation: float
 
