@@ -647,49 +647,35 @@ func _handle_velocity_interactable(local_velocity: Vector2, interactable: Intera
 			if displayed_gamemode == Gamemode.SPIDER:
 				_spider_state_machine.travel("jump")
 		elif component is SpiderDashComponent:
-			var displacement: Vector2
-			var dash_data: PackedFloat64Array
-			var floor_angle: float
-			if interactable is OrbInteractable:
-				var raycast_rotation: float = interactable.global_rotation
-				if gravity_flip < 0:
-					raycast_rotation += PI
-				$Icon/Spider/SpiderCast.global_rotation = raycast_rotation
-				dash_data = _get_spider_dash_data()
-				var dash_height: float = dash_data[0]
-				floor_angle = dash_data[1]
-				displacement = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * dash_height
-				position += displacement
-				jump_hold_disabled = true
-				$Icon/Spider/SpiderCast.rotation = 0.0
-				var trail_rotation: float = raycast_rotation
-				if absf(raycast_rotation) >= PI / 2:
-					trail_rotation += PI
-				if component.changes_gameplay_rotation():
-					if absf(raycast_rotation - gameplay_rotation) <= PI / 4:
-						# The teleportation is almost vertical
-						gameplay_rotation = raycast_rotation
-						gravity_flip *= -1
-					else:
-						gameplay_rotation = raycast_rotation + PI
-						trail_rotation += PI
-						gravity_flip = 1
+			var raycast_rotation: float = interactable.global_rotation
+			if gravity_flip < 0:
+				raycast_rotation += PI
+			$Icon/Spider/SpiderCast.global_rotation = raycast_rotation
+			var dash_data: PackedFloat64Array = _get_spider_dash_data()
+			var dash_height: float = dash_data[0]
+			var floor_angle: float = dash_data[1]
+			var displacement: Vector2 = (Vector2.UP * gravity_flip).rotated(interactable.global_rotation) * dash_height
+			position += displacement
+			jump_hold_disabled = true
+			$Icon/Spider/SpiderCast.rotation = 0.0
+			var trail_rotation: float = raycast_rotation
+			if absf(raycast_rotation) >= PI / 2:
+				trail_rotation += PI
+			if component.changes_gameplay_rotation():
+				if absf(raycast_rotation - gameplay_rotation) <= PI / 4:
+					# The teleportation is almost vertical
+					gameplay_rotation = raycast_rotation
+					gravity_flip *= -1
 				else:
-					gravity_flip = gravity_flip if absf(floor_angle - gameplay_rotation) >= PI / 2 else -gravity_flip
-				# Trail
-				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
-				add_child(trail)
-				trail.start.call_deferred(self, displacement, trail_rotation)
+					gameplay_rotation = raycast_rotation + PI
+					trail_rotation += PI
+					gravity_flip = 1
 			else:
-				dash_data = _get_spider_dash_data()
-				var dash_height: float = dash_data[0]
-				floor_angle = dash_data[1]
-				displacement = Vector2.UP.rotated(gameplay_rotation) * dash_height
-				position += displacement
-				var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
-				trail.start.call_deferred(self, displacement)
-				add_child(trail)
-				gravity_flip *= -1
+				gravity_flip = gravity_flip if absf(floor_angle - gameplay_rotation) >= PI / 2 else -gravity_flip
+			# Trail
+			var trail: SpiderTrail = SPIDER_TRAIL.instantiate()
+			add_child(trail)
+			trail.start.call_deferred(self, displacement, trail_rotation)
 			# Force slope collider if needed
 			allow_ceiling_hit_count += 1
 			# Force up direction update in order for _handle_collision to work properly
@@ -759,7 +745,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		$DashParticles.process_material.angle_min = rad_to_deg(dash_angle)
 		$DashParticles.process_material.angle_max = rad_to_deg(dash_angle)
 		$DashFlame.rotation = dash_angle
-		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction
+		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction * gravity_flip
 		$Icon/Ship.rotation = lerpf($Icon/Ship.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
 		$Icon/Swing.rotation = lerpf($Icon/Swing.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
 		$Icon/UFO.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
