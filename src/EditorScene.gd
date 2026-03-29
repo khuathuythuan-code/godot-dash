@@ -90,13 +90,6 @@ func _physics_process(_delta: float) -> void:
 	if LevelManager.level_playing:
 		return
 	placed_objects_collider.global_position = get_local_mouse_position()
-	if not Editor.is_text_input_focused() and not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
-		if Input.is_action_just_pressed(&"editor_place_mode"):
-			%EditorModes.current_tab = 0
-		elif Input.is_action_just_pressed(&"editor_edit_mode"):
-			%EditorModes.current_tab = 1
-		elif Input.is_action_just_pressed(&"editor_selection_filters_mode"):
-			%EditorModes.current_tab = 2
 
 	get_tree().auto_accept_quit = not level_was_modified()
 	$GameScene.pause_menu.suspended = level_was_modified()
@@ -117,6 +110,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			Editor.version_history.undo()
 	elif event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
+	if not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
+		if event.is_action_pressed(&"editor_place_mode"):
+			%EditorModes.current_tab = 0
+		elif event.is_action_pressed(&"editor_edit_mode"):
+			%EditorModes.current_tab = 1
+		elif event.is_action_pressed(&"editor_selection_filters_mode"):
+			%EditorModes.current_tab = 2
 
 
 func _notification(what: int) -> void:
