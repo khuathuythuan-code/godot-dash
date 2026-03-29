@@ -6542,7 +6542,6 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
 visible = false
-theme = null
 metadata/_edit_lock_ = true
 
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
@@ -6747,7 +6746,6 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/MoveFree" to="EditHandler" method="_on_move_pressed"]
 [connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Swipe" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_swipe_toggled"]
 [connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Delete" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_delete_toggled"]
-[connection signal="sort_children" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody" method="_on_sort_children"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor/Position" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor" method="_on_position_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorBody/Transform/TransformEditor" method="_on_scale_value_changed"]
