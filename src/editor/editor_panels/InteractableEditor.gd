@@ -185,17 +185,6 @@ func connect_ui(interactables: Selection, ui_root: Control) -> void:
 			continue
 		if property.has_meta(&"component_name"):
 			var component_name: String = property.get_meta(&"component_name")
-			for interactable: Interactable in interactables.to_array():
-				var component: Component = interactable.get_node(component_name)
-				var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-				if not initial_values.keys().any(path_matches):
-					var _value: Variant = component.get(property_name)
-					if _value is String:
-						if component is TargetGroupComponent:
-							_value = Constants.GROUP_PREFIX + _value
-						elif component is TargetColorChannelComponent:
-							_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
-					initial_values[PathRef.new(component)] = _value
 			property.value_changed.connect(
 				save_property.bind(
 					component_name,
@@ -223,16 +212,21 @@ func get_latest_selected_interactables() -> Selection:
 func save_property(value: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
 	for interactable: Interactable in interactables.to_array():
 		var component: Component = interactable.get_node(component_name)
-		var _value: Variant = value
-		if _value is String:
+		var new_value: Variant = value
+		if new_value is String:
 			if component is TargetGroupComponent:
-				_value = Constants.GROUP_PREFIX + value
+				new_value = Constants.GROUP_PREFIX + value
 			elif component is TargetColorChannelComponent:
-				_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
+				new_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + new_value
 		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-		if not initial_values.keys().any(path_matches):
-			initial_values[PathRef.new(component)] = _value
-		component.set(property_name, _value)
+		var component_maybe_idx: int = initial_values.keys().find_custom(path_matches)
+		var component_pathref: PathRef = initial_values.keys()[component_maybe_idx] if component_maybe_idx >= 0 else null
+		if not component_pathref:
+			initial_values[PathRef.new(component)] = [property_name, component.get(property_name)]
+		elif initial_values[component_pathref][0] != property_name:
+			initial_values[component_pathref] = [property_name, component.get(property_name)]
+
+		component.set(property_name, new_value)
 
 
 func save_property_register(value: Variant, _previous: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
@@ -242,8 +236,8 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	var undo_save_property := func(_initial_values: Dictionary[PathRef, Variant]):
 		for component_pathref: PathRef in _initial_values:
 			var component: Component = component_pathref.to_ref()
-			var previous_value: Variant = _initial_values[component_pathref]
-			component.set(property_name, previous_value)
+			var initial_value: Variant = _initial_values[component_pathref][1]
+			component.set(property_name, initial_value)
 		load_properties(_initial_values.keys()[0].to_ref().parent, self)
 
 	var interactables_snapshot: Selection = interactables.clone()
@@ -252,6 +246,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
 	version_history.add_undo_method(undo_save_property.bind(initial_values.duplicate()))
 	version_history.commit_action()
+	initial_values.clear()
 
 
 func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script, interactables: Selection) -> void:
