@@ -745,7 +745,7 @@ func _rotate_sprite_degrees(delta: float, jump_state: int):
 		$DashParticles.process_material.angle_min = rad_to_deg(dash_angle)
 		$DashParticles.process_material.angle_max = rad_to_deg(dash_angle)
 		$DashFlame.rotation = dash_angle
-		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction
+		$Icon/Cube.rotation_degrees += delta * 800 * dash_horizontal_direction * gravity_flip
 		$Icon/Ship.rotation = lerpf($Icon/Ship.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
 		$Icon/Swing.rotation = lerpf($Icon/Swing.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
 		$Icon/UFO.rotation = lerpf($Icon/UFO.rotation, dash_angle_one_sided, ICON_LERP_FACTOR * delta * 60)
