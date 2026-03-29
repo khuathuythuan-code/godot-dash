@@ -147,15 +147,15 @@ func build_ui(interactables: Selection) -> void:
 		components_root.visible = ui_root.get_child_count() > 0
 		if components_root.visible:
 			components_root.add_child(ui_root)
-		if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
-			separator.hide()
-			markers_root.hide()
-		else:
-			separator.visible = components_root.visible
-			markers_root.show()
 	else:
 		components_root.hide()
 		separator.hide()
+	if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
+		separator.hide()
+		markers_root.hide()
+	else:
+		separator.visible = components_root.visible
+		markers_root.show()
 
 	await get_tree().process_frame
 
