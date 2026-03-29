@@ -18,7 +18,7 @@ var _previous_variant: int
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", OptionButton, NodeUtils.INTERNAL)
-	input.pressed.connect(func(): _previous_variant = input.selected)
+	input.pressed.connect(func(): _previous_variant = get_value())
 	input.item_selected.connect(value_changed.emit)
 	input.item_selected.connect(func(new_value: int): interaction_ended.emit(new_value, _previous_variant))
 	renamed.connect(refresh)
@@ -31,13 +31,12 @@ func _ready() -> void:
 
 
 func set_value(new_value: int) -> void:
-	_value = new_value
-	input.selected = new_value
+	set_value_no_signal(new_value)
 	value_changed.emit(new_value)
 
 
 func set_value_no_signal(new_value: int) -> void:
-	_value = new_value
+	_previous_variant = input.selected
 	input.selected = new_value
 
 
