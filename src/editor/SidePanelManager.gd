@@ -16,6 +16,9 @@ enum InspectorTab {
 @export_group("Groups")
 @export var group_parent: BoolProperty
 
+@export_group("Interactable")
+@export var interactable_editor: InteractableEditor
+
 @export_group("Colors")
 @export var object_color_properties: VBoxContainer
 @export var hsv_shift: FoldableContainer
@@ -23,6 +26,7 @@ enum InspectorTab {
 
 func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
+	interactable_editor.object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
 	_on_edit_handler_selection_changed(Selection.EMPTY())
 
@@ -31,12 +35,23 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	object_name.visible = not selection.is_empty()
 	if selection.size() == 1:
 		object_name.text = selection.first().name
+		interactable_editor.object_name.text = selection.first().name
 		object_name.editable = selection.first() is not Player
+		interactable_editor.object_name.editable = selection.first() is not Player
 		group_parent.set_value_no_signal(selection.first().has_meta("group_parent"))
 		group_parent.set_input_state(true)
 	elif selection.size() > 1:
-		object_name.text = "%s objects" % selection.size()
+		object_name.text = "%s %s" % [
+			selection.size(),
+			(
+				"objects"
+				if not selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+				else "interactables"
+			),
+		]
+		interactable_editor.object_name.text = object_name.text
 		object_name.editable = false
+		interactable_editor.object_name.editable = false
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
 
@@ -68,11 +83,13 @@ func update_object_name(new_name: String):
 		func():
 			path_ref.rename(sanitized_new_name)
 			object_name.text = sanitized_new_name
+			interactable_editor.object_name.text = sanitized_new_name
 	)
 	Editor.version_history.add_undo_method(
 		func():
 			path_ref.rename(previous_name)
 			object_name.text = previous_name
+			interactable_editor.object_name.text = previous_name
 	)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds

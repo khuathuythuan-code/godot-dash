@@ -33,6 +33,7 @@ static var are_arrays_initialized: bool
 @export var components_root: Container
 @export var separator: HSeparator
 @export var markers_root: Container
+@export var object_name: LineEdit
 
 var marker_properties: Dictionary[Script, BoolProperty]
 var initial_values: Dictionary[PathRef, Variant]
