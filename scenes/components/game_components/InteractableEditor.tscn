@@ -13,9 +13,8 @@ components_root = NodePath("Components")
 separator = NodePath("HSeparator")
 markers_root = NodePath("Markers")
 
-[node name="Components" type="FoldableContainer" parent="." unique_id=520096898]
+[node name="Components" type="VBoxContainer" parent="." unique_id=1571472401]
 layout_mode = 2
-title = "Components"
 
 [node name="HSeparator" type="HSeparator" parent="." unique_id=362664134]
 layout_mode = 2
