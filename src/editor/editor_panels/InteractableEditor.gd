@@ -237,51 +237,20 @@ func save_property(value: Variant, component_name: String, property_name: String
 
 func save_property_register(value: Variant, _previous: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
 	var do_save_property := func(_interactables: Selection, new_value: Variant):
-		for _interactable: Interactable in _interactables.to_array():
-			var component: Component = _interactable.get_node(component_name)
-			var _value: Variant = new_value
-			if _value is String:
-				if component is TargetGroupComponent:
-					_value = Constants.GROUP_PREFIX + new_value
-				elif component is TargetColorChannelComponent:
-					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
-			component.set(property_name, _value)
-			var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-			if not initial_values.keys().any(path_matches):
-				initial_values[PathRef.new(component)] = _value
+		save_property(new_value, component_name, property_name, _interactables)
 		load_properties(_interactables.first(), self)
-	var undo_save_property := func(_interactables_to_initial_values: Dictionary[NodePath, Variant]):
-		for _interactable_path: NodePath in _interactables_to_initial_values:
-			var _interactable: Interactable = Deserialize.Node(_interactable_path)
-			var component: Component = _interactable.get_node(component_name)
-			var _value = _interactables_to_initial_values[_interactable_path]
-			if _value is String:
-				if component is TargetGroupComponent:
-					_value = Constants.GROUP_PREFIX + _interactables_to_initial_values[_interactable_path]
-				elif component is TargetColorChannelComponent:
-					_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + _value
-			component.set(property_name, _value)
-		load_properties(Deserialize.Node(_interactables_to_initial_values.keys()[0]), self)
+	var undo_save_property := func(_initial_values: Dictionary[PathRef, Variant]):
+		for component_pathref: PathRef in _initial_values:
+			var component: Component = component_pathref.to_ref()
+			var previous_value: Variant = _initial_values[component_pathref]
+			component.set(property_name, previous_value)
+		load_properties(_initial_values.keys()[0].to_ref().parent, self)
 
 	var interactables_snapshot: Selection = interactables.clone()
-
-	var map_interactable_to_initial_value := func(accum: Dictionary, interactable: Interactable):
-		var component: Component = interactable.get_node(component_name)
-		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-		var component_pathref: PathRef = initial_values.keys()[initial_values.keys().find_custom(path_matches)]
-		var initial_value: Variant = initial_values[component_pathref]
-		initial_values.erase(component_pathref)
-		if initial_value is Array:
-			initial_value = initial_value.duplicate()
-		accum[Serialize.Node(interactable)] = initial_value
-		return accum
-	var interactables_to_initial_values: Dictionary[NodePath, Variant]
-	interactables_to_initial_values.assign(interactables_snapshot.fold_generic(map_interactable_to_initial_value, { }))
-
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set '%s' on %s interactables" % [property_name, interactables_snapshot.size()])
 	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
-	version_history.add_undo_method(undo_save_property.bind(interactables_to_initial_values))
+	version_history.add_undo_method(undo_save_property.bind(initial_values.duplicate()))
 	version_history.commit_action()
 
 
