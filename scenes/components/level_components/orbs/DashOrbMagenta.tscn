@@ -76,6 +76,7 @@ script = ExtResource("10_0a3a8")
 
 [node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=352778780]
 script = ExtResource("9_tqky4")
+flip_state = 2
 
 [node name="EditorSelectionCollider" parent="." unique_id=480540917 instance=ExtResource("12_vy66y")]
 type = 8
