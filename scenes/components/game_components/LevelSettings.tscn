@@ -227,3 +227,5 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("10_2dtee")
 config_property = &"flashing_lights"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]

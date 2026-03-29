@@ -29,12 +29,6 @@ func stop_song_preview() -> void:
 	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
 
 
-func _on_close_pressed() -> void:
-	Editor.shortcut_blocker = null
-	stop_song_preview()
-	hide()
-
-
 func _on_preview_pressed() -> void:
 	if song_path.get_value().is_empty():
 		is_previewing = false
@@ -52,3 +46,7 @@ func _on_preview_pressed() -> void:
 
 func _on_default_font_value_changed(value: String) -> void:
 	font_preview.label_settings.set_font_path(value)
+
+
+func _on_hidden() -> void:
+	stop_song_preview()

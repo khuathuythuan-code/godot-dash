@@ -6158,7 +6158,7 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="EnumButton" type="PanelContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer" unique_id=391473283]
+[node name="InspectorTabBar" type="PanelContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer" unique_id=391473283]
 clip_children = 1
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
@@ -6173,25 +6173,20 @@ vertical = true
 as_tab_container = true
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
-[node name="Tabs" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer" unique_id=1289162651]
+[node name="InspectorTabs" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer" unique_id=1289162651]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("245_leg3o")
 
-[node name="Level" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" unique_id=2017661775]
+[node name="Level" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" unique_id=1050656253 instance=ExtResource("180_nk067")]
+layout_mode = 2
+
+[node name="Object" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" unique_id=1355689334]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LevelSettings" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Level" unique_id=1050656253 instance=ExtResource("180_nk067")]
-layout_mode = 2
-
-[node name="Object" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" unique_id=1355689334]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Name" type="LineEdit" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object" unique_id=441324438]
+[node name="Name" type="LineEdit" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object" unique_id=441324438]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_filter = 1
@@ -6199,13 +6194,13 @@ theme_type_variation = &"PaddedLineEdit"
 placeholder_text = "Name"
 alignment = 1
 
-[node name="Transform" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object" unique_id=1920284793]
+[node name="Transform" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object" unique_id=1920284793]
 layout_mode = 2
 mouse_filter = 1
 title = "Transform"
 title_alignment = 1
 
-[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform" unique_id=2138106190 node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property", "z_index_property")]
+[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform" unique_id=2138106190 node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property", "z_index_property")]
 layout_mode = 2
 script = ExtResource("208_5qr8h")
 edit_handler = NodePath("../../../../../../../../../../EditHandler")
@@ -6214,7 +6209,7 @@ rotation_property = NodePath("Rotation")
 scale_property = NodePath("Scale")
 z_index_property = NodePath("Z Index")
 
-[node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" unique_id=80683246]
+[node name="Position" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=80683246]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -6227,7 +6222,7 @@ allow_greater = true
 suffix = "cells"
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
-[node name="Rotation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" unique_id=1391143356]
+[node name="Rotation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=1391143356]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -6240,7 +6235,7 @@ allow_greater = true
 suffix = "°"
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="Scale" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" unique_id=1315942877]
+[node name="Scale" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=1315942877]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -6253,7 +6248,7 @@ allow_lesser = true
 allow_greater = true
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
-[node name="Z Index" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" unique_id=429575700]
+[node name="Z Index" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=429575700]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -6264,70 +6259,70 @@ step = 1.0
 rounded = true
 metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
-[node name="Groups" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object" unique_id=1060342494]
+[node name="Groups" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object" unique_id=1060342494]
 layout_mode = 2
 mouse_filter = 1
 title = "Groups"
 title_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups" unique_id=367884344]
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups" unique_id=367884344]
 layout_mode = 2
 
-[node name="GroupEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups/VBoxContainer" unique_id=1767703606 instance=ExtResource("55_5vu0v")]
+[node name="GroupEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups/VBoxContainer" unique_id=1767703606 instance=ExtResource("55_5vu0v")]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups/VBoxContainer" unique_id=1096121519]
+[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups/VBoxContainer" unique_id=1096121519]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Group parent" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups/VBoxContainer" unique_id=1142514013]
+[node name="Group parent" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups/VBoxContainer" unique_id=1142514013]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
 script = ExtResource("179_0v0om")
 metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 
-[node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object" unique_id=1469174783]
+[node name="Attributes" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object" unique_id=1469174783]
 layout_mode = 2
 mouse_filter = 1
 title = "Attributes"
 
-[node name="AttributeEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Attributes" unique_id=496324881]
+[node name="AttributeEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Attributes" unique_id=496324881]
 layout_mode = 2
 script = ExtResource("195_gehis")
 metadata/_custom_type_script = "uid://cry3286stfmmk"
 
-[node name="InteractableEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" unique_id=1406491219 instance=ExtResource("183_momrj")]
+[node name="Interactable" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" unique_id=1406491219 instance=ExtResource("183_momrj")]
 visible = false
 layout_mode = 2
 
-[node name="PhysicsEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" unique_id=1710893437 instance=ExtResource("256_pccjj")]
+[node name="Physics" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" unique_id=1710893437 instance=ExtResource("256_pccjj")]
 visible = false
 layout_mode = 2
 
-[node name="Colors" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" unique_id=177351525]
+[node name="Colors" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" unique_id=177351525]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors" unique_id=1330467912]
+[node name="Channel Editor" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors" unique_id=1330467912]
 layout_mode = 2
 mouse_filter = 1
 title = "Channel Editor"
 
-[node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/Channel Editor" unique_id=1665020490 instance=ExtResource("55_wey7f")]
+[node name="ColorChannelEditor" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/Channel Editor" unique_id=1665020490 instance=ExtResource("55_wey7f")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors" unique_id=2010032395]
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors" unique_id=2010032395]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer" unique_id=1622111302]
+[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer" unique_id=1622111302]
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Base Color" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer" unique_id=280281007]
+[node name="Base Color" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer" unique_id=280281007]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -6335,7 +6330,7 @@ script = ExtResource("184_33w7i")
 placeholder = "Color channel name"
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
-[node name="Detail Color" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer" unique_id=2041878614]
+[node name="Detail Color" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer" unique_id=2041878614]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -6343,15 +6338,15 @@ script = ExtResource("184_33w7i")
 placeholder = "Color channel name"
 metadata/_custom_type_script = "uid://c1ejd8ud4q1b6"
 
-[node name="Modulation" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer" unique_id=1348642569]
+[node name="Modulation" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer" unique_id=1348642569]
 layout_mode = 2
 mouse_filter = 1
 title = "Modulation"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation" unique_id=1559986885]
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation" unique_id=1559986885]
 layout_mode = 2
 
-[node name="Hue" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=802138773]
+[node name="Hue" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=802138773]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6361,7 +6356,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Saturation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1054994907]
+[node name="Saturation" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1054994907]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6371,7 +6366,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Value" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1221827773]
+[node name="Value" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1221827773]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6381,7 +6376,7 @@ min_value = -1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Intensity" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1856465688]
+[node name="Intensity" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=1856465688]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6392,7 +6387,7 @@ max_value = 5.0
 allow_greater = true
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="Alpha" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=207502790]
+[node name="Alpha" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer" unique_id=207502790]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6455,27 +6450,28 @@ debug_color = Color(0.284375, 0, 0.7, 0.42)
 z_index = 100
 script = ExtResource("35_xjepn")
 
-[node name="SidePanelManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("side_panel", "object_name", "group_parent", "object_color_properties", "hsv_shift")]
+[node name="SidePanelManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("side_panel", "inspector_tab_bar", "object_name", "group_parent", "object_color_properties", "hsv_shift")]
 script = ExtResource("58_hnsxj")
 side_panel = NodePath("../EditorUI/EditorContainer/SidePanel")
-object_name = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Name")
-group_parent = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups/VBoxContainer/Group parent")
-object_color_properties = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer")
-hsv_shift = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation")
+inspector_tab_bar = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabBar")
+object_name = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Name")
+group_parent = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups/VBoxContainer/Group parent")
+object_color_properties = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer")
+hsv_shift = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation")
 
 [node name="HSVHandler" type="Node" parent="." unique_id=1671780907 node_paths=PackedStringArray("hue", "saturation", "value", "intensity", "alpha")]
 script = ExtResource("73_s77jp")
-hue = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Hue")
-saturation = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation")
-value = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Value")
-intensity = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity")
-alpha = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha")
+hue = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Hue")
+saturation = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation")
+value = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Value")
+intensity = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity")
+alpha = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha")
 
 [node name="BaseDetailHandler" type="Node" parent="." unique_id=1026498893 node_paths=PackedStringArray("base", "detail", "color_channel_editor")]
 script = ExtResource("64_ycx04")
-base = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Base Color")
-detail = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Detail Color")
-color_channel_editor = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/Channel Editor/ColorChannelEditor")
+base = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Base Color")
+detail = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Detail Color")
+color_channel_editor = NodePath("../EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/Channel Editor/ColorChannelEditor")
 
 [node name="LevelOperationsHandler" type="Node" parent="." unique_id=368027490 node_paths=PackedStringArray("edit_handler", "level_settings", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
 script = ExtResource("189_ao6md")
@@ -6602,34 +6598,35 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/MoveFree" to="EditHandler" method="_on_move_pressed"]
 [connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Swipe" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_swipe_toggled"]
 [connection signal="toggled" from="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Delete" to="EditorUI/EditorContainer/VBoxContainer/VSplitContainer/EditorModes/Edit/Select Options" method="_on_delete_toggled"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/EnumButton" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs" method="_on_enum_button_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor/Position" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_position_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_rotation_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_scale_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_z_index_value_changed"]
-[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_interaction_ended"]
-[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_interaction_ended"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation" to="HSVHandler" method="_on_saturation_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity" to="HSVHandler" method="_on_intensity_value_changed"]
-[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabBar" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs" method="_on_enum_button_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor/Position" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_position_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_rotation_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor/Scale" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_scale_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor/Z Index" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_z_index_value_changed"]
+[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_interaction_ended"]
+[connection signal="interaction_ended" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_interaction_ended"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Saturation" to="HSVHandler" method="_on_saturation_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity" to="HSVHandler" method="_on_intensity_value_changed"]
+[connection signal="value_changed" from="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
 [connection signal="deleted_selection" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_deleted_selection"]
-[connection signal="moved_selection_cells" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_edit_handler_moved_selection_cells"]
-[connection signal="resized_selection" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_edit_handler_resized_selection"]
+[connection signal="moved_selection_cells" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_moved_selection_cells"]
+[connection signal="resized_selection" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_resized_selection"]
 [connection signal="rotated_object_degrees" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_rotated_object_degrees"]
-[connection signal="rotated_selection_degrees" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_edit_handler_rotated_selection_degrees"]
+[connection signal="rotated_selection_degrees" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_rotated_selection_degrees"]
 [connection signal="selection_changed" from="EditHandler" to="TriggerGroupBoundingBox" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Groups/VBoxContainer/GroupEditor" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/InteractableEditor" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Groups/VBoxContainer/GroupEditor" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Interactable" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Physics" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
-[connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/Object/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
-[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/Tabs/InteractableEditor" method="_on_level_operations_handler_level_loaded"]
+[connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
+[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/HBoxContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="refresh_saveloads"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]

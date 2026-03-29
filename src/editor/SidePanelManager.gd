@@ -1,9 +1,19 @@
 class_name SidePanelManager
 extends Node
 
+enum InspectorTab {
+	LEVEL,
+	OBJECT,
+	INTERACTABLE,
+	PHYSICS,
+	COLORS,
+}
+
 @export var side_panel: PanelContainer
+@export var inspector_tab_bar: EnumButton
 @export var object_name: LineEdit
 
+@export_group("Groups")
 @export var group_parent: BoolProperty
 
 @export_group("Colors")
@@ -34,6 +44,14 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	var is_static_body := func(object: Node2D): return object is StaticBody2D
 	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
 	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
+
+	if (
+		(inspector_tab_bar.get_value() == InspectorTab.INTERACTABLE and not selection_is_interactable)
+		or (inspector_tab_bar.get_value() == InspectorTab.PHYSICS and not selection_is_static_body)
+	):
+		inspector_tab_bar.set_value(InspectorTab.OBJECT)
 
 	object_color_properties.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
 	if selection.size() == 1 and selection.first() is Player:
