@@ -24,17 +24,22 @@ func refresh_saveloads(level: Level) -> void:
 	saveloads.map.call_deferred(_refresh_saveloads)
 
 
+func stop_song_preview() -> void:
+	preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
+	LevelManager.level_song_player.stop()
+	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
+
+
 func _on_close_pressed() -> void:
 	Editor.shortcut_blocker = null
+	stop_song_preview()
 	hide()
 
 
 func _on_preview_pressed() -> void:
 	if song_path.get_value().is_empty():
 		is_previewing = false
-		preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
-		LevelManager.level_song_player.stop()
-		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
+		stop_song_preview()
 		return
 
 	is_previewing = not is_previewing
@@ -43,9 +48,7 @@ func _on_preview_pressed() -> void:
 		LevelManager.level_song_player.stream = AssetManager.load_song(Constants.SONG_DIR + song_path.get_value().get_file())
 		LevelManager.level_song_player.play(song_start_offset.get_value())
 	else:
-		preview_button.icon = load("res://assets/textures/icons/godot/Play.svg")
-		LevelManager.level_song_player.stop()
-		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
+		stop_song_preview()
 
 
 func _on_default_font_value_changed(value: String) -> void:
