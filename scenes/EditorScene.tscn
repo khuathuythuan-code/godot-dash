@@ -263,7 +263,6 @@
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Script" uid="uid://cvj1a1dockiqv" path="res://src/editor/editor_panels/PhysicsEditor.gd" id="253_vp4xm"]
-[ext_resource type="Texture2D" uid="uid://gy6l77hg4e5d" path="res://assets/textures/guis/title_screen/flashing-lights-warning.svg" id="255_xpwy5"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -541,10 +540,6 @@ allow_folding_all = true
 
 [sub_resource type="FoldableGroup" id="FoldableGroup_bmgxg"]
 allow_folding_all = true
-
-[sub_resource type="LabelSettings" id="LabelSettings_leg3o"]
-font_size = 12
-font_color = Color(0.98333335, 1, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ac3bt"]
 radius = 2.0
@@ -6428,24 +6423,6 @@ absorbent_property = NodePath("Absorbent")
 gravity_scale_property = NodePath("Gravity Scale")
 pushable_by_player_property = NodePath("Pushable by Player")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1196945936]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/HBoxContainer" unique_id=358465710]
-layout_mode = 2
-texture = ExtResource("255_xpwy5")
-
-[node name="Label" type="Label" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/HBoxContainer" unique_id=503334101]
-layout_mode = 2
-mouse_filter = 1
-text = "Attributes Don't Work With Physics Enabled"
-label_settings = SubResource("LabelSettings_leg3o")
-
-[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=35257396]
-layout_mode = 2
-mouse_filter = 1
-theme_override_constants/separation = 12
-
 [node name="Physics Object" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1774094891]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -6523,7 +6500,6 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
 visible = false
-theme = null
 metadata/_edit_lock_ = true
 
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
