@@ -3,6 +3,7 @@ extends VBoxContainer
 
 static var BOOL_ATTRIBUTES: Array[Script] = [
 	NoTouchAttribute,
+	DisabledInLowDetailModeAttribute,
 ]
 
 static var FLAG_ATTRIBUTES: Dictionary[String, Array] = {

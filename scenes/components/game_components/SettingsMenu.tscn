@@ -298,6 +298,17 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"enable_title_screen_icons"
 
+[node name="Low Detail Mode" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer" unique_id=1950667015]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer/Low Detail Mode" unique_id=1320156099]
+script = ExtResource("6_p6jor")
+config_property = &"ldm"
+
 [node name="Particles" type="FoldableContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer" unique_id=200285064]
 layout_mode = 2
 mouse_filter = 1
