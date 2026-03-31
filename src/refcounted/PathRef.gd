@@ -39,6 +39,7 @@ func rename(new_name: String) -> void:
 
 
 func _update_path() -> void:
-	if FREED in String(Editor.root.level.get_path_to(_ref)):
+	var new_path: NodePath = Editor.root.level.get_path_to(_ref)
+	if FREED in String(new_path) or String(new_path).is_empty():
 		return
-	_path = Editor.root.level.get_path_to(_ref)
+	_path = new_path
