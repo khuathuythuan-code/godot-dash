@@ -59,6 +59,7 @@ enum ParticlePreprocessing {
 # Performance
 @export_group("Performance")
 @export var enable_title_screen_icons: bool = true
+@export var ldm: bool = false
 
 @export_subgroup("Particles")
 @export var show_particles_in_editor: bool = true
@@ -161,6 +162,7 @@ func _init():
 
 	# Performance
 	enable_title_screen_icons = config_file.get_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	ldm = config_file.get_value("Performance", "ldm", ldm)
 	show_particles_in_editor = config_file.get_value("Performance", "show_particles_in_editor", show_particles_in_editor)
 	particles_visibility = config_file.get_value("Performance", "particles_visibility", particles_visibility)
 	preprocess_particles_in_editor = config_file.get_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
@@ -230,6 +232,7 @@ func save() -> void:
 
 	# Performance
 	config_file.set_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	config_file.set_value("Performance", "ldm", ldm)
 	config_file.set_value("Performance", "show_particles_in_editor", show_particles_in_editor)
 	config_file.set_value("Performance", "particles_visibility", particles_visibility)
 	config_file.set_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)

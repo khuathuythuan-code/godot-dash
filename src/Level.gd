@@ -382,6 +382,9 @@ static func from_data(data: Dictionary) -> Level:
 		if prefab == null:
 			push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
 			continue
+		if Config.ldm and object_data.has("attributes"):
+			if object_data.attributes.has("LDMAttribute.gd"):
+				continue
 		var object: Node2D = prefab.instantiate()
 		object.name = object_data.name
 		object.transform = Deserialize.Transform2D(object_data.transform)
