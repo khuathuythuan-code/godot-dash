@@ -1,34 +1,33 @@
 class_name SidePanelManager
 extends Node
 
+enum InspectorTab {
+	LEVEL,
+	OBJECT,
+	INTERACTABLE,
+	PHYSICS,
+	COLORS,
+}
+
 @export var side_panel: PanelContainer
+@export var inspector_tab_bar: EnumButton
 @export var object_name: LineEdit
 
-@export_group("Transform")
-@export var transform_section: FoldableContainer
-
 @export_group("Groups")
-@export var group_section: FoldableContainer
-@export var group_editor: GroupEditor
 @export var group_parent: BoolProperty
 
-@export_group("Interactables")
-@export var interactable_section: FoldableContainer
-
-@export_group("Attributes")
-@export var attributes_section: FoldableContainer
+@export_group("Interactable")
+@export var interactable_editor: InteractableEditor
 
 @export_group("Colors")
-@export var color_section: FoldableContainer
-@export var base: StringProperty
-@export var detail: StringProperty
+@export var object_color_properties: VBoxContainer
 @export var hsv_shift: FoldableContainer
 
 
 func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
+	interactable_editor.object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
-	color_section.folded = false
 	_on_edit_handler_selection_changed(Selection.EMPTY())
 
 
@@ -36,27 +35,40 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	object_name.visible = not selection.is_empty()
 	if selection.size() == 1:
 		object_name.text = selection.first().name
+		interactable_editor.object_name.text = selection.first().name
 		object_name.editable = selection.first() is not Player
+		interactable_editor.object_name.editable = selection.first() is not Player
 		group_parent.set_value_no_signal(selection.first().has_meta("group_parent"))
 		group_parent.set_input_state(true)
 	elif selection.size() > 1:
-		object_name.text = "%s objects" % selection.size()
+		object_name.text = "%s %s" % [
+			selection.size(),
+			(
+				"objects"
+				if not selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+				else "interactables"
+			),
+		]
+		interactable_editor.object_name.text = object_name.text
 		object_name.editable = false
+		interactable_editor.object_name.editable = false
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
 
 	var selection_is_empty: bool = selection.is_empty()
+	var is_static_body := func(object: Node2D): return object is StaticBody2D
 	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
 
-	transform_section.visible = not selection_is_empty
-	group_section.visible = not selection_is_empty
-	interactable_section.visible = selection_is_interactable
-	interactable_section.set_deferred(&"folded", not selection_is_interactable)
-	color_section.set_deferred(&"folded", selection_is_interactable)
-	attributes_section.visible = not selection.is_empty() and not selection.any(func(object: Node2D): return object is Player)
+	if (
+		(inspector_tab_bar.get_value() == InspectorTab.INTERACTABLE and not selection_is_interactable)
+		or (inspector_tab_bar.get_value() == InspectorTab.PHYSICS and not selection_is_static_body)
+	):
+		inspector_tab_bar.set_value(InspectorTab.OBJECT)
 
-	for element in [base, detail, hsv_shift]:
-		element.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
+	object_color_properties.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
 	if selection.size() == 1 and selection.first() is Player:
 		hsv_shift.visible = true
 
@@ -71,11 +83,13 @@ func update_object_name(new_name: String):
 		func():
 			path_ref.rename(sanitized_new_name)
 			object_name.text = sanitized_new_name
+			interactable_editor.object_name.text = sanitized_new_name
 	)
 	Editor.version_history.add_undo_method(
 		func():
 			path_ref.rename(previous_name)
 			object_name.text = previous_name
+			interactable_editor.object_name.text = previous_name
 	)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds
