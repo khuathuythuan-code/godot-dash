@@ -263,8 +263,12 @@
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="244_leg3o"]
+[ext_resource type="Texture2D" uid="uid://das02nf7axbxe" path="res://assets/textures/icons/lucide/focus.svg" id="245_6cy18"]
 [ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="245_leg3o"]
-[ext_resource type="PackedScene" path="res://scenes/components/game_components/PhysicsEditor.tscn" id="256_pccjj"]
+[ext_resource type="Texture2D" uid="uid://dyhjriyp2n167" path="res://assets/textures/icons/lucide/component.svg" id="246_e2gl0"]
+[ext_resource type="Texture2D" uid="uid://bgqqtnpwap3x0" path="res://assets/textures/icons/lucide/orbit.svg" id="247_r73tb"]
+[ext_resource type="Texture2D" uid="uid://daa5b443r1b1" path="res://assets/textures/icons/lucide/palette.svg" id="248_aosks"]
+[ext_resource type="PackedScene" uid="uid://cjssnbui7kx8w" path="res://scenes/components/game_components/PhysicsEditor.tscn" id="256_pccjj"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
 script = ExtResource("193_5tfcf")
@@ -6168,7 +6172,7 @@ mouse_filter = 1
 theme_type_variation = &"RoundedEnumButton"
 script = ExtResource("244_leg3o")
 variants = PackedStringArray("", "", "", "", "")
-icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("138_ha8mj"), ExtResource("5_gyl57"), ExtResource("6_gh5m2"), ExtResource("7_m16em")])
+icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("245_6cy18"), ExtResource("246_e2gl0"), ExtResource("247_r73tb"), ExtResource("248_aosks")])
 vertical = true
 as_tab_container = true
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
