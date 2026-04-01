@@ -56,6 +56,8 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		group_parent.set_input_state(false)
 
 	var selection_is_empty: bool = selection.is_empty()
+	inspector_tab_bar.set_tab_visibility(InspectorTab.OBJECT, not selection_is_empty)
+
 	var is_static_body := func(object: Node2D): return object is StaticBody2D
 	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
 	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
