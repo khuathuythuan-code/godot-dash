@@ -31,7 +31,7 @@ func _start() -> void:
 	var new_parent: RigidBody2D = RigidBody2D.new()
 	new_parent.name = previous_parent.name
 	for child in previous_parent.get_children():
-		if child is Attribute:
+		if child is Attribute and child.get_property_list().has("parent"):
 			child.parent = new_parent
 			child.call_deferred("_ready")
 	new_parent.set_meta("physics", true)
