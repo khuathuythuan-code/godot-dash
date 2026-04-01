@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://04di726avpgc"
-path="res://.godot/imported/settings.svg-37c47ffa544eb9575d465ff9d6d95096.ctex"
+uid="uid://d4d60xvgi3anb"
+path="res://.godot/imported/square-arrow-right-exit.svg-924032a643601d0d9a2bc68402efd593.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/icons/pause_menu/settings.svg"
-dest_files=["res://.godot/imported/settings.svg-37c47ffa544eb9575d465ff9d6d95096.ctex"]
+source_file="res://assets/textures/icons/lucide/square-arrow-right-exit.svg"
+dest_files=["res://.godot/imported/square-arrow-right-exit.svg-924032a643601d0d9a2bc68402efd593.ctex"]
 
 [params]
 
