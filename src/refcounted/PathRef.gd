@@ -29,7 +29,7 @@ func to_ref() -> Node:
 
 
 func rename(new_name: String) -> void:
-	if FREED in new_name:
+	if FREED in new_name or new_name.is_empty():
 		return
 	if _ref and not FREED in String(Editor.root.level.get_path_to(_ref)):
 		_ref.name = new_name
@@ -39,6 +39,7 @@ func rename(new_name: String) -> void:
 
 
 func _update_path() -> void:
-	if FREED in String(Editor.root.level.get_path_to(_ref)):
+	var new_path: NodePath = Editor.root.get_path_to(_ref)
+	if FREED in String(new_path) or new_path.is_empty():
 		return
-	_path = Editor.root.level.get_path_to(_ref)
+	_path = new_path
