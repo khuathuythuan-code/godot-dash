@@ -264,6 +264,7 @@
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="244_leg3o"]
 [ext_resource type="Texture2D" uid="uid://das02nf7axbxe" path="res://assets/textures/icons/lucide/focus.svg" id="245_6cy18"]
+[ext_resource type="Texture2D" uid="uid://dlfi5nj0fat40" path="res://assets/textures/icons/lucide/file.svg" id="245_e2gl0"]
 [ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="245_leg3o"]
 [ext_resource type="Texture2D" uid="uid://dyhjriyp2n167" path="res://assets/textures/icons/lucide/component.svg" id="246_e2gl0"]
 [ext_resource type="Texture2D" uid="uid://bgqqtnpwap3x0" path="res://assets/textures/icons/lucide/orbit.svg" id="247_r73tb"]
@@ -6165,7 +6166,7 @@ mouse_filter = 1
 theme_type_variation = &"RoundedEnumButton"
 script = ExtResource("244_leg3o")
 variants = PackedStringArray("", "", "", "", "")
-icons = Array[Texture2D]([ExtResource("4_7or8s"), ExtResource("245_6cy18"), ExtResource("246_e2gl0"), ExtResource("247_r73tb"), ExtResource("248_aosks")])
+icons = Array[Texture2D]([ExtResource("245_e2gl0"), ExtResource("245_6cy18"), ExtResource("246_e2gl0"), ExtResource("247_r73tb"), ExtResource("248_aosks")])
 vertical = true
 as_tab_container = true
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
