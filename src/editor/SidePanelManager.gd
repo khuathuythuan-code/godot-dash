@@ -85,15 +85,15 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		InspectorTab.OBJECT, InspectorTab.INTERACTABLE, InspectorTab.PHYSICS when selection_is_empty:
 			force_switched_previous_tab = inspector_tab_bar.get_value() as InspectorTab
 			inspector_tab_bar.set_value(InspectorTab.LEVEL)
-			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
+			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 		InspectorTab.INTERACTABLE when not selection_is_interactable:
 			force_switched_previous_tab = InspectorTab.INTERACTABLE
 			inspector_tab_bar.set_value(InspectorTab.OBJECT)
-			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
+			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 		InspectorTab.PHYSICS when not selection_is_static_body:
 			force_switched_previous_tab = InspectorTab.PHYSICS
 			inspector_tab_bar.set_value(InspectorTab.OBJECT)
-			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
+			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 
 
 func update_object_name(new_name: String):
@@ -116,6 +116,10 @@ func update_object_name(new_name: String):
 	)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds
+
+
+func _reset_force_switched_previous_tab(_new_tab: int) -> void:
+	force_switched_previous_tab = InspectorTab.NONE
 
 
 func _on_group_parent_value_changed(value: bool) -> void:
