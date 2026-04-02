@@ -28,6 +28,17 @@ func _ready() -> void:
 	update()
 
 
+func _process(_delta: float) -> void:
+	if not as_tab_container:
+		return
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and get_rect().has_point(get_local_mouse_position()):
+		var buttons: Array[BaseButton] = button_group.get_buttons()
+		for button in buttons:
+			if not button.is_visible_in_tree():
+				continue
+			button.button_pressed = button.is_hovered()
+
+
 func update() -> void:
 	theme_type_variation = &"ClipMaskPanel" if not as_tab_container else &"RoundedEnumButton"
 	custom_minimum_size.y = 0.0 if not as_tab_container else 36.0
