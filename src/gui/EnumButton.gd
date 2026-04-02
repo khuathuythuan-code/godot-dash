@@ -16,6 +16,7 @@ signal interaction_ended(new_variant: int, previous_variant: int)
 var box_container: BoxContainer
 var button_group: ButtonGroup
 var previous_enabled_button_index: int
+var is_clicked: bool
 
 
 func _ready() -> void:
@@ -26,6 +27,19 @@ func _ready() -> void:
 	button_group = ButtonGroup.new()
 	clip_children = CanvasItem.CLIP_CHILDREN_ONLY
 	update()
+
+
+func _input(event: InputEvent) -> void:
+	if not as_tab_container:
+		return
+	if (event is InputEventMouseButton and event.get_button_index() == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch):
+		is_clicked = event.is_pressed()
+	if is_clicked and get_rect().has_point(get_local_mouse_position()):
+		var buttons: Array[BaseButton] = button_group.get_buttons()
+		for button in buttons:
+			if not button.is_visible_in_tree():
+				continue
+			button.button_pressed = button.is_hovered()
 
 
 func update() -> void:
@@ -89,3 +103,19 @@ func get_value() -> int:
 func set_input_state(enabled: bool) -> void:
 	for button: Button in box_container.get_children():
 		button.disabled = not enabled
+
+
+func hide_tab(idx: int) -> void:
+	box_container.get_child(idx).hide()
+
+
+func show_tab(idx: int) -> void:
+	box_container.get_child(idx).show()
+
+
+func get_tab_visibility(idx: int) -> bool:
+	return box_container.get_child(idx).visible
+
+
+func set_tab_visibility(idx: int, visibility: bool) -> void:
+	box_container.get_child(idx).visible = visibility
