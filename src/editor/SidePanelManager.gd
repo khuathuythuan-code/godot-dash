@@ -7,6 +7,7 @@ enum InspectorTab {
 	INTERACTABLE,
 	PHYSICS,
 	COLORS,
+	NONE,
 }
 
 @export var side_panel: PanelContainer
@@ -22,6 +23,8 @@ enum InspectorTab {
 @export_group("Colors")
 @export var object_color_properties: VBoxContainer
 @export var hsv_shift: FoldableContainer
+
+var force_switched_previous_tab: InspectorTab = InspectorTab.NONE
 
 
 func _ready() -> void:
@@ -55,24 +58,42 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 		group_parent.set_value_no_signal(false)
 		group_parent.set_input_state(false)
 
-	var selection_is_empty: bool = selection.is_empty()
-	inspector_tab_bar.set_tab_visibility(InspectorTab.OBJECT, not selection_is_empty)
-
-	var is_static_body := func(object: Node2D): return object is StaticBody2D
-	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
-	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
-	inspector_tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
-	inspector_tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
-
-	if (
-		(inspector_tab_bar.get_value() == InspectorTab.INTERACTABLE and not selection_is_interactable)
-		or (inspector_tab_bar.get_value() == InspectorTab.PHYSICS and not selection_is_static_body)
-	):
-		inspector_tab_bar.set_value(InspectorTab.OBJECT)
-
 	object_color_properties.visible = not (selection.is_empty() or (selection.size() == 1 and selection.first() is Player))
 	if selection.size() == 1 and selection.first() is Player:
 		hsv_shift.visible = true
+
+	var selection_is_empty: bool = selection.is_empty()
+	var is_static_body := func(object: Node2D): return object is StaticBody2D
+	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
+	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
+
+	inspector_tab_bar.set_tab_visibility(InspectorTab.OBJECT, not selection_is_empty)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
+	inspector_tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
+
+	if force_switched_previous_tab != InspectorTab.NONE:
+		match force_switched_previous_tab:
+			InspectorTab.INTERACTABLE when selection_is_interactable:
+				inspector_tab_bar.set_value(InspectorTab.INTERACTABLE)
+			InspectorTab.PHYSICS when selection_is_static_body:
+				inspector_tab_bar.set_value(InspectorTab.PHYSICS)
+			InspectorTab.OBJECT when not selection_is_empty:
+				inspector_tab_bar.set_value(InspectorTab.OBJECT)
+		force_switched_previous_tab = InspectorTab.NONE
+
+	match inspector_tab_bar.get_value():
+		InspectorTab.OBJECT, InspectorTab.INTERACTABLE, InspectorTab.PHYSICS when selection_is_empty:
+			force_switched_previous_tab = inspector_tab_bar.get_value() as InspectorTab
+			inspector_tab_bar.set_value(InspectorTab.LEVEL)
+			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
+		InspectorTab.INTERACTABLE when not selection_is_interactable:
+			force_switched_previous_tab = InspectorTab.INTERACTABLE
+			inspector_tab_bar.set_value(InspectorTab.OBJECT)
+			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
+		InspectorTab.PHYSICS when not selection_is_static_body:
+			force_switched_previous_tab = InspectorTab.PHYSICS
+			inspector_tab_bar.set_value(InspectorTab.OBJECT)
+			inspector_tab_bar.value_changed.connect(func(): force_switched_previous_tab = InspectorTab.NONE, CONNECT_ONE_SHOT)
 
 
 func update_object_name(new_name: String):
