@@ -111,11 +111,12 @@ func build_components_ui(interactables: Selection, displayed_components: Array) 
 		# Follow _validate_property
 		if component.has_method(&"_validate_property"):
 			fields.map(
-				func(field):
+				func(field: Dictionary):
+					# _validate_property is `fn -> void`
 					component._validate_property(field)
 			)
 		fields = fields.filter(
-			func(field):
+			func(field: Dictionary):
 				return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP
 		)
 		var last_section: FoldableContainer = null
