@@ -29,6 +29,15 @@ Steps to reproduce the behavior:
  - OS: <!-- [e.g. Windows] -->
  - Game Version/Commit and branch: <!-- [e.g. v2.0.0 or c63291b2ef if you're a dev] -->
 
+## Logs
+<!--
+Upload your logs here.
+The config can be found at:
+- Linux: ~/.local/share/godot-dash/logs
+- Windows: %APPDATA%\godot-dash\logs
+- macOS: ~/Library/Application Support/godot-dash/logs
+-->
+
 ## Game config
 <!--
 Upload your game config here. (`config.cfg`)
