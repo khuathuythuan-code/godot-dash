@@ -1,4 +1,4 @@
-class_name SidePanelManager
+class_name InspectorManager
 extends Node
 
 enum InspectorTab {
@@ -10,8 +10,8 @@ enum InspectorTab {
 	NONE,
 }
 
-@export var side_panel: PanelContainer
-@export var inspector_tab_bar: EnumButton
+@export var panel_container: PanelContainer
+@export var tab_bar: EnumButton
 @export var object_name: LineEdit
 
 @export_group("Groups")
@@ -67,33 +67,33 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	var selection_is_interactable: bool = not selection_is_empty and selection.map(InteractableEditor.player_to_interactable).all(InteractableEditor.is_interactable)
 	var selection_is_static_body: bool = not selection_is_empty and selection.all(is_static_body)
 
-	inspector_tab_bar.set_tab_visibility(InspectorTab.OBJECT, not selection_is_empty)
-	inspector_tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
-	inspector_tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
+	tab_bar.set_tab_visibility(InspectorTab.OBJECT, not selection_is_empty)
+	tab_bar.set_tab_visibility(InspectorTab.INTERACTABLE, selection_is_interactable)
+	tab_bar.set_tab_visibility(InspectorTab.PHYSICS, selection_is_static_body)
 
 	if force_switched_previous_tab != InspectorTab.NONE:
 		match force_switched_previous_tab:
 			InspectorTab.INTERACTABLE when selection_is_interactable:
-				inspector_tab_bar.set_value(InspectorTab.INTERACTABLE)
+				tab_bar.set_value(InspectorTab.INTERACTABLE)
 			InspectorTab.PHYSICS when selection_is_static_body:
-				inspector_tab_bar.set_value(InspectorTab.PHYSICS)
+				tab_bar.set_value(InspectorTab.PHYSICS)
 			InspectorTab.OBJECT when not selection_is_empty:
-				inspector_tab_bar.set_value(InspectorTab.OBJECT)
+				tab_bar.set_value(InspectorTab.OBJECT)
 		force_switched_previous_tab = InspectorTab.NONE
 
-	match inspector_tab_bar.get_value():
+	match tab_bar.get_value():
 		InspectorTab.OBJECT, InspectorTab.INTERACTABLE, InspectorTab.PHYSICS when selection_is_empty:
-			force_switched_previous_tab = inspector_tab_bar.get_value() as InspectorTab
-			inspector_tab_bar.set_value(InspectorTab.LEVEL)
-			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
+			force_switched_previous_tab = tab_bar.get_value() as InspectorTab
+			tab_bar.set_value(InspectorTab.LEVEL)
+			tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 		InspectorTab.INTERACTABLE when not selection_is_interactable:
 			force_switched_previous_tab = InspectorTab.INTERACTABLE
-			inspector_tab_bar.set_value(InspectorTab.OBJECT)
-			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
+			tab_bar.set_value(InspectorTab.OBJECT)
+			tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 		InspectorTab.PHYSICS when not selection_is_static_body:
 			force_switched_previous_tab = InspectorTab.PHYSICS
-			inspector_tab_bar.set_value(InspectorTab.OBJECT)
-			inspector_tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
+			tab_bar.set_value(InspectorTab.OBJECT)
+			tab_bar.value_changed.connect(_reset_force_switched_previous_tab, CONNECT_ONE_SHOT)
 
 
 func update_object_name(new_name: String):

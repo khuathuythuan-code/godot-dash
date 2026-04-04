@@ -139,7 +139,7 @@
 [ext_resource type="Texture2D" uid="uid://djvb6aor51lsu" path="res://assets/textures/guis/editor/edit_panel/FlipObjectH.svg" id="57_tt0di"]
 [ext_resource type="PackedScene" uid="uid://jdhlbkky38ej" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal0x.tscn" id="58_20xqs"]
 [ext_resource type="PackedScene" uid="uid://cd4end0ruw2y3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal05x.tscn" id="58_a0ef7"]
-[ext_resource type="Script" uid="uid://csdb54xplbtd2" path="res://src/editor/SidePanelManager.gd" id="58_hnsxj"]
+[ext_resource type="Script" uid="uid://csdb54xplbtd2" path="res://src/editor/InspectorManager.gd" id="58_hnsxj"]
 [ext_resource type="Texture2D" uid="uid://djl51mcjms05k" path="res://assets/textures/portals/other_portals/count_portal_dual/CountPortalDualFront.png" id="58_le1qd"]
 [ext_resource type="Texture2D" uid="uid://b4kmc5iqyscr1" path="res://assets/textures/guis/editor/edit_panel/FlipObjectV.svg" id="58_q5hg5"]
 [ext_resource type="Texture2D" uid="uid://bm4o6qn8mdapu" path="res://assets/textures/portals/speed_portals/SpeedPortal0x.svg" id="58_w5vw8"]
@@ -6500,7 +6500,7 @@ debug_color = Color(0.284375, 0, 0.7, 0.42)
 z_index = 100
 script = ExtResource("35_xjepn")
 
-[node name="SidePanelManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("side_panel", "inspector_tab_bar", "object_name", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
+[node name="InspectorManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("side_panel", "inspector_tab_bar", "object_name", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
 script = ExtResource("58_hnsxj")
 side_panel = NodePath("../EditorUI/EditorContainer/SidePanel")
 inspector_tab_bar = NodePath("../EditorUI/EditorContainer/SidePanel/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar")
@@ -6672,7 +6672,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Physics" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="SidePanelManager" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="InspectorManager" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
