@@ -700,6 +700,8 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qg2e3"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khfr8"]
+
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_jaexg"]
 color = Color(0, 0, 0, 0.5)
 thickness = 2
@@ -805,4 +807,5 @@ TransButton/styles/hover_pressed = SubResource("StyleBox_hkfic")
 TransButton/styles/normal = SubResource("StyleBox_5rrh8")
 TransButton/styles/pressed = SubResource("StyleBox_jbwkd")
 Tree/styles/focus = SubResource("StyleBoxEmpty_qg2e3")
+Tree/styles/panel = SubResource("StyleBoxEmpty_khfr8")
 VSeparator/styles/separator = SubResource("StyleBoxLine_jaexg")
