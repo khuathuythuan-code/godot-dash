@@ -6179,8 +6179,23 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_bottom = 0
 
-[node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer" unique_id=332766175]
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer" unique_id=2059718584]
 layout_mode = 2
+
+[node name="EnumButton" type="PanelContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=1829924017]
+clip_children = 1
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_type_variation = &"RoundedEnumButton"
+script = ExtResource("244_leg3o")
+variants = PackedStringArray("Layers", "Groups", "Channels")
+icons = Array[Texture2D]([null, null, null])
+as_tab_container = true
+metadata/_custom_type_script = "uid://bkadwmxos4osm"
+
+[node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=332766175]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer" unique_id=8762066]
 layout_mode = 2
@@ -6504,7 +6519,7 @@ script = ExtResource("35_xjepn")
 script = ExtResource("58_hnsxj")
 panel_container = NodePath("../EditorUI/Editor/Inspector")
 tab_bar = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar")
-tree = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/InspectorTree")
+tree = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree")
 object_name = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Name")
 group_parent = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Groups/VBoxContainer/Group parent")
 interactable_editor = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable")
