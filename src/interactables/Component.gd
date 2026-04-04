@@ -6,6 +6,8 @@ var parent: Interactable
 
 
 func _enter_tree() -> void:
+	if parent:
+		return
 	parent = get_parent()
 	parent.register_public(self)
 
