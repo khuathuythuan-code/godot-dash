@@ -12,6 +12,7 @@ enum InspectorTab {
 
 @export var panel_container: PanelContainer
 @export var tab_bar: EnumButton
+@export var tree: Tree
 @export var object_name: LineEdit
 
 @export_group("Groups")
