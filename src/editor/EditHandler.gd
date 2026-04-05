@@ -373,7 +373,7 @@ func delete_selection() -> void:
 		_selection.for_each(
 			func(_object: Node2D) -> void:
 				if _object is not Player:
-					_object.set_meta(&"index_in_layer", get_index())
+					_object.set_meta(&"index_in_layer", _object.get_index())
 					_object.get_parent().remove_child(_object)
 		)
 	var undo_delete_selection := func(_selection: Selection):
@@ -393,7 +393,8 @@ func delete_selection() -> void:
 				if not is_instance_id_valid(layer_id):
 					return
 				var layer: Layer = instance_from_id(layer_id)
-				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1))
+				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1)),
+			true,
 		)
 
 	var selection_snapshot: Selection = selection.clone()
