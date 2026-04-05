@@ -83,9 +83,6 @@ func _on_level_index_pressed(index: int) -> void:
 			if not Editor.level_file_path.is_empty():
 				export_dialog.set_current_file(Editor.level_file_path.get_basename())
 			export_dialog.show()
-		7: # Level Options
-			level_settings.show()
-			Editor.shortcut_blocker = level_settings
 
 
 func _new_level() -> void:
