@@ -139,7 +139,7 @@
 [ext_resource type="Texture2D" uid="uid://djvb6aor51lsu" path="res://assets/textures/guis/editor/edit_panel/FlipObjectH.svg" id="57_tt0di"]
 [ext_resource type="PackedScene" uid="uid://jdhlbkky38ej" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal0x.tscn" id="58_20xqs"]
 [ext_resource type="PackedScene" uid="uid://cd4end0ruw2y3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal05x.tscn" id="58_a0ef7"]
-[ext_resource type="Script" uid="uid://csdb54xplbtd2" path="res://src/editor/SidePanelManager.gd" id="58_hnsxj"]
+[ext_resource type="Script" path="res://src/editor/InspectorManager.gd" id="58_hnsxj"]
 [ext_resource type="Texture2D" uid="uid://djl51mcjms05k" path="res://assets/textures/portals/other_portals/count_portal_dual/CountPortalDualFront.png" id="58_le1qd"]
 [ext_resource type="Texture2D" uid="uid://b4kmc5iqyscr1" path="res://assets/textures/guis/editor/edit_panel/FlipObjectV.svg" id="58_q5hg5"]
 [ext_resource type="Texture2D" uid="uid://bm4o6qn8mdapu" path="res://assets/textures/portals/speed_portals/SpeedPortal0x.svg" id="58_w5vw8"]
@@ -615,7 +615,7 @@ position = Vector2i(0, 32)
 size = Vector2i(153, 147)
 system_menu_id = 3
 prefer_native_menu = true
-item_count = 8
+item_count = 6
 item_0/text = "New"
 item_0/id = 0
 item_1/text = "Open"
@@ -628,10 +628,6 @@ item_4/text = "Save As"
 item_4/id = 0
 item_5/text = "Export"
 item_5/id = 0
-item_6/id = 0
-item_6/separator = true
-item_7/text = "Level Settings"
-item_7/id = 0
 
 [node name="Edit" type="PopupMenu" parent="EditorUI/EditorContainer/VBoxContainer/MenuBarContainer/MenuBar" unique_id=544007541 node_paths=PackedStringArray("edit_handler")]
 size = Vector2i(110, 147)
@@ -6431,11 +6427,6 @@ default = 1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
-unique_name_in_owner = true
-visible = false
-metadata/_edit_lock_ = true
-
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
 offset = Vector2(1280, 669)
@@ -6484,10 +6475,8 @@ debug_color = Color(0.284375, 0, 0.7, 0.42)
 z_index = 100
 script = ExtResource("35_xjepn")
 
-[node name="SidePanelManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("side_panel", "inspector_tab_bar", "object_name", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
+[node name="SidePanelManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("object_name", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
 script = ExtResource("58_hnsxj")
-side_panel = NodePath("../EditorUI/EditorContainer/SidePanel")
-inspector_tab_bar = NodePath("../EditorUI/EditorContainer/SidePanel/HBoxContainer/MarginContainer/InspectorTabBar")
 object_name = NodePath("../EditorUI/EditorContainer/SidePanel/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Name")
 group_parent = NodePath("../EditorUI/EditorContainer/SidePanel/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Groups/VBoxContainer/Group parent")
 interactable_editor = NodePath("../EditorUI/EditorContainer/SidePanel/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable")
@@ -6511,7 +6500,7 @@ color_channel_editor = NodePath("../EditorUI/EditorContainer/SidePanel/HBoxConta
 [node name="LevelOperationsHandler" type="Node" parent="." unique_id=368027490 node_paths=PackedStringArray("edit_handler", "level_settings", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
 script = ExtResource("189_ao6md")
 edit_handler = NodePath("../EditHandler")
-level_settings = NodePath("../EditorUI/LevelSettings")
+level_settings = NodePath("")
 open_dialog = NodePath("../OpenLevelDialog")
 import_dialog = NodePath("../ImportAndOpenLevelDialog")
 save_as_dialog = NodePath("../SaveLevelAsDialog")
@@ -6662,7 +6651,6 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="z_index_changed" from="EditHandler" to="EditorUI/EditorContainer/SidePanel/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/EditorContainer/SidePanel/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
-[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="refresh_saveloads"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
 [connection signal="file_selected" from="ImportAndOpenLevelDialog" to="LevelOperationsHandler" method="_on_import_and_open_level_dialog_file_selected"]
