@@ -403,7 +403,7 @@ static func from_data(data: Dictionary) -> Level:
 	# start_internal_gamemode and start_displayed_gamemode are set on the player
 	# in their respective setters.
 
-	if data.has("practice_data"):
+	if "practice_data" in data:
 		var practice_data: Dictionary = data.practice_data
 		practice_data.replay.data = practice_data.replay.data.slice(0, practice_data.physics_tick)
 		LevelManager.player.velocity = practice_data.player_velocity
@@ -463,31 +463,31 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 			hsv_watcher.use_data(object_data.children_hsv[0])
 			object_data.children_hsv.remove_at(0)
 	# Texture Override
-	if object_data.has("texture_override"):
+	if "texture_override" in object_data:
 		var override_data: Dictionary = object_data.texture_override
-		if override_data.has("base"):
+		if "base" in override_data:
 			base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
-		if override_data.has("detail"):
+		if "detail" in override_data:
 			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
 		object.get_node(^"EditorSelectionCollider").id = override_data.id
 		object.set_meta(&"texture_override", override_data)
 	# Attributes
-	if object_data.has("attributes"):
+	if "attributes" in object_data:
 		var attributes: Array[String]
 		attributes.assign(object_data.attributes)
 		for attribute: String in attributes:
 			var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
 			NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 	# Physics
-	if object_data.has("physics"):
+	if "physics" in object_data:
 		NodeUtils.get_child_of_type(object, PhysicsObjectComponent).use_data(object_data.physics)
 	# Interactables
 	if object is Interactable:
-		if object_data.has("components"):
+		if "components" in object_data:
 			var components: Dictionary[String, Dictionary]
 			components.assign(object_data.components)
 			object.use_component_data(components)
-		if object_data.has("markers"):
+		if "markers" in object_data:
 			var markers: Array[String]
 			markers.assign(object_data.markers)
 			object.markers_from_data(markers)

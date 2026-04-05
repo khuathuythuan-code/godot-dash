@@ -4,7 +4,7 @@ extends Node
 signal object_deleted(object: Node2D)
 
 @export var game_scene: Node2D
-@export var editor_viewport: Control
+@export var editor_viewport: EditorViewport
 @export var edit_handler: EditHandler
 
 var placed_object_rotation_degrees: float
@@ -35,8 +35,8 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var object: Node2D
 				object = block_palette_ref.object.instantiate()
 
-				if pressed_button.has_meta("texture_override"):
-					var override = pressed_button.get_meta("texture_override") as TextureOverride
+				if pressed_button.has_meta(&"texture_override"):
+					var override = pressed_button.get_meta(&"texture_override") as TextureOverride
 					if override.prefab_override:
 						object.queue_free()
 						object = override.prefab_override.instantiate()
