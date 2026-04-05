@@ -7,8 +7,7 @@ var last_selection: Array[Node2D]
 
 
 func refresh(selected: Array[Node2D]) -> void:
-	if not selected.is_empty():
-		last_selection = selected
+	last_selection = selected
 	clear()
 	var layers: Array[Layer] = Editor.root.level.layers
 	var root: TreeItem = create_item()
@@ -29,8 +28,8 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 
 
 func _on_level_operations_handler_level_loaded(_level: Level) -> void:
-	refresh([])
+	refresh(last_selection)
 
 
 func _on_place_handler_object_deleted(_object: Node2D) -> void:
-	refresh([])
+	refresh(last_selection)
