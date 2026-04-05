@@ -13,6 +13,7 @@ enum EditorAction {
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
+@export var inspector_tree: InspectorTree
 
 var level: Level:
 	set(value):

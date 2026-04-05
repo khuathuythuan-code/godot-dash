@@ -371,6 +371,7 @@ func delete_selection() -> void:
 				if _object is not Player:
 					_object.get_parent().remove_child(_object)
 		)
+		Editor.root.inspector_tree.refresh()
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
@@ -378,6 +379,7 @@ func delete_selection() -> void:
 					level.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, level)
 		)
+		Editor.root.inspector_tree.refresh()
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
 	Editor.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))

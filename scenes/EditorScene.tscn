@@ -266,6 +266,7 @@
 [ext_resource type="Texture2D" uid="uid://das02nf7axbxe" path="res://assets/textures/icons/lucide/focus.svg" id="245_6cy18"]
 [ext_resource type="Texture2D" uid="uid://dlfi5nj0fat40" path="res://assets/textures/icons/lucide/file.svg" id="245_e2gl0"]
 [ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="245_leg3o"]
+[ext_resource type="Script" uid="uid://s6rdxe42bj6w" path="res://src/editor/InspectorTree.gd" id="245_r73tb"]
 [ext_resource type="Texture2D" uid="uid://dyhjriyp2n167" path="res://assets/textures/icons/lucide/component.svg" id="246_e2gl0"]
 [ext_resource type="Texture2D" uid="uid://bgqqtnpwap3x0" path="res://assets/textures/icons/lucide/orbit.svg" id="247_r73tb"]
 [ext_resource type="Texture2D" uid="uid://daa5b443r1b1" path="res://assets/textures/icons/lucide/palette.svg" id="248_aosks"]
@@ -545,7 +546,7 @@ radius = 2.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aju4o"]
 size = Vector2(2, 2)
 
-[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "level_operations_handler", "editor_camera", "view_menu")]
+[node name="LevelEditor" type="Control" unique_id=1681164401 node_paths=PackedStringArray("edit_handler", "level_operations_handler", "editor_camera", "view_menu", "inspector_tree")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ftcrp")
@@ -554,6 +555,7 @@ level_operations_handler = NodePath("LevelOperationsHandler")
 block_palette_button_group = ExtResource("3_0vcbd")
 editor_camera = NodePath("EditorCamera")
 view_menu = NodePath("EditorUI/Editor/VBoxContainer/MenuBarContainer/MenuBar/View")
+inspector_tree = NodePath("EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree")
 metadata/_edit_vertical_guides_ = [-111.0]
 metadata/_edit_lock_ = true
 
@@ -6196,6 +6198,7 @@ metadata/_custom_type_script = "uid://bkadwmxos4osm"
 [node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=332766175]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("245_r73tb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer" unique_id=8762066]
 layout_mode = 2
