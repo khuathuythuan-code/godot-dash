@@ -3,8 +3,12 @@ extends Tree
 
 const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/layers.svg")
 
+var last_selection: Array[Node2D]
+
 
 func refresh(selected: Array[Node2D]) -> void:
+	if not selected.is_empty():
+		last_selection = selected
 	clear()
 	var layers: Array[Layer] = Editor.root.level.layers
 	var root: TreeItem = create_item()
@@ -15,7 +19,7 @@ func refresh(selected: Array[Node2D]) -> void:
 		for object: Node2D in layer.get_children():
 			var object_item: TreeItem = layer_item.create_child()
 			object_item.set_text(0, object.name)
-			if object in selected:
+			if object in last_selection:
 				object_item.select(0)
 
 
