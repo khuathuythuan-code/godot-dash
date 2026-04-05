@@ -12,19 +12,19 @@ func _init(node: Node) -> void:
 		_ref.tree_entered.connect(
 			func():
 				_path = Editor.root.level.get_path_to(_ref)
-				_ref.get_parent().renamed.connect(_update_path)
+				NodeUtils.connect_once(_ref.get_parent().renamed, _update_path)
 		)
 	else:
 		_path = Editor.root.level.get_path_to(node)
 		# HACK: renaming any parent should update the path
-		_ref.get_parent().renamed.connect(_update_path)
+		NodeUtils.connect_once(_ref.get_parent().renamed, _update_path)
 	_ref.renamed.connect(_update_path)
 
 
 func to_ref() -> Node:
 	if not _ref:
 		_ref = Editor.root.level.get_node_or_null(_path)
-		_ref.renamed.connect(_update_path)
+		NodeUtils.connect_once(_ref.renamed, _update_path)
 	return _ref
 
 
