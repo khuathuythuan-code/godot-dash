@@ -55,7 +55,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
 				# Version history
-				var active_layer: Layer = Editor.root.level.active_layer
+				var active_layer: Layer = Editor.root.level.layers[Editor.root.level.active_layer_idx]
 				var path_ref: PathRef = PathRef.new(object)
 
 				var add_object := func(_path_ref: PathRef):
