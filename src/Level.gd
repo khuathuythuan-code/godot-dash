@@ -188,6 +188,22 @@ func prepare_external_data() -> void:
 	LevelManager.player_camera.position = LevelManager.player.position
 
 
+func create_layer(layer_name: String) -> Layer:
+	var new_layer: Layer = Layer.new()
+	new_layer.name = layer_name
+	layers.append(new_layer)
+	add_child(new_layer)
+	return new_layer
+
+
+func remove_layer(layer_name: String) -> bool:
+	var layer: Layer = get_node_or_null(layer_name)
+	if not layer:
+		return false
+	layer.queue_free()
+	return true
+
+
 func start_level() -> void:
 	if get_tree().paused:
 		await LevelManager.pause_menu.unpaused
