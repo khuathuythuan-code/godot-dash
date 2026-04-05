@@ -286,7 +286,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"enter_effect": enter_effect,
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
-		"objects": [],
+		"layers": [],
 		"player_data": {
 			"groups": player.get_groups(),
 			"hsv": player.get_node(^"HSVWatcher").to_data(),
@@ -295,10 +295,16 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 	}
 	if reason == SerializeReason.PRACTICE_ATTEMPT:
 		data.practice_data = _get_practice_data()
-	var objects: Array[Node2D]
-	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
-	for object: Node2D in objects:
-		data.objects.append(_serialize_object(object, reason))
+	for layer: Layer in layers:
+		var layer_data: Dictionary = {
+			"name": layer.name,
+			"objects": [],
+		}
+		var objects: Array[Node2D]
+		objects.assign(layer.get_children().filter(func(node: Node): return node is Node2D))
+		for object: Node2D in objects:
+			layer_data.objects.append(_serialize_object(object, reason))
+		data.layers.append(layer_data)
 	return data
 
 
@@ -405,10 +411,15 @@ static func from_data(data: Dictionary) -> Level:
 		LevelManager.player.replay_physics_tick = practice_data.physics_tick
 
 	var resource_cache := ResourceCache.new()
-	for object_data: Dictionary in data.objects:
-		var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
-		level.add_child(object)
-		deserialize_data_to_object(object_data, object, level)
+	for layer_data: Dictionary in data.layers:
+		var layer: Layer = Layer.new()
+		layer.name = layer_data.name
+		for object_data: Dictionary in layer_data.objects:
+			var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
+			layer.add_child(object)
+			deserialize_data_to_object(object_data, object, level, resource_cache)
+		level.layers.append(layer)
+		level.add_child(layer)
 	return level
 
 
@@ -427,7 +438,7 @@ static func instantiate_object_from_data(object_data: Dictionary, resource_cache
 	return object
 
 
-static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, level: Level) -> void:
+static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, level: Level, resource_cache: ResourceCache) -> void:
 	# Groups
 	for group: String in object_data.groups:
 		object.add_to_group(group)
