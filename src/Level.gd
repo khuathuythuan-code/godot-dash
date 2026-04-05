@@ -430,7 +430,7 @@ static func from_data(data: Dictionary) -> Level:
 
 static func instantiate_object_from_data(object_data: Dictionary, resource_cache: ResourceCache) -> Node2D:
 	var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
-	if prefab == null:
+	if not prefab:
 		push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
 		return
 	if Config.ldm and not Editor.in_editor and object_data.has("attributes"):

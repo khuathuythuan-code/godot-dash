@@ -19,18 +19,19 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			placed_object_rotation_degrees = 0.0
 		previous_pressed_button = pressed_button
 		var block_palette_ref: BlockPaletteRef
-		if pressed_button != null:
+		if pressed_button:
 			block_palette_ref = NodeUtils.get_child_of_type(pressed_button, BlockPaletteRef) as BlockPaletteRef
 		if (
-			block_palette_ref != null
+			block_palette_ref
 			and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id)
 			and (
 				Input.is_action_pressed(&"editor_add", false)
 				or Config.is_touch_screen
 				and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-				and not Editor.swipe )
+				and not Editor.swipe
+			)
 		):
-			if pressed_button != null and (not Config.is_touch_screen or Editor.delete == false):
+			if pressed_button and not (Config.is_touch_screen and Editor.delete):
 				# Create object
 				var object: Node2D
 				object = block_palette_ref.object.instantiate()
@@ -40,9 +41,9 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					if override.prefab_override:
 						object.queue_free()
 						object = override.prefab_override.instantiate()
-					if override.base != null:
+					if override.base:
 						object.get_node(^"Base").texture = override.base
-					if override.detail != null:
+					if override.detail:
 						object.get_node(^"Detail").texture = override.detail
 					object.name = override.name
 					var id: int = block_palette_ref.id
@@ -82,8 +83,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		elif (
 			(
 				Input.is_action_pressed(&"editor_remove", false)
-				or Config.is_touch_screen
-				and Editor.delete
+				or (Config.is_touch_screen and Editor.delete)
 			)
 			and placed_objects_collider.has_overlapping_areas()
 		):
