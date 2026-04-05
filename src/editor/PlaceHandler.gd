@@ -92,6 +92,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
 				object_deleted.emit(overlapping_areas[-1])
 				var object := get_area(overlapping_areas[-1])
+				var index: int = object.get_index()
 
 				# Version history
 				var delete_object := func(_path_ref: PathRef):
@@ -103,7 +104,8 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					if not is_instance_id_valid(layer_id):
 						return
 					var layer: Layer = instance_from_id(layer_id)
-					layer.add_child(_object, true)
+					layer.add_child(_object)
+					layer.move_child(_object, index)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
 
 				var path_ref := PathRef.new(object)
