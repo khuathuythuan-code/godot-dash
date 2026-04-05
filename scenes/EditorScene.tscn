@@ -6198,6 +6198,7 @@ metadata/_custom_type_script = "uid://bkadwmxos4osm"
 [node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=332766175]
 layout_mode = 2
 size_flags_vertical = 3
+hide_root = true
 script = ExtResource("245_r73tb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer" unique_id=8762066]
