@@ -572,16 +572,6 @@ follow_viewport_enabled = true
 [node name="EditorUI" type="CanvasLayer" parent="." unique_id=1490686445]
 layer = 90
 
-[node name="ColorRect" type="ColorRect" parent="EditorUI" unique_id=40543000]
-visible = false
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 31.0
-grow_horizontal = 2
-size_flags_horizontal = 6
-size_flags_vertical = 3
-color = Color(0.15625, 0.15625, 0.15625, 1)
-
 [node name="Editor" type="HSplitContainer" parent="EditorUI" unique_id=1948388384]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -6526,10 +6516,9 @@ base = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/Smoo
 detail = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Detail Color")
 color_channel_editor = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/Channel Editor/ColorChannelEditor")
 
-[node name="LevelOperationsHandler" type="Node" parent="." unique_id=368027490 node_paths=PackedStringArray("edit_handler", "level_settings", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
+[node name="LevelOperationsHandler" type="Node" parent="." unique_id=368027490 node_paths=PackedStringArray("edit_handler", "open_dialog", "import_dialog", "save_as_dialog", "export_dialog", "save_changes_before_opening_dialog", "corrupted_level_dialog", "level_already_exists_dialog")]
 script = ExtResource("189_ao6md")
 edit_handler = NodePath("../EditHandler")
-level_settings = NodePath("")
 open_dialog = NodePath("../OpenLevelDialog")
 import_dialog = NodePath("../ImportAndOpenLevelDialog")
 save_as_dialog = NodePath("../SaveLevelAsDialog")
@@ -6681,7 +6670,6 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
-[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="refresh_saveloads"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
 [connection signal="file_selected" from="ImportAndOpenLevelDialog" to="LevelOperationsHandler" method="_on_import_and_open_level_dialog_file_selected"]
