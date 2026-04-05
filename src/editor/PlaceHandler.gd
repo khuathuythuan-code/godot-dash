@@ -105,12 +105,14 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					var layer: Layer = instance_from_id(layer_id)
 					layer.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
+
 				var path_ref := PathRef.new(object)
 				Editor.version_history.create_action("Deleted object " + object.name)
 				Editor.version_history.add_do_method(delete_object.bind(path_ref))
 				Editor.version_history.add_undo_method(restore_object.bind(path_ref))
 				Editor.version_history.commit_action()
 				edit_handler.deselect(Selection.from_object(object), true)
+				object_deleted.emit(object)
 
 
 func get_area(area: Area2D) -> Node:
