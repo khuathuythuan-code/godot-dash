@@ -62,11 +62,9 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					var _object: Node = _path_ref.to_ref()
 					active_layer.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
-					Editor.root.inspector_tree.refresh()
 				var remove_object := func(_path_ref: PathRef):
 					var _object: Node = _path_ref.to_ref()
 					_object.get_parent().remove_child(_object)
-					Editor.root.inspector_tree.refresh()
 
 				Editor.version_history.create_action("Placed object " + object.name)
 				Editor.version_history.add_do_method(add_object.bind(path_ref))
