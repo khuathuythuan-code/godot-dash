@@ -298,11 +298,11 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 	var objects: Array[Node2D]
 	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
 	for object: Node2D in objects:
-		_serialize_object(object, data, reason)
+		data.objects.append(_serialize_object(object, reason))
 	return data
 
 
-func _serialize_object(object: Node2D, data: Dictionary, reason: SerializeReason) -> void:
+func _serialize_object(object: Node2D, reason: SerializeReason) -> Dictionary:
 	var object_data: Dictionary = {
 		"name": object.name,
 		"scene_file_path": object.scene_file_path.trim_prefix("res://"),
@@ -327,7 +327,7 @@ func _serialize_object(object: Node2D, data: Dictionary, reason: SerializeReason
 		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
 		if hsv_watcher:
 			object_data.children_hsv.append(hsv_watcher.to_data())
-	data.objects.append(object_data)
+	return object_data
 
 
 func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
@@ -406,11 +406,13 @@ static func from_data(data: Dictionary) -> Level:
 
 	var resource_cache := ResourceCache.new()
 	for object_data: Dictionary in data.objects:
-		deserialize_object(object_data, level, resource_cache)
+		var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
+		level.add_child(object)
+		deserialize_data_to_object(object_data, object, level)
 	return level
 
 
-static func deserialize_object(object_data: Dictionary, level: Level, resource_cache: ResourceCache) -> void:
+static func instantiate_object_from_data(object_data: Dictionary, resource_cache: ResourceCache) -> Node2D:
 	var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 	if prefab == null:
 		push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
@@ -422,7 +424,10 @@ static func deserialize_object(object_data: Dictionary, level: Level, resource_c
 	object.name = object_data.name
 	object.transform = Deserialize.Transform2D(object_data.transform)
 	object.z_index = object_data.z_index
-	level.add_child(object)
+	return object
+
+
+static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, level: Level) -> void:
 	# Groups
 	for group: String in object_data.groups:
 		object.add_to_group(group)
