@@ -54,8 +54,10 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
 				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
-				# Version history
 				var active_layer: Layer = Editor.root.level.layers[Editor.root.level.active_layer_idx]
+				object.set_meta(Constants.LAYER_META, active_layer.get_instance_id())
+
+				# Version history
 				var path_ref: PathRef = PathRef.new(object)
 
 				var add_object := func(_path_ref: PathRef):
@@ -97,7 +99,11 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					_object.get_parent().remove_child(_object)
 				var restore_object := func(_path_ref: PathRef):
 					var _object: Node = _path_ref.to_ref()
-					Editor.root.level.add_child(_object, true)
+					var layer_id: int = _object.get_meta(Constants.LAYER_META)
+					if not is_instance_id_valid(layer_id):
+						return
+					var layer: Layer = instance_from_id(layer_id)
+					layer.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
 				var path_ref := PathRef.new(object)
 				Editor.version_history.create_action("Deleted object " + object.name)

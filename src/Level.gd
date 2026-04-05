@@ -419,6 +419,7 @@ static func from_data(data: Dictionary) -> Level:
 		for object_data: Dictionary in layer_data.objects:
 			var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
 			layer.add_child(object)
+			object.set_meta(Constants.LAYER_META, layer.get_instance_id())
 			deserialize_data_to_object(object_data, object, level, resource_cache)
 		level.layers.append(layer)
 		level.add_child(layer)
