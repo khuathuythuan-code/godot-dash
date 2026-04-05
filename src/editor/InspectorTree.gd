@@ -21,6 +21,7 @@ func refresh(selected: Array[Node2D]) -> void:
 			object_item.set_text(0, object.name)
 			if object in last_selection:
 				object_item.select(0)
+				scroll_to_item(object_item)
 
 
 func _on_edit_handler_selection_changed(selection: Selection) -> void:
