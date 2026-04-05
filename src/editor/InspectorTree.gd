@@ -3,11 +3,12 @@ extends Tree
 
 const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/layers.svg")
 
-var last_selection: Array[Node2D]
+var selection: Selection
+var bulk_select: Array[Node2D]
 
 
-func refresh(selected: Array[Node2D]) -> void:
-	last_selection = selected
+func refresh(selected: Selection) -> void:
+	selection = selected
 	clear()
 	var layers: Array[Layer] = Editor.root.level.layers
 	var root: TreeItem = create_item()
@@ -18,18 +19,36 @@ func refresh(selected: Array[Node2D]) -> void:
 		for object: Node2D in layer.get_children():
 			var object_item: TreeItem = layer_item.create_child()
 			object_item.set_text(0, object.name)
-			if object in last_selection:
+			if selection.contains(object):
 				object_item.select(0)
 				scroll_to_item(object_item)
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
-	refresh(selection.to_array())
+func bulk_update_selection() -> void:
+	var edit_handler: EditHandler = Editor.root.edit_handler
+	edit_handler.select.call_deferred(selection, true)
+	bulk_select.clear()
+
+
+func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
+	refresh(new_selection.clone())
 
 
 func _on_level_operations_handler_level_loaded(_level: Level) -> void:
-	refresh(last_selection)
+	refresh(selection)
 
 
 func _on_place_handler_object_deleted(_object: Node2D) -> void:
-	refresh(last_selection)
+	refresh(selection)
+
+
+func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
+	var is_layer: bool = item.get_parent() == get_root()
+	if not is_layer:
+		var layer: Layer = Editor.root.level.layers[item.get_parent().get_index()]
+		var object: Node2D = layer.get_child(item.get_index())
+		if selected:
+			selection = selection.union(Selection.from_object(object))
+		else:
+			selection = selection.difference(Selection.from_object(object))
+	bulk_update_selection.call_deferred()
