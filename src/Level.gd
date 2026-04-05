@@ -101,6 +101,7 @@ const START_SPEED: Array[float] = [
 
 var song_player: AudioStreamPlayer
 var stopwatch: Stopwatch
+var layers: Array[Layer]
 var camera_rect: Rect2
 var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
@@ -130,10 +131,17 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 
 
 func _ready() -> void:
+	if layers.is_empty():
+		var new_layer: Layer = Layer.new()
+		new_layer.name = "Unnamed Layer"
+		layers.append(new_layer)
+		add_child(new_layer)
+		if Editor.in_editor:
+			Editor.active_layer = new_layer
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
 	stopwatch.paused = true
-	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
+	add_child(stopwatch, false, INTERNAL_MODE_BACK)
 	AssetManager.load_song_threaded_request(song_path)
 	song_player = AudioStreamPlayer.new()
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -142,7 +150,7 @@ func _ready() -> void:
 	LevelManager.level_song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
-	add_child(song_player, false, INTERNAL_MODE_FRONT)
+	add_child(song_player, false, INTERNAL_MODE_BACK)
 
 
 func _process(_delta: float) -> void:

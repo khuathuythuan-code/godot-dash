@@ -13,6 +13,7 @@ var shortcut_blocker: Node
 var viewport: EditorViewport
 var version_history: UndoRedo
 var render_mode_manager: RenderMode
+var active_layer: Layer
 
 # MOBILE CONTROLS
 var swipe: bool = false
