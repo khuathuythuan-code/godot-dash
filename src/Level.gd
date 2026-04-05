@@ -102,6 +102,7 @@ const START_SPEED: Array[float] = [
 var song_player: AudioStreamPlayer
 var stopwatch: Stopwatch
 var layers: Array[Layer]
+var active_layer: Layer
 var camera_rect: Rect2
 var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
@@ -137,7 +138,7 @@ func _ready() -> void:
 		layers.append(new_layer)
 		add_child(new_layer)
 		if Editor.in_editor:
-			Editor.active_layer = new_layer
+			active_layer = new_layer
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
 	stopwatch.paused = true
@@ -287,6 +288,7 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
 		"layers": [],
+		"active_layer_idx": layers.find(active_layer),
 		"player_data": {
 			"groups": player.get_groups(),
 			"hsv": player.get_node(^"HSVWatcher").to_data(),
@@ -420,6 +422,8 @@ static func from_data(data: Dictionary) -> Level:
 			deserialize_data_to_object(object_data, object, level, resource_cache)
 		level.layers.append(layer)
 		level.add_child(layer)
+	level.active_layer = level.layers[data.active_layer_idx]
+
 	return level
 
 
