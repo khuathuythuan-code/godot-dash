@@ -371,21 +371,32 @@ func delete_selection() -> void:
 
 	var do_delete_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
+			func(_object: Node2D) -> void:
 				if _object is not Player:
+					_object.set_meta(&"index_in_layer", get_index())
 					_object.get_parent().remove_child(_object)
 		)
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
+			func(_object: Node2D) -> void:
 				if _object is not Player:
 					var layer_id: int = _object.get_meta(Constants.LAYER_META)
 					if not is_instance_id_valid(layer_id):
 						return
 					var layer: Layer = instance_from_id(layer_id)
-					layer.add_child(_object, true)
+					layer.add_child(_object)
 					NodeUtils.change_owner_recursive(_object, level)
 		)
+		_selection.for_each(
+			func(_object: Node2D) -> void:
+				var layer_id: int = _object.get_meta(Constants.LAYER_META)
+				if not is_instance_id_valid(layer_id):
+					return
+				var layer: Layer = instance_from_id(layer_id)
+				layer.add_child(_object)
+				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1))
+		)
+
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
 	Editor.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
