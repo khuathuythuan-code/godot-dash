@@ -5,7 +5,6 @@ extends VBoxContainer
 @export var position_property: Vector2Property
 @export var rotation_property: FloatProperty
 @export var scale_property: Vector2Property
-@export var z_index_property: FloatProperty
 
 var selection_size: int
 var first_object: PathRef
@@ -42,7 +41,6 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	if selection_size == 1:
 		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
 		current_rotation = first_object_ref.global_rotation_degrees
-		z_index_property.set_value_no_signal(float(first_object_ref.z_index))
 		scale_property.set_value_no_signal(first_object_ref.scale)
 		position_property.set_value_no_signal((average_position / Constants.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 		rotation_property.set_value_no_signal(current_rotation)
@@ -102,10 +100,6 @@ func _on_edit_handler_resized_selection(new_scale: Vector2) -> void:
 	scale_property.set_value_no_signal(new_scale)
 
 
-func _on_edit_handler_z_index_changed(z_index_delta: int) -> void:
-	z_index_property.set_value_no_signal(z_index_property.get_value() + z_index_delta)
-
-
 func _on_position_value_changed(new_position: Vector2) -> void:
 	var distance := Vector2(new_position.x, -new_position.y - 0.5) - average_position / Constants.CELL_SIZE
 	edit_handler.move_selection(distance)
@@ -129,27 +123,3 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 		true,
 		edit_handler.selection_pivot,
 	)
-
-
-func _on_z_index_value_changed(new_z_index: int):
-	var do_z_index_shift := func(_selection: Selection):
-		z_index_property.set_value_no_signal(new_z_index)
-		for _object: Node2D in _selection.to_array():
-			_object.z_index = new_z_index
-	var undo_z_index_shift := func(_selection_to_z_index: Dictionary[NodePath, int]):
-		for _path: NodePath in _selection_to_z_index:
-			var _object: Node2D = Editor.root.level.get_node(_path)
-			_object.z_index = _selection_to_z_index[_path]
-		z_index_property.set_value_no_signal(float(first_object.to_ref().z_index))
-
-	var selection_snapshot: Selection = current_selection.clone()
-	var object_to_z_index := func(accum: Dictionary, object: Node2D):
-		accum[Editor.root.level.get_path_to(object)] = object.z_index
-		return accum
-	var selection_to_z_index: Dictionary[NodePath, int]
-	selection_to_z_index.assign(selection_snapshot.fold_generic(object_to_z_index, { }))
-	var version_history: UndoRedo = Editor.version_history
-	version_history.create_action("Changed object z index to %s" % new_z_index)
-	version_history.add_do_method(do_z_index_shift.bind(selection_snapshot))
-	version_history.add_undo_method(undo_z_index_shift.bind(selection_to_z_index))
-	version_history.commit_action()

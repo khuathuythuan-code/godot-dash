@@ -6265,14 +6265,13 @@ mouse_filter = 1
 title = "Transform"
 title_alignment = 1
 
-[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform" unique_id=2138106190 node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property", "z_index_property")]
+[node name="TransformEditor" type="VBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform" unique_id=2138106190 node_paths=PackedStringArray("edit_handler", "position_property", "rotation_property", "scale_property")]
 layout_mode = 2
 script = ExtResource("208_5qr8h")
 edit_handler = NodePath("../../../../../../../../../../../EditHandler")
 position_property = NodePath("Position")
 rotation_property = NodePath("Rotation")
 scale_property = NodePath("Scale")
-z_index_property = NodePath("Z Index")
 
 [node name="Position" type="BoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=80683246]
 custom_minimum_size = Vector2(0, 32)
@@ -6312,17 +6311,6 @@ max_value = 16.0
 allow_lesser = true
 allow_greater = true
 metadata/_custom_type_script = "uid://crich318mmmk2"
-
-[node name="Z Index" type="BoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=429575700]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-vertical = true
-script = ExtResource("185_t7625")
-min_value = -4096.0
-max_value = 4096.0
-step = 1.0
-rounded = true
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
 
 [node name="Groups" type="FoldableContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object" unique_id=1060342494]
 layout_mode = 2
@@ -6669,7 +6657,6 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Position" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_position_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Scale" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_scale_value_changed"]
-[connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Z Index" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_z_index_value_changed"]
 [connection signal="interaction_ended" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_interaction_ended"]
 [connection signal="interaction_ended" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Detail Color" to="BaseDetailHandler" method="_on_detail_color_interaction_ended"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Hue" to="HSVHandler" method="_on_hue_value_changed"]
@@ -6692,7 +6679,6 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
-[connection signal="z_index_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_z_index_changed"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="refresh_saveloads"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
