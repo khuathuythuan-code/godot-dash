@@ -248,43 +248,31 @@ func scale_selection(
 
 
 func shift_z_index(increase: bool):
+	var top_to_bottom := func(a: Node2D, b: Node2D): return a.get_index() > b.get_index()
 	var increase_object_z_index := func(_selection: Selection):
-		for _object: Node2D in _selection.to_array():
-			_object.z_index += 1
+		var sorted_selection: Array[Node2D] = _selection.to_array()
+		sorted_selection.sort_custom(top_to_bottom)
+		for _object: Node2D in sorted_selection:
+			var siblings_count: int = _object.get_parent().get_child_count()
+			var new_z_index: int = _object.get_index() + 1
+			_object.get_parent().move_child(_object, clampi(new_z_index, 0, siblings_count))
 		z_index_changed.emit(1)
 	var decrease_object_z_index := func(_selection: Selection):
-		for _object: Node2D in _selection.to_array():
-			_object.z_index -= 1
+		var sorted_selection: Array[Node2D] = _selection.to_array()
+		sorted_selection.sort_custom(top_to_bottom)
+		for _object: Node2D in sorted_selection:
+			var siblings_count: int = _object.get_parent().get_child_count()
+			var new_z_index: int = _object.get_index() - 1
+			_object.get_parent().move_child(_object, clampi(new_z_index, 0, siblings_count))
 		z_index_changed.emit(-1)
-	# Bulk checks
-	# Increase
-	var can_increase_z_index := func(_object: Node2D):
-		return _object.z_index < RenderingServer.CANVAS_ITEM_Z_MAX
-	var increase_z_index_warns := func(_warns: int, _object: Node2D):
-		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MAX else 0)
-	# Decrease
-	var can_decrease_z_index := func(_object: Node2D):
-		return _object.z_index > RenderingServer.CANVAS_ITEM_Z_MIN
-	var decrease_z_index_warns := func(_warns: int, _object: Node2D):
-		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
 	# Commit
 	var selection_snapshot: Selection = selection.clone()
-	var warns: int = selection_snapshot.fold_generic(increase_z_index_warns if increase else decrease_z_index_warns, 0)
-	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
 	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
 	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
 	Editor.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
 	Editor.version_history.add_do_method(do_shift.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
 	Editor.version_history.commit_action()
-	if warns > 0:
-		Toasts.warning(
-			"%s Z index is %s (%s affected objects)" % [
-				"Maximum" if increase else "Minimum",
-				RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
-				warns,
-			],
-		)
 
 
 func duplicate_selection() -> void:
