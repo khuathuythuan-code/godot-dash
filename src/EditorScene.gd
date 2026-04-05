@@ -171,7 +171,6 @@ func start_playtest() -> void:
 	%Modes.hide()
 	%Inspector.hide()
 	%RenderModes.hide()
-	%LevelSettings.hide()
 	%Viewport.mouse_filter = MOUSE_FILTER_STOP
 	$GameScene/PercentageLayer.show()
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
@@ -193,7 +192,6 @@ func stop_playtest() -> void:
 	_ready() # sets `level`
 	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	new_player.global_position = level.start_position
-	%LevelSettings.refresh_saveloads(level)
 	NodeUtils.free_children($GameScene.checkpoint_parent)
 	$GameScene.pause_menu.practice_button.hide()
 	$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)
