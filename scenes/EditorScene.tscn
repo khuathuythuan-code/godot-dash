@@ -6198,7 +6198,10 @@ metadata/_custom_type_script = "uid://bkadwmxos4osm"
 [node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=332766175]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/inner_item_margin_left = 4
 hide_root = true
+select_mode = 2
+auto_tooltip = false
 script = ExtResource("245_r73tb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer" unique_id=8762066]
@@ -6684,6 +6687,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
+[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/LevelSettings" method="refresh_saveloads"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
