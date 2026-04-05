@@ -393,7 +393,6 @@ func delete_selection() -> void:
 				if not is_instance_id_valid(layer_id):
 					return
 				var layer: Layer = instance_from_id(layer_id)
-				layer.add_child(_object)
 				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1))
 		)
 
