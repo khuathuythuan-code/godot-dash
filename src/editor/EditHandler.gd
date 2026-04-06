@@ -525,17 +525,21 @@ func _update_selection() -> void:
 				select(Selection.EMPTY())
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
-	var selection_buffer: Selection
+	var selection_buffer_array: Array[Node2D]
+	selection_buffer_array.assign(
+		$SelectionZone \
+		.get_overlapping_areas() \
+		.map(get_object_parent) \
+		.filter(is_in_visible_layer),
+	)
+	var selection_buffer: Selection = Selection.from_array(selection_buffer_array)
 	if Input.is_action_just_released(&"editor_selection_remove", true):
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		deselect(selection_buffer)
 		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		select(selection.union(selection_buffer))
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		_reset_selection_zone(true)
 	selection.remove(level)
 
@@ -792,3 +796,8 @@ static func get_object_selection_collider(object: CollisionObject2D) -> Collisio
 
 static func is_not_player(object: Node2D) -> bool:
 	return object is not Player
+
+
+static func is_in_visible_layer(object: Node2D) -> bool:
+	var object_parent: Node = object.get_parent()
+	return object_parent is Layer and not object_parent.hidden_in_editor

@@ -2,6 +2,8 @@ class_name InspectorTree
 extends Tree
 
 const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/layers.svg")
+const VISIBLE_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityVisible.svg")
+const HIDDEN_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityHidden.svg")
 
 var selection: Selection
 var selected_layers: PackedInt64Array
@@ -124,6 +126,7 @@ func refresh(selected: Selection) -> void:
 			layer_item = root.create_child()
 			layer_item.set_icon(0, LAYER_ICON)
 			layer_item.set_text(0, layer.name)
+			layer_item.add_button(0, VISIBLE_ICON)
 		if layer.get_index() in selected_layers:
 			layer_item.select(0)
 		for object_idx: int in layer.get_child_count():
@@ -171,8 +174,8 @@ func _on_place_handler_object_deleted(_object: Node2D) -> void:
 
 
 func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
-	var is_layer: bool = item.get_parent() == get_root()
-	var is_object: bool = not is_layer
+	var is_item_layer: bool = item.get_parent() == get_root()
+	var is_object: bool = not is_item_layer
 	if is_object:
 		var layer: Layer = Editor.root.level.layers[item.get_parent().get_index()]
 		var object: Node2D = layer.get_child(item.get_index())
@@ -183,3 +186,15 @@ func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
 	elif selected and item.get_index() not in selected_layers:
 		selected_layers.append(item.get_index())
 	bulk_update_selection.call_deferred()
+
+
+func _on_button_clicked(item: TreeItem, column: int, id: int, _mouse_button_index: int) -> void:
+	var is_item_layer: bool = item.get_parent() == get_root()
+	if not is_item_layer:
+		return
+	var button_texture: Texture2D = item.get_button(column, id)
+	var is_item_button_toggled: bool = button_texture == HIDDEN_ICON
+	var layer_idx: int = item.get_index()
+	var layer: Layer = Editor.root.level.layers[layer_idx]
+	layer.hidden_in_editor = not is_item_button_toggled
+	item.set_button(column, id, VISIBLE_ICON if is_item_button_toggled else HIDDEN_ICON)
