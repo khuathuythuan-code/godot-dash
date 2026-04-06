@@ -20,8 +20,10 @@ func _get_drag_data(at_position: Vector2) -> TreeItem:
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	var dropped_item: TreeItem = data
 	var item_at_position: TreeItem = get_item_at_position(at_position)
+	if not item_at_position:
+		item_at_position = get_last_tree_item()
 	var is_item_layer: bool = dropped_item.get_parent() == get_root()
-	var is_dropping_on_layer: bool = get_item_at_position(at_position).get_parent() == get_root()
+	var is_dropping_on_layer: bool = item_at_position.get_parent() == get_root()
 
 	if not is_item_layer:
 		if is_dropping_on_layer:
@@ -40,6 +42,8 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var dropped_item_previous: TreeItem = dropped_item.get_prev()
 	var dropped_item_next: TreeItem = dropped_item.get_next()
 	var item_at_position: TreeItem = get_item_at_position(at_position)
+	if not item_at_position:
+		item_at_position = get_last_tree_item()
 	var is_cursor_closer_to_top = is_cursor_closer_to_item_top(item_at_position)
 	# Reordering
 	var is_dropping_on_layer: bool = item_at_position.get_parent() == get_root()
@@ -99,9 +103,20 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 
 func is_cursor_closer_to_item_top(item_at_position: TreeItem) -> bool:
+	if not item_at_position:
+		return false
 	var item_at_position_rect: Rect2 = get_item_area_rect(item_at_position)
 	var is_cursor_closer_to_top: bool = get_local_mouse_position().y - item_at_position_rect.position.y < item_at_position_rect.size.y / 2.0
 	return is_cursor_closer_to_top
+
+
+func get_last_tree_item() -> TreeItem:
+	var last_tree_item: TreeItem = get_root().get_child(-1)
+	if not last_tree_item:
+		return null
+	while last_tree_item.get_child_count() > 0:
+		last_tree_item = last_tree_item.get_child(-1)
+	return last_tree_item
 
 
 func refresh(selected: Selection) -> void:
