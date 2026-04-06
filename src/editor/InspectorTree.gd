@@ -71,7 +71,11 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 				var reordered_object: Node2D = path_ref.to_ref()
 				reordered_object.reparent(new_layer)
 				new_layer.move_child(reordered_object, -1)
-				dropped_item.move_after(item_at_position.get_child(-1))
+				if item_at_position.get_child_count() > 0:
+					dropped_item.move_after(item_at_position.get_child(-1))
+				else:
+					dropped_item.get_parent().remove_child(dropped_item)
+					item_at_position.add_child(dropped_item)
 				path_ref.update_path()
 			undo_method = func():
 				var reordered_object: Node2D = path_ref.to_ref()
