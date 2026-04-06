@@ -255,6 +255,9 @@ func _physics_process(delta: float) -> void:
 func reset() -> void:
 	dead = false
 	$Icon.show()
+	NodeUtils.free_children(%GroundParticles)
+	%GroundParticles.emitting = false
+	%GroundParticles.restart()
 	gameplay_rotation = 0.0
 	velocity = Vector2.ZERO
 	player_scale = PlayerScale.NORMAL
