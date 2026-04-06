@@ -219,6 +219,8 @@ func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
 
 func _on_level_operations_handler_level_loaded(_level: Level) -> void:
 	selection = Selection.EMPTY()
+	clear()
+	create_item()
 	refresh(selection)
 
 
