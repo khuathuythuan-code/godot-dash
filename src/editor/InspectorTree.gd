@@ -64,6 +64,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	if not is_item_layer:
 		var layer: Layer = level.layers[dropped_item.get_parent().get_index()]
 		var path_ref: PathRef = PathRef.new(layer.get_child(dropped_item.get_index()))
+
 		if is_dropping_on_layer:
 			var new_layer: Layer = level.layers[item_at_position.get_index()]
 			do_method = func():
@@ -126,20 +127,20 @@ func refresh(selected: Selection = selection) -> void:
 	var layers: Array[Layer] = level.layers
 	for layer_idx: int in layers.size():
 		var layer: Layer = layers[layer_idx]
-		var layer_item: TreeItem = root.get_child(layer_idx)
-		if not layer_item:
+		var layer_item: TreeItem
+		if layer_idx >= root.get_child_count():
 			layer_item = root.create_child()
 			layer_item.set_icon(0, LAYER_ICON)
 			layer_item.set_text(0, layer.name)
 			layer_item.add_button(0, VISIBLE_ICON)
+		else:
+			layer_item = root.get_child(layer_idx)
 		layer_item.visible = true
 		if layer.get_index() in selected_layers:
 			layer_item.select(0)
 		for object_idx: int in layer.get_child_count():
 			var object: Node2D = layer.get_child(object_idx)
-			var object_item: TreeItem = layer_item.get_child(object_idx)
-			if not object_item:
-				object_item = layer_item.create_child()
+			var object_item: TreeItem = layer_item.get_child(object_idx) if object_idx < layer_item.get_child_count() else layer_item.create_child()
 			object_item.visible = true
 			object_item.set_text(0, object.name)
 			if selection.contains(object):
