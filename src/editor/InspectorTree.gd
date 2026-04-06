@@ -26,8 +26,10 @@ func _get_drag_data(at_position: Vector2) -> TreeItem:
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	var dropped_item: TreeItem = data
 	var item_at_position: TreeItem = get_item_at_position(at_position)
+	var is_dropping_at_tree_end: bool = false
 	if not item_at_position:
 		item_at_position = get_last_tree_item()
+		is_dropping_at_tree_end = true
 	var is_item_layer: bool = dropped_item.get_parent() == get_root()
 	var is_dropping_on_layer: bool = item_at_position.get_parent() == get_root()
 
@@ -37,7 +39,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		else:
 			drop_mode_flags = DROP_MODE_INBETWEEN
 		return true
-	elif is_dropping_on_layer and get_drop_section_at_position(at_position) == -1:
+	elif is_dropping_at_tree_end or is_dropping_on_layer and get_drop_section_at_position(at_position) == -1:
 		drop_mode_flags = DROP_MODE_INBETWEEN
 		return true
 	else:
