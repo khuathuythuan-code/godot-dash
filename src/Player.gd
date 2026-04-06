@@ -253,6 +253,13 @@ func _physics_process(delta: float) -> void:
 
 
 func reset() -> void:
+	# Reset icon
+	for icon_sprite: Node2D in $Icon.get_children():
+		icon_sprite.rotation = 0.0
+		icon_sprite.scale = Vector2.ONE
+	$Icon/Spider/SpiderSprites.rotation = 0.0
+	$Icon/Spider/SpiderSprites.scale = Vector2.ONE
+	# Reset members
 	dead = false
 	$Icon.show()
 	NodeUtils.free_children(%GroundParticles)
