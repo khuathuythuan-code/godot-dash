@@ -455,7 +455,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3hrq"]
 size = Vector2(128, 128)
 
-[node name="Player" type="CharacterBody2D" unique_id=509732007]
+[node name="Player" type="CharacterBody2D" unique_id=509732007 node_paths=PackedStringArray("spider_animation_tree")]
 process_mode = 1
 collision_mask = 122
 collision_priority = 2.0
@@ -468,6 +468,7 @@ safe_margin = 1.0
 script = ExtResource("1_nvqsc")
 default_collider = SubResource("RectangleShape2D_14y25")
 slope_collider = SubResource("CircleShape2D_xclbr")
+spider_animation_tree = NodePath("Icon/Spider/SpiderStateMachine")
 
 [node name="DashParticles" type="GPUParticles2D" parent="." unique_id=987294890]
 modulate = Color(0, 1, 1, 1)

@@ -89,30 +89,16 @@ func restart_level() -> void:
 
 
 func reset() -> void:
+	Engine.time_scale = 1.0
 	LevelManager.current_level.name = "%s_Level_%s" % [PathRef.FREED, hash(LevelManager.current_level)]
 	LevelManager.current_level.queue_free()
-	Engine.time_scale = 1.0
 	LevelManager.ground_up.hide()
 	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 	LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
-	# Avoid multiple scene transitions
-	LevelManager.player.name = "%s_Player" % PathRef.FREED
-	LevelManager.player.queue_free()
 	LevelManager.player_duals.map(NodeUtils.free_node)
 	LevelManager.player_duals.clear()
-	var new_player: Player = AssetManager.player_packed.instantiate()
-	add_child(new_player)
-	var player_camera: PlayerCamera = LevelManager.player_camera
-	player_camera.limit_left = -10000000
-	player_camera.limit_top = -10000000
-	player_camera.limit_right = 10000000
-	player_camera.limit_bottom = 10000000
-	player_camera.player = new_player
-	player_camera.center_on_player_at_0x_speed = true
-	player_camera.static_factor = Vector2.ZERO
-	player_camera.gameplay_offset_factor = Vector2.ONE
-	player_camera.zoom = PlayerCamera.DEFAULT_ZOOM
-	player_camera.offset = PlayerCamera.DEFAULT_OFFSET
+	LevelManager.player.reset()
+	LevelManager.player_camera.reset()
 
 
 func _leave_level() -> void:
