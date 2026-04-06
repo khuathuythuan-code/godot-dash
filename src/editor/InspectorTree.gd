@@ -5,7 +5,11 @@ const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/la
 const VISIBLE_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityVisible.svg")
 const HIDDEN_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityHidden.svg")
 
+@export var search_box: LineEdit
+
 var selection: Selection
+var hidden_items: Array[TreeItem]
+var flat_item_list: Array[TreeItem]
 var selected_layers: PackedInt64Array
 
 
@@ -141,10 +145,12 @@ func refresh(selected: Selection) -> void:
 				scroll_to_item(object_item)
 			else:
 				object_item.deselect(0)
+		hidden_items.clear()
 		if layer_item.get_child_count() > layer.get_child_count():
 			for i: int in layer_item.get_child_count() - layer.get_child_count():
 				var overflowing_item: TreeItem = layer_item.get_child(i + layer.get_child_count())
 				overflowing_item.visible = false
+				hidden_items.append(overflowing_item)
 		# layer_item.set_button(0, "%s %s" % [layer.get_child_count(), StringUtils.pluralize("object", layer.get_child_count())])
 	selected_layers.clear()
 
@@ -158,6 +164,53 @@ func bulk_update_selection() -> void:
 		objects.assign(layer.get_children())
 		selection = selection.union(Selection.from_array(objects))
 	edit_handler.select.call_deferred(selection)
+
+
+func filter_items(match_expr: String) -> void:
+	if match_expr.is_empty():
+		for item: TreeItem in flat_item_list:
+			item.visible = true
+		return
+	var valid_items: Array[TreeItem]
+	for item: TreeItem in flat_item_list:
+		if is_zero_approx(item.get_text(0).similarity(match_expr)):
+			item.visible = false
+			continue
+		item.uncollapse_tree()
+		if item not in valid_items:
+			valid_items.append(item)
+		# Parents need to be visible for the item to be visible too.
+		for item_parent: TreeItem in get_item_parents(item):
+			if item_parent not in valid_items:
+				valid_items.append(item_parent)
+	for valid_item: TreeItem in valid_items:
+		valid_item.visible = true
+
+
+func get_flat_visible_item_list() -> Array[TreeItem]:
+	var new_flat_item_list: Array[TreeItem]
+	_get_flat_item_list_inner(get_root(), new_flat_item_list)
+	return new_flat_item_list
+
+
+func get_item_parents(item: TreeItem) -> Array[TreeItem]:
+	var parents: Array[TreeItem]
+	var traversed_item: TreeItem = item
+	while traversed_item.get_parent() != get_root():
+		traversed_item = traversed_item.get_parent()
+		parents.append(traversed_item)
+	return parents
+
+
+func _get_flat_item_list_inner(item: TreeItem, new_flat_item_list: Array[TreeItem], depth: int = 0) -> void:
+	const MAX_RECURSION_DEPTH: int = 6
+	if depth >= MAX_RECURSION_DEPTH or item.get_child_count() == 0:
+		return
+	for child_item: TreeItem in item.get_children():
+		if child_item in hidden_items:
+			continue
+		new_flat_item_list.append(child_item)
+		_get_flat_item_list_inner(child_item, new_flat_item_list, depth + 1)
 
 
 func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
@@ -198,3 +251,20 @@ func _on_button_clicked(item: TreeItem, column: int, id: int, _mouse_button_inde
 	var layer: Layer = Editor.root.level.layers[layer_idx]
 	layer.hidden_in_editor = not is_item_button_toggled
 	item.set_button(column, id, VISIBLE_ICON if is_item_button_toggled else HIDDEN_ICON)
+
+
+func _on_search_box_editing_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		flat_item_list = get_flat_visible_item_list()
+
+
+func _on_search_box_text_changed(new_text: String) -> void:
+	filter_items(new_text)
+
+
+func _on_search_box_text_submitted(new_text: String) -> void:
+	pass # Replace with function body.
+
+
+func _on_confirm_pressed() -> void:
+	pass # Replace with function body.
