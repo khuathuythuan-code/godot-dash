@@ -262,12 +262,17 @@ func _on_search_box_text_changed(new_text: String) -> void:
 	filter_items(new_text)
 
 
-func _on_search_box_text_submitted(new_text: String) -> void:
-	pass # Replace with function body.
+func _on_search_box_text_submitted(layer_name: String) -> void:
+	search_box.clear()
+	Editor.root.level.create_layer(layer_name)
+	refresh(selection)
 
 
 func _on_confirm_pressed() -> void:
-	pass # Replace with function body.
+	var layer_name: String = search_box.text
+	search_box.clear()
+	Editor.root.level.create_layer(layer_name)
+	refresh(selection)
 
 
 func _on_inspector_manager_renamed_object(object: Node2D, new_name: String) -> void:
