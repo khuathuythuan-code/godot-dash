@@ -415,7 +415,7 @@ func select_all(merge_history_actions: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
 	for layer in level.layers:
-		if layer.hidden_in_editor:
+		if layer.hidden_in_editor or layer.locked:
 			continue
 		objects.append_array(layer.get_children().filter(only_node_2ds))
 	select(Selection.from_array(objects), merge_history_actions)
@@ -533,7 +533,7 @@ func _update_selection() -> void:
 		$SelectionZone \
 		.get_overlapping_areas() \
 		.map(get_object_parent) \
-		.filter(is_in_visible_layer),
+		.filter(is_in_editable_layer),
 	)
 	var selection_buffer: Selection = Selection.from_array(selection_buffer_array)
 	if Input.is_action_just_released(&"editor_selection_remove", true):
@@ -801,6 +801,6 @@ static func is_not_player(object: Node2D) -> bool:
 	return object is not Player
 
 
-static func is_in_visible_layer(object: Node2D) -> bool:
+static func is_in_editable_layer(object: Node2D) -> bool:
 	var object_parent: Node = object.get_parent()
-	return object_parent is Layer and not object_parent.hidden_in_editor
+	return object_parent is Layer and not object_parent.hidden_in_editor and not object_parent.locked

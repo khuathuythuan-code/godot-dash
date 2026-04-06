@@ -4,6 +4,13 @@ extends Tree
 const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/layers.svg")
 const VISIBLE_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityVisible.svg")
 const HIDDEN_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityHidden.svg")
+const LOCK_ICON: Texture2D = preload("res://assets/textures/icons/godot/Lock.svg")
+const UNLOCK_ICON: Texture2D = preload("res://assets/textures/icons/godot/Unlock.svg")
+
+enum LayerIcon {
+	VISIBILITY,
+	LOCK,
+}
 
 @export var search_box: LineEdit
 
@@ -159,6 +166,7 @@ func refresh(selected: Selection = selection) -> void:
 			layer_item.set_icon(0, LAYER_ICON)
 			layer_item.set_text(0, layer.name)
 			layer_item.add_button(0, VISIBLE_ICON)
+			layer_item.add_button(0, UNLOCK_ICON)
 		else:
 			layer_item = root.get_child(layer_idx)
 		layer_item.visible = true
@@ -291,11 +299,24 @@ func _on_button_clicked(item: TreeItem, column: int, id: int, _mouse_button_inde
 	if not is_item_layer:
 		return
 	var button_texture: Texture2D = item.get_button(column, id)
-	var is_item_button_toggled: bool = button_texture == HIDDEN_ICON
 	var layer_idx: int = item.get_index()
 	var layer: Layer = Editor.root.level.layers[layer_idx]
-	layer.hidden_in_editor = not is_item_button_toggled
-	item.set_button(column, id, VISIBLE_ICON if is_item_button_toggled else HIDDEN_ICON)
+	var on_state_texture: Texture2D
+	var off_state_texture: Texture2D
+	match id as LayerIcon:
+		LayerIcon.VISIBILITY:
+			on_state_texture = HIDDEN_ICON
+			off_state_texture = VISIBLE_ICON
+		LayerIcon.LOCK:
+			on_state_texture = LOCK_ICON
+			off_state_texture = UNLOCK_ICON
+	var is_item_button_toggled: bool = button_texture == on_state_texture
+	match id as LayerIcon:
+		LayerIcon.VISIBILITY:
+			layer.hidden_in_editor = not is_item_button_toggled
+		LayerIcon.LOCK:
+			layer.locked = not is_item_button_toggled
+	item.set_button(column, id, off_state_texture if is_item_button_toggled else on_state_texture)
 
 
 func _on_search_box_editing_toggled(toggled_on: bool) -> void:
