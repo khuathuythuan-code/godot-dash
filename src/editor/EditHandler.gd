@@ -802,5 +802,7 @@ static func is_not_player(object: Node2D) -> bool:
 
 
 static func is_in_editable_layer(object: Node2D) -> bool:
+	if object is Player:
+		return true
 	var object_parent: Node = object.get_parent()
 	return object_parent is Layer and not object_parent.hidden_in_editor and not object_parent.locked
