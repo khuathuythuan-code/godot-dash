@@ -52,8 +52,10 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var dropped_item_previous: TreeItem = dropped_item.get_prev()
 	var dropped_item_next: TreeItem = dropped_item.get_next()
 	var item_at_position: TreeItem = get_item_at_position(at_position)
+	var is_dropping_at_tree_end: bool = false
 	if not item_at_position:
 		item_at_position = get_last_tree_item()
+		is_dropping_at_tree_end = true
 	var is_cursor_closer_to_top = get_drop_section_at_position(at_position) == -1
 	# Reordering
 	var is_dropping_on_layer: bool = item_at_position.get_parent() == get_root()
@@ -109,6 +111,23 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 				reordered_object.reparent(layer)
 				layer.move_child(reordered_object, dropped_item_previous.get_index() + 1 if dropped_item_previous else 0)
 				path_ref.update_path()
+	else:
+		var layer: Layer = level.layers[dropped_item.get_index()]
+		var layer_name: String = layer.name
+		var new_layer_idx: int = item_at_position.get_index() if not is_dropping_at_tree_end else -1
+		do_method = func():
+			var layer_item_at_position: TreeItem = item_at_position if is_dropping_on_layer else item_at_position.get_parent()
+			level.move_layer(layer_name, new_layer_idx)
+			if is_cursor_closer_to_top:
+				dropped_item.move_before(layer_item_at_position)
+			else:
+				dropped_item.move_after(layer_item_at_position)
+		undo_method = func():
+			if dropped_item_previous:
+				dropped_item.move_after(dropped_item_previous)
+			else:
+				dropped_item.move_before(dropped_item_next)
+			level.move_layer(layer_name, dropped_item_previous.get_index() + 1 if dropped_item_previous else 0)
 
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Reordered objects")

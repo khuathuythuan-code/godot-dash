@@ -224,6 +224,15 @@ func remove_layer(layer_name: String) -> bool:
 	return true
 
 
+func move_layer(layer_name: String, new_layer_index: int) -> void:
+	var layer: Layer = get_node_or_null(layer_name)
+	if not layer:
+		return
+	layers.remove_at(layer.get_index())
+	layers.insert(new_layer_index, layer)
+	move_child(layer, new_layer_index)
+
+
 func start_level() -> void:
 	if get_tree().paused:
 		await LevelManager.pause_menu.unpaused
