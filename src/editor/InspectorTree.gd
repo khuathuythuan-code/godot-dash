@@ -10,7 +10,7 @@ const HIDDEN_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVis
 var selection: Selection
 var hidden_items: Array[TreeItem]
 var flat_item_list: Array[TreeItem]
-var selected_layers: PackedInt64Array
+var selected_layers_count: int
 
 
 func _ready() -> void:
@@ -150,6 +150,7 @@ func refresh(selected: Selection = selection) -> void:
 	var root = get_root()
 	var level: Level = Editor.root.level
 	var layers: Array[Layer] = level.layers
+	selected_layers_count = 0
 	for layer_idx: int in layers.size():
 		var layer: Layer = layers[layer_idx]
 		var layer_item: TreeItem
@@ -161,8 +162,8 @@ func refresh(selected: Selection = selection) -> void:
 		else:
 			layer_item = root.get_child(layer_idx)
 		layer_item.visible = true
-		if layer.get_index() in selected_layers:
-			layer_item.select(0)
+		if layer_item.is_selected(0):
+			selected_layers_count += 1
 		for object_idx: int in layer.get_child_count():
 			var object: Node2D = layer.get_child(object_idx)
 			var object_item: TreeItem = layer_item.get_child(object_idx) if object_idx < layer_item.get_child_count() else layer_item.create_child()
@@ -185,11 +186,28 @@ func refresh(selected: Selection = selection) -> void:
 			var overflowing_item: TreeItem = root.get_child(i + level.get_child_count())
 			overflowing_item.visible = false
 			hidden_items.append(overflowing_item)
-	selected_layers.clear()
+
+	if selected_layers_count == 1:
+		var new_active_layer_idx: int = get_next_selected(null).get_index()
+		Editor.version_history.create_action("Set active layer to %s" % root.get_child(new_active_layer_idx).get_text(0))
+		Editor.version_history.add_do_method(set_active_layer.bind(level.active_layer_idx, new_active_layer_idx))
+		Editor.version_history.add_undo_method(set_active_layer.bind(new_active_layer_idx, level.active_layer_idx))
+		Editor.version_history.commit_action()
 
 
-func bulk_update_selection() -> void:
+func set_active_layer(previous_layer_idx: int, new_layer_idx: int) -> void:
+	var root: TreeItem = get_root()
+	var level: Level = Editor.root.level
+	root.get_child(previous_layer_idx).clear_custom_bg_color(0)
+	level.active_layer_idx = new_layer_idx
+	root.get_child(new_layer_idx).set_custom_bg_color(0, Color.WHITE, true)
+
+
+func bulk_update_selection(is_caller_selected: bool) -> void:
 	var edit_handler: EditHandler = Editor.root.edit_handler
+	if selection.is_identical(edit_handler.selection) and is_caller_selected:
+		refresh()
+		return
 	edit_handler.select(selection)
 
 
@@ -265,9 +283,7 @@ func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
 			selection = selection.union(Selection.from_object(object))
 		else:
 			selection = selection.difference(Selection.from_object(object))
-	elif selected and item.get_index() not in selected_layers:
-		selected_layers.append(item.get_index())
-	bulk_update_selection.call_deferred()
+	bulk_update_selection.call_deferred(selected)
 
 
 func _on_button_clicked(item: TreeItem, column: int, id: int, _mouse_button_index: int) -> void:

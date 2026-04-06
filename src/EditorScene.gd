@@ -81,6 +81,7 @@ func _ready() -> void:
 		Editor.clipboard = Selection.new()
 		LevelManager.game_scene.add_loaded_level(level)
 		inspector_tree.refresh(edit_handler.selection)
+		inspector_tree.set_active_layer(0, 0)
 
 	if not $EditHandler.selection.is_empty():
 		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
