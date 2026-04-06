@@ -6241,7 +6241,7 @@ icon_alignment = 1
 [node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=332766175]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/inner_item_margin_left = 4
+focus_mode = 3
 hide_root = true
 select_mode = 2
 auto_tooltip = false
