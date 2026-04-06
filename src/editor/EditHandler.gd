@@ -248,43 +248,31 @@ func scale_selection(
 
 
 func shift_z_index(increase: bool):
+	var top_to_bottom := func(a: Node2D, b: Node2D): return a.get_index() > b.get_index()
 	var increase_object_z_index := func(_selection: Selection):
-		for _object: Node2D in _selection.to_array():
-			_object.z_index += 1
+		var sorted_selection: Array[Node2D] = _selection.to_array()
+		sorted_selection.sort_custom(top_to_bottom)
+		for _object: Node2D in sorted_selection:
+			var siblings_count: int = _object.get_parent().get_child_count()
+			var new_z_index: int = _object.get_index() + 1
+			_object.get_parent().move_child(_object, clampi(new_z_index, 0, siblings_count))
 		z_index_changed.emit(1)
 	var decrease_object_z_index := func(_selection: Selection):
-		for _object: Node2D in _selection.to_array():
-			_object.z_index -= 1
+		var sorted_selection: Array[Node2D] = _selection.to_array()
+		sorted_selection.sort_custom(top_to_bottom)
+		for _object: Node2D in sorted_selection:
+			var siblings_count: int = _object.get_parent().get_child_count()
+			var new_z_index: int = _object.get_index() - 1
+			_object.get_parent().move_child(_object, clampi(new_z_index, 0, siblings_count))
 		z_index_changed.emit(-1)
-	# Bulk checks
-	# Increase
-	var can_increase_z_index := func(_object: Node2D):
-		return _object.z_index < RenderingServer.CANVAS_ITEM_Z_MAX
-	var increase_z_index_warns := func(_warns: int, _object: Node2D):
-		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MAX else 0)
-	# Decrease
-	var can_decrease_z_index := func(_object: Node2D):
-		return _object.z_index > RenderingServer.CANVAS_ITEM_Z_MIN
-	var decrease_z_index_warns := func(_warns: int, _object: Node2D):
-		return _warns + (1 if _object.z_index == RenderingServer.CANVAS_ITEM_Z_MIN else 0)
 	# Commit
 	var selection_snapshot: Selection = selection.clone()
-	var warns: int = selection_snapshot.fold_generic(increase_z_index_warns if increase else decrease_z_index_warns, 0)
-	selection_snapshot = selection_snapshot.filter(can_increase_z_index if increase else can_decrease_z_index)
 	var do_shift: Callable = increase_object_z_index if increase else decrease_object_z_index
 	var undo_shift: Callable = decrease_object_z_index if increase else increase_object_z_index
 	Editor.version_history.create_action("%s Z index" % "Increased" if increase else "Decreased")
 	Editor.version_history.add_do_method(do_shift.bind(selection_snapshot))
 	Editor.version_history.add_undo_method(undo_shift.bind(selection_snapshot))
 	Editor.version_history.commit_action()
-	if warns > 0:
-		Toasts.warning(
-			"%s Z index is %s (%s affected objects)" % [
-				"Maximum" if increase else "Minimum",
-				RenderingServer.CANVAS_ITEM_Z_MAX if increase else RenderingServer.CANVAS_ITEM_Z_MIN,
-				warns,
-			],
-		)
 
 
 func duplicate_selection() -> void:
@@ -294,9 +282,11 @@ func duplicate_selection() -> void:
 	var do_duplicate_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
-				if _object.is_inside_tree() or _object is Player:
+				var layer_id: int = _object.get_meta(Constants.LAYER_META)
+				if not is_instance_id_valid(layer_id) or _object.is_inside_tree() or _object is Player:
 					return
-				level.add_child(_object, true)
+				var layer: Layer = instance_from_id(layer_id)
+				layer.add_child(_object, true)
 				NodeUtils.change_owner_recursive(_object, level)
 		)
 
@@ -341,9 +331,11 @@ func paste_selection() -> void:
 	var do_duplicate_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
-				if _object.is_inside_tree() or _object is Player:
+				var layer_id: int = _object.get_meta(Constants.LAYER_META)
+				if not is_instance_id_valid(layer_id) or _object.is_inside_tree() or _object is Player:
 					return
-				level.add_child(_object, true)
+				var layer: Layer = instance_from_id(layer_id)
+				layer.add_child(_object, true)
 				NodeUtils.change_owner_recursive(_object, level)
 		)
 
@@ -379,17 +371,32 @@ func delete_selection() -> void:
 
 	var do_delete_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
+			func(_object: Node2D) -> void:
 				if _object is not Player:
+					_object.set_meta(&"index_in_layer", _object.get_index())
 					_object.get_parent().remove_child(_object)
 		)
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
+			func(_object: Node2D) -> void:
 				if _object is not Player:
-					level.add_child(_object, true)
+					var layer_id: int = _object.get_meta(Constants.LAYER_META)
+					if not is_instance_id_valid(layer_id):
+						return
+					var layer: Layer = instance_from_id(layer_id)
+					layer.add_child(_object)
 					NodeUtils.change_owner_recursive(_object, level)
 		)
+		_selection.for_each(
+			func(_object: Node2D) -> void:
+				var layer_id: int = _object.get_meta(Constants.LAYER_META)
+				if not is_instance_id_valid(layer_id):
+					return
+				var layer: Layer = instance_from_id(layer_id)
+				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1)),
+			true,
+		)
+
 	var selection_snapshot: Selection = selection.clone()
 	Editor.version_history.create_action("Deleted objects")
 	Editor.version_history.add_do_method(do_delete_selection.bind(selection_snapshot))
@@ -407,7 +414,10 @@ func clear_selection(merge_history_actions: bool = false) -> void:
 func select_all(merge_history_actions: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
-	objects.assign(level.get_children().filter(only_node_2ds))
+	for layer in level.layers:
+		if layer.hidden_in_editor or layer.locked:
+			continue
+		objects.append_array(layer.get_children().filter(only_node_2ds))
 	select(Selection.from_array(objects), merge_history_actions)
 
 
@@ -518,17 +528,21 @@ func _update_selection() -> void:
 				select(Selection.EMPTY())
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
-	var selection_buffer: Selection
+	var selection_buffer_array: Array[Node2D]
+	selection_buffer_array.assign(
+		$SelectionZone \
+		.get_overlapping_areas() \
+		.map(get_object_parent) \
+		.filter(is_in_editable_layer),
+	)
+	var selection_buffer: Selection = Selection.from_array(selection_buffer_array)
 	if Input.is_action_just_released(&"editor_selection_remove", true):
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		deselect(selection_buffer)
 		_reset_selection_zone(true)
 	elif (Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size > Vector2.ONE * 2) or Input.is_action_just_released(&"editor_add_swipe", true):
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		select(selection.union(selection_buffer))
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
-		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		_reset_selection_zone(true)
 	selection.remove(level)
 
@@ -597,7 +611,6 @@ func _clone_object(object: Node2D) -> Node:
 	var packer := PackedScene.new()
 	packer.pack(object)
 	var clone := packer.instantiate()
-	level.add_child(clone, true)
 	NodeUtils.change_owner_recursive(object, level)
 	NodeUtils.change_owner_recursive(clone, level)
 	clone.scene_file_path = object.scene_file_path
@@ -786,3 +799,8 @@ static func get_object_selection_collider(object: CollisionObject2D) -> Collisio
 
 static func is_not_player(object: Node2D) -> bool:
 	return object is not Player
+
+
+static func is_in_editable_layer(object: Node2D) -> bool:
+	var object_parent: Node = object.get_parent()
+	return object_parent is Layer and not object_parent.hidden_in_editor and not object_parent.locked

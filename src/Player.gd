@@ -447,7 +447,7 @@ func _get_jump_state() -> int:
 		jump_state = 1 if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling())) else -1
 
 	if get_viewport().gui_get_hovered_control() != null:
-		if get_viewport().gui_get_hovered_control().name == "EditorViewport":
+		if get_viewport().gui_get_hovered_control() == Editor.viewport:
 			return jump_state
 		else:
 			return 0 if LevelManager.platformer else -1

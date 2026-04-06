@@ -4,7 +4,7 @@ extends Node
 signal object_deleted(object: Node2D)
 
 @export var game_scene: Node2D
-@export var editor_viewport: Control
+@export var editor_viewport: EditorViewport
 @export var edit_handler: EditHandler
 
 var placed_object_rotation_degrees: float
@@ -19,30 +19,31 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			placed_object_rotation_degrees = 0.0
 		previous_pressed_button = pressed_button
 		var block_palette_ref: BlockPaletteRef
-		if pressed_button != null:
+		if pressed_button:
 			block_palette_ref = NodeUtils.get_child_of_type(pressed_button, BlockPaletteRef) as BlockPaletteRef
 		if (
-			block_palette_ref != null
+			block_palette_ref
 			and not texture_variation_overlapping(placed_objects_collider, block_palette_ref.type, block_palette_ref.id)
 			and (
 				Input.is_action_pressed(&"editor_add", false)
 				or Config.is_touch_screen
 				and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
-				and not Editor.swipe )
+				and not Editor.swipe
+			)
 		):
-			if pressed_button != null and (not Config.is_touch_screen or Editor.delete == false):
+			if pressed_button and not (Config.is_touch_screen and Editor.delete):
 				# Create object
 				var object: Node2D
 				object = block_palette_ref.object.instantiate()
 
-				if pressed_button.has_meta("texture_override"):
-					var override = pressed_button.get_meta("texture_override") as TextureOverride
+				if pressed_button.has_meta(&"texture_override"):
+					var override = pressed_button.get_meta(&"texture_override") as TextureOverride
 					if override.prefab_override:
 						object.queue_free()
 						object = override.prefab_override.instantiate()
-					if override.base != null:
+					if override.base:
 						object.get_node(^"Base").texture = override.base
-					if override.detail != null:
+					if override.detail:
 						object.get_node(^"Detail").texture = override.detail
 					object.name = override.name
 					var id: int = block_palette_ref.id
@@ -54,19 +55,25 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object.position = (level.get_local_mouse_position() + grid_offset_to_level_origin).snapped(editor_grid.cell_size) - grid_offset_to_level_origin
 				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
+				var active_layer: Layer = Editor.root.level.layers[Editor.root.level.active_layer_idx]
+				object.set_meta(Constants.LAYER_META, active_layer.get_instance_id())
+
 				# Version history
+				var path_ref: PathRef = PathRef.new(object)
+
 				var add_object := func(_path_ref: PathRef):
 					var _object: Node = _path_ref.to_ref()
-					Editor.root.level.add_child(_object, true)
+					active_layer.add_child(_object, true)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
 				var remove_object := func(_path_ref: PathRef):
 					var _object: Node = _path_ref.to_ref()
 					_object.get_parent().remove_child(_object)
-				var path_ref := PathRef.new(object)
+
 				Editor.version_history.create_action("Placed object " + object.name)
 				Editor.version_history.add_do_method(add_object.bind(path_ref))
 				Editor.version_history.add_undo_method(remove_object.bind(path_ref))
 				Editor.version_history.commit_action()
+
 				add_hsv_watchers(object, level)
 				edit_handler.select(Selection.from_object(object), true)
 
@@ -76,8 +83,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		elif (
 			(
 				Input.is_action_pressed(&"editor_remove", false)
-				or Config.is_touch_screen
-				and Editor.delete
+				or (Config.is_touch_screen and Editor.delete)
 			)
 			and placed_objects_collider.has_overlapping_areas()
 		):
@@ -86,6 +92,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
 				object_deleted.emit(overlapping_areas[-1])
 				var object := get_area(overlapping_areas[-1])
+				var index: int = object.get_index()
 
 				# Version history
 				var delete_object := func(_path_ref: PathRef):
@@ -93,14 +100,21 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 					_object.get_parent().remove_child(_object)
 				var restore_object := func(_path_ref: PathRef):
 					var _object: Node = _path_ref.to_ref()
-					Editor.root.level.add_child(_object, true)
+					var layer_id: int = _object.get_meta(Constants.LAYER_META)
+					if not is_instance_id_valid(layer_id):
+						return
+					var layer: Layer = instance_from_id(layer_id)
+					layer.add_child(_object)
+					layer.move_child(_object, index)
 					NodeUtils.change_owner_recursive(_object, Editor.root.level)
+
 				var path_ref := PathRef.new(object)
 				Editor.version_history.create_action("Deleted object " + object.name)
 				Editor.version_history.add_do_method(delete_object.bind(path_ref))
 				Editor.version_history.add_undo_method(restore_object.bind(path_ref))
 				Editor.version_history.commit_action()
 				edit_handler.deselect(Selection.from_object(object), true)
+				object_deleted.emit(object)
 
 
 func get_area(area: Area2D) -> Node:

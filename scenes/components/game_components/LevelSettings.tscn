@@ -112,7 +112,7 @@ layout_mode = 2
 
 [node name="FontPreview" type="Label" parent="Assets/VBoxContainer/PanelContainer/MarginContainer" unique_id=967719313]
 layout_mode = 2
-text = "The quick brown fox jumped over the lazy dog. 1234567890"
+text = "The quick brown fox jumps over the lazy dog. 1234567890"
 label_settings = SubResource("LabelSettings_e6gxs")
 autowrap_mode = 3
 
@@ -229,3 +229,4 @@ config_property = &"flashing_lights"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="value_changed" from="Assets/VBoxContainer/Default Font" to="." method="_on_default_font_value_changed"]

@@ -101,6 +101,8 @@ const START_SPEED: Array[float] = [
 
 var song_player: AudioStreamPlayer
 var stopwatch: Stopwatch
+var layers: Array[Layer]
+var active_layer_idx: int
 var camera_rect: Rect2
 var music_scale: float = 1.0
 var required_songs: Dictionary[String, int] # HashMap<SongPath, SongUsers>
@@ -130,10 +132,17 @@ var line_color: Color = Constants.DEFAULT_LINE_COLOR:
 
 
 func _ready() -> void:
+	if layers.is_empty():
+		var new_layer: Layer = Layer.new()
+		new_layer.name = "Unnamed Layer"
+		layers.append(new_layer)
+		add_child(new_layer)
+		if Editor.in_editor:
+			active_layer_idx = 0
 	stopwatch = Stopwatch.new()
 	stopwatch.name = "Stopwatch"
 	stopwatch.paused = true
-	add_child(stopwatch, false, INTERNAL_MODE_FRONT)
+	add_child(stopwatch, false, INTERNAL_MODE_BACK)
 	AssetManager.load_song_threaded_request(song_path)
 	song_player = AudioStreamPlayer.new()
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
@@ -142,7 +151,7 @@ func _ready() -> void:
 	LevelManager.level_song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
-	add_child(song_player, false, INTERNAL_MODE_FRONT)
+	add_child(song_player, false, INTERNAL_MODE_BACK)
 
 
 func _process(_delta: float) -> void:
@@ -178,6 +187,50 @@ func prepare_external_data() -> void:
 	LevelManager.player.gravity_multiplier = start_gravity_multiplier
 	LevelManager.player.gravity_flip = start_gravity_flip
 	LevelManager.player_camera.position = LevelManager.player.position
+
+
+func create_layer(layer_name: String) -> Layer:
+	var new_layer: Layer = Layer.new()
+	new_layer.name = layer_name
+
+	var path_ref: PathRef = PathRef.new(new_layer)
+	var add_layer_to_tree := func(_path_ref: PathRef):
+		var _layer: Layer = _path_ref.to_ref()
+		add_child(_layer, true)
+		layers.append(_layer)
+		_layer.owner = self
+		if Editor.in_editor:
+			Editor.root.inspector_tree.refresh()
+	var remove_layer_from_tree := func(_path_ref: PathRef):
+		var _layer: Layer = _path_ref.to_ref()
+		layers.erase(_layer)
+		remove_child(_layer)
+		if Editor.in_editor:
+			Editor.root.inspector_tree.refresh()
+
+	Editor.version_history.create_action("Created layer " + layer_name)
+	Editor.version_history.add_do_method(add_layer_to_tree.bind(path_ref))
+	Editor.version_history.add_undo_method(remove_layer_from_tree.bind(path_ref))
+	Editor.version_history.commit_action()
+
+	return new_layer
+
+
+func remove_layer(layer_name: String) -> bool:
+	var layer: Layer = get_node_or_null(layer_name)
+	if not layer:
+		return false
+	layer.queue_free()
+	return true
+
+
+func move_layer(layer_name: String, new_layer_index: int) -> void:
+	var layer: Layer = get_node_or_null(layer_name)
+	if not layer:
+		return
+	layers.remove_at(layer.get_index())
+	layers.insert(new_layer_index, layer)
+	move_child(layer, new_layer_index)
 
 
 func start_level() -> void:
@@ -262,7 +315,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"enter_effect": enter_effect,
 		"color_channels": color_channels.map(ColorChannelData.to_data),
 		"duration": duration,
-		"objects": [],
+		"layers": [],
+		"active_layer_idx": active_layer_idx,
 		"player_data": {
 			"groups": player.get_groups(),
 			"hsv": player.get_node(^"HSVWatcher").to_data(),
@@ -271,35 +325,45 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 	}
 	if reason == SerializeReason.PRACTICE_ATTEMPT:
 		data.practice_data = _get_practice_data()
-	var objects: Array[Node2D]
-	objects.assign(get_children().filter(func(node: Node): return node is Node2D))
-	for object: Node2D in objects:
-		var object_data: Dictionary = {
-			"name": object.name,
-			"scene_file_path": object.scene_file_path.trim_prefix("res://"),
-			"transform": Serialize.Transform2D(object.transform),
-			"groups": object.get_groups(),
-			"color_channels": { },
-			"hsv": object.get_node(^"HSVWatcher").to_data(),
-			"children_hsv": [],
-			"z_index": object.z_index,
+	for layer: Layer in layers:
+		var layer_data: Dictionary = {
+			"name": layer.name,
+			"objects": [],
 		}
-		_set_object_color_channel_data(object, object_data)
-		if object.has_meta(&"texture_override"):
-			object_data.texture_override = object.get_meta(&"texture_override")
-		if object.has_meta(&"attributes"):
-			object_data.attributes = object.get_meta(&"attributes")
-		if object.has_meta(&"physics"):
-			object_data.physics = NodeUtils.get_child_of_type(object, PhysicsObjectComponent).get_data()
-		if object is Interactable:
-			object_data.components = object.components_to_data(reason)
-			object_data.markers = object.markers_to_data()
-		for child in object.get_children():
-			var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
-			if hsv_watcher:
-				object_data.children_hsv.append(hsv_watcher.to_data())
-		data.objects.append(object_data)
+		var objects: Array[Node2D]
+		objects.assign(layer.get_children().filter(func(node: Node): return node is Node2D))
+		for object: Node2D in objects:
+			layer_data.objects.append(_serialize_object(object, reason))
+		data.layers.append(layer_data)
 	return data
+
+
+func _serialize_object(object: Node2D, reason: SerializeReason) -> Dictionary:
+	var object_data: Dictionary = {
+		"name": object.name,
+		"scene_file_path": object.scene_file_path.trim_prefix("res://"),
+		"transform": Serialize.Transform2D(object.transform),
+		"groups": object.get_groups(),
+		"color_channels": { },
+		"hsv": object.get_node(^"HSVWatcher").to_data(),
+		"children_hsv": [],
+		"z_index": object.z_index,
+	}
+	_set_object_color_channel_data(object, object_data)
+	if object.has_meta(&"texture_override"):
+		object_data.texture_override = object.get_meta(&"texture_override")
+	if object.has_meta(&"attributes"):
+		object_data.attributes = object.get_meta(&"attributes")
+	if object.has_meta(&"physics"):
+		object_data.physics = NodeUtils.get_child_of_type(object, PhysicsObjectComponent).get_data()
+	if object is Interactable:
+		object_data.components = object.components_to_data(reason)
+		object_data.markers = object.markers_to_data()
+	for child in object.get_children():
+		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
+		if hsv_watcher:
+			object_data.children_hsv.append(hsv_watcher.to_data())
+	return object_data
 
 
 func _set_object_color_channel_data(object: Node2D, object_data: Dictionary) -> void:
@@ -369,7 +433,7 @@ static func from_data(data: Dictionary) -> Level:
 	# start_internal_gamemode and start_displayed_gamemode are set on the player
 	# in their respective setters.
 
-	if data.has("practice_data"):
+	if "practice_data" in data:
 		var practice_data: Dictionary = data.practice_data
 		practice_data.replay.data = practice_data.replay.data.slice(0, practice_data.physics_tick)
 		LevelManager.player.velocity = practice_data.player_velocity
@@ -377,75 +441,92 @@ static func from_data(data: Dictionary) -> Level:
 		LevelManager.player.replay_physics_tick = practice_data.physics_tick
 
 	var resource_cache := ResourceCache.new()
-	for object_data: Dictionary in data.objects:
-		var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
-		if prefab == null:
-			push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
-			continue
-		if Config.ldm and not Editor.in_editor and object_data.has("attributes"):
-			if object_data.attributes.has("LDMAttribute.gd"):
-				continue
-		var object: Node2D = prefab.instantiate()
-		object.name = object_data.name
-		object.transform = Deserialize.Transform2D(object_data.transform)
-		object.z_index = object_data.z_index
-		level.add_child(object)
-		# Groups
-		for group: String in object_data.groups:
-			object.add_to_group(group)
-		# Color channels
-		var base: Node2D = object.get_node_or_null(^"Base")
-		var detail: Node2D = object.get_node_or_null(^"Detail")
-		PlaceHandler.add_hsv_watchers(object, level)
-		if object_data.color_channels is String or object_data.color_channels is StringName:
-			BaseDetailHandler.use_hsv_watcher(object).add_to_group(object_data.color_channels)
-		elif object_data.color_channels is Dictionary and not object_data.color_channels.is_empty():
-			if object_data.color_channels.has("base"):
-				BaseDetailHandler.use_hsv_watcher(base).add_to_group(object_data.color_channels.base)
-			if object_data.color_channels.has("detail"):
-				BaseDetailHandler.use_hsv_watcher(detail).add_to_group(object_data.color_channels.detail)
-		# HSV
-		object.get_node(^"HSVWatcher").use_data(object_data.hsv)
-		for child in object.get_children():
-			if object_data.children_hsv.size() == 0:
-				break
-			var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
-			if hsv_watcher:
-				hsv_watcher.use_data(object_data.children_hsv[0])
-				object_data.children_hsv.remove_at(0)
-		# Texture Override
-		if object_data.has("texture_override"):
-			var override_data: Dictionary = object_data.texture_override
-			if override_data.has("base"):
-				base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
-			if override_data.has("detail"):
-				detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
-			object.get_node(^"EditorSelectionCollider").id = override_data.id
-			object.set_meta(&"texture_override", override_data)
-		# Attributes
-		if object_data.has("attributes"):
-			var attributes: Array[String]
-			attributes.assign(object_data.attributes)
-			for attribute: String in attributes:
-				var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
-				NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
-		# Physics
-		if object_data.has("physics"):
-			NodeUtils.get_child_of_type(object, PhysicsObjectComponent).use_data(object_data.physics)
-		# Interactables
-		if object is Interactable:
-			if object_data.has("components"):
-				var components: Dictionary[String, Dictionary]
-				components.assign(object_data.components)
-				object.use_component_data(components)
-			if object_data.has("markers"):
-				var markers: Array[String]
-				markers.assign(object_data.markers)
-				object.markers_from_data(markers)
-		# Enter Effect
-		for child: Node in object.get_children():
-			apply_enter_effect(child)
+	for layer_data: Dictionary in data.layers:
+		var layer: Layer = Layer.new()
+		layer.name = layer_data.name
+		for object_data: Dictionary in layer_data.objects:
+			var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
+			layer.add_child(object)
+			object.set_meta(Constants.LAYER_META, layer.get_instance_id())
+			deserialize_data_to_object(object_data, object, level, resource_cache)
+		level.layers.append(layer)
+		level.add_child(layer)
+	level.active_layer_idx = data.active_layer_idx
+
 	return level
+
+
+static func instantiate_object_from_data(object_data: Dictionary, resource_cache: ResourceCache) -> Node2D:
+	var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
+	if not prefab:
+		push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
+		return
+	if Config.ldm and not Editor.in_editor and object_data.has("attributes"):
+		if object_data.attributes.has("LDMAttribute.gd"):
+			return
+	var object: Node2D = prefab.instantiate()
+	object.name = object_data.name
+	object.transform = Deserialize.Transform2D(object_data.transform)
+	object.z_index = object_data.z_index
+	return object
+
+
+static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, level: Level, resource_cache: ResourceCache) -> void:
+	# Groups
+	for group: String in object_data.groups:
+		object.add_to_group(group)
+	# Color channels
+	var base: Node2D = object.get_node_or_null(^"Base")
+	var detail: Node2D = object.get_node_or_null(^"Detail")
+	PlaceHandler.add_hsv_watchers(object, level)
+	if object_data.color_channels is String or object_data.color_channels is StringName:
+		BaseDetailHandler.use_hsv_watcher(object).add_to_group(object_data.color_channels)
+	elif object_data.color_channels is Dictionary and not object_data.color_channels.is_empty():
+		if object_data.color_channels.has("base"):
+			BaseDetailHandler.use_hsv_watcher(base).add_to_group(object_data.color_channels.base)
+		if object_data.color_channels.has("detail"):
+			BaseDetailHandler.use_hsv_watcher(detail).add_to_group(object_data.color_channels.detail)
+	# HSV
+	object.get_node(^"HSVWatcher").use_data(object_data.hsv)
+	for child in object.get_children():
+		if object_data.children_hsv.size() == 0:
+			break
+		var hsv_watcher: HSVWatcher = NodeUtils.get_child_of_type(child, HSVWatcher)
+		if hsv_watcher:
+			hsv_watcher.use_data(object_data.children_hsv[0])
+			object_data.children_hsv.remove_at(0)
+	# Texture Override
+	if "texture_override" in object_data:
+		var override_data: Dictionary = object_data.texture_override
+		if "base" in override_data:
+			base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
+		if "detail" in override_data:
+			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
+		object.get_node(^"EditorSelectionCollider").id = override_data.id
+		object.set_meta(&"texture_override", override_data)
+	# Attributes
+	if "attributes" in object_data:
+		var attributes: Array[String]
+		attributes.assign(object_data.attributes)
+		for attribute: String in attributes:
+			var attribute_script: Script = resource_cache.get_or_load("%s/%s" % [Attribute.ATTRIBUTE_PATH_ROOT, attribute])
+			NodeUtils.get_node_or_add(object, str(attribute_script.get_global_name()), attribute_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
+	# Physics
+	if "physics" in object_data:
+		NodeUtils.get_child_of_type(object, PhysicsObjectComponent).use_data(object_data.physics)
+	# Interactables
+	if object is Interactable:
+		if "components" in object_data:
+			var components: Dictionary[String, Dictionary]
+			components.assign(object_data.components)
+			object.use_component_data(components)
+		if "markers" in object_data:
+			var markers: Array[String]
+			markers.assign(object_data.markers)
+			object.markers_from_data(markers)
+	# Enter Effect
+	for child: Node in object.get_children():
+		apply_enter_effect(child)
 
 
 static func apply_enter_effect(object_child: Node) -> void:

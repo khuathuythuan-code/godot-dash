@@ -13,6 +13,8 @@ enum EditorAction {
 @export var block_palette_button_group: ButtonGroup
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
+@export var inspector_tree: InspectorTree
+@export var inspector_manager: InspectorManager
 
 var level: Level:
 	set(value):
@@ -30,7 +32,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	Editor.root = self
-	Editor.viewport = %EditorViewport
+	Editor.viewport = %Viewport
 
 	if SceneManager.from_title_screen() or SceneManager.from_level():
 		$GameScene.fade_screen.fade_out()
@@ -46,8 +48,8 @@ func _ready() -> void:
 	LevelManager.attempt = 1
 	LevelManager.level_playing = false
 	$EditorCamera.enabled = true
-	%EditorModes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
-	%SidePanel.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
+	%Modes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
+	%Inspector.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
 	%RenderModes.show()
 	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
 	$GameScene/PlayerCamera.enabled = false
@@ -62,7 +64,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
-	$EditHandler.editor_modes = %EditorModes
+	$EditHandler.editor_modes = %Modes
 	%MenuBarContainer.show()
 	LevelManager.touchscreen_controls.hide()
 
@@ -79,6 +81,8 @@ func _ready() -> void:
 		level.name = "New level"
 		Editor.clipboard = Selection.new()
 		LevelManager.game_scene.add_loaded_level(level)
+		inspector_tree.refresh(edit_handler.selection)
+		inspector_tree.set_active_layer(0, 0)
 
 	if not $EditHandler.selection.is_empty():
 		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
@@ -95,9 +99,11 @@ func _physics_process(_delta: float) -> void:
 	$GameScene.pause_menu.suspended = level_was_modified()
 
 	if (
-		%EditorModes.get_current_tab_control().name == "Place"
-		and (Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true)
-			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true) )
+		%Modes.get_current_tab_control().name == "Place"
+		and (
+			Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true)
+			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true)
+		)
 	):
 		$PlaceHandler.handle_place(block_palette_button_group, placed_objects_collider, level)
 
@@ -112,11 +118,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		%View.toggle_maximize_viewport()
 	if not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
 		if event.is_action_pressed(&"editor_place_mode"):
-			%EditorModes.current_tab = 0
+			%Modes.current_tab = 0
 		elif event.is_action_pressed(&"editor_edit_mode"):
-			%EditorModes.current_tab = 1
+			%Modes.current_tab = 1
 		elif event.is_action_pressed(&"editor_selection_filters_mode"):
-			%EditorModes.current_tab = 2
+			%Modes.current_tab = 2
 
 
 func _notification(what: int) -> void:
@@ -165,11 +171,10 @@ func start_playtest() -> void:
 	Editor.level_data_snapshot = level.to_data()
 	Editor.snapshot.pack(self)
 	%MenuBarContainer.hide()
-	%EditorModes.hide()
-	%SidePanel.hide()
+	%Modes.hide()
+	%Inspector.hide()
 	%RenderModes.hide()
-	%LevelSettings.hide()
-	%EditorViewport.mouse_filter = MOUSE_FILTER_STOP
+	%Viewport.mouse_filter = MOUSE_FILTER_STOP
 	$GameScene/PercentageLayer.show()
 	$GameScene/EditorGridParallax/EditorGrid.visible = not Config.hide_grid_on_playtest
 	$GameScene.pause_menu.practice_button.show()
@@ -190,7 +195,6 @@ func stop_playtest() -> void:
 	_ready() # sets `level`
 	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	new_player.global_position = level.start_position
-	%LevelSettings.refresh_saveloads(level)
 	NodeUtils.free_children($GameScene.checkpoint_parent)
 	$GameScene.pause_menu.practice_button.hide()
 	$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)

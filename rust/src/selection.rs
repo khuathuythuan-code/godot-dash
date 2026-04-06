@@ -35,10 +35,7 @@ impl Selection {
     /// Creates a [Selection] and fill it with the array's objects.
     fn from_array(array: Array<Gd<Node2D>>) -> Gd<Self> {
         Gd::from_object(Self {
-            inner: array
-                .iter_shared()
-                .map(|node| PathRef::from_ref(node))
-                .collect(),
+            inner: array.iter_shared().map(PathRef::from_ref).collect(),
         })
     }
     #[func]
@@ -251,12 +248,22 @@ impl Selection {
     }
     #[func]
     /// Runs `method` on each element in the selection.
-    fn for_each(&mut self, method: Callable) {
-        self.inner
-            .iter()
-            .flat_map(|path_ref| path_ref.clone().into_ref())
-            .for_each(|node_ref| {
-                method.call(vslice![node_ref]);
-            });
+    fn for_each(&mut self, method: Callable, #[opt(default = false)] reverse: bool) {
+        if reverse {
+            self.inner
+                .iter()
+                .rev()
+                .flat_map(|path_ref| path_ref.clone().into_ref())
+                .for_each(|node_ref| {
+                    method.call(vslice![node_ref]);
+                });
+        } else {
+            self.inner
+                .iter()
+                .flat_map(|path_ref| path_ref.clone().into_ref())
+                .for_each(|node_ref| {
+                    method.call(vslice![node_ref]);
+                });
+        }
     }
 }
