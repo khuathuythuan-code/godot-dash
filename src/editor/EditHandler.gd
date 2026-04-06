@@ -414,7 +414,8 @@ func clear_selection(merge_history_actions: bool = false) -> void:
 func select_all(merge_history_actions: bool = false) -> void:
 	var only_node_2ds := func(object): return object is Node2D
 	var objects: Array[Node2D]
-	objects.assign(level.get_children().filter(only_node_2ds))
+	for layer in level.layers:
+		objects.append_array(layer.get_children().filter(only_node_2ds))
 	select(Selection.from_array(objects), merge_history_actions)
 
 
