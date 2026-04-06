@@ -736,12 +736,6 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khfr8"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2efnh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ig1n5"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1p5x"]
 content_margin_left = 4.0
 content_margin_top = 4.0
@@ -753,6 +747,24 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjwly"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.05)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_khfr8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2efnh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ig1n5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcyaj"]
 content_margin_left = 4.0
@@ -767,18 +779,6 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwwnt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjwly"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.05)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-corner_detail = 5
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_jaexg"]
 color = Color(0, 0, 0, 0.5)
@@ -893,6 +893,8 @@ Tree/constants/draw_relationship_lines = 1
 Tree/constants/icon_max_width = 16
 Tree/constants/inner_item_margin_left = 5
 Tree/constants/inner_item_margin_right = 5
+Tree/styles/button_hover = SubResource("StyleBoxFlat_f1p5x")
+Tree/styles/button_pressed = SubResource("StyleBoxFlat_cjwly")
 Tree/styles/cursor = SubResource("StyleBoxEmpty_khfr8")
 Tree/styles/cursor_unfocused = SubResource("StyleBoxEmpty_2efnh")
 Tree/styles/focus = SubResource("StyleBoxEmpty_ig1n5")
