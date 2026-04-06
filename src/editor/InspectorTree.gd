@@ -119,10 +119,11 @@ func get_last_tree_item() -> TreeItem:
 	return last_tree_item
 
 
-func refresh(selected: Selection) -> void:
+func refresh(selected: Selection = selection) -> void:
 	selection = selected
 	var root = get_root()
-	var layers: Array[Layer] = Editor.root.level.layers
+	var level: Level = Editor.root.level
+	var layers: Array[Layer] = level.layers
 	for layer_idx: int in layers.size():
 		var layer: Layer = layers[layer_idx]
 		var layer_item: TreeItem = root.get_child(layer_idx)
@@ -131,6 +132,7 @@ func refresh(selected: Selection) -> void:
 			layer_item.set_icon(0, LAYER_ICON)
 			layer_item.set_text(0, layer.name)
 			layer_item.add_button(0, VISIBLE_ICON)
+		layer_item.visible = true
 		if layer.get_index() in selected_layers:
 			layer_item.select(0)
 		for object_idx: int in layer.get_child_count():
@@ -152,6 +154,11 @@ func refresh(selected: Selection) -> void:
 				overflowing_item.visible = false
 				hidden_items.append(overflowing_item)
 		# layer_item.set_button(0, "%s %s" % [layer.get_child_count(), StringUtils.pluralize("object", layer.get_child_count())])
+	if root.get_child_count() > level.get_child_count():
+		for i: int in root.get_child_count() - level.get_child_count():
+			var overflowing_item: TreeItem = root.get_child(i + level.get_child_count())
+			overflowing_item.visible = false
+			hidden_items.append(overflowing_item)
 	selected_layers.clear()
 
 
@@ -221,11 +228,11 @@ func _on_level_operations_handler_level_loaded(_level: Level) -> void:
 	selection = Selection.EMPTY()
 	clear()
 	create_item()
-	refresh(selection)
+	refresh()
 
 
 func _on_place_handler_object_deleted(_object: Node2D) -> void:
-	refresh(selection)
+	refresh()
 
 
 func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
@@ -267,14 +274,12 @@ func _on_search_box_text_changed(new_text: String) -> void:
 func _on_search_box_text_submitted(layer_name: String) -> void:
 	search_box.clear()
 	Editor.root.level.create_layer(layer_name)
-	refresh(selection)
 
 
 func _on_confirm_pressed() -> void:
 	var layer_name: String = search_box.text
 	search_box.clear()
 	Editor.root.level.create_layer(layer_name)
-	refresh(selection)
 
 
 func _on_inspector_manager_renamed_object(object: Node2D, new_name: String) -> void:
