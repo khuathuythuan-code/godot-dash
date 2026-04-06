@@ -31,9 +31,11 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		else:
 			drop_mode_flags = DROP_MODE_INBETWEEN
 		return true
-	elif is_dropping_on_layer:
+	elif is_dropping_on_layer and get_drop_section_at_position(at_position) == -1:
 		drop_mode_flags = DROP_MODE_INBETWEEN
-		return is_cursor_closer_to_item_top(item_at_position)
+		return true
+	else:
+		drop_mode_flags = DROP_MODE_DISABLED
 	return false
 
 
@@ -44,7 +46,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	var item_at_position: TreeItem = get_item_at_position(at_position)
 	if not item_at_position:
 		item_at_position = get_last_tree_item()
-	var is_cursor_closer_to_top = is_cursor_closer_to_item_top(item_at_position)
+	var is_cursor_closer_to_top = get_drop_section_at_position(at_position) == -1
 	# Reordering
 	var is_dropping_on_layer: bool = item_at_position.get_parent() == get_root()
 	var is_item_layer: bool = dropped_item.get_parent() == get_root()
@@ -102,14 +104,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	version_history.commit_action()
 
 
-func is_cursor_closer_to_item_top(item_at_position: TreeItem) -> bool:
-	if not item_at_position:
-		return false
-	var item_at_position_rect: Rect2 = get_item_area_rect(item_at_position)
-	var is_cursor_closer_to_top: bool = get_local_mouse_position().y - item_at_position_rect.position.y < item_at_position_rect.size.y / 2.0
-	return is_cursor_closer_to_top
-
-
 func get_last_tree_item() -> TreeItem:
 	var last_tree_item: TreeItem = get_root().get_child(-1)
 	if not last_tree_item:
@@ -148,6 +142,7 @@ func refresh(selected: Selection) -> void:
 			for i: int in layer_item.get_child_count() - layer.get_child_count():
 				var overflowing_item: TreeItem = layer_item.get_child(i + layer.get_child_count())
 				overflowing_item.visible = false
+		# layer_item.set_button(0, "%s %s" % [layer.get_child_count(), StringUtils.pluralize("object", layer.get_child_count())])
 	selected_layers.clear()
 
 
