@@ -766,24 +766,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBox" id="StyleBox_aqyds"]
-resource_local_to_scene = false
-resource_name = ""
-content_margin_left = 10.0
-content_margin_top = 10.0
-content_margin_right = 10.0
-content_margin_bottom = 10.0
-script = ExtResource("2_f1p5x")
-color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-corner_curvature_top_left = 2.0
-corner_curvature_top_right = 2.0
-corner_curvature_bottom_right = 2.0
-corner_curvature_bottom_left = 2.0
-shadow_blur = 0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uwwnt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjwly"]
 content_margin_left = 4.0
@@ -915,6 +898,6 @@ Tree/styles/cursor_unfocused = SubResource("StyleBoxEmpty_2efnh")
 Tree/styles/focus = SubResource("StyleBoxEmpty_ig1n5")
 Tree/styles/hovered = SubResource("StyleBoxFlat_f1p5x")
 Tree/styles/hovered_selected = SubResource("StyleBoxFlat_xcyaj")
-Tree/styles/panel = SubResource("StyleBox_aqyds")
+Tree/styles/panel = SubResource("StyleBoxEmpty_uwwnt")
 Tree/styles/selected = SubResource("StyleBoxFlat_cjwly")
 VSeparator/styles/separator = SubResource("StyleBoxLine_jaexg")

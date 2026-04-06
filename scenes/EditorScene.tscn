@@ -264,12 +264,17 @@
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="244_leg3o"]
 [ext_resource type="Texture2D" uid="uid://das02nf7axbxe" path="res://assets/textures/icons/lucide/focus.svg" id="245_6cy18"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="245_7jp64"]
 [ext_resource type="Texture2D" uid="uid://dlfi5nj0fat40" path="res://assets/textures/icons/lucide/file.svg" id="245_e2gl0"]
 [ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="245_leg3o"]
 [ext_resource type="Script" uid="uid://s6rdxe42bj6w" path="res://src/editor/InspectorTree.gd" id="245_r73tb"]
 [ext_resource type="Texture2D" uid="uid://dyhjriyp2n167" path="res://assets/textures/icons/lucide/component.svg" id="246_e2gl0"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="246_lk43j"]
 [ext_resource type="Texture2D" uid="uid://bgqqtnpwap3x0" path="res://assets/textures/icons/lucide/orbit.svg" id="247_r73tb"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="247_w3qyq"]
 [ext_resource type="Texture2D" uid="uid://daa5b443r1b1" path="res://assets/textures/icons/lucide/palette.svg" id="248_aosks"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="248_je3we"]
+[ext_resource type="Texture2D" uid="uid://osgs1eafbggt" path="res://assets/textures/icons/godot/Add.svg" id="249_83vyf"]
 [ext_resource type="PackedScene" uid="uid://cjssnbui7kx8w" path="res://scenes/components/game_components/PhysicsEditor.tscn" id="256_pccjj"]
 
 [sub_resource type="Resource" id="Resource_6kd42"]
@@ -534,6 +539,25 @@ script = ExtResource("193_5tfcf")
 [sub_resource type="Resource" id="Resource_oym0j"]
 script = ExtResource("193_5tfcf")
 
+[sub_resource type="StyleBox" id="StyleBox_85aqx"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+script = ExtResource("246_lk43j")
+color = Color(0.09985284, 0.09985284, 0.09985284, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
 [sub_resource type="Resource" id="Resource_vhc6f"]
 script = ExtResource("193_5tfcf")
 
@@ -555,7 +579,7 @@ level_operations_handler = NodePath("LevelOperationsHandler")
 block_palette_button_group = ExtResource("3_0vcbd")
 editor_camera = NodePath("EditorCamera")
 view_menu = NodePath("EditorUI/Editor/VBoxContainer/MenuBarContainer/MenuBar/View")
-inspector_tree = NodePath("EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree")
+inspector_tree = NodePath("EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree")
 metadata/_edit_vertical_guides_ = [-111.0]
 metadata/_edit_lock_ = true
 
@@ -6181,7 +6205,40 @@ icons = Array[Texture2D]([null, null, null])
 as_tab_container = true
 metadata/_custom_type_script = "uid://bkadwmxos4osm"
 
-[node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=332766175]
+[node name="PanelContainer" type="PanelContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer" unique_id=1316986869]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBox_85aqx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=151188433]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1746867214]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1705391492]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+theme = ExtResource("147_1ad2k")
+placeholder_text = "Find or create a layer…"
+clear_button_enabled = true
+right_icon = ExtResource("247_w3qyq")
+script = ExtResource("248_je3we")
+group_name = PackedStringArray()
+filters = Array[StringName]([&"text"])
+discard_similars = false
+metadata/_custom_type_script = "uid://y1hecem53675"
+
+[node name="Button" type="Button" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer" unique_id=620795243]
+texture_filter = 4
+custom_minimum_size = Vector2(31, 31)
+layout_mode = 2
+focus_mode = 0
+icon = ExtResource("249_83vyf")
+icon_alignment = 1
+
+[node name="InspectorTree" type="Tree" parent="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer" unique_id=332766175]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/inner_item_margin_left = 4
@@ -6495,7 +6552,7 @@ script = ExtResource("35_xjepn")
 script = ExtResource("58_hnsxj")
 panel_container = NodePath("../EditorUI/Editor/Inspector")
 tab_bar = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar")
-tree = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree")
+tree = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree")
 object_name = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Name")
 group_parent = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Groups/VBoxContainer/Group parent")
 interactable_editor = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable")
@@ -6640,7 +6697,7 @@ cancel_button_text = "Open Existing"
 [connection signal="pressed" from="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Edit/Fractional Steps/HBoxContainer/AdditionalControlsRight/MoveFree" to="EditHandler" method="_on_move_pressed"]
 [connection signal="toggled" from="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Swipe" to="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Edit/Select Options" method="_on_swipe_toggled"]
 [connection signal="toggled" from="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Edit/Select Options/HBoxContainer/AdditionalControlsLeft/Delete" to="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Edit/Select Options" method="_on_delete_toggled"]
-[connection signal="multi_selected" from="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_multi_selected"]
+[connection signal="multi_selected" from="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_multi_selected"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs" method="_on_enum_button_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Position" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_position_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_rotation_value_changed"]
@@ -6652,14 +6709,14 @@ cancel_button_text = "Open Existing"
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Value" to="HSVHandler" method="_on_value_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Intensity" to="HSVHandler" method="_on_intensity_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Modulation/VBoxContainer/Alpha" to="HSVHandler" method="_on_alpha_value_changed"]
-[connection signal="object_deleted" from="PlaceHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_place_handler_object_deleted"]
+[connection signal="object_deleted" from="PlaceHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_place_handler_object_deleted"]
 [connection signal="deleted_selection" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_deleted_selection"]
 [connection signal="moved_selection_cells" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_moved_selection_cells"]
 [connection signal="resized_selection" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_resized_selection"]
 [connection signal="rotated_object_degrees" from="EditHandler" to="PlaceHandler" method="_on_edit_handler_rotated_object_degrees"]
 [connection signal="rotated_selection_degrees" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_rotated_selection_degrees"]
 [connection signal="selection_changed" from="EditHandler" to="TriggerGroupBoundingBox" method="_on_edit_handler_selection_changed"]
-[connection signal="selection_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_edit_handler_selection_changed"]
+[connection signal="selection_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Groups/VBoxContainer/GroupEditor" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Attributes/AttributeEditor" method="_on_edit_handler_selection_changed"]
@@ -6669,7 +6726,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
-[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/InspectorTree" method="_on_level_operations_handler_level_loaded"]
+[connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
 [connection signal="file_selected" from="OpenLevelDialog" to="LevelOperationsHandler" method="_on_open_level_dialog_file_selected"]
