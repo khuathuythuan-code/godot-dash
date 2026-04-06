@@ -268,3 +268,10 @@ func _on_search_box_text_submitted(new_text: String) -> void:
 
 func _on_confirm_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_inspector_manager_renamed_object(object: Node2D, new_name: String) -> void:
+	var layer: Layer = object.get_parent()
+	var layer_item: TreeItem = get_root().get_child(layer.get_index())
+	var object_item: TreeItem = layer_item.get_child(object.get_index())
+	object_item.set_text(0, new_name)

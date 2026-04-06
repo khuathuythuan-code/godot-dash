@@ -1,6 +1,8 @@
 class_name InspectorManager
 extends Node
 
+signal renamed_object(object: Node2D, new_name: String)
+
 enum InspectorTab {
 	LEVEL,
 	OBJECT,
@@ -108,12 +110,14 @@ func update_object_name(new_name: String):
 			path_ref.rename(sanitized_new_name)
 			object_name.text = sanitized_new_name
 			interactable_editor.object_name.text = sanitized_new_name
+			renamed_object.emit(path_ref.to_ref(), sanitized_new_name)
 	)
 	Editor.version_history.add_undo_method(
 		func():
 			path_ref.rename(previous_name)
 			object_name.text = previous_name
 			interactable_editor.object_name.text = previous_name
+			renamed_object.emit(path_ref.to_ref(), previous_name)
 	)
 	Editor.version_history.commit_action()
 	get_viewport().gui_release_focus() # Restore editor keybinds

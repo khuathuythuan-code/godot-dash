@@ -6723,6 +6723,7 @@ cancel_button_text = "Open Existing"
 [connection signal="selection_changed" from="EditHandler" to="HSVHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_changed" from="EditHandler" to="BaseDetailHandler" method="_on_edit_handler_selection_changed"]
 [connection signal="selection_zone_changed" from="EditHandler" to="EditHandler/SelectionZone/SelectionZoneDisplay" method="_on_edit_handler_selection_zone_changed"]
+[connection signal="renamed_object" from="InspectorManager" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_inspector_manager_renamed_object"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_level_operations_handler_level_loaded"]
 [connection signal="level_loaded" from="LevelOperationsHandler" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable" method="_on_level_operations_handler_level_loaded"]
 [connection signal="timeout" from="LevelOperationsHandler/AutosaveTimer" to="LevelOperationsHandler" method="save_level"]
