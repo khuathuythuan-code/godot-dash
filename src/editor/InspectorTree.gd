@@ -171,13 +171,7 @@ func refresh(selected: Selection = selection) -> void:
 
 func bulk_update_selection() -> void:
 	var edit_handler: EditHandler = Editor.root.edit_handler
-	for i: int in selected_layers.size():
-		var layer_idx: int = selected_layers[i]
-		var layer: Layer = Editor.root.level.layers[layer_idx]
-		var objects: Array[Node2D]
-		objects.assign(layer.get_children())
-		selection = selection.union(Selection.from_array(objects))
-	edit_handler.select.call_deferred(selection)
+	edit_handler.select(selection)
 
 
 func filter_items(match_expr: String) -> void:
