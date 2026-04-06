@@ -177,6 +177,7 @@ func refresh(selected: Selection = selection) -> void:
 			var object_item: TreeItem = layer_item.get_child(object_idx) if object_idx < layer_item.get_child_count() else layer_item.create_child()
 			object_item.visible = true
 			object_item.set_text(0, object.name)
+			object_item.set_editable(0, true)
 			if selection.contains(object):
 				object_item.select(0)
 				scroll_to_item(object_item)
@@ -209,6 +210,33 @@ func set_active_layer(previous_layer_idx: int, new_layer_idx: int) -> void:
 	root.get_child(previous_layer_idx).clear_custom_bg_color(0)
 	level.active_layer_idx = new_layer_idx
 	root.get_child(new_layer_idx).set_custom_bg_color(0, Color.WHITE, true)
+
+
+func handle_item_rename(item: TreeItem) -> void:
+	var is_item_layer: bool = item.get_parent() == get_root()
+	var new_name: String = item.get_text(0)
+	if not is_item_layer:
+		Editor.root.inspector_manager.update_object_name(new_name)
+		return
+	# FIXME: Nuke PathRef so renaming layer works
+	return
+	# Rename layer
+	var layer: Layer = Editor.root.level.layers[item.get_index()]
+	var previous_name: String = layer.name
+	var sanitized_new_name: String = new_name.validate_node_name()
+	var path_ref := PathRef.new(layer)
+	Editor.version_history.create_action("Renamed layer %s to %s" % [previous_name, sanitized_new_name])
+	Editor.version_history.add_do_method(
+		func():
+			path_ref.rename(sanitized_new_name)
+			item.set_text(0, sanitized_new_name)
+	)
+	Editor.version_history.add_undo_method(
+		func():
+			path_ref.rename(previous_name)
+			item.set_text(0, previous_name)
+	)
+	Editor.version_history.commit_action()
 
 
 func bulk_update_selection(is_caller_selected: bool) -> void:
@@ -344,3 +372,8 @@ func _on_inspector_manager_renamed_object(object: Node2D, new_name: String) -> v
 	var layer_item: TreeItem = get_root().get_child(layer.get_index())
 	var object_item: TreeItem = layer_item.get_child(object.get_index())
 	object_item.set_text(0, new_name)
+
+
+func _on_item_edited() -> void:
+	var item: TreeItem = get_next_selected(null)
+	handle_item_rename(item)

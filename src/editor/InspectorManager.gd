@@ -104,7 +104,7 @@ func update_object_name(new_name: String):
 	var previous_name: String = object.name
 	var sanitized_new_name: String = new_name.validate_node_name()
 	var path_ref := PathRef.new(object)
-	Editor.version_history.create_action("Renamed %s to %s" % [previous_name, sanitized_new_name])
+	Editor.version_history.create_action("Renamed object %s to %s" % [previous_name, sanitized_new_name])
 	Editor.version_history.add_do_method(
 		func():
 			path_ref.rename(sanitized_new_name)

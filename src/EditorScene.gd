@@ -14,6 +14,7 @@ enum EditorAction {
 @export var editor_camera: MapCamera2D
 @export var view_menu: MenuBarView
 @export var inspector_tree: InspectorTree
+@export var inspector_manager: InspectorManager
 
 var level: Level:
 	set(value):
