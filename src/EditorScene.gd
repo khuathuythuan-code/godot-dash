@@ -58,11 +58,6 @@ func _ready() -> void:
 		inspector_tree.refresh(edit_handler.selection)
 		inspector_tree.set_active_layer(0, 0)
 
-	if not $EditHandler.selection.is_empty():
-		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
-		# HACK: ensure the interactable panel validates the properties
-		$EditHandler.selection_changed.emit($EditHandler.selection)
-
 
 func _physics_process(_delta: float) -> void:
 	if LevelManager.level_playing:
@@ -136,6 +131,11 @@ func reset() -> void:
 	%MenuBarContainer.show()
 	LevelManager.touchscreen_controls.hide()
 
+	if not $EditHandler.selection.is_empty():
+		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
+		# HACK: ensure the interactable panel validates the properties
+		$EditHandler.selection_changed.emit($EditHandler.selection)
+
 
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
@@ -162,8 +162,9 @@ func any_dialog_is_open() -> bool:
 
 
 func start_playtest() -> void:
-	$EditHandler.remove_gizmo()
-	$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
+	edit_handler.remove_gizmo()
+	edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
+	edit_handler.process_mode = Node.PROCESS_MODE_DISABLED
 	%ColorChannelEditor.hide_properties()
 	await get_tree().process_frame
 	level.start_position = LevelManager.player.position
@@ -189,6 +190,7 @@ func start_playtest() -> void:
 
 
 func stop_playtest() -> void:
+	edit_handler.process_mode = Node.PROCESS_MODE_INHERIT
 	%Playtest.disabled = true
 	if not Editor.level_data_snapshot.is_empty():
 		$GameScene.reset()
