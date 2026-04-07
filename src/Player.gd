@@ -253,6 +253,12 @@ func _physics_process(delta: float) -> void:
 
 
 func reset() -> void:
+	# Cancel death animation
+	$DeathAnimator.stop()
+	$DeathParticles.restart()
+	$DeathParticles.emitting = false
+	$DeathEffect.stop()
+	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count(&"default") - 1
 	# Reset icon
 	for icon_sprite: Node2D in $Icon.get_children():
 		icon_sprite.rotation = 0.0
@@ -263,8 +269,8 @@ func reset() -> void:
 	dead = false
 	$Icon.show()
 	NodeUtils.free_children(%GroundParticles)
-	%GroundParticles.emitting = false
 	%GroundParticles.restart()
+	%GroundParticles.emitting = false
 	gameplay_rotation = 0.0
 	velocity = Vector2.ZERO
 	player_scale = PlayerScale.NORMAL
