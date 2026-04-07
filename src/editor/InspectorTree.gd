@@ -220,26 +220,10 @@ func set_active_layer(previous_layer_idx: int, new_layer_idx: int) -> void:
 func handle_item_rename(item: TreeItem) -> void:
 	var is_item_layer: bool = item.get_parent() == get_root()
 	var new_name: String = item.get_text(0)
-	if not is_item_layer:
+	if is_item_layer:
+		_update_layer_name(item, new_name)
+	else:
 		Editor.root.inspector_manager.update_object_name(new_name)
-		return
-	return
-	# Rename layer
-	var layer: Layer = Editor.root.level.layers[item.get_index()]
-	var previous_name: String = layer.name
-	var sanitized_new_name: String = new_name.validate_node_name()
-	Editor.version_history.create_action("Renamed layer %s to %s" % [previous_name, sanitized_new_name])
-	Editor.version_history.add_do_method(
-		func():
-			layer.name = sanitized_new_name
-			item.set_text(0, sanitized_new_name)
-	)
-	Editor.version_history.add_undo_method(
-		func():
-			layer.name = previous_name
-			item.set_text(0, previous_name)
-	)
-	Editor.version_history.commit_action()
 
 
 func bulk_update_selection(is_caller_selected: bool) -> void:
@@ -317,6 +301,24 @@ func _set_layer_item_selected_silent(
 			previous_layer_item.deselect(0)
 		else:
 			previous_layer_item.select(0)
+
+
+func _update_layer_name(item: TreeItem, new_name: String) -> void:
+	var layer: Layer = Editor.root.level.layers[item.get_index()]
+	var previous_name: String = layer.name
+	var sanitized_new_name: String = new_name.validate_node_name()
+	Editor.version_history.create_action("Renamed layer %s to %s" % [previous_name, sanitized_new_name])
+	Editor.version_history.add_do_method(
+		func():
+			layer.name = sanitized_new_name
+			item.set_text(0, sanitized_new_name)
+	)
+	Editor.version_history.add_undo_method(
+		func():
+			layer.name = previous_name
+			item.set_text(0, previous_name)
+	)
+	Editor.version_history.commit_action()
 
 
 func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
