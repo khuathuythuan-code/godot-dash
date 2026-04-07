@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://l2ofoyvoxbr2" path="res://scenes/components/game_components/TargetLink.tscn" id="2_g4fee"]
 [ext_resource type="Texture2D" uid="uid://dpymoijvgn47q" path="res://assets/textures/portals/other_portals/teleportal_in/TeleportalInBack.png" id="4_62kgg"]
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="4_wo8fp"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="5_iq2px"]
 [ext_resource type="Texture2D" uid="uid://bjkrqus0iq7o2" path="res://assets/textures/portals/other_portals/teleportal_in/TeleportalInFront.png" id="5_toxp5"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="7_vbgas"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="7_wo8fp"]
@@ -24,8 +25,10 @@ script = ExtResource("1_3sgph")
 [node name="ParticleEmitter" parent="." unique_id=1469661410 instance=ExtResource("2_6nd4y")]
 modulate = Color(0.356863, 0.85098, 1, 1)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=949046477]
+[node name="Sprites" type="Node2D" parent="." unique_id=1036897572 node_paths=PackedStringArray("thumbnail_sprite")]
 material = ExtResource("4_wo8fp")
+script = ExtResource("5_iq2px")
+thumbnail_sprite = NodePath("TeleportalInFront")
 
 [node name="TeleportalInBack" type="Sprite2D" parent="Sprites" unique_id=1053903692]
 z_index = -1
@@ -51,7 +54,7 @@ script = ExtResource("9_rk7d5")
 
 [node name="PulseWhite" type="Node" parent="." unique_id=386628352 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("7_vbgas")
-pulse_target = NodePath("../Sprites")
+pulse_target = NodePath("")
 
 [node name="TargetObjectComponent" type="Node" parent="." unique_id=77900328]
 script = ExtResource("10_ohmk0")

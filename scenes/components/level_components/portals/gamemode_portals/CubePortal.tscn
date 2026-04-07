@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_ox385"]
 [ext_resource type="Texture2D" uid="uid://bxjs1u44gok7c" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalFront.png" id="3_vk6wf"]
 [ext_resource type="Texture2D" uid="uid://b5wb53yuxv3qm" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalIndicatorBG.png" id="4_7vbrb"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="4_lbm7o"]
 [ext_resource type="Texture2D" uid="uid://3mefye2oh6jy" path="res://assets/textures/portals/gamemode_portals/cube_portal/CubePortalIndicatorIcon.png" id="5_4knf6"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="6_yjtas"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_4wp27"]
@@ -28,9 +29,11 @@ modulate = Color(0, 1, 0, 1)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=970842863]
+[node name="Sprites" type="Node2D" parent="." unique_id=1191487583 node_paths=PackedStringArray("thumbnail_sprite")]
 material = ExtResource("3_ox385")
 instance_shader_parameters/factor = 0.0
+script = ExtResource("4_lbm7o")
+thumbnail_sprite = NodePath("CubePortalFront")
 
 [node name="CubePortalBack" type="Sprite2D" parent="Sprites" unique_id=581222983]
 z_index = -1
@@ -64,7 +67,7 @@ script = ExtResource("9_g22vt")
 
 [node name="PulseWhite" type="Node" parent="." unique_id=1563924796 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_sjwk2")
-pulse_target = NodePath("../Sprites")
+pulse_target = NodePath("")
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=1362061287]
 script = ExtResource("12_re3iv")

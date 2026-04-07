@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_ukvqu"]
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="2_ukvqu"]
 [ext_resource type="Texture2D" uid="uid://d0shbispfys6s" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalBack.png" id="3_h3dng"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="3_xtega"]
 [ext_resource type="Texture2D" uid="uid://dsq6xk2pblqrm" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalFront.png" id="4_m7fq6"]
 [ext_resource type="Texture2D" uid="uid://beiu6q5nankgc" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalIndicatorBG.png" id="5_67rea"]
 [ext_resource type="Texture2D" uid="uid://d272nnl1ar6hv" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalIndicatorIcon.png" id="6_dfbcm"]
@@ -24,8 +25,10 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1879266259]
+[node name="Sprites" type="Node2D" parent="." unique_id=315367576 node_paths=PackedStringArray("thumbnail_sprite")]
 material = ExtResource("2_ukvqu")
+script = ExtResource("3_xtega")
+thumbnail_sprite = NodePath("PortalFront")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=167072589]
 z_index = -1
@@ -59,7 +62,7 @@ script = ExtResource("9_nodad")
 
 [node name="PulseWhite" type="Node" parent="." unique_id=709696425 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("10_ufkdc")
-pulse_target = NodePath("../Sprites")
+pulse_target = NodePath("")
 
 [node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=1539330157]
 script = ExtResource("11_12or6")

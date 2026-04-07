@@ -102,4 +102,6 @@ static func get_object_sprite_textures(object: Node2D) -> Array[Texture2D]:
 			textures.append(preload("res://assets/textures/guis/editor/block_palette/ReboundOrbPreview.svg"))
 		elif child is ReboundPadSprite:
 			textures.append(preload("res://assets/textures/guis/editor/block_palette/ReboundPadPreview.svg"))
+		elif child is LayeredSprites:
+			textures.append(child.thumbnail_sprite.texture)
 	return textures

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://mhmstl4xjq2g" path="res://assets/textures/portals/gamemode_portals/spider_portal/SpiderPortalFront.png" id="3_tcgxp"]
 [ext_resource type="Texture2D" uid="uid://dky8o4pp8v101" path="res://assets/textures/portals/gamemode_portals/spider_portal/SpiderPortalIndicatorBG.png" id="4_3wlc5"]
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="4_u2cx4"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="5_6svja"]
 [ext_resource type="Texture2D" uid="uid://chodyk8vo6602" path="res://assets/textures/portals/gamemode_portals/spider_portal/SpiderPortalIndicatorIcon.png" id="5_vajic"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="6_8yut6"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_gktvw"]
@@ -32,9 +33,11 @@ modulate = Color(0.258824, 0.0901961, 1, 1)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1331282376]
+[node name="Sprites" type="Node2D" parent="." unique_id=1825906097 node_paths=PackedStringArray("thumbnail_sprite")]
 material = ExtResource("4_u2cx4")
 scale = Vector2(1.1, 1.1)
+script = ExtResource("5_6svja")
+thumbnail_sprite = NodePath("PortalFront")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=451283390]
 z_index = -1
@@ -69,7 +72,7 @@ _gamemode = 6
 
 [node name="PulseWhite" type="Node" parent="." unique_id=1078278242 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_1662a")
-pulse_target = NodePath("../Sprites")
+pulse_target = NodePath("")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=479877671]
