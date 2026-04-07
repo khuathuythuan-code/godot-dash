@@ -17,7 +17,6 @@ enum LayerIcon {
 var selection: Selection
 var hidden_items: Array[TreeItem]
 var flat_item_list: Array[TreeItem]
-var selected_layers_count: int
 
 
 func _ready() -> void:
@@ -146,10 +145,9 @@ func get_last_tree_item() -> TreeItem:
 
 func refresh(selected: Selection = selection) -> void:
 	selection = selected
-	var root = get_root()
+	var root: TreeItem = get_root()
 	var level: Level = Editor.root.level
 	var layers: Array[Layer] = level.layers
-	selected_layers_count = 0
 	for layer_idx: int in layers.size():
 		var layer: Layer = layers[layer_idx]
 		var layer_item: TreeItem
@@ -159,11 +157,10 @@ func refresh(selected: Selection = selection) -> void:
 			layer_item.set_text(0, layer.name)
 			layer_item.add_button(0, VISIBLE_ICON)
 			layer_item.add_button(0, UNLOCK_ICON)
+			layer_item.set_editable(0, true)
 		else:
 			layer_item = root.get_child(layer_idx)
 		layer_item.visible = true
-		if layer_item.is_selected(0):
-			selected_layers_count += 1
 		for object_idx: int in layer.get_child_count():
 			var object: Node2D = layer.get_child(object_idx)
 			var object_item: TreeItem = layer_item.get_child(object_idx) if object_idx < layer_item.get_child_count() else layer_item.create_child()
@@ -188,12 +185,28 @@ func refresh(selected: Selection = selection) -> void:
 			overflowing_item.visible = false
 			hidden_items.append(overflowing_item)
 
-	if selected_layers_count == 1:
-		var new_active_layer_idx: int = get_next_selected(null).get_index()
+	update_active_layer(false)
+
+
+func update_active_layer(is_changing_single_layer_selection: bool) -> void:
+	var root: TreeItem = get_root()
+	var level: Level = Editor.root.level
+	var first_item_in_selection: TreeItem = get_next_selected(null)
+	var selection_is_single_layer: bool = first_item_in_selection and first_item_in_selection.get_parent() == root
+	if not selection_is_single_layer:
+		return
+	var new_active_layer_idx: int = first_item_in_selection.get_index()
+	if level.active_layer_idx == new_active_layer_idx:
+		return
+	if is_changing_single_layer_selection:
 		Editor.version_history.create_action("Set active layer to %s" % root.get_child(new_active_layer_idx).get_text(0))
-		Editor.version_history.add_do_method(set_active_layer.bind(level.active_layer_idx, new_active_layer_idx))
-		Editor.version_history.add_undo_method(set_active_layer.bind(new_active_layer_idx, level.active_layer_idx))
-		Editor.version_history.commit_action()
+	else:
+		Editor.version_history.create_action(Editor.version_history.get_current_action_name(), UndoRedo.MERGE_ALL)
+	Editor.version_history.add_do_method(set_active_layer.bind(level.active_layer_idx, new_active_layer_idx))
+	Editor.version_history.add_do_method(_set_layer_item_selected_silent.bind(level.active_layer_idx, new_active_layer_idx, is_changing_single_layer_selection, true))
+	Editor.version_history.add_undo_method(set_active_layer.bind(new_active_layer_idx, level.active_layer_idx))
+	Editor.version_history.add_undo_method(_set_layer_item_selected_silent.bind(level.active_layer_idx, new_active_layer_idx, is_changing_single_layer_selection, false))
+	Editor.version_history.commit_action()
 
 
 func set_active_layer(previous_layer_idx: int, new_layer_idx: int) -> void:
@@ -210,7 +223,6 @@ func handle_item_rename(item: TreeItem) -> void:
 	if not is_item_layer:
 		Editor.root.inspector_manager.update_object_name(new_name)
 		return
-	# FIXME: Nuke PathRef so renaming layer works
 	return
 	# Rename layer
 	var layer: Layer = Editor.root.level.layers[item.get_index()]
@@ -233,7 +245,7 @@ func handle_item_rename(item: TreeItem) -> void:
 func bulk_update_selection(is_caller_selected: bool) -> void:
 	var edit_handler: EditHandler = Editor.root.edit_handler
 	if selection.is_identical(edit_handler.selection) and is_caller_selected:
-		refresh()
+		update_active_layer(true)
 		return
 	edit_handler.select(selection)
 
@@ -285,6 +297,28 @@ func _get_flat_item_list_inner(item: TreeItem, new_flat_item_list: Array[TreeIte
 		_get_flat_item_list_inner(child_item, new_flat_item_list, depth + 1)
 
 
+func _set_layer_item_selected_silent(
+		previous_layer_idx: int,
+		new_layer_idx: int,
+		is_changing_single_layer_selection: bool,
+		selected: bool,
+) -> void:
+	var root: TreeItem = get_root()
+	var layer_item: TreeItem = root.get_child(new_layer_idx)
+	layer_item.set_metadata(0, true)
+	if selected:
+		layer_item.select(0)
+	else:
+		layer_item.deselect(0)
+	if is_changing_single_layer_selection:
+		var previous_layer_item: TreeItem = root.get_child(previous_layer_idx)
+		previous_layer_item.set_metadata(0, true)
+		if selected:
+			previous_layer_item.deselect(0)
+		else:
+			previous_layer_item.select(0)
+
+
 func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
 	refresh(new_selection)
 
@@ -294,6 +328,7 @@ func _on_level_operations_handler_level_loaded(_level: Level) -> void:
 	clear()
 	create_item()
 	refresh()
+	set_active_layer(0, 0)
 
 
 func _on_place_handler_object_deleted(_object: Node2D) -> void:
@@ -301,6 +336,9 @@ func _on_place_handler_object_deleted(_object: Node2D) -> void:
 
 
 func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
+	if item.get_metadata(0):
+		item.set_metadata(0, false)
+		return
 	var is_item_layer: bool = item.get_parent() == get_root()
 	var is_object: bool = not is_item_layer
 	if is_object:

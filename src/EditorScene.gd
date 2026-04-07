@@ -45,18 +45,15 @@ func _ready() -> void:
 		)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
+	Editor.version_history = UndoRedo.new()
+	level = Level.new()
+	level.name = "New level"
+	Editor.clipboard = Selection.new()
+	LevelManager.game_scene.add_loaded_level(level)
+	inspector_tree.refresh(Selection.EMPTY())
+	inspector_tree.set_active_layer(0, 0)
+
 	reset()
-
-	if not Editor.version_history:
-		Editor.version_history = UndoRedo.new()
-
-	if Editor.level_data_snapshot.is_empty() and $GameScene/Level.get_child_count() == 0:
-		level = Level.new()
-		level.name = "New level"
-		Editor.clipboard = Selection.new()
-		LevelManager.game_scene.add_loaded_level(level)
-		inspector_tree.refresh(edit_handler.selection)
-		inspector_tree.set_active_layer(0, 0)
 
 
 func _physics_process(_delta: float) -> void:
