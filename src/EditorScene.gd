@@ -199,6 +199,7 @@ func stop_playtest() -> void:
 	level.process_mode = Node.PROCESS_MODE_INHERIT
 	level.show()
 	LevelManager.current_level = level
+	LevelManager.song_player = level.song_player
 	var player: Player = LevelManager.player
 	_load_default_player_data_component(player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	player.global_position = level.start_position

@@ -148,7 +148,7 @@ func _ready() -> void:
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus(&"Music")
 	song_player.name = "Song Player"
-	LevelManager.level_song_player = song_player
+	LevelManager.song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
 	add_child(song_player, false, INTERNAL_MODE_BACK)

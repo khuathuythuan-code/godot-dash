@@ -42,17 +42,17 @@ func _field_to_data(field_name: String) -> Variant:
 func start(_player: Player = null) -> void:
 	if path.is_empty():
 		return
-	LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + path)
-	LevelManager.level_song_player.stream.resource_path = Constants.SONG_DIR + path
-	LevelManager.level_song_player.play(start_offset)
+	LevelManager.song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + path)
+	LevelManager.song_player.stream.resource_path = Constants.SONG_DIR + path
+	LevelManager.song_player.play(start_offset)
 
 
 func start_preview() -> void:
 	if is_previewing or path.is_empty():
 		is_previewing = false
 		notify_property_list_changed()
-		LevelManager.level_song_player.stop()
-		LevelManager.level_song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
+		LevelManager.song_player.stop()
+		LevelManager.song_player.stream = AssetManager.load_song_threaded_get(Constants.SONG_DIR + LevelManager.current_level.song_path)
 		return
 	is_previewing = true
 	notify_property_list_changed()

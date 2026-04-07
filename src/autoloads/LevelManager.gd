@@ -23,7 +23,7 @@ var player_camera: PlayerCamera
 var background_sprites: Array[Sprite2D]
 var ground_up: GroundObject
 var ground_down: GroundObject
-var level_song_player: AudioStreamPlayer
+var song_player: AudioStreamPlayer
 var platformer: bool = false
 var practice_mode: bool = false
 var practice_level_snapshots: Array[Dictionary]
