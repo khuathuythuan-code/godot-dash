@@ -36,6 +36,8 @@ func _ready() -> void:
 
 
 func load_song(path: String) -> AudioStream:
+	if path.is_empty():
+		return null
 	var audio_stream: AudioStream
 	if path.begins_with("uid"):
 		audio_stream = load(path)
