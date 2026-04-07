@@ -74,12 +74,11 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 	if not is_item_layer:
 		var layer: Layer = level.layers[dropped_item.get_parent().get_index()]
-		var path_ref: PathRef = PathRef.new(layer.get_child(dropped_item.get_index()))
+		var reordered_object: Node2D = layer.get_child(dropped_item.get_index())
 
 		if is_dropping_on_layer:
 			var new_layer: Layer = level.layers[item_at_position.get_index()]
 			do_method = func():
-				var reordered_object: Node2D = path_ref.to_ref()
 				reordered_object.reparent(new_layer)
 				new_layer.move_child(reordered_object, -1)
 				if item_at_position.get_child_count() > 0:
@@ -87,37 +86,30 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 				else:
 					dropped_item.get_parent().remove_child(dropped_item)
 					item_at_position.add_child(dropped_item)
-				path_ref.update_path()
 			undo_method = func():
-				var reordered_object: Node2D = path_ref.to_ref()
 				if dropped_item_previous:
 					dropped_item.move_after(dropped_item_previous)
 				else:
 					dropped_item.move_before(dropped_item_next)
 				reordered_object.reparent(layer)
 				layer.move_child(reordered_object, dropped_item_previous.get_index() + 1 if dropped_item_previous else 0)
-				path_ref.update_path()
 		else:
 			var layer_item: TreeItem = item_at_position.get_parent()
 			var new_layer: Layer = level.layers[layer_item.get_index()]
 			do_method = func():
-				var reordered_object: Node2D = path_ref.to_ref()
 				reordered_object.reparent(new_layer)
 				new_layer.move_child(reordered_object, item_at_position.get_index() if is_cursor_closer_to_top else item_at_position.get_index() + 1)
 				if is_cursor_closer_to_top:
 					dropped_item.move_before(item_at_position)
 				else:
 					dropped_item.move_after(item_at_position)
-				path_ref.update_path()
 			undo_method = func():
-				var reordered_object: Node2D = path_ref.to_ref()
 				if dropped_item_previous:
 					dropped_item.move_after(dropped_item_previous)
 				else:
 					dropped_item.move_before(dropped_item_next)
 				reordered_object.reparent(layer)
 				layer.move_child(reordered_object, dropped_item_previous.get_index() + 1 if dropped_item_previous else 0)
-				path_ref.update_path()
 	else:
 		var layer: Layer = level.layers[dropped_item.get_index()]
 		var layer_name: String = layer.name
@@ -224,16 +216,15 @@ func handle_item_rename(item: TreeItem) -> void:
 	var layer: Layer = Editor.root.level.layers[item.get_index()]
 	var previous_name: String = layer.name
 	var sanitized_new_name: String = new_name.validate_node_name()
-	var path_ref := PathRef.new(layer)
 	Editor.version_history.create_action("Renamed layer %s to %s" % [previous_name, sanitized_new_name])
 	Editor.version_history.add_do_method(
 		func():
-			path_ref.rename(sanitized_new_name)
+			layer.name = sanitized_new_name
 			item.set_text(0, sanitized_new_name)
 	)
 	Editor.version_history.add_undo_method(
 		func():
-			path_ref.rename(previous_name)
+			layer.name = previous_name
 			item.set_text(0, previous_name)
 	)
 	Editor.version_history.commit_action()

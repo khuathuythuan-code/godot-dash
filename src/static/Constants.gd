@@ -42,3 +42,5 @@ const CUSTOM_ICON_DIR: String = "user://textures/player/"
 const REPLAYS_DIR: String = "user://replays/"
 
 const LAYER_META: StringName = &"layer"
+
+const FREED: String = "__freed"

@@ -47,6 +47,8 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _field_to_data(field_name: String) -> Variant:
+	if is_previewing:
+		stop_preview(LevelManager.player)
 	match field_name:
 		"elapsed_time":
 			return get_elapsed_time()

@@ -45,49 +45,18 @@ func _ready() -> void:
 		)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
-	LevelManager.attempt = 1
-	LevelManager.level_playing = false
-	$EditorCamera.enabled = true
-	%Modes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
-	%Inspector.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
-	%RenderModes.show()
-	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
-	$GameScene/PlayerCamera.enabled = false
-	$GameScene/PercentageLayer.hide()
-	$PlaceHandler.placed_object_rotation_degrees = 0.0
-	var editor_grid: EditorGrid = $GameScene/EditorGridParallax/EditorGrid
-	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
-	if editor_grid.visible:
-		editor_grid.queue_redraw()
-	NodeUtils.connect_once($GameScene.pause_menu.leave, _on_leave_pressed)
-
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
-	$EditHandler.placed_objects_collider = placed_objects_collider
-	$EditHandler.editor_modes = %Modes
-	%MenuBarContainer.show()
-	LevelManager.touchscreen_controls.hide()
+	reset()
 
 	if not Editor.version_history:
 		Editor.version_history = UndoRedo.new()
 
-	if not Editor.level_data_snapshot.is_empty():
-		level = LevelManager.game_scene.add_loaded_level(Level.from_data(Editor.level_data_snapshot))
-		%ColorChannelEditor.clear_item_list()
-		await get_tree().process_frame
-		%ColorChannelEditor.populate_item_list()
-	elif not $GameScene/Level.get_child_count():
+	if Editor.level_data_snapshot.is_empty() and $GameScene/Level.get_child_count() == 0:
 		level = Level.new()
 		level.name = "New level"
 		Editor.clipboard = Selection.new()
 		LevelManager.game_scene.add_loaded_level(level)
 		inspector_tree.refresh(edit_handler.selection)
 		inspector_tree.set_active_layer(0, 0)
-
-	if not $EditHandler.selection.is_empty():
-		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
-		# HACK: ensure the interactable panel validates the properties
-		$EditHandler.selection_changed.emit($EditHandler.selection)
 
 
 func _physics_process(_delta: float) -> void:
@@ -138,6 +107,36 @@ func _notification(what: int) -> void:
 		$SaveChangesBeforeOpening.visibility_changed.connect(remove_signals, ConnectFlags.CONNECT_ONE_SHOT)
 
 
+func reset() -> void:
+	LevelManager.attempt = 1
+	LevelManager.level_playing = false
+	$EditorCamera.enabled = true
+	%Modes.visible = view_menu.is_item_checked(MenuBarView.BOTTOM_PANEL)
+	%Inspector.visible = view_menu.is_item_checked(MenuBarView.SIDE_PANEL)
+	%RenderModes.show()
+	$GameScene/Player.process_mode = Node.PROCESS_MODE_DISABLED
+	$GameScene/PlayerCamera.enabled = false
+	$GameScene/PercentageLayer.hide()
+	$PlaceHandler.placed_object_rotation_degrees = 0.0
+	var editor_grid: EditorGrid = $GameScene/EditorGridParallax/EditorGrid
+	editor_grid.visible = view_menu.is_item_checked(MenuBarView.GRID)
+	if editor_grid.visible:
+		editor_grid.queue_redraw()
+	NodeUtils.connect_once($GameScene.pause_menu.leave, _on_leave_pressed)
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
+	$EditHandler.placed_objects_collider = placed_objects_collider
+	$EditHandler.editor_modes = %Modes
+	%MenuBarContainer.show()
+	LevelManager.touchscreen_controls.hide()
+
+	if not $EditHandler.selection.is_empty():
+		$EditHandler.selection.for_each(EditHandler.add_selection_highlight)
+		# HACK: ensure the interactable panel validates the properties
+		$EditHandler.selection_changed.emit($EditHandler.selection)
+
+
 func texture_variation_overlapping(type: EditorSelectionCollider.Type, id: int) -> bool:
 	if not placed_objects_collider.has_overlapping_areas():
 		return false
@@ -163,13 +162,18 @@ func any_dialog_is_open() -> bool:
 
 
 func start_playtest() -> void:
-	$EditHandler.remove_gizmo()
-	$EditHandler.selection.for_each(EditHandler.remove_selection_highlight)
+	edit_handler.remove_gizmo()
+	edit_handler.selection.for_each(EditHandler.remove_selection_highlight)
+	edit_handler.process_mode = Node.PROCESS_MODE_DISABLED
 	%ColorChannelEditor.hide_properties()
 	await get_tree().process_frame
 	level.start_position = LevelManager.player.position
 	Editor.level_data_snapshot = level.to_data()
 	Editor.snapshot.pack(self)
+	level.hide()
+	level.process_mode = Node.PROCESS_MODE_DISABLED
+	Editor.temporary_playtest_level = Level.from_data(Editor.level_data_snapshot)
+	$GameScene.add_loaded_level(Editor.temporary_playtest_level)
 	%MenuBarContainer.hide()
 	%Modes.hide()
 	%Inspector.hide()
@@ -186,15 +190,21 @@ func start_playtest() -> void:
 
 
 func stop_playtest() -> void:
+	edit_handler.process_mode = Node.PROCESS_MODE_INHERIT
 	%Playtest.disabled = true
 	if not Editor.level_data_snapshot.is_empty():
 		$GameScene.reset()
 	LevelManager.practice_mode = false
 	LevelManager.practice_level_snapshots.clear()
-	var new_player: Player = LevelManager.player
-	_ready() # sets `level`
-	_load_default_player_data_component(new_player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
-	new_player.global_position = level.start_position
+	reset()
+	Editor.temporary_playtest_level.queue_free()
+	level.process_mode = Node.PROCESS_MODE_INHERIT
+	level.show()
+	LevelManager.current_level = level
+	LevelManager.song_player = level.song_player
+	var player: Player = LevelManager.player
+	_load_default_player_data_component(player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
+	player.global_position = level.start_position
 	NodeUtils.free_children($GameScene.checkpoint_parent)
 	$GameScene.pause_menu.practice_button.hide()
 	$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)

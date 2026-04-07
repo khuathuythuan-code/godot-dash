@@ -86,6 +86,7 @@ func _on_level_index_pressed(index: int) -> void:
 
 
 func _new_level() -> void:
+	LevelManager.game_scene.free_current_level()
 	LevelManager.game_scene.reset()
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	color_channel_editor.clear_item_list()
@@ -116,9 +117,10 @@ func _new_level() -> void:
 
 func _open_level(path: String) -> void:
 	if LevelManager.level_playing:
-		editor._on_playtest_pressed()
+		editor.stop_playtest()
 		_open_level.call_deferred(path)
 		return
+	LevelManager.game_scene.free_current_level()
 	LevelManager.game_scene.reset()
 	LevelManager.game_scene.pause_menu.play_button.show()
 	# Avoid name conflicts

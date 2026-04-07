@@ -7,7 +7,7 @@ extends VBoxContainer
 @export var scale_property: Vector2Property
 
 var selection_size: int
-var first_object: PathRef
+var first_object: Node2D
 var average_position: Vector2
 var current_rotation: float
 var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
@@ -29,8 +29,7 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 	current_selection = selection
 	if selection.is_empty():
 		return
-	var first_object_ref: Node2D = current_selection.first()
-	first_object = PathRef.new(first_object_ref)
+	first_object = current_selection.first()
 	selection_size = selection.size()
 	edit_handler.update_pivot()
 	update_pivot_relative_transform()
@@ -40,8 +39,8 @@ func _on_edit_handler_selection_changed(selection: Selection) -> void:
 
 	if selection_size == 1:
 		average_position = LevelManager.current_level.to_local(current_selection.first().global_position)
-		current_rotation = first_object_ref.global_rotation_degrees
-		scale_property.set_value_no_signal(first_object_ref.scale)
+		current_rotation = first_object.global_rotation_degrees
+		scale_property.set_value_no_signal(first_object.scale)
 		position_property.set_value_no_signal((average_position / Constants.CELL_SIZE + Vector2(0, 0.5)) * Vector2(1, -1))
 		rotation_property.set_value_no_signal(current_rotation)
 		same_scale = true

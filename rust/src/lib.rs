@@ -1,4 +1,3 @@
-pub mod pathref;
 pub mod selection;
 
 use godot::prelude::*;
