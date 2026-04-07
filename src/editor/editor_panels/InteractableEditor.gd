@@ -36,7 +36,7 @@ static var are_arrays_initialized: bool
 @export var object_name: LineEdit
 
 var marker_properties: Dictionary[Script, BoolProperty]
-var initial_values: Dictionary[PathRef, Variant]
+var initial_values: Dictionary[Component, Variant]
 
 
 func _init() -> void:
@@ -220,13 +220,8 @@ func save_property(value: Variant, component_name: String, property_name: String
 				new_value = Constants.GROUP_PREFIX + value
 			elif component is TargetColorChannelComponent:
 				new_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + new_value
-		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-		var component_maybe_idx: int = initial_values.keys().find_custom(path_matches)
-		var component_pathref: PathRef = initial_values.keys()[component_maybe_idx] if component_maybe_idx >= 0 else null
-		if not component_pathref:
-			initial_values[PathRef.new(component)] = [property_name, component.get(property_name)]
-		elif initial_values[component_pathref][0] != property_name:
-			initial_values[component_pathref] = [property_name, component.get(property_name)]
+		if component not in initial_values or initial_values[component][0] != property_name:
+			initial_values[component] = [property_name, component.get(property_name)]
 
 		component.set(property_name, new_value)
 
@@ -235,10 +230,9 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	var do_save_property := func(_interactables: Selection, new_value: Variant):
 		save_property(new_value, component_name, property_name, _interactables)
 		load_properties(_interactables.first(), self)
-	var undo_save_property := func(_initial_values: Dictionary[PathRef, Variant]):
-		for component_pathref: PathRef in _initial_values:
-			var component: Component = component_pathref.to_ref()
-			var initial_value: Variant = _initial_values[component_pathref][1]
+	var undo_save_property := func(_initial_values: Dictionary[Component, Variant]):
+		for component: Component in _initial_values:
+			var initial_value: Variant = _initial_values[component][1]
 			component.set(property_name, initial_value)
 		load_properties(_initial_values.keys()[0].to_ref().parent, self)
 
