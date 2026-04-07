@@ -281,21 +281,20 @@ func duplicate_selection() -> void:
 
 	var do_duplicate_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
-				var layer_id: int = _object.get_meta(Constants.LAYER_META)
-				if not is_instance_id_valid(layer_id) or _object.is_inside_tree() or _object is Player:
+			func(object: Node2D):
+				if object.is_inside_tree() or object is Player:
 					return
-				var layer: Layer = instance_from_id(layer_id)
-				layer.add_child(_object, true)
-				NodeUtils.change_owner_recursive(_object, level)
+				var layer: Layer = object.get_meta(Constants.LAYER_META)
+				layer.add_child(object, true)
+				NodeUtils.change_owner_recursive(object, level)
 		)
 
 	var undo_duplicate_selection := func(_selection: Selection):
 		_selection.for_each(
-			func(_object: Node2D):
-				if _object is Player:
+			func(object: Node2D):
+				if object is Player:
 					return
-				_object.get_parent().remove_child(_object)
+				object.get_parent().remove_child(object)
 		)
 
 	var new_selection: Selection = selection.map(_clone_object)

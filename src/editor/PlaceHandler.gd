@@ -56,22 +56,18 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				object.rotation_degrees = wrapf(placed_object_rotation_degrees, -180.0, 180.0)
 
 				var active_layer: Layer = Editor.root.level.layers[Editor.root.level.active_layer_idx]
-				object.set_meta(Constants.LAYER_META, active_layer.get_instance_id())
+				object.set_meta(Constants.LAYER_META, active_layer)
 
 				# Version history
-				var path_ref: PathRef = PathRef.new(object)
-
-				var add_object := func(_path_ref: PathRef):
-					var _object: Node = _path_ref.to_ref()
-					active_layer.add_child(_object, true)
-					NodeUtils.change_owner_recursive(_object, Editor.root.level)
-				var remove_object := func(_path_ref: PathRef):
-					var _object: Node = _path_ref.to_ref()
-					_object.get_parent().remove_child(_object)
+				var add_object := func():
+					active_layer.add_child(object, true)
+					NodeUtils.change_owner_recursive(object, Editor.root.level)
+				var remove_object := func():
+					object.get_parent().remove_child(object)
 
 				Editor.version_history.create_action("Placed object " + object.name)
-				Editor.version_history.add_do_method(add_object.bind(path_ref))
-				Editor.version_history.add_undo_method(remove_object.bind(path_ref))
+				Editor.version_history.add_do_method(add_object)
+				Editor.version_history.add_undo_method(remove_object)
 				Editor.version_history.commit_action()
 
 				add_hsv_watchers(object, level)
@@ -91,27 +87,23 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			if len(placed_objects_collider.get_overlapping_areas()) > 0 and placed_objects_collider.get_overlapping_areas()[-1].get_parent() is not Level:
 				var overlapping_areas := placed_objects_collider.get_overlapping_areas()
 				object_deleted.emit(overlapping_areas[-1])
-				var object := get_area(overlapping_areas[-1])
+				var object: Node = get_area(overlapping_areas[-1])
 				var index: int = object.get_index()
 
 				# Version history
-				var delete_object := func(_path_ref: PathRef):
-					var _object: Node = _path_ref.to_ref()
-					_object.get_parent().remove_child(_object)
-				var restore_object := func(_path_ref: PathRef):
-					var _object: Node = _path_ref.to_ref()
-					var layer_id: int = _object.get_meta(Constants.LAYER_META)
-					if not is_instance_id_valid(layer_id):
+				var delete_object := func():
+					object.get_parent().remove_child(object)
+				var restore_object := func():
+					var layer: Layer = object.get_meta(Constants.LAYER_META)
+					if not layer:
 						return
-					var layer: Layer = instance_from_id(layer_id)
-					layer.add_child(_object)
-					layer.move_child(_object, index)
-					NodeUtils.change_owner_recursive(_object, Editor.root.level)
+					layer.add_child(object)
+					layer.move_child(object, index)
+					NodeUtils.change_owner_recursive(object, Editor.root.level)
 
-				var path_ref := PathRef.new(object)
 				Editor.version_history.create_action("Deleted object " + object.name)
-				Editor.version_history.add_do_method(delete_object.bind(path_ref))
-				Editor.version_history.add_undo_method(restore_object.bind(path_ref))
+				Editor.version_history.add_do_method(delete_object)
+				Editor.version_history.add_undo_method(restore_object)
 				Editor.version_history.commit_action()
 				edit_handler.deselect(Selection.from_object(object), true)
 				object_deleted.emit(object)

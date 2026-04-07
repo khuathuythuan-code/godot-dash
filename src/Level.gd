@@ -193,24 +193,21 @@ func create_layer(layer_name: String) -> Layer:
 	var new_layer: Layer = Layer.new()
 	new_layer.name = layer_name
 
-	var path_ref: PathRef = PathRef.new(new_layer)
-	var add_layer_to_tree := func(_path_ref: PathRef):
-		var _layer: Layer = _path_ref.to_ref()
-		add_child(_layer, true)
-		layers.append(_layer)
-		_layer.owner = self
+	var add_layer_to_tree := func():
+		add_child(new_layer, true)
+		layers.append(new_layer)
+		new_layer.owner = self
 		if Editor.in_editor:
 			Editor.root.inspector_tree.refresh()
-	var remove_layer_from_tree := func(_path_ref: PathRef):
-		var _layer: Layer = _path_ref.to_ref()
-		layers.erase(_layer)
-		remove_child(_layer)
+	var remove_layer_from_tree := func():
+		layers.erase(new_layer)
+		remove_child(new_layer)
 		if Editor.in_editor:
 			Editor.root.inspector_tree.refresh()
 
 	Editor.version_history.create_action("Created layer " + layer_name)
-	Editor.version_history.add_do_method(add_layer_to_tree.bind(path_ref))
-	Editor.version_history.add_undo_method(remove_layer_from_tree.bind(path_ref))
+	Editor.version_history.add_do_method(add_layer_to_tree)
+	Editor.version_history.add_undo_method(remove_layer_from_tree)
 	Editor.version_history.commit_action()
 
 	return new_layer
