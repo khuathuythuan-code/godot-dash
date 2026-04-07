@@ -117,20 +117,18 @@ func _new_level() -> void:
 
 func _open_level(path: String) -> void:
 	if LevelManager.level_playing:
-		editor.stop_playtest()
-		_open_level.call_deferred(path)
+		await editor.stop_playtest()
 		return
 	LevelManager.game_scene.free_current_level()
 	LevelManager.game_scene.reset()
 	LevelManager.game_scene.pause_menu.play_button.show()
 	# Avoid name conflicts
 	editor.level.name = str(hash(editor.level))
+	Editor.clear_data()
 	# Load level
 	var level: Level = _load_level(path)
 	if not level:
 		return
-	Editor.version_history = UndoRedo.new()
-	Editor.clipboard = Selection.new()
 	# Load song
 	var song_file_path: String
 	if level.song_path.begins_with("uid"):
