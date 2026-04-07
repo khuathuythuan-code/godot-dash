@@ -90,7 +90,7 @@ func restart_level() -> void:
 
 
 func free_current_level() -> void:
-	LevelManager.current_level.name = "%s_Level_%s" % [PathRef.FREED, hash(LevelManager.current_level)]
+	LevelManager.current_level.name = "%s_Level_%s" % [Constants.FREED, hash(LevelManager.current_level)]
 	LevelManager.current_level.queue_free()
 
 
