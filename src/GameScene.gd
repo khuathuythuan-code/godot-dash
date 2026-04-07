@@ -81,6 +81,7 @@ func restart_level() -> void:
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
 	else:
+		free_current_level()
 		reset()
 		load_level()
 		if not LevelManager.current_level.is_node_ready():
@@ -88,10 +89,13 @@ func restart_level() -> void:
 		start_level()
 
 
-func reset() -> void:
-	Engine.time_scale = 1.0
+func free_current_level() -> void:
 	LevelManager.current_level.name = "%s_Level_%s" % [PathRef.FREED, hash(LevelManager.current_level)]
 	LevelManager.current_level.queue_free()
+
+
+func reset() -> void:
+	Engine.time_scale = 1.0
 	LevelManager.ground_up.hide()
 	LevelManager.ground_up.position.y = GroundMoverComponent.DEFAULT_GROUND_UP_Y
 	LevelManager.ground_down.position.y = GroundMoverComponent.DEFAULT_GROUND_DOWN_Y
