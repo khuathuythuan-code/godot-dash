@@ -1,7 +1,7 @@
 class_name InspectorTree
 extends Tree
 
-const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/node_icons/layers.svg")
+const LAYER_ICON: Texture2D = preload("res://assets/textures/icons/lucide/layers.svg")
 const VISIBLE_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityVisible.svg")
 const HIDDEN_ICON: Texture2D = preload("res://assets/textures/icons/godot/GuiVisibilityHidden.svg")
 const LOCK_ICON: Texture2D = preload("res://assets/textures/icons/godot/Lock.svg")
