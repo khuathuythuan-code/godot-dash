@@ -26,6 +26,5 @@ func get_composite_image() -> Image:
 		var image: Image = child_images[i]
 		var image_rect: Rect2i = child_rects[i]
 		var position_delta: Vector2i = child_position_deltas[i] + Vector2i((max_rect.size - image_rect.size) / 2.0)
-		print_debug(position_delta)
 		composite_image.blend_rect(image, image_rect, position_delta)
 	return composite_image
