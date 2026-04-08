@@ -194,7 +194,8 @@ func stop_playtest() -> void:
 	LevelManager.practice_mode = false
 	LevelManager.practice_level_snapshots.clear()
 	reset()
-	Editor.temporary_playtest_level.queue_free()
+	if Editor.temporary_playtest_level:
+		Editor.temporary_playtest_level.queue_free()
 	level.process_mode = Node.PROCESS_MODE_INHERIT
 	level.show()
 	LevelManager.current_level = level
