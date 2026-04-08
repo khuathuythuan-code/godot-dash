@@ -21,12 +21,21 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 	return images
 
 
-## Generate a square thumbnail of the object (FIT_HEIGHT).
+static func fit_size_to_square(size: Vector2i, side_length: int) -> Vector2i:
+	var new_size: Vector2i = Vector2i.ONE * side_length
+	if size.x < size.y: # Fit height
+		new_size.x = roundi(float(size.x * side_length) / float(size.y))
+	else: # Fit width
+		new_size.y = roundi(float(size.y * side_length) / float(size.x))
+	return new_size
+
+
+## Generate a square thumbnail of the object.
 static func generate(object: Node2D, side_length: int) -> ImageTexture:
 	var images: Array[Image] = get_object_sprite_images(object)
 	for image: Image in images:
-		var image_width: int = roundi(float(image.get_width() * side_length) / float(image.get_height()))
-		image.resize(image_width, side_length, Image.Interpolation.INTERPOLATE_LANCZOS)
+		var image_size: Vector2i = fit_size_to_square(image.get_size(), side_length)
+		image.resize(image_size.x, image_size.y, Image.Interpolation.INTERPOLATE_LANCZOS)
 	var composite_image: Image = Image.create_empty(side_length, side_length, false, Image.FORMAT_RGBA8)
 	var composite_image_size: Vector2i = Vector2i.ONE * side_length
 	for image: Image in images:
