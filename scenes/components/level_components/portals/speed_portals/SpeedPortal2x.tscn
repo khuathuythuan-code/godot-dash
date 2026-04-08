@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dl5c5hukbve28" path="res://scenes/particle_emitter_presets/SpeedPortalParticles.tscn" id="2_r5axd"]
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_6opoa"]
 [ext_resource type="Texture2D" uid="uid://ba7uh3fv4d5jq" path="res://assets/textures/portals/speed_portals/SpeedPortal2x.svg" id="4_wgo4m"]
-[ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_4w6u7"]
-[ext_resource type="Texture2D" uid="uid://dxweksgnsj14o" path="res://assets/textures/CircleOutline.svg" id="6_eh7dq"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="7_4xb3m"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="8_4ebir"]
 [ext_resource type="Script" uid="uid://2x4qudx4pood" path="res://src/interactables/public_components/SpeedChangerComponent.gd" id="9_lwp6d"]
@@ -46,12 +44,6 @@ texture = ExtResource("4_wgo4m")
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1317212053]
 shape = SubResource("RectangleShape2D_udnmp")
 debug_color = Color(0, 1, 0, 0)
-
-[node name="PulseGrow" type="Sprite2D" parent="." unique_id=168280014]
-modulate = Color(0.247059, 0.980392, 0.113725, 1)
-material = ExtResource("5_4w6u7")
-scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("6_eh7dq")
 
 [node name="PulseCircle" type="Node2D" parent="." unique_id=2081149874]
 script = ExtResource("7_4xb3m")
