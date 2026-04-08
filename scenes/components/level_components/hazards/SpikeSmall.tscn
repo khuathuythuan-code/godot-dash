@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2m3q"]
 size = Vector2(12, 18)
 
-[node name="SpikeMedium" type="Area2D" unique_id=426128224]
+[node name="SpikeSmall" type="Area2D" unique_id=426128224]
 collision_layer = 4
 
 [node name="RegularSpikeSmall" type="Sprite2D" parent="." unique_id=820182115]
