@@ -330,10 +330,9 @@ func paste_selection() -> void:
 	var do_duplicate_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D):
-				var layer_id: int = _object.get_meta(Constants.LAYER_META)
-				if not is_instance_id_valid(layer_id) or _object.is_inside_tree() or _object is Player:
+				var layer: Layer = _object.get_meta(Constants.LAYER_META)
+				if not layer:
 					return
-				var layer: Layer = instance_from_id(layer_id)
 				layer.add_child(_object, true)
 				NodeUtils.change_owner_recursive(_object, level)
 		)
@@ -378,22 +377,21 @@ func delete_selection() -> void:
 	var undo_delete_selection := func(_selection: Selection):
 		_selection.for_each(
 			func(_object: Node2D) -> void:
-				if _object is not Player:
-					var layer_id: int = _object.get_meta(Constants.LAYER_META)
-					if not is_instance_id_valid(layer_id):
-						return
-					var layer: Layer = instance_from_id(layer_id)
-					layer.add_child(_object)
-					NodeUtils.change_owner_recursive(_object, level)
+				if _object is Player:
+					return
+				var layer: Layer = _object.get_meta(Constants.LAYER_META)
+				if not layer:
+					return
+				layer.add_child(_object)
+				NodeUtils.change_owner_recursive(_object, level)
 		)
 		_selection.for_each(
 			func(_object: Node2D) -> void:
-				var layer_id: int = _object.get_meta(Constants.LAYER_META)
-				if not is_instance_id_valid(layer_id):
+				var layer: Layer = _object.get_meta(Constants.LAYER_META)
+				if not layer:
 					return
-				var layer: Layer = instance_from_id(layer_id)
 				layer.move_child(_object, _object.get_meta(&"index_in_layer", -1)),
-			true,
+			true, # Reorders in reverse order to avoid messing up the layering
 		)
 
 	var selection_snapshot: Selection = selection.clone()
