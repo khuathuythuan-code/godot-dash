@@ -1397,6 +1397,7 @@ theme_type_variation = &"GroupButton"
 text = "Apply and Reload"
 
 [node name="Editor" type="VBoxContainer" parent="EnumButtonTabContainer" unique_id=2029027396]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
