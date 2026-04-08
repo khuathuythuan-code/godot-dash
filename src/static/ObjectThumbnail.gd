@@ -23,7 +23,8 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 static func generate(object: Node2D, side_length: int) -> ImageTexture:
 	var images: Array[Image] = get_object_sprite_images(object)
 	for image: Image in images:
-		image.resize((image.get_width() * side_length) / image.get_height(), side_length, Image.Interpolation.INTERPOLATE_LANCZOS)
+		var image_width: int = roundi(float(image.get_width() * side_length) / float(image.get_height()))
+		image.resize(image_width, side_length, Image.Interpolation.INTERPOLATE_LANCZOS)
 	var composite_image: Image = Image.create_empty(side_length, side_length, false, Image.FORMAT_RGBA8)
 	var composite_image_size: Vector2i = Vector2i.ONE * side_length
 	for image: Image in images:
