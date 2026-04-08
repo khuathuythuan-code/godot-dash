@@ -15,6 +15,7 @@ var game_scene_packed: PackedScene
 var menu_loop: AudioStream
 var fade_enter_effect: ShaderMaterial
 var fade_enter_effect_canvas_group: ShaderMaterial
+var generated_editor_object_thumbnails: Dictionary[String, ImageTexture]
 
 
 func _ready() -> void:
