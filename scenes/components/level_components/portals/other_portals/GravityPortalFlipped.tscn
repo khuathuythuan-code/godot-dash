@@ -25,10 +25,9 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1099520221 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=1099520221]
 material = ExtResource("2_42xd0")
 script = ExtResource("3_ndk57")
-thumbnail_sprite = NodePath("PortalFront")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=502520011]
 z_index = -1
@@ -62,7 +61,7 @@ script = ExtResource("11_n2d6i")
 
 [node name="PulseWhite" type="Node" parent="." unique_id=164626289 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("12_v67i3")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 
 [node name="GravityFlipChangerComponent" type="Node" parent="." unique_id=969766230]
 script = ExtResource("13_3nflt")

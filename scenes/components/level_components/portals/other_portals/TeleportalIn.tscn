@@ -25,10 +25,9 @@ script = ExtResource("1_3sgph")
 [node name="ParticleEmitter" parent="." unique_id=1469661410 instance=ExtResource("2_6nd4y")]
 modulate = Color(0.356863, 0.85098, 1, 1)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1036897572 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=1036897572]
 material = ExtResource("4_wo8fp")
 script = ExtResource("5_iq2px")
-thumbnail_sprite = NodePath("TeleportalInFront")
 
 [node name="TeleportalInBack" type="Sprite2D" parent="Sprites" unique_id=1053903692]
 z_index = -1
@@ -54,7 +53,7 @@ script = ExtResource("9_rk7d5")
 
 [node name="PulseWhite" type="Node" parent="." unique_id=386628352 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("7_vbgas")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 
 [node name="TargetObjectComponent" type="Node" parent="." unique_id=77900328]
 script = ExtResource("10_ohmk0")

@@ -29,10 +29,9 @@ modulate = Color(1, 0.121569, 1, 1)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1666413847 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=1666413847]
 material = ExtResource("3_vnd63")
 script = ExtResource("4_i3xxh")
-thumbnail_sprite = NodePath("ShipPortalFront")
 
 [node name="ShipPortalBack" type="Sprite2D" parent="Sprites" unique_id=402944069]
 z_index = -1
@@ -67,7 +66,7 @@ _gamemode = 1
 
 [node name="PulseWhite" type="Node" parent="." unique_id=8544880 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_ecaga")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=1563033734]
 script = ExtResource("12_0v1uf")

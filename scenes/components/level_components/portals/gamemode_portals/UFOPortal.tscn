@@ -26,10 +26,9 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=549571002 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=549571002]
 material = ExtResource("2_m72w8")
 script = ExtResource("3_ah6ko")
-thumbnail_sprite = NodePath("UFOPortalFront")
 
 [node name="UFOPortalBack" type="Sprite2D" parent="Sprites" unique_id=538742267]
 z_index = -1
@@ -67,7 +66,7 @@ _gamemode = 2
 
 [node name="PulseWhite" type="Node" parent="." unique_id=699600628 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_8ibny")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=761876644]

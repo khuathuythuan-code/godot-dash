@@ -29,10 +29,9 @@ debug_color = Color(0, 1, 0, 0)
 [node name="ParticleEmitter" parent="." unique_id=311639455 instance=ExtResource("2_u83oa")]
 modulate = Color(1, 1, 0, 1)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=682034519 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=682034519]
 material = ExtResource("3_7s044")
 script = ExtResource("4_euw74")
-thumbnail_sprite = NodePath("SwingPortalFront")
 
 [node name="SwingPortalBack" type="Sprite2D" parent="Sprites" unique_id=1747441751]
 z_index = -1
@@ -67,7 +66,7 @@ _gamemode = 7
 
 [node name="PulseWhite" type="Node" parent="." unique_id=2061326399 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_qa8wx")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=556453074]

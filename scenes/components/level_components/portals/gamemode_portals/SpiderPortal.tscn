@@ -33,11 +33,10 @@ modulate = Color(0.258824, 0.0901961, 1, 1)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1825906097 node_paths=PackedStringArray("thumbnail_sprite")]
+[node name="Sprites" type="Node2D" parent="." unique_id=1825906097]
 material = ExtResource("4_u2cx4")
 scale = Vector2(1.1, 1.1)
 script = ExtResource("5_6svja")
-thumbnail_sprite = NodePath("PortalFront")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=451283390]
 z_index = -1
@@ -72,7 +71,7 @@ _gamemode = 6
 
 [node name="PulseWhite" type="Node" parent="." unique_id=1078278242 node_paths=PackedStringArray("pulse_target")]
 script = ExtResource("11_1662a")
-pulse_target = NodePath("")
+pulse_target = NodePath("../Sprites")
 metadata/_custom_type_script = "uid://n8ym1w4r5ke"
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=479877671]
