@@ -93,15 +93,17 @@ static func is_on_screen(node: Node, directions: Constants.Axis = Constants.Axis
 	return false
 
 
-static func get_object_sprite_textures(object: Node2D) -> Array[Texture2D]:
-	var textures: Array[Texture2D]
+static func get_object_sprite_images(object: Node2D) -> Array[Image]:
+	const REBOUND_ORB_TEXTURE: Texture2D = preload("res://assets/textures/guis/editor/block_palette/ReboundOrbPreview.svg")
+	const REBOUND_PAD_TEXTURE: Texture2D = preload("res://assets/textures/guis/editor/block_palette/ReboundPadPreview.svg")
+	var images: Array[Image]
 	for child: Node in object.get_children():
 		if (child is Sprite2D or child is NinePatchSprite2D) and child.texture:
-			textures.append(child.texture)
+			images.append(child.texture.get_image())
 		elif child is ReboundOrbSprite:
-			textures.append(preload("res://assets/textures/guis/editor/block_palette/ReboundOrbPreview.svg"))
+			images.append(REBOUND_ORB_TEXTURE.get_image())
 		elif child is ReboundPadSprite:
-			textures.append(preload("res://assets/textures/guis/editor/block_palette/ReboundPadPreview.svg"))
-		elif child is LayeredSprites:
-			textures.append(child.thumbnail_sprite.texture)
-	return textures
+			images.append(REBOUND_PAD_TEXTURE.get_image())
+		elif child is LayeredSprite:
+			images.append(child.get_composite_image())
+	return images

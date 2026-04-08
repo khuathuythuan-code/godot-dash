@@ -167,8 +167,8 @@ func refresh(selected: Selection = selection) -> void:
 			object_item.visible = true
 			object_item.set_text(0, object.name)
 			object_item.set_editable(0, true)
-			print_debug(object_item.get_text(0), ": ", NodeUtils.get_object_sprite_textures(object))
-			object_item.set_icon(0, generate_object_icon(NodeUtils.get_object_sprite_textures(object)))
+			print_debug(object_item.get_text(0), ": ", NodeUtils.get_object_sprite_images(object))
+			object_item.set_icon(0, generate_object_icon(NodeUtils.get_object_sprite_images(object)))
 			if selection.contains(object):
 				object_item.select(0)
 				scroll_to_item(object_item)
@@ -190,14 +190,11 @@ func refresh(selected: Selection = selection) -> void:
 	update_active_layer(false)
 
 
-func generate_object_icon(object_textures: Array[Texture2D]) -> ImageTexture:
-	var images: Array[Image]
-	for texture: Texture2D in object_textures:
-		var image: Image = texture.get_image()
+func generate_object_icon(images: Array[Image]) -> ImageTexture:
+	for image: Image in images:
 		image.resize((image.get_width() * 16) / image.get_height(), 16, Image.Interpolation.INTERPOLATE_LANCZOS)
-		images.append(image)
 	var composite_image: Image = images[0]
-	var image_rect: Rect2i = Rect2i(Vector2i.ZERO, Vector2i(composite_image.get_width(), composite_image.get_height()))
+	var image_rect: Rect2i = Rect2i(Vector2i.ZERO, composite_image.get_size())
 	for i: int in images.size():
 		if i == 0:
 			continue
