@@ -65,7 +65,8 @@ func _physics_process(_delta: float) -> void:
 	$GameScene.pause_menu.suspended = level_was_modified()
 
 	if (
-		%Modes.get_current_tab_control().name == "Place"
+		%Modes.current_tab == Editor.EditorMode.PLACE
+		and not Editor.is_picking_node
 		and (
 			Input.is_action_just_pressed(&"editor_add", true) or Input.is_action_just_pressed(&"editor_remove", true)
 			or Input.is_action_pressed(&"editor_add_swipe", true) or Input.is_action_pressed(&"editor_remove_swipe", true)

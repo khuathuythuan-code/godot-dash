@@ -1,5 +1,11 @@
 extends Node
 
+enum EditorMode {
+	PLACE,
+	EDIT,
+	SELECTION_FILTERS,
+}
+
 var root: EditorScene
 var in_editor: bool:
 	get():
