@@ -17,14 +17,14 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 	return images
 
 
+## Generate a square thumbnail of the object (FIT_HEIGHT).
 static func generate(object: Node2D, side_length: int) -> ImageTexture:
 	var images: Array[Image] = get_object_sprite_images(object)
 	for image: Image in images:
 		image.resize((image.get_width() * side_length) / image.get_height(), side_length, Image.Interpolation.INTERPOLATE_LANCZOS)
-	var composite_image: Image = images[0]
-	var image_rect: Rect2i = Rect2i(Vector2i.ZERO, composite_image.get_size())
-	for i: int in images.size():
-		if i == 0:
-			continue
-		composite_image.blend_rect(images[i], image_rect, Vector2i.ZERO)
+	var composite_image: Image = Image.create_empty(side_length, side_length, false, Image.FORMAT_RGBA8)
+	var composite_image_size: Vector2i = Vector2i.ONE * side_length
+	for image: Image in images:
+		var image_rect: Rect2i = Rect2i(Vector2i.ZERO, image.get_size())
+		composite_image.blend_rect(image, image_rect, (composite_image_size - image.get_size()) / 2.0)
 	return ImageTexture.create_from_image(composite_image)
