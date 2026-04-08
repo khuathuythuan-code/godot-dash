@@ -1,4 +1,4 @@
-extends Sprite2D
+extends TriggerSprite
 
 @export var toggle_component: ToggleComponent
 

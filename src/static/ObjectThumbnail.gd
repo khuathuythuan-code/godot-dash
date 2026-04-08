@@ -6,14 +6,16 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 	const REBOUND_PAD_TEXTURE: Texture2D = preload("res://assets/textures/guis/editor/block_palette/ReboundPadPreview.svg")
 	var images: Array[Image]
 	for child: Node in object.get_children():
-		if (child is Sprite2D or child is NinePatchSprite2D) and child.texture:
-			images.append(child.texture.get_image())
+		if child is TriggerSprite:
+			images.append(child.get_cropped_image())
 		elif child is ReboundOrbSprite:
 			images.append(REBOUND_ORB_TEXTURE.get_image())
 		elif child is ReboundPadSprite:
 			images.append(REBOUND_PAD_TEXTURE.get_image())
 		elif child is LayeredSprite:
 			images.append(child.get_composite_image())
+		elif (child is Sprite2D or child is NinePatchSprite2D) and child.texture:
+			images.append(child.texture.get_image())
 		elif child is CanvasGroup:
 			images.append_array(get_object_sprite_images(child))
 	return images
