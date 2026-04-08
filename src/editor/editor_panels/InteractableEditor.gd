@@ -20,6 +20,7 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	LevelCheckpointComponent,
 	SpiderDashComponent,
 	EndLevelComponent,
+	AutoCheckpointComponent,
 ]
 
 # Querying this at runtime is overkill
@@ -84,11 +85,10 @@ func build_ui(interactables: Selection) -> void:
 		.filter(should_component_be_displayed)
 	)
 	displayed_components = interactables.fold_generic(shared_components.bind(first_interactable), displayed_components)
+	components_root.visible = not displayed_components.is_empty()
 
-	if displayed_components:
+	if not displayed_components.is_empty():
 		build_components_ui(interactables, displayed_components)
-	else:
-		components_root.hide()
 
 	if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
 		separator.hide()

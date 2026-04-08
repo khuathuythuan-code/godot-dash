@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5dllcskymml7"]
 
-[ext_resource type="Texture2D" uid="uid://deu0gosdtbuo1" path="res://assets/textures/solids/bricks/bricks.webp" id="1_0fnut"]
+[ext_resource type="Texture2D" uid="uid://deu0gosdtbuo1" path="res://assets/textures/solids/bricks/Bricks.webp" id="1_0fnut"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_i3l5m"]
 [ext_resource type="Script" uid="uid://co07p647ncgri" path="res://src/interactables/public_components/PhysicsObjectComponent.gd" id="3_i3l5m"]
 

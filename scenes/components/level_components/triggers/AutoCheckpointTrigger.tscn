@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_fgrgk"]
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="2_fgrgk"]
+[ext_resource type="Script" uid="uid://dnxmq664kbq3f" path="res://src/interactables/private_components/TriggerSprite.gd" id="3_j5k2o"]
 [ext_resource type="PackedScene" uid="uid://cqc5xe1c2thcj" path="res://scenes/components/game_components/GroupDisplay.tscn" id="4_nur68"]
 [ext_resource type="Script" uid="uid://dkxvo20imjlfx" path="res://src/interactables/public_components/AutoCheckpointComponent.gd" id="5_be5ag"]
 [ext_resource type="Script" uid="uid://cilw18c36fh6" path="res://src/interactables/public_components/TriggerHitboxComponent.gd" id="6_6ss6l"]
@@ -14,13 +15,15 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
-[node name="AutoCheckpoint" type="Area2D" unique_id=572854513]
+[node name="AutoCheckpointTrigger" type="Area2D" unique_id=572854513]
 script = ExtResource("1_fgrgk")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=6682198]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=811034042]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_fgrgk")
+script = ExtResource("3_j5k2o")
+metadata/_custom_type_script = "uid://dnxmq664kbq3f"
 
 [node name="GroupDisplay" parent="Sprite" unique_id=1032657094 instance=ExtResource("4_nur68")]
 offset_left = -512.0
@@ -44,7 +47,7 @@ metadata/_custom_type_script = "uid://cilw18c36fh6"
 
 [node name="TextureRotationPinComponent" type="Node" parent="." unique_id=744380952 node_paths=PackedStringArray("pinned")]
 script = ExtResource("7_mjbww")
-pinned = NodePath("../Sprite")
+pinned = NodePath("")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 

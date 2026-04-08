@@ -167,6 +167,7 @@ func refresh(selected: Selection = selection) -> void:
 			object_item.visible = true
 			object_item.set_text(0, object.name)
 			object_item.set_editable(0, true)
+			object_item.set_icon(0, ObjectThumbnail.generate(object, 16))
 			if selection.contains(object):
 				object_item.select(0)
 				scroll_to_item(object_item)

@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_dneit"]
 [ext_resource type="Texture2D" uid="uid://bcdstukpupgb5" path="res://assets/textures/portals/gamemode_portals/robot_portal/RobotPortalFront.png" id="3_lpi4s"]
 [ext_resource type="Texture2D" uid="uid://cpapf6mc3g8cc" path="res://assets/textures/portals/gamemode_portals/robot_portal/RobotPortalIndicatorBG.png" id="4_jvm78"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="4_mcpef"]
 [ext_resource type="Texture2D" uid="uid://bxfupyv0j3hpi" path="res://assets/textures/portals/gamemode_portals/robot_portal/RobotPortalIndicatorIcon.png" id="5_wquqr"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="6_he45p"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_x1q1h"]
@@ -27,8 +28,9 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1155399805]
+[node name="Sprites" type="Node2D" parent="." unique_id=581868705]
 material = ExtResource("3_dneit")
+script = ExtResource("4_mcpef")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=556584428]
 z_index = -1
