@@ -14,6 +14,7 @@ var viewport: EditorViewport
 var version_history: UndoRedo
 var render_mode_manager: RenderMode
 var temporary_playtest_level: Level
+var is_picking_node: bool
 
 # MOBILE CONTROLS
 var swipe: bool = false

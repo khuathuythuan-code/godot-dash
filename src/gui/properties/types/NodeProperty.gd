@@ -36,6 +36,14 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 
 
+func _input(event: InputEvent) -> void:
+	if (
+		Editor.is_picking_node and Editor.shortcut_blocker == self
+		and event.is_action_pressed(&"ui_cancel")
+	):
+		_cancel_interactive_picker()
+
+
 func set_value(new_value: NodePath) -> void:
 	if not new_value.is_empty():
 		var node: Node = Deserialize.Node(new_value)
@@ -53,7 +61,7 @@ func set_value(new_value: NodePath) -> void:
 
 func set_value_no_signal(new_value: NodePath) -> void:
 	if new_value.is_empty():
-		input.text = "    Assign…    "
+		input.text = "Assign…"
 	else:
 		var node: Node = Deserialize.Node(new_value)
 		if (
@@ -75,7 +83,7 @@ func get_value() -> NodePath:
 
 func reset() -> void:
 	_value = ^""
-	input.text = "    Assign…    "
+	input.text = "Assign…"
 	value_changed.emit(^"")
 
 
@@ -96,13 +104,24 @@ func _matches_component_filter(interactable: Interactable) -> bool:
 	return true
 
 
+func _start_interactive_picker() -> void:
+	input.text = "Select an object…"
+	Editor.viewport.override_cursor_shape(CursorShape.CURSOR_CROSS)
+	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_CROSS
+	Editor.is_picking_node = true
+	Editor.shortcut_blocker = self
+
+
+func _cancel_interactive_picker() -> void:
+	Editor.shortcut_blocker = null
+	Editor.is_picking_node = false
+	input.text = "Assign…"
+	Editor.viewport.remove_cursor_shape_override()
+	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
 func _on_input_pressed() -> void:
-	var clipboard := Editor.clipboard
-	if clipboard.size() > 1:
-		Toasts.warning("Copy a single object to assign it")
+	if Editor.is_picking_node and Editor.shortcut_blocker == self:
+		_cancel_interactive_picker()
 		return
-	if clipboard.is_empty() or Engine.is_editor_hint():
-		Toasts.warning("Copy a single object to assign it")
-		reset()
-	else:
-		set_value(Editor.root.level.get_path_to(clipboard.first()))
+	_start_interactive_picker()
