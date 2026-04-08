@@ -14,6 +14,8 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 			images.append(REBOUND_PAD_TEXTURE.get_image())
 		elif child is LayeredSprite:
 			images.append(child.get_composite_image())
+		elif child is CanvasGroup:
+			images.append_array(get_object_sprite_images(child))
 	return images
 
 
