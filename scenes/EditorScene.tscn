@@ -259,7 +259,7 @@
 [ext_resource type="Script" uid="uid://ittb0tvwkara" path="res://src/editor/editor_panels/TransformEditor.gd" id="208_5qr8h"]
 [ext_resource type="Script" uid="uid://crich318mmmk2" path="res://src/gui/properties/types/Vector2Property.gd" id="209_c6gj0"]
 [ext_resource type="Script" uid="uid://c73uilol0rw1g" path="res://src/gui/properties/types/FloatSliderProperty.gd" id="213_w20ac"]
-[ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpoint.tscn" id="225_n63fl"]
+[ext_resource type="PackedScene" uid="uid://cujd8412wj631" path="res://scenes/components/level_components/triggers/AutoCheckpointTrigger.tscn" id="225_n63fl"]
 [ext_resource type="Texture2D" uid="uid://cr8u5cdx47ja5" path="res://assets/textures/triggers/AutoCheckpoint.svg" id="226_66500"]
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="244_leg3o"]
