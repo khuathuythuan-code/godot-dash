@@ -1,13 +1,16 @@
 @abstract
 class_name ObjectThumbnail
 
-static func get_object_sprite_images(object: Node2D) -> Array[Image]:
+static func get_object_thumbnail_image(object: Node2D) -> Array[Image]:
 	const REBOUND_ORB_TEXTURE: Texture2D = preload("res://assets/textures/guis/editor/block_palette/ReboundOrbPreview.svg")
 	const REBOUND_PAD_TEXTURE: Texture2D = preload("res://assets/textures/guis/editor/block_palette/ReboundPadPreview.svg")
+	const TEXT_TEXTURE: Texture2D = preload("res://assets/textures/Text.svg")
 	var images: Array[Image]
 	for child: Node in object.get_children():
 		if child is TriggerSprite:
-			images.append(child.get_cropped_image())
+			images.append(crop_image_around_center(child.texture.get_image(), 0.5))
+		elif child is Label:
+			images.append(crop_image_around_center(TEXT_TEXTURE.get_image(), 0.7))
 		elif child is ReboundOrbSprite:
 			images.append(REBOUND_ORB_TEXTURE.get_image())
 		elif child is ReboundPadSprite:
@@ -17,8 +20,17 @@ static func get_object_sprite_images(object: Node2D) -> Array[Image]:
 		elif (child is Sprite2D or child is NinePatchSprite2D) and child.texture:
 			images.append(child.texture.get_image())
 		elif child is CanvasGroup:
-			images.append_array(get_object_sprite_images(child))
+			images.append_array(get_object_thumbnail_image(child))
 	return images
+
+
+static func crop_image_around_center(image: Image, size_factor: float) -> Image:
+	# Shift image to prepare for crop
+	var shift_factor: float = (1 - size_factor) / 2.0
+	var rect: Rect2i = Rect2i(Vector2i.ZERO, image.get_size())
+	image.blit_rect(image, rect, -image.get_size() * shift_factor)
+	image.crop(roundi(image.get_width() * size_factor), roundi(image.get_height() * size_factor))
+	return image
 
 
 static func fit_size_to_square(size: Vector2i, side_length: int) -> Vector2i:
@@ -32,7 +44,7 @@ static func fit_size_to_square(size: Vector2i, side_length: int) -> Vector2i:
 
 ## Generate a square thumbnail of the object.
 static func generate(object: Node2D, side_length: int) -> ImageTexture:
-	var images: Array[Image] = get_object_sprite_images(object)
+	var images: Array[Image] = get_object_thumbnail_image(object)
 	for image: Image in images:
 		var image_size: Vector2i = fit_size_to_square(image.get_size(), side_length)
 		image.resize(image_size.x, image_size.y, Image.Interpolation.INTERPOLATE_LANCZOS)
