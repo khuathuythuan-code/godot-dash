@@ -234,7 +234,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 		for component: Component in _initial_values:
 			var initial_value: Variant = _initial_values[component][1]
 			component.set(property_name, initial_value)
-		load_properties(_initial_values.keys()[0].to_ref().parent, self)
+		load_properties(_initial_values.keys()[0].parent, self)
 
 	var interactables_snapshot: Selection = interactables.clone()
 	var version_history: UndoRedo = Editor.version_history
