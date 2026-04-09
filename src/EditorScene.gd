@@ -122,6 +122,10 @@ func reset() -> void:
 		editor_grid.queue_redraw()
 	NodeUtils.connect_once($GameScene.pause_menu.leave, _on_leave_pressed)
 
+	if Editor.is_picking_node:
+		Editor.is_picking_node = false
+		Editor.shortcut_blocker.cancel_interactive_picker()
+
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	NodeUtils.connect_once($EditorCamera.zoom_changed, $GameScene/EditorGridParallax/EditorGrid.queue_redraw)
 	$EditHandler.placed_objects_collider = placed_objects_collider
