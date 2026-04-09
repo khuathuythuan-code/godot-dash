@@ -37,9 +37,14 @@ func _validate_property(property: Dictionary) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not (Editor.is_picking_node and Editor.shortcut_blocker == self):
+		return
+	var is_press: bool = (event is InputEventMouseButton and event.button_index == MouseButton.MOUSE_BUTTON_LEFT) or event is InputEventScreenTouch
+	var mouse_hovers_viewport: bool = Editor.viewport.get_global_rect().has_point(get_global_mouse_position())
+	var mouse_hovers_tree: bool = Editor.root.inspector_tree.get_global_rect().has_point(get_global_mouse_position())
 	if (
-		Editor.is_picking_node and Editor.shortcut_blocker == self
-		and event.is_action_pressed(&"ui_cancel")
+		event.is_action_pressed(&"ui_cancel")
+		or (is_press and not (mouse_hovers_viewport or mouse_hovers_tree))
 	):
 		_cancel_interactive_picker()
 
