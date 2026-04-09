@@ -56,12 +56,12 @@ func _physics_process(delta: float) -> void:
 
 	var gizmo_in_use: bool = gizmo and (gizmo.is_enabled() or gizmo.any_handle_hovered())
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == Editor.viewport:
-		if (
-			(editor_modes.current_tab == Editor.EditorMode.EDIT or Editor.is_picking_node)
+		if Editor.is_picking_node:
+			pass
+		elif (
+			editor_modes.current_tab == Editor.EditorMode.EDIT
 			and not gizmo_in_use
-			and (
-				not Config.is_touch_screen or not any_gizmo_is_open()
-			)
+			and not (Config.is_touch_screen and any_gizmo_is_open())
 		):
 			_update_selection()
 		var can_use_actions: bool = (
