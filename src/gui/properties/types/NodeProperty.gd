@@ -115,9 +115,12 @@ func cancel_interactive_picker() -> void:
 	Editor.is_picking_node = false
 	set_value_no_signal(get_value())
 	Editor.viewport.remove_cursor_shape_override()
-	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
-	Editor.root.inspector_tree.set_items_editable(true)
-	Editor.root.inspector_tree.multi_selected.disconnect(_finish_tree_interactive_picker)
+	var inspector_tree: InspectorTree = Editor.root.inspector_tree
+	inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	inspector_tree.set_items_editable(true)
+	inspector_tree.set_selected_items(_tree_item_selection)
+	inspector_tree.multi_selected.disconnect(_finish_tree_interactive_picker)
+	_tree_item_selection.clear()
 
 
 func _matches_component_filter(interactable: Interactable) -> bool:
@@ -148,11 +151,10 @@ func _finish_tree_interactive_picker(item: TreeItem, _column: int, selected: boo
 		return
 
 	# A valid object was picked.
-	_tree_item_selection.clear()
 	_multi_selected_ran_times += 1
 	var layer: Layer = Editor.root.level.layers[picked_item.get_parent().get_index()]
 	var picked_object: Node2D = layer.get_child(picked_item.get_index())
-	cancel_interactive_picker()
+	cancel_interactive_picker.call_deferred()
 	set_value(Serialize.Node(picked_object))
 
 
