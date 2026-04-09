@@ -16,6 +16,8 @@ signal interaction_ended(value: NodePath, previous: NodePath)
 @export_tool_button("Refresh") var _refresh = refresh
 
 var input: Button
+var _tree_item_selection: Array[TreeItem]
+var _multi_selected_ran_times: int = 0
 
 
 func _ready() -> void:
@@ -46,7 +48,7 @@ func _input(event: InputEvent) -> void:
 		event.is_action_pressed(&"ui_cancel")
 		or (is_press and not (mouse_hovers_viewport or mouse_hovers_tree))
 	):
-		_cancel_interactive_picker()
+		cancel_interactive_picker()
 
 
 func set_value(new_value: NodePath) -> void:
@@ -103,9 +105,19 @@ func set_input_state(enabled: bool) -> void:
 
 
 func finish_interactive_picker(picked_node: Node2D) -> void:
-	_cancel_interactive_picker()
+	cancel_interactive_picker()
 	if picked_node:
 		set_value(Serialize.Node(picked_node))
+
+
+func cancel_interactive_picker() -> void:
+	Editor.shortcut_blocker = null
+	Editor.is_picking_node = false
+	set_value_no_signal(get_value())
+	Editor.viewport.remove_cursor_shape_override()
+	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
+	Editor.root.inspector_tree.set_items_editable(true)
+	Editor.root.inspector_tree.multi_selected.disconnect(_finish_tree_interactive_picker)
 
 
 func _matches_component_filter(interactable: Interactable) -> bool:
@@ -123,16 +135,36 @@ func _start_interactive_picker() -> void:
 	Editor.shortcut_blocker = self
 
 
-func _cancel_interactive_picker() -> void:
-	Editor.shortcut_blocker = null
-	Editor.is_picking_node = false
-	set_value_no_signal(get_value())
-	Editor.viewport.remove_cursor_shape_override()
-	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
+func _finish_tree_interactive_picker(item: TreeItem, _column: int, selected: bool) -> void:
+	if not selected or _multi_selected_ran_times > 0:
+		return
+	var inspector_tree: InspectorTree = Editor.root.inspector_tree
+	var picked_item: TreeItem = item
+	inspector_tree.set_selected_items(_tree_item_selection)
+
+	# Prevent picking layers.
+	var picked_item_is_layer: bool = picked_item.get_parent() == inspector_tree.get_root()
+	if picked_item_is_layer:
+		return
+
+	# A valid object was picked.
+	_tree_item_selection.clear()
+	_multi_selected_ran_times += 1
+	var layer: Layer = Editor.root.level.layers[picked_item.get_parent().get_index()]
+	var picked_object: Node2D = layer.get_child(picked_item.get_index())
+	cancel_interactive_picker()
+	set_value(Serialize.Node(picked_object))
 
 
 func _on_input_pressed() -> void:
-	if Editor.is_picking_node and Editor.shortcut_blocker == self:
-		_cancel_interactive_picker()
+	if Editor.is_picking_node:
+		if Editor.shortcut_blocker == self:
+			cancel_interactive_picker()
+		# Avoid starting another interactive picker if a NodeProperty is already active.
 		return
+	var inspector_tree: InspectorTree = Editor.root.inspector_tree
+	_tree_item_selection = inspector_tree.get_selected_items()
+	_multi_selected_ran_times = 0
+	inspector_tree.set_items_editable(false)
+	NodeUtils.connect_once(inspector_tree.multi_selected, _finish_tree_interactive_picker)
 	_start_interactive_picker()

@@ -227,6 +227,28 @@ func handle_item_rename(item: TreeItem) -> void:
 		Editor.root.inspector_manager.update_object_name(new_name)
 
 
+func set_items_editable(editable: bool) -> void:
+	for item: TreeItem in get_flat_visible_item_list():
+		item.set_editable(0, editable)
+
+
+func get_selected_items() -> Array[TreeItem]:
+	var item: TreeItem = null
+	var selected_items: Array[TreeItem]
+	while get_next_selected(item):
+		selected_items.append(get_next_selected(item))
+		item = get_next_selected(item)
+	return selected_items
+
+
+func set_selected_items(selected_items: Array[TreeItem]) -> void:
+	for item: TreeItem in get_flat_visible_item_list():
+		if item in selected_items:
+			item.select(0)
+		else:
+			item.deselect(0)
+
+
 func bulk_update_selection(is_caller_selected: bool) -> void:
 	var edit_handler: EditHandler = Editor.root.edit_handler
 	if selection.is_identical(edit_handler.selection) and is_caller_selected:
@@ -339,6 +361,8 @@ func _on_place_handler_object_deleted(_object: Node2D) -> void:
 
 
 func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
+	if Editor.is_picking_node:
+		return
 	if item.get_metadata(0):
 		item.set_metadata(0, false)
 		return
