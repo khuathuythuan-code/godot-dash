@@ -56,7 +56,7 @@ func set_value(new_value: NodePath) -> void:
 			(type and not is_instance_of(node, type))
 			or (type == Interactable and not _matches_component_filter(node))
 		):
-			Toasts.error("Copied object is of invalid type for this field.")
+			Toasts.error("Selected object is of invalid type for this field.")
 			return
 	var previous: NodePath = _value
 	set_value_no_signal(new_value)
@@ -73,7 +73,7 @@ func set_value_no_signal(new_value: NodePath) -> void:
 			(type and not is_instance_of(node, type))
 			or (type == Interactable and not _matches_component_filter(node))
 		):
-			Toasts.error("Copied object is of invalid type for this field.")
+			Toasts.error("Selected object is of invalid type for this field.")
 			return
 		input.text = new_value
 		# Remove trailing dots for special nodes, e.g. LevelManager.player
@@ -102,6 +102,12 @@ func set_input_state(enabled: bool) -> void:
 	input.disabled = not enabled
 
 
+func finish_interactive_picker(picked_node: Node2D) -> void:
+	_cancel_interactive_picker()
+	if picked_node:
+		set_value(Serialize.Node(picked_node))
+
+
 func _matches_component_filter(interactable: Interactable) -> bool:
 	for component_script: Script in component_filter:
 		if not interactable.has(component_script):
@@ -120,7 +126,7 @@ func _start_interactive_picker() -> void:
 func _cancel_interactive_picker() -> void:
 	Editor.shortcut_blocker = null
 	Editor.is_picking_node = false
-	input.text = "Assign…"
+	set_value_no_signal(get_value())
 	Editor.viewport.remove_cursor_shape_override()
 	Editor.root.inspector_tree.mouse_default_cursor_shape = Control.CURSOR_ARROW
 

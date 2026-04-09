@@ -57,7 +57,7 @@ func _physics_process(delta: float) -> void:
 	var gizmo_in_use: bool = gizmo and (gizmo.is_enabled() or gizmo.any_handle_hovered())
 	if is_already_swiping_selection or get_viewport().gui_get_hovered_control() == Editor.viewport:
 		if Editor.is_picking_node:
-			pass
+			_update_interactive_picking()
 		elif (
 			editor_modes.current_tab == Editor.EditorMode.EDIT
 			and not gizmo_in_use
@@ -550,6 +550,20 @@ func _update_selection() -> void:
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		_reset_selection_zone(true)
 	selection.remove(level)
+
+
+func _update_interactive_picking() -> void:
+	if not (
+		get_viewport().gui_get_hovered_control() == Editor.viewport
+		and Input.is_action_just_pressed(&"editor_add", true)
+	):
+		return
+	# Clicking on an empty space will cancel the picking.
+	var picked_object: Node2D
+	if placed_objects_collider.has_overlapping_areas():
+		picked_object = get_object_parent(placed_objects_collider.get_overlapping_areas()[0])
+	var active_node_property: NodeProperty = Editor.shortcut_blocker
+	active_node_property.finish_interactive_picker(picked_object)
 
 
 func _reset_selection_zone(unreachable: bool = true) -> void:
