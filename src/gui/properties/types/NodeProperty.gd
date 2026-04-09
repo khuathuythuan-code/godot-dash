@@ -11,6 +11,7 @@ signal interaction_ended(value: NodePath, previous: NodePath)
 	set(value):
 		type = value
 		notify_property_list_changed()
+@export var allow_layer_selection: bool = false
 @export var component_filter: Array[Script] # Script can't be filtered by inherited classes so that's the best i can do. `Array[Script[Component]]` would be awesome
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
@@ -147,7 +148,8 @@ func _finish_tree_interactive_picker(item: TreeItem, _column: int, selected: boo
 
 	# Prevent picking layers.
 	var picked_item_is_layer: bool = picked_item.get_parent() == inspector_tree.get_root()
-	if picked_item_is_layer:
+	if picked_item_is_layer and not allow_layer_selection:
+		Toasts.warning("Layers cannot be assigned to this property")
 		return
 
 	# A valid object was picked.
