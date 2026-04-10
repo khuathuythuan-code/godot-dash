@@ -76,12 +76,12 @@ func start(_player: Player) -> void:
 		Toasts.warning("In %s: target group doesn't contain any objects" % parent.name)
 	if mode == Mode.COPY and copy_target == null and Editor.in_editor:
 		Toasts.error("In %s: copy target is unset" % parent.name)
-	if not copy_target.is_empty() or true:
-		var copy_target_ref: Node = LevelManager.current_level.get_node_or_null(copy_target)
-		if not copy_target_ref:
-			Toasts.error("In %s: invalid copy target" % parent.name)
-			return
-		copy_target_hsv_watcher = BaseDetailHandler.use_hsv_watcher(copy_target_ref)
+		if not copy_target.is_empty():
+			var copy_target_ref: Node = LevelManager.current_level.get_node_or_null(copy_target)
+			if not copy_target_ref:
+				Toasts.error("In %s: invalid copy target" % parent.name)
+				return
+			copy_target_hsv_watcher = BaseDetailHandler.use_hsv_watcher(copy_target_ref)
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
