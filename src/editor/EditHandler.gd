@@ -497,7 +497,7 @@ func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 func _update_selection() -> void:
 	if Input.is_action_just_pressed(&"editor_add") or Input.is_action_just_pressed(&"editor_selection_remove"):
 		_reset_selection_zone(false)
-	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
+	if Input.is_action_just_pressed(&"editor_add", false) and get_viewport().gui_get_hovered_control() == Editor.viewport:
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 		and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			selection_index += 1
@@ -530,7 +530,6 @@ func _update_selection() -> void:
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		selection_buffer = Selection.from_array(Array($SelectionZone.get_overlapping_areas().map(get_object_parent), TYPE_OBJECT, "Node2D", null))
 		_reset_selection_zone(true)
-	selection.remove(level)
 
 
 func _reset_selection_zone(unreachable: bool = true) -> void:

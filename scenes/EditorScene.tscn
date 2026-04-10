@@ -6523,7 +6523,6 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 [node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
 unique_name_in_owner = true
 visible = false
-theme = null
 metadata/_edit_lock_ = true
 
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
