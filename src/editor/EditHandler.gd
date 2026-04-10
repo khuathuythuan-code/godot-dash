@@ -726,7 +726,7 @@ static func scale_transform(
 		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
 		if absolutesize == null:
 			return
-		absolutesize._on_size_changed()
+		absolutesize.update_size()
 
 
 static func scale_transform_local(
@@ -746,7 +746,7 @@ static func scale_transform_local(
 		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
 		if absolutesize == null:
 			return
-		absolutesize._on_size_changed()
+		absolutesize.update_size()
 
 
 func _on_move_pressed(quick: bool = false):

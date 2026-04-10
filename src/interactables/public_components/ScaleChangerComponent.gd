@@ -89,4 +89,5 @@ func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 			var absolutesize: NinePatchSprite2DAbsoluteSize = group_object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
 			if absolutesize == null:
 				return
-			absolutesize._on_size_changed()
+			absolutesize.update_size()
+
