@@ -44,7 +44,8 @@ static func fit_size_to_square(size: Vector2i, side_length: int) -> Vector2i:
 
 ## Generate a square thumbnail of the object.
 static func generate(object: Node2D, side_length: int) -> ImageTexture:
-	if object.scene_file_path in AssetManager.generated_editor_object_thumbnails:
+	var dictionary_path: String = "%s_%spx" % [object.scene_file_path, side_length]
+	if dictionary_path in AssetManager.generated_editor_object_thumbnails:
 		return AssetManager.generated_editor_object_thumbnails["%s_%spx" % [object.scene_file_path, side_length]]
 	var composite_image_size: Vector2i = Vector2i.ONE * side_length
 	var images: Array[Image] = get_object_thumbnail_image(object)
@@ -56,5 +57,5 @@ static func generate(object: Node2D, side_length: int) -> ImageTexture:
 		var image_rect: Rect2i = Rect2i(Vector2i.ZERO, image.get_size())
 		composite_image.blend_rect(image, image_rect, (composite_image_size - image.get_size()) / 2.0)
 	var texture: ImageTexture = ImageTexture.create_from_image(composite_image)
-	AssetManager.generated_editor_object_thumbnails["%s_%spx" % [object.scene_file_path, side_length]] = texture
+	AssetManager.generated_editor_object_thumbnails[dictionary_path] = texture
 	return texture
