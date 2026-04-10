@@ -723,6 +723,11 @@ static func scale_transform(
 		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
+	if object is StaticBody2D:
+		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
+		if absolutesize == null:
+			return
+		absolutesize._on_size_changed()
 
 
 static func scale_transform_local(
@@ -738,6 +743,11 @@ static func scale_transform_local(
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
 	)
+	if object is StaticBody2D:
+		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
+		if absolutesize == null:
+			return
+		absolutesize._on_size_changed()
 
 
 func _on_move_pressed(quick: bool = false):

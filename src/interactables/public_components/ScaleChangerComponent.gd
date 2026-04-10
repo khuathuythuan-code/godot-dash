@@ -74,7 +74,6 @@ func _apply_scale_delta(group_object: Node2D, scale_delta: Vector2) -> void:
 
 
 func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
-	prints(weight_delta, group_objects.size())
 	for group_object in group_objects:
 		var initial_global_scale := initial_global_scales[group_object]
 		var scale_delta: Vector2
@@ -86,3 +85,8 @@ func _on_easing_progressed(_player: Player, weight_delta: float) -> void:
 			Mode.MULTIPLY:
 				scale_delta = (initial_global_scale * scale - initial_global_scale) * weight_delta
 		_apply_scale_delta(group_object, scale_delta)
+		if group_object is StaticBody2D:
+			var absolutesize: NinePatchSprite2DAbsoluteSize = group_object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
+			if absolutesize == null:
+				return
+			absolutesize._on_size_changed()
