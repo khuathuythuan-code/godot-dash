@@ -15,7 +15,6 @@ signal interaction_ended(value: float, previous: float)
 @export var prefix: String
 @export var suffix: String
 @export var slider_tick_count: int
-@export var spinbox_width: float = 90.0
 @export var expand_to_text_length: bool
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh

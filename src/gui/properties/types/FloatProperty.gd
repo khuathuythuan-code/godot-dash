@@ -1,6 +1,6 @@
 @tool
-extends Property
 class_name FloatProperty
+extends Property
 
 signal value_changed(value: float)
 signal interaction_ended(value: float, previous: float)
@@ -25,20 +25,24 @@ var _previous_value: float
 func _ready() -> void:
 	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
 	input = NodeUtils.get_node_or_add(self, "Input", SpinBox, NodeUtils.INTERNAL)
-	input.value_changed.connect(func(new_value): value_changed.emit(new_value))
-	input.get_line_edit().editing_toggled.connect(func(toggled_on: bool):
-		if toggled_on:
-			_previous_value = input.value
-		else:
-			interaction_ended.emit(input.value, _previous_value))
+	input.value_changed.connect(value_changed.emit)
+	input.get_line_edit().editing_toggled.connect(
+		func(toggled_on: bool):
+			if toggled_on:
+				_previous_value = input.value
+			else:
+				interaction_ended.emit(input.value, _previous_value)
+	)
 	renamed.connect(refresh)
 	var line_edit = input.get_line_edit()
 	line_edit.text_submitted.connect(submitted_release_focus)
 	line_edit.editing_toggled.connect(unedit_release_focus)
 	refresh()
-	NodeUtils \
+	(
+		NodeUtils \
 		.get_node_or_add(self, "PropertyReset", PropertyReset, NodeUtils.INTERNAL) \
 		.set_input(input)
+	)
 
 
 func set_value(new_value: float) -> void:
@@ -62,6 +66,7 @@ func reset() -> void:
 
 func refresh() -> void:
 	label.text = name
+	input.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	input.min_value = min_value
 	input.max_value = max_value
 	input.step = step

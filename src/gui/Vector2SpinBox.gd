@@ -53,7 +53,8 @@ func _ready() -> void:
 func update_internals() -> void:
 	if keep_aspect:
 		aspect_ratio = get_viewport_rect().size.aspect()
-	for spinbox in [spinbox_x, spinbox_y]:
+	for spinbox: SpinBox in [spinbox_x, spinbox_y]:
+		spinbox.alignment = HORIZONTAL_ALIGNMENT_FILL
 		spinbox.min_value = min_value
 		spinbox.max_value = max_value
 		spinbox.allow_greater = allow_greater
@@ -61,7 +62,6 @@ func update_internals() -> void:
 		spinbox.suffix = suffix
 		spinbox.step = step
 		spinbox.custom_minimum_size.x = 128
-		spinbox.alignment = HORIZONTAL_ALIGNMENT_FILL
 		spinbox.rounded = rounded
 		spinbox.select_all_on_focus = select_all_on_focus
 		spinbox.get_line_edit().expand_to_text_length = expand_to_text_length
