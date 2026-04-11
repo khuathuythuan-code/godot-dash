@@ -6502,7 +6502,6 @@ default = 1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-<<<<<<< HEAD
 [node name="Physics" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody" unique_id=1358505846]
 visible = false
 layout_mode = 2
@@ -6622,8 +6621,6 @@ unique_name_in_owner = true
 visible = false
 metadata/_edit_lock_ = true
 
-=======
->>>>>>> 81d40783e6cabad2d1c33ef435ce15cb18fb85a6
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
 offset = Vector2(1280, 669)
