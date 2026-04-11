@@ -17,8 +17,9 @@
 [ext_resource type="Script" uid="uid://b77ajx8cop15a" path="res://src/gui/properties/types/MultilineStringProperty.gd" id="14_iyxla"]
 [ext_resource type="Script" uid="uid://cfmafqjh1b675" path="res://src/gui/properties/types/FlagsProperty.gd" id="15_pssp5"]
 [ext_resource type="Script" uid="uid://cwu2m4yu7an50" path="res://src/gui/properties/types/OneLineEnumProperty.gd" id="17_htt1w"]
+[ext_resource type="Script" uid="uid://e1hkm5alnypg" path="res://src/gui/FloatSlider.gd" id="19_5a3jb"]
 
-[sub_resource type="Resource" id="Resource_5a3jb"]
+[sub_resource type="Resource" id="Resource_4tfqb"]
 resource_local_to_scene = true
 script = ExtResource("13_iyxla")
 
@@ -52,6 +53,7 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=293250668]
 process_mode = 1
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
@@ -155,7 +157,7 @@ metadata/_custom_type_script = "uid://d3j6obbost55b"
 
 [node name="ResourceProperty" parent="CenterContainer/VBoxContainer" unique_id=2140278759 instance=ExtResource("12_ostnf")]
 layout_mode = 2
-default = SubResource("Resource_5a3jb")
+default = SubResource("Resource_4tfqb")
 
 [node name="MultilineStringProperty" type="BoxContainer" parent="CenterContainer/VBoxContainer" unique_id=52310013]
 custom_minimum_size = Vector2(0, 32)
@@ -172,6 +174,14 @@ script = ExtResource("15_pssp5")
 default = 5
 flags = PackedStringArray("Left", "Up", "Right", "Down")
 metadata/_custom_type_script = "uid://cfmafqjh1b675"
+
+[node name="FloatSlider" type="SpinBox" parent="CenterContainer" unique_id=329100670]
+custom_minimum_size = Vector2(250, 28)
+layout_mode = 2
+value = 29.0
+alignment = 1
+script = ExtResource("19_5a3jb")
+metadata/_custom_type_script = "uid://e1hkm5alnypg"
 
 [connection signal="sort_children" from="CenterContainer/VBoxContainer" to="CenterContainer/VBoxContainer" method="_on_sort_children"]
 [connection signal="sort_children" from="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/VBoxContainer/Items" to="CenterContainer/VBoxContainer/ArrayProperty/PanelContainer/MarginContainer/VBoxContainer/Items" method="_on_sort_children"]

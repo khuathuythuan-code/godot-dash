@@ -23,7 +23,7 @@ var _state: State = State.IDLE
 
 
 func _ready() -> void:
-	custom_minimum_size.y = 32
+	custom_minimum_size.y = 28.0
 	# Initialize the slider
 	slider = HSlider.new()
 	add_child.call_deferred(slider, false, INTERNAL_MODE_FRONT)

@@ -50,9 +50,8 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweh0"]
 content_margin_left = 4.0
-content_margin_top = 28.0
 content_margin_right = 4.0
-content_margin_bottom = 4.0
+content_margin_bottom = 28.0
 bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
