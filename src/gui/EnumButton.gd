@@ -33,7 +33,7 @@ func _input(event: InputEvent) -> void:
 	if not as_tab_container:
 		return
 	if (event is InputEventMouseButton and event.get_button_index() == MOUSE_BUTTON_LEFT) or (event is InputEventScreenTouch):
-		is_clicked = event.is_pressed()
+		is_clicked = event.is_pressed() and get_rect().has_point(get_local_mouse_position())
 	if is_clicked and get_rect().has_point(get_local_mouse_position()):
 		var buttons: Array[BaseButton] = button_group.get_buttons()
 		for button in buttons:
