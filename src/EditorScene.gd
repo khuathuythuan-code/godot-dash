@@ -81,7 +81,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Editor.version_history.redo()
 		elif event.is_action_pressed(&"ui_undo", true):
 			Editor.version_history.undo()
-	elif event.is_action_pressed(&"editor_hide_panels"):
+	if event.is_action_pressed(&"editor_hide_panels"):
 		%View.toggle_maximize_viewport()
 	if not any_dialog_is_open() and not $EditHandler.any_gizmo_is_open():
 		if event.is_action_pressed(&"editor_place_mode"):
