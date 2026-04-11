@@ -12,8 +12,6 @@ enum LayerIcon {
 	LOCK,
 }
 
-@onready var parent: SmoothScrollContainer = get_parent()
-
 @export var search_box: LineEdit
 
 var selection: Selection
@@ -24,14 +22,6 @@ var flat_item_list: Array[TreeItem]
 func _ready() -> void:
 	# Init root
 	create_item()
-
-
-func _gui_input(event):
-	if event is InputEventMouseButton:
-		# Prevent tree from eating up scrolling inputs.
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			parent._gui_input(event)
-			accept_event()
 
 
 func _get_drag_data(at_position: Vector2) -> TreeItem:
@@ -206,11 +196,6 @@ func refresh(selected: Selection = selection) -> void:
 		selected_item = get_next_selected(selected_item)
 	selected_item.get_parent().set_collapsed(false)
 	await get_tree().process_frame # Wait for rect to be updated
-	var item_rect: Rect2 = get_item_area_rect(selected_item)
-	if item_rect.position.y < parent.scroll_vertical:
-		parent.scroll_vertical = int(item_rect.position.y)
-	elif item_rect.position.y + item_rect.size.y > parent.scroll_vertical + parent.size.y:
-		parent.scroll_vertical = int(item_rect.position.y + item_rect.size.y - parent.size.y)
 
 
 func update_active_layer(is_changing_single_layer_selection: bool) -> void:
