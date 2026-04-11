@@ -36,7 +36,8 @@ func _ready() -> void:
 			if toggled_on:
 				_previous_value = value
 			else:
-				interaction_ended.emit(value, _previous_value)
+				var emit_deferred := func(): interaction_ended.emit(value, _previous_value)
+				emit_deferred.call_deferred()
 				slider.mouse_filter = Control.MOUSE_FILTER_STOP
 	)
 	slider.drag_started.connect(
