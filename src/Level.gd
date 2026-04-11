@@ -347,8 +347,8 @@ func _serialize_object(object: Node2D, reason: SerializeReason) -> Dictionary:
 		"z_index": object.z_index,
 	}
 	_set_object_color_channel_data(object, object_data)
-	if object.has_meta(&"texture_override"):
-		object_data.texture_override = object.get_meta(&"texture_override")
+	if object.has_meta(Constants.TEXTURE_OVERRIDE_META):
+		object_data.texture_override = object.get_meta(Constants.TEXTURE_OVERRIDE_META)
 	if object.has_meta(&"attributes"):
 		object_data.attributes = object.get_meta(&"attributes")
 	if object.has_meta(&"physics"):
@@ -500,7 +500,7 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 		if "detail" in override_data:
 			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
 		object.get_node(^"EditorSelectionCollider").id = override_data.id
-		object.set_meta(&"texture_override", override_data)
+		object.set_meta(Constants.TEXTURE_OVERRIDE_META, override_data)
 	# Attributes
 	if "attributes" in object_data:
 		var attributes: Array[String]

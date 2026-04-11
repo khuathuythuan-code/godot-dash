@@ -36,8 +36,8 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 				var object: Node2D
 				object = block_palette_ref.object.instantiate()
 
-				if pressed_button.has_meta(&"texture_override"):
-					var override = pressed_button.get_meta(&"texture_override") as TextureOverride
+				if pressed_button.has_meta(Constants.TEXTURE_OVERRIDE_META):
+					var override = pressed_button.get_meta(Constants.TEXTURE_OVERRIDE_META) as TextureOverride
 					if override.prefab_override:
 						object.queue_free()
 						object = override.prefab_override.instantiate()
@@ -133,7 +133,7 @@ func _set_texture_override_metadata(object: Node2D, override: TextureOverride, i
 		texture_override_data.base = override.base.resource_path.trim_prefix("res://")
 	if override.detail:
 		texture_override_data.detail = override.detail.resource_path.trim_prefix("res://")
-	object.set_meta(&"texture_override", texture_override_data)
+	object.set_meta(Constants.TEXTURE_OVERRIDE_META, texture_override_data)
 
 
 func _on_edit_handler_rotated_object_degrees(rotation_degrees: float) -> void:
