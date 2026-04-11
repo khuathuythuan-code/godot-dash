@@ -3,7 +3,7 @@ extends VBoxContainer
 
 @export var edit_handler: EditHandler
 @export var position_property: Vector2Property
-@export var rotation_property: FloatProperty
+@export var rotation_property: FloatSliderProperty
 @export var scale_property: Vector2Property
 
 var selection_size: int
@@ -106,7 +106,7 @@ func _on_position_value_changed(new_position: Vector2) -> void:
 
 
 func _on_rotation_value_changed(new_rotation: float) -> void:
-	edit_handler.rotate_selection(new_rotation - current_rotation, false)
+	edit_handler.rotate_selection(new_rotation - current_rotation, true)
 	current_rotation = new_rotation
 	update_pivot_relative_transform()
 	LevelManager.player.rotation_degrees = 0
@@ -122,3 +122,11 @@ func _on_scale_value_changed(new_scale: Vector2) -> void:
 		true,
 		edit_handler.selection_pivot,
 	)
+
+
+func _on_rotation_interaction_ended(new_rotation: float, previous_rotation: float) -> void:
+	edit_handler.rotate_selection(previous_rotation - current_rotation, true)
+	edit_handler.rotate_selection(new_rotation - previous_rotation, false)
+	current_rotation = new_rotation
+	update_pivot_relative_transform()
+	LevelManager.player.rotation_degrees = 0

@@ -247,7 +247,6 @@
 [ext_resource type="Material" uid="uid://djc5r0qac4mro" path="res://resources/Checkpoint.tres" id="183_vp4xm"]
 [ext_resource type="Texture2D" uid="uid://byhliui13khoi" path="res://assets/textures/checkpoints/Checkpoint.svg" id="184_7horl"]
 [ext_resource type="Script" uid="uid://c1ejd8ud4q1b6" path="res://src/gui/properties/types/StringProperty.gd" id="184_33w7i"]
-[ext_resource type="Script" uid="uid://dd75trm1kaaiu" path="res://src/gui/properties/types/FloatProperty.gd" id="185_t7625"]
 [ext_resource type="PackedScene" uid="uid://binpj3dosa82o" path="res://scenes/components/level_components/LevelCheckpoint.tscn" id="185_vp4xm"]
 [ext_resource type="Script" uid="uid://c08lx7vbboo37" path="res://src/editor/LevelOperationsHandler.gd" id="189_ao6md"]
 [ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="192_hvjsv"]
@@ -6323,18 +6322,18 @@ allow_greater = true
 suffix = "cells"
 metadata/_custom_type_script = "uid://crich318mmmk2"
 
-[node name="Rotation" type="BoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=1391143356]
+[node name="Rotation" type="BoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=1981089515]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("185_t7625")
+script = ExtResource("213_w20ac")
 min_value = -360.0
 max_value = 360.0
 step = 0.01
 allow_lesser = true
 allow_greater = true
 suffix = "°"
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="Scale" type="BoxContainer" parent="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" unique_id=1315942877]
 custom_minimum_size = Vector2(0, 32)
@@ -6693,6 +6692,7 @@ cancel_button_text = "Open Existing"
 [connection signal="multi_selected" from="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/PanelContainer/VBoxContainer/InspectorTree" to="EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/PanelContainer/VBoxContainer/InspectorTree" method="_on_multi_selected"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs" method="_on_enum_button_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Position" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_position_value_changed"]
+[connection signal="interaction_ended" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_rotation_interaction_ended"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Rotation" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_rotation_value_changed"]
 [connection signal="value_changed" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor/Scale" to="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Transform/TransformEditor" method="_on_scale_value_changed"]
 [connection signal="interaction_ended" from="EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer/Base Color" to="BaseDetailHandler" method="_on_base_color_interaction_ended"]
