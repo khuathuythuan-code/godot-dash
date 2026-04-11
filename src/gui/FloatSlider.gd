@@ -74,9 +74,9 @@ func update_internals() -> void:
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slider.mouse_filter = Control.MOUSE_FILTER_STOP
 	slider.theme_type_variation = &"FloatSliderHSlider"
-	slider.set_anchors_preset(PRESET_FULL_RECT)
 	slider.size = size
 	slider.position = Vector2.ZERO
+	slider.set_anchors_preset(PRESET_FULL_RECT)
 	slider.scrollable = false
 	slider.min_value = min_value
 	slider.max_value = max_value
