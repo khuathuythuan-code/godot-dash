@@ -318,7 +318,7 @@ func _gui_input(event: InputEvent) -> void:
 			is_in_deadzone = false
 
 	if (should_scroll_vertical() or should_scroll_horizontal()) and handle_input:
-		get_tree().get_root().set_input_as_handled()
+		accept_event()
 
 
 # Scroll to new focused element
