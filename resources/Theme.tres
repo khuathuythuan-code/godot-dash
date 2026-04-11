@@ -20,6 +20,46 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f1p5x"]
 
+[sub_resource type="DPITexture" id="DPITexture_4tfqb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khfr8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.2)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig1n5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweh0"]
+content_margin_left = 4.0
+content_margin_top = 28.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10srq"]
 
 [sub_resource type="StyleBox" id="StyleBox_xsqcr"]
@@ -380,6 +420,8 @@ corner_curvature_bottom_right = 2.0
 corner_curvature_bottom_left = 2.0
 shadow_blur = 0
 anti_aliasing = false
+
+[sub_resource type="DPITexture" id="DPITexture_htt1w"]
 
 [sub_resource type="StyleBox" id="StyleBox_muv14"]
 resource_local_to_scene = false
@@ -794,6 +836,13 @@ ClipMaskPanel/styles/panel = SubResource("StyleBoxFlat_pssp5")
 ColorPicker/styles/picker_focus_circle = SubResource("StyleBoxEmpty_jaexg")
 ColorPicker/styles/picker_focus_rectangle = SubResource("StyleBoxEmpty_cjwly")
 ColorPicker/styles/sample_focus = SubResource("StyleBoxEmpty_f1p5x")
+FloatSliderHSlider/base_type = &"HSlider"
+FloatSliderHSlider/icons/grabber = SubResource("DPITexture_4tfqb")
+FloatSliderHSlider/icons/grabber_disabled = SubResource("DPITexture_4tfqb")
+FloatSliderHSlider/icons/grabber_highlight = SubResource("DPITexture_4tfqb")
+FloatSliderHSlider/styles/grabber_area = SubResource("StyleBoxFlat_khfr8")
+FloatSliderHSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_ig1n5")
+FloatSliderHSlider/styles/slider = SubResource("StyleBoxFlat_sweh0")
 FoldableContainer/styles/focus = SubResource("StyleBoxEmpty_10srq")
 FoldableContainer/styles/panel = SubResource("StyleBox_xsqcr")
 FoldableContainer/styles/title_collapsed_hover_panel = SubResource("StyleBox_rr233")
@@ -834,6 +883,16 @@ PropertyLabel/base_type = &"Label"
 PropertyLabel/font_sizes/font_size = 12
 RoundedEnumButton/base_type = &"PanelContainer"
 RoundedEnumButton/styles/panel = SubResource("StyleBox_uwwnt")
+SpinBox/constants/buttons_width = 0
+SpinBox/constants/field_and_buttons_separation = 0
+SpinBox/icons/down = SubResource("DPITexture_htt1w")
+SpinBox/icons/down_disabled = SubResource("DPITexture_htt1w")
+SpinBox/icons/down_hover = SubResource("DPITexture_htt1w")
+SpinBox/icons/down_pressed = SubResource("DPITexture_htt1w")
+SpinBox/icons/up = SubResource("DPITexture_htt1w")
+SpinBox/icons/up_disabled = SubResource("DPITexture_htt1w")
+SpinBox/icons/up_hover = SubResource("DPITexture_htt1w")
+SpinBox/icons/up_pressed = SubResource("DPITexture_htt1w")
 SquircleButton/base_type = &"Button"
 SquircleButton/styles/disabled = null
 SquircleButton/styles/hover = SubResource("StyleBox_muv14")

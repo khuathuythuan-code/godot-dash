@@ -1,7 +1,8 @@
 @tool
+class_name FloatSliderProperty
 extends Property
 
-class_name FloatSliderProperty
+const FLOAT_SLIDER_PREFAB: PackedScene = preload("res://scenes/components/game_components/ui/FloatSlider.tscn")
 
 signal value_changed(value: float)
 signal interaction_ended(value: float, previous: float)
@@ -21,16 +22,18 @@ signal interaction_ended(value: float, previous: float)
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Refresh") var _refresh = refresh
 
-var input: HSliderSpinBox
+var input: FloatSlider
 
 
 func _ready() -> void:
-	label = NodeUtils.get_node_or_add(self, "Label", Label, NodeUtils.INTERNAL)
-	input = NodeUtils.get_node_or_add(self, "Input", HSliderSpinBox, NodeUtils.INTERNAL)
+	label = Label.new()
+	add_child(label, false, INTERNAL_MODE_FRONT)
+	input = FLOAT_SLIDER_PREFAB.instantiate()
+	add_child(input, false, INTERNAL_MODE_FRONT)
 	input.value_changed.connect(func(new_value: float): value_changed.emit(new_value))
 	input.interaction_ended.connect(func(new_value: float, previous: float): interaction_ended.emit(new_value, previous))
 	renamed.connect(refresh)
-	var line_edit = input.spinbox.get_line_edit()
+	var line_edit: LineEdit = input.get_line_edit()
 	line_edit.text_submitted.connect(submitted_release_focus)
 	line_edit.editing_toggled.connect(unedit_release_focus)
 	refresh()
@@ -72,7 +75,6 @@ func refresh() -> void:
 	input.suffix = suffix
 	input.tick_count = slider_tick_count
 	input.select_all_on_focus = true
-	input.spinbox_width = spinbox_width
 	input.expand_to_text_length = expand_to_text_length
 	input.update_internals()
 	if Engine.is_editor_hint():
