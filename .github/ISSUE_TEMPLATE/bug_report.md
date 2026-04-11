@@ -7,10 +7,10 @@ assignees: ''
 
 ---
 
-**Description**
+## Description
 <!-- A clear and concise description of what the bug is. -->
 
-**Reproduction Steps**
+## Reproduction Steps
 <!--
 Steps to reproduce the behavior:
 1. Go to '...'
@@ -19,24 +19,33 @@ Steps to reproduce the behavior:
 4. See error
 -->
 
-**Expected behavior**
+## Expected behavior
 <!-- A clear and concise description of what you expected to happen. -->
 
-**Screenshots**
+## Screenshots
 <!-- If applicable, add screenshots to help explain your problem. -->
 
-**Platform**
+## Platform
  - OS: <!-- [e.g. Windows] -->
- - Game Version/Commit and branch: <!-- [e.g. 2.0.0] -->
+ - Game Version/Commit and branch: <!-- [e.g. v2.0.0 or c63291b2ef if you're a dev] -->
 
-**Game config**
+## Logs
 <!--
-Upload your game config here.
+Upload your logs here.
+The config can be found at:
+- Linux: ~/.local/share/godot-dash/logs
+- Windows: %APPDATA%\godot-dash\logs
+- macOS: ~/Library/Application Support/godot-dash/logs
+-->
+
+## Game config
+<!--
+Upload your game config here. (`config.cfg`)
 The config can be found at:
 - Linux: ~/.local/share/godot-dash
 - Windows: %APPDATA%\godot-dash
 - macOS: ~/Library/Application Support/godot-dash
 -->
 
-**Additional context**
+## Additional context
 <!-- Add any other context about the problem here. -->

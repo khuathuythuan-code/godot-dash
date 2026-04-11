@@ -18,9 +18,7 @@ var solid_objects: Selection = Selection.new()
 func _on_edit_handler_selection_changed(_selection: Selection) -> void:
 	solid_objects = _selection.filter(func(object): return object.has_meta(&"physics"))
 	if solid_objects.is_empty():
-		get_parent().hide()
 		return
-	get_parent().show()
 	update()
 
 

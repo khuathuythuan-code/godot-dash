@@ -83,12 +83,10 @@ func _on_level_index_pressed(index: int) -> void:
 			if not Editor.level_file_path.is_empty():
 				export_dialog.set_current_file(Editor.level_file_path.get_basename())
 			export_dialog.show()
-		7: # Level Options
-			level_settings.show()
-			Editor.shortcut_blocker = level_settings
 
 
 func _new_level() -> void:
+	LevelManager.game_scene.free_current_level()
 	LevelManager.game_scene.reset()
 	var color_channel_editor: ColorChannelEditor = editor.get_node(^"%ColorChannelEditor")
 	color_channel_editor.clear_item_list()
@@ -97,6 +95,7 @@ func _new_level() -> void:
 	new_level.name = "New level"
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	Editor.clear_data()
+	Editor.root.reset()
 	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
@@ -119,19 +118,19 @@ func _new_level() -> void:
 
 func _open_level(path: String) -> void:
 	if LevelManager.level_playing:
-		editor._on_playtest_pressed()
-		_open_level.call_deferred(path)
+		await editor.stop_playtest()
 		return
+	LevelManager.game_scene.free_current_level()
 	LevelManager.game_scene.reset()
 	LevelManager.game_scene.pause_menu.play_button.show()
 	# Avoid name conflicts
 	editor.level.name = str(hash(editor.level))
+	Editor.clear_data()
 	# Load level
 	var level: Level = _load_level(path)
 	if not level:
 		return
-	Editor.version_history = UndoRedo.new()
-	Editor.clipboard = Selection.new()
+	Editor.root.reset()
 	# Load song
 	var song_file_path: String
 	if level.song_path.begins_with("uid"):

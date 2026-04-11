@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b5x6gqlo78mnx" path="res://assets/textures/portals/gamemode_portals/swing_portal/SwingPortalBack.png" id="2_yfowc"]
 [ext_resource type="Texture2D" uid="uid://bp6ukusnk6ufx" path="res://assets/textures/portals/gamemode_portals/swing_portal/SwingPortalFront.png" id="3_1igv7"]
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_7s044"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="4_euw74"]
 [ext_resource type="Texture2D" uid="uid://hjsvkyfi6wqo" path="res://assets/textures/portals/gamemode_portals/swing_portal/SwingPortalIndicatorBG.png" id="4_ohnxr"]
 [ext_resource type="Texture2D" uid="uid://bcwax4487q6kc" path="res://assets/textures/portals/gamemode_portals/swing_portal/SwingPortalIndicatorIcon.png" id="5_dmdv1"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_58jg0"]
@@ -28,8 +29,9 @@ debug_color = Color(0, 1, 0, 0)
 [node name="ParticleEmitter" parent="." unique_id=311639455 instance=ExtResource("2_u83oa")]
 modulate = Color(1, 1, 0, 1)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1439608222]
+[node name="Sprites" type="Node2D" parent="." unique_id=682034519]
 material = ExtResource("3_7s044")
+script = ExtResource("4_euw74")
 
 [node name="SwingPortalBack" type="Sprite2D" parent="Sprites" unique_id=1747441751]
 z_index = -1

@@ -59,6 +59,7 @@ enum ParticlePreprocessing {
 # Performance
 @export_group("Performance")
 @export var enable_title_screen_icons: bool = true
+@export var ldm: bool = false
 
 @export_subgroup("Particles")
 @export var show_particles_in_editor: bool = true
@@ -102,6 +103,7 @@ var menu_loop: String:
 @export var autosave_delay: float
 @export var username: String = "Player"
 @export var default_render_mode: RenderMode.Mode = RenderMode.Mode.RENDERED_MODE
+@export_range(0, 1, .05) var hidden_layers_alpha := 0.1
 @export var selection_zone_color := Color.GREEN
 @export_range(0, 1, .05) var selection_zone_fill_alpha := 0.2
 @export var trigger_hitbox_color := Color.CYAN
@@ -161,6 +163,7 @@ func _init():
 
 	# Performance
 	enable_title_screen_icons = config_file.get_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	ldm = config_file.get_value("Performance", "ldm", ldm)
 	show_particles_in_editor = config_file.get_value("Performance", "show_particles_in_editor", show_particles_in_editor)
 	particles_visibility = config_file.get_value("Performance", "particles_visibility", particles_visibility)
 	preprocess_particles_in_editor = config_file.get_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
@@ -186,6 +189,7 @@ func _init():
 	autosave_delay = config_file.get_value("Editor", "autosave_delay", autosave_delay)
 	username = config_file.get_value("Editor", "username", username)
 	default_render_mode = config_file.get_value("Editor", "default_render_mode", default_render_mode)
+	hidden_layers_alpha = config_file.get_value("Editor", "hidden_layers_alpha", hidden_layers_alpha)
 	selection_zone_color = config_file.get_value("Editor", "selection_zone_color", selection_zone_color)
 	selection_zone_fill_alpha = config_file.get_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	trigger_hitbox_color = config_file.get_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)
@@ -230,6 +234,7 @@ func save() -> void:
 
 	# Performance
 	config_file.set_value("Performance", "enable_title_screen_icons", enable_title_screen_icons)
+	config_file.set_value("Performance", "ldm", ldm)
 	config_file.set_value("Performance", "show_particles_in_editor", show_particles_in_editor)
 	config_file.set_value("Performance", "particles_visibility", particles_visibility)
 	config_file.set_value("Performance", "preprocess_particles_in_editor", preprocess_particles_in_editor)
@@ -255,6 +260,7 @@ func save() -> void:
 	config_file.set_value("Editor", "autosave_delay", autosave_delay)
 	config_file.set_value("Editor", "username", username)
 	config_file.set_value("Editor", "default_render_mode", default_render_mode)
+	config_file.set_value("Editor", "hidden_layers_alpha", hidden_layers_alpha)
 	config_file.set_value("Editor", "selection_zone_color", selection_zone_color)
 	config_file.set_value("Editor", "selection_zone_fill_alpha", selection_zone_fill_alpha)
 	config_file.set_value("Editor", "trigger_hitbox_color", trigger_hitbox_color)

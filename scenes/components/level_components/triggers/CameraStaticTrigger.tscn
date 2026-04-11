@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_3p4ry"]
 [ext_resource type="Texture2D" uid="uid://cq3vm0mtdhxgb" path="res://assets/textures/triggers/CameraStatic.svg" id="2_3p4ry"]
+[ext_resource type="Script" uid="uid://dnxmq664kbq3f" path="res://src/interactables/private_components/TriggerSprite.gd" id="3_8i2r2"]
 [ext_resource type="Script" uid="uid://b1h4lmrngdiim" path="res://src/interactables/public_components/TargetObjectComponent.gd" id="3_l83ao"]
 [ext_resource type="Script" uid="uid://tfriwfc7uruu" path="res://src/interactables/public_components/EasingComponent.gd" id="4_ionrn"]
 [ext_resource type="Script" uid="uid://t87nu0a2md6y" path="res://src/interactables/public_components/CameraStaticComponent.gd" id="4_y3m6h"]
@@ -20,9 +21,11 @@ b = Vector2(0, 8192)
 script = ExtResource("1_3p4ry")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1677380528]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1206925124]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_3p4ry")
+script = ExtResource("3_8i2r2")
+metadata/_custom_type_script = "uid://dnxmq664kbq3f"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=452969013]
 scale = Vector2(1.2, 1.2)
@@ -48,7 +51,7 @@ metadata/_custom_type_script = "uid://cilw18c36fh6"
 
 [node name="TextureRotationPinComponent" type="Node" parent="." unique_id=908511565 node_paths=PackedStringArray("pinned")]
 script = ExtResource("6_8i2r2")
-pinned = NodePath("../Sprite")
+pinned = NodePath("")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 

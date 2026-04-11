@@ -298,6 +298,17 @@ metadata/_custom_type_script = "uid://bss8ppxnt7gio"
 script = ExtResource("6_p6jor")
 config_property = &"enable_title_screen_icons"
 
+[node name="Low Detail Mode" type="BoxContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer" unique_id=1950667015]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("11_egxjo")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer/Low Detail Mode" unique_id=1320156099]
+script = ExtResource("6_p6jor")
+config_property = &"ldm"
+
 [node name="Particles" type="FoldableContainer" parent="EnumButtonTabContainer/Graphics/SmoothScrollContainer/VBoxContainer/Performance/VBoxContainer" unique_id=200285064]
 layout_mode = 2
 mouse_filter = 1
@@ -1491,16 +1502,29 @@ custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 focus_mode = 1
 
-[node name="Selection Hone" type="FoldableContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer" unique_id=46578164]
+[node name="Hidden Layers Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer" unique_id=1373293162]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("10_vf3uf")
+default = 0.1
+max_value = 1.0
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
+
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Hidden Layers Alpha" unique_id=614815194]
+script = ExtResource("6_p6jor")
+config_property = &"hidden_layers_alpha"
+
+[node name="Selection Zone" type="FoldableContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer" unique_id=46578164]
 layout_mode = 2
 mouse_filter = 1
 title = "Selection Zone"
 
-[node name="Selection zone" type="VBoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone" unique_id=1918351094]
+[node name="Selection zone" type="VBoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Zone" unique_id=1918351094]
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
 
-[node name="Color" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone" unique_id=980244842]
+[node name="Color" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Zone/Selection zone" unique_id=980244842]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
@@ -1508,20 +1532,20 @@ script = ExtResource("12_bi686")
 default = Color(0, 1, 0, 1)
 metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Color" unique_id=1512213194]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Zone/Selection zone/Color" unique_id=1512213194]
 script = ExtResource("6_p6jor")
 config_property = &"selection_zone_color"
 
-[node name="Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone" unique_id=634075301]
+[node name="Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Zone/Selection zone" unique_id=1119321051]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("7_ndunm")
+script = ExtResource("10_vf3uf")
 default = 0.2
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
-[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Hone/Selection zone/Alpha" unique_id=1957447075]
+[node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Selection Zone/Selection zone/Alpha" unique_id=1957447075]
 script = ExtResource("6_p6jor")
 config_property = &"selection_zone_fill_alpha"
 
@@ -1546,14 +1570,14 @@ metadata/_custom_type_script = "uid://bwcwfobfohbsd"
 script = ExtResource("6_p6jor")
 config_property = &"trigger_hitbox_color"
 
-[node name="Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes" unique_id=717799227]
+[node name="Alpha" type="BoxContainer" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes" unique_id=331943317]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 vertical = true
-script = ExtResource("7_ndunm")
+script = ExtResource("10_vf3uf")
 default = 0.2
 max_value = 1.0
-metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
 [node name="PropertySaveLoad" type="Node" parent="EnumButtonTabContainer/Editor/SmoothScrollContainer/VBoxContainer/Colors/VBoxContainer/Trigger Hitboxes/Trigger hitboxes/Alpha" unique_id=1176758875]
 script = ExtResource("6_p6jor")

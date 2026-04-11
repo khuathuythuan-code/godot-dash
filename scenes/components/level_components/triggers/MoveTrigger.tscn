@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://rt6vy5mae3if" path="res://src/interactables/TriggerInteractable.gd" id="1_p13ss"]
 [ext_resource type="Texture2D" uid="uid://odtrgqretvc6" path="res://assets/textures/triggers/Move.svg" id="2_p13ss"]
 [ext_resource type="PackedScene" uid="uid://cqc5xe1c2thcj" path="res://scenes/components/game_components/GroupDisplay.tscn" id="3_o0lk4"]
+[ext_resource type="Script" uid="uid://dnxmq664kbq3f" path="res://src/interactables/private_components/TriggerSprite.gd" id="3_wtuau"]
 [ext_resource type="Script" uid="uid://bu1sqxc337su3" path="res://src/interactables/public_components/TargetGroupComponent.gd" id="4_wtuau"]
 [ext_resource type="Script" uid="uid://ds4yyoya8ma0" path="res://src/interactables/public_components/PositionChangerComponent.gd" id="5_p13ss"]
 [ext_resource type="Script" uid="uid://tfriwfc7uruu" path="res://src/interactables/public_components/EasingComponent.gd" id="6_u37kq"]
@@ -20,9 +21,11 @@ b = Vector2(0, 8192)
 script = ExtResource("1_p13ss")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=1482884116]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1749213753]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_p13ss")
+script = ExtResource("3_wtuau")
+metadata/_custom_type_script = "uid://dnxmq664kbq3f"
 
 [node name="GroupDisplay" parent="Sprite" unique_id=82589572 instance=ExtResource("3_o0lk4")]
 offset_left = -512.0
@@ -56,7 +59,7 @@ metadata/_custom_type_script = "uid://cilw18c36fh6"
 
 [node name="TextureRotationPinComponent" type="Node" parent="." unique_id=1643297346 node_paths=PackedStringArray("pinned")]
 script = ExtResource("8_poktr")
-pinned = NodePath("../Sprite")
+pinned = NodePath("")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 

@@ -74,11 +74,11 @@ const EVALUATE_CLICK_BUFFER := 1
 @export var internal_gamemode: Gamemode
 @export var default_collider: RectangleShape2D
 @export var slope_collider: CircleShape2D
+@export var spider_animation_tree: AnimationTree
 
 # Public
-var dead: bool
-var coyote_time: float
-var rebound_velocity: float
+var dead: bool = false
+var coyote_time: float = 0.0
 var gameplay_rotation_degrees: float = 0.0
 var gameplay_rotation: float:
 	get():
@@ -135,14 +135,13 @@ var in_replay: bool = false
 # Private
 var _spider_dash_frames: int = 0
 var _slope_exit_velocity_frames: int = 0
-var _click_buffer_state: ClickBufferState
-var _is_flying_gamemode: bool
-var _wave_rotation_degrees_goal: float
-var _deferred_velocity_redirect: bool
-var _spider_state_machine: AnimationNodeStateMachinePlayback
-var _spider_animation_tree: AnimationTree
-var _snap_sprite_rotation: bool
-var _snap_sprite_rotation_frames: int
+var _click_buffer_state: ClickBufferState = ClickBufferState.NOT_HOLDING
+var _is_flying_gamemode: bool = false
+var _wave_rotation_degrees_goal: float = 0.0
+var _deferred_velocity_redirect: bool = false
+var _spider_state_machine: AnimationNodeStateMachinePlayback = null
+var _snap_sprite_rotation: bool = false
+var _snap_sprite_rotation_frames: int = 0
 
 @onready var last_automatic_checkpoint_position: Vector2 = position
 
@@ -162,74 +161,14 @@ func _ready() -> void:
 	$DeathEffect.sprite_frames.add_frame(&"default", empty_frame)
 	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count(&"default") - 1
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
-	dash_control = null
-	_spider_animation_tree = $Icon/Spider/SpiderStateMachine
-	_spider_state_machine = _spider_animation_tree["parameters/playback"]
+	_spider_state_machine = spider_animation_tree["parameters/playback"]
 	if dual_index == 0:
 		LevelManager.player = self
 	else:
 		LevelManager.player_duals.append(self)
-	apply_floor_snap()
 	_set_particles_visibility.call_deferred()
 	if not Editor.in_editor:
 		_reset_replay.call_deferred()
-
-
-func defer_snap_sprite_rotation() -> void:
-	_snap_sprite_rotation = true
-	_snap_sprite_rotation_frames = 16
-
-
-func update_player_scale(tweened: bool) -> void:
-	var player_scale_value: Vector2
-	match player_scale:
-		PlayerScale.MINI:
-			player_scale_value = PLAYER_SCALE_MINI
-		PlayerScale.NORMAL:
-			player_scale_value = PLAYER_SCALE_NORMAL
-		PlayerScale.BIG:
-			player_scale_value = PLAYER_SCALE_BIG
-	if displayed_gamemode == Gamemode.WAVE:
-		player_scale_value *= PLAYER_SCALE_WAVE
-	if not tweened:
-		scale = player_scale_value
-		if not is_node_ready():
-			await ready
-		%Trail.width = %Trail.texture.get_width() * scale.y
-		return
-	(
-		create_tween() \
-		.set_parallel() \
-		.tween_property(self, ^"scale", player_scale_value, 0.25) \
-		.tween_property(%Trail, ^"width", %Trail.texture.get_width() * scale.y, 0.25) \
-		.set_ease(Tween.EASE_OUT) \
-		.set_trans(Tween.TRANS_BACK)
-	)
-
-
-func place_checkpoint() -> CheckpointPlacementBuilder:
-	return CheckpointPlacementBuilder.new(self)
-
-
-func stop_dash() -> void:
-	$DashParticles.emitting = false
-	$DashFlame.hide()
-	dash_control = null
-
-
-func get_direction() -> int:
-	var direction: int
-	if LevelManager.platformer:
-		direction = int(Input.get_axis(&"move_left", &"move_right"))
-		if direction != 0:
-			horizontal_direction = direction
-	else:
-		direction = horizontal_direction
-	return direction
-
-
-func get_spider_trail_global_position() -> Vector2:
-	return $Icon/Spider/SpiderCast/SpiderTrailSpawnPoint.global_position
 
 
 func _physics_process(delta: float) -> void:
@@ -311,6 +250,121 @@ func _physics_process(delta: float) -> void:
 	if LevelManager.level_playing:
 		_handle_checkpoint_placement()
 	replay_physics_tick += 1
+
+
+func reset() -> void:
+	# Cancel death animation
+	$DeathAnimator.stop()
+	$DeathParticles.restart()
+	$DeathParticles.emitting = false
+	$DeathEffect.stop()
+	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count(&"default") - 1
+	# Reset icon
+	for icon_sprite: Node2D in $Icon.get_children():
+		icon_sprite.rotation = 0.0
+		icon_sprite.scale = Vector2.ONE
+	$Icon/Spider/SpiderSprites.rotation = 0.0
+	$Icon/Spider/SpiderSprites.scale = Vector2.ONE
+	# Reset members
+	dead = false
+	$Icon.show()
+	NodeUtils.free_children(%GroundParticles)
+	%GroundParticles.restart()
+	%GroundParticles.emitting = false
+	gameplay_rotation = 0.0
+	velocity = Vector2.ZERO
+	player_scale = PlayerScale.NORMAL
+	can_hit_ceiling = false
+	jump_hold_disabled = false
+	speed_multiplier = 1.0
+	gravity_flip = 1
+	gravity_multiplier = 1.0
+	horizontal_direction = 1
+	dash_control = null
+	speed_0_portal_control = null
+	slope_velocity = Vector2.ZERO
+	last_collision = null
+	floor_angle_history.clear()
+	floor_angle_average = 0.0
+	sprite_floor_angle = 0.0
+	allow_ceiling_hit_count = 0
+	allow_wave_slide_count = 0
+	no_auto_checkpoints_count = 0
+	orb_queue.clear()
+	pad_queue.clear()
+	replay_physics_tick = 0
+	replay = Replay.new()
+	in_replay = false
+	_spider_dash_frames = 0
+	_slope_exit_velocity_frames = 0
+	_click_buffer_state = ClickBufferState.NOT_HOLDING
+	_is_flying_gamemode = false
+	_wave_rotation_degrees_goal = 0.0
+	_deferred_velocity_redirect = false
+	_snap_sprite_rotation = false
+	_snap_sprite_rotation_frames = 0
+
+	update_player_scale(false)
+	_set_particles_visibility.call_deferred()
+	if not Editor.in_editor:
+		_reset_replay.call_deferred()
+
+
+func defer_snap_sprite_rotation() -> void:
+	_snap_sprite_rotation = true
+	_snap_sprite_rotation_frames = 16
+
+
+func update_player_scale(tweened: bool) -> void:
+	var player_scale_value: Vector2
+	match player_scale:
+		PlayerScale.MINI:
+			player_scale_value = PLAYER_SCALE_MINI
+		PlayerScale.NORMAL:
+			player_scale_value = PLAYER_SCALE_NORMAL
+		PlayerScale.BIG:
+			player_scale_value = PLAYER_SCALE_BIG
+	if displayed_gamemode == Gamemode.WAVE:
+		player_scale_value *= PLAYER_SCALE_WAVE
+	if not tweened:
+		scale = player_scale_value
+		if not is_node_ready():
+			await ready
+		%Trail.width = %Trail.texture.get_width() * scale.y
+		return
+	(
+		create_tween() \
+		.set_parallel() \
+		.tween_property(self, ^"scale", player_scale_value, 0.25) \
+		.tween_property(%Trail, ^"width", %Trail.texture.get_width() * scale.y, 0.25) \
+		.set_ease(Tween.EASE_OUT) \
+		.set_trans(Tween.TRANS_BACK)
+	)
+
+
+func place_checkpoint() -> CheckpointPlacementBuilder:
+	return CheckpointPlacementBuilder.new(self)
+
+
+func stop_dash() -> void:
+	$DashParticles.emitting = false
+	$DashFlame.hide()
+	dash_control = null
+
+
+func get_direction() -> int:
+	var direction: int
+	if LevelManager.platformer:
+		direction = int(Input.get_axis(&"move_left", &"move_right"))
+		if direction != 0:
+			horizontal_direction = direction
+	else:
+		direction = horizontal_direction
+	return direction
+
+
+func get_spider_trail_global_position() -> Vector2:
+	return $Icon/Spider/SpiderCast/SpiderTrailSpawnPoint.global_position
 
 
 func _should_process() -> bool:
@@ -447,7 +501,7 @@ func _get_jump_state() -> int:
 		jump_state = 1 if (Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_ceiling())) else -1
 
 	if get_viewport().gui_get_hovered_control() != null:
-		if get_viewport().gui_get_hovered_control().name == "EditorViewport":
+		if get_viewport().gui_get_hovered_control() == Editor.viewport:
 			return jump_state
 		else:
 			return 0 if LevelManager.platformer else -1
@@ -959,10 +1013,10 @@ func _update_spider_state_machine(jump_state: int) -> void:
 	elif speed_multiplier == 0 or get_direction() == 0:
 		_spider_state_machine.travel(&"idle")
 	elif speed_multiplier >= 1.849:
-		_spider_animation_tree["parameters/run/PlayerSpeed/scale"] = speed_multiplier / 1.849
+		spider_animation_tree["parameters/run/PlayerSpeed/scale"] = speed_multiplier / 1.849
 		_spider_state_machine.travel(&"run")
 	else:
-		_spider_animation_tree["parameters/walk/PlayerSpeed/scale"] = speed_multiplier
+		spider_animation_tree["parameters/walk/PlayerSpeed/scale"] = speed_multiplier
 		_spider_state_machine.travel(&"walk")
 
 

@@ -1,5 +1,11 @@
 extends Node
 
+enum EditorMode {
+	PLACE,
+	EDIT,
+	SELECTION_FILTERS,
+}
+
 var root: EditorScene
 var in_editor: bool:
 	get():
@@ -13,6 +19,8 @@ var shortcut_blocker: Node
 var viewport: EditorViewport
 var version_history: UndoRedo
 var render_mode_manager: RenderMode
+var temporary_playtest_level: Level
+var is_picking_node: bool
 
 # MOBILE CONTROLS
 var swipe: bool = false

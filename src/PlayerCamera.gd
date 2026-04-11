@@ -74,6 +74,18 @@ func _process(delta: float) -> void:
 	LevelManager.current_level.camera_rect = Rect2(global_position - get_viewport_rect().size / 2 / zoom, get_viewport_rect().size / zoom)
 
 
+func reset() -> void:
+	limit_left = -10000000
+	limit_top = -10000000
+	limit_right = 10000000
+	limit_bottom = 10000000
+	center_on_player_at_0x_speed = true
+	static_factor = Vector2.ZERO
+	gameplay_offset_factor = Vector2.ONE
+	zoom = PlayerCamera.DEFAULT_ZOOM
+	offset = PlayerCamera.DEFAULT_OFFSET
+
+
 func local_target_distance_axis(distance: float, max_distance: float, framerate_compensation: float) -> float:
 	if not freefly:
 		return distance * 0.2 * framerate_compensation

@@ -20,6 +20,7 @@ static var COMPONENT_BLACKLIST: Array[Script] = [
 	LevelCheckpointComponent,
 	SpiderDashComponent,
 	EndLevelComponent,
+	AutoCheckpointComponent,
 ]
 
 # Querying this at runtime is overkill
@@ -33,9 +34,10 @@ static var are_arrays_initialized: bool
 @export var components_root: Container
 @export var separator: HSeparator
 @export var markers_root: Container
+@export var object_name: LineEdit
 
 var marker_properties: Dictionary[Script, BoolProperty]
-var initial_values: Dictionary[PathRef, Variant]
+var initial_values: Dictionary[Component, Variant]
 
 
 func _init() -> void:
@@ -75,7 +77,6 @@ func rebuild_ui(interactables: Selection) -> void:
 
 func build_ui(interactables: Selection) -> void:
 	var first_interactable: Interactable = interactables.first()
-	var ui_root := VBoxContainer.new()
 	var should_component_be_displayed := func(component: Component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
 	var displayed_components: Array = (
@@ -84,72 +85,11 @@ func build_ui(interactables: Selection) -> void:
 		.filter(should_component_be_displayed)
 	)
 	displayed_components = interactables.fold_generic(shared_components.bind(first_interactable), displayed_components)
+	components_root.visible = not displayed_components.is_empty()
 
-	if displayed_components:
-		for i in displayed_components.size():
-			var component = displayed_components[i]
-			NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
-			var fields: Array[Dictionary] = component.script.get_script_property_list()
-			# Follow _validate_property
-			if component.has_method(&"_validate_property"):
-				fields.map(
-					func(field):
-						component._validate_property(field)
-				)
-			fields = fields.filter(
-				func(field):
-					return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP
-			)
-			var last_section: FoldableContainer = null
-			for field: Dictionary in fields:
-				var field_name: String = field.name
-				if field_name.begins_with("_"):
-					continue
-				if field.usage & PROPERTY_USAGE_GROUP:
-					if last_section:
-						ui_root.add_child(last_section)
-						last_section.show.call_deferred()
-					last_section = FoldableContainer.new()
-					last_section.name = field_name
-					last_section.title = field_name
-					last_section.title_alignment = HORIZONTAL_ALIGNMENT_LEFT
-					last_section.add_child(VBoxContainer.new())
-					last_section.folded = true
-					last_section.hide()
-				elif field.hint == PROPERTY_HINT_TOOL_BUTTON:
-					var call_button: Button = Button.new()
-					call_button.text = field.hint_string.get_slice(",", 0)
-					call_button.icon = load("res://assets/textures/icons/godot/%s.svg" % field.hint_string.get_slice(",", 1))
-					call_button.expand_icon = true
-					call_button.pressed.connect(component.get(field_name) as Callable)
-					call_button.custom_minimum_size.y = 34.0
-					if last_section:
-						var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
-						section_vboxcontainer.add_child(call_button)
-					else:
-						ui_root.add_child(call_button)
-				else:
-					var property: Property
-					property = PropertyGenerator.from_property_list_field(field.type, field)
-					property.name = field_name.capitalize()
-					property.set_meta(&"component_name", component.name)
-					property.set_input_state.call_deferred(not field.usage & PROPERTY_USAGE_READ_ONLY)
-					if last_section:
-						var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
-						section_vboxcontainer.add_child(property)
-					else:
-						ui_root.add_child(property)
-			if last_section:
-				ui_root.add_child(last_section)
-				last_section.show.call_deferred()
-			if i < displayed_components.size() - 1:
-				ui_root.add_child(HSeparator.new())
-		components_root.visible = ui_root.get_child_count() > 0
-		if components_root.visible:
-			components_root.add_child(ui_root)
-	else:
-		components_root.hide()
-		separator.hide()
+	if not displayed_components.is_empty():
+		build_components_ui(interactables, displayed_components)
+
 	if interactables.any(func(interactable: Interactable): return interactable.has(HideMarkersComponent)):
 		separator.hide()
 		markers_root.hide()
@@ -161,6 +101,68 @@ func build_ui(interactables: Selection) -> void:
 
 	connect_ui(interactables, self)
 	load_properties.call_deferred(first_interactable, self)
+
+
+func build_components_ui(interactables: Selection, displayed_components: Array) -> void:
+	for i in displayed_components.size():
+		var component = displayed_components[i]
+		NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
+		var fields: Array[Dictionary] = component.script.get_script_property_list()
+		# Follow _validate_property
+		if component.has_method(&"_validate_property"):
+			fields.map(
+				func(field: Dictionary):
+					# _validate_property is `fn -> void`
+					component._validate_property(field)
+			)
+		fields = fields.filter(
+			func(field: Dictionary):
+				return field.usage & PROPERTY_USAGE_EDITOR or field.usage & PROPERTY_USAGE_GROUP
+		)
+		var last_section: FoldableContainer = null
+		for field: Dictionary in fields:
+			var field_name: String = field.name
+			if field_name.begins_with("_"):
+				continue
+			if field.usage & PROPERTY_USAGE_GROUP:
+				if last_section:
+					components_root.add_child(last_section)
+					last_section.show.call_deferred()
+				last_section = FoldableContainer.new()
+				last_section.name = field_name
+				last_section.title = field_name
+				last_section.title_alignment = HORIZONTAL_ALIGNMENT_LEFT
+				last_section.add_child(VBoxContainer.new())
+				last_section.folded = true
+				last_section.hide()
+			elif field.hint == PROPERTY_HINT_TOOL_BUTTON:
+				var call_button: Button = Button.new()
+				call_button.text = field.hint_string.get_slice(",", 0)
+				call_button.icon = load("res://assets/textures/icons/godot/%s.svg" % field.hint_string.get_slice(",", 1))
+				call_button.expand_icon = true
+				call_button.pressed.connect(component.get(field_name) as Callable)
+				call_button.custom_minimum_size.y = 34.0
+				if last_section:
+					var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
+					section_vboxcontainer.add_child(call_button)
+				else:
+					components_root.add_child(call_button)
+			else:
+				var property: Property
+				property = PropertyGenerator.from_property_list_field(field.type, field)
+				property.name = field_name.capitalize()
+				property.set_meta(&"component_name", component.name)
+				property.set_input_state.call_deferred(not field.usage & PROPERTY_USAGE_READ_ONLY)
+				if last_section:
+					var section_vboxcontainer := last_section.get_child(0) as VBoxContainer
+					section_vboxcontainer.add_child(property)
+				else:
+					components_root.add_child(property)
+		if last_section:
+			components_root.add_child(last_section)
+			last_section.show.call_deferred()
+		if i < displayed_components.size() - 1:
+			components_root.add_child(HSeparator.new())
 
 
 func connect_ui(interactables: Selection, ui_root: Control) -> void:
@@ -218,13 +220,8 @@ func save_property(value: Variant, component_name: String, property_name: String
 				new_value = Constants.GROUP_PREFIX + value
 			elif component is TargetColorChannelComponent:
 				new_value = Constants.COLOR_CHANNEL_GROUP_PREFIX + new_value
-		var path_matches := func(path_ref: PathRef): return path_ref.to_ref() == component
-		var component_maybe_idx: int = initial_values.keys().find_custom(path_matches)
-		var component_pathref: PathRef = initial_values.keys()[component_maybe_idx] if component_maybe_idx >= 0 else null
-		if not component_pathref:
-			initial_values[PathRef.new(component)] = [property_name, component.get(property_name)]
-		elif initial_values[component_pathref][0] != property_name:
-			initial_values[component_pathref] = [property_name, component.get(property_name)]
+		if component not in initial_values or initial_values[component][0] != property_name:
+			initial_values[component] = [property_name, component.get(property_name)]
 
 		component.set(property_name, new_value)
 
@@ -233,12 +230,11 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	var do_save_property := func(_interactables: Selection, new_value: Variant):
 		save_property(new_value, component_name, property_name, _interactables)
 		load_properties(_interactables.first(), self)
-	var undo_save_property := func(_initial_values: Dictionary[PathRef, Variant]):
-		for component_pathref: PathRef in _initial_values:
-			var component: Component = component_pathref.to_ref()
-			var initial_value: Variant = _initial_values[component_pathref][1]
+	var undo_save_property := func(_initial_values: Dictionary[Component, Variant]):
+		for component: Component in _initial_values:
+			var initial_value: Variant = _initial_values[component][1]
 			component.set(property_name, initial_value)
-		load_properties(_initial_values.keys()[0].to_ref().parent, self)
+		load_properties(_initial_values.keys()[0].parent, self)
 
 	var interactables_snapshot: Selection = interactables.clone()
 	var version_history: UndoRedo = Editor.version_history

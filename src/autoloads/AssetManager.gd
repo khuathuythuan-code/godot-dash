@@ -15,6 +15,7 @@ var game_scene_packed: PackedScene
 var menu_loop: AudioStream
 var fade_enter_effect: ShaderMaterial
 var fade_enter_effect_canvas_group: ShaderMaterial
+var generated_editor_object_thumbnails: Dictionary[String, ImageTexture]
 
 
 func _ready() -> void:
@@ -36,6 +37,8 @@ func _ready() -> void:
 
 
 func load_song(path: String) -> AudioStream:
+	if path.is_empty():
+		return null
 	var audio_stream: AudioStream
 	if path.begins_with("uid"):
 		audio_stream = load(path)

@@ -89,7 +89,8 @@ func hide_tween() -> void:
 
 
 func toggle_pause_menu() -> void:
-	level_name_label.text = LevelManager.current_level.name
+	if LevelManager.current_level != Editor.temporary_playtest_level:
+		level_name_label.text = LevelManager.current_level.name
 	get_tree().paused = not get_tree().paused
 	if get_tree().paused:
 		paused.emit()

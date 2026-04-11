@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://t4wcwy036o4d" path="res://resources/PulseWhiteMaterial.tres" id="3_dnjdv"]
 [ext_resource type="Texture2D" uid="uid://dd1s2apollksy" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalFront.png" id="3_natvh"]
 [ext_resource type="Texture2D" uid="uid://bosd0l1hcaf2j" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalIndicatorBG.png" id="4_mlyd2"]
+[ext_resource type="Script" uid="uid://d4icbghdufton" path="res://src/LayeredSprite.gd" id="4_qx2t4"]
 [ext_resource type="Texture2D" uid="uid://cklcutl8rj5wr" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalIndicatorIcon.png" id="5_ks1gp"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_lk0h8"]
 [ext_resource type="Script" uid="uid://ch7r67xegri61" path="res://src/interactables/public_components/GamemodeChangerComponent.gd" id="9_01rjw"]
@@ -28,8 +29,9 @@ modulate = Color(0.933333, 0.0313726, 0.027451, 1)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
-[node name="Sprites" type="Node2D" parent="." unique_id=1940266231]
+[node name="Sprites" type="Node2D" parent="." unique_id=387984872]
 material = ExtResource("3_dnjdv")
+script = ExtResource("4_qx2t4")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=316853962]
 z_index = -1
