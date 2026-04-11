@@ -2,8 +2,6 @@
 class_name FloatSliderProperty
 extends Property
 
-const FLOAT_SLIDER_PREFAB: PackedScene = preload("res://scenes/components/game_components/ui/FloatSlider.tscn")
-
 signal value_changed(value: float)
 signal interaction_ended(value: float, previous: float)
 
@@ -28,7 +26,7 @@ var input: FloatSlider
 func _ready() -> void:
 	label = Label.new()
 	add_child(label, false, INTERNAL_MODE_FRONT)
-	input = FLOAT_SLIDER_PREFAB.instantiate()
+	input = FloatSlider.new()
 	add_child(input, false, INTERNAL_MODE_FRONT)
 	input.value_changed.connect(func(new_value: float): value_changed.emit(new_value))
 	input.interaction_ended.connect(func(new_value: float, previous: float): interaction_ended.emit(new_value, previous))

@@ -1,3 +1,4 @@
+@tool
 class_name FloatSlider
 extends SpinBox
 
@@ -11,7 +12,10 @@ enum State {
 
 @export var expand_to_text_length: bool
 @export var tick_count: int
-@export var slider: HSlider
+@export var ticks_on_borders: bool
+@export var ticks_position: Slider.TickPosition
+
+var slider: HSlider
 
 var _previous_value: float
 var _slider_initial_mouse_position: Vector2
@@ -19,10 +23,13 @@ var _state: State = State.IDLE
 
 
 func _ready() -> void:
-	theme_type_variation = &"FloatSliderSpinbox"
+	custom_minimum_size.y = 32
+	# Initialize the slider
+	slider = HSlider.new()
+	add_child.call_deferred(slider, false, INTERNAL_MODE_FRONT)
 	# Reflect exports and internal nodes
 	share(slider)
-	update_internals()
+	update_internals.call_deferred()
 	# Connect signals
 	get_line_edit().editing_toggled.connect(
 		func(toggled_on: bool) -> void:
@@ -62,11 +69,14 @@ func _ready() -> void:
 	)
 
 
-func _get_minimum_size() -> Vector2:
-	return Vector2(0, 32)
-
-
 func update_internals() -> void:
+	alignment = HORIZONTAL_ALIGNMENT_CENTER
+	slider.mouse_filter = Control.MOUSE_FILTER_STOP
+	slider.theme_type_variation = &"FloatSliderHSlider"
+	slider.set_anchors_preset(PRESET_FULL_RECT)
+	slider.size = size
+	slider.position = Vector2.ZERO
+	slider.scrollable = false
 	slider.min_value = min_value
 	slider.max_value = max_value
 	slider.step = step
@@ -74,3 +84,5 @@ func update_internals() -> void:
 	slider.allow_greater = allow_greater
 	slider.allow_lesser = allow_lesser
 	slider.tick_count = tick_count
+	slider.ticks_on_borders = ticks_on_borders
+	slider.ticks_position = ticks_position
