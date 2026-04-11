@@ -70,6 +70,14 @@ func _ready() -> void:
 	)
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_MOUSE_EXIT and _state == State.DRAGGING:
+		slider.release_focus()
+		interaction_ended.emit(value, _previous_value)
+		_state = State.IDLE
+		slider.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+
 func update_internals() -> void:
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slider.mouse_filter = Control.MOUSE_FILTER_STOP
