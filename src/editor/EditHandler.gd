@@ -512,7 +512,7 @@ func deselect(objects: Selection, merge_history_actions: bool = false) -> void:
 func _update_selection() -> void:
 	if Input.is_action_just_pressed(&"editor_add") or Input.is_action_just_pressed(&"editor_selection_remove"):
 		_reset_selection_zone(false)
-	if get_viewport().gui_get_hovered_control() == Editor.viewport and Input.is_action_just_pressed(&"editor_add", false):
+	if Input.is_action_just_pressed(&"editor_add", false) and get_viewport().gui_get_hovered_control() == Editor.viewport:
 		if not Input.is_action_just_pressed(&"editor_add_swipe", true) \
 		and not Input.is_action_just_pressed(&"editor_selection_remove", true):
 			selection_index += 1
@@ -549,7 +549,20 @@ func _update_selection() -> void:
 		_reset_selection_zone(true)
 	elif Input.is_action_just_released(&"editor_add", true) and $SelectionZone/Hitbox.shape.size < Vector2.ONE * 2:
 		_reset_selection_zone(true)
-	selection.remove(level)
+
+
+func _update_interactive_picking() -> void:
+	if not (
+		get_viewport().gui_get_hovered_control() == Editor.viewport
+		and Input.is_action_just_pressed(&"editor_add", true)
+	):
+		return
+	# Clicking on an empty space will cancel the picking.
+	var picked_object: Node2D
+	if placed_objects_collider.has_overlapping_areas():
+		picked_object = get_object_parent(placed_objects_collider.get_overlapping_areas()[0])
+	var active_node_property: NodeProperty = Editor.shortcut_blocker
+	active_node_property.finish_interactive_picker(picked_object)
 
 
 func _update_interactive_picking() -> void:
@@ -755,6 +768,11 @@ static func scale_transform(
 		return
 	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
+	if object is StaticBody2D:
+		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
+		if absolutesize == null:
+			return
+		absolutesize.update_size()
 
 
 static func scale_transform_local(
@@ -770,6 +788,11 @@ static func scale_transform_local(
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
 	)
+	if object is StaticBody2D:
+		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
+		if absolutesize == null:
+			return
+		absolutesize.update_size()
 
 
 func _on_move_pressed(quick: bool = false):

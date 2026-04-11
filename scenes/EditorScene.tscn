@@ -6502,6 +6502,125 @@ default = 1.0
 max_value = 1.0
 metadata/_custom_type_script = "uid://c73uilol0rw1g"
 
+[node name="Physics" type="FoldableContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody" unique_id=1358505846]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+folded = true
+title = "Physics"
+title_alignment = 1
+foldable_group = SubResource("FoldableGroup_dl3g1")
+
+[node name="PhysicsEditor" type="VBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics" unique_id=18298371 node_paths=PackedStringArray("physics_object_property", "mass_property", "friction_property", "rough_property", "bounce_property", "absorbent_property", "gravity_scale_property", "pushable_by_player_property")]
+visible = false
+layout_mode = 2
+script = ExtResource("253_vp4xm")
+physics_object_property = NodePath("Physics Object")
+mass_property = NodePath("Mass")
+friction_property = NodePath("Friction")
+rough_property = NodePath("Rough")
+bounce_property = NodePath("Bounce")
+absorbent_property = NodePath("Absorbent")
+gravity_scale_property = NodePath("Gravity Scale")
+pushable_by_player_property = NodePath("Pushable by Player")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1196945936]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/HBoxContainer" unique_id=358465710]
+layout_mode = 2
+texture = ExtResource("255_xpwy5")
+
+[node name="Label" type="Label" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor/HBoxContainer" unique_id=503334101]
+layout_mode = 2
+mouse_filter = 1
+text = "Attributes Don't Work With Physics Enabled"
+label_settings = SubResource("LabelSettings_leg3o")
+
+[node name="HSeparator" type="HSeparator" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=35257396]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/separation = 12
+
+[node name="Physics Object" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1774094891]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("179_0v0om")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="Mass" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=566037906]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("185_t7625")
+default = 1.0
+min_value = 0.001
+max_value = 1000.0
+step = 0.1
+allow_greater = true
+suffix = "kg"
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Friction" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=346343826]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("185_t7625")
+default = 1.0
+max_value = 1.0
+step = 0.1
+allow_greater = true
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Rough" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1674867260]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("179_0v0om")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="Bounce" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=716703010]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("185_t7625")
+max_value = 1.0
+step = 0.1
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Absorbent" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1510834358]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("179_0v0om")
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="Gravity Scale" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=1388101345]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("185_t7625")
+min_value = -8.0
+max_value = 8.0
+step = 0.1
+allow_lesser = true
+allow_greater = true
+metadata/_custom_type_script = "uid://dd75trm1kaaiu"
+
+[node name="Pushable by Player" type="BoxContainer" parent="EditorUI/EditorContainer/SidePanel/SmoothScrollContainer/MarginContainer/InspectorBody/Physics/PhysicsEditor" unique_id=928688179]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+vertical = true
+script = ExtResource("179_0v0om")
+default = true
+metadata/_custom_type_script = "uid://bss8ppxnt7gio"
+
+[node name="LevelSettings" parent="EditorUI" unique_id=554710683 instance=ExtResource("180_nk067")]
+unique_name_in_owner = true
+visible = false
+metadata/_edit_lock_ = true
+
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1400394363 node_paths=PackedStringArray("editor_scene", "editor_viewport", "edit_handler")]
 process_priority = 1
 offset = Vector2(1280, 669)
