@@ -565,20 +565,6 @@ func _update_interactive_picking() -> void:
 	active_node_property.finish_interactive_picker(picked_object)
 
 
-func _update_interactive_picking() -> void:
-	if not (
-		get_viewport().gui_get_hovered_control() == Editor.viewport
-		and Input.is_action_just_pressed(&"editor_add", true)
-	):
-		return
-	# Clicking on an empty space will cancel the picking.
-	var picked_object: Node2D
-	if placed_objects_collider.has_overlapping_areas():
-		picked_object = get_object_parent(placed_objects_collider.get_overlapping_areas()[0])
-	var active_node_property: NodeProperty = Editor.shortcut_blocker
-	active_node_property.finish_interactive_picker(picked_object)
-
-
 func _reset_selection_zone(unreachable: bool = true) -> void:
 	$SelectionZone.position = Vector2.ONE * INF if unreachable else get_parent().get_local_mouse_position()
 	$SelectionZone/Hitbox.shape.size = Vector2.ZERO
