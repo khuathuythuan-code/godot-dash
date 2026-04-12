@@ -130,15 +130,11 @@ func draw_gizmo(color: Color, outline: bool = false) -> void:
 		draw_circle(Vector2.ZERO, HANDLE_RADIUS, color, true)
 
 	for direction in [0, 90, 180, 270]:
-		var points: PackedVector2Array = ([
-				Vector2(103.5, -11.5),
-				Vector2(115, 0),
-				Vector2(103.5, 11.5),
-			] if outline else [
-				Vector2(105, -10),
-				Vector2(115, 0),
-				Vector2(105, 10),
-			] ).map(func(point: Vector2): return point.rotated(deg_to_rad(direction)))
+		var points: PackedVector2Array = [
+			Vector2(92, -10) + (Vector2.ZERO if not outline else Vector2.ONE * -sqrt(2)),
+			Vector2(102, 0),
+			Vector2(92, 10) + (Vector2.ZERO if not outline else Vector2(1, -1) * -sqrt(2)),
+		].map(func(point: Vector2): return point.rotated(deg_to_rad(direction)))
 		if direction % 180 == 0:
 			draw_polyline(points, horizontal_axis_color, width, true)
 		else:
