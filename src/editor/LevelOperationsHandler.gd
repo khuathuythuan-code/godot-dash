@@ -96,6 +96,7 @@ func _new_level() -> void:
 	editor.level = LevelManager.game_scene.add_loaded_level(new_level)
 	Editor.clear_data()
 	Editor.root.reset()
+	Editor.root.inspector_manager.level_settings.refresh_saveloads(new_level)
 	new_level.default_background_color = Constants.DEFAULT_BACKGROUND_COLOR
 	new_level.default_ground_color = Constants.DEFAULT_GROUND_COLOR
 	new_level.default_line_color = Constants.DEFAULT_LINE_COLOR
@@ -131,6 +132,7 @@ func _open_level(path: String) -> void:
 	if not level:
 		return
 	Editor.root.reset()
+	Editor.root.inspector_manager.level_settings.refresh_saveloads(level)
 	# Load song
 	var song_file_path: String
 	if level.song_path.begins_with("uid"):

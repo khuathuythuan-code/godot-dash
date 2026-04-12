@@ -17,6 +17,9 @@ enum InspectorTab {
 @export var tree: Tree
 @export var object_name: LineEdit
 
+@export_group("Level")
+@export var level_settings: LevelSettings
+
 @export_group("Groups")
 @export var group_parent: BoolProperty
 

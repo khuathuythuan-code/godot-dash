@@ -6534,12 +6534,13 @@ debug_color = Color(0.284375, 0, 0.7, 0.42)
 z_index = 100
 script = ExtResource("35_xjepn")
 
-[node name="InspectorManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("panel_container", "tab_bar", "tree", "object_name", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
+[node name="InspectorManager" type="Node" parent="." unique_id=632201974 node_paths=PackedStringArray("panel_container", "tab_bar", "tree", "object_name", "level_settings", "group_parent", "interactable_editor", "object_color_properties", "hsv_shift")]
 script = ExtResource("58_hnsxj")
 panel_container = NodePath("../EditorUI/Editor/Inspector")
 tab_bar = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/MarginContainer/InspectorTabBar")
 tree = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/MarginContainer/PanelContainer/VBoxContainer/InspectorTree")
 object_name = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Name")
+level_settings = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Level")
 group_parent = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Object/Groups/VBoxContainer/Group parent")
 interactable_editor = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Interactable")
 object_color_properties = NodePath("../EditorUI/Editor/Inspector/VSplitContainer/HBoxContainer/SmoothScrollContainer/MarginContainer/InspectorTabs/Colors/VBoxContainer")
