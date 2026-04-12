@@ -13,7 +13,7 @@ enum AxisConstraint {
 	DISABLED,
 }
 
-const NUMBERS := "0123456789"
+const NUMBERS: String = "0123456789"
 
 ## The typed value as a float
 var value: float:
@@ -22,7 +22,10 @@ var value: float:
 		var evaluated_expression: Variant = _expression_evaluator.execute()
 		return evaluated_expression as float if evaluated_expression else NAN
 ## The value before it was overriden by the typed value
-var original_value: float
+var original_value: float:
+	set(new_value):
+		original_value = new_value
+		update_keychord_display(_expression)
 ## The action done by the gizmo, e.g. "Rotating", "Scaling" or "Moving"
 var displayed_gizmo_action: String
 ## The unit of the action done by the gizmo, e.g. "°" (rotation), "×" (scale) or "cells" (movement)
@@ -138,8 +141,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func update_keychord_display(new_expression: String) -> void:
-	keychord_display.visible = not new_expression.is_empty()
-	keychord_display.text = "%s: %s = %s%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
+	if new_expression.is_empty():
+		keychord_display.text = "%s: %.2f%s" % [displayed_gizmo_action, original_value, displayed_gizmo_unit]
+	else:
+		keychord_display.text = "%s: [%s] = %.2f%s" % [displayed_gizmo_action, _expression, value, displayed_gizmo_unit]
 	match axis_constraint:
 		AxisConstraint.GLOBAL_X:
 			keychord_display.text += " along global X"

@@ -56,13 +56,27 @@ func _process(_delta: float) -> void:
 			used_axis = Constants.AxisBitflag.X
 			global_position.y = initial_global_position.y
 			global_position.x = initial_global_position.x + (quick_value if is_finite(quick_value) else get_global_mouse_position().x - initial_mouse_position.x)
+			quick_gizmo_value_input.original_value = (get_global_mouse_position().x - initial_mouse_position.x) / Constants.CELL_SIZE
+			if is_snapping():
+				quick_gizmo_value_input.original_value = roundf(quick_gizmo_value_input.original_value)
 		elif constrained_axis == Constants.Axis.Y:
 			used_axis = Constants.AxisBitflag.Y
 			global_position.x = initial_global_position.x
 			global_position.y = initial_global_position.y + (-quick_value if is_finite(quick_value) else get_global_mouse_position().y - initial_mouse_position.y)
+			quick_gizmo_value_input.original_value = (get_global_mouse_position().y - initial_mouse_position.y) / Constants.CELL_SIZE
+			if is_snapping():
+				quick_gizmo_value_input.original_value = roundf(quick_gizmo_value_input.original_value)
 		else:
 			used_axis = Constants.AxisBitflag.X | Constants.AxisBitflag.Y
 			global_position = initial_global_position + get_global_mouse_position() - initial_mouse_position
+			# HACK: display a Vector2 in the keychord display (QuickGizmoValueInput can only handle floats)
+			if not quick_gizmo_value_input.has_value():
+				var action: String = quick_gizmo_value_input.displayed_gizmo_action
+				var unit: String = quick_gizmo_value_input.displayed_gizmo_unit
+				var displacement: Vector2 = (get_global_mouse_position() - initial_mouse_position) / Constants.CELLS_TO_PX
+				if is_snapping():
+					displacement = displacement.round()
+				quick_gizmo_value_input.keychord_display.text = "%s: (%.2f%s, %.2f%s)" % [action, displacement.x, unit, displacement.y, unit]
 	else:
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and used_axis == Constants.AxisBitflag.NONE:
 			if horizontal_axis_hovered:
