@@ -229,4 +229,5 @@ config_property = &"flashing_lights"
 metadata/_custom_type_script = "uid://ckqgnvpbftev7"
 
 [connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="pressed" from="Assets/VBoxContainer/Song/VBoxContainer/Preview" to="." method="_on_preview_pressed"]
 [connection signal="value_changed" from="Assets/VBoxContainer/Default Font" to="." method="_on_default_font_value_changed"]
