@@ -38,10 +38,10 @@ func _ready() -> void:
 		$GameScene.fade_screen.fade_out()
 		(
 			create_tween() \
-			.tween_property($EditorCamera, ^"zoom", PlayerCamera.DEFAULT_ZOOM, Config.transition_duration) \
-			.set_ease(Tween.EASE_OUT) \
-			.set_trans(Tween.TRANS_EXPO) \
-			.from(PlayerCamera.DEFAULT_ZOOM / 2.0)
+					.tween_property($EditorCamera, ^"zoom", PlayerCamera.DEFAULT_ZOOM, Config.transition_duration) \
+					.set_ease(Tween.EASE_OUT) \
+					.set_trans(Tween.TRANS_EXPO) \
+					.from(PlayerCamera.DEFAULT_ZOOM / 2.0)
 		)
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
@@ -226,9 +226,9 @@ func _fade_leave(_action: Variant = null) -> void:
 	$GameScene.fade_screen.fade_in()
 	(
 		create_tween() \
-		.tween_property($EditorCamera, ^"zoom", $EditorCamera.zoom / 2.0, Config.transition_duration) \
-		.set_ease(Tween.EASE_IN) \
-		.set_trans(Tween.TRANS_EXPO)
+				.tween_property($EditorCamera, ^"zoom", $EditorCamera.zoom / 2.0, Config.transition_duration) \
+				.set_ease(Tween.EASE_IN) \
+				.set_trans(Tween.TRANS_EXPO)
 	)
 	if DiscordRPCManager.available:
 		DiscordRPCHandler.set_details("Title Screen")
