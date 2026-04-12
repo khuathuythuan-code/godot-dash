@@ -73,7 +73,7 @@ func _process(_delta: float) -> void:
 		force_inputs_focus()
 	if state == State.FORCED:
 		snap_interval_input.set_value_no_signal(45.0 if Input.is_key_pressed(KEY_CTRL) else 0.001)
-	if state and not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
+	if state != State.DISABLED and not (quick_gizmo_value_input and quick_gizmo_value_input.has_value()):
 		var previous_handle_position = handle_position
 		if quick_rotation_is_first_frame:
 			quick_rotation_is_first_frame = false
@@ -91,7 +91,7 @@ func _process(_delta: float) -> void:
 			quick_gizmo_value_input.original_value = rad_to_deg(handle_position.angle())
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and state == State.ENABLED:
 		state = State.DISABLED
-	if get_viewport().get_camera_2d() != null:
+	if get_viewport().get_camera_2d():
 		scale.x = 1 / get_viewport().get_camera_2d().zoom.x
 		scale.y = 1 / get_viewport().get_camera_2d().zoom.y
 		scale *= gizmo_scale
