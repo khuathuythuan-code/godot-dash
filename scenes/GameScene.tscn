@@ -156,7 +156,7 @@ position = Vector2(640, 925)
 
 [node name="Player" parent="." unique_id=758830337 instance=ExtResource("3_22pbm")]
 unique_name_in_owner = true
-position = Vector2(640, 860)
+position = Vector2(640, 861)
 
 [node name="GroundDownParallax" type="Parallax2D" parent="." unique_id=2138827315]
 repeat_size = Vector2(24000, 0)

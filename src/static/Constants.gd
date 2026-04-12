@@ -26,7 +26,7 @@ enum SpecialColorChannel {
 const GROUP_PREFIX: String = "g_"
 const COLOR_CHANNEL_GROUP_PREFIX := "c_"
 
-const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 860.0)
+const DEFAULT_PLAYER_POSITION: Vector2 = Vector2(640.0, 861.0)
 const DEFAULT_BACKGROUND_COLOR: Color = Color("#3670ff")
 const DEFAULT_GROUND_COLOR: Color = Color("#1b4bc4")
 const DEFAULT_LINE_COLOR: Color = Color.WHITE
