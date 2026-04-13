@@ -35,8 +35,8 @@ func _ready() -> void:
 	resource_properties.remove_at(0)
 	resource_properties = (
 		resource_properties \
-		.filter(_is_property_exported) \
-		.map(func(property): return property.name)
+				.filter(_is_property_exported) \
+				.map(func(property): return property.name)
 	)
 	var index: int
 	for child in get_children(false):
@@ -73,6 +73,8 @@ func set_value(new_value: Resource) -> void:
 	var previous: Resource = _value.duplicate() if _value else new_value.duplicate()
 	set_value_no_signal(new_value)
 	value_changed.emit(_value)
+	if "prevent_history_action" in _value and _value.prevent_history_action:
+		return
 	interaction_ended.emit(_value, previous)
 
 

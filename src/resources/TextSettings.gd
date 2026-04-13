@@ -4,20 +4,32 @@ extends LabelSettings
 @export var _font_path: String:
 	set = set_font_path
 
+var prevent_history_action: bool = false
+
 
 func _init(path: String = "") -> void:
 	set_font_path(path)
 
 
 func set_font_path(path: String = "") -> void:
+	var is_changing_default_font: bool = path.is_empty() and _font_path.is_empty()
 	if LevelManager.current_level and path.is_empty():
+		if is_changing_default_font:
+			prevent_history_action = true
+			changed.connect(
+				func(): prevent_history_action = false,
+				CONNECT_DEFERRED | CONNECT_ONE_SHOT,
+			)
 		font = AssetManager.load_font(LevelManager.current_level.default_font)
-		NodeUtils.connect_once(LevelManager.current_level.default_font_changed, set_font_path)
+		var default_font_changed: Signal = LevelManager.current_level.default_font_changed
+		if not default_font_changed.is_connected(set_font_path):
+			default_font_changed.connect(set_font_path)
 	else:
 		if not (path.is_empty() or path.begins_with("res://")) and LevelManager.current_level:
 			LevelManager.current_level.register_required_font(_font_path, path)
-			if LevelManager.current_level.default_font_changed.is_connected(set_font_path):
-				LevelManager.current_level.default_font_changed.disconnect(set_font_path)
+			var default_font_changed: Signal = LevelManager.current_level.default_font_changed
+			if default_font_changed.is_connected(set_font_path):
+				default_font_changed.disconnect(set_font_path)
 		font = AssetManager.load_font(path)
 	_font_path = path
 
