@@ -84,10 +84,11 @@ func unload_all() -> void:
 func load_font(path: String) -> FontFile:
 	if path in loaded_fonts:
 		return loaded_fonts[path]
-	var loaded_font := FontFile.new()
+	var loaded_font: FontFile
 	if path.is_empty():
 		loaded_font = ThemeDB.get_project_theme().default_font.duplicate()
 	else:
+		loaded_font = FontFile.new()
 		var error: Error = loaded_font.load_dynamic_font(path)
 		if error != OK:
 			push_error("Error while loading font at %s: %s" % [path, error])
