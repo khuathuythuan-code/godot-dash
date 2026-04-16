@@ -145,12 +145,13 @@ func _change_background_color(new_color: Color) -> void:
 
 
 func _on_go_to_level_selector_pressed() -> void:
-	if level_selector.visible:
-		_return_to_title_screen()
-		return
-	_return_to_title_screen()
-	level_selector.show_tween()
-	_current_subscene = SubScene.LEVEL_SELECTOR
+	#if level_selector.visible:
+		#_return_to_title_screen()
+		#return
+	#_return_to_title_screen()
+	#level_selector.show_tween()
+	#_current_subscene = SubScene.LEVEL_SELECTOR
+	get_tree().change_scene_to_file("res://scenes/GameScene.tscn")
 
 
 func _on_go_to_community_menu_pressed() -> void:

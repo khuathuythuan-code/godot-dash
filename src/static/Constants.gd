@@ -34,7 +34,8 @@ const DEFAULT_LINE_COLOR: Color = Color.WHITE
 const CELL_SIZE: int = 128
 const CELLS_TO_PX := Vector2(CELL_SIZE, -CELL_SIZE)
 
-const LEVEL_DIR: String = "user://created_levels/levels/"
+#const LEVEL_DIR: String = "user://created_levels/levels/"
+const LEVEL_DIR: String = "res://src/testlevels/"
 const SONG_DIR: String = "user://created_levels/songs/"
 const FONT_DIR: String = "user://created_levels/fonts/"
 const ICON_DIR: String = "res://assets/textures/player/"

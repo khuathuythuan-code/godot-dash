@@ -10,7 +10,7 @@ var root: EditorScene
 var in_editor: bool:
 	get():
 		return root != null
-var clipboard: Selection
+var clipboard: Variant  # Type is Selection (Rust GDExtension), declared as Variant for web compat
 var snapshot := PackedScene.new()
 var level_data_snapshot: Dictionary
 var level_file_path: String
@@ -27,6 +27,14 @@ var swipe: bool = false
 var delete: bool = false
 
 
+func _ready() -> void:
+	if OS.get_name() == "Web":
+		return
+	# On non-web platforms, initialize clipboard as Selection if available
+	if ClassDB.class_exists("Selection"):
+		clipboard = ClassDB.instantiate("Selection")
+
+
 func is_text_input_focused() -> bool:
 	var focus_owner: Control = get_viewport().gui_get_focus_owner()
 	return focus_owner is LineEdit or focus_owner is TextEdit
@@ -38,4 +46,7 @@ func clear_data() -> void:
 	level_file_path = ""
 	level_history_version = 1
 	version_history = UndoRedo.new()
-	clipboard = Selection.new()
+	if ClassDB.class_exists("Selection"):
+		clipboard = ClassDB.instantiate("Selection")
+	else:
+		clipboard = null

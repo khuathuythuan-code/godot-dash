@@ -4,7 +4,7 @@ var available: bool = true
 
 
 func _ready() -> void:
-	if OS.get_name() == "Android":
+	if OS.get_name() == "Android" or OS.get_name() == "Web":
 		available = false
 		return
 
