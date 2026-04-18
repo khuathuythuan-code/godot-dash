@@ -49,9 +49,8 @@ script = ExtResource("5_d3f43")
 _hitbox = NodePath("../Hitbox")
 metadata/_custom_type_script = "uid://cilw18c36fh6"
 
-[node name="TextureRotationPinComponent" type="Node" parent="." unique_id=717532940 node_paths=PackedStringArray("pinned")]
+[node name="TextureRotationPinComponent" type="Node" parent="." unique_id=717532940]
 script = ExtResource("6_fu0o5")
-pinned = NodePath("")
 sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 

@@ -1,0 +1,174 @@
+{
+	"active_layer_idx": 0,
+	"color_channels": [],
+	"creation_date": 1776399280,
+	"creator": "Player",
+	"default_background_color": 913375231,
+	"default_ground_color": 457950463,
+	"default_line_color": 4294967295,
+	"description": "",
+	"duration": 0.0,
+	"enter_effect": 1,
+	"flashing_lights": false,
+	"game_version": "0.0.1",
+	"is_editable": true,
+	"layers": [
+		{
+			"name": "Unnamed Layer",
+			"objects": [
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock01",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0
+					},
+					"transform": {
+						"origin": [
+							1920.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"TargetObjectComponent": {
+							"target": ""
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "EndLevelTrigger",
+					"scene_file_path": "scenes/components/level_components/triggers/EndLevelTrigger.tscn",
+					"transform": {
+						"origin": [
+							3584.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				}
+			]
+		}
+	],
+	"name": "level3",
+	"platformer": false,
+	"player_data": {
+		"groups": [],
+		"hsv": {
+			"alpha": 1.0,
+			"hsv_shift": [
+				0.0,
+				0.0,
+				0.0
+			],
+			"intensity": 1.0
+		},
+		"z_index": 0
+	},
+	"rating": -1,
+	"song_path": "",
+	"song_start_time": 0.0,
+	"start_displayed_gamemode": 0,
+	"start_freefly": true,
+	"start_gameplay_rotation_degrees": 0.0,
+	"start_gravity_flip": 1,
+	"start_gravity_multiplier": 1.0,
+	"start_internal_gamemode": 0,
+	"start_position": [
+		640.0,
+		861.0
+	],
+	"start_reverse": false,
+	"start_speed": 1.0,
+	"start_speed_preset": 2
+}
