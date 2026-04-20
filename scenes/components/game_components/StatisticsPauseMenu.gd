@@ -1,4 +1,4 @@
-class_name PauseMenu
+class_name StatisticsPauseMenu
 extends CanvasLayer
 
 signal paused
@@ -20,14 +20,35 @@ var settings_were_open: bool
 var replays_were_open: bool
 var proceed_through_unsuspend: bool = true
 
+# Khi bắt đầu level, tìm vị trí X của EndLevel trigger
+var level_end_x: float = 0.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	LevelManager.pause_menu = self
+	LevelManager.stat_pause_menu = self
 	$Settings.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 	$Replays.get_node(^"MarginContainer/ReplaysMenu/SmoothScrollContainer/ReplayPanelLoader").replay_started.connect(toggle_pause_menu)
 	update_buttons_visibility.call_deferred()
+	# Chờ level_started signal thay vì lấy ngay trong _ready
+	LevelManager.level_started.connect(_on_level_started)
 
+
+func _on_level_started() -> void:
+	level_end_x = 0.0# dừng tính toán của ván cũ
+	await get_tree().process_frame
+	var nodes = get_tree().get_nodes_in_group("end_level")
+	if not nodes.is_empty():
+		level_end_x = nodes[0].get_parent().global_position.x
+		
+
+func _process(_delta: float) -> void:
+	if level_end_x == 0.0:
+		return
+	var start_x: float = LevelManager.current_level.start_position.x
+	var player_x: float = LevelManager.player.global_position.x
+	var percentage = (player_x - start_x) / (level_end_x - start_x) * 100.0
+	%ProgressBar.value = clampf(percentage, 0.0, 100.0)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):
@@ -52,11 +73,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _notification(what: int) -> void:
 	if not is_inside_tree():
 		return
-	#if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
-		#toggle_pause_menu()
+	if LevelManager.level_playing and not get_tree().paused and what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		toggle_pause_menu()
 
 
 func update_buttons_visibility() -> void:
+	%LevelName.visible = not Editor.in_editor
+	%ProgressBar.visible = not Editor.in_editor
 	restart_button.visible = not Editor.in_editor
 	practice_button.visible = not Editor.in_editor
 	edit_button.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
@@ -89,28 +112,28 @@ func hide_tween() -> void:
 
 
 func toggle_pause_menu() -> void:
-	#if LevelManager.current_level != Editor.temporary_playtest_level:
-		#level_name_label.text = LevelManager.current_level.name
-	#get_tree().paused = not get_tree().paused
-	#if get_tree().paused:
-		#paused.emit()
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#if settings_were_open:
-			#$Settings.show_tween()
-		#if replays_were_open:
-			#$Replays.show_tween()
-		#show_tween()
-	#else:
-		#unpaused.emit()
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
-		#settings_were_open = $Settings.visible
-		#replays_were_open = $Replays.visible
-		#if $Settings.visible:
-			#$Settings.hide_tween()
-		#if $Replays.visible:
-			#$Replays.hide_tween()
-		#hide_tween()
-	pass
+	if LevelManager.current_level != Editor.temporary_playtest_level:
+		level_name_label.text = LevelManager.current_level.name
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		paused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if settings_were_open:
+			$Settings.show_tween()
+		if replays_were_open:
+			$Replays.show_tween()
+		show_tween()
+	else:
+		unpaused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
+		settings_were_open = $Settings.visible
+		replays_were_open = $Replays.visible
+		if $Settings.visible:
+			$Settings.hide_tween()
+		if $Replays.visible:
+			$Replays.hide_tween()
+		hide_tween()
+
 
 func _on_leave_pressed() -> void:
 	get_tree().paused = false

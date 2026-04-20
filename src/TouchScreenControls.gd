@@ -7,7 +7,9 @@ func _ready() -> void:
 
 
 func _pause() -> void:
-	LevelManager.pause_menu.toggle_pause_menu()
+	#LevelManager.pause_menu.toggle_pause_menu()
+	LevelManager.stat_pause_menu.toggle_pause_menu()
+	
 
 
 func enable_platformer(wave: bool = false) -> void:

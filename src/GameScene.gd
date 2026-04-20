@@ -2,7 +2,7 @@ class_name GameScene
 extends Node2D
 
 @export var checkpoint_parent: Node2D
-@export var pause_menu: PauseMenu
+@export var pause_menu: StatisticsPauseMenu
 @export var fade_screen: FadeScreen
 
 var cached_level_data: Dictionary

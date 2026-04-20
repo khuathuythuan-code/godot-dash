@@ -11,6 +11,7 @@ var initial_player_positions: Dictionary[Player, Vector2]
 
 
 func _ready() -> void:
+	add_to_group("end_level")
 	await require([TargetObjectComponent])
 	var static_easing: EasingComponent = static_trigger.query(EasingComponent)
 	var shake_camera_shake: CameraShakeComponent = shake_trigger.query(CameraShakeComponent)

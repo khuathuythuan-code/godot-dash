@@ -1,25 +1,25 @@
-[gd_scene format=3 uid="uid://th7jwdop3hdv"]
+[gd_scene format=3 uid="uid://du7pvtxipurfo"]
 
-[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="1_6oxby"]
-[ext_resource type="Script" uid="uid://dklkgkt30unai" path="res://src/PauseMenu.gd" id="1_aoxbt"]
-[ext_resource type="Texture2D" uid="uid://d4d60xvgi3anb" path="res://assets/textures/icons/lucide/square-arrow-right-exit.svg" id="3_332f4"]
-[ext_resource type="Texture2D" uid="uid://ci1kk716by7gk" path="res://assets/textures/icons/lucide/clapperboard.svg" id="3_au7hy"]
-[ext_resource type="PackedScene" uid="uid://deehxyexprt42" path="res://scenes/components/game_components/ReplaysMenu.tscn" id="3_y2pdr"]
-[ext_resource type="Texture2D" uid="uid://04di726avpgc" path="res://assets/textures/icons/lucide/settings.svg" id="4_oumm2"]
-[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="5_018eo"]
-[ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="6_wvbob"]
+[ext_resource type="Script" uid="uid://8yaojqvitchl" path="res://scenes/components/game_components/StatisticsPauseMenu.gd" id="1_gkcag"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="2_yjed8"]
+[ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="3_yjed8"]
+[ext_resource type="Texture2D" uid="uid://ci1kk716by7gk" path="res://assets/textures/icons/lucide/clapperboard.svg" id="3_ytb7f"]
+[ext_resource type="Texture2D" uid="uid://04di726avpgc" path="res://assets/textures/icons/lucide/settings.svg" id="4_3pyng"]
+[ext_resource type="Texture2D" uid="uid://d4d60xvgi3anb" path="res://assets/textures/icons/lucide/square-arrow-right-exit.svg" id="5_ttxmi"]
+[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="6_vh814"]
+[ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="7_qso3c"]
+[ext_resource type="PackedScene" uid="uid://deehxyexprt42" path="res://scenes/components/game_components/ReplaysMenu.tscn" id="8_eqoeq"]
 
-[sub_resource type="FontVariation" id="FontVariation_0d6if"]
-variation_face_index = 10
+[sub_resource type="LabelSettings" id="LabelSettings_ng4su"]
+font = ExtResource("3_yjed8")
+font_size = 75
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ibsmc"]
-font = SubResource("FontVariation_0d6if")
-font_size = 64
-
-[node name="PauseMenu" type="CanvasLayer" unique_id=189033300 node_paths=PackedStringArray("level_name_label", "restart_button", "practice_button", "edit_button", "play_button", "replay_button")]
+[node name="StatisticsPauseMenu" type="CanvasLayer" unique_id=189033300 node_paths=PackedStringArray("level_name_label", "restart_button", "practice_button", "edit_button", "play_button", "replay_button")]
 physics_interpolation_mode = 2
 layer = 101
-script = ExtResource("1_aoxbt")
+script = ExtResource("1_gkcag")
 level_name_label = NodePath("Menu/MarginContainer/VBoxContainer/LevelName")
 restart_button = NodePath("Menu/MarginContainer/VBoxContainer/Restart")
 practice_button = NodePath("Menu/MarginContainer/VBoxContainer/Practice")
@@ -30,11 +30,21 @@ metadata/_custom_type_script = "uid://dklkgkt30unai"
 
 [node name="Menu" type="PanelContainer" parent="." unique_id=933404352]
 z_index = 128
-material = ExtResource("1_6oxby")
-anchors_preset = -1
-anchor_right = 0.333
-anchor_bottom = 1.0
+material = ExtResource("2_yjed8")
+custom_minimum_size = Vector2(1500, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -226.5
+offset_right = 300.0
+offset_bottom = 226.5
+grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu" unique_id=370218651]
 layout_mode = 2
@@ -49,14 +59,26 @@ theme_override_constants/separation = 12
 alignment = 1
 
 [node name="LevelName" type="Label" parent="Menu/MarginContainer/VBoxContainer" unique_id=1687682951]
-custom_minimum_size = Vector2(500, 0)
+unique_name_in_owner = true
 layout_mode = 2
 text = "Level Name"
-label_settings = SubResource("LabelSettings_ibsmc")
+label_settings = SubResource("LabelSettings_ng4su")
 horizontal_alignment = 1
-autowrap_mode = 3
+vertical_alignment = 1
 
 [node name="Spacer" type="Control" parent="Menu/MarginContainer/VBoxContainer" unique_id=98440856]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Menu/MarginContainer/VBoxContainer" unique_id=1244560282]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1000, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_yjed8")
+theme_override_font_sizes/font_size = 50
+
+[node name="Spacer2" type="Control" parent="Menu/MarginContainer/VBoxContainer" unique_id=634946556]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
@@ -124,7 +146,7 @@ offset_right = 24.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_au7hy")
+texture = ExtResource("3_ytb7f")
 
 [node name="Settings" type="Button" parent="Menu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=639824919]
 custom_minimum_size = Vector2(75, 75)
@@ -146,7 +168,7 @@ offset_right = 24.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_oumm2")
+texture = ExtResource("4_3pyng")
 
 [node name="Leave" type="Button" parent="Menu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1220920267]
 custom_minimum_size = Vector2(75, 75)
@@ -168,12 +190,12 @@ offset_right = 24.0
 offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_332f4")
+texture = ExtResource("5_ttxmi")
 
 [node name="Settings" type="PanelContainer" parent="." unique_id=89556222]
 visible = false
 z_index = 128
-material = ExtResource("1_6oxby")
+material = ExtResource("2_yjed8")
 anchors_preset = -1
 anchor_left = 0.333
 anchor_right = 1.0
@@ -185,18 +207,18 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
-script = ExtResource("5_018eo")
+script = ExtResource("6_vh814")
 
 [node name="MarginContainer" type="MarginContainer" parent="Settings" unique_id=110892163]
 layout_mode = 2
 
-[node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("6_wvbob")]
+[node name="SettingsMenu" parent="Settings/MarginContainer" unique_id=1731186074 instance=ExtResource("7_qso3c")]
 layout_mode = 2
 
 [node name="Replays" type="PanelContainer" parent="." unique_id=1455180078]
 visible = false
 z_index = 128
-material = ExtResource("1_6oxby")
+material = ExtResource("2_yjed8")
 anchors_preset = -1
 anchor_left = 0.333
 anchor_right = 1.0
@@ -208,12 +230,12 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
-script = ExtResource("5_018eo")
+script = ExtResource("6_vh814")
 
 [node name="MarginContainer" type="MarginContainer" parent="Replays" unique_id=2132131339]
 layout_mode = 2
 
-[node name="ReplaysMenu" parent="Replays/MarginContainer" unique_id=1168452285 instance=ExtResource("3_y2pdr")]
+[node name="ReplaysMenu" parent="Replays/MarginContainer" unique_id=1168452285 instance=ExtResource("8_eqoeq")]
 layout_mode = 2
 
 [connection signal="pressed" from="Menu/MarginContainer/VBoxContainer/Resume" to="." method="toggle_pause_menu"]

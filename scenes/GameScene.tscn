@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="2_i4f6q"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
+[ext_resource type="Script" uid="uid://bj3cco40eefrn" path="res://scenes/Level.gd" id="4_lk0vr"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="6_7ju4w"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="7_fb2li"]
@@ -21,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
 [ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]
 [ext_resource type="Texture2D" uid="uid://c3lg8dqlq0qwy" path="res://assets/textures/guis/touchscreen/Right.svg" id="21_1npfk"]
+[ext_resource type="PackedScene" uid="uid://du7pvtxipurfo" path="res://scenes/components/game_components/StatisticsPauseMenu.tscn" id="21_6nmf6"]
 [ext_resource type="Texture2D" uid="uid://by7isbryvvuaa" path="res://assets/textures/guis/touchscreen/Down.svg" id="22_1npfk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
@@ -103,7 +105,7 @@ glow_enabled = true
 physics_interpolation_mode = 2
 script = ExtResource("1_k47tp")
 checkpoint_parent = NodePath("CheckpointParent")
-pause_menu = NodePath("PauseMenu")
+pause_menu = NodePath("StatisticsPauseMenu")
 fade_screen = NodePath("FadeScreen")
 metadata/_edit_lock_ = true
 
@@ -151,6 +153,7 @@ primary_line_thickness = 3.0
 
 [node name="Level" type="Node2D" parent="." unique_id=412428242]
 position = Vector2(640, 925)
+script = ExtResource("4_lk0vr")
 
 [node name="CheckpointParent" type="Node2D" parent="." unique_id=747964933]
 
@@ -420,6 +423,9 @@ expand_mode = 5
 
 [node name="PauseMenu" parent="." unique_id=992005032 instance=ExtResource("9_vv033")]
 layer = 102
+visible = false
+
+[node name="StatisticsPauseMenu" parent="." unique_id=189033300 instance=ExtResource("21_6nmf6")]
 visible = false
 
 [node name="FadeScreen" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
