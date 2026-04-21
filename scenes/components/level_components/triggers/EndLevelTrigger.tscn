@@ -36,6 +36,7 @@ debug_color = Color(0, 1, 0, 0)
 
 [node name="TargetObjectComponent" type="Node" parent="." unique_id=897450169]
 script = ExtResource("3_csxpb")
+target = NodePath("..")
 metadata/_custom_type_script = "uid://b1h4lmrngdiim"
 
 [node name="EndLevelComponent" type="Node" parent="." unique_id=1975542527 node_paths=PackedStringArray("static_trigger", "shake_trigger")]

@@ -39,7 +39,16 @@ func _on_level_started() -> void:
 	var nodes = get_tree().get_nodes_in_group("end_level")
 	if not nodes.is_empty():
 		level_end_x = nodes[0].get_parent().global_position.x
-		
+	
+	#find_children( "tên node",
+	#				" class nội bộ vd:node2d ko tính class_name tự tạo kiểu: player", 
+	#				true nếu muốn lấy cả node cháu chắt,
+	#				false nếu muốn lấy cả node đc tạo bằng code
+	#for node in get_parent().find_children("Level", "", true, false):  
+		#if node is Node2D:
+			#for child in node.find_children("*", "", true, false): 
+				#for grandchild in child.find_children("*", "", true, false): 
+					#print(grandchild, grandchild.get_class())
 
 func _process(_delta: float) -> void:
 	if level_end_x == 0.0:
@@ -48,7 +57,7 @@ func _process(_delta: float) -> void:
 	var player_x: float = LevelManager.player.global_position.x
 	var percentage = (player_x - start_x) / (level_end_x - start_x) * 100.0
 	%ProgressBar.value = clampf(percentage, 0.0, 100.0)
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):

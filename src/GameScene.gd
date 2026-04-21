@@ -64,6 +64,7 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
+	$PercentageLayer.show() 
 	var level: Level = LevelManager.current_level
 	level.prepare_external_data()
 	LevelManager.player_camera.snap_view()
