@@ -217,6 +217,13 @@ func stop_playtest() -> void:
 	Editor.viewport.remove_cursor_shape_override()
 	LevelManager.touchscreen_controls.disable_platformer()
 	just_stopped_playtest = true
+	
+	if LevelManager.current_level_duration != INF:
+		level.duration = LevelManager.current_level_duration
+		# phải lưu duration ở đây mới là level thật
+		# temporary_playtest_level là node hoàn toàn mới copy từ data của editor.level — 2 node độc lập nhau. 
+		# tương đương copy cả duration nên chỗ này mới phải gán lưu duration
+		#Nên khi stop_timer() gán duration vào temporary_playtest_level-> dừng là bị hủy, editor.level.duration vẫn = 0
 	await get_tree().process_frame
 	just_stopped_playtest = false
 

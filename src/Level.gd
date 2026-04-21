@@ -151,6 +151,9 @@ func _ready() -> void:
 	LevelManager.song_player = song_player
 	if LevelManager.current_level_duration != INF and duration != LevelManager.current_level_duration:
 		duration = LevelManager.current_level_duration
+		#Điều kiện này được thiết kế cho cùng 1 level restart — dùng current_level_duration 
+		#để restore sau khi clear. Nhưng khi chuyển sang level khác, nó lại ghi đè duration
+		 #của level mới bằng duration của level cũ.
 	add_child(song_player, false, INTERNAL_MODE_BACK)
 
 
@@ -248,18 +251,11 @@ func stop_level() -> void:
 
 
 func stop_timer() -> void:
-	#if not Editor.in_editor:
-		#return
-	#print("stop_timer called, time = ", stopwatch.get_elapsed_time_in_seconds())
+	if not Editor.in_editor:
+		return
 	LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
-	#hiện tại đang ghi đè liên tục mỗi lần end nên bị ghi đè về 0
-	print("duration at level.gd" + str(LevelManager.current_level_duration))
-	#var elapsed := stopwatch.get_elapsed_time_in_seconds()
-	#LevelManager.current_level_duration = elapsed
-	## Chỉ ghi đè nếu tốt hơn (hoặc chưa có record)
-	#if duration == 0.0 or elapsed < duration:
-		#duration = elapsed
 
+	
 
 func setup_color_channel_watchers() -> void:
 	for color_channel: ColorChannelData in color_channels:

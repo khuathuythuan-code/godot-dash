@@ -58,10 +58,5 @@ func _on_static_easing_finished(player: Player) -> void:
 
 
 func _on_shake_easing_finished(_player: Player) -> void:
-# Reset player về start position để tránh autosave lưu vị trí sai
-	for player in initial_player_positions:
-		player.global_position = LevelManager.current_level.start_position
-		player.rotation = 0.0
-		player.show()
 	LevelManager.current_level.stop_level()
 	LevelManager.game_scene.pause_menu.toggle_pause_menu()

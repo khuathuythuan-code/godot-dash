@@ -1,13 +1,13 @@
 {
 	"active_layer_idx": 0,
 	"color_channels": [],
-	"creation_date": 1776742819,
+	"creation_date": 1776764322,
 	"creator": "Player",
 	"default_background_color": 913375231,
 	"default_ground_color": 457950463,
 	"default_line_color": 4294967295,
 	"description": "",
-	"duration": 2.516722,
+	"duration": 4.36628199999999,
 	"enter_effect": 1,
 	"flashing_lights": false,
 	"game_version": "0.0.1",
@@ -16,52 +16,6 @@
 		{
 			"name": "Unnamed Layer",
 			"objects": [
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"TargetObjectComponent": {
-							"target": ".."
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "EndLevelTrigger",
-					"scene_file_path": "scenes/components/level_components/triggers/EndLevelTrigger.tscn",
-					"transform": {
-						"origin": [
-							6528.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
 				{
 					"children_hsv": [
 						{
@@ -123,7 +77,7 @@
 					},
 					"transform": {
 						"origin": [
-							5120.0,
+							1280.0,
 							-64.0
 						],
 						"x": [
@@ -213,28 +167,21 @@
 					"z_index": 0
 				},
 				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
 					],
+					"children_hsv": [],
 					"color_channels": {
 
+					},
+					"components": {
+						"TargetObjectComponent": {
+							"target": ".."
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
 					},
 					"groups": [],
 					"hsv": {
@@ -246,109 +193,12 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "RegularBlock03",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-						"id": 0
-					},
+					"markers": [],
+					"name": "EndLevelTrigger",
+					"scene_file_path": "scenes/components/level_components/triggers/EndLevelTrigger.tscn",
 					"transform": {
 						"origin": [
-							1920.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock04",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-						"id": 0
-					},
-					"transform": {
-						"origin": [
-							1024.0,
+							5504.0,
 							-64.0
 						],
 						"x": [
@@ -365,7 +215,7 @@
 			]
 		}
 	],
-	"name": "level8",
+	"name": "level1",
 	"platformer": false,
 	"player_data": {
 		"groups": [],

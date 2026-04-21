@@ -38,6 +38,7 @@ func load_level() -> void:
 			checkpoint.queue_free()
 	if LevelManager.current_level_path != cached_level_path:
 		cached_level_path = LevelManager.current_level_path
+		LevelManager.current_level_duration = INF # ← reset khi load level mới, tránh lặp giá trị cũ nhằm mục đích lưu duration trong editor
 		var file := FileAccess.open(LevelManager.current_level_path, FileAccess.READ)
 		var json_string: String = file.get_as_text()
 		file.close()
