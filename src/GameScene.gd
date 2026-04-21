@@ -7,7 +7,7 @@ extends Node2D
 
 var cached_level_data: Dictionary
 var cached_level_path: String
-
+var progress_percentage: float
 
 func _ready() -> void:
 	Engine.time_scale = 1.0
@@ -29,6 +29,8 @@ func _ready() -> void:
 		load_level()
 		start_level()
 
+func _process(delta: float) -> void:
+	progress_percentage = $PercentageLayer.percentage
 
 func load_level() -> void:
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()

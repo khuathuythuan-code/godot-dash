@@ -1,5 +1,5 @@
-class_name StatisticsPauseMenu
 extends CanvasLayer
+class_name StatisticsPauseMenu
 
 signal paused
 signal unpaused
@@ -13,6 +13,8 @@ signal practice_mode_toggled(toggled_on: bool)
 @export var edit_button: Button
 @export var play_button: Button
 @export var replay_button: Button
+
+@onready var progress_bar: ProgressBar = %ProgressBar
 
 var suspended: bool
 var tween: Tween
@@ -29,34 +31,11 @@ func _ready() -> void:
 	$Settings.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 	$Replays.get_node(^"MarginContainer/ReplaysMenu/SmoothScrollContainer/ReplayPanelLoader").replay_started.connect(toggle_pause_menu)
 	update_buttons_visibility.call_deferred()
-	# Chờ level_started signal thay vì lấy ngay trong _ready
-	LevelManager.level_started.connect(_on_level_started)
 
-
-func _on_level_started() -> void:
-	level_end_x = 0.0# dừng tính toán của ván cũ
-	await get_tree().process_frame
-	var nodes = get_tree().get_nodes_in_group("end_level")
-	if not nodes.is_empty():
-		level_end_x = nodes[0].get_parent().global_position.x
-	
-	#find_children( "tên node",
-	#				" class nội bộ vd:node2d ko tính class_name tự tạo kiểu: player", 
-	#				true nếu muốn lấy cả node cháu chắt,
-	#				false nếu muốn lấy cả node đc tạo bằng code
-	#for node in get_parent().find_children("Level", "", true, false):  
-		#if node is Node2D:
-			#for child in node.find_children("*", "", true, false): 
-				#for grandchild in child.find_children("*", "", true, false): 
-					#print(grandchild, grandchild.get_class())
 
 func _process(_delta: float) -> void:
-	if level_end_x == 0.0:
-		return
-	var start_x: float = LevelManager.current_level.start_position.x
-	var player_x: float = LevelManager.player.global_position.x
-	var percentage = (player_x - start_x) / (level_end_x - start_x) * 100.0
-	%ProgressBar.value = clampf(percentage, 0.0, 100.0)
+	var game_scene = get_parent() as GameScene
+	progress_bar.value = clampf(game_scene.progress_percentage, 0.0, 100.0)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -88,7 +67,7 @@ func _notification(what: int) -> void:
 
 func update_buttons_visibility() -> void:
 	%LevelName.visible = not Editor.in_editor
-	%ProgressBar.visible = not Editor.in_editor
+	progress_bar.visible = not Editor.in_editor
 	restart_button.visible = not Editor.in_editor
 	practice_button.visible = not Editor.in_editor
 	edit_button.visible = not Editor.in_editor and LevelManager.current_level and LevelManager.current_level.is_editable
