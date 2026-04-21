@@ -250,8 +250,15 @@ func stop_level() -> void:
 func stop_timer() -> void:
 	#if not Editor.in_editor:
 		#return
-	print("stop_timer called, time = ", stopwatch.get_elapsed_time_in_seconds())
+	#print("stop_timer called, time = ", stopwatch.get_elapsed_time_in_seconds())
 	LevelManager.current_level_duration = stopwatch.get_elapsed_time_in_seconds()
+	#hiện tại đang ghi đè liên tục mỗi lần end nên bị ghi đè về 0
+	print("duration at level.gd" + str(LevelManager.current_level_duration))
+	#var elapsed := stopwatch.get_elapsed_time_in_seconds()
+	#LevelManager.current_level_duration = elapsed
+	## Chỉ ghi đè nếu tốt hơn (hoặc chưa có record)
+	#if duration == 0.0 or elapsed < duration:
+		#duration = elapsed
 
 
 func setup_color_channel_watchers() -> void:

@@ -7,7 +7,7 @@ signal level_started
 
 var game_scene: GameScene
 var current_level: Level
-var current_level_path: String = "res://src/testlevels/level2 - Copy.json"
+var current_level_path: String 
 var current_level_name: String
 var current_level_duration: float = INF
 var attempt: int
