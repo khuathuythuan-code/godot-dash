@@ -19,6 +19,10 @@
 a = Vector2(0, -8192)
 b = Vector2(0, 8192)
 
+[sub_resource type="Gradient" id="Gradient_mj4da"]
+offsets = PackedFloat32Array(0, 0.46153846, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0.4627451, 0.07058824, 1, 1, 1, 1, 1, 1)
+
 [node name="EndLevelTrigger" type="Area2D" unique_id=1638645759]
 script = ExtResource("1_tuoqa")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
@@ -104,3 +108,31 @@ metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="EditorSelectionCollider" parent="." unique_id=264036362 instance=ExtResource("13_ck578")]
 type = 8
+
+[node name="Node2D" type="Node2D" parent="." unique_id=348911639]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2010276158]
+amount = 200
+lifetime = 7.16
+preprocess = 0.79
+speed_scale = 2.79
+explosiveness = 0.16
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 0.01
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(-900, 900)
+initial_velocity_min = 202.8
+initial_velocity_max = 811.19
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+damping_min = 0.875
+damping_max = 0.875
+angle_min = -694.8
+angle_max = 720.0
+scale_amount_min = 0.0
+scale_amount_max = 50.0
+color_initial_ramp = SubResource("Gradient_mj4da")
