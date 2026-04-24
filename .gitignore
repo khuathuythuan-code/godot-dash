@@ -13,3 +13,4 @@ assets/textures/triggers_imported
 *.kate-swp
 
 target/
+*.mp3

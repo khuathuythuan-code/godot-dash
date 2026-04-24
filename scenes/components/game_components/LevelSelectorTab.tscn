@@ -10,8 +10,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8fxol"]
 resource_local_to_scene = true
 shader = ExtResource("2_ss55f")
-shader_parameter/lod = 3.0
-shader_parameter/lightness = 0.5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc3rl"]
 bg_color = Color(0.741176, 0.741176, 0.741176, 1)
@@ -62,6 +60,7 @@ offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(764.5, 224)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("4_3yq55")

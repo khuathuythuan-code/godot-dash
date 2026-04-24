@@ -8,7 +8,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	monitoring = true
-	#chữa lỗi hút vào trigger
+	#chữa lỗi khiến logic của endLevelTrigger vẫn giữ signal body_entered
+	#player sẽ tự kích hoạt trạng thái end game
+	#đoạn code trên sẽ reset area2d
 	body_entered.connect(func(player: Player): 
 		interacted.emit(player)
 		
