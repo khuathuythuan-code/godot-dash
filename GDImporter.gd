@@ -1,5 +1,5 @@
 ## GDImporter.gd
-## Autoload: chuyển file square JSON (Geometry Dash export) thành level JSON của game.
+## Autoload: chuyển file GD export JSON thành level JSON của game.
 ##
 ## Cách dùng:
 ##   GDImporter.import_and_play("user://my_gd_level.json")
@@ -14,11 +14,80 @@ extends Node
 signal import_finished(output_path: String)
 signal import_failed(reason: String)
 
-# Khớp với Constants.gd
 const CELL_SIZE: int = 128
 const OUTPUT_DIR: String = Constants.LEVEL_DIR
 
-# Template mặc định cho level — có thể override qua tham số options
+# ══════════════════════════════════════════════════════
+# THÊM LOẠI MỚI: chỉ cần thêm 1 entry vào dict này
+# key   = tên section trong GD export JSON
+# ══════════════════════════════════════════════════════
+const OBJECT_REGISTRY: Dictionary = {
+	"square": {
+		"name": "RegularBlock01",
+		"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+		"texture_override": {
+			"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+			"id": 0
+		},
+		"children_hsv": [
+			{"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0},
+			{"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0}
+		],
+		"has_physics": true,
+		"has_texture_override": true,
+	},
+	"spike": {
+		"name": "Spike",
+		"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
+		"children_hsv": [],
+		"has_physics": false,
+		"has_texture_override": false,
+	},
+	"spikedecor": {
+		"name": "GroundSpike",
+		"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+		"children_hsv": [],
+		"has_physics": false,
+		"has_texture_override": false,
+	},
+	"portal": {
+		"name": "Portal",
+		"scene_file_path": "scenes/components/level_components/portals/gamemode_portals/ShipPortal.tscn",
+		"children_hsv": [],
+		"has_physics": false,
+		"has_texture_override": false,
+	},
+	# ── Thêm loại mới tại đây ──────────────────────────
+	# "orb": {
+	#     "name": "Orb",
+	#     "scene_file_path": "scenes/components/level_components/orbs/Orb.tscn",
+	#     "children_hsv": [],
+	#     "has_physics": false,
+	#     "has_texture_override": false,
+	# },
+	# "pad": {
+	#     "name": "Pad",
+	#     "scene_file_path": "scenes/components/level_components/pads/Pad.tscn",
+	#     "children_hsv": [],
+	#     "has_physics": false,
+	#     "has_texture_override": false,
+	# },
+}
+
+const DEFAULT_PHYSICS := {
+	"absorbent": false,
+	"angular_velocity": 0.0,
+	"bounce": 0.0,
+	"friction": 1.0,
+	"gravity_scale": 1.0,
+	"linear_velocity": [0.0, 0.0],
+	"mass": 1.0,
+	"physics_object": false,
+	"pushable_by_player": true,
+	"rough": false,
+	"scale": [1.0, 1.0]
+}
+
 const DEFAULT_LEVEL_TEMPLATE := {
 	"active_layer_idx": 0,
 	"color_channels": [],
@@ -55,51 +124,12 @@ const DEFAULT_LEVEL_TEMPLATE := {
 	"start_speed_preset": 2
 }
 
-const DEFAULT_OBJECT_TEMPLATE := {
-	"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-	"name": "RegularBlock01",
-	"texture_override": {
-		"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-		"id": 0
-	},
-	"children_hsv": [
-		{"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0},
-		{"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0}
-	],
-	"color_channels": {},
-	"groups": [],
-	"hsv": {"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0},
-	"physics": {
-		"absorbent": false,
-		"angular_velocity": 0.0,
-		"bounce": 0.0,
-		"friction": 1.0,
-		"gravity_scale": 1.0,
-		"linear_velocity": [0.0, 0.0],
-		"mass": 1.0,
-		"physics_object": false,
-		"pushable_by_player": true,
-		"rough": false,
-		"scale": [1.0, 1.0]
-	},
-	"transform": {
-		"origin": [0.0, 0.0],
-		"x": [1.0, 0.0],
-		"y": [0.0, 1.0]
-	},
-	"z_index": 0
-}
-
 func _ready() -> void:
-	if FileAccess.file_exists("res://src/testlevels/postConvertedLevel.json"):
-		print("File tồn tại")
-	else:
-		import_to_file("user://created_levels/levels/preConvertedLevel.json","res://src/testlevels/postConvertedLevel.json")
+	if !FileAccess.file_exists("res://src/testlevels/postConvertedLevel.json"):
+		import_to_file("user://created_levels/levels/preConvertedLevel.json", "res://src/testlevels/postConvertedLevel.json")
 
 
-## Convert file square JSON và load vào game ngay lập tức.
-## [param input_path] đường dẫn tới file square JSON
-## [param options] Dictionary để override các field của level (tuỳ chọn)
+## Convert file GD JSON và load vào game ngay lập tức.
 func import_and_play(input_path: String, options: Dictionary = {}) -> void:
 	var output_path := OUTPUT_DIR + input_path.get_file().get_basename() + "_converted.json"
 	var err := import_to_file(input_path, output_path, options)
@@ -110,10 +140,9 @@ func import_and_play(input_path: String, options: Dictionary = {}) -> void:
 	import_finished.emit(output_path)
 
 
-## Convert file square JSON và lưu ra file level JSON.
-## Trả về Error code (OK = thành công).
+## Convert file GD JSON và lưu ra file level JSON.
 func import_to_file(input_path: String, output_path: String, options: Dictionary = {}) -> Error:
-	# --- Đọc file input ---
+	# --- Đọc file ---
 	if not FileAccess.file_exists(input_path):
 		var msg := "[GDImporter] File không tìm thấy: " + input_path
 		push_error(msg)
@@ -140,41 +169,55 @@ func import_to_file(input_path: String, output_path: String, options: Dictionary
 
 	var data = json.data
 	if data is not Dictionary:
-		var msg := "[GDImporter] JSON phải là object, không phải array"
+		var msg := "[GDImporter] JSON phải là object"
 		push_error(msg)
 		import_failed.emit(msg)
 		return ERR_INVALID_DATA
 
-	# --- Lấy square data (hỗ trợ cả 2 format) ---
-	# Format 1: {"square": {...}}
-	# Format 2: {"id": ..., "x": ..., "y": ..., "z": ...} trực tiếp
-	var square_dict: Dictionary
-	if data.has("square"):
-		square_dict = data["square"]
-	else:
-		square_dict = data
+	# --- Convert từng section ---
+	var objects: Array = []
+	var counts: Dictionary = {}
 
-	if square_dict.is_empty():
-		var msg := "[GDImporter] Không có block nào trong file"
+	for section_key in OBJECT_REGISTRY:
+		if not data.has(section_key):
+			continue
+		var section: Dictionary = data[section_key]
+		var config: Dictionary  = OBJECT_REGISTRY[section_key]
+		var n := 0
+		for _id in section:
+			objects.append(_make_object(section[_id], config))
+			n += 1
+		counts[section_key] = n
+
+	# Fallback: file phẳng không có section key
+	if objects.is_empty() and not data.is_empty():
+		var first = data.values()[0]
+		if first is Dictionary and first.has("x"):
+			var config: Dictionary = OBJECT_REGISTRY["square"]
+			for _id in data:
+				objects.append(_make_object(data[_id], config))
+			counts["square"] = objects.size()
+
+	if objects.is_empty():
+		var msg := "[GDImporter] Không có object nào trong file"
 		push_warning(msg)
 		import_failed.emit(msg)
 		return ERR_INVALID_DATA
 
-	# --- Convert blocks ---
-	var objects := _convert_blocks(square_dict)
-	print("[GDImporter] Converted %d blocks từ %s" % [objects.size(), input_path])
+	# Log từng loại
+	for k in counts:
+		print("[GDImporter]   %s: %d" % [k, counts[k]])
+	print("[GDImporter] Tổng: %d objects" % objects.size())
 
-	# --- Build level JSON ---
+	# --- Build level ---
 	var level_data: Dictionary = DEFAULT_LEVEL_TEMPLATE.duplicate(true)
-	level_data["name"] = input_path.get_file().get_basename()
+	level_data["name"]          = input_path.get_file().get_basename()
 	level_data["creation_date"] = int(Time.get_unix_time_from_system())
-	level_data["layers"] = [{"name": "Imported Layer", "objects": objects}]
-
-	# Override bất kỳ field nào từ options
+	level_data["layers"]        = [{"name": "Imported Layer", "objects": objects}]
 	for key in options:
 		level_data[key] = options[key]
 
-	# --- Ghi file output ---
+	# --- Ghi file ---
 	if not DirAccess.dir_exists_absolute(output_path.get_base_dir()):
 		DirAccess.make_dir_recursive_absolute(output_path.get_base_dir())
 
@@ -191,25 +234,31 @@ func import_to_file(input_path: String, output_path: String, options: Dictionary
 	return OK
 
 
-## Convert dictionary square blocks thành mảng object Godot.
-func _convert_blocks(square_dict: Dictionary) -> Array:
-	var objects := []
-	for _key in square_dict:
-		var sq: Dictionary = square_dict[_key]
-		var obj: Dictionary = DEFAULT_OBJECT_TEMPLATE.duplicate(true)
-		# Công thức từ Constants.CELLS_TO_PX = Vector2(128, -128)
-		# origin_x = sq_x * 128
-		# origin_y = sq_y * -128 - 64  (trừ 64 vì pivot ở tâm block 128px)
-		var ox: float = float(sq.x) * CELL_SIZE
-		var oy: float = float(sq.y) * -CELL_SIZE - (CELL_SIZE / 2.0)
-		var z: int   = int(sq.z)
+## Tạo 1 Godot object từ 1 GD entry + config từ OBJECT_REGISTRY.
+func _make_object(sq: Dictionary, config: Dictionary) -> Dictionary:
+	var ox: float = float(sq.x) * CELL_SIZE
+	var oy: float = float(sq.y) * -CELL_SIZE - (CELL_SIZE / 2.0)
+	var z:  int   = int(float(sq.z))
 
-		obj["transform"] = {
+	var obj := {
+		"children_hsv":  config["children_hsv"].duplicate(true),
+		"color_channels": {},
+		"groups":        [],
+		"hsv":           {"alpha": 1.0, "hsv_shift": [0.0, 0.0, 0.0], "intensity": 1.0},
+		"name":          config["name"],
+		"scene_file_path": config["scene_file_path"],
+		"transform": {
 			"origin": [ox, oy],
 			"x": [1.0, 0.0],
 			"y": [0.0, 1.0]
-		}
-		obj["z_index"] = z
-		objects.append(obj)
+		},
+		"z_index": z
+	}
 
-	return objects
+	if config.get("has_physics", false):
+		obj["physics"] = DEFAULT_PHYSICS.duplicate(true)
+
+	if config.get("has_texture_override", false):
+		obj["texture_override"] = config["texture_override"].duplicate(true)
+
+	return obj
