@@ -14,3 +14,7 @@ assets/textures/triggers_imported
 
 target/
 *.mp3
+*.json
+*.txt
+*.tscn
+*.uid
