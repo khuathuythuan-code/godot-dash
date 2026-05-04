@@ -46,8 +46,16 @@ func _ready() -> void:
 		SceneManager.set_current_scene(SceneManager.Scene.EDITOR)
 
 	Editor.version_history = UndoRedo.new()
-	level = Level.new()
-	level.name = "New level"
+ # ← Thêm phần này: nếu có level_data_snapshot thì load từ file
+	if not Editor.level_data_snapshot.is_empty():
+		level = Level.from_data(Editor.level_data_snapshot)
+		level.name = Editor.level_data_snapshot.get("name", "Loaded Level")
+		# Reset snapshot để không bị dùng lại (chỉ dùng cho playtest)
+		Editor.level_data_snapshot = {}
+		Editor.level_history_version = 1
+	else:
+		level = Level.new()
+		level.name = "New level"
 	Editor.clipboard = Selection.new()
 	LevelManager.game_scene.add_loaded_level(level)
 	inspector_tree.refresh(Selection.EMPTY())
