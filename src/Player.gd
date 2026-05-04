@@ -1023,20 +1023,22 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 
 func _player_death() -> void:
-	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
-	dead = true
-	last_automatic_checkpoint_position = position
-	$Icon.hide()
-	$DeathEffect.frame = 0
-	$DeathEffect.play()
-	$DeathParticles.restart()
-	$DashParticles.emitting = false
-	%GroundParticles.emitting = false
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	#AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
+	#dead = true
+	#last_automatic_checkpoint_position = position
+	#$Icon.hide()
+	#$DeathEffect.frame = 0
+	#$DeathEffect.play()
+	#$DeathParticles.restart()
+	#$DashParticles.emitting = false
+	#%GroundParticles.emitting = false
+	#SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	pass
 
 
 func _on_death_restart() -> void:
-	LevelManager.game_scene.restart_level()
+	#LevelManager.game_scene.restart_level()
+	pass
 
 
 func _handle_checkpoint_placement(practice_mode: bool = LevelManager.practice_mode) -> void:

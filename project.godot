@@ -78,7 +78,6 @@ KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*uid://cggqb75a8w8r"
 DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 SignalLens="*uid://85rkx60vm7a7"
-GdImporter="*uid://duxf8uhhu6ns2"
 
 [display]
 
@@ -406,6 +405,16 @@ updater/show_new_release_info_on_editor_launch_in_output=false
 
 common/physics_ticks_per_second=240
 common/physics_interpolation=true
+
+[plugin]
+
+script-ide/functions=false
+script-ide/engine_callbacks=false
+script-ide/signals=false
+script-ide/exported_properties=false
+script-ide/properties=false
+script-ide/classes=false
+script-ide/constants=false
 
 [rendering]
 
