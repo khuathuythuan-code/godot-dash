@@ -500,11 +500,20 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 	# Texture Override
 	if "texture_override" in object_data:
 		var override_data: Dictionary = object_data.texture_override
+			# ❗ bỏ qua nếu rỗng
+		if override_data.is_empty():
+			return
 		if "base" in override_data:
 			base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
 		if "detail" in override_data:
 			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
-		object.get_node(^"EditorSelectionCollider").id = override_data.id
+			
+			
+			# ❗ check id trước khi dùng
+		if "id" in override_data:
+			var collider = object.get_node_or_null(^"EditorSelectionCollider")
+			if collider:
+				collider.id = override_data.id
 		object.set_meta(Constants.TEXTURE_OVERRIDE_META, override_data)
 	# Attributes
 	if "attributes" in object_data:
