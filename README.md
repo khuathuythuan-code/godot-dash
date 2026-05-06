@@ -10,8 +10,9 @@ A Geometry Dash fangame made with Godot Engine.
 [Discord community](https://discord.gg/8Vn9qDDXZD/)
 
 ## Setup:(làm cái này khi clone về mới chạy đc vì cần tạo file.dll)
-
+```
 cargo build
+```
 
 ## OS Support
 
