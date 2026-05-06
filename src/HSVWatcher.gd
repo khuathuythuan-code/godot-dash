@@ -40,9 +40,14 @@ func to_data() -> Dictionary:
 
 
 func use_data(data: Dictionary) -> void:
-	hsv_shift.assign(data.hsv_shift)
-	intensity = data.intensity
-	alpha = data.alpha
+	if "hsv_shift" in data:
+		hsv_shift.assign(data.hsv_shift)
+
+	if "intensity" in data:
+		intensity = data.intensity
+
+	if "alpha" in data:
+		alpha = data.alpha
 
 
 func update_color() -> void:
