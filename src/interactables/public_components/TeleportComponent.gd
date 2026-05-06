@@ -1,0 +1,69 @@
+class_name TeleportComponent
+extends Component
+
+@export var axis: Constants.Axis
+@export var redirect_velocity: bool:
+	set(value):
+		redirect_velocity = value
+		notify_property_list_changed()
+## Multiplier for the redirected velocity.
+@export var redirect_multiplier: float = 1.0
+@export var override_velocity: bool:
+	set(value):
+		override_velocity = value
+		notify_property_list_changed()
+@export_custom(PROPERTY_HINT_NONE, "suffix:cells/s") var new_velocity: Vector2
+@export var new_velocity_axes: Constants.Axis
+
+
+func _validate_property(property: Dictionary) -> void:
+	if property.name == "override_velocity" and redirect_velocity:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+	if property.name == "redirect_multiplier" and not redirect_velocity:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+	if property.name == "redirect_velocity" and override_velocity:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+	if property.name in ["new_velocity", "new_velocity_axes"] and override_velocity == false:
+		property.usage = PROPERTY_USAGE_NO_EDITOR
+
+
+func _ready() -> void:
+	await require([TargetObjectComponent])
+	if redirect_velocity:
+		parent.collision_layer |= 1 << 10 # Velocity redirectors
+	parent.interacted.connect(teleport)
+	$"../TargetLink".visible = Editor.in_editor
+
+
+func teleport(player: Player) -> void:
+	var target_component: TargetObjectComponent = parent.query(TargetObjectComponent)
+	var target := target_component.target_to_node()
+	if not target:
+		Toasts.error("In %s: target is unset" % parent.name)
+		return
+	match axis:
+		Constants.Axis.BOTH:
+			player.global_position = target.global_position
+		Constants.Axis.X:
+			player.global_position.x = target.global_position.x
+		Constants.Axis.Y:
+			player.global_position.y = target.global_position.y
+	if redirect_velocity:
+		var local_velocity_to_entrance := player.velocity.rotated(-parent.global_rotation)
+		local_velocity_to_entrance.y *= -1
+		var local_velocity_to_exit := local_velocity_to_entrance.rotated(target.global_rotation)
+		player.velocity = local_velocity_to_exit
+	elif override_velocity:
+		match new_velocity_axes:
+			Constants.Axis.BOTH:
+				player.set_deferred(&"velocity", (new_velocity * Constants.CELLS_TO_PX).rotated(player.gameplay_rotation))
+			Constants.Axis.X:
+				player.velocity = Vector2(
+					(new_velocity * Constants.CELLS_TO_PX).x,
+					player.velocity.rotated(-player.gameplay_rotation).y,
+				).rotated(player.gameplay_rotation)
+			Constants.Axis.Y:
+				player.velocity = Vector2(
+					player.velocity.rotated(-player.gameplay_rotation).x,
+					(new_velocity * Constants.CELLS_TO_PX).y,
+				).rotated(player.gameplay_rotation)

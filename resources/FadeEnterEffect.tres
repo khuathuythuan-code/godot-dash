@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dj2ggdofmqper"]
+
+[ext_resource type="Shader" uid="uid://c1trqvdcgdxwu" path="res://resources/shaders/FadeEnterEffect.gdshader" id="1_46473"]
+
+[resource]
+shader = ExtResource("1_46473")
+shader_parameter/mode = 1
+shader_parameter/fade_width = 0.15
+shader_parameter/gradient_start = 0.00999999977648
+shader_parameter/gradient_end = 1.0
+shader_parameter/use_canvas_group = false

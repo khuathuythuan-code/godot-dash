@@ -1,0 +1,35 @@
+build-debug:
+  # Clear previous build dir
+  rm -r bin/debug/ 2> /dev/null || true
+  # Setup artifact dir
+  mkdir --parents bin/debug/{linux,windows,android}
+  # Linux build
+  cargo build --target x86_64-unknown-linux-gnu
+  mv target/x86_64-unknown-linux-gnu/debug/libgodot_rust_utils.so bin/debug/linux/
+  # Windows build
+  cargo build --target x86_64-pc-windows-gnu
+  mv target/x86_64-pc-windows-gnu/debug/godot_rust_utils.dll bin/debug/windows/
+  # Android build
+  cargo ndk --target arm64-v8a build
+  mv target/aarch64-linux-android/debug/libgodot_rust_utils.so bin/debug/android/
+  # Cleanup
+  cargo clean
+
+build-release:
+  # Clear previous build dir
+  rm -r bin/release/ 2> /dev/null || true
+  # Setup artifact dir
+  mkdir --parents bin/release/{linux,windows,android}
+  # Linux build
+  cargo build --target x86_64-unknown-linux-gnu --release
+  mv target/x86_64-unknown-linux-gnu/release/libgodot_rust_utils.so bin/release/linux/
+  # Windows build
+  cargo build --target x86_64-pc-windows-gnu --release
+  mv target/x86_64-pc-windows-gnu/release/godot_rust_utils.dll bin/release/windows/
+  # Android build
+  cargo ndk --target arm64-v8a build --release
+  mv target/aarch64-linux-android/release/libgodot_rust_utils.so bin/release/android/
+  # Cleanup
+  cargo clean
+
+

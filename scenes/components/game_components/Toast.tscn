@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ctc3ynyextvpj"]
+
+[ext_resource type="Script" uid="uid://da1d1gb14fxub" path="res://src/editor/Toast.gd" id="2_vg06y"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="3_td1kt"]
+
+[node name="Toast" type="Button" unique_id=275512418]
+material = ExtResource("3_td1kt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_type_variation = &"Toast"
+text = "Default Toast text"
+script = ExtResource("2_vg06y")
+
+[node name="Timer" type="Timer" parent="." unique_id=1076623529]
+one_shot = true
+ignore_time_scale = true
+
+[connection signal="pressed" from="." to="." method="dismiss"]

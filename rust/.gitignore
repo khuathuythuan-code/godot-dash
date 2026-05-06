@@ -1,0 +1,3 @@
+/target
+!/target/aarch64-linux-android/*.so
+!/target/debug/*.so

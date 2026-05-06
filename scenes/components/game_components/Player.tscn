@@ -1,0 +1,892 @@
+[gd_scene format=3 uid="uid://bl48psvuka73y"]
+
+[ext_resource type="Script" uid="uid://dlfmgrvw7q01y" path="res://src/Player.gd" id="1_nvqsc"]
+[ext_resource type="PackedScene" uid="uid://c2qj8et4qeuk7" path="res://scenes/components/game_components/EditorPlayerSelectionCollider.tscn" id="2_fruiv"]
+[ext_resource type="Texture2D" uid="uid://1mnqmwellt2q" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame1.png" id="2_mjacn"]
+[ext_resource type="Script" uid="uid://b81c0tveqh8i8" path="res://addons/trail_2d/trail_2d.gd" id="2_s0etf"]
+[ext_resource type="Script" uid="uid://kyj1mtwpgw26" path="res://src/IconGamemodeProp.gd" id="2_sxyn3"]
+[ext_resource type="Texture2D" uid="uid://da262ssovimq3" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame2.png" id="3_go6vy"]
+[ext_resource type="Texture2D" uid="uid://c0yd5dehfdmfb" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame3.png" id="4_lmais"]
+[ext_resource type="Texture2D" uid="uid://b54ubk48x1iu1" path="res://assets/textures/player/ship/Ship1.svg" id="4_mqpwg"]
+[ext_resource type="Texture2D" uid="uid://bqtjw0dj4adi0" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame4.png" id="5_5qxcb"]
+[ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_dvha5"]
+[ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="5_qm8k0"]
+[ext_resource type="Texture2D" uid="uid://c4eickhp3v3uy" path="res://assets/textures/player/swing/Swing1/SwingGlow.svg" id="6_6vub1"]
+[ext_resource type="Texture2D" uid="uid://blyx75lqpafjt" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect01.png" id="6_7vph0"]
+[ext_resource type="Texture2D" uid="uid://5b4w3lcvvo7y" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame5.png" id="6_owbcc"]
+[ext_resource type="Texture2D" uid="uid://d3amssdvmvmr7" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect02.png" id="7_6qmxy"]
+[ext_resource type="Texture2D" uid="uid://desukkfdjcyt6" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame6.png" id="7_pyfou"]
+[ext_resource type="Texture2D" uid="uid://crdnjnclglcuc" path="res://assets/textures/player/swing/Swing1/SwingNoGlow.svg" id="7_qd53y"]
+[ext_resource type="Texture2D" uid="uid://jlphwup1ny0n" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame7.png" id="8_7k8wd"]
+[ext_resource type="Texture2D" uid="uid://b320v0xosyxbe" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect03.png" id="8_mvuhw"]
+[ext_resource type="Texture2D" uid="uid://bn7xmnthn03vd" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame8.png" id="9_1v0ar"]
+[ext_resource type="Texture2D" uid="uid://cir8movmh6iqs" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect04.png" id="9_6ucl4"]
+[ext_resource type="Texture2D" uid="uid://7i2o538tocnk" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame9.png" id="10_75sd8"]
+[ext_resource type="Texture2D" uid="uid://cde8d3baybtg3" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect05.png" id="10_ahecb"]
+[ext_resource type="Texture2D" uid="uid://csm0u7ad5qmwv" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame10.png" id="11_3oskt"]
+[ext_resource type="Texture2D" uid="uid://c8v2272sja861" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect06.png" id="11_hi4a5"]
+[ext_resource type="Texture2D" uid="uid://bpy13a0h4xapo" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect07.png" id="12_3a4d0"]
+[ext_resource type="Texture2D" uid="uid://46uma0gih3kj" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame11.png" id="12_m0gkk"]
+[ext_resource type="Texture2D" uid="uid://c4r0y3sf05frk" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame12.png" id="13_v1y8k"]
+[ext_resource type="Texture2D" uid="uid://ueo08l1tglg1" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect08.png" id="13_wjvdp"]
+[ext_resource type="Texture2D" uid="uid://cfeorbji3dtdx" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect09.png" id="14_ytq4k"]
+[ext_resource type="Texture2D" uid="uid://br8sou620rxv4" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect10.png" id="15_tt21x"]
+[ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect11.png" id="16_4ncex"]
+[ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
+[ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect12.png" id="17_ctfuu"]
+[ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
+[ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="19_244xe"]
+[ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Spider1/Spider_Head-glow.svg" id="19_w1emf"]
+[ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider1/Spider.svg" id="20_bb8qe"]
+[ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="21_fajhm"]
+[ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="22_2ro0i"]
+[ext_resource type="AnimationLibrary" uid="uid://cuomby61m2774" path="res://resources/SpiderAnimations.tres" id="23_244xe"]
+[ext_resource type="Texture2D" uid="uid://b5edol3n0fged" path="res://assets/textures/player/wave/Wave1.svg" id="26_fruiv"]
+[ext_resource type="Texture2D" uid="uid://bpvqfk8hakv6t" path="res://assets/textures/player/ufo/Ufo1.svg" id="27_k4whp"]
+[ext_resource type="Texture2D" uid="uid://cclfd4gmsd4a0" path="res://assets/textures/player/FireBoost.svg" id="29_475ha"]
+[ext_resource type="Texture2D" uid="uid://co5622oddlvir" path="res://assets/textures/player/jetpack/Jetpack1.svg" id="29_dmk7f"]
+[ext_resource type="Script" uid="uid://by1h78riu3uvw" path="res://src/HSVWatcher.gd" id="45_k4whp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14y25"]
+size = Vector2(126, 126)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xclbr"]
+radius = 63.0
+
+[sub_resource type="Gradient" id="Gradient_vov5s"]
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_81vt3"]
+gradient = SubResource("Gradient_vov5s")
+
+[sub_resource type="Curve" id="Curve_rn54d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_serl0"]
+curve = SubResource("Curve_rn54d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1h32q"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0, 64, 1)
+angle_min = -343.1
+angle_max = 1.07288e-05
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_serl0")
+color_ramp = SubResource("GradientTexture1D_81vt3")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_whmfp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mjacn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_go6vy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lmais")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5qxcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_owbcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyfou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7k8wd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1v0ar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_75sd8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3oskt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_m0gkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_v1y8k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="Curve" id="Curve_vov5s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.0467227, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_244xe"]
+curve = SubResource("Curve_vov5s")
+
+[sub_resource type="Curve" id="Curve_yieav"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vov5s"]
+curve = SubResource("Curve_yieav")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_244xe"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+angle_min = -44.99999
+angle_max = 45.00001
+direction = Vector3(-1, -0.5, 0)
+spread = 20.0
+initial_velocity_min = 96.0
+initial_velocity_max = 160.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_vov5s")
+alpha_curve = SubResource("CurveTexture_244xe")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpsk7"]
+shader = ExtResource("16_6n35y")
+shader_parameter/bias = 0.9
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_g4xb6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssp1h"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_omwfa"]
+graph_offset = Vector2(-247.48535, 70.02641)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_g4xb6")
+nodes/TimeScale/position = Vector2(120, 120)
+nodes/fall/node = SubResource("AnimationNodeAnimation_ssp1h")
+nodes/fall/position = Vector2(-40, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"fall"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eebv5"]
+animation = &"idle-alt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cbiuc"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_yf4fu"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iccba"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xmjtn"]
+graph_offset = Vector2(-176.157, 11.5537)
+nodes/output/position = Vector2(440, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_yf4fu")
+nodes/TimeScale/position = Vector2(260, 120)
+nodes/jump/node = SubResource("AnimationNodeAnimation_iccba")
+nodes/jump/position = Vector2(122.464, 117.205)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"jump"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xchl5"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ow8tj"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_8p8op"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_k7aq6"]
+graph_offset = Vector2(-345, -16)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_xchl5")
+nodes/Animation/position = Vector2(-120, 140)
+nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_ow8tj")
+nodes/PlayerSpeed/position = Vector2(20, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_8p8op")
+nodes/TimeScale/position = Vector2(160, 140)
+node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"Animation", &"TimeScale", 0, &"PlayerSpeed"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_j3k2l"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ksqvo"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tv3m1"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3t6xh"]
+graph_offset = Vector2(-269.39426, -82.39989)
+nodes/PlayerSpeed/node = SubResource("AnimationNodeTimeScale_j3k2l")
+nodes/PlayerSpeed/position = Vector2(20, 100)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ksqvo")
+nodes/TimeScale/position = Vector2(160, 100)
+nodes/walk/node = SubResource("AnimationNodeAnimation_tv3m1")
+nodes/walk/position = Vector2(-120, 100)
+node_connections = [&"output", 0, &"TimeScale", &"PlayerSpeed", 0, &"walk", &"TimeScale", 0, &"PlayerSpeed"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j87l4"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ux6am"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjiwe"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ow27"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oqq0p"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_102cw"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f8c6o"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ti1vy"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_333xh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y725x"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8wj8"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hfsl1"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cnpoe"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w0b68"]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w21ie"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_36kv4"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b4v22"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_87vic"]
+xfade_time = 0.1
+switch_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1yrl"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eidpu"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vccgf"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vvc3a"]
+states/Start/position = Vector2(111, 100)
+states/fall/node = SubResource("AnimationNodeBlendTree_omwfa")
+states/fall/position = Vector2(596, 221)
+states/idle/node = SubResource("AnimationNodeAnimation_cbiuc")
+states/idle/position = Vector2(360, -33)
+states/idle-alt/node = SubResource("AnimationNodeAnimation_eebv5")
+states/idle-alt/position = Vector2(469, -101)
+states/jump/node = SubResource("AnimationNodeBlendTree_xmjtn")
+states/jump/position = Vector2(596, -33)
+states/run/node = SubResource("AnimationNodeBlendTree_k7aq6")
+states/run/position = Vector2(360, 221)
+states/walk/node = SubResource("AnimationNodeBlendTree_3t6xh")
+states/walk/position = Vector2(256, 100)
+transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_j87l4"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_ux6am"), "idle", "idle-alt", SubResource("AnimationNodeStateMachineTransition_xjiwe"), "idle-alt", "idle", SubResource("AnimationNodeStateMachineTransition_3ow27"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_oqq0p"), "idle-alt", "jump", SubResource("AnimationNodeStateMachineTransition_102cw"), "fall", "idle", SubResource("AnimationNodeStateMachineTransition_f8c6o"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_ti1vy"), "Start", "walk", SubResource("AnimationNodeStateMachineTransition_333xh"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_y725x"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_d8wj8"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_hfsl1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cnpoe"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_w0b68"), "fall", "run", SubResource("AnimationNodeStateMachineTransition_w21ie"), "fall", "walk", SubResource("AnimationNodeStateMachineTransition_36kv4"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_b4v22"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_87vic"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_i1yrl"), "walk", "fall", SubResource("AnimationNodeStateMachineTransition_eidpu"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_vccgf")]
+graph_offset = Vector2(-56.314148, -184.89453)
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4whp"]
+curve = SubResource("Curve_vov5s")
+
+[sub_resource type="Gradient" id="Gradient_244xe"]
+offsets = PackedFloat32Array(0, 0.6456502)
+colors = PackedColorArray(1.353256, 1.2197721, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dmk7f"]
+gradient = SubResource("Gradient_244xe")
+
+[sub_resource type="Curve" id="Curve_244xe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6n35y"]
+curve = SubResource("Curve_244xe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vov5s"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+angle_min = -44.99999
+angle_max = 45.00001
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 96.0
+initial_velocity_max = 160.0
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_6n35y")
+color_ramp = SubResource("GradientTexture1D_dmk7f")
+alpha_curve = SubResource("CurveTexture_k4whp")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8d76"]
+size = Vector2(126, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mg1a"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t218l"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3l5p"]
+radius = 64.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7s6i"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7vph0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6qmxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mvuhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6ucl4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ahecb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hi4a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3a4d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wjvdp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ytq4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tt21x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4ncex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ctfuu")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="Curve" id="Curve_66fbk"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6aglk"]
+curve = SubResource("Curve_66fbk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uynvo"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_6aglk")
+
+[sub_resource type="Animation" id="Animation_yov85"]
+resource_name = "DeathAnimation"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_player_death"
+}, {
+"args": [],
+"method": &"_on_death_restart"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sr0vc"]
+_data = {
+&"DeathAnimation": SubResource("Animation_yov85")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3hrq"]
+size = Vector2(128, 128)
+
+[node name="Player" type="CharacterBody2D" unique_id=509732007 node_paths=PackedStringArray("spider_animation_tree")]
+process_mode = 1
+collision_mask = 122
+collision_priority = 2.0
+slide_on_ceiling = false
+floor_max_angle = 1.39626
+floor_snap_length = 128.0
+platform_on_leave = 2
+platform_floor_layers = 4294901802
+safe_margin = 1.0
+script = ExtResource("1_nvqsc")
+default_collider = SubResource("RectangleShape2D_14y25")
+slope_collider = SubResource("CircleShape2D_xclbr")
+spider_animation_tree = NodePath("Icon/Spider/SpiderStateMachine")
+
+[node name="DashParticles" type="GPUParticles2D" parent="." unique_id=987294890]
+modulate = Color(0, 1, 1, 1)
+material = ExtResource("5_dvha5")
+emitting = false
+amount = 30
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_1h32q")
+
+[node name="DashFlame" type="AnimatedSprite2D" parent="." unique_id=1800491855]
+visible = false
+modulate = Color(0, 1, 1, 1)
+material = ExtResource("5_dvha5")
+scale = Vector2(1.3, 1.3)
+sprite_frames = SubResource("SpriteFrames_whmfp")
+autoplay = "default"
+frame_progress = 0.144669
+offset = Vector2(-96, 0)
+
+[node name="GroundParticlesOrigin" type="Node2D" parent="." unique_id=1852482948]
+
+[node name="GroundParticles" type="GPUParticles2D" parent="GroundParticlesOrigin" unique_id=1694958379]
+unique_name_in_owner = true
+modulate = Color(0, 1, 1, 1)
+position = Vector2(0, 64)
+emitting = false
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_244xe")
+
+[node name="Trail" type="Line2D" parent="." unique_id=406071707]
+unique_name_in_owner = true
+z_index = -1
+material = SubResource("ShaderMaterial_kpsk7")
+position = Vector2(0, 1)
+width = 43.0
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("2_s0etf")
+mode = 1
+time = 0.25
+metadata/_custom_type_script = "uid://b81c0tveqh8i8"
+
+[node name="WaveTrail" type="Line2D" parent="." unique_id=1174212770]
+unique_name_in_owner = true
+z_index = -1
+width = 50.0
+default_color = Color(0.4, 0, 1, 0.333333)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_s0etf")
+length = 0
+
+[node name="WaveTrailInner" type="Line2D" parent="." unique_id=1844026426]
+unique_name_in_owner = true
+z_index = -1
+material = ExtResource("5_dvha5")
+width = 25.0
+default_color = Color(0.4, 0, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_s0etf")
+length = 0
+
+[node name="Icon" type="Node2D" parent="." unique_id=1476032725]
+
+[node name="Cube" type="Node2D" parent="Icon" unique_id=1897038084]
+script = ExtResource("2_sxyn3")
+
+[node name="CubeIcon" type="Sprite2D" parent="Icon/Cube" unique_id=1996823347]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("19_244xe")
+
+[node name="Robot" type="Node2D" parent="Icon" unique_id=1028692649]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 5
+
+[node name="CubeIcon" type="Sprite2D" parent="Icon/Robot" unique_id=627873927]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("19_244xe")
+
+[node name="Spider" type="Node2D" parent="Icon" unique_id=1699397179]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 6
+
+[node name="SpiderCast" type="RayCast2D" parent="Icon/Spider" unique_id=880187727]
+target_position = Vector2(0, -8192)
+collision_mask = 102
+collide_with_areas = true
+
+[node name="SpiderTrailSpawnPoint" type="Marker2D" parent="Icon/Spider/SpiderCast" unique_id=1966975195]
+position = Vector2(0, 64)
+
+[node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1957238328]
+metadata/_edit_lock_ = true
+
+[node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1215883236]
+position = Vector2(21, 8)
+rotation = 0.0330985
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=403274015]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("21_fajhm")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=965830863]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(0, 100)
+texture = ExtResource("22_2ro0i")
+
+[node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1235814377]
+position = Vector2(58, 9)
+rotation = -0.204853
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=674233427]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("21_fajhm")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=1297745958]
+modulate = Color(0.62, 0.62, 0.5, 1)
+position = Vector2(0, 100)
+texture = ExtResource("22_2ro0i")
+
+[node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1218811074]
+position = Vector2(8, -14)
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1459056244]
+z_index = -1
+texture = ExtResource("19_w1emf")
+
+[node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1205236476]
+texture = ExtResource("20_bb8qe")
+
+[node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=2090889761]
+position = Vector2(-30, 12)
+rotation = 0.751096
+scale = Vector2(0.25, 0.305)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1084466350]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("21_fajhm")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1157656146]
+position = Vector2(0, 100)
+texture = ExtResource("22_2ro0i")
+
+[node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=918424365]
+position = Vector2(-9, 8)
+rotation = 0.0693143
+scale = Vector2(0.25, 0.25)
+metadata/_edit_group_ = true
+
+[node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1756458607]
+z_index = -1
+position = Vector2(0, 100)
+texture = ExtResource("21_fajhm")
+
+[node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1434132859]
+position = Vector2(0, 100)
+texture = ExtResource("22_2ro0i")
+
+[node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites" unique_id=287943173]
+libraries/ = ExtResource("23_244xe")
+playback_default_blend_time = 1.0
+next/RESET = &"walk"
+blend_times = [&"RESET", &"RESET", 1.0, &"RESET", &"walk", 1.0, &"walk", &"walk", 1.0]
+
+[node name="SpiderStateMachine" type="AnimationTree" parent="Icon/Spider" unique_id=859358445]
+root_node = NodePath("../SpiderSprites")
+tree_root = SubResource("AnimationNodeStateMachine_vvc3a")
+anim_player = NodePath("../SpiderSprites/SpiderAnimation")
+parameters/fall/TimeScale/scale = 4.0
+parameters/jump/TimeScale/scale = 4.0
+parameters/run/PlayerSpeed/scale = 1.0
+parameters/run/TimeScale/scale = 3.0
+parameters/walk/PlayerSpeed/scale = 1.0
+parameters/walk/TimeScale/scale = 3.0
+
+[node name="Ball" type="Node2D" parent="Icon" unique_id=623646442]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 3
+
+[node name="Ball" type="Sprite2D" parent="Icon/Ball" unique_id=1700073485]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("18_b7ibp")
+
+[node name="Wave" type="Node2D" parent="Icon" unique_id=577725467]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 4
+
+[node name="Icon" type="Sprite2D" parent="Icon/Wave" unique_id=453892104]
+scale = Vector2(0.417, 0.417)
+texture = ExtResource("26_fruiv")
+
+[node name="UFO" type="Node2D" parent="Icon" unique_id=2032529004]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 2
+
+[node name="UFOParticlesOrigin" type="Node2D" parent="Icon/UFO" unique_id=1074874466]
+unique_name_in_owner = true
+position = Vector2(0, 64)
+
+[node name="UFOIcon" type="Sprite2D" parent="Icon/UFO" unique_id=410039601]
+position = Vector2(0, -3)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("27_k4whp")
+
+[node name="Ship" type="Node2D" parent="Icon" unique_id=1604499480]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 1
+platformer = 1
+
+[node name="ShipParticles" type="GPUParticles2D" parent="Icon/Ship" unique_id=832361813]
+unique_name_in_owner = true
+position = Vector2(-79, 22)
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
+[node name="ShipIcon" type="Sprite2D" parent="Icon/Ship" unique_id=2005628673]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_mqpwg")
+
+[node name="Jetpack" type="Node2D" parent="Icon" unique_id=142755310]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 1
+platformer = 2
+
+[node name="JetpackParticles" type="GPUParticles2D" parent="Icon/Jetpack" unique_id=41120558]
+unique_name_in_owner = true
+position = Vector2(-43, 57.000008)
+rotation = -1.4522295
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
+[node name="JetpackIcon" type="Sprite2D" parent="Icon/Jetpack" unique_id=1027718418]
+position = Vector2(0, -10)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("29_dmk7f")
+
+[node name="Swing" type="Node2D" parent="Icon" unique_id=1099555214]
+visible = false
+script = ExtResource("2_sxyn3")
+gamemode = 7
+
+[node name="SwingGlow" type="Sprite2D" parent="Icon/Swing" unique_id=248484907]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_6vub1")
+
+[node name="FireBoostTop" type="Sprite2D" parent="Icon/Swing" unique_id=941325389]
+position = Vector2(-24, -33)
+rotation = 2.35619
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("29_475ha")
+
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostTop" unique_id=1885754964]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+emitting = false
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
+[node name="FireBoostMiddle" type="Sprite2D" parent="Icon/Swing" unique_id=464839742]
+position = Vector2(-82, 0)
+rotation = 1.57079
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("29_475ha")
+
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostMiddle" unique_id=58379360]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
+[node name="FireBoostBottom" type="Sprite2D" parent="Icon/Swing" unique_id=1846968917]
+position = Vector2(-54, 63)
+rotation = 0.785397
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("29_475ha")
+
+[node name="FireParticles" type="GPUParticles2D" parent="Icon/Swing/FireBoostBottom" unique_id=1154380714]
+show_behind_parent = true
+position = Vector2(1.5258789e-05, -8.333351)
+rotation = -1.5707941
+amount = 64
+texture = ExtResource("5_qm8k0")
+process_material = SubResource("ParticleProcessMaterial_vov5s")
+
+[node name="SwingNoGlow" type="Sprite2D" parent="Icon/Swing" unique_id=1790209392]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_qd53y")
+
+[node name="GroundCollider" type="CollisionShape2D" parent="." unique_id=341704025]
+editor_description = "Detects collisions with the local gravity's ground."
+shape = SubResource("RectangleShape2D_p8d76")
+debug_color = Color(0.701961, 0, 0, 0.168627)
+metadata/_edit_lock_ = true
+
+[node name="KillColliderSolid" type="Area2D" parent="." unique_id=1563576516]
+collision_mask = 512
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="KillColliderSolidHitbox" type="CollisionShape2D" parent="KillColliderSolid" unique_id=721004622]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_4mg1a")
+debug_color = Color(0, 0.0705882, 0.701961, 0.223529)
+
+[node name="KillColliderRectangularHazard" type="Area2D" parent="." unique_id=1858958843]
+visible = false
+collision_mask = 4
+
+[node name="KillColliderRectangularHazardHitbox" type="CollisionShape2D" parent="KillColliderRectangularHazard" unique_id=631098531]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_t218l")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="KillColliderCircularHazard" type="Area2D" parent="." unique_id=570637210]
+visible = false
+collision_mask = 2048
+
+[node name="KillColliderCircularHazardHitbox" type="CollisionShape2D" parent="KillColliderCircularHazard" unique_id=230704428]
+rotation = 3.14159
+shape = SubResource("CircleShape2D_b3l5p")
+debug_color = Color(0.701961, 0, 0, 0.419608)
+
+[node name="SolidOverlapCheck" type="Area2D" parent="." unique_id=2073120478]
+visible = false
+collision_mask = 512
+
+[node name="SolidOverlapCheckCollider" type="CollisionShape2D" parent="SolidOverlapCheck" unique_id=1693452314]
+editor_description = "Detects collisions with the local gravity's ground."
+shape = SubResource("RectangleShape2D_p8d76")
+debug_color = Color(0, 0.0700001, 0.7, 0)
+metadata/_edit_lock_ = true
+
+[node name="DeathEffect" type="AnimatedSprite2D" parent="." unique_id=812924046]
+z_index = 100
+material = ExtResource("5_dvha5")
+sprite_frames = SubResource("SpriteFrames_x7s6i")
+frame = 12
+frame_progress = 1.0
+
+[node name="DeathParticles" type="GPUParticles2D" parent="." unique_id=1321524057]
+visible = false
+modulate = Color(0, 1, 1, 1)
+material = ExtResource("5_dvha5")
+emitting = false
+amount = 30
+texture = ExtResource("5_qm8k0")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_uynvo")
+
+[node name="DebugOverlays" type="Node2D" parent="." unique_id=1534176086]
+unique_name_in_owner = true
+
+[node name="DebugTrail" type="Line2D" parent="DebugOverlays" unique_id=1505874252]
+z_index = 2
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
+script = ExtResource("2_s0etf")
+length = 512
+
+[node name="DeathAnimator" type="AnimationPlayer" parent="." unique_id=1145986274]
+process_mode = 1
+libraries/ = SubResource("AnimationLibrary_sr0vc")
+
+[node name="RobotTimer" type="Timer" parent="." unique_id=1125061952]
+wait_time = 0.5
+one_shot = true
+
+[node name="EditorPlayerSelectionCollider" parent="." unique_id=1420153758 instance=ExtResource("2_fruiv")]
+process_mode = 1
+
+[node name="HSVWatcher" type="Node2D" parent="." unique_id=812518477]
+process_mode = 1
+script = ExtResource("45_k4whp")
+metadata/_custom_type_script = "uid://by1h78riu3uvw"
+
+[node name="EnsureVelocityRedirect" type="ShapeCast2D" parent="." unique_id=1319472096]
+visible = false
+shape = SubResource("RectangleShape2D_u3hrq")
+collision_mask = 1024
+collide_with_areas = true
+collide_with_bodies = false
+
+[connection signal="body_entered" from="KillColliderSolid" to="." method="_on_kill_collider_solid_body_entered"]
+[connection signal="area_entered" from="KillColliderRectangularHazard" to="." method="_on_kill_collider_hazard_area_entered"]
+[connection signal="area_entered" from="KillColliderCircularHazard" to="." method="_on_kill_collider_hazard_area_entered"]
+[connection signal="body_exited" from="SolidOverlapCheck" to="." method="_on_solid_overlap_check_body_exited"]

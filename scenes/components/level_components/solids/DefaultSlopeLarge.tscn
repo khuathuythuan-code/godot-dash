@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bs82trmwlnsmy"]
+
+[ext_resource type="Texture2D" uid="uid://chtrj70jj3qlf" path="res://assets/textures/solids/regular_blocks/RegularSlopeLarge01.svg" id="1_8v7oy"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_07kje"]
+[ext_resource type="Script" uid="uid://co07p647ncgri" path="res://src/interactables/public_components/PhysicsObjectComponent.gd" id="3_c3wck"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_onp7b"]
+points = PackedVector2Array(-136.472, 66, 130, -67.236, 130, 66)
+
+[node name="DefaultSlopeLarge" type="StaticBody2D" unique_id=190039188]
+collision_layer = 66
+
+[node name="Detail" type="Sprite2D" parent="." unique_id=355678394]
+scale = Vector2(0.25, 0.25)
+
+[node name="Base" type="Sprite2D" parent="." unique_id=446418665]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_8v7oy")
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=2105952596]
+shape = SubResource("ConvexPolygonShape2D_onp7b")
+debug_color = Color(0, 0.071, 0.702, 0.25)
+
+[node name="EditorSelectionCollider" parent="." unique_id=457562791 instance=ExtResource("2_07kje")]
+scale = Vector2(2, 1)
+type = 7
+
+[node name="PhysicsObjectComponent" type="Node" parent="." unique_id=1835737729]
+script = ExtResource("3_c3wck")
+metadata/_custom_type_script = "uid://co07p647ncgri"
