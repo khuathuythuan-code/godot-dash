@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://db7ebleody4s3"]
 
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
-[ext_resource type="Texture2D" uid="uid://ctdlnqppwy385" path="res://assets/textures/backgrounds/back godot dash (1).png" id="2_lk0vr"]
+[ext_resource type="Texture2D" uid="uid://d28fe80iokedt" path="res://assets/textures/backgrounds/back godot dash 11.png" id="2_lk0vr"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
 [ext_resource type="Script" uid="uid://bj3cco40eefrn" path="res://scenes/Level.gd" id="4_lk0vr"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="6_7ju4w"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="7_fb2li"]
-[ext_resource type="Texture2D" uid="uid://cdor6sbt8fth1" path="res://assets/textures/grounds/back godot dash 2.png" id="8_f2kej"]
+[ext_resource type="Texture2D" uid="uid://c8xcuct8msa2m" path="res://assets/textures/grounds/back godot dash 2 2.png" id="8_lk0vr"]
 [ext_resource type="PackedScene" uid="uid://dxcgyea560vmr" path="res://scenes/components/game_components/PlayerCamera.tscn" id="9_e8rlm"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="9_qitmq"]
 [ext_resource type="PackedScene" uid="uid://th7jwdop3hdv" path="res://scenes/components/game_components/PauseMenu.tscn" id="9_vv033"]
@@ -179,7 +179,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_kxqg4")
 position = Vector2(300, 300)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("8_f2kej")
+texture = ExtResource("8_lk0vr")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
@@ -216,7 +216,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_kxqg4")
 position = Vector2(300, -300)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("8_f2kej")
+texture = ExtResource("8_lk0vr")
 flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
