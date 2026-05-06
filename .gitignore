@@ -18,3 +18,9 @@ target/
 *.txt
 *.tscn
 *.uid
+*.dll
+rust/bin/
+rust/target/
+*.dll
+rust/bin/
+rust/target/
