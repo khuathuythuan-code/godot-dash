@@ -19,6 +19,18 @@ var generated_editor_object_thumbnails: Dictionary[String, ImageTexture]
 
 
 func _ready() -> void:
+	if OS.get_name() == "Web":
+		# Web không dùng thread — load thẳng
+		title_screen_packed = load("res://scenes/TitleScreen.tscn")
+		editor_packed        = load("res://scenes/EditorScene.tscn")
+		game_scene_packed    = load("res://scenes/GameScene.tscn")
+		player_packed        = load("res://scenes/components/game_components/Player.tscn")
+		fade_enter_effect    = load("res://resources/FadeEnterEffect.tres")
+		fade_enter_loaded.emit()
+		fade_enter_effect_canvas_group = load("res://resources/FadeEnterEffectCanvasGroup.tres")
+		fade_enter_canvas_group_loaded.emit()
+		load_icons()
+		return
 	ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")

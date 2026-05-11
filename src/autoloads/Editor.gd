@@ -28,7 +28,9 @@ var delete: bool = false
 
 
 func _ready() -> void:
+	
 	if OS.get_name() == "Web":
+		clipboard = SelectionGD.new()
 		return
 	# On non-web platforms, initialize clipboard as Selection if available
 	if ClassDB.class_exists("Selection"):
@@ -49,4 +51,4 @@ func clear_data() -> void:
 	if ClassDB.class_exists("Selection"):
 		clipboard = ClassDB.instantiate("Selection")
 	else:
-		clipboard = null
+		clipboard = SelectionGD.new()

@@ -21,7 +21,4 @@ target/
 *.dll
 rust/bin/
 rust/target/
-*.dll
-rust/bin/
-rust/target/
-project.godot
+
