@@ -28,12 +28,14 @@ script = ExtResource("1_tuoqa")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=897971860]
+visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_tuoqa")
 script = ExtResource("3_mj4da")
 metadata/_custom_type_script = "uid://dnxmq664kbq3f"
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1294022355]
+visible = false
 scale = Vector2(1.2, 1.2)
 shape = SubResource("SegmentShape2D_nuarc")
 debug_color = Color(0, 1, 0, 0)
@@ -60,6 +62,7 @@ sprite_scale = Vector2(0.2, 0.2)
 metadata/_custom_type_script = "uid://cd3jqi4il3x2p"
 
 [node name="HitboxDisplay" type="Node2D" parent="." unique_id=619933005 node_paths=PackedStringArray("hitbox")]
+visible = false
 z_index = -20
 script = ExtResource("7_ck578")
 hitbox = NodePath("../Hitbox")
@@ -68,6 +71,7 @@ fill_alpha_config_key = "trigger_hitbox_fill_alpha"
 metadata/_custom_type_script = "uid://m5i4ldkc8kfv"
 
 [node name="Static" type="Area2D" parent="." unique_id=1001079628]
+visible = false
 script = ExtResource("1_tuoqa")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
@@ -84,6 +88,7 @@ script = ExtResource("4_qvfnw")
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
 [node name="Shake" type="Area2D" parent="." unique_id=61907428]
+visible = false
 script = ExtResource("1_tuoqa")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
@@ -96,6 +101,7 @@ script = ExtResource("4_qvfnw")
 metadata/_custom_type_script = "uid://tfriwfc7uruu"
 
 [node name="TargetLink" type="Line2D" parent="." unique_id=1091227768]
+visible = false
 z_index = -50
 width = 4.0
 default_color = Color(0, 0, 0, 1)
@@ -107,22 +113,23 @@ script = ExtResource("12_fu0o5")
 metadata/_custom_type_script = "uid://b27xonb0bpa1d"
 
 [node name="EditorSelectionCollider" parent="." unique_id=264036362 instance=ExtResource("13_ck578")]
+visible = false
 type = 8
 
-[node name="Node2D" type="Node2D" parent="." unique_id=348911639]
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2010276158]
+position = Vector2(326, 0)
 amount = 200
-lifetime = 7.16
+lifetime = 4.21
 preprocess = 0.79
 speed_scale = 2.79
 explosiveness = 0.16
-randomness = 0.15
+randomness = 0.25
+lifetime_randomness = 0.31
 emission_shape = 1
-emission_sphere_radius = 0.01
+emission_sphere_radius = 28.71
 direction = Vector2(0, -1)
 spread = 180.0
-gravity = Vector2(-900, 900)
+gravity = Vector2(0, 0)
 initial_velocity_min = 202.8
 initial_velocity_max = 811.19
 angular_velocity_min = 720.0

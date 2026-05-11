@@ -70,6 +70,7 @@ pulse_target = NodePath("../Sprites")
 
 [node name="GroundMoverComponent" type="Node" parent="." unique_id=1563033734]
 script = ExtResource("12_0v1uf")
+freefly = false
 
 [node name="TextureRotationPin" type="Node" parent="." unique_id=1391171060 node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_vfit2")

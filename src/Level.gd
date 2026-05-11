@@ -155,6 +155,7 @@ func _ready() -> void:
 		#để restore sau khi clear. Nhưng khi chuyển sang level khác, nó lại ghi đè duration
 		 #của level mới bằng duration của level cũ.
 	add_child(song_player, false, INTERNAL_MODE_BACK)
+	LevelManager.player_camera.zoom = Vector2(0.6, 0.6)# ảnh hưởng tới độ zoom camera
 
 
 func _process(_delta: float) -> void:

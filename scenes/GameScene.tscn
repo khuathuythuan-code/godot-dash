@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://db7ebleody4s3"]
 
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
-[ext_resource type="Texture2D" uid="uid://d28fe80iokedt" path="res://assets/textures/backgrounds/back godot dash 11.png" id="2_lk0vr"]
+[ext_resource type="Texture2D" uid="uid://qmiip577cd81" path="res://assets/textures/backgrounds/back godot dash 11 (1).png" id="2_lk0vr"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
 [ext_resource type="Script" uid="uid://bj3cco40eefrn" path="res://scenes/Level.gd" id="4_lk0vr"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
