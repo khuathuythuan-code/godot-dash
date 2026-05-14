@@ -73,7 +73,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		Editor.version_history.commit_action()
 
 		add_hsv_watchers(object, level)
-		edit_handler.select(Selection.from_object(object), true)
+		edit_handler.select(Editor.selection_from_object(object), true)
 
 		for child: Node in object.get_children():
 			Level.apply_enter_effect(child)
@@ -107,7 +107,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			Editor.version_history.add_do_method(delete_object)
 			Editor.version_history.add_undo_method(restore_object)
 			Editor.version_history.commit_action()
-			edit_handler.deselect(Selection.from_object(object), true)
+			edit_handler.deselect(Editor.selection_from_object(object), true)
 			object_deleted.emit(object)
 
 

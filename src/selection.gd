@@ -17,7 +17,7 @@
 ## Trên web, .dll không load → dùng file này qua autoload SelectionGD.
 
 extends RefCounted
-
+class_name SelectionGDInstance
 
 ## Internal storage — dùng Array thay vì HashSet, tự enforce unique.
 var _inner: Array[Node2D] = []
@@ -28,12 +28,12 @@ var _inner: Array[Node2D] = []
 
 ## Empty Selection constant.
 static func EMPTY() -> Variant:
-	return SelectionGD.new()
+	return SelectionGDInstance.new()
 
 
 ## Tạo Selection từ Array[Node2D].
 static func from_array(array: Array[Node2D]) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	for node in array:
 		s.insert(node)
 	return s
@@ -41,7 +41,7 @@ static func from_array(array: Array[Node2D]) -> Variant:
 
 ## Tạo Selection chứa đúng 1 Node2D.
 static func from_object(object: Node2D) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	s.insert(object)
 	return s
 
@@ -109,7 +109,7 @@ func is_empty() -> bool:
 
 ## Tạo bản sao của selection (shallow copy — node không bị clone).
 func clone() -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	s._inner = _inner.duplicate()
 	return s
 
@@ -128,7 +128,7 @@ func union(other) -> Variant:
 
 ## Trả về Selection mới chứa phần tử có trong self VÀ other.
 func intersection(other) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	for node in _inner:
 		if other.contains(node):
 			s.insert(node)
@@ -137,7 +137,7 @@ func intersection(other) -> Variant:
 
 ## Trả về Selection mới chứa phần tử có trong self NHƯNG KHÔNG có trong other.
 func difference(other) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	for node in _inner:
 		if not other.contains(node):
 			s.insert(node)
@@ -201,7 +201,7 @@ func for_each(method: Callable, reverse: bool = false) -> void:
 
 ## Map sang Selection mới (method phải trả về Node2D).
 func map(method: Callable) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	for node in _inner:
 		var result: Node2D = method.call(node)
 		if result != null:
@@ -227,7 +227,7 @@ func map_generic_dict(method: Callable) -> Dictionary:
 
 ## Lọc ra Selection mới với các phần tử mà method.call(node) = true.
 func filter(method: Callable) -> Variant:
-	var s: RefCounted = SelectionGD.new()
+	var s: RefCounted = SelectionGDInstance.new()
 	for node in _inner:
 		if method.call(node):
 			s.insert(node)

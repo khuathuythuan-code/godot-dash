@@ -9,10 +9,10 @@ const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
 
 var group_buttons: Dictionary[String, Button]
 
-@onready var selected_objects := Selection.new()
+@onready var selected_objects = Editor.new_selection()
 
 
-func _populate_group_list(selection: Selection) -> void:
+func _populate_group_list(selection) -> void:
 	if selection.is_empty():
 		return
 	# Groups of all objects
@@ -53,7 +53,7 @@ func _create_group_button(group: String) -> Button:
 	return group_button
 
 
-func _add_selection_to_group(selection: Selection, group: String) -> void:
+func _add_selection_to_group(selection, group: String) -> void:
 	var in_group := func(object: Node2D, _group: StringName): return _group in object.get_groups()
 	if not selection.any(in_group):
 		if group == Constants.GROUP_PREFIX:
@@ -64,7 +64,7 @@ func _add_selection_to_group(selection: Selection, group: String) -> void:
 		group_buttons[group].modulate = Color.WHITE
 
 
-func _remove_group_from_selection(selection: Selection, group: String):
+func _remove_group_from_selection(selection, group: String):
 	selection.for_each(func(object: Node2D): object.remove_from_group(group))
 	group_buttons.erase(group)
 
@@ -72,10 +72,10 @@ func _remove_group_from_selection(selection: Selection, group: String):
 func _remove_group(group_button: Button) -> void:
 	get_viewport().gui_release_focus()
 	var group: String = Constants.GROUP_PREFIX + group_button.text
-	var do_remove_group := func(_selected_objects: Selection, _group: String):
+	var do_remove_group := func(_selected_objects, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
-	var undo_remove_group := func(_selected_objects: Selection, _group: String):
+	var undo_remove_group := func(_selected_objects, _group: String):
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
 	var selected_objects_snapshot := selected_objects.clone()
@@ -88,10 +88,10 @@ func _remove_group(group_button: Button) -> void:
 
 func _add_group(group: String) -> void:
 	var group_button: Button = _create_group_button(group)
-	var do_add_group := func(_selected_objects: Selection, _group: String):
+	var do_add_group := func(_selected_objects, _group: String):
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
-	var undo_add_group := func(_selected_objects: Selection, _group: String):
+	var undo_add_group := func(_selected_objects, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
 	var selected_objects_snapshot := selected_objects.clone()
@@ -102,7 +102,7 @@ func _add_group(group: String) -> void:
 	version_history.commit_action()
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	selected_objects = selection.clone()
 	_populate_group_list(selected_objects)
 

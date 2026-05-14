@@ -28,13 +28,14 @@ var delete: bool = false
 
 
 func _ready() -> void:
-	
-	if OS.get_name() == "Web":
-		clipboard = SelectionGD.new()
-		return
-	# On non-web platforms, initialize clipboard as Selection if available
-	if ClassDB.class_exists("Selection"):
-		clipboard = ClassDB.instantiate("Selection")
+	new_selection()
+	#
+	#if OS.get_name() == "Web":
+		#clipboard = SelectionGD.new()
+		#return
+	## On non-web platforms, initialize clipboard as Selection if available
+	#if ClassDB.class_exists("Selection"):
+		#clipboard = ClassDB.instantiate("Selection")
 
 
 func is_text_input_focused() -> bool:
@@ -48,7 +49,37 @@ func clear_data() -> void:
 	level_file_path = ""
 	level_history_version = 1
 	version_history = UndoRedo.new()
-	if ClassDB.class_exists("Selection"):
-		clipboard = ClassDB.instantiate("Selection")
-	else:
-		clipboard = SelectionGD.new()
+	new_selection()
+	#if ClassDB.class_exists("Selection"):
+		#clipboard = ClassDB.instantiate("Selection")
+	#else:
+		#clipboard = SelectionGD.new()
+		
+		
+# Thêm vào Editor.gd sau phần var declarations
+
+## Tạo Selection rỗng — dùng thay cho Selection.new()
+static func new_selection() -> Variant:
+	if OS.has_feature("Web"):
+		return SelectionGDInstance.new()
+	return Selection.new()
+
+
+
+## Tạo Selection rỗng — dùng thay cho Selection.EMPTY()
+static func empty_selection() -> Variant:
+	if OS.has_feature("Web"):
+		return SelectionGDInstance.EMPTY()
+	return Selection.EMPTY()
+
+## Tạo Selection từ 1 object — dùng thay cho Selection.from_object()
+static func selection_from_object(object: Node2D) -> Variant:
+	if OS.has_feature("Web"):
+		return SelectionGDInstance.from_object(object)
+	return Selection.from_object(object)
+
+## Tạo Selection từ array — dùng thay cho Selection.from_array()
+static func selection_from_array(array: Array) -> Variant:
+	if OS.has_feature("Web"):
+		return SelectionGDInstance.from_array(array)
+	return Selection.from_array(array)

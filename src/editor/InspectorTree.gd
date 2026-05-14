@@ -14,7 +14,7 @@ enum LayerIcon {
 
 @export var search_box: LineEdit
 
-var selection: Selection
+var selection
 var hidden_items: Array[TreeItem]
 var flat_item_list: Array[TreeItem]
 
@@ -143,7 +143,7 @@ func get_last_tree_item() -> TreeItem:
 	return last_tree_item
 
 
-func refresh(selected: Selection = selection) -> void:
+func refresh(selected = selection) -> void:
 	selection = selected
 	var root: TreeItem = get_root()
 	var level: Level = Editor.root.level
@@ -353,12 +353,12 @@ func _update_layer_name(item: TreeItem, new_name: String) -> void:
 	Editor.version_history.commit_action()
 
 
-func _on_edit_handler_selection_changed(new_selection: Selection) -> void:
+func _on_edit_handler_selection_changed(new_selection) -> void:
 	refresh(new_selection)
 
 
 func _on_level_operations_handler_level_loaded(_level: Level) -> void:
-	selection = Selection.EMPTY()
+	selection = Editor.empty_selection()
 	clear()
 	create_item()
 	refresh()
@@ -381,9 +381,9 @@ func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
 		var layer: Layer = Editor.root.level.layers[item.get_parent().get_index()]
 		var object: Node2D = layer.get_child(item.get_index())
 		if selected:
-			selection = selection.union(Selection.from_object(object))
+			selection = selection.union(Editor.selection_from_object(object))
 		else:
-			selection = selection.difference(Selection.from_object(object))
+			selection = selection.difference(Editor.selection_from_object(object))
 	bulk_update_selection.call_deferred(selected)
 
 

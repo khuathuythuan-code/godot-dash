@@ -56,9 +56,10 @@ func _ready() -> void:
 	else:
 		level = Level.new()
 		level.name = "New level"
-	Editor.clipboard = Selection.new()
+	
+	Editor.clipboard = Editor.new_selection()
 	LevelManager.game_scene.add_loaded_level(level)
-	inspector_tree.refresh(Selection.EMPTY())
+	inspector_tree.refresh( Editor.empty_selection())
 	inspector_tree.set_active_layer(0, 0)
 
 	reset()
@@ -81,6 +82,23 @@ func _physics_process(_delta: float) -> void:
 		)
 	):
 		$PlaceHandler.handle_place(block_palette_button_group, placed_objects_collider, level)
+
+#
+	## Fix web — Selection class không tồn tại khi không có Rust .dll
+	#if ClassDB.class_exists("Selection"):
+		#Editor.clipboard = Editor.new_selection()
+	#else:
+		#Editor.clipboard = SelectionGD.new()
+	#LevelManager.game_scene.add_loaded_level(level)
+	## Tương tự Editor.empty_selection() — cần check
+	#if ClassDB.class_exists("Selection"):
+		#inspector_tree.refresh(Editor.empty_selection())
+	#else:
+		#inspector_tree.refresh(SelectionGD.EMPTY())	
+		#
+	#inspector_tree.set_active_layer(0, 0)
+#
+	#reset()
 
 
 func _unhandled_input(event: InputEvent) -> void:

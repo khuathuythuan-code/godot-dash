@@ -26,7 +26,7 @@ func _ready() -> void:
 		property.interaction_ended.connect(_on_property_interaction_ended.bind(property, connections[property]))
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	selected_object_count = selection.size()
 	if selection.is_empty():
 		hsv_watchers.clear()

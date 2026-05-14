@@ -73,12 +73,12 @@ Toasts="*res://src/autoloads/Toasts.gd"
 SceneManager="*res://src/autoloads/SceneManager.gd"
 Files="*res://scenes/autoloads/Files.tscn"
 AssetManager="*res://src/autoloads/AssetManager.gd"
+SelectionGD="*uid://dhg1oihtvh10j"
 Editor="*res://src/autoloads/Editor.gd"
 KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*uid://cggqb75a8w8r"
 DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 SignalLens="*uid://85rkx60vm7a7"
-SelectionGD="*uid://dhg1oihtvh10j"
 
 [display]
 
@@ -409,13 +409,13 @@ common/physics_interpolation=true
 
 [plugin]
 
-script-ide/functions=true
-script-ide/engine_callbacks=true
-script-ide/signals=true
-script-ide/exported_properties=true
-script-ide/properties=true
-script-ide/classes=true
-script-ide/constants=true
+script-ide/functions=false
+script-ide/engine_callbacks=false
+script-ide/signals=false
+script-ide/exported_properties=false
+script-ide/properties=false
+script-ide/classes=false
+script-ide/constants=false
 
 [rendering]
 

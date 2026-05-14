@@ -56,9 +56,9 @@ func _ready() -> void:
 		markers_root.add_child(property)
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	clear_ui()
-	var filtered_selection: Selection = selection.map(player_to_interactable)
+	var filtered_selection = selection.map(player_to_interactable)
 	if filtered_selection.is_empty() or not filtered_selection.all(is_interactable):
 		return
 	build_ui(filtered_selection)
@@ -68,14 +68,14 @@ func clear_ui() -> void:
 	NodeUtils.free_children(components_root)
 
 
-func rebuild_ui(interactables: Selection) -> void:
+func rebuild_ui(interactables) -> void:
 	if not interactables.is_identical(get_latest_selected_interactables()):
 		return
 	clear_ui()
 	build_ui(interactables)
 
 
-func build_ui(interactables: Selection) -> void:
+func build_ui(interactables) -> void:
 	var first_interactable: Interactable = interactables.first()
 	var should_component_be_displayed := func(component: Component):
 		return (not component.get_script() in COMPONENT_BLACKLIST) and (not component.get_script() in MARKER_COMPONENTS)
@@ -103,7 +103,7 @@ func build_ui(interactables: Selection) -> void:
 	load_properties.call_deferred(first_interactable, self)
 
 
-func build_components_ui(interactables: Selection, displayed_components: Array) -> void:
+func build_components_ui(interactables, displayed_components: Array) -> void:
 	for i in displayed_components.size():
 		var component = displayed_components[i]
 		NodeUtils.connect_once(component.property_list_changed, rebuild_ui.bind(interactables))
@@ -165,7 +165,7 @@ func build_components_ui(interactables: Selection, displayed_components: Array) 
 			components_root.add_child(HSeparator.new())
 
 
-func connect_ui(interactables: Selection, ui_root: Control) -> void:
+func connect_ui(interactables, ui_root: Control) -> void:
 	var properties := NodeUtils.get_children_of_type(ui_root, Property, true)
 	if properties.is_empty():
 		return
@@ -204,14 +204,14 @@ func connect_ui(interactables: Selection, ui_root: Control) -> void:
 
 
 func get_latest_selected_interactables() -> Selection:
-	var selection: Selection = Editor.root.edit_handler.selection
-	var filtered_selection: Selection = selection.map(player_to_interactable)
+	var selection = Editor.root.edit_handler.selection
+	var filtered_selection = selection.map(player_to_interactable)
 	if filtered_selection.is_empty() or not filtered_selection.all(is_interactable):
 		return null
 	return filtered_selection
 
 
-func save_property(value: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
+func save_property(value: Variant, component_name: String, property_name: String, interactables) -> void:
 	for interactable: Interactable in interactables.to_array():
 		var component: Component = interactable.get_node(component_name)
 		var new_value: Variant = value
@@ -226,8 +226,8 @@ func save_property(value: Variant, component_name: String, property_name: String
 		component.set(property_name, new_value)
 
 
-func save_property_register(value: Variant, _previous: Variant, component_name: String, property_name: String, interactables: Selection) -> void:
-	var do_save_property := func(_interactables: Selection, new_value: Variant):
+func save_property_register(value: Variant, _previous: Variant, component_name: String, property_name: String, interactables) -> void:
+	var do_save_property := func(_interactables, new_value: Variant):
 		save_property(new_value, component_name, property_name, _interactables)
 		load_properties(_interactables.first(), self)
 	var undo_save_property := func(_initial_values: Dictionary[Component, Variant]):
@@ -236,7 +236,7 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 			component.set(property_name, initial_value)
 		load_properties(_initial_values.keys()[0].parent, self)
 
-	var interactables_snapshot: Selection = interactables.clone()
+	var interactables_snapshot = interactables.clone()
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set '%s' on %s interactables" % [property_name, interactables_snapshot.size()])
 	version_history.add_do_method(do_save_property.bind(interactables_snapshot, value))
@@ -245,13 +245,13 @@ func save_property_register(value: Variant, _previous: Variant, component_name: 
 	initial_values.clear()
 
 
-func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script, interactables: Selection) -> void:
-	var add_marker := func(_interactables: Selection):
+func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script, interactables) -> void:
+	var add_marker := func(_interactables):
 		for interactable: Interactable in _interactables.to_array():
 			var marker: Marker = NodeUtils.get_node_or_add(interactable, str(marker_script.get_global_name()), marker_script, NodeUtils.SET_OWNER | NodeUtils.FORCE_READABLE_NAME)
 			interactable.register_public(marker)
 		property.set_value_no_signal(true)
-	var remove_marker := func(_interactables: Selection):
+	var remove_marker := func(_interactables):
 		for interactable: Interactable in _interactables.to_array():
 			NodeUtils.get_children_of_type(interactable, marker_script).map(
 				func(marker):
@@ -260,7 +260,7 @@ func refresh_marker(enabled: bool, property: BoolProperty, marker_script: Script
 			)
 		property.set_value_no_signal(false)
 
-	var interactables_snapshot: Selection = interactables.clone()
+	var interactables_snapshot = interactables.clone()
 
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Set '%s' to %s on %s interactables" % [marker_script.get_global_name(), enabled, interactables_snapshot.size()])

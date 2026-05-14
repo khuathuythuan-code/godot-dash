@@ -3,7 +3,7 @@ extends Node2D
 
 var bounding_boxes: Dictionary[Interactable, GroupBoundingBox]
 
-@onready var saved_selection := Selection.new()
+@onready var saved_selection = Editor.new_selection()
 
 
 class GroupBoundingBox:
@@ -37,7 +37,7 @@ func _draw() -> void:
 		draw_line(interactable.global_position - bounding_box.position, closest_point_on_rect, Color.GREEN, 4.0)
 
 
-func update_bounding_boxes(selection: Selection) -> void:
+func update_bounding_boxes(selection) -> void:
 	bounding_boxes.clear()
 	for object: Node2D in selection.to_array():
 		if object is Interactable and object.has(TargetGroupComponent):
@@ -58,7 +58,7 @@ func update_bounding_boxes(selection: Selection) -> void:
 			bounding_boxes[interactable] = GroupBoundingBox.new(BoundingBox.new(objects_in_group, objects_center, 0.0).as_rect().grow(64.0), objects_center)
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	saved_selection = selection
 	# Clear the displayed bounding boxes
 	if selection.is_empty():

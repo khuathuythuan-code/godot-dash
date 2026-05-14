@@ -14,7 +14,7 @@ var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
-@onready var current_selection := Selection.new()
+@onready var current_selection = Editor.new_selection()
 @onready var parent: Node = get_parent()
 
 
@@ -25,7 +25,7 @@ func update_pivot_relative_transform() -> void:
 		pivot_relative_transforms[Editor.root.level.get_path_to(collision_object)] = pivot_relative_transform
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	current_selection = selection
 	if selection.is_empty():
 		return

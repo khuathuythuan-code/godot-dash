@@ -37,10 +37,10 @@ func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
 	interactable_editor.object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
-	_on_edit_handler_selection_changed(Selection.EMPTY())
+	_on_edit_handler_selection_changed(Editor.empty_selection())
 
 
-func _on_edit_handler_selection_changed(selection: Selection) -> void:
+func _on_edit_handler_selection_changed(selection) -> void:
 	object_name.visible = not selection.is_empty()
 	if selection.size() == 1:
 		object_name.text = selection.first().name
