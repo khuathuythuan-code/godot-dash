@@ -409,13 +409,13 @@ common/physics_interpolation=true
 
 [plugin]
 
-script-ide/functions=false
-script-ide/engine_callbacks=false
-script-ide/signals=false
-script-ide/exported_properties=false
-script-ide/properties=false
-script-ide/classes=false
-script-ide/constants=false
+script-ide/functions=true
+script-ide/engine_callbacks=true
+script-ide/signals=true
+script-ide/exported_properties=true
+script-ide/properties=true
+script-ide/classes=true
+script-ide/constants=true
 
 [rendering]
 

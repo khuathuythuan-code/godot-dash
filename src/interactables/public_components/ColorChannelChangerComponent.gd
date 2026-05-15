@@ -121,3 +121,16 @@ func _on_easing_progressed(player: Player, weight_delta: float) -> void:
 func _on_target_color_channel_type_changed(type: Type) -> void:
 	_type = type
 	notify_property_list_changed()
+	
+	
+func _field_from_data(field_name: String, field_data: Variant) -> void:
+	match field_name:
+		"color":
+			if field_data is String:
+				# Parse "(1.0, 1.0, 0.0, 1.0)" → Color
+				var parts = field_data.trim_prefix("(").trim_suffix(")").split(", ")
+				color = Color(float(parts[0]), float(parts[1]), float(parts[2]), float(parts[3]))
+			else:
+				color = field_data
+		_:
+			set(field_name, field_data)
