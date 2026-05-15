@@ -16,7 +16,6 @@ target/
 *.mp3
 *.json
 *.txt
-*.tscn
 *.uid
 *.dll
 rust/bin/
