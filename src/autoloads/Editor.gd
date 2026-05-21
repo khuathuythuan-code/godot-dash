@@ -55,31 +55,32 @@ func clear_data() -> void:
 	#else:
 		#clipboard = SelectionGD.new()
 		
-		
-# Thêm vào Editor.gd sau phần var declarations
 
-## Tạo Selection rỗng — dùng thay cho Selection.new()
+
+#Selection là được tạo bằng Selection.rs nên trên web ko chạy được
+#phải thay bằng Selection.gd có thể chạy các chức năng CRUD tương tự cái trên nhưng ko tốt bằng
+# nên vẫn phải dùng Selection.rs cho Win
+#vì editor là autoload nên cần nạp 1 giá trị bất kì khi game chạy kể cả null
+# nếu ko sẽ crash,nên việc tạo Selection.gd là để cho có truyền vào thôi
+# còn ko có cũng chẳng sao
+# muốn chạy đc trên web thay null hoặc SelectionGDInstance vào chỗ nào có selection
+
 static func new_selection() -> Variant:
-	if OS.has_feature("Web"):
-		return SelectionGDInstance.new()
+	if OS.get_name() == "Web":
+		return SelectionGDInstance.new()	
 	return Selection.new()
 
-
-
-## Tạo Selection rỗng — dùng thay cho Selection.EMPTY()
 static func empty_selection() -> Variant:
-	if OS.has_feature("Web"):
+	if OS.get_name() == "Web":
 		return SelectionGDInstance.EMPTY()
 	return Selection.EMPTY()
 
-## Tạo Selection từ 1 object — dùng thay cho Selection.from_object()
 static func selection_from_object(object: Node2D) -> Variant:
-	if OS.has_feature("Web"):
+	if OS.get_name() == "Web":
 		return SelectionGDInstance.from_object(object)
 	return Selection.from_object(object)
 
-## Tạo Selection từ array — dùng thay cho Selection.from_array()
 static func selection_from_array(array: Array) -> Variant:
-	if OS.has_feature("Web"):
+	if OS.get_name() == "Web":
 		return SelectionGDInstance.from_array(array)
 	return Selection.from_array(array)

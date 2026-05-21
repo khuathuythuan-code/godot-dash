@@ -161,7 +161,7 @@ position = Vector2(640, 861)
 
 [node name="GroundDownParallax" type="Parallax2D" parent="." unique_id=2138827315]
 repeat_size = Vector2(24000, 0)
-repeat_times = 3
+repeat_times = 5
 metadata/_edit_lock_ = true
 
 [node name="GroundDownOrigin" type="Marker2D" parent="GroundDownParallax" unique_id=314703745]
@@ -194,9 +194,8 @@ shape = SubResource("WorldBoundaryShape2D_21xg8")
 debug_color = Color(0, 0.701961, 0.607843, 0.419608)
 
 [node name="GroundUpParallax" type="Parallax2D" parent="." unique_id=1852930834]
-scroll_offset = Vector2(-89573, -3308)
 repeat_size = Vector2(24000, 0)
-repeat_times = 3
+repeat_times = 5
 metadata/_edit_lock_ = true
 
 [node name="GroundUpOrigin" type="Marker2D" parent="GroundUpParallax" unique_id=562968717]

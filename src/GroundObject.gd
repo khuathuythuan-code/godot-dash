@@ -18,6 +18,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	var parallax = get_parent() as Parallax2D
 	if LevelManager.player_camera == null:
 		return
 	if get_viewport().get_camera_2d() != LevelManager.player_camera:
@@ -43,6 +44,12 @@ func _physics_process(delta: float) -> void:
 			Vector2(global_position.x, default_y),
 			0.2 * delta * 60,
 		)
+		
+	if not LevelManager.player_camera.freefly:
+		parallax.scroll_scale = Vector2.ZERO
+	else:
+		parallax.scroll_scale = Vector2.ONE
+		
 	_previous_camera_rotation = LevelManager.player_camera.rotation
 
 
