@@ -169,6 +169,7 @@ position = Vector2(640, 925)
 gizmo_extents = 64.0
 script = ExtResource("7_fb2li")
 default_y = 925.0
+ground_position = null
 
 [node name="Ground" type="Sprite2D" parent="GroundDownParallax/GroundDownOrigin" unique_id=1755954939]
 self_modulate = Color(0.105882, 0.294118, 0.768627, 1)

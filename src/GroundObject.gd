@@ -18,7 +18,6 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var parallax = get_parent() as Parallax2D
 	if LevelManager.player_camera == null:
 		return
 	if get_viewport().get_camera_2d() != LevelManager.player_camera:
@@ -26,30 +25,30 @@ func _physics_process(delta: float) -> void:
 	var zoom_factor: Vector2 = PlayerCamera.DEFAULT_ZOOM / LevelManager.player_camera.zoom
 	# var zoom_factor := Vector2.ONE
 	if not LevelManager.player_camera.freefly:
-		var global_position_rotated: Vector2 = global_position.rotated(LevelManager.player.gameplay_rotation)
-		global_position_rotated = global_position_rotated.lerp(
-			Vector2(
-				GroundData.center.x,
-				(
-					(ground_position * GroundData.distance)
-					* zoom_factor.y
-					+ GroundData.center.y - GroundData.offset
-				),
-			),
-			0.2 * delta * 60,
+		var target_y: float = (
+			(ground_position * GroundData.distance)
+			* zoom_factor.y
+			+ GroundData.center.y - GroundData.offset
 		)
-		global_position = global_position_rotated.rotated(-LevelManager.player.gameplay_rotation)
+		global_position.y = lerp(global_position.y, target_y, 0.08 * delta * 60)
+		#var global_position_rotated: Vector2 = global_position.rotated(LevelManager.player.gameplay_rotation)
+		#global_position_rotated = global_position_rotated.lerp(
+			#Vector2(
+				#GroundData.center.x,
+				#(
+					#(ground_position * GroundData.distance)
+					#* zoom_factor.y
+					#+ GroundData.center.y - GroundData.offset
+				#),
+			#),
+			#0.2 * delta * 60,
+		#)
+		#global_position = global_position_rotated.rotated(-LevelManager.player.gameplay_rotation)
 	else:
 		global_position = global_position.lerp(
 			Vector2(global_position.x, default_y),
 			0.2 * delta * 60,
 		)
-		
-	if not LevelManager.player_camera.freefly:
-		parallax.scroll_scale = Vector2.ZERO
-	else:
-		parallax.scroll_scale = Vector2.ONE
-		
 	_previous_camera_rotation = LevelManager.player_camera.rotation
 
 
