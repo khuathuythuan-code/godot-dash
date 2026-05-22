@@ -2,53 +2,86 @@ extends Node
 class_name DiscordRPCHandler
 
 
-static func _is_available() -> bool:
-	return OS.get_name() != "Web" and OS.get_name() != "Android"
+static func _get_rpc():
+	if OS.get_name() == "Web":
+		return null
+
+	if OS.get_name() == "Android":
+		return null
+
+	if not Engine.has_singleton("DiscordRPC"):
+		return null
+
+	return Engine.get_singleton("DiscordRPC")
 
 
 static func set_app_id(id: int) -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.app_id = id
+
+	rpc.app_id = id
 
 
 static func set_large_image(image: String) -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.large_image = image
+
+	rpc.large_image = image
 
 
 static func set_start_timestamp(timestamp: int) -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.start_timestamp = timestamp
+
+	rpc.start_timestamp = timestamp
 
 
 static func set_details(details: String) -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.details = details
+
+	rpc.details = details
 
 
 static func run_callbacks() -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.run_callbacks()
+
+	rpc.run_callbacks()
 
 
 static func refresh() -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.refresh()
+
+	rpc.refresh()
 
 
 static func clear() -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.clear()
+
+	rpc.clear()
 
 
 static func unclear() -> void:
-	if not _is_available():
+	var rpc = _get_rpc()
+
+	if rpc == null:
 		return
-	DiscordRPC.unclear()
+
+	rpc.unclear()
