@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://wgo4i4qn77d4" path="res://src/GameScene.gd" id="1_k47tp"]
 [ext_resource type="Texture2D" uid="uid://qmiip577cd81" path="res://assets/textures/backgrounds/back godot dash 11 (1).png" id="2_lk0vr"]
 [ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="3_22pbm"]
-[ext_resource type="Script" uid="uid://bj3cco40eefrn" path="res://scenes/Level.gd" id="4_lk0vr"]
+[ext_resource type="Script" path="res://scenes/Level.gd" id="4_lk0vr"]
 [ext_resource type="Script" uid="uid://cbyrwlqd1pn66" path="res://src/EditorGrid.gd" id="5_7ssrb"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="6_7ju4w"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="7_fb2li"]
@@ -169,7 +169,6 @@ position = Vector2(640, 925)
 gizmo_extents = 64.0
 script = ExtResource("7_fb2li")
 default_y = 925.0
-ground_position = null
 
 [node name="Ground" type="Sprite2D" parent="GroundDownParallax/GroundDownOrigin" unique_id=1755954939]
 self_modulate = Color(0.105882, 0.294118, 0.768627, 1)

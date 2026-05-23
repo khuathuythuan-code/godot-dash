@@ -62,6 +62,10 @@ func load_song_threaded_request(path: String) -> Error:
 		return OK
 	if path.is_empty() or path == null:
 		return ERR_FILE_BAD_PATH
+	# Web không hỗ trợ thread → load đồng bộ
+	if OS.has_feature("web"):
+		load_song(path)
+		return OK
 	if not thread:
 		thread = Thread.new()
 	if thread.is_started():
@@ -72,8 +76,12 @@ func load_song_threaded_request(path: String) -> Error:
 func load_song_threaded_get(path: String) -> AudioStream:
 	if path.is_empty() or path == null:
 		return null
-	if thread.is_started():
+	if thread and thread.is_started():  # thêm "thread and" để tránh null error
 		thread.wait_to_finish()
+	if not path in loaded_songs:  # nếu chưa load được
+		load_song(path)           # load đồng bộ lần nữa
+	if not path in loaded_songs:  # vẫn không có
+		return null               # trả về null thay vì crash
 	return loaded_songs[path]
 
 

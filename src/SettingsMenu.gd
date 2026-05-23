@@ -50,6 +50,8 @@ func _on_window_mode_value_changed(window_mode: Config.WindowMode) -> void:
 
 
 func _on_anti_aliasing_value_changed(anti_aliasing_mode: Viewport.MSAA) -> void:
+	if RenderingServer.get_current_rendering_method() == "gl_compatibility":
+		return
 	var viewport := get_viewport()
 	if viewport != null:
 		viewport.msaa_2d = anti_aliasing_mode

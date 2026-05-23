@@ -20,7 +20,8 @@ func _ready() -> void:
 	LevelManager.level_playing = false
 	LevelManager.ground_down = $GroundDownParallax/GroundDownOrigin
 	LevelManager.ground_up = $GroundUpParallax/GroundUpOrigin
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	if OS.get_name() != "Web":
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		pause_menu.leave.connect(_leave_level)

@@ -9,7 +9,7 @@ rust-version = "1.94"
 crate-type = ["cdylib"] # Compile this crate to a dynamic C library.
 
 [dependencies]
-godot = { version = "0.5.0", features = [
+godot = { version = "0.5.3", features = [
   "experimental-threads",
   "register-docs",
 ] }

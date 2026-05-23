@@ -157,7 +157,10 @@ func _ready() -> void:
 		$DeathEffect.sprite_frames.add_frame(&"default", frame)
 	%Trail.texture = load(Config.icons[PreviewIcon.Icon.TRAIL].path)
 	%Trail.width = %Trail.texture.get_width()
-	var empty_frame := Texture2D.new()
+	#var empty_frame := Texture2D.new() # đây là frame rỗng để ẩn deathAnimation — thay vì dùng visible = false
+	var empty_frame := PlaceholderTexture2D.new()
+#Texture2D.new() tạo base class trực tiếp — đây là abstract class, không thể instantiate trực tiếp vì chưa implement _get_width và _get_height. Trên desktop Godot bỏ qua, nhưng web strict hơn.
+#Sửa bằng cách dùng PlaceholderTexture2D thay thế — đây là class con của Texture2D đã implement đầy đủ
 	$DeathEffect.sprite_frames.add_frame(&"default", empty_frame)
 	$DeathEffect.frame = $DeathEffect.sprite_frames.get_frame_count(&"default") - 1
 	platform_on_leave = PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_UPWARD_VELOCITY if not LevelManager.platformer else PlatformOnLeave.PLATFORM_ON_LEAVE_ADD_VELOCITY
