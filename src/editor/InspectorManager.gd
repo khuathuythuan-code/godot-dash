@@ -37,6 +37,7 @@ func _ready() -> void:
 	object_name.text_submitted.connect(update_object_name)
 	interactable_editor.object_name.text_submitted.connect(update_object_name)
 	group_parent.value_changed.connect(_on_group_parent_value_changed)
+	@warning_ignore("static_called_on_instance")
 	_on_edit_handler_selection_changed(Editor.empty_selection())
 
 

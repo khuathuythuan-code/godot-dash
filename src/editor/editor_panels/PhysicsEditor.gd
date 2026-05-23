@@ -12,6 +12,7 @@ extends VBoxContainer
 @export var gravity_scale_property: FloatProperty
 @export var pushable_by_player_property: BoolProperty
 
+@warning_ignore("static_called_on_instance")
 var solid_objects = Editor.new_selection()
 
 

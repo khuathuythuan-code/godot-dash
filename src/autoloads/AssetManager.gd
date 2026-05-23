@@ -51,7 +51,8 @@ func load_song(path: String) -> AudioStream:
 			"ogg":
 				audio_stream = AudioStreamOggVorbis.load_from_file(path)
 			_:
-				printerr("Song isn't of valid type")
+				pass
+				#printerr("Song isn't of valid type")
 	loaded_songs[path] = audio_stream
 	return audio_stream
 

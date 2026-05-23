@@ -33,6 +33,7 @@ var selection_pivot: Vector2
 var selection_pivot_with_player: Vector2
 var gizmo: Gizmo
 
+@warning_ignore("static_called_on_instance")
 @onready var selection = Editor.new_selection()
 
 
@@ -412,6 +413,7 @@ func delete_selection() -> void:
 
 
 func clear_selection(merge_history_actions: bool = false) -> void:
+	@warning_ignore("static_called_on_instance")
 	select(Editor.empty_selection(), merge_history_actions)
 	_reset_selection_zone()
 
@@ -423,6 +425,7 @@ func select_all(merge_history_actions: bool = false) -> void:
 		if layer.hidden_in_editor or layer.locked:
 			continue
 		objects.append_array(layer.get_children().filter(only_node_2ds))
+	@warning_ignore("static_called_on_instance")
 	select(Editor.selection_from_array(objects), merge_history_actions)
 
 
@@ -528,8 +531,10 @@ func _update_selection() -> void:
 						placed_objects_collider.get_overlapping_areas()[selection_index % len(placed_objects_collider.get_overlapping_areas())],
 					)
 				)
+				@warning_ignore("static_called_on_instance")
 				select(Editor.selection_from_object(cycled_object))
 			else:
+				@warning_ignore("static_called_on_instance")
 				select(Editor.empty_selection())
 	if Input.is_action_pressed(&"editor_selection_remove", false) or Input.is_action_pressed(&"editor_add", false):
 		_swipe_selection_zone()
@@ -540,6 +545,7 @@ func _update_selection() -> void:
 		.map(get_object_parent) \
 		.filter(is_in_editable_layer),
 	)
+	@warning_ignore("static_called_on_instance")
 	var selection_buffer = Editor.selection_from_array(selection_buffer_array)
 	if Input.is_action_just_released(&"editor_selection_remove", true):
 		deselect(selection_buffer)
@@ -630,7 +636,7 @@ func _clone_object(object: Node2D) -> Node:
 	packer.pack(object)
 	var clone := packer.instantiate()
 	NodeUtils.change_owner_recursive(object, level)
-	NodeUtils.change_owner_recursive(clone, level)
+	#NodeUtils.change_owner_recursive(clone, level)
 	clone.scene_file_path = object.scene_file_path
 	return clone
 

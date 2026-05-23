@@ -16,72 +16,72 @@ static func _get_rpc():
 
 
 static func set_app_id(id: int) -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.app_id = id
+	DiscordRPC.app_id = id
 
 
 static func set_large_image(image: String) -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.large_image = image
+	DiscordRPC.large_image = image
 
 
 static func set_start_timestamp(timestamp: int) -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.start_timestamp = timestamp
+	DiscordRPC.start_timestamp = timestamp
 
 
 static func set_details(details: String) -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.details = details
+	DiscordRPC.details = details
 
 
 static func run_callbacks() -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.run_callbacks()
+	DiscordRPC.run_callbacks()
 
 
 static func refresh() -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.refresh()
+	DiscordRPC.refresh()
 
 
 static func clear() -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.clear()
+	DiscordRPC.clear()
 
 
 static func unclear() -> void:
-	var rpc = _get_rpc()
+	var DiscordRPC = _get_rpc()
 
-	if rpc == null:
+	if DiscordRPC == null:
 		return
 
-	rpc.unclear()
+	DiscordRPC.unclear()

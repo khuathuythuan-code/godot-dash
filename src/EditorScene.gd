@@ -57,8 +57,10 @@ func _ready() -> void:
 		level = Level.new()
 		level.name = "New level"
 	
+	@warning_ignore("static_called_on_instance")
 	Editor.clipboard = Editor.new_selection()
 	LevelManager.game_scene.add_loaded_level(level)
+	@warning_ignore("static_called_on_instance")
 	inspector_tree.refresh( Editor.empty_selection())
 	inspector_tree.set_active_layer(0, 0)
 

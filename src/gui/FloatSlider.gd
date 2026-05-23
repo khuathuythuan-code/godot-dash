@@ -82,7 +82,9 @@ func update_internals() -> void:
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
 	slider.mouse_filter = Control.MOUSE_FILTER_STOP
 	slider.theme_type_variation = &"FloatSliderHSlider"
-	slider.size = size
+	#slider.size = size
+#set_anchors_preset(PRESET_FULL_RECT) set anchor không bằng nhau (anchor_right=1, anchor_bottom=1) → Godot tự tính lại size → size bị override, warning xuất hiện.
+#Sửa bằng cách bỏ slider.size = size đi vì PRESET_FULL_RECT đã tự fill toàn bộ parent
 	slider.position = Vector2.ZERO
 	slider.set_anchors_preset(PRESET_FULL_RECT)
 	slider.scrollable = false

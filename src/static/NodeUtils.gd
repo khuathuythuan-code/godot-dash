@@ -33,7 +33,8 @@ static func set_child_owner(caller: Node, child: Node) -> void:
 
 
 static func change_owner_recursive(object: Node, object_owner: Node):
-	object.owner = object_owner
+	if object != object_owner:
+		object.owner = object_owner
 	if object.get_child_count() > 0:
 		object.get_children().map(change_owner_recursive.bind(object_owner))
 

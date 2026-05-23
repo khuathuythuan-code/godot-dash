@@ -3,6 +3,7 @@ extends Node2D
 
 var bounding_boxes: Dictionary[Interactable, GroupBoundingBox]
 
+@warning_ignore("static_called_on_instance")
 @onready var saved_selection = Editor.new_selection()
 
 

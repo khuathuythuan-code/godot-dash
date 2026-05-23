@@ -358,6 +358,7 @@ func _on_edit_handler_selection_changed(new_selection) -> void:
 
 
 func _on_level_operations_handler_level_loaded(_level: Level) -> void:
+	@warning_ignore("static_called_on_instance")
 	selection = Editor.empty_selection()
 	clear()
 	create_item()
@@ -381,8 +382,10 @@ func _on_multi_selected(item: TreeItem, _column: int, selected: bool) -> void:
 		var layer: Layer = Editor.root.level.layers[item.get_parent().get_index()]
 		var object: Node2D = layer.get_child(item.get_index())
 		if selected:
+			@warning_ignore("static_called_on_instance")
 			selection = selection.union(Editor.selection_from_object(object))
 		else:
+			@warning_ignore("static_called_on_instance")
 			selection = selection.difference(Editor.selection_from_object(object))
 	bulk_update_selection.call_deferred(selected)
 

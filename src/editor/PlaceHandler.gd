@@ -73,6 +73,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 		Editor.version_history.commit_action()
 
 		add_hsv_watchers(object, level)
+		@warning_ignore("static_called_on_instance")
 		edit_handler.select(Editor.selection_from_object(object), true)
 
 		for child: Node in object.get_children():
@@ -107,6 +108,7 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			Editor.version_history.add_do_method(delete_object)
 			Editor.version_history.add_undo_method(restore_object)
 			Editor.version_history.commit_action()
+			@warning_ignore("static_called_on_instance")
 			edit_handler.deselect(Editor.selection_from_object(object), true)
 			object_deleted.emit(object)
 
@@ -158,4 +160,6 @@ static func add_hsv_watchers(object: Node2D, level: Level) -> void:
 		var hsv_watcher := HSVWatcher.new()
 		hsv_watcher.name = "HSVWatcher"
 		object_to_be_colored.add_child(hsv_watcher)
-		hsv_watcher.set_owner(level)
+		   # Chỉ set_owner khi level đã trong scene tree (editor)
+		if level.is_inside_tree():
+			hsv_watcher.set_owner(level)

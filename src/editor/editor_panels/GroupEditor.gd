@@ -9,6 +9,7 @@ const NONSHARED_GROUP_COLOR: Color = Color("#8dffcc")
 
 var group_buttons: Dictionary[String, Button]
 
+@warning_ignore("static_called_on_instance")
 @onready var selected_objects = Editor.new_selection()
 
 
@@ -78,7 +79,7 @@ func _remove_group(group_button: Button) -> void:
 	var undo_remove_group := func(_selected_objects, _group: String):
 		_add_selection_to_group(_selected_objects, _group)
 		group_container.add_child(group_button)
-	var selected_objects_snapshot := selected_objects.clone()
+	var selected_objects_snapshot = selected_objects.clone()
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Removed group %s from %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_remove_group.bind(selected_objects_snapshot, group))
@@ -94,7 +95,7 @@ func _add_group(group: String) -> void:
 	var undo_add_group := func(_selected_objects, _group: String):
 		_remove_group_from_selection(_selected_objects, _group)
 		group_container.remove_child(group_button)
-	var selected_objects_snapshot := selected_objects.clone()
+	var selected_objects_snapshot = selected_objects.clone()
 	var version_history: UndoRedo = Editor.version_history
 	version_history.create_action("Added group %s to %s objects" % [group, selected_objects.size()])
 	version_history.add_do_method(do_add_group.bind(selected_objects_snapshot, group))

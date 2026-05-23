@@ -14,6 +14,7 @@ var pivot_relative_transforms: Dictionary[NodePath, Transform2D]
 var same_scale: bool = true
 var same_rotation: bool = true
 
+@warning_ignore("static_called_on_instance")
 @onready var current_selection = Editor.new_selection()
 @onready var parent: Node = get_parent()
 
