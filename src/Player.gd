@@ -172,6 +172,19 @@ func _ready() -> void:
 	_set_particles_visibility.call_deferred()
 	if not Editor.in_editor:
 		_reset_replay.call_deferred()
+	# Preload tất cả icon gamemode
+	for icon in $Icon.get_children():
+		icon.show()
+	await RenderingServer.frame_post_draw
+	await RenderingServer.frame_post_draw  # đợi 1 frame để GPU render
+	# Ẩn lại, chỉ giữ icon đúng gamemode
+	displayed_gamemode = displayed_gamemode  # trigger setter để show đúng icon
+	#displayed_gamemode mặc đinh là level.start_displayed_gamemode = data.start_displayed_gamemode trong level.gd
+	#mỗi lần gán sẽ kích hoạt setter để show/hide icon đúng
+	#process_frame là signal của CPU — emit khi CPU xử lý xong logic frame, nhưng không đảm bảo GPU đã render xong.
+	#RenderingServer.frame_post_draw là signal emit sau khi GPU thực sự render xong frame 
+	#đảm bảo texture đã được upload và shader đã compile trước khi tiếp tục
+	#đây là lí do dùng await RenderingServer.frame_post_draw thay vì process_frame
 
 
 func _physics_process(delta: float) -> void:
