@@ -1,24 +1,45 @@
-# Godot 4+ specific ignores
+# ==========================================
+# Godot 4+ Specific Ignores
+# ==========================================
 .godot/
-
-# VSCode project folder (eww brother ewwwww)
-.vscode/
-
-scenes/levels/imported
-
-assets/sounds/music/level_music/*
-
-assets/textures/triggers_imported
-
-*.kate-swp
-
-target/
-*.mp3
-*.json
-*.txt
-*.uid
-*.dll
-rust/bin/
-rust/target/
-
 export_presets.cfg
+
+# Chặn các file import riêng lẻ nếu bạn không muốn đưa lên
+scenes/levels/imported/
+assets/textures/triggers_imported/
+
+# Chặn file UID của Godot (nếu bạn không muốn tracking uid hệ thống)
+*.uid
+
+# ==========================================
+# Rust / GDExtension Builds (QUAN TRỌNG)
+# ==========================================
+rust/target/
+rust/bin/
+*.dll
+*.so
+*.dylib
+
+# ==========================================
+# IDEs & Editors
+# ==========================================
+.vscode/
+*.kate-swp
+.idea/
+
+# ==========================================
+# Assets & Audio (Tùy chọn của bạn)
+# ==========================================
+assets/sounds/music/level_music/*
+*.mp3
+
+# Sau này nếu có file .txt hoặc .json rác từ Rust build, 
+# hãy chặn đích danh thư mục chứa nó, đừng chặn toàn cục:
+# rust/target/**/*.json
+
+# ==========================================
+# System Garbage (File rác của hệ điều hành)
+# ==========================================
+Thumbs.db
+Desktop.ini
+.DS_Store
