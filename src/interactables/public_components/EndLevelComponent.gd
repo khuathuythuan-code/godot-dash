@@ -48,18 +48,21 @@ func _on_static_easing_progressed(player: Player, weight_delta: float) -> void:
 	var target: Node2D = parent.query(TargetObjectComponent).target_to_node()
 	var weight: float = static_trigger.query(EasingComponent).weights[player]
 	var rotation_direction = 1 if player.global_position < target.global_position else -1
-	player.global_position = initial_player_position.lerp(initial_player_position+Vector2(0,-800), weight)
+	player.global_position = initial_player_position.lerp(target.global_position, weight)
 	player.rotation += weight_delta * 5 * rotation_direction
-	LevelManager.player_camera.static_factor = Vector2.ZERO
-	pass
+	$"../CPUParticles2D".global_position = target.global_position
+
 
 func _on_static_easing_finished(player: Player) -> void:
 	shake_trigger.interacted.emit(player)
 	player.hide()
-	get_parent().visible = true
-
-	pass
-
+	#$"../HiddenOutsideEditorAttribute" ẩn sprite của EndLevelTrigger khi chạy game
+	#trong .json của level, 
+	#block nào có "attributes": ["HiddenOutsideEditorAttribute.gd"] thì chỉ hiện trong editor 
+	$"..".show()
+	$"../Sprite".hide()
+	$"../CPUParticles2D".show()
+	
 
 func _on_shake_easing_finished(_player: Player) -> void:
 	LevelManager.current_level.stop_level()

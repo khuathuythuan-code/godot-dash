@@ -28,7 +28,6 @@ script = ExtResource("1_tuoqa")
 metadata/_custom_type_script = "uid://rt6vy5mae3if"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=897971860]
-visible = false
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_tuoqa")
 script = ExtResource("3_mj4da")
@@ -42,7 +41,6 @@ debug_color = Color(0, 1, 0, 0)
 
 [node name="TargetObjectComponent" type="Node" parent="." unique_id=897450169]
 script = ExtResource("3_csxpb")
-target = NodePath("..")
 metadata/_custom_type_script = "uid://b1h4lmrngdiim"
 
 [node name="EndLevelComponent" type="Node" parent="." unique_id=1975542527 node_paths=PackedStringArray("static_trigger", "shake_trigger")]
@@ -117,6 +115,7 @@ visible = false
 type = 8
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2010276158]
+visible = false
 position = Vector2(326, 0)
 amount = 200
 lifetime = 4.21
