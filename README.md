@@ -9,10 +9,13 @@ A Geometry Dash fangame made with Godot Engine.
 
 [Discord community](https://discord.gg/8Vn9qDDXZD/)
 
-## Setup:(làm cái này khi clone về mới chạy đc vì cần tạo file.dll)
+## Setup:(làm cái này khi clone về mới chạy đc vì cần tạo file.dll và .so)
+Mở terminal tại thư mục code Rust và gõ:
 ```
 cargo build
 ```
+
+Kết quả: Godot sẽ quét file .gdextension tìm thấy thư mục chứa file .dll hay .so trong Thư mục rust/bin/ và rust/target/ để nạp thư viện Rust vào game là chạy đc.
 
 ## OS Support
 
