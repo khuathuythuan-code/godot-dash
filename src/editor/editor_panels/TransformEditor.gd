@@ -21,6 +21,11 @@ var same_rotation: bool = true
 
 func update_pivot_relative_transform() -> void:
 	for collision_object in current_selection.to_array():
+		 # Check object còn trong scene tree không
+		if not is_instance_valid(collision_object):
+			continue
+		if not collision_object.is_inside_tree():
+			continue
 		var pivot_relative_transform: Transform2D = collision_object.global_transform
 		pivot_relative_transform.origin -= edit_handler.selection_pivot
 		pivot_relative_transforms[Editor.root.level.get_path_to(collision_object)] = pivot_relative_transform
