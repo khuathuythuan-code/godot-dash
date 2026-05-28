@@ -45,6 +45,9 @@ func use_data(data: Dictionary) -> void:
 
 	if "intensity" in data:
 		intensity = data.intensity
+	else:
+		intensity = 1.0
+		
 
 	if "alpha" in data:
 		alpha = data.alpha
