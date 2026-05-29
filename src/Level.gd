@@ -449,6 +449,8 @@ static func from_data(data: Dictionary) -> Level:
 		layer.name = layer_data.name
 		for object_data: Dictionary in layer_data.objects:
 			var object: Node2D = instantiate_object_from_data(object_data, resource_cache)
+			if object == null:
+				continue  # ← bỏ qua object này, load object tiếp theo
 			layer.add_child(object)
 			object.set_meta(Constants.LAYER_META, layer)
 			deserialize_data_to_object(object_data, object, level, resource_cache)
@@ -460,10 +462,21 @@ static func from_data(data: Dictionary) -> Level:
 
 
 static func instantiate_object_from_data(object_data: Dictionary, resource_cache: ResourceCache) -> Node2D:
+	# Validate scene_file_path
+	if not object_data.scene_file_path.ends_with(".tscn"):
+		push_warning("Skipping object '%s' — invalid scene_file_path: '%s'" % [
+			object_data.get("name", "?"),
+			object_data.scene_file_path
+		])
+		return null  # ← bỏ qua, không crash
+
 	var prefab: PackedScene = resource_cache.get_or_load("res://%s" % object_data.scene_file_path)
 	if not prefab:
-		push_error("Resource not found at path: res://%s" % object_data.scene_file_path)
-		return
+		push_warning("Skipping object '%s' — resource not found: res://%s" % [
+			object_data.get("name", "?"),
+			object_data.scene_file_path
+		])
+		return null  # ← bỏ qua, không crash
 	if Config.ldm and not Editor.in_editor and object_data.has("attributes"):
 		if object_data.attributes.has("LDMAttribute.gd"):
 			return
