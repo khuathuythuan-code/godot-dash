@@ -186,7 +186,12 @@ func _ready() -> void:
 	#đảm bảo texture đã được upload và shader đã compile trước khi tiếp tục
 	#đây là lí do dùng await RenderingServer.frame_post_draw thay vì process_frame
 
-
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("disable_ground_collision"):
+		$GroundCollider.disabled = true
+	else:
+		$GroundCollider.disabled = false
+		
 func _physics_process(delta: float) -> void:
 	if not _should_process():
 		return
