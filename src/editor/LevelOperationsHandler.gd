@@ -252,6 +252,8 @@ func _on_save_level_as_dialog_file_selected(path: String) -> void:
 
 func _on_save_changes_before_opening_confirmed() -> void:
 	save_level()
+	if not save_changes_before_opening_dialog.has_meta("next"):
+		return
 	match save_changes_before_opening_dialog.get_meta("next"):
 		_import_level:
 			save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
@@ -265,6 +267,8 @@ func _on_save_changes_before_opening_confirmed() -> void:
 
 func _on_save_changes_before_opening_custom_action(action: StringName) -> void:
 	if action == &"dontsave":
+		if not save_changes_before_opening_dialog.has_meta("next"):
+			return
 		match save_changes_before_opening_dialog.get_meta("next"):
 			_import_level:
 				save_changes_before_opening_dialog.get_meta("next").call(save_changes_before_opening_dialog.get_meta("next_path"), save_changes_before_opening_dialog.get_meta("next_options"))
