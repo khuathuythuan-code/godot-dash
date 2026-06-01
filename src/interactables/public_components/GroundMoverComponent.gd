@@ -34,8 +34,13 @@ func _move_grounds(_player: Player) -> void:
 		GroundData.offset = (parent.global_position.y + GroundData.distance) - LevelManager.ground_down.default_y
 	else:
 		GroundData.offset = 0
+	
+	# Thêm padding vào sau cùng — không ảnh hưởng offset
+	GroundData.padding_top    = Constants.CELL_SIZE * 0.5  # ground_up dịch xuống 64px
+	GroundData.padding_bottom = Constants.CELL_SIZE * 0.5  # ground_down dịch lên 64px
 
-
+	
+	
 func _get_configuration_warnings() -> PackedStringArray:
 	if not parent.has_node("GamemodeChangerComponent"):
 		return ["A sibling GamemodeChangerComponent is required."]
