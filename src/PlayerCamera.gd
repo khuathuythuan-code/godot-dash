@@ -1,8 +1,8 @@
 class_name PlayerCamera
 extends Camera2D
 
-const DEFAULT_ZOOM: Vector2 = Vector2(0.65, 0.65) #ảnh hưởng đến khoảng cách giữa ground_up và ground_down
-#const DEFAULT_ZOOM: Vector2 = Vector2(0.1, 0.1)
+#const DEFAULT_ZOOM: Vector2 = Vector2(0.65, 0.65) #ảnh hưởng đến khoảng cách giữa ground_up và ground_down
+const DEFAULT_ZOOM: Vector2 = Vector2(0.6, 0.6)
 const DEFAULT_OFFSET: Vector2 = Vector2(400.0, 100.0)
 const MAX_DISTANCE := Vector2(400.0, 100.0)
 

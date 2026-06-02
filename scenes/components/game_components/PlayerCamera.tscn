@@ -6,7 +6,7 @@
 process_physics_priority = 1
 z_index = 100
 ignore_rotation = false
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.6, 0.6)
 process_callback = 0
 limit_smoothed = true
 drag_top_margin = 0.5
