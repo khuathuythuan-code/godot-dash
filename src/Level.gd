@@ -116,6 +116,7 @@ var background_color: Color = Constants.DEFAULT_BACKGROUND_COLOR:
 			background_sprite.modulate = new_color
 var ground_color: Color = Constants.DEFAULT_GROUND_COLOR:
 	set(new_color):
+		ground_color = new_color
 		if Editor.render_mode_manager and Editor.render_mode_manager.mode == RenderMode.Mode.OBJECT_MODE:
 			return
 		var ground_down: Sprite2D = LevelManager.ground_down.get_node(^"Ground")
