@@ -220,6 +220,11 @@ func start_playtest() -> void:
 
 
 func stop_playtest() -> void:
+	# Reset background về màu mặc định của level editor
+	if level:
+		level.background_color = level.default_background_color
+		level.ground_color = level.default_ground_color
+		level.line_color = level.default_line_color
 	edit_handler.process_mode = Node.PROCESS_MODE_INHERIT
 	%Playtest.disabled = true
 	if not Editor.level_data_snapshot.is_empty():
