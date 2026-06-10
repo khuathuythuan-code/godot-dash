@@ -155282,6 +155282,7728 @@
 						]
 					},
 					"z_index": 609
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock22",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2048.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock23",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2048.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock24",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2432.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock25",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2432.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock26",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2944.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock27",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							2944.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock28",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							3456.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock29",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							3456.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock30",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							3840.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock31",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							3840.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock32",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							4224.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock33",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							4224.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock34",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							4608.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock35",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							4608.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock36",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							5632.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock37",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							5632.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock38",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							9216.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock39",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							9216.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock40",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							9472.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock41",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							9472.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock42",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							10112.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock43",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							10112.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock44",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							10624.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock45",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							10624.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock46",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11008.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock47",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11008.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock48",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11520.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock49",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11520.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock50",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11904.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock51",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							11904.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock52",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							12416.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock53",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							12416.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock54",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							12800.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock55",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							12800.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock56",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2688.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock57",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2560.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock58",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2432.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock59",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2304.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock60",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2176.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock61",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-2048.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock62",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-1920.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock63",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock03.svg",
+						"id": 6.0
+					},
+					"transform": {
+						"origin": [
+							113472.0,
+							-1792.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							-1.0
+						],
+						"y": [
+							1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.9686, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							6144.0,
+							-2112.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.9688, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger2",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							6144.0,
+							-1856.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7031, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger3",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							14208.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7031, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger4",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							14208.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.7734, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger5",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							20864.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.7734, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger6",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							20864.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger7",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							28544.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger8",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							28544.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7734, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger9",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							38784.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7734, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger10",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							38784.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger11",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							35712.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger12",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							35712.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger13",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							43008.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3203, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger14",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							43008.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger15",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							57216.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger16",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							57216.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.8047, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 3.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger17",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							65408.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.8047, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 3.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger18",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							65408.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.6328, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger19",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							75008.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.6328, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger20",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							75008.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger21",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							78336.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger22",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							78336.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7031, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger23",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							81536.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.7031, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger24",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							81536.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.8867, 0.8021, 0.6027, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger25",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							87936.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.8867, 0.8021, 0.6027, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger26",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							87936.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.6208, 0.6104, 0.9414, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger27",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							91008.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.6208, 0.6104, 0.9414, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger28",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							91008.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3438, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger29",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							94208.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 0.3438, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger30",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							94208.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.8203, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger31",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							97280.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.8203, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger32",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							97280.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.375, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger33",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							100352.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.0, 0.375, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger34",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							100352.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.2813, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger35",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							103552.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.2813, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger36",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							103552.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.9375, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger37",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							106624.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(1.0, 0.9375, 0.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger38",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							106624.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 1.0, 0.7656, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger39",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							109568.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.0, 1.0, 0.7656, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger40",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							109568.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.125, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 0
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger41",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							112128.0,
+							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"ColorChannelChangerComponent": {
+							"alpha": 1.0,
+							"color": "(0.125, 0.0, 1.0, 1.0)",
+							"color_space": 1,
+							"hue": 0.0,
+							"intensity": 1.0,
+							"reset_color": false,
+							"saturation": 0.0,
+							"value": 0.0
+						},
+						"EasingComponent": {
+							"duration": 1.0,
+							"easing_transition": 0,
+							"easing_type": 2,
+							"ignore_time_scale": false,
+							"keep_active": false,
+							"trigger_for_one_player": true
+						},
+						"TargetColorChannelComponent": {
+							"channel_type": 1,
+							"target_color_channel": "",
+							"target_level_channel": 1
+						},
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "ColorTrigger42",
+					"scene_file_path": "scenes/components/level_components/triggers/ColorTrigger.tscn",
+					"transform": {
+						"origin": [
+							112128.0,
+							-2496.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011183",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87168.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011184",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87168.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011185",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87168.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011186",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87168.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011187",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							86784.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011188",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							86784.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011189",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							86784.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011190",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							86784.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011191",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							85888.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011192",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							85888.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011193",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							85888.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011194",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							85888.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011195",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87680.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011196",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87680.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011197",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87680.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011198",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							87680.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011199",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88064.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011202",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88064.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011203",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88064.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011204",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88064.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011205",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88448.0,
+							-1728.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1161
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011206",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88448.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1160
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011209",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88448.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1159
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock011210",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							88448.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 1158
 				}
 			]
 		}
@@ -155289,7 +163011,9 @@
 	"name": "StepJump",
 	"platformer": false,
 	"player_data": {
-		"groups": [],
+		"groups": [
+			"player"
+		],
 		"hsv": {
 			"alpha": 1.0,
 			"hsv_shift": [
