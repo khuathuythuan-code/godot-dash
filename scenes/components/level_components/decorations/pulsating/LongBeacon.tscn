@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://3m1qeikbti1r"]
+
+[ext_resource type="Texture2D" uid="uid://dt1xx51ot4dul" path="res://assets/textures/decorations/pulsating/1-beacon_01.png" id="1_lauv2"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_6ploq"]
+
+[node name="Long Beacon" type="Node2D" unique_id=144950146]
+
+[node name="1Beacon01" type="Sprite2D" parent="." unique_id=435999217]
+position = Vector2(0, -21.08)
+texture = ExtResource("1_lauv2")
+
+[node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_6ploq")]
+type = 1

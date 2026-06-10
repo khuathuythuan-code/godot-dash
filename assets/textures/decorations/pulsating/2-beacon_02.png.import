@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biaevbwkpkedb"
-path="res://.godot/imported/12-ball_06.png-9001f6d04550bb246bd309e1c4f0329c.ctex"
+uid="uid://cvyv7qwoywm7i"
+path="res://.godot/imported/2-beacon_02.png-a333bc410ce1d468ea4d0b03bc280c63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/12-ball_06.png"
-dest_files=["res://.godot/imported/12-ball_06.png-9001f6d04550bb246bd309e1c4f0329c.ctex"]
+source_file="res://assets/textures/decorations/pulsating/2-beacon_02.png"
+dest_files=["res://.godot/imported/2-beacon_02.png-a333bc410ce1d468ea4d0b03bc280c63.ctex"]
 
 [params]
 

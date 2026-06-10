@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt1xx51ot4dul"
-path="res://.godot/imported/1-beacon_01.png-4a7e1f5ed66a2e959de5be1cb8022183.ctex"
+uid="uid://c6q7fc5wfka6p"
+path="res://.godot/imported/9-ball_03.png-d89e24f453c8c678d2a93ada2d86501c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/1-beacon_01.png"
-dest_files=["res://.godot/imported/1-beacon_01.png-4a7e1f5ed66a2e959de5be1cb8022183.ctex"]
+source_file="res://assets/textures/decorations/pulsating/9-ball_03.png"
+dest_files=["res://.godot/imported/9-ball_03.png-d89e24f453c8c678d2a93ada2d86501c.ctex"]
 
 [params]
 

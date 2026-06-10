@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gdkcfm8faku7"
-path="res://.godot/imported/3-beacon_03.png-c2686afa3bef49e787356751e4b2041d.ctex"
+uid="uid://ep7kjjyt37q"
+path="res://.godot/imported/2-ground_spike_02.png-3491df0d964467000865cd73aa5749a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/3-beacon_03.png"
-dest_files=["res://.godot/imported/3-beacon_03.png-c2686afa3bef49e787356751e4b2041d.ctex"]
+source_file="res://assets/textures/decorations/ground/2-ground_spike_02.png"
+dest_files=["res://.godot/imported/2-ground_spike_02.png-3491df0d964467000865cd73aa5749a7.ctex"]
 
 [params]
 

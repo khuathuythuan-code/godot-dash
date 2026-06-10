@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c0y4yiglvuri7"]
+
+[ext_resource type="Texture2D" uid="uid://ep7kjjyt37q" path="res://assets/textures/decorations/ground/2-ground_spike_02.png" id="1_vnle7"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_l2ys1"]
+
+[node name="GroundDecorSpike02" type="Node2D" unique_id=144950146]
+
+[node name="1Beacon01" type="Sprite2D" parent="." unique_id=435999217]
+position = Vector2(0, -9)
+texture = ExtResource("1_vnle7")
+
+[node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_l2ys1")]
+type = 1

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://djk2rwn5y4yob"]
+
+[ext_resource type="Texture2D" uid="uid://bk4kri1flccg2" path="res://assets/textures/decorations/pulsating/11-ball_05.png" id="1_l4hdh"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_15sa8"]
+
+[node name="Ball05" type="Node2D" unique_id=144950146]
+
+[node name="1Beacon01" type="Sprite2D" parent="." unique_id=435999217]
+position = Vector2(0, 3)
+texture = ExtResource("1_l4hdh")
+
+[node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_15sa8")]
+type = 1

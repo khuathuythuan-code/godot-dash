@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dav0xwfbvbgxv"
-path="res://.godot/imported/10-ball_04.png-e5de0e0f953ce10c5b61bb0c5a88e88d.ctex"
+uid="uid://bcamqbw01y37n"
+path="res://.godot/imported/d_chain_02_001.png-4fa018d755868797b579320114419482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/10-ball_04.png"
-dest_files=["res://.godot/imported/10-ball_04.png-e5de0e0f953ce10c5b61bb0c5a88e88d.ctex"]
+source_file="res://assets/textures/decorations/regular/d_chain_02_001.png"
+dest_files=["res://.godot/imported/d_chain_02_001.png-4fa018d755868797b579320114419482.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6w3j2okss4uh"
-path="res://.godot/imported/7-ball_01.png-24428db55cb15b616552ec8602110e85.ctex"
+uid="uid://82wqehgxhjlr"
+path="res://.godot/imported/8-ball_02.png-e6e435ac1627593976381dcb9e65e26a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/7-ball_01.png"
-dest_files=["res://.godot/imported/7-ball_01.png-24428db55cb15b616552ec8602110e85.ctex"]
+source_file="res://assets/textures/decorations/pulsating/8-ball_02.png"
+dest_files=["res://.godot/imported/8-ball_02.png-e6e435ac1627593976381dcb9e65e26a.ctex"]
 
 [params]
 

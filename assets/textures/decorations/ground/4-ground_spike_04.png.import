@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6q7fc5wfka6p"
-path="res://.godot/imported/9-ball_03.png-2fa2fae667ba71d793a3307b3485ec1e.ctex"
+uid="uid://dh7wonel82eu5"
+path="res://.godot/imported/4-ground_spike_04.png-62f98d0de0f6c7d4ed553fde06c15e04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/decorations/9-ball_03.png"
-dest_files=["res://.godot/imported/9-ball_03.png-2fa2fae667ba71d793a3307b3485ec1e.ctex"]
+source_file="res://assets/textures/decorations/ground/4-ground_spike_04.png"
+dest_files=["res://.godot/imported/4-ground_spike_04.png-62f98d0de0f6c7d4ed553fde06c15e04.ctex"]
 
 [params]
 
