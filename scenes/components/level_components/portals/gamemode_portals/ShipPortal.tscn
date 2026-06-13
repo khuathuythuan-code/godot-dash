@@ -26,6 +26,7 @@ metadata/_edit_group_ = true
 modulate = Color(1, 0.121569, 1, 1)
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=837259715]
+position = Vector2(-33, 0)
 shape = SubResource("RectangleShape2D_cghk8")
 debug_color = Color(0, 1, 0, 0)
 
