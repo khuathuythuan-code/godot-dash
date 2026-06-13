@@ -192,6 +192,10 @@ func _process(delta: float) -> void:
 	else:
 		$GroundCollider.disabled = false
 		
+	if Input.is_action_just_pressed("gravity_toggle"):
+		gravity_flip *= -1
+	
+		
 func _physics_process(delta: float) -> void:
 	if not _should_process():
 		return
