@@ -7,8 +7,8 @@
 
 A Geometry Dash fangame made with Godot Engine.
 
-[Discord community](https://discord.gg/8Vn9qDDXZD/)
-
+## Lưu ý:
+- tải godot 4.6 trở lên vì phiên bản thấp hơn sẽ bị thiếu 1 số class built-in ví dụ: pivot_offset_ratio,...
 ## Setup:(làm cái này khi clone về mới chạy đc vì cần tạo file.dll và .so)
 Mở terminal tại thư mục code Rust và gõ:
 ```
