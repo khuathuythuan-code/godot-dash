@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bc6orrlrxjjt"]
+
+[ext_resource type="Texture2D" uid="uid://mbqogq5cigyt" path="res://assets/textures/solids/grid_blocks/GridBlock02.svg" id="1_byfyk"]
+[ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_y66xf"]
+
+[node name="GridDecorBlock" type="Node2D" unique_id=144950146]
+
+[node name="1Beacon01" type="Sprite2D" parent="." unique_id=435999217]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_byfyk")
+
+[node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_y66xf")]
+type = 1
