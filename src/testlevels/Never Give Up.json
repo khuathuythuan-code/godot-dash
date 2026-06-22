@@ -50,81 +50,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "RegularBlock010",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							1152.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock011",
 					"physics": {
 						"absorbent": false,
@@ -1550,81 +1475,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "RegularBlock0146",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							9728.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 46
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock0147",
 					"physics": {
 						"absorbent": false,
@@ -2450,81 +2300,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "RegularBlock0172",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							17408.0,
-							-192.0
-						],
-						"x": [
-							-0.0000000437113882867379,
-							1.0
-						],
-						"y": [
-							-1.0,
-							-0.0000000437113882867379
-						]
-					},
-					"z_index": 72
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock0173",
 					"physics": {
 						"absorbent": false,
@@ -2565,81 +2340,6 @@
 						]
 					},
 					"z_index": 73
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock0174",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							17280.0,
-							-192.0
-						],
-						"x": [
-							-0.0000000437113882867379,
-							1.0
-						],
-						"y": [
-							-1.0,
-							-0.0000000437113882867379
-						]
-					},
-					"z_index": 74
 				},
 				{
 					"children_hsv": [
@@ -3765,156 +3465,6 @@
 						]
 					},
 					"z_index": 143
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock01150",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							33920.0,
-							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 150
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock01151",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							33920.0,
-							-960.0
-						],
-						"x": [
-							-1.0,
-							-0.000000150995802528087
-						],
-						"y": [
-							0.000000150995802528087,
-							-1.0
-						]
-					},
-					"z_index": 151
 				},
 				{
 					"children_hsv": [
@@ -34968,7 +34518,7 @@
 					"transform": {
 						"origin": [
 							5120.0,
-							-1216.0
+							-1280.0
 						],
 						"x": [
 							1.0,
@@ -35001,7 +34551,7 @@
 					"transform": {
 						"origin": [
 							6272.0,
-							-1216.0
+							-1184.0
 						],
 						"x": [
 							1.0,
@@ -35034,7 +34584,7 @@
 					"transform": {
 						"origin": [
 							6528.0,
-							-1088.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -35067,7 +34617,7 @@
 					"transform": {
 						"origin": [
 							6784.0,
-							-960.0
+							-944.0
 						],
 						"x": [
 							1.0,
@@ -35100,7 +34650,7 @@
 					"transform": {
 						"origin": [
 							7040.0,
-							-832.0
+							-816.0
 						],
 						"x": [
 							1.0,
@@ -35627,7 +35177,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							14592.0,
+							14560.0,
 							-704.0
 						],
 						"x": [
@@ -35660,7 +35210,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							14848.0,
+							14816.0,
 							-576.0
 						],
 						"x": [
@@ -35788,39 +35338,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "Spike41",
-					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
-					"transform": {
-						"origin": [
-							17408.0,
-							-320.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 41
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "Spike42",
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
@@ -35859,7 +35376,7 @@
 					"transform": {
 						"origin": [
 							18688.0,
-							-704.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -36156,7 +35673,7 @@
 					"transform": {
 						"origin": [
 							26240.0,
-							-1088.0
+							-1152.0
 						],
 						"x": [
 							1.0,
@@ -36288,7 +35805,7 @@
 					"transform": {
 						"origin": [
 							27776.0,
-							-1728.0
+							-1792.0
 						],
 						"x": [
 							1.0,
@@ -36321,7 +35838,7 @@
 					"transform": {
 						"origin": [
 							28032.0,
-							-1600.0
+							-1664.0
 						],
 						"x": [
 							1.0,
@@ -36354,7 +35871,7 @@
 					"transform": {
 						"origin": [
 							29952.0,
-							-1472.0
+							-1344.0
 						],
 						"x": [
 							1.0,
@@ -48464,7 +47981,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							101248.0,
+							101264.0,
 							-448.0
 						],
 						"x": [
@@ -48531,7 +48048,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -48564,7 +48081,7 @@
 					"transform": {
 						"origin": [
 							101504.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -53460,39 +52977,6 @@
 						]
 					},
 					"z_index": 5
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike7",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							2176.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 7
 				},
 				{
 					"children_hsv": [],
@@ -58492,105 +57976,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "GroundSpike159",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							27520.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 159
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike160",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							27648.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 160
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike161",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							27776.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 161
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "GroundSpike163",
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
@@ -60307,39 +59692,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "GroundSpike215",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							95616.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 215
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "GroundSpike217",
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
@@ -60783,7 +60135,7 @@
 					"transform": {
 						"origin": [
 							75392.0,
-							-576.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -60820,7 +60172,7 @@
 					"transform": {
 						"origin": [
 							75392.0,
-							-576.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -60898,7 +60250,7 @@
 					"scene_file_path": "scenes/components/level_components/portals/gamemode_portals/ShipPortal.tscn",
 					"transform": {
 						"origin": [
-							61184.0,
+							61312.0,
 							-704.0
 						],
 						"x": [
@@ -61094,7 +60446,7 @@
 					"transform": {
 						"origin": [
 							19072.0,
-							-704.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -61327,8 +60679,8 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							24320.0,
-							-832.0
+							24448.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -61366,8 +60718,8 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							24832.0,
-							-960.0
+							24960.0,
+							-1088.0
 						],
 						"x": [
 							1.0,
@@ -61405,7 +60757,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							27904.0,
+							27776.0,
 							-192.0
 						],
 						"x": [
@@ -62442,671 +61794,6 @@
 
 					},
 					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4321",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							93440.0,
-							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4322",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							91776.0,
-							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 1
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4323",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							91776.0,
-							-448.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 2
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4324",
-					"scene_file_path": "scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn",
-					"transform": {
-						"origin": [
-							91392.0,
-							-704.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 3
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4325",
-					"scene_file_path": "scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn",
-					"transform": {
-						"origin": [
-							75264.0,
-							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 4
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4326",
-					"scene_file_path": "scenes/components/level_components/portals/speed_portals/SpeedPortal1x.tscn",
-					"transform": {
-						"origin": [
-							61184.0,
-							-704.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 5
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4327",
-					"scene_file_path": "scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn",
-					"transform": {
-						"origin": [
-							30208.0,
-							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 6
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4328",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							29824.0,
-							-2880.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 7
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4329",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							29824.0,
-							-2752.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 8
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4330",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							24320.0,
-							-1984.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 9
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4331",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							14976.0,
-							-1472.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 10
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"AlphaChangerComponent": {
-							"alpha": 1.0,
-							"copy_multiplier": 0.0,
-							"copy_target": "",
-							"mode": 0
-						},
-						"EasingComponent": {
-							"duration": 1.0,
-							"easing_transition": 0,
-							"easing_type": 2,
-							"ignore_time_scale": false,
-							"keep_active": false,
-							"trigger_for_one_player": true
-						},
-						"TargetGroupComponent": {
-							"target_group": ""
-						},
-						"TriggerHitboxComponent": {
-							"hitbox_height": 64.0,
-							"hitbox_shape": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4332",
-					"scene_file_path": "scenes/components/level_components/triggers/AlphaTrigger.tscn",
-					"transform": {
-						"origin": [
-							14976.0,
-							-1344.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 11
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "_Area2D_4333",
-					"scene_file_path": "scenes/components/level_components/portals/speed_portals/SpeedPortal1x.tscn",
-					"transform": {
-						"origin": [
-							14592.0,
-							-1600.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 12
-				},
-				{
-					"attributes": [
-						"HiddenOutsideEditorAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
 						"TargetObjectComponent": {
 							"target": "UnnameLayer/GridBlock68"
 						},
@@ -63178,156 +61865,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "GridBlock05",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock05.svg",
-						"id": 8.0
-					},
-					"transform": {
-						"origin": [
-							17152.0,
-							-192.0
-						],
-						"x": [
-							-1.0,
-							-0.000000150995802528087
-						],
-						"y": [
-							0.000000150995802528087,
-							-1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock04",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock04.svg",
-						"id": 7.0
-					},
-					"transform": {
-						"origin": [
-							17152.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock01",
 					"physics": {
 						"absorbent": false,
@@ -63345,7 +61882,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63356,7 +61893,7 @@
 					"transform": {
 						"origin": [
 							1792.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -63364,7 +61901,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63420,7 +61957,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63431,7 +61968,7 @@
 					"transform": {
 						"origin": [
 							2048.0,
-							-64.0
+							-80.0
 						],
 						"x": [
 							1.0,
@@ -63439,7 +61976,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63495,7 +62032,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63506,7 +62043,7 @@
 					"transform": {
 						"origin": [
 							2176.0,
-							-64.0
+							-80.0
 						],
 						"x": [
 							1.0,
@@ -63514,40 +62051,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							2048.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63603,7 +62107,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63614,7 +62118,7 @@
 					"transform": {
 						"origin": [
 							2560.0,
-							-320.0
+							-336.0
 						],
 						"x": [
 							1.0,
@@ -63622,7 +62126,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63678,7 +62182,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63689,7 +62193,7 @@
 					"transform": {
 						"origin": [
 							3072.0,
-							-448.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -63697,7 +62201,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63753,7 +62257,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63764,7 +62268,7 @@
 					"transform": {
 						"origin": [
 							3328.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -63772,7 +62276,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -63978,7 +62482,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -63989,7 +62493,7 @@
 					"transform": {
 						"origin": [
 							4096.0,
-							-320.0
+							-480.0
 						],
 						"x": [
 							1.0,
@@ -63997,7 +62501,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64053,7 +62557,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64064,7 +62568,7 @@
 					"transform": {
 						"origin": [
 							4480.0,
-							-576.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -64072,7 +62576,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64128,7 +62632,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64139,7 +62643,7 @@
 					"transform": {
 						"origin": [
 							4864.0,
-							-832.0
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -64147,7 +62651,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64203,7 +62707,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64214,7 +62718,7 @@
 					"transform": {
 						"origin": [
 							5120.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -64222,7 +62726,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64278,7 +62782,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64289,7 +62793,7 @@
 					"transform": {
 						"origin": [
 							5248.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -64297,7 +62801,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64353,7 +62857,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64364,7 +62868,7 @@
 					"transform": {
 						"origin": [
 							5376.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -64372,7 +62876,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64439,7 +62943,7 @@
 					"transform": {
 						"origin": [
 							5120.0,
-							-1344.0
+							-1408.0
 						],
 						"x": [
 							1.0,
@@ -64503,7 +63007,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64514,7 +63018,7 @@
 					"transform": {
 						"origin": [
 							5760.0,
-							-576.0
+							-672.0
 						],
 						"x": [
 							1.0,
@@ -64522,7 +63026,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64578,7 +63082,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64589,7 +63093,7 @@
 					"transform": {
 						"origin": [
 							5888.0,
-							-576.0
+							-672.0
 						],
 						"x": [
 							1.0,
@@ -64597,7 +63101,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64653,7 +63157,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64664,7 +63168,7 @@
 					"transform": {
 						"origin": [
 							6272.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -64672,7 +63176,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64728,7 +63232,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64739,7 +63243,7 @@
 					"transform": {
 						"origin": [
 							6528.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -64747,7 +63251,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64803,7 +63307,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -64814,7 +63318,7 @@
 					"transform": {
 						"origin": [
 							6784.0,
-							-576.0
+							-608.0
 						],
 						"x": [
 							1.0,
@@ -64822,7 +63326,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -64889,7 +63393,7 @@
 					"transform": {
 						"origin": [
 							6272.0,
-							-1344.0
+							-1312.0
 						],
 						"x": [
 							1.0,
@@ -64964,7 +63468,7 @@
 					"transform": {
 						"origin": [
 							6528.0,
-							-1216.0
+							-1184.0
 						],
 						"x": [
 							1.0,
@@ -65039,7 +63543,7 @@
 					"transform": {
 						"origin": [
 							6784.0,
-							-1088.0
+							-1072.0
 						],
 						"x": [
 							1.0,
@@ -65114,7 +63618,7 @@
 					"transform": {
 						"origin": [
 							7040.0,
-							-960.0
+							-944.0
 						],
 						"x": [
 							1.0,
@@ -65265,81 +63769,6 @@
 						"origin": [
 							8960.0,
 							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock27",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							8704.0,
-							-192.0
 						],
 						"x": [
 							1.0,
@@ -66150,7 +64579,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66161,7 +64590,7 @@
 					"transform": {
 						"origin": [
 							13824.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -66169,7 +64598,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66225,7 +64654,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66236,7 +64665,7 @@
 					"transform": {
 						"origin": [
 							14336.0,
-							-448.0
+							-480.0
 						],
 						"x": [
 							1.0,
@@ -66244,7 +64673,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66300,7 +64729,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66311,7 +64740,7 @@
 					"transform": {
 						"origin": [
 							14592.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -66319,7 +64748,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66385,7 +64814,7 @@
 					},
 					"transform": {
 						"origin": [
-							14592.0,
+							14560.0,
 							-832.0
 						],
 						"x": [
@@ -66460,7 +64889,7 @@
 					},
 					"transform": {
 						"origin": [
-							14848.0,
+							14816.0,
 							-704.0
 						],
 						"x": [
@@ -66525,7 +64954,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66535,8 +64964,8 @@
 					},
 					"transform": {
 						"origin": [
-							15488.0,
-							-320.0
+							15456.0,
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -66544,7 +64973,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66750,7 +65179,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66761,7 +65190,7 @@
 					"transform": {
 						"origin": [
 							17664.0,
-							-448.0
+							-480.0
 						],
 						"x": [
 							1.0,
@@ -66769,7 +65198,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66825,7 +65254,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66836,7 +65265,7 @@
 					"transform": {
 						"origin": [
 							17920.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -66844,7 +65273,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66900,7 +65329,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66911,7 +65340,7 @@
 					"transform": {
 						"origin": [
 							18048.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -66919,7 +65348,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -66975,7 +65404,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -66986,7 +65415,7 @@
 					"transform": {
 						"origin": [
 							18432.0,
-							-576.0
+							-544.0
 						],
 						"x": [
 							1.0,
@@ -66994,7 +65423,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67050,7 +65479,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67061,7 +65490,7 @@
 					"transform": {
 						"origin": [
 							18560.0,
-							-576.0
+							-544.0
 						],
 						"x": [
 							1.0,
@@ -67069,7 +65498,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67125,7 +65554,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67136,7 +65565,7 @@
 					"transform": {
 						"origin": [
 							18688.0,
-							-576.0
+							-544.0
 						],
 						"x": [
 							1.0,
@@ -67144,7 +65573,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67275,7 +65704,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67285,8 +65714,8 @@
 					},
 					"transform": {
 						"origin": [
-							19584.0,
-							-832.0
+							19648.0,
+							-800.0
 						],
 						"x": [
 							1.0,
@@ -67294,7 +65723,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67350,7 +65779,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67361,7 +65790,7 @@
 					"transform": {
 						"origin": [
 							19968.0,
-							-576.0
+							-608.0
 						],
 						"x": [
 							1.0,
@@ -67369,7 +65798,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67650,7 +66079,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67661,7 +66090,7 @@
 					"transform": {
 						"origin": [
 							21248.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -67669,7 +66098,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67725,7 +66154,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67736,7 +66165,7 @@
 					"transform": {
 						"origin": [
 							21632.0,
-							-960.0
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -67744,7 +66173,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67800,7 +66229,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67811,7 +66240,7 @@
 					"transform": {
 						"origin": [
 							21888.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -67819,7 +66248,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67875,7 +66304,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67886,7 +66315,7 @@
 					"transform": {
 						"origin": [
 							22144.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -67894,7 +66323,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -67950,7 +66379,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -67961,7 +66390,7 @@
 					"transform": {
 						"origin": [
 							22272.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -67969,7 +66398,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68250,7 +66679,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68261,7 +66690,7 @@
 					"transform": {
 						"origin": [
 							22656.0,
-							-960.0
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -68269,7 +66698,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68325,7 +66754,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68336,7 +66765,7 @@
 					"transform": {
 						"origin": [
 							23680.0,
-							-1088.0
+							-1184.0
 						],
 						"x": [
 							1.0,
@@ -68344,7 +66773,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68400,7 +66829,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68411,7 +66840,7 @@
 					"transform": {
 						"origin": [
 							23936.0,
-							-960.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -68419,7 +66848,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68475,7 +66904,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68485,8 +66914,8 @@
 					},
 					"transform": {
 						"origin": [
-							24832.0,
-							-832.0
+							24960.0,
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -68494,7 +66923,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68625,7 +67054,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68636,7 +67065,7 @@
 					"transform": {
 						"origin": [
 							25472.0,
-							-1216.0
+							-1248.0
 						],
 						"x": [
 							1.0,
@@ -68644,7 +67073,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68700,7 +67129,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68711,7 +67140,7 @@
 					"transform": {
 						"origin": [
 							25728.0,
-							-1088.0
+							-1120.0
 						],
 						"x": [
 							1.0,
@@ -68719,7 +67148,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68775,7 +67204,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68786,7 +67215,7 @@
 					"transform": {
 						"origin": [
 							25984.0,
-							-960.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -68794,7 +67223,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68850,7 +67279,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68861,7 +67290,7 @@
 					"transform": {
 						"origin": [
 							26112.0,
-							-960.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -68869,7 +67298,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -68925,7 +67354,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -68936,7 +67365,7 @@
 					"transform": {
 						"origin": [
 							26240.0,
-							-960.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -68944,7 +67373,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69000,7 +67429,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69011,7 +67440,7 @@
 					"transform": {
 						"origin": [
 							26496.0,
-							-1216.0
+							-1312.0
 						],
 						"x": [
 							1.0,
@@ -69019,7 +67448,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69310,40 +67739,7 @@
 					},
 					"transform": {
 						"origin": [
-							27904.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike6",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							27904.0,
+							27776.0,
 							-64.0
 						],
 						"x": [
@@ -69408,7 +67804,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69419,7 +67815,7 @@
 					"transform": {
 						"origin": [
 							27008.0,
-							-1344.0
+							-1440.0
 						],
 						"x": [
 							1.0,
@@ -69427,7 +67823,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69483,7 +67879,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69494,7 +67890,7 @@
 					"transform": {
 						"origin": [
 							27520.0,
-							-1472.0
+							-1568.0
 						],
 						"x": [
 							1.0,
@@ -69502,7 +67898,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69569,7 +67965,7 @@
 					"transform": {
 						"origin": [
 							27776.0,
-							-1856.0
+							-1920.0
 						],
 						"x": [
 							1.0,
@@ -69644,7 +68040,7 @@
 					"transform": {
 						"origin": [
 							28032.0,
-							-1728.0
+							-1792.0
 						],
 						"x": [
 							1.0,
@@ -69708,7 +68104,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69718,8 +68114,8 @@
 					},
 					"transform": {
 						"origin": [
-							27904.0,
-							-1216.0
+							27840.0,
+							-1312.0
 						],
 						"x": [
 							1.0,
@@ -69727,7 +68123,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69783,7 +68179,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69793,8 +68189,8 @@
 					},
 					"transform": {
 						"origin": [
-							28032.0,
-							-1216.0
+							27968.0,
+							-1312.0
 						],
 						"x": [
 							1.0,
@@ -69802,7 +68198,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69858,7 +68254,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69868,8 +68264,8 @@
 					},
 					"transform": {
 						"origin": [
-							28160.0,
-							-1216.0
+							28096.0,
+							-1312.0
 						],
 						"x": [
 							1.0,
@@ -69877,7 +68273,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -69933,7 +68329,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -69944,7 +68340,7 @@
 					"transform": {
 						"origin": [
 							28544.0,
-							-1472.0
+							-1504.0
 						],
 						"x": [
 							1.0,
@@ -69952,7 +68348,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70008,7 +68404,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70019,7 +68415,7 @@
 					"transform": {
 						"origin": [
 							28928.0,
-							-1728.0
+							-1696.0
 						],
 						"x": [
 							1.0,
@@ -70027,7 +68423,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70083,7 +68479,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70094,7 +68490,7 @@
 					"transform": {
 						"origin": [
 							29184.0,
-							-1600.0
+							-1504.0
 						],
 						"x": [
 							1.0,
@@ -70102,7 +68498,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70158,7 +68554,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70169,7 +68565,7 @@
 					"transform": {
 						"origin": [
 							29440.0,
-							-1472.0
+							-1376.0
 						],
 						"x": [
 							1.0,
@@ -70177,7 +68573,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70233,7 +68629,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70244,7 +68640,7 @@
 					"transform": {
 						"origin": [
 							29696.0,
-							-1344.0
+							-1248.0
 						],
 						"x": [
 							1.0,
@@ -70252,7 +68648,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70308,7 +68704,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70319,7 +68715,7 @@
 					"transform": {
 						"origin": [
 							29824.0,
-							-1344.0
+							-1248.0
 						],
 						"x": [
 							1.0,
@@ -70327,7 +68723,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70383,7 +68779,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -70394,7 +68790,7 @@
 					"transform": {
 						"origin": [
 							29952.0,
-							-1344.0
+							-1248.0
 						],
 						"x": [
 							1.0,
@@ -70402,7 +68798,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -70778,456 +69174,6 @@
 						"y": [
 							1.0,
 							-0.0000000437113882867379
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock01",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							33536.0,
-							-704.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock02",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							33024.0,
-							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock03",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							32640.0,
-							-832.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock06",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							32640.0,
-							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock07",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							32256.0,
-							-576.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock09",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 4.0
-					},
-					"transform": {
-						"origin": [
-							31744.0,
-							-448.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
 						]
 					},
 					"z_index": 0
@@ -76941,7 +74887,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -76952,7 +74898,7 @@
 					"transform": {
 						"origin": [
 							94592.0,
-							-320.0
+							-288.0
 						],
 						"x": [
 							1.0,
@@ -76960,7 +74906,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77016,7 +74962,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77027,7 +74973,7 @@
 					"transform": {
 						"origin": [
 							95104.0,
-							-320.0
+							-288.0
 						],
 						"x": [
 							1.0,
@@ -77035,7 +74981,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77091,7 +75037,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77102,7 +75048,7 @@
 					"transform": {
 						"origin": [
 							95360.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77110,7 +75056,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77166,7 +75112,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77177,7 +75123,7 @@
 					"transform": {
 						"origin": [
 							95616.0,
-							-64.0
+							-96.0
 						],
 						"x": [
 							1.0,
@@ -77185,7 +75131,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77241,7 +75187,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77252,7 +75198,7 @@
 					"transform": {
 						"origin": [
 							95744.0,
-							-64.0
+							-96.0
 						],
 						"x": [
 							1.0,
@@ -77260,7 +75206,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77341,39 +75287,6 @@
 					"z_index": 0
 				},
 				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GroundSpike162",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							95744.0,
-							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
 					"children_hsv": [
 						{
 							"alpha": 1.0,
@@ -77424,7 +75337,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77435,7 +75348,7 @@
 					"transform": {
 						"origin": [
 							97152.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77443,7 +75356,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77499,7 +75412,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77510,7 +75423,7 @@
 					"transform": {
 						"origin": [
 							97280.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77518,7 +75431,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77574,7 +75487,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77585,7 +75498,7 @@
 					"transform": {
 						"origin": [
 							99968.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77593,7 +75506,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77649,7 +75562,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77660,7 +75573,7 @@
 					"transform": {
 						"origin": [
 							100096.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77668,7 +75581,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77724,7 +75637,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77735,7 +75648,7 @@
 					"transform": {
 						"origin": [
 							100224.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77743,7 +75656,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77799,7 +75712,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -77810,7 +75723,7 @@
 					"transform": {
 						"origin": [
 							100352.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -77818,7 +75731,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -77885,7 +75798,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-832.0
+							-864.0
 						],
 						"x": [
 							1.0,
@@ -77960,7 +75873,7 @@
 					"transform": {
 						"origin": [
 							101504.0,
-							-960.0
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -78024,7 +75937,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -78035,7 +75948,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-448.0
+							-480.0
 						],
 						"x": [
 							1.0,
@@ -78043,7 +75956,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -78099,7 +76012,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -78109,8 +76022,8 @@
 					},
 					"transform": {
 						"origin": [
-							100864.0,
-							-320.0
+							100880.0,
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -78118,7 +76031,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -78174,7 +76087,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -78184,8 +76097,8 @@
 					},
 					"transform": {
 						"origin": [
-							100992.0,
-							-320.0
+							101008.0,
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -78193,7 +76106,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -78249,7 +76162,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -78259,8 +76172,8 @@
 					},
 					"transform": {
 						"origin": [
-							101120.0,
-							-320.0
+							101136.0,
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -78268,7 +76181,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -78324,7 +76237,7 @@
 						"rough": false,
 						"scale": [
 							1.0,
-							1.0
+							0.5
 						]
 					},
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
@@ -78334,8 +76247,8 @@
 					},
 					"transform": {
 						"origin": [
-							101248.0,
-							-320.0
+							101264.0,
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -78343,7 +76256,7 @@
 						],
 						"y": [
 							0.0,
-							1.0
+							0.5
 						]
 					},
 					"z_index": 0
@@ -84114,6 +82027,4290 @@
 						"origin": [
 							91776.0,
 							-2752.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike01",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							1408.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike02",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							2432.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain02",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							3328.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain03",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							3584.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon2",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							2560.0,
+							-432.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike03",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							2816.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike04",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							3328.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Medium Beacon",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
+					"transform": {
+						"origin": [
+							4096.0,
+							-384.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Medium Beacon2",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
+					"transform": {
+						"origin": [
+							4480.0,
+							-640.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Medium Beacon3",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
+					"transform": {
+						"origin": [
+							4864.0,
+							-896.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike05",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							3968.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike06",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							4608.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike07",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							5376.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain04",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							5120.0,
+							-1536.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain05",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							6272.0,
+							-1440.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain06",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							6528.0,
+							-1312.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain07",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							6784.0,
+							-1200.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain08",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							7040.0,
+							-1072.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain09",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							8704.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain10",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							8960.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain11",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							12672.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain12",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							14560.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain13",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							14816.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon3",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							7168.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike08",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							6656.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike09",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							7680.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike10",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							8064.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike11",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							6016.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike12",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							8704.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock27",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							0.5
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							8704.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							0.5
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon5",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							13440.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon6",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							13824.0,
+							-448.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike13",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							13696.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike14",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							13952.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike15",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							14464.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike16",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							15488.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike17",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							15744.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon7",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							16000.0,
+							-448.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain14",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							17152.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain15",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							18432.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain16",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							21120.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain17",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							21632.0,
+							-1600.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain18",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							21888.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain19",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							22144.0,
+							-1344.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock99",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
+						"id": 10.0
+					},
+					"transform": {
+						"origin": [
+							1152.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							1152.0,
+							-320.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							2048.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike7",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							2176.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock100",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
+						"id": 10.0
+					},
+					"transform": {
+						"origin": [
+							9728.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon4",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							9728.0,
+							-320.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock04",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock04.svg",
+						"id": 7.0
+					},
+					"transform": {
+						"origin": [
+							17152.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock101",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock08.svg",
+						"id": 11.0
+					},
+					"transform": {
+						"origin": [
+							17280.0,
+							-192.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							1.0
+						],
+						"y": [
+							-1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock102",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
+						"id": 10.0
+					},
+					"transform": {
+						"origin": [
+							17408.0,
+							-192.0
+						],
+						"x": [
+							-0.0000000437113882867379,
+							1.0
+						],
+						"y": [
+							-1.0,
+							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Spike",
+					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
+					"transform": {
+						"origin": [
+							17408.0,
+							-320.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike18",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							17536.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike19",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							17664.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike20",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							18048.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike21",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							18688.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike6",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							27520.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike159",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							27648.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike160",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							27904.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain20",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							32640.0,
+							-1216.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock117",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							31744.0,
+							-448.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock118",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							32256.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock119",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							32640.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock120",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							32640.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock121",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							32960.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "RegularBlock122",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
+						"id": 0.0
+					},
+					"transform": {
+						"origin": [
+							33536.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock07",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
+						"id": 10.0
+					},
+					"transform": {
+						"origin": [
+							33920.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						},
+						{
+							"alpha": 1.0,
+							"hsv_shift": [
+								0.0,
+								0.0,
+								0.0
+							],
+							"intensity": 1.0
+						}
+					],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridBlock09",
+					"physics": {
+						"absorbent": false,
+						"angular_velocity": 0.0,
+						"bounce": 0.0,
+						"friction": 1.0,
+						"gravity_scale": 1.0,
+						"linear_velocity": [
+							0.0,
+							0.0
+						],
+						"mass": 1.0,
+						"physics_object": false,
+						"pushable_by_player": true,
+						"rough": false,
+						"scale": [
+							1.0,
+							-1.0
+						]
+					},
+					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
+					"texture_override": {
+						"base": "assets/textures/solids/grid_blocks/GridBlock07.svg",
+						"id": 10.0
+					},
+					"transform": {
+						"origin": [
+							33920.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain21",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							33920.0,
+							-1216.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain22",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							34560.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain23",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							37376.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain24",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							38144.0,
+							-1472.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain25",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							39680.0,
+							-1216.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain26",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							40448.0,
+							-1216.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain27",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							45824.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain28",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							48256.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain29",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							48768.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain30",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							49536.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain31",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							54144.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain32",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							58496.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain33",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							77568.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain34",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							77696.0,
+							-704.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain35",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							82176.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain36",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							82688.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain37",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							83840.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain38",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							83968.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain39",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							85632.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain40",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							88448.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain41",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							89728.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain42",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							90496.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike22",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							92288.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike23",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							92672.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike24",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike03.tscn",
+					"transform": {
+						"origin": [
+							93056.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike25",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike03.tscn",
+					"transform": {
+						"origin": [
+							93568.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain43",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							92928.0,
+							-1216.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain44",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							93184.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain45",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							95488.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike26",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							94336.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike27",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							94592.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike28",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							95232.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike29",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
+					"transform": {
+						"origin": [
+							94976.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike161",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							95616.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike162",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							95744.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain46",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							100608.0,
+							-992.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain47",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							101504.0,
+							-1120.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike30",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
+					"transform": {
+						"origin": [
+							100224.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike31",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike03.tscn",
+					"transform": {
+						"origin": [
+							100608.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundDecorSpike32",
+					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike03.tscn",
+					"transform": {
+						"origin": [
+							101120.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Chain48",
+					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
+					"transform": {
+						"origin": [
+							105216.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Long Beacon8",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
+					"transform": {
+						"origin": [
+							104960.0,
+							-192.0
 						],
 						"x": [
 							1.0,
