@@ -135330,7 +135330,7 @@
 					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
 					"texture_override": {
 						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-						"id": 0
+						"id": 0.0
 					},
 					"transform": {
 						"origin": [
@@ -140979,39 +140979,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "Medium Beacon25",
-					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
-					"transform": {
-						"origin": [
-							69120.0,
-							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "Medium Beacon26",
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
 					"transform": {
@@ -141050,39 +141017,6 @@
 					"transform": {
 						"origin": [
 							70912.0,
-							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							-1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "Medium Beacon28",
-					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
-					"transform": {
-						"origin": [
-							69120.0,
 							-1088.0
 						],
 						"x": [
@@ -144788,6 +144722,39 @@
 						"y": [
 							0.0,
 							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "Medium Beacon25",
+					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
+					"transform": {
+						"origin": [
+							69120.0,
+							-1088.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
 						]
 					},
 					"z_index": 0
