@@ -66,21 +66,28 @@ func clear_data() -> void:
 # muốn chạy đc trên web thay null hoặc SelectionGDInstance vào chỗ nào có selection
 
 static func new_selection() -> Variant:
-	if OS.get_name() == "Web":
-		return SelectionGDInstance.new()	
-	return Selection.new()
+	if OS.has_feature("web"):
+		return SelectionGDInstance.new()
+	return ClassDB.instantiate("Selection")  # ← không dùng Selection.new() trực tiếp
 
 static func empty_selection() -> Variant:
-	if OS.get_name() == "Web":
+	if OS.has_feature("web"):
 		return SelectionGDInstance.EMPTY()
-	return Selection.EMPTY()
+	var s = ClassDB.instantiate("Selection")
+	s.clear()
+	return s
 
 static func selection_from_object(object: Node2D) -> Variant:
-	if OS.get_name() == "Web":
+	if OS.has_feature("web"):
 		return SelectionGDInstance.from_object(object)
-	return Selection.from_object(object)
+	var s = ClassDB.instantiate("Selection")
+	s.insert(object)
+	return s
 
 static func selection_from_array(array: Array) -> Variant:
-	if OS.get_name() == "Web":
+	if OS.has_feature("web"):
 		return SelectionGDInstance.from_array(array)
-	return Selection.from_array(array)
+	var s = ClassDB.instantiate("Selection")
+	for item in array:
+		s.insert(item)
+	return s
