@@ -758,7 +758,10 @@ static func scale_transform(
 ):
 	if object is Player:
 		return
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
+	var path: NodePath = Editor.root.level.get_path_to(object)
+	if not pivot_relative_transforms.has(path):
+		return
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[path]
 	object.global_transform = (transform * pivot_relative_transform).translated(pivot)
 	if object is StaticBody2D:
 		var absolutesize: NinePatchSprite2DAbsoluteSize = object.get_node_or_null(^"NinePatchSprite2DAbsoluteSize")
@@ -776,7 +779,10 @@ static func scale_transform_local(
 ):
 	if object is Player:
 		return
-	var pivot_relative_transform: Transform2D = pivot_relative_transforms[Editor.root.level.get_path_to(object)]
+	var path: NodePath = Editor.root.level.get_path_to(object)
+	if not pivot_relative_transforms.has(path):
+		return
+	var pivot_relative_transform: Transform2D = pivot_relative_transforms[path]
 	object.global_transform = (
 		(transform * pivot_relative_transform.rotated(-rotation)).rotated(rotation).translated(pivot)
 	)

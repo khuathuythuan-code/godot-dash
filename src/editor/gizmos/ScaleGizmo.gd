@@ -119,9 +119,21 @@ func _process(_delta: float) -> void:
 		var resize_and_move_multiplier: float = 0.5 if resize_and_move else 1.0
 		if resizing_keep_aspect:
 			mouse_position_delta = mouse_position_delta.project(focused_handle.displayed_position(displayed_transform))
+		var safe_inverse: Transform2D
+		if is_zero_approx(displayed_transform.determinant()):
+			# Nếu ma trận biến hình bị bóp về 0, tạo một bản sao tạm thời có kích thước rất nhỏ để không bị crash det == 0
+			var safe_transform := displayed_transform
+			if is_zero_approx(safe_transform.x.length_squared()):
+				safe_transform.x = Vector2.RIGHT * 0.001
+			if is_zero_approx(safe_transform.y.length_squared()):
+				safe_transform.y = Vector2.DOWN * 0.001
+			safe_inverse = safe_transform.affine_inverse()
+		else:
+			safe_inverse = displayed_transform.affine_inverse()
+
 		var scale_multiplier: Vector2 = (
 			Vector2.ONE
-			+ mouse_position_delta * displayed_transform.affine_inverse()
+			+ mouse_position_delta * safe_inverse
 			* focused_handle.axis # Constrains the angle perpendicular to the side
 			* resize_and_move_multiplier
 		)
