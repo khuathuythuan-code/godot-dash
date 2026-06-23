@@ -29,7 +29,7 @@ enum PlayerScale {
 
 #region Constants
 const GRAVITY: float = 5000.0 * 2
-const SPEED := Vector2(625.0 * 2, 1100.0 * 2)
+const SPEED := Vector2(625.0 * 2, 1150.0 * 2)
 const SPEED_MINI := Vector2(625.0 * 2, 800.0 * 2)
 const SPEED_BIG := Vector2(625.0 * 2, 1500.0 * 2)
 const TERMINAL_VELOCITY := Vector2(0.0 * 2, 1500.0 * 2)
