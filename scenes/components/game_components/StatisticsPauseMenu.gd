@@ -100,27 +100,28 @@ func hide_tween() -> void:
 
 
 func toggle_pause_menu() -> void:
-	if LevelManager.current_level != Editor.temporary_playtest_level:
-		level_name_label.text = LevelManager.current_level.name
-	get_tree().paused = not get_tree().paused
-	if get_tree().paused:
-		paused.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		if settings_were_open:
-			$Settings.show_tween()
-		if replays_were_open:
-			$Replays.show_tween()
-		show_tween()
-	else:
-		unpaused.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
-		settings_were_open = $Settings.visible
-		replays_were_open = $Replays.visible
-		if $Settings.visible:
-			$Settings.hide_tween()
-		if $Replays.visible:
-			$Replays.hide_tween()
-		hide_tween()
+	#if LevelManager.current_level != Editor.temporary_playtest_level:
+		#level_name_label.text = LevelManager.current_level.name
+	#get_tree().paused = not get_tree().paused
+	#if get_tree().paused:
+		#paused.emit()
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		#if settings_were_open:
+			#$Settings.show_tween()
+		#if replays_were_open:
+			#$Replays.show_tween()
+		#show_tween()
+	#else:
+		#unpaused.emit()
+		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
+		#settings_were_open = $Settings.visible
+		#replays_were_open = $Replays.visible
+		#if $Settings.visible:
+			#$Settings.hide_tween()
+		#if $Replays.visible:
+			#$Replays.hide_tween()
+		#hide_tween()
+	pass
 
 
 func _on_leave_pressed() -> void:

@@ -242,9 +242,9 @@ func stop_playtest() -> void:
 	_load_default_player_data_component(player.get_node(^"EditorPlayerSelectionCollider").query(DefaultPlayerDataComponent))
 	player.global_position = level.start_position
 	NodeUtils.free_children($GameScene.checkpoint_parent)
-	$GameScene.pause_menu.practice_button.hide()
-	$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)
-	$GameScene.pause_menu.restart_button.hide()
+	#$GameScene.pause_menu.practice_button.hide()
+	#$GameScene.pause_menu.practice_button.set_pressed_no_signal(false)
+	#$GameScene.pause_menu.restart_button.hide()
 	$LevelOperationsHandler.unpause_autosave()
 	%Playtest.disabled = false
 	Editor.viewport.remove_cursor_shape_override()

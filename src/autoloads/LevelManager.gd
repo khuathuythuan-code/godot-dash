@@ -18,6 +18,7 @@ var level_playing: bool:
 		level_playing = value
 var pause_menu: PauseMenu
 var stat_pause_menu: StatisticsPauseMenu
+var cyber_punk_pause_menu: CyberPunkPauseMenu
 var player: Player
 var player_duals: Array[Player]
 var player_camera: PlayerCamera

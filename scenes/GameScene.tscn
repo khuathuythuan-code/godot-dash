@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://c3lg8dqlq0qwy" path="res://assets/textures/guis/touchscreen/Right.svg" id="21_1npfk"]
 [ext_resource type="PackedScene" uid="uid://du7pvtxipurfo" path="res://scenes/components/game_components/StatisticsPauseMenu.tscn" id="21_6nmf6"]
 [ext_resource type="Texture2D" uid="uid://by7isbryvvuaa" path="res://assets/textures/guis/touchscreen/Down.svg" id="22_1npfk"]
+[ext_resource type="PackedScene" uid="uid://b55oe7dsfwi7m" path="res://scenes/components/game_components/CyberPunkPauseMenu.tscn" id="23_f2kej"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
@@ -105,7 +106,7 @@ glow_enabled = true
 physics_interpolation_mode = 2
 script = ExtResource("1_k47tp")
 checkpoint_parent = NodePath("CheckpointParent")
-pause_menu = NodePath("StatisticsPauseMenu")
+pause_menu = NodePath("CyberPunkPauseMenu")
 fade_screen = NodePath("FadeScreen")
 metadata/_edit_lock_ = true
 
@@ -423,6 +424,9 @@ layer = 102
 visible = false
 
 [node name="StatisticsPauseMenu" parent="." unique_id=189033300 instance=ExtResource("21_6nmf6")]
+visible = false
+
+[node name="CyberPunkPauseMenu" parent="." unique_id=1857715947 instance=ExtResource("23_f2kej")]
 visible = false
 
 [node name="FadeScreen" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]

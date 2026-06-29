@@ -13,6 +13,7 @@ signal practice_mode_toggled(toggled_on: bool)
 #@export var edit_button: Button
 #@export var play_button: Button
 #@export var replay_button: Button
+@onready var menu: PanelContainer = %Menu
 
 var suspended: bool
 var tween: Tween
@@ -72,21 +73,27 @@ func unsuspend(proceed_through: bool) -> void:
 
 func show_tween() -> void:
 	# Nếu chưa vào Scene Tree hoặc Menu chưa load xong, bỏ qua để tránh crash
-	if not is_inside_tree() or not has_node("Menu"): 
+	if not is_inside_tree():
+		return
+	if menu == null:  # ← check biến đã được @onready gán chưa
 		return
 	show()
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property(%Menu, ^"position:x", 0, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-%Menu.size.x)
+	tween.tween_property(menu, ^"position:x", 0, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-%Menu.size.x)
 	await tween.finished
 
 
 func hide_tween() -> void:
+	if not is_inside_tree():
+		return
+	if menu == null:  # ← check biến đã được @onready gán chưa
+		return
 	if tween:
 		tween.stop()
 	tween = create_tween()
-	tween.tween_property($Menu, ^"position:x", -$Menu.size.x, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	tween.tween_property(menu, ^"position:x", -1000, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	await tween.finished
 	hide()
 
@@ -94,25 +101,25 @@ func hide_tween() -> void:
 func toggle_pause_menu() -> void:
 	#if LevelManager.current_level != Editor.temporary_playtest_level:
 		#level_name_label.text = LevelManager.current_level.name
-	#get_tree().paused = not get_tree().paused
-	#if get_tree().paused:
-		#paused.emit()
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		#if settings_were_open:
-			#$Settings.show_tween()
-		#if replays_were_open:
-			#$Replays.show_tween()
-		#show_tween()
-	#else:
-		#unpaused.emit()
-		#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
+	get_tree().paused = not get_tree().paused
+	if get_tree().paused:
+		paused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		if settings_were_open:
+			$Settings.show_tween()
+		if replays_were_open:
+			$Replays.show_tween()
+		show_tween()
+	else:
+		unpaused.emit()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 		#settings_were_open = $Settings.visible
 		#replays_were_open = $Replays.visible
 		#if $Settings.visible:
 			#$Settings.hide_tween()
 		#if $Replays.visible:
 			#$Replays.hide_tween()
-		#hide_tween()
+		hide_tween()
 	pass
 	
 
@@ -123,7 +130,7 @@ func _on_leave_pressed() -> void:
 	leave.emit()
 	if suspended:
 		await unsuspended
-	$Settings.hide_tween()
+	#$Settings.hide_tween()
 	hide_tween()
 	if not proceed_through_unsuspend:
 		return
