@@ -7,7 +7,7 @@ extends LabelSettings
 var prevent_history_action: bool = false
 
 
-func _init(path: String = "") -> void:
+func _init(path: String = "res://assets/textures/cyber_punk_gui/Anton-Regular.ttf") -> void:
 	set_font_path(path)
 
 
