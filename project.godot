@@ -51,7 +51,7 @@ warnings/check_invalid_track_paths=false
 
 config/name="godot-dash"
 config/version="0.0.1"
-run/main_scene="res://scenes/TitleScreen.tscn"
+run/main_scene="uid://btp87rm8242up"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
@@ -92,7 +92,6 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 display_server/driver.linuxbsd="wayland"
 
 [dotnet]
