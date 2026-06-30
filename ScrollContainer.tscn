@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dlrbcdwgevyf8"]
+
+[ext_resource type="Script" uid="uid://d1m23p1ob0cbc" path="res://ScrollContainer.gd" id="1_d8k6s"]
+[ext_resource type="Script" uid="uid://bfqxb80qeghxw" path="res://game.gd" id="1_dgisc"]
+
+[node name="Game" type="Node2D" unique_id=872869737 node_paths=PackedStringArray("carousel_container")]
+script = ExtResource("1_dgisc")
+carousel_container = NodePath("CarouselContainer")
+
+[node name="CarouselContainer" type="Node2D" parent="." unique_id=212640113 node_paths=PackedStringArray("position_offset_node")]
+script = ExtResource("1_d8k6s")
+wraparound_enabled = true
+wraparound_radius = 800.0
+wraparound_height = -20.0
+opacity_strength = 0.521
+scale_strength = 0.0
+scale_min = 0.01
+selected_index = 5
+follow_button_focus = true
+position_offset_node = NodePath("Control")
+
+[node name="Control" type="Control" parent="CarouselContainer" unique_id=412257201]
+layout_mode = 3
+anchors_preset = 0
