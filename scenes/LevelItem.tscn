@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://dl0nsykk2iwa5"]
+
+[ext_resource type="Texture2D" uid="uid://0xr5q7iuejoa" path="res://assets/textures/cyber_punk_gui/items/Untitled-1_0003_Layer-4.png" id="1_6af7a"]
+[ext_resource type="Script" uid="uid://cc33jm4vytsy1" path="res://scenes/LevelItem.gd" id="1_hlbo8"]
+[ext_resource type="Texture2D" uid="uid://b56vqgatclss1" path="res://assets/textures/cyber_punk_gui/items/Untitled-1_0001_Layer-2.png" id="2_hlbo8"]
+[ext_resource type="Texture2D" uid="uid://dwhdjylx138y2" path="res://assets/textures/cyber_punk_gui/BG.png" id="3_2k7yc"]
+[ext_resource type="Texture2D" uid="uid://3pt3a60mp0i8" path="res://assets/textures/cyber_punk_gui/items/Asset 26.png" id="4_nogmh"]
+[ext_resource type="Texture2D" uid="uid://cbd4m7t45qwop" path="res://assets/textures/cyber_punk_gui/items/Seek.png" id="5_u3att"]
+[ext_resource type="Texture2D" uid="uid://d0v1fm5bw34og" path="res://assets/textures/cyber_punk_gui/items/Bar (1).png" id="6_216pq"]
+[ext_resource type="Texture2D" uid="uid://dhywh6balvw3q" path="res://assets/textures/cyber_punk_gui/items/Bar.png" id="7_xafeu"]
+[ext_resource type="Texture2D" uid="uid://be36giuo22t4u" path="res://assets/textures/cyber_punk_gui/items/Yellow (6).png" id="8_i6714"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dqkgc"]
+load_path = "res://.godot/imported/Untitled-1_0000_Layer-3.png-14a72117c2a62999b04b292adfe52afa.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_testn"]
+content_margin_bottom = 14.0
+texture = ExtResource("6_216pq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqodc"]
+texture = ExtResource("7_xafeu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4cbqk"]
+texture = ExtResource("7_xafeu")
+
+[node name="LevelItem" type="Control" unique_id=1898392187]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+script = ExtResource("1_hlbo8")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=623807055]
+modulate = Color(1, 0.57254905, 1, 1)
+clip_children = 2
+texture_filter = 1
+layout_mode = 0
+offset_left = 231.0
+offset_top = 39.0
+offset_right = 316.0
+offset_bottom = 133.0
+scale = Vector2(4.375, 4.375)
+texture = ExtResource("1_6af7a")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="." unique_id=1963668973]
+anchors_preset = 0
+offset_left = 280.00006
+offset_top = 78.0
+offset_right = 320.00006
+offset_bottom = 128.33557
+scale = Vector2(1.937, 1.961)
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control" unique_id=1679485822]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_hlbo8")
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="Control" unique_id=565136021]
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+scale = Vector2(0.135, 0.135)
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Control/Control" unique_id=835011144]
+clip_children = 2
+position = Vector2(310.84204, 339.2264)
+scale = Vector2(1.0125967, 1.0188679)
+polygon = PackedVector2Array(-294.69946, 5.563843, 30.510254, -313.71106, 716.19336, -321.40442, 716.19336, 836.44763, -290.78125, 836.44763)
+uv = PackedVector2Array(-256.5, 36, -161.5, -29, -19.5, -30, -15.5, 253, -248.5, 253)
+
+[node name="TextureRect" type="TextureRect" parent="Control/Control/Polygon2D" unique_id=530975021]
+offset_left = -677.31006
+offset_top = -339.8148
+offset_right = 1042.69
+offset_bottom = 918.44434
+texture = ExtResource("3_2k7yc")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Control" unique_id=1126026601]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 143.0
+offset_bottom = 163.0
+texture = SubResource("CompressedTexture2D_dqkgc")
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1976145597]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 259.0
+offset_right = 569.0
+offset_bottom = 408.0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1912223279]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 305.0
+offset_top = 257.0
+offset_right = 555.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 32
+text = "item 1"
+metadata/_edit_lock_ = true
+
+[node name="Control2" type="Control" parent="." unique_id=538571122]
+anchors_preset = 0
+offset_left = 99.0
+offset_top = 208.0
+offset_right = 139.0
+offset_bottom = 248.0
+scale = Vector2(0.555, 0.525)
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2" unique_id=1092881180]
+texture_filter = 1
+layout_mode = 0
+offset_left = 366.64
+offset_top = 171.0
+offset_right = 766.64
+offset_bottom = 355.0
+theme_override_constants/separation = 12
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control2/VBoxContainer" unique_id=1638132467]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+texture = ExtResource("4_nogmh")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="Control2/VBoxContainer" unique_id=419726246]
+texture_filter = 1
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+texture = ExtResource("4_nogmh")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control2" unique_id=1842227224]
+custom_minimum_size = Vector2(350, 70)
+layout_mode = 0
+offset_left = 393.0
+offset_top = 186.0
+offset_right = 743.0
+offset_bottom = 256.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control2/VBoxContainer2" unique_id=1269695510]
+layout_mode = 2
+theme_override_constants/separation = 116
+
+[node name="Label" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=539409306]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+text = "EASY"
+
+[node name="Label2" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=585728279]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+text = "NORMAL"
+
+[node name="Label3" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=1801115146]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+text = "HARD"
+
+[node name="HSlider" type="HSlider" parent="Control2/VBoxContainer2" unique_id=779605940]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("5_u3att")
+theme_override_icons/grabber_highlight = ExtResource("5_u3att")
+theme_override_icons/grabber_disabled = ExtResource("5_u3att")
+theme_override_styles/slider = SubResource("StyleBoxTexture_testn")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_sqodc")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4cbqk")
+value = 50.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control2" unique_id=794912519]
+layout_mode = 0
+offset_left = 396.39645
+offset_top = 279.99994
+offset_right = 708.3965
+offset_bottom = 328.99994
+scale = Vector2(1.03, 1.03)
+theme_override_constants/separation = 69
+
+[node name="TextureRect" type="TextureRect" parent="Control2/HBoxContainer2" unique_id=1232746055]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_i6714")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Control2/HBoxContainer2" unique_id=1359514845]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 32
+text = "TIME"
+
+[node name="Label2" type="Label" parent="Control2/HBoxContainer2" unique_id=1817939519]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 32
+text = "99,999"
