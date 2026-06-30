@@ -38,7 +38,7 @@ static var is_first_load: bool = true
 @export var menu_icon: MenuIcon
 @export var menu_icon_killer: MenuIconKiller
 
-@onready var _base_background_color: Color = title_screen_background.get_node("Background").modulate
+#@onready var _base_background_color: Color = title_screen_background.get_node("Background").modulate
 
 var _current_subscene: SubScene = SubScene.TITLE_SCREEN
 var _camera_tween: Tween
@@ -116,25 +116,25 @@ func zoom_out_title_screen_layer() -> void:
 
 
 func _return_to_title_screen() -> void:
-	_toggle_background_sprites_autoscroll(true)
+	#_toggle_background_sprites_autoscroll(true)
 	_current_subscene = SubScene.TITLE_SCREEN
-	_change_background_color(_base_background_color)
+	#_change_background_color(_base_background_color)
 	for object in [level_selector, community_menu, settings_panel, icon_garage]:
 		if object.visible:
 			object.hide_tween()
 
 
-func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
-	if Config.enable_title_screen_icons:
-		menu_icon.visible = enabled
-		menu_icon_killer.process_mode = Node.PROCESS_MODE_INHERIT if enabled else Node.PROCESS_MODE_DISABLED
-	# HACK: autoscroll can't be interpolated
-	if enabled:
-		title_screen_background.autoscroll.x = -300
-		title_screen_ground.autoscroll.x = -800
-	else:
-		title_screen_background.autoscroll.x = 0
-		title_screen_ground.autoscroll.x = 0
+#func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
+	##if Config.enable_title_screen_icons:
+		##menu_icon.visible = enabled
+		##menu_icon_killer.process_mode = Node.PROCESS_MODE_INHERIT if enabled else Node.PROCESS_MODE_DISABLED
+	## HACK: autoscroll can't be interpolated
+	#if enabled:
+		#title_screen_background.autoscroll.x = -300
+		#title_screen_ground.autoscroll.x = -800
+	#else:
+		#title_screen_background.autoscroll.x = 0
+		#title_screen_ground.autoscroll.x = 0
 
 
 func _change_background_color(new_color: Color) -> void:
