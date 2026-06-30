@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbv5i3do4liox"]
 
 [ext_resource type="Script" uid="uid://dd5fn6u4eujv7" path="res://src/PreviewIcon.gd" id="1_o8qdf"]
+[ext_resource type="Texture2D" uid="uid://f08aikpimgvl" path="res://assets/textures/cyber_punk_gui/elements/skill button/Blank (1).png" id="2_h537d"]
 [ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Spider1/Spider_Head-glow.svg" id="2_hx1qv"]
 [ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider1/Spider.svg" id="3_4aqbe"]
 [ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="4_junqh"]
@@ -22,16 +23,25 @@ shader = ExtResource("6_yr6x6")
 shader_parameter/bias = 0.9
 
 [node name="PreviewIcon" type="CenterContainer" unique_id=265404038]
-offset_right = 96.0
-offset_bottom = 96.0
+offset_right = 50.0
+offset_bottom = 50.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_o8qdf")
 metadata/_custom_type_script = "uid://dd5fn6u4eujv7"
 
+[node name="Sprite2" type="TextureRect" parent="." unique_id=272914940]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_h537d")
+expand_mode = 3
+stretch_mode = 5
+
 [node name="Sprite" type="TextureRect" parent="." unique_id=559371661]
-custom_minimum_size = Vector2(96, 96)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -53,6 +63,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
