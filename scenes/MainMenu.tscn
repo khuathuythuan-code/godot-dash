@@ -5,6 +5,7 @@
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_ggp3y"]
 [ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="9_06ihv"]
 [ext_resource type="Texture2D" uid="uid://dnr4hfenkjvq7" path="res://assets/textures/cyber_punk_gui/window/5/Full.png" id="10_0cpub"]
+[ext_resource type="Texture2D" uid="uid://3vxyeslpxe8e" path="res://assets/textures/cyber_punk_gui/window/5/WIthContent.png" id="10_egsv4"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="10_m1t58"]
 [ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="11_qr3el"]
 [ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="12_0cpub"]
@@ -20,35 +21,47 @@
 [ext_resource type="Texture2D" uid="uid://bpubqgdh2t8sl" path="res://assets/textures/cyber_punk_gui/items/RightArrow (1).png" id="19_ejntt"]
 [ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="19_xbdup"]
 [ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="20_5is2y"]
+[ext_resource type="PackedScene" uid="uid://dlrbcdwgevyf8" path="res://ScrollContainer.tscn" id="20_hfeak"]
 [ext_resource type="Texture2D" uid="uid://dpyteouoji6j5" path="res://assets/textures/cyber_punk_gui/items/LeftArrow (1).png" id="20_krgl8"]
 [ext_resource type="Script" uid="uid://driqqpbqw61rh" path="res://src/IconGarage.gd" id="21_7oulx"]
 [ext_resource type="Texture2D" uid="uid://ccp3otrr7lwtc" path="res://assets/textures/cyber_punk_gui/items/CloseRed.png" id="21_vbqq2"]
 [ext_resource type="PackedScene" uid="uid://dbv5i3do4liox" path="res://scenes/components/game_components/PreviewIcon.tscn" id="22_hponb"]
-[ext_resource type="Texture2D" uid="uid://csdiocvk88i8w" path="res://assets/textures/cyber_punk_gui/button/Play (2).png" id="23_06ihv"]
 [ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="23_ifue8"]
 [ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="24_815c7"]
 [ext_resource type="Texture2D" uid="uid://ce3ejeb0c2w4k" path="res://assets/textures/cyber_punk_gui/items/blank.png" id="24_m1t58"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="25_olwkx"]
-[ext_resource type="Texture2D" uid="uid://djmq34q4aenfr" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (5).png" id="25_qr3el"]
-[ext_resource type="Texture2D" uid="uid://q2527owfqb0a" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (8).png" id="26_0cpub"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="26_75yfs"]
+[ext_resource type="Texture2D" uid="uid://dl1tdy2xg02kg" path="res://assets/textures/cyber_punk_gui/button/Play (1).png" id="26_etbki"]
 [ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="27_etbki"]
-[ext_resource type="Texture2D" uid="uid://dymp6lr6itr0q" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (6).png" id="27_eyf07"]
+[ext_resource type="Texture2D" uid="uid://c7oa7lyq8gjob" path="res://assets/textures/cyber_punk_gui/button/Play (4).png" id="27_hfeak"]
 [ext_resource type="Texture2D" uid="uid://c50vjggsvm7st" path="res://assets/textures/cyber_punk_gui/items/TickGreen.png" id="27_prsce"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="28_hfeak"]
-[ext_resource type="Texture2D" uid="uid://b246pdpsrqxuq" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (9).png" id="28_prsce"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="29_6o8uy"]
 [ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="30_qu27s"]
+[ext_resource type="Texture2D" uid="uid://cyom0g50m488m" path="res://assets/textures/cyber_punk_gui/window/2/NoTitle.png" id="30_xbdup"]
 [ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="31_1qrjk"]
+[ext_resource type="Texture2D" uid="uid://dtkt77go8t3g6" path="res://assets/textures/cyber_punk_gui/button/LeftArrow (2).png" id="31_ioj4c"]
+[ext_resource type="Texture2D" uid="uid://dilaj4vmscdns" path="res://assets/textures/cyber_punk_gui/button/Close (2).png" id="31_qu27s"]
+[ext_resource type="Texture2D" uid="uid://dqyjr7ih7nij4" path="res://assets/textures/cyber_punk_gui/button/Close (1).png" id="32_1qrjk"]
+[ext_resource type="Texture2D" uid="uid://bqj8hxe8j60mw" path="res://assets/textures/cyber_punk_gui/button/LeftArrow (3).png" id="32_hvejy"]
 [ext_resource type="Script" uid="uid://c5cp2fpyr262x" path="res://src/MenuLoop.gd" id="32_ioj4c"]
 [ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="33_hvejy"]
+[ext_resource type="Texture2D" uid="uid://csdiocvk88i8w" path="res://assets/textures/cyber_punk_gui/button/Play (2).png" id="33_rjlec"]
 [ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="34_fopv7"]
+[ext_resource type="Texture2D" uid="uid://5fcsi5vjjs35" path="res://assets/textures/cyber_punk_gui/button/RightArrow (2).png" id="34_jjaxf"]
+[ext_resource type="Texture2D" uid="uid://d0fgbyp41qx1l" path="res://assets/textures/cyber_punk_gui/button/RightArrow (3).png" id="35_yl46j"]
 [ext_resource type="Texture2D" uid="uid://b3sjxlmv0vhux" path="res://assets/textures/cyber_punk_gui/items/on1.png" id="36_4rqjj"]
 [ext_resource type="Texture2D" uid="uid://cle0831mumlwx" path="res://assets/textures/cyber_punk_gui/elements/slider2/Seek.png" id="36_prsce"]
+[ext_resource type="PackedScene" uid="uid://cmvqa6ucnvk7j" path="res://scenes/components/game_components/PreviewIcon2.tscn" id="36_xbdup"]
 [ext_resource type="Texture2D" uid="uid://dfp3kt40mv32m" path="res://assets/textures/cyber_punk_gui/elements/button/Minus (1).png" id="37_4rqjj"]
+[ext_resource type="Texture2D" uid="uid://c3qmcejf26e8n" path="res://assets/textures/cyber_punk_gui/elements/tabs2/selected1.png" id="37_5is2y"]
 [ext_resource type="Texture2D" uid="uid://dxx6pcp6u4cfv" path="res://assets/textures/cyber_punk_gui/elements/button/Plus (1).png" id="38_24ra2"]
 [ext_resource type="Texture2D" uid="uid://du07y5ru6hrcu" path="res://assets/textures/cyber_punk_gui/items/Elements.png" id="38_f6838"]
+[ext_resource type="Texture2D" uid="uid://ouljpnm4im08" path="res://assets/textures/cyber_punk_gui/elements/tabs2/selected2.png" id="38_hponb"]
 [ext_resource type="Texture2D" uid="uid://d2o5a14reuwvj" path="res://assets/textures/cyber_punk_gui/elements/checkbox/checkbox (2).png" id="39_24ra2"]
+[ext_resource type="Texture2D" uid="uid://7p4evbm1sipy" path="res://assets/textures/cyber_punk_gui/elements/tabs2/selected3.png" id="39_ifue8"]
+[ext_resource type="Texture2D" uid="uid://cbd4m7t45qwop" path="res://assets/textures/cyber_punk_gui/items/Seek.png" id="40_815c7"]
+[ext_resource type="Texture2D" uid="uid://0fpsxh7nfovq" path="res://assets/textures/cyber_punk_gui/elements/page/blank.png" id="41_olwkx"]
 [ext_resource type="Texture2D" uid="uid://bu07dnw7x43af" path="res://assets/textures/cyber_punk_gui/elements/checkbox/radio (1).png" id="42_f6838"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2pqvh"]
@@ -68,7 +81,7 @@ texture = ExtResource("14_vbqq2")
 font_size = 64
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c3y1w"]
-texture = ExtResource("10_0cpub")
+texture = ExtResource("10_egsv4")
 
 [sub_resource type="StyleBox" id="StyleBox_507xd"]
 resource_local_to_scene = false
@@ -165,36 +178,87 @@ script = ExtResource("17_f6838")
 font_size = 64
 font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_24ra2"]
-texture = ExtResource("24_m1t58")
-texture_margin_left = 5.0
-texture_margin_top = 5.0
-texture_margin_right = 6.0
-texture_margin_bottom = 5.0
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hfeak"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qr3el"]
-texture = ExtResource("23_06ihv")
+texture = ExtResource("33_rjlec")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cpub"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hl6wr"]
+texture = ExtResource("26_etbki")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyf07"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nv4i"]
+texture = ExtResource("27_hfeak")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_prsce"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4rqjj"]
-texture = ExtResource("21_vbqq2")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f6838"]
-texture = ExtResource("27_prsce")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_egsv4"]
 texture = ExtResource("20_krgl8")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sfawq"]
+texture = ExtResource("31_ioj4c")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hwr6k"]
+texture = ExtResource("32_hvejy")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xbdup"]
 texture = ExtResource("19_ejntt")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uw7hm"]
+texture = ExtResource("34_jjaxf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sl2al"]
+texture = ExtResource("35_yl46j")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5is2y"]
 texture = ExtResource("21_vbqq2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_testn"]
+texture = ExtResource("31_qu27s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqodc"]
+texture = ExtResource("32_1qrjk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6o8uy"]
+texture = ExtResource("30_xbdup")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qu27s"]
+texture = ExtResource("14_vbqq2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1qrjk"]
+texture = ExtResource("37_5is2y")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ioj4c"]
+texture = ExtResource("38_hponb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hvejy"]
+texture = ExtResource("39_ifue8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fopv7"]
+texture = ExtResource("20_krgl8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjaxf"]
+texture = ExtResource("19_ejntt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yl46j"]
+texture = ExtResource("21_vbqq2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4cbqk"]
+texture = ExtResource("31_qu27s")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fvp4a"]
+texture = ExtResource("32_1qrjk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u7dsp"]
+texture = ExtResource("40_815c7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nqnr7"]
+texture = ExtResource("41_olwkx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d8wx8"]
+texture = ExtResource("41_olwkx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rjlec"]
+texture = ExtResource("41_olwkx")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gyoo8"]
 bg_color = Color(0, 0, 0, 0.3019608)
@@ -210,6 +274,19 @@ script = ExtResource("17_f6838")
 
 [sub_resource type="Resource" id="Resource_hkayi"]
 script = ExtResource("17_f6838")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dqkgc"]
+texture = ExtResource("10_0cpub")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4rqjj"]
+texture = ExtResource("21_vbqq2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cpub"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eyf07"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f6838"]
+texture = ExtResource("27_prsce")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ifue8"]
 texture = ExtResource("37_4rqjj")
@@ -267,10 +344,22 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Bg" type="Sprite2D" parent="." unique_id=431766940]
-position = Vector2(954.99994, 552)
+[node name="Bg" type="NinePatchRect" parent="." unique_id=499883722]
+custom_minimum_size = Vector2(900, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -308.0
+offset_top = -141.0
+offset_right = -308.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.3883721, 1.2611111)
 texture = ExtResource("1_c3y1w")
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="TitleScreenLayer" type="CanvasLayer" parent="." unique_id=1427652507]
 
@@ -358,7 +447,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_qr3el")
 theme_type_variation = &"TitleScreenButton"
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Play"
 
 [node name="Community" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1436173833]
@@ -367,7 +456,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_qr3el")
 theme_type_variation = &"TitleScreenButton"
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Community"
 
 [node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2135693891]
@@ -376,10 +465,11 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_qr3el")
 theme_type_variation = &"TitleScreenButton"
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Icons"
 
 [node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=53588540]
+visible = false
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
 size_flags_vertical = 3
@@ -394,7 +484,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("6_qr3el")
 theme_type_variation = &"TitleScreenButton"
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Quit"
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1262912517]
@@ -442,15 +532,16 @@ anchors_preset = -1
 anchor_left = 0.333
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = -100.0
-offset_bottom = -100.0
-grow_horizontal = 2
+offset_left = 41.640015
+offset_top = 94.0
+offset_right = -158.92505
+offset_bottom = -106.0
+grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_c3y1w")
 script = ExtResource("11_qr3el")
 metadata/_custom_type_script = "uid://2ient42a5q26"
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1989226303]
 visible = false
@@ -591,225 +682,83 @@ autowrap_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1532816138]
 layout_mode = 2
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 18
 
 [node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=1614123637]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 1
+size_flags_vertical = 0
 text = "LEVELS"
 label_settings = SubResource("LabelSettings_4rqjj")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=667617461]
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=1215949648]
 layout_mode = 2
-theme_override_constants/margin_left = 150
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 150
-theme_override_constants/margin_bottom = 200
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 43
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer" unique_id=808422945]
+[node name="Panel" type="Panel" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer" unique_id=1046649950]
+z_index = 100
+clip_contents = true
+custom_minimum_size = Vector2(830, 570)
 layout_mode = 2
-theme_override_constants/separation = 20
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_hfeak")
 
-[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer" unique_id=882726902]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_24ra2")
-
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer" unique_id=1642829499]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1521843467]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=275699101]
-layout_mode = 2
-texture = ExtResource("25_qr3el")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=657903034]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "SCORE"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=446974009]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "99,999"
-horizontal_alignment = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer" unique_id=35223558]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_24ra2")
-
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer2" unique_id=557150537]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer" unique_id=563296242]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=86758241]
-layout_mode = 2
-texture = ExtResource("26_0cpub")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=384126999]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "GEMS"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer" unique_id=953654878]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "99,999"
-horizontal_alignment = 1
-
-[node name="PanelContainer3" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1366155604]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_24ra2")
-
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer3" unique_id=1157450149]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer" unique_id=2141745042]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/HBoxContainer" unique_id=570145172]
-layout_mode = 2
-texture = ExtResource("27_eyf07")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/HBoxContainer" unique_id=884838822]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "TIME"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/HBoxContainer" unique_id=1084144716]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "99,999"
-horizontal_alignment = 1
-
-[node name="PanelContainer4" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer" unique_id=1227523506]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_24ra2")
-
-[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer4" unique_id=1542392578]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer" unique_id=1788259055]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer" unique_id=584974283]
-layout_mode = 2
-texture = ExtResource("28_prsce")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer" unique_id=2006619816]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "KILLS"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/VBoxContainer/PanelContainer4/MarginContainer/HBoxContainer" unique_id=1184856352]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 48
-text = "100"
-horizontal_alignment = 1
+[node name="Game" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer/Panel" unique_id=872869737 node_paths=PackedStringArray("subscene_manager", "fade_screen", "pre_btn", "next_btn", "play_btn") instance=ExtResource("20_hfeak")]
+subscene_manager = NodePath("../../../../../../../Subscene Manager")
+fade_screen = NodePath("../../../../../../../FadeScreen")
+pre_btn = NodePath("../../../../Buttons/Pre")
+next_btn = NodePath("../../../../Buttons/Next")
+play_btn = NodePath("../../../../Buttons/Play")
 
 [node name="Buttons" type="Node2D" parent="TitleScreenLayer/TitleScreen/Community" unique_id=341617355]
 
-[node name="Button4" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1502477550]
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1502477550]
 offset_left = 424.64
 offset_top = 680.0
 offset_right = 667.64
 offset_bottom = 925.25635
 theme_override_styles/normal = SubResource("StyleBoxTexture_qr3el")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hl6wr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1nv4i")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
 
-[node name="Button6" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=612502294]
-offset_left = 735.64
-offset_top = 718.0
-offset_right = 954.64
-offset_bottom = 939.0335
-scale = Vector2(0.8529625, 0.85691047)
-theme_override_styles/normal = SubResource("StyleBoxTexture_4rqjj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
-
-[node name="Button7" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=537743925]
-offset_left = 150.64001
-offset_top = 715.00006
-offset_right = 369.64
-offset_bottom = 936.03357
-scale = Vector2(0.8529625, 0.85691047)
-theme_override_styles/normal = SubResource("StyleBoxTexture_f6838")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
-
-[node name="Button8" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1093769702]
+[node name="Pre" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1093769702]
 offset_left = -55.359985
 offset_top = 390.00006
 offset_right = 163.64001
 offset_bottom = 611.03357
 scale = Vector2(0.6969129, 0.6969129)
 theme_override_styles/normal = SubResource("StyleBoxTexture_egsv4")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_sfawq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hwr6k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
 
-[node name="Button9" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1640115784]
+[node name="Next" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=1640115784]
 offset_left = 976.64
 offset_top = 385.0
 offset_right = 1195.64
 offset_bottom = 606.0335
 scale = Vector2(0.6969129, 0.6969129)
 theme_override_styles/normal = SubResource("StyleBoxTexture_xbdup")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_uw7hm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sl2al")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
 
-[node name="Button10" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=237796913]
+[node name="Close" type="Button" parent="TitleScreenLayer/TitleScreen/Community/Buttons" unique_id=237796913]
 offset_left = 982.6401
 offset_top = 69.0
 offset_right = 1141.3743
 offset_bottom = 229.20805
 scale = Vector2(0.6969129, 0.6969129)
 theme_override_styles/normal = SubResource("StyleBoxTexture_5is2y")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0cpub")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_eyf07")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_testn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sqodc")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_prsce")
 
 [node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
-visible = false
-material = ExtResource("8_ggp3y")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.333
@@ -822,13 +771,209 @@ offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
+theme_override_styles/panel = SubResource("StyleBoxTexture_6o8uy")
 script = ExtResource("11_qr3el")
 metadata/_custom_type_script = "uid://2ient42a5q26"
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=825146628]
+layout_mode = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 100
+
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2" unique_id=541499416]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qu27s")
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer" unique_id=1328460728]
+layout_mode = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 47
+theme_override_constants/margin_right = 45
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer" unique_id=1671700161]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer" unique_id=1532949120]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PreviewIcon" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=841013861 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon2" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=718813159 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon3" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=135822398 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon4" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1424729409 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon5" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1612576622 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon6" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1619680481 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon7" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=979207831 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon8" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=90774621 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon9" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1841103474 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="PreviewIcon10" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1632954036 instance=ExtResource("36_xbdup")]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer" unique_id=1360056460]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect" unique_id=2114650035]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = -17
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer" unique_id=1568804029]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Button" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=1558349622]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_1qrjk")
+text = "Cube"
+
+[node name="Button2" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=406705745]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioj4c")
+text = "Ship"
+
+[node name="Button4" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=1843665811]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioj4c")
+text = "Jetpack"
+
+[node name="Button5" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=1890774229]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioj4c")
+text = "UFO"
+
+[node name="Button6" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=1278387126]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioj4c")
+text = "Ball"
+
+[node name="Button7" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=377727979]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioj4c")
+text = "Wave"
+
+[node name="Button3" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/PanelContainer/MarginContainer/VBoxContainer/NinePatchRect/MarginContainer/HBoxContainer2" unique_id=1110005210]
+custom_minimum_size = Vector2(115, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_hvejy")
+text = "Robot"
+
+[node name="Control" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2" unique_id=499980747]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control" unique_id=243644219]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = -159.68
+offset_top = 262.0
+offset_right = -9.679993
+offset_bottom = 412.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_fopv7")
+
+[node name="Button2" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control" unique_id=1803094469]
+visible = false
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 884.32
+offset_top = 262.0
+offset_right = 1034.3201
+offset_bottom = 412.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_jjaxf")
+
+[node name="Close" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control" unique_id=144191539]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 0
+offset_left = 893.32
+offset_top = -87.0
+offset_right = 993.32
+offset_bottom = 13.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_yl46j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4cbqk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fvp4a")
+
+[node name="Control2" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2" unique_id=1092128589]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control2" unique_id=2131133617]
+layout_mode = 0
+offset_left = 342.32
+offset_top = 625.0
+offset_right = 514.32
+offset_bottom = 665.0
+
+[node name="Button" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control2/HBoxContainer" unique_id=180030111]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_u7dsp")
+
+[node name="Button2" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control2/HBoxContainer" unique_id=2100947848]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_nqnr7")
+
+[node name="Button3" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control2/HBoxContainer" unique_id=94461629]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_d8wx8")
+
+[node name="Button4" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control2/HBoxContainer" unique_id=725194076]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_rjlec")
 
 [node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=615632743]
 custom_minimum_size = Vector2(0, 512)
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 145
+theme_override_constants/margin_top = 81
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 194
 
 [node name="IconGarage" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1474942368 node_paths=PackedStringArray("preview_icons", "icon_selector")]
 layout_mode = 2
@@ -847,6 +992,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gyoo8")
 z_index = 1
 layout_mode = 2
 size_flags_vertical = 4
+theme_override_constants/separation = -39
 alignment = 1
 
 [node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("22_hponb")]
@@ -931,7 +1077,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
 gamemode = 1
 icon_path = "res://assets/textures/player/ship/Ship1.svg"
 icon_scale = 0.75
@@ -946,7 +1091,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.8, 0.8)
 gamemode = 8
 icon_path = "res://assets/textures/player/jetpack/Jetpack1.svg"
 icon_scale = 0.75
@@ -975,7 +1119,7 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 
 [node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
-scale = Vector2(0.188, 0.188)
+scale = Vector2(0.108, 0.108)
 texture = ExtResource("24_815c7")
 
 [node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("22_hponb")]
@@ -1018,9 +1162,11 @@ theme_override_constants/v_separation = 10
 columns = 10
 
 [node name="HSeparator2" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1335947968]
+visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=489407561]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -1036,6 +1182,7 @@ text = "Refresh"
 autowrap_mode = 3
 
 [node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1153421102]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.333
@@ -1048,7 +1195,7 @@ offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"TitleScreenPanel"
-theme_override_styles/panel = SubResource("StyleBoxTexture_c3y1w")
+theme_override_styles/panel = SubResource("StyleBoxTexture_dqkgc")
 script = ExtResource("11_qr3el")
 metadata/_custom_type_script = "uid://2ient42a5q26"
 
@@ -1160,6 +1307,7 @@ theme_override_font_sizes/font_size = 22
 text = "HIGH"
 
 [node name="HSlider" type="HSlider" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer3/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1613081059]
+modulate = Color(1, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
@@ -1298,12 +1446,12 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_7oulx")
 [node name="HBoxContainer2" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer3/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer" unique_id=670453188]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 47
+theme_override_constants/separation = 63
 
 [node name="Label2" type="Label" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer3/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer/HBoxContainer2" unique_id=21061541]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 59
 text = "CAPTIONS"
 horizontal_alignment = 1
 
@@ -1517,6 +1665,8 @@ title_screen_layer = NodePath("../TitleScreenLayer")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_open_importer"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="refresh"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/Buttons/Close" to="Subscene Manager" method="_return_to_title_screen"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer2/Control/Close" to="Subscene Manager" method="_return_to_title_screen"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_ship_pressed"]
 [connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_tab_changed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="reload"]
