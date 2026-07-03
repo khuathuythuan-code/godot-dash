@@ -238,7 +238,7 @@ func move_layer(layer_name: String, new_layer_index: int) -> void:
 func start_level() -> void:
 	if get_tree().paused:
 		#await LevelManager.pause_menu.unpaused
-		await LevelManager.stat_pause_menu.unpaused
+		await LevelManager.cyber_punk_pause_menu.unpaused
 	song_player.play(song_start_time)
 	stopwatch.reset()
 	stopwatch.paused = false

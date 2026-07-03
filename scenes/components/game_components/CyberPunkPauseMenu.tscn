@@ -4,7 +4,9 @@
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="2_thyv4"]
 [ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="6_ghmn4"]
 [ext_resource type="Texture2D" uid="uid://djvjr2iqv4nm4" path="res://assets/textures/cyber_punk_gui/items/Window.png" id="7_r6cf0"]
+[ext_resource type="Texture2D" uid="uid://dilaj4vmscdns" path="res://assets/textures/cyber_punk_gui/button/Close (2).png" id="7_tddqc"]
 [ext_resource type="Theme" uid="uid://ceq7mxpm7x2mm" path="res://resources/CyberPunkTheme.tres" id="8_7tier"]
+[ext_resource type="Texture2D" uid="uid://dqyjr7ih7nij4" path="res://assets/textures/cyber_punk_gui/button/Close (1).png" id="8_thyv4"]
 [ext_resource type="Texture2D" uid="uid://ccp3otrr7lwtc" path="res://assets/textures/cyber_punk_gui/items/CloseRed.png" id="9_7tier"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6im2f"]
@@ -12,6 +14,12 @@ texture = ExtResource("7_r6cf0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e0evx"]
 texture = ExtResource("9_7tier")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ribco"]
+texture = ExtResource("7_tddqc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghmn4"]
+texture = ExtResource("8_thyv4")
 
 [node name="CyberPunkPauseMenu" type="CanvasLayer" unique_id=1857715947]
 layer = 999
@@ -69,12 +77,12 @@ theme_override_constants/margin_bottom = 75
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=2046407500]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = -67
 alignment = 1
 
 [node name="Resume" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1285791180]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme = ExtResource("8_7tier")
 theme_type_variation = &"TitleScreenButton"
 theme_override_font_sizes/font_size = 32
@@ -83,7 +91,7 @@ text = "RESUME"
 [node name="Restart" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=593206445]
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme = ExtResource("8_7tier")
 theme_type_variation = &"TitleScreenButton"
 theme_override_font_sizes/font_size = 32
@@ -93,7 +101,7 @@ text = "RESTART"
 visible = false
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme = ExtResource("8_7tier")
 theme_type_variation = &"TitleScreenButton"
 theme_override_font_sizes/font_size = 32
@@ -102,29 +110,44 @@ text = "OPTIONS"
 [node name="Exit" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1939744868]
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme = ExtResource("8_7tier")
 theme_type_variation = &"TitleScreenButton"
 theme_override_font_sizes/font_size = 32
 text = "EXIT"
 
-[node name="Node" type="Node2D" parent="Menu/MarginContainer2" unique_id=1920405990]
+[node name="Control" type="Control" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer" unique_id=2001461457]
+layout_mode = 2
+mouse_filter = 2
 
-[node name="Button" type="Button" parent="Menu/MarginContainer2/Node" unique_id=655699304]
-offset_left = 506.99997
-offset_top = 460.0
-offset_right = 547.2383
-offset_bottom = 497.7469
+[node name="Button" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/Control" unique_id=655699304]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.953
+anchor_top = 0.155
+anchor_right = 0.953
+anchor_bottom = 0.155
+offset_left = -40.23828
+offset_bottom = 37.746887
+grow_horizontal = 0
 scale = Vector2(1.9135983, -1.8959712)
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_e0evx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ribco")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ghmn4")
 
-[node name="Label" type="Label" parent="Menu/MarginContainer2/Node" unique_id=891653233]
-offset_left = 269.0
-offset_top = 385.5
-offset_right = 358.0
-offset_bottom = 434.5
+[node name="Label" type="Label" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/Control" unique_id=891653233]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.026
+anchor_right = 0.5
+anchor_bottom = 0.026
+offset_left = -44.5
+offset_right = 44.5
+offset_bottom = 49.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
 theme_override_font_sizes/font_size = 32
 text = "PAUSED"
@@ -132,3 +155,4 @@ text = "PAUSED"
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="toggle_pause_menu"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/Control/Button" to="." method="toggle_pause_menu"]
