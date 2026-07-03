@@ -14,12 +14,15 @@ signal practice_mode_toggled(toggled_on: bool)
 #@export var play_button: Button
 #@export var replay_button: Button
 @onready var menu: PanelContainer = %Menu
+@onready var resume_btn: Button = $Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resume
 
 var suspended: bool
 var tween: Tween
 var settings_were_open: bool
 var replays_were_open: bool
 var proceed_through_unsuspend: bool = true
+var attempt_count: int = 1
+
 
 
 func _ready() -> void:
@@ -84,7 +87,6 @@ func show_tween() -> void:
 	tween.tween_property(menu, ^"position:x", 0, Config.transition_duration).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(-%Menu.size.x)
 	await tween.finished
 
-
 func hide_tween() -> void:
 	if not is_inside_tree():
 		return
@@ -148,11 +150,14 @@ func _on_leave_pressed() -> void:
 	if Editor.clipboard:
 		Editor.clipboard.clear()
 	SceneManager.is_transitioning = false
-	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
+	#get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 	AudioServer.set_bus_mute.call_deferred(AudioServer.get_bus_index(&"Music"), false)
 
 
 func _on_restart_pressed() -> void:
+	LevelManager.game_scene.level_complete_menu.stat_controller.refresh()
+	attempt_count +=1
 	get_tree().paused = false
 	unpaused.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN

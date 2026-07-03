@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://du7pvtxipurfo" path="res://scenes/components/game_components/StatisticsPauseMenu.tscn" id="21_6nmf6"]
 [ext_resource type="Texture2D" uid="uid://by7isbryvvuaa" path="res://assets/textures/guis/touchscreen/Down.svg" id="22_1npfk"]
 [ext_resource type="PackedScene" uid="uid://b55oe7dsfwi7m" path="res://scenes/components/game_components/CyberPunkPauseMenu.tscn" id="23_f2kej"]
+[ext_resource type="PackedScene" uid="uid://vlr2me4rnxhu" path="res://scenes/components/game_components/LevelCompleteMenu.tscn" id="25_3t3mo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kxqg4"]
 shader = ExtResource("9_qitmq")
@@ -102,12 +103,13 @@ glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bwo2a"]
 
-[node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent", "pause_menu", "fade_screen")]
+[node name="GameScene" type="Node2D" unique_id=1233715949 node_paths=PackedStringArray("checkpoint_parent", "pause_menu", "fade_screen", "level_complete_menu")]
 physics_interpolation_mode = 2
 script = ExtResource("1_k47tp")
 checkpoint_parent = NodePath("CheckpointParent")
 pause_menu = NodePath("CyberPunkPauseMenu")
 fade_screen = NodePath("FadeScreen")
+level_complete_menu = NodePath("LevelCompleteMenu")
 metadata/_edit_lock_ = true
 
 [node name="BackgroundParallax" type="Parallax2D" parent="." unique_id=967726218]
@@ -430,6 +432,9 @@ visible = false
 visible = false
 
 [node name="FadeScreen" parent="." unique_id=955800599 instance=ExtResource("6_7ju4w")]
+
+[node name="LevelCompleteMenu" parent="." unique_id=1371845548 instance=ExtResource("25_3t3mo")]
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=220297200]
 environment = SubResource("Environment_4phyr")

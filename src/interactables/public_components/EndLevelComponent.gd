@@ -66,4 +66,5 @@ func _on_static_easing_finished(player: Player) -> void:
 
 func _on_shake_easing_finished(_player: Player) -> void:
 	LevelManager.current_level.stop_level()
-	LevelManager.game_scene.pause_menu.toggle_pause_menu()
+	var end_level_menu = LevelManager.game_scene.level_complete_menu
+	end_level_menu._show()

@@ -4,6 +4,7 @@ extends Node2D
 @export var checkpoint_parent: Node2D
 @export var pause_menu: CyberPunkPauseMenu
 @export var fade_screen: FadeScreen
+@export var level_complete_menu: LevelCompleteMenu
 
 var cached_level_data: Dictionary
 var cached_level_path: String
@@ -25,6 +26,9 @@ func _ready() -> void:
 	if not SceneManager.in_editor():
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		pause_menu.leave.connect(_leave_level)
+		level_complete_menu.leave.connect(_leave_level)
+		level_complete_menu.complete.connect(func(): pause_menu.process_mode = Node.PROCESS_MODE_DISABLED)
+		level_complete_menu.restart.connect(func(): pause_menu.process_mode = Node.PROCESS_MODE_ALWAYS)
 		fade_screen.anticipate_fade_out()
 		$EditorGridParallax/EditorGrid.hide()
 		load_level()
@@ -111,6 +115,8 @@ func reset() -> void:
 
 
 func _leave_level() -> void:
+	LevelManager.game_scene.level_complete_menu.stat_controller.refresh()
+	pause_menu.attempt_count = 0
 	for level in $Level.get_children():
 		level.stop_level()
 	LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
