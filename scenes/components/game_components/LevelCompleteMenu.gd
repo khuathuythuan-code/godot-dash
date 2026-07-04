@@ -28,7 +28,7 @@ func _on_leave_pressed() -> void:
 	await LevelManager.game_scene.fade_screen.fade_finished
 	LevelManager.game_scene = null
 	SceneManager.is_transitioning = false
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
 	AudioServer.set_bus_mute.call_deferred(AudioServer.get_bus_index(&"Music"), false)
 
 

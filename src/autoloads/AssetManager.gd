@@ -19,13 +19,15 @@ var generated_editor_object_thumbnails: Dictionary[String, ImageTexture]
 
 
 func _ready() -> void:
-	ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
+	#ResourceLoader.load_threaded_request("res://scenes/TitleScreen.tscn")
+	ResourceLoader.load_threaded_request("res://scenes/TestMainMenu.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/EditorScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/GameScene.tscn")
 	ResourceLoader.load_threaded_request("res://scenes/components/game_components/Player.tscn")
 	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffect.tres")
 	ResourceLoader.load_threaded_request("res://resources/FadeEnterEffectCanvasGroup.tres")
-	title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
+	#title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TitleScreen.tscn")
+	title_screen_packed = ResourceLoader.load_threaded_get("res://scenes/TestMainMenu.tscn")
 	editor_packed = ResourceLoader.load_threaded_get("res://scenes/EditorScene.tscn")
 	game_scene_packed = ResourceLoader.load_threaded_get("res://scenes/GameScene.tscn")
 	player_packed = ResourceLoader.load_threaded_get("res://scenes/components/game_components/Player.tscn")

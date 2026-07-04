@@ -1,0 +1,1188 @@
+[gd_scene format=3 uid="uid://cea1yr5xp7xmd"]
+
+[ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="1_belvq"]
+[ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="2_7x357"]
+[ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_qovpe"]
+[ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="4_pw3ed"]
+[ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="5_q5gxh"]
+[ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_38af2"]
+[ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_kv8dc"]
+[ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_a36d0"]
+[ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="9_nrw5p"]
+[ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="10_h5lgf"]
+[ext_resource type="Texture2D" uid="uid://dvu5s8klyav5o" path="res://assets/textures/cyber_punk_gui/window/2/Full.png" id="11_7x357"]
+[ext_resource type="Script" uid="uid://2ient42a5q26" path="res://src/TitleScreenPanel.gd" id="11_h4rjt"]
+[ext_resource type="Texture2D" uid="uid://sutpxbrucvj0" path="res://assets/textures/cyber_punk_gui/window/1/NoTitle.png" id="12_pw3ed"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="12_usj3b"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="13_177ul"]
+[ext_resource type="Texture2D" uid="uid://dsgbtoflddq8r" path="res://assets/textures/cyber_punk_gui/button/blank/BlankText (1).png" id="13_kv8dc"]
+[ext_resource type="Texture2D" uid="uid://dvopm8x8ytt00" path="res://assets/textures/cyber_punk_gui/button/blank/BlankText (2).png" id="14_a36d0"]
+[ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="14_tpojm"]
+[ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="15_nqjvc"]
+[ext_resource type="Texture2D" uid="uid://duvaf4106smq3" path="res://assets/textures/cyber_punk_gui/button/blank/BlankText (3).png" id="15_nrw5p"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="16_7b7r6"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="17_lsgps"]
+[ext_resource type="Script" uid="uid://863yfw654q5k" path="res://src/LevelPanelLoader.gd" id="18_m4n26"]
+[ext_resource type="Gradient" uid="uid://oidq6h6ak8o" path="res://resources/curves/Ratings.tres" id="19_4gxlv"]
+[ext_resource type="Theme" uid="uid://cntfsyilhn2ic" path="res://resources/Theme.tres" id="20_b8nsk"]
+[ext_resource type="Script" uid="uid://driqqpbqw61rh" path="res://src/IconGarage.gd" id="21_ior5h"]
+[ext_resource type="PackedScene" uid="uid://dbv5i3do4liox" path="res://scenes/components/game_components/PreviewIcon.tscn" id="22_x8mo2"]
+[ext_resource type="Script" uid="uid://doei3yc3rs41t" path="res://src/BouncyButton.gd" id="23_r2cpq"]
+[ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="24_6fgrv"]
+[ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="25_60lnx"]
+[ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="26_qx8yl"]
+[ext_resource type="PackedScene" uid="uid://dlrbcdwgevyf8" path="res://ScrollContainer.tscn" id="27_a36d0"]
+[ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="27_utj1q"]
+[ext_resource type="Texture2D" uid="uid://dl1tdy2xg02kg" path="res://assets/textures/cyber_punk_gui/button/Play (1).png" id="28_b8nsk"]
+[ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="28_mg0tb"]
+[ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="29_h683b"]
+[ext_resource type="Texture2D" uid="uid://csdiocvk88i8w" path="res://assets/textures/cyber_punk_gui/button/Play (2).png" id="29_ior5h"]
+[ext_resource type="Script" uid="uid://b3rfkvqn2ekop" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="30_4tqpa"]
+[ext_resource type="Texture2D" uid="uid://bk1gydiknmgor" path="res://assets/textures/cyber_punk_gui/button/Play (3).png" id="30_x8mo2"]
+[ext_resource type="Script" uid="uid://4og8aymmjhiw" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="31_02d04"]
+[ext_resource type="Texture2D" uid="uid://dpyteouoji6j5" path="res://assets/textures/cyber_punk_gui/items/LeftArrow (1).png" id="31_r2cpq"]
+[ext_resource type="Texture2D" uid="uid://dtkt77go8t3g6" path="res://assets/textures/cyber_punk_gui/button/LeftArrow (2).png" id="32_6fgrv"]
+[ext_resource type="Script" uid="uid://c5cp2fpyr262x" path="res://src/MenuLoop.gd" id="32_gvl4o"]
+[ext_resource type="Texture2D" uid="uid://bqj8hxe8j60mw" path="res://assets/textures/cyber_punk_gui/button/LeftArrow (3).png" id="33_60lnx"]
+[ext_resource type="Script" uid="uid://byovnlciek3e3" path="res://src/SubsceneManager.gd" id="33_wpvfx"]
+[ext_resource type="PackedScene" uid="uid://dfde2ns6le0wd" path="res://scenes/components/game_components/PhantomCamera2DHistory.tscn" id="34_36m4y"]
+[ext_resource type="Texture2D" uid="uid://bpubqgdh2t8sl" path="res://assets/textures/cyber_punk_gui/items/RightArrow (1).png" id="34_qx8yl"]
+[ext_resource type="Texture2D" uid="uid://5fcsi5vjjs35" path="res://assets/textures/cyber_punk_gui/button/RightArrow (2).png" id="35_utj1q"]
+[ext_resource type="Texture2D" uid="uid://d0fgbyp41qx1l" path="res://assets/textures/cyber_punk_gui/button/RightArrow (3).png" id="36_mg0tb"]
+[ext_resource type="Texture2D" uid="uid://dwhdjylx138y2" path="res://assets/textures/cyber_punk_gui/BG.png" id="36_qovpe"]
+[ext_resource type="Texture2D" uid="uid://ccp3otrr7lwtc" path="res://assets/textures/cyber_punk_gui/items/CloseRed.png" id="37_h683b"]
+[ext_resource type="Texture2D" uid="uid://dilaj4vmscdns" path="res://assets/textures/cyber_punk_gui/button/Close (2).png" id="38_4tqpa"]
+[ext_resource type="Texture2D" uid="uid://dqyjr7ih7nij4" path="res://assets/textures/cyber_punk_gui/button/Close (1).png" id="39_02d04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dchwh"]
+shader = ExtResource("6_38af2")
+shader_parameter/ground_color = Color(1, 1, 1, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jk6fi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5gxh"]
+texture = ExtResource("12_pw3ed")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h5lgf"]
+texture = ExtResource("13_kv8dc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4rjt"]
+texture = ExtResource("14_a36d0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_usj3b"]
+texture = ExtResource("15_nrw5p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qovpe"]
+texture = ExtResource("11_7x357")
+
+[sub_resource type="FontVariation" id="FontVariation_0d6if"]
+variation_opentype = {
+1869640570: 14,
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_hvy54"]
+font = SubResource("FontVariation_0d6if")
+font_size = 64
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7x357"]
+texture = ExtResource("11_7x357")
+
+[sub_resource type="StyleBox" id="StyleBox_507xd"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_177ul")
+color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBox" id="StyleBox_02qso"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_177ul")
+color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBox" id="StyleBox_fm4nh"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_177ul")
+color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBox" id="StyleBox_3yl86"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 12.0
+content_margin_top = -1.0
+content_margin_right = 12.0
+content_margin_bottom = -1.0
+script = ExtResource("13_177ul")
+color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_curvature_top_left = 2.0
+corner_curvature_top_right = 2.0
+corner_curvature_bottom_right = 2.0
+corner_curvature_bottom_left = 2.0
+shadow_blur = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jk6fi"]
+content_margin_left = 12.0
+content_margin_right = 12.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Resource" id="Resource_1nrh6"]
+script = ExtResource("17_lsgps")
+
+[sub_resource type="Resource" id="Resource_08fpa"]
+script = ExtResource("17_lsgps")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrw5p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h5lgf"]
+font_size = 64
+font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvl4o"]
+texture = ExtResource("28_b8nsk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wpvfx"]
+texture = ExtResource("29_ior5h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36m4y"]
+texture = ExtResource("30_x8mo2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2k1c6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7oer7"]
+texture = ExtResource("31_r2cpq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3semy"]
+texture = ExtResource("32_6fgrv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_trb0l"]
+texture = ExtResource("33_60lnx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7nni"]
+texture = ExtResource("34_qx8yl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_se1x5"]
+texture = ExtResource("35_utj1q")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tis8u"]
+texture = ExtResource("36_mg0tb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vtb0s"]
+texture = ExtResource("37_h683b")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v6r2l"]
+texture = ExtResource("38_4tqpa")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4ocjj"]
+texture = ExtResource("39_02d04")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pw3ed"]
+texture = ExtResource("11_7x357")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kv8dc"]
+
+[sub_resource type="Resource" id="Resource_tuyt1"]
+script = ExtResource("17_lsgps")
+
+[sub_resource type="Resource" id="Resource_hkayi"]
+script = ExtResource("17_lsgps")
+
+[sub_resource type="Resource" id="Resource_7wwop"]
+script = ExtResource("30_4tqpa")
+duration = 0.5
+transition = 5
+ease = 1
+
+[sub_resource type="Resource" id="Resource_assks"]
+script = ExtResource("30_4tqpa")
+transition = 5
+ease = 1
+
+[sub_resource type="Resource" id="Resource_jse1c"]
+script = ExtResource("30_4tqpa")
+duration = 0.5
+transition = 5
+ease = 0
+
+[node name="TitleScreen" type="Control" unique_id=1106607731]
+texture_filter = 4
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1728565977]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -135.0
+offset_right = 245.0
+offset_bottom = 134.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_qovpe")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=240017271]
+visible = false
+
+[node name="MenuIcon" parent="Node2D" unique_id=1938015 instance=ExtResource("1_belvq")]
+position = Vector2(-128, 860)
+script = ExtResource("2_7x357")
+
+[node name="Kill Box" type="Area2D" parent="Node2D" unique_id=313833091 node_paths=PackedStringArray("hitbox")]
+physics_interpolation_mode = 1
+collision_layer = 4
+script = ExtResource("3_qovpe")
+hitbox = NodePath("Hitbox")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="Node2D/Kill Box" unique_id=1651038472]
+shape = SubResource("RectangleShape2D_fto0a")
+disabled = true
+debug_color = Color(0.284375, 0, 0.7, 0.42)
+
+[node name="BackgroundParallax" type="Parallax2D" parent="Node2D" unique_id=1416286345]
+z_index = -2
+repeat_size = Vector2(12800, 0)
+autoscroll = Vector2(-300, 0)
+repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Background" type="Sprite2D" parent="Node2D/BackgroundParallax" unique_id=1895486172]
+modulate = Color(0.213669, 0.439779, 1, 1)
+texture_repeat = 2
+position = Vector2(973, 3.05176e-05)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_pw3ed")
+region_enabled = true
+region_rect = Rect2(0, 0, 10240, 2048)
+
+[node name="GroundDownParallax" type="Parallax2D" parent="Node2D" unique_id=1544494845]
+repeat_size = Vector2(24000, 0)
+autoscroll = Vector2(-1600, 0)
+repeat_times = 3
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="GroundDownOrigin" type="Marker2D" parent="Node2D/GroundDownParallax" unique_id=1969847813]
+position = Vector2(640, 925)
+gizmo_extents = 64.0
+script = ExtResource("5_q5gxh")
+default_y = 925.0
+
+[node name="Ground" type="Sprite2D" parent="Node2D/GroundDownParallax/GroundDownOrigin" unique_id=653056734]
+self_modulate = Color(0.105882, 0.294118, 0.768627, 1)
+z_index = 50
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dchwh")
+position = Vector2(300, 300)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_kv8dc")
+region_enabled = true
+region_rect = Rect2(0, 0, 9600, 240)
+metadata/_edit_group_ = true
+
+[node name="GroundColliderDown" type="StaticBody2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground" unique_id=540793833]
+z_index = 50
+position = Vector2(-120, -120)
+collision_layer = 32
+metadata/_edit_group_ = true
+
+[node name="GroundHitbox" type="CollisionShape2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground/GroundColliderDown" unique_id=1658936076]
+position = Vector2(0, 1.5258789e-05)
+shape = SubResource("WorldBoundaryShape2D_jk6fi")
+debug_color = Color(0, 0.701961, 0.607843, 0.419608)
+
+[node name="TitleScreenLayer" type="CanvasLayer" parent="." unique_id=1427652507]
+
+[node name="TitleScreen" type="Control" parent="TitleScreenLayer" unique_id=2049651669]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MainPanel" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=2063761728]
+material = ExtResource("8_a36d0")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.333
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/MainPanel" unique_id=739036882]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpdateChecker" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer" unique_id=1040548127]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+disabled = true
+text = "Update Checker"
+flat = true
+script = ExtResource("9_nrw5p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel" unique_id=1828137138]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=504101821]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+texture = ExtResource("10_h5lgf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=2937624]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=879028698]
+custom_minimum_size = Vector2(500, 700)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_q5gxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer" unique_id=171342115]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=299438892]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "PLAY"
+
+[node name="Community" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1436173833]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "COMMUNITY"
+
+[node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2135693891]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "ICONS"
+
+[node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=53588540]
+visible = false
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=829673783]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "QUIT"
+
+[node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1262912517]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleScreenPanel"
+theme_override_styles/panel = SubResource("StyleBoxTexture_qovpe")
+script = ExtResource("11_h4rjt")
+metadata/_custom_type_script = "uid://2ient42a5q26"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/LevelSelector" unique_id=1259277509]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/LevelSelector/VBoxContainer" unique_id=1023267153]
+layout_mode = 2
+text = "Coming (soon)"
+label_settings = SubResource("LabelSettings_hvy54")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1806156210]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleScreenPanel"
+theme_override_styles/panel = SubResource("StyleBoxTexture_7x357")
+script = ExtResource("11_h4rjt")
+metadata/_custom_type_script = "uid://2ient42a5q26"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1989226303]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer" unique_id=83722630]
+layout_mode = 2
+theme_type_variation = &"TitleScreenVBox"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=63428710]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SearchBarNode" type="LineEdit" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1583867424 node_paths=PackedStringArray("root_node_to_search")]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBox_507xd")
+placeholder_text = "Search..."
+right_icon = ExtResource("14_tpojm")
+script = ExtResource("15_nqjvc")
+root_node_to_search = NodePath("../../SmoothScrollContainer/LevelPanelLoader")
+group_name = PackedStringArray()
+metadata/_custom_type_script = "uid://y1hecem53675"
+
+[node name="SortBy" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1818962724]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBox_02qso")
+theme_override_styles/pressed = SubResource("StyleBox_fm4nh")
+theme_override_styles/hover = SubResource("StyleBox_3yl86")
+selected = 0
+item_count = 4
+popup/item_0/text = "Alphabetically"
+popup/item_0/id = 0
+popup/item_1/text = "Rating"
+popup/item_1/id = 1
+popup/item_2/text = "Creator"
+popup/item_2/id = 2
+popup/item_3/text = "Creation Date"
+popup/item_3/id = 3
+
+[node name="Order" type="OptionButton" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1969587000]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBox_02qso")
+theme_override_styles/pressed = SubResource("StyleBox_fm4nh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jk6fi")
+selected = 0
+item_count = 2
+popup/item_0/text = "First-Last"
+popup/item_0/id = 0
+popup/item_1/text = "Last-First"
+popup/item_1/id = 1
+
+[node name="HSeparator" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1878298392]
+layout_mode = 2
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1418880581]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("16_7b7r6")
+wheel_scroll_damper = SubResource("Resource_1nrh6")
+dragging_scroll_damper = SubResource("Resource_08fpa")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="LevelPanelLoader" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer" unique_id=436446832 node_paths=PackedStringArray("subscene_manager", "import_dialog", "level_already_exists_dialog", "sort_by", "order", "fade_screen")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("18_m4n26")
+rating_colors = ExtResource("19_4gxlv")
+subscene_manager = NodePath("../../../../../../../Subscene Manager")
+import_dialog = NodePath("../../ImportLevelDialog")
+level_already_exists_dialog = NodePath("../../LevelAlreadyExists")
+sort_by = NodePath("../../HBoxContainer/SortBy")
+order = NodePath("../../HBoxContainer/Order")
+fade_screen = NodePath("../../../../../../../FadeScreen")
+
+[node name="ImportLevelDialog" type="FileDialog" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1642811303]
+auto_translate_mode = 1
+oversampling_override = 1.0
+title = "Import and open"
+initial_position = 2
+size = Vector2i(1088, 720)
+ok_button_text = "Open"
+mode_overrides_title = false
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.level")
+use_native_dialog = true
+option_count = 1
+option_0/name = "Keep original level file"
+option_0/default = 1
+
+[node name="LevelAlreadyExists" type="ConfirmationDialog" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=349342493]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(514, 100)
+ok_button_text = "Overwrite"
+dialog_text = "A level with the same name already exists in the game directory!"
+cancel_button_text = "Open Existing"
+
+[node name="HSeparator2" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=203126498]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer" unique_id=1136863510]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Create" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=698177680]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
+text = "Create New Level"
+autowrap_mode = 3
+
+[node name="Import" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=669107035]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("20_b8nsk")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
+text = "Import Level"
+autowrap_mode = 3
+
+[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1421014872]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("20_b8nsk")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
+text = "Refresh"
+autowrap_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community" unique_id=1771421041]
+layout_mode = 2
+theme_override_constants/margin_top = 18
+
+[node name="MarginContainer2" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=1651868506]
+layout_mode = 2
+theme_override_constants/margin_left = 181
+theme_override_constants/margin_top = 174
+theme_override_constants/margin_right = 181
+theme_override_constants/margin_bottom = 120
+
+[node name="Control" type="Control" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2" unique_id=1480014316]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2/Control" unique_id=665729056]
+z_index = 100
+clip_contents = true
+custom_minimum_size = Vector2(830, 570)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_nrw5p")
+
+[node name="Game" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2/Control/Panel" unique_id=872869737 node_paths=PackedStringArray("subscene_manager", "fade_screen", "pre_btn", "next_btn", "play_btn") instance=ExtResource("27_a36d0")]
+layout_mode = 1
+offset_left = -531.36
+offset_right = -531.36
+subscene_manager = NodePath("../../../../../../../../Subscene Manager")
+fade_screen = NodePath("../../../../../../../../FadeScreen")
+pre_btn = NodePath("../../../../Buttons/Pre")
+next_btn = NodePath("../../../../Buttons/Next")
+play_btn = NodePath("../../../../Buttons/Play")
+
+[node name="Control" type="Control" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=2133422356]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Control" unique_id=550489340]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.057000004
+anchor_right = 0.5
+anchor_bottom = 0.057000004
+offset_left = -82.0
+offset_top = -49.134003
+offset_right = 81.0
+offset_bottom = 48.865997
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "LEVELS"
+label_settings = SubResource("LabelSettings_h5lgf")
+horizontal_alignment = 1
+
+[node name="Buttons" type="Control" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=466265635]
+z_index = 101
+layout_mode = 2
+
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Buttons" unique_id=777540103]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.9110001
+anchor_right = 0.5
+anchor_bottom = 0.9110001
+offset_left = -121.5
+offset_top = -83.28204
+offset_right = 121.5
+offset_bottom = 146.71796
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_gvl4o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wpvfx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_36m4y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2k1c6")
+
+[node name="Pre" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Buttons" unique_id=1242941655]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.022000002
+anchor_top = 0.541
+anchor_right = 0.022000002
+anchor_bottom = 0.541
+offset_left = -75.76
+offset_top = -74.10599
+offset_right = 142.23999
+offset_bottom = 137.89401
+grow_vertical = 2
+scale = Vector2(0.6969129, 0.6969129)
+theme_override_styles/normal = SubResource("StyleBoxTexture_7oer7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3semy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_trb0l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2k1c6")
+
+[node name="Next" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Buttons" unique_id=1636586642]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98700005
+anchor_top = 0.52500004
+anchor_right = 0.98700005
+anchor_bottom = 0.52500004
+offset_left = -76.96008
+offset_top = -64.62399
+offset_right = 144.03992
+offset_bottom = 157.376
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.6969129, 0.6969129)
+theme_override_styles/normal = SubResource("StyleBoxTexture_v7nni")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_se1x5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tis8u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2k1c6")
+
+[node name="Close" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Buttons" unique_id=1550671216]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96000004
+anchor_top = 0.16800001
+anchor_right = 0.96000004
+anchor_bottom = 0.16800001
+offset_left = -53.359985
+offset_top = -88.17601
+offset_right = 100.640015
+offset_bottom = 56.82399
+grow_horizontal = 0
+scale = Vector2(0.6969129, 0.6969129)
+theme_override_styles/normal = SubResource("StyleBoxTexture_vtb0s")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_v6r2l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4ocjj")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2k1c6")
+
+[node name="Icon Garage" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1167295205]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleScreenPanel"
+theme_override_styles/panel = SubResource("StyleBoxTexture_pw3ed")
+script = ExtResource("11_h4rjt")
+metadata/_custom_type_script = "uid://2ient42a5q26"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage" unique_id=615632743]
+custom_minimum_size = Vector2(0, 512)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 141
+theme_override_constants/margin_top = 186
+theme_override_constants/margin_right = 138
+theme_override_constants/margin_bottom = 139
+
+[node name="IconGarage" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer" unique_id=1474942368 node_paths=PackedStringArray("preview_icons", "icon_selector")]
+layout_mode = 2
+theme_type_variation = &"TitleScreenVBox"
+script = ExtResource("21_ior5h")
+preview_icons = NodePath("PanelContainer/HBoxContainer")
+icon_selector = NodePath("SmoothScrollContainer/GridContainer")
+
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1548300878]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kv8dc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer" unique_id=964293732]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Cube" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1355076740 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+icon_path = "res://assets/textures/player/cube/Cube1.svg"
+icon_scale = 0.75
+
+[node name="Ship" type="BaseButton" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1783302652]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(140, 96)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 0
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = false
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = null
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("23_r2cpq")
+metadata/_custom_type_script = "uid://doei3yc3rs41t"
+
+[node name="Ship" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" unique_id=1545261769 instance=ExtResource("22_x8mo2")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+gamemode = 1
+icon_path = "res://assets/textures/player/ship/Ship1.svg"
+icon_scale = 0.75
+
+[node name="Jetpack" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" unique_id=104251690 instance=ExtResource("22_x8mo2")]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+gamemode = 8
+icon_path = "res://assets/textures/player/jetpack/Jetpack1.svg"
+icon_scale = 0.75
+
+[node name="Ball" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=919722717 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+gamemode = 3
+icon_path = "res://assets/textures/player/ball/Ball1.svg"
+icon_scale = 0.75
+
+[node name="UFO" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1000696593 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+gamemode = 2
+icon_path = "res://assets/textures/player/ufo/Ufo1.svg"
+icon_scale = 0.75
+
+[node name="Wave" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1747782877 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+gamemode = 4
+icon_path = "res://assets/textures/player/wave/Wave1.svg"
+icon_scale = 0.75
+
+[node name="Robot" type="Control" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1523449182]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="CubeIcon" type="Sprite2D" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Robot" unique_id=1633275487]
+scale = Vector2(0.188, 0.188)
+texture = ExtResource("24_6fgrv")
+
+[node name="Spider" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=1199497849 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+gamemode = 6
+icon_path = "res://assets/textures/player/spider/Spider1"
+icon_scale = 0.75
+
+[node name="Swing" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer" unique_id=2091037633 instance=ExtResource("22_x8mo2")]
+layout_mode = 2
+gamemode = 7
+icon_path = "res://assets/textures/player/swing/Swing1"
+icon_scale = 0.75
+
+[node name="GamemodeSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1363110770]
+clip_children = 1
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_type_variation = &"RoundedEnumButton"
+script = ExtResource("25_60lnx")
+variants = PackedStringArray("Cube", "Ship", "Jetpack", "UFO", "Ball", "Wave", "Robot", "Spider", "Swing", "Trail", "Death Effect")
+icons = Array[Texture2D]([null, null, null, null, null, null, null, null, null, null, null])
+as_tab_container = true
+metadata/_custom_type_script = "uid://bkadwmxos4osm"
+
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1366781961]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("16_7b7r6")
+wheel_scroll_damper = SubResource("Resource_tuyt1")
+dragging_scroll_damper = SubResource("Resource_hkayi")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+
+[node name="GridContainer" type="GridContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/SmoothScrollContainer" unique_id=1909683977]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 10
+
+[node name="HSeparator2" type="HSeparator" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=1335947968]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" unique_id=489407561]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Refresh" type="Button" parent="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer" unique_id=193597935]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("20_b8nsk")
+theme_type_variation = &"TitleScreenCommunityLevelListButton"
+text = "Refresh"
+autowrap_mode = 3
+
+[node name="Settings" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1153421102]
+visible = false
+material = ExtResource("8_a36d0")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleScreenPanel"
+script = ExtResource("11_h4rjt")
+metadata/_custom_type_script = "uid://2ient42a5q26"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Settings" unique_id=1177693866]
+layout_mode = 2
+
+[node name="SettingsMenu" parent="TitleScreenLayer/TitleScreen/Settings/MarginContainer" unique_id=917759721 instance=ExtResource("26_qx8yl")]
+layout_mode = 2
+
+[node name="Splash" type="ColorRect" parent="TitleScreenLayer" unique_id=260362477]
+visible = false
+z_index = 10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14117648, 0.14117648, 0.14117648, 1)
+
+[node name="TextureRect" type="TextureRect" parent="TitleScreenLayer/Splash" unique_id=488103242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("27_utj1q")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="FadeScreen" parent="." unique_id=1242859628 instance=ExtResource("28_mg0tb")]
+
+[node name="CameraCenterParent" type="Control" parent="." unique_id=782059914]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FromEditorCamera" type="Node2D" parent="CameraCenterParent" unique_id=394223206]
+script = ExtResource("29_h683b")
+priority_override = false
+priority = 0
+zoom = Vector2(2, 2)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_7wwop")
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="TitleScreenCamera" type="Node2D" parent="CameraCenterParent" unique_id=491204964]
+script = ExtResource("29_h683b")
+priority_override = false
+priority = 2
+zoom = Vector2(0.8, 0.8)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_assks")
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="QuitGameCamera" type="Node2D" parent="CameraCenterParent" unique_id=1017166676]
+script = ExtResource("29_h683b")
+priority_override = false
+priority = 0
+zoom = Vector2(4, 4)
+follow_mode = 0
+frame_preview = true
+pixel_perfect = false
+limit/draw_limits = true
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = SubResource("Resource_jse1c")
+tween_on_load = true
+inactive_update_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Camera" type="Camera2D" parent="." unique_id=1536604475]
+position = Vector2(960, 540)
+zoom = Vector2(0.8, 0.8)
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera" unique_id=994181087]
+script = ExtResource("31_02d04")
+
+[node name="MenuLoop" type="AudioStreamPlayer" parent="." unique_id=1270838950]
+bus = &"Music"
+script = ExtResource("32_gvl4o")
+
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+script = ExtResource("33_wpvfx")
+camera = NodePath("../Camera")
+active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
+history = NodePath("PhantomCamera2DHistory")
+fade_screen = NodePath("../FadeScreen")
+menu_loop = NodePath("../MenuLoop")
+splash = NodePath("../TitleScreenLayer/Splash")
+level_selector = NodePath("../TitleScreenLayer/TitleScreen/LevelSelector")
+community_menu = NodePath("../TitleScreenLayer/TitleScreen/Community")
+icon_garage = NodePath("../TitleScreenLayer/TitleScreen/Icon Garage")
+settings_panel = NodePath("../TitleScreenLayer/TitleScreen/Settings")
+settings_menu = NodePath("../TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu")
+quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
+title_screen_camera = NodePath("../CameraCenterParent/TitleScreenCamera")
+from_editor_camera = NodePath("../CameraCenterParent/FromEditorCamera")
+title_screen_layer = NodePath("../TitleScreenLayer")
+title_screen_background = NodePath("../Node2D/BackgroundParallax")
+title_screen_ground = NodePath("../Node2D/GroundDownParallax")
+menu_icon = NodePath("../Node2D/MenuIcon")
+menu_icon_killer = NodePath("../Node2D/Kill Box")
+
+[node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("34_36m4y")]
+
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_import_level"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_open_importer"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Refresh" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="refresh"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/PanelContainer/HBoxContainer/Ship" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_ship_pressed"]
+[connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_tab_changed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="reload"]
+[connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
