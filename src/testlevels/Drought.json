@@ -40560,16 +40560,16 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							67200.0,
-							-448.0
+							67232.0,
+							-512.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 122
@@ -40596,16 +40596,16 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							67200.0,
-							-576.0
+							67232.0,
+							-640.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 123
@@ -60695,8 +60695,8 @@
 					},
 					"transform": {
 						"origin": [
-							67328.0,
-							-576.0
+							67360.0,
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -60773,8 +60773,8 @@
 					},
 					"transform": {
 						"origin": [
-							67328.0,
-							-448.0
+							67360.0,
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -71957,8 +71957,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							67328.0,
-							-704.0
+							67360.0,
+							-768.0
 						],
 						"x": [
 							1.0,
