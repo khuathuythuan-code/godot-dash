@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 @onready var item_container: Control = $CarouselContainer/Control
 
 @export var subscene_manager: SubsceneManager
