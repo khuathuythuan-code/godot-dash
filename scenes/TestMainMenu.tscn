@@ -31,9 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="24_6fgrv"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="25_60lnx"]
 [ext_resource type="PackedScene" uid="uid://b6gonom0s5k1n" path="res://scenes/components/game_components/SettingsMenu.tscn" id="26_qx8yl"]
-[ext_resource type="PackedScene" uid="uid://dlrbcdwgevyf8" path="res://ScrollContainer.tscn" id="27_a36d0"]
 [ext_resource type="Texture2D" uid="uid://c1mj3e3vvh1h0" path="res://assets/splash.png" id="27_utj1q"]
 [ext_resource type="Texture2D" uid="uid://dl1tdy2xg02kg" path="res://assets/textures/cyber_punk_gui/button/Play (1).png" id="28_b8nsk"]
+[ext_resource type="PackedScene" uid="uid://crhs1jgc6skpr" path="res://TestClipChildren.tscn" id="28_ior5h"]
 [ext_resource type="PackedScene" uid="uid://dxsvurwa62arg" path="res://scenes/components/game_components/FadeScreen.tscn" id="28_mg0tb"]
 [ext_resource type="Script" uid="uid://buyaynlr8a8ag" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="29_h683b"]
 [ext_resource type="Texture2D" uid="uid://csdiocvk88i8w" path="res://assets/textures/cyber_punk_gui/button/Play (2).png" id="29_ior5h"]
@@ -181,8 +181,6 @@ script = ExtResource("17_lsgps")
 
 [sub_resource type="Resource" id="Resource_08fpa"]
 script = ExtResource("17_lsgps")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrw5p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h5lgf"]
 font_size = 64
@@ -659,33 +657,11 @@ autowrap_mode = 3
 layout_mode = 2
 theme_override_constants/margin_top = 18
 
-[node name="MarginContainer2" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=1651868506]
-layout_mode = 2
-theme_override_constants/margin_left = 181
-theme_override_constants/margin_top = 174
-theme_override_constants/margin_right = 181
-theme_override_constants/margin_bottom = 120
-
-[node name="Control" type="Control" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2" unique_id=1480014316]
+[node name="Control2" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2" unique_id=1812639611 instance=ExtResource("28_ior5h")]
+z_index = 1000
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2/Control" unique_id=665729056]
-z_index = 100
-clip_contents = true
-custom_minimum_size = Vector2(830, 570)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_nrw5p")
-
-[node name="Game" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/MarginContainer2/Control/Panel" unique_id=872869737 node_paths=PackedStringArray("subscene_manager", "fade_screen", "pre_btn", "next_btn", "play_btn") instance=ExtResource("27_a36d0")]
-layout_mode = 1
-offset_left = -531.36
-offset_right = -531.36
+[node name="Game" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Control2/MarginContainer/Panel" parent_id_path=PackedInt32Array(1812639611, 1853874615) index="0" unique_id=2042044389 node_paths=PackedStringArray("subscene_manager", "fade_screen", "pre_btn", "next_btn", "play_btn")]
 subscene_manager = NodePath("../../../../../../../../Subscene Manager")
 fade_screen = NodePath("../../../../../../../../FadeScreen")
 pre_btn = NodePath("../../../../Buttons/Pre")
@@ -1186,3 +1162,5 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="value_changed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/GamemodeSelector" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="_on_tab_changed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage/HBoxContainer/Refresh" to="TitleScreenLayer/TitleScreen/Icon Garage/MarginContainer/IconGarage" method="reload"]
 [connection signal="closed" from="TitleScreenLayer/TitleScreen/Settings/MarginContainer/SettingsMenu" to="Subscene Manager" method="_return_to_title_screen"]
+
+[editable path="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Control2"]

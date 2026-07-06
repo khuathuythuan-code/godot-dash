@@ -3,22 +3,34 @@
 [ext_resource type="Script" uid="uid://d1m23p1ob0cbc" path="res://ScrollContainer.gd" id="1_d8k6s"]
 [ext_resource type="Script" uid="uid://bfqxb80qeghxw" path="res://game.gd" id="1_dgisc"]
 
-[node name="Game" type="Node2D" unique_id=872869737 node_paths=PackedStringArray("carousel_container")]
+[node name="Game" type="Control" unique_id=2042044389 node_paths=PackedStringArray("carousel_container")]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 script = ExtResource("1_dgisc")
 carousel_container = NodePath("CarouselContainer")
 
-[node name="CarouselContainer" type="Node2D" parent="." unique_id=212640113 node_paths=PackedStringArray("position_offset_node")]
+[node name="CarouselContainer" type="Control" parent="." unique_id=1961124689 node_paths=PackedStringArray("position_offset_node")]
+layout_mode = 1
+offset_left = -405.0
+offset_top = -225.0
 script = ExtResource("1_d8k6s")
 wraparound_enabled = true
 wraparound_radius = 800.0
 wraparound_height = -20.0
-opacity_strength = 0.521
+opacity_strength = 0.5
 scale_strength = 0.0
 scale_min = 0.01
-selected_index = 5
-follow_button_focus = true
+selected_index = 3
 position_offset_node = NodePath("Control")
 
 [node name="Control" type="Control" parent="CarouselContainer" unique_id=412257201]
-layout_mode = 3
-anchors_preset = 0
+layout_mode = 1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -202.49997
+offset_right = -202.49997
+grow_horizontal = 2
+pivot_offset = Vector2(489.22, 200)
