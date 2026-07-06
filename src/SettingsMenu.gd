@@ -36,6 +36,8 @@ func _on_vsync_value_changed(id: int) -> void:
 
 
 func _on_window_mode_value_changed(window_mode: Config.WindowMode) -> void:
+	if OS.has_feature("web"):
+		return  # ← web không set window mode
 	if not %"Window Mode".is_node_ready():
 		return
 	var display_server_window_mode: DisplayServer.WindowMode
