@@ -8,10 +8,10 @@ signal unsuspended
 signal practice_mode_toggled(toggled_on: bool)
 
 #@export var level_name_label: Label
-#@export var restart_button: Button
-#@export var practice_button: Button
+@export var restart_button: Button
+@export var practice_button: Button
 #@export var edit_button: Button
-#@export var play_button: Button
+@export var play_button: Button
 #@export var replay_button: Button
 @onready var menu: PanelContainer = %Menu
 @onready var resume_btn: Button = $Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resume
@@ -31,6 +31,7 @@ func _ready() -> void:
 	#$Settings.get_node(^"MarginContainer/SettingsMenu").closed.connect(_on_settings_pressed)
 	#$Replays.get_node(^"MarginContainer/ReplaysMenu/SmoothScrollContainer/ReplayPanelLoader").replay_started.connect(toggle_pause_menu)
 	update_buttons_visibility.call_deferred()
+	practice_button.pressed.connect(_on_practice_toggled)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -150,8 +151,7 @@ func _on_leave_pressed() -> void:
 	if Editor.clipboard:
 		Editor.clipboard.clear()
 	SceneManager.is_transitioning = false
-	#get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	get_tree().change_scene_to_packed(AssetManager.title_screen_packed)
 	AudioServer.set_bus_mute.call_deferred(AudioServer.get_bus_index(&"Music"), false)
 
 

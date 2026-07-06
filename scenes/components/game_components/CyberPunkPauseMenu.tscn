@@ -21,9 +21,12 @@ texture = ExtResource("7_tddqc")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghmn4"]
 texture = ExtResource("8_thyv4")
 
-[node name="CyberPunkPauseMenu" type="CanvasLayer" unique_id=1857715947]
+[node name="CyberPunkPauseMenu" type="CanvasLayer" unique_id=1857715947 node_paths=PackedStringArray("restart_button", "practice_button", "play_button")]
 layer = 999
 script = ExtResource("1_r6cf0")
+restart_button = NodePath("Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Restart")
+practice_button = NodePath("Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Practice")
+play_button = NodePath("Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SaveAndPlay")
 
 [node name="Menu" type="PanelContainer" parent="." unique_id=933404352]
 unique_name_in_owner = true
@@ -97,6 +100,26 @@ theme_type_variation = &"TitleScreenButton"
 theme_override_font_sizes/font_size = 32
 text = "RESTART"
 
+[node name="SaveAndPlay" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1011036892]
+visible = false
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("8_7tier")
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 32
+text = "RESTART"
+
+[node name="Practice" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1936105473]
+visible = false
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("8_7tier")
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 32
+text = "RESTART"
+
 [node name="Options" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=205620301]
 visible = false
 custom_minimum_size = Vector2(250, 75)
@@ -154,5 +177,6 @@ text = "PAUSED"
 
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="toggle_pause_menu"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SaveAndPlay" to="." method="_on_save_and_play_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/Exit" to="." method="_on_leave_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/Control/Button" to="." method="toggle_pause_menu"]
