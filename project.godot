@@ -51,7 +51,7 @@ warnings/check_invalid_track_paths=false
 
 config/name="godot-dash"
 config/version="0.0.1"
-run/main_scene="uid://btp87rm8242up"
+run/main_scene="uid://cea1yr5xp7xmd"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
