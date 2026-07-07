@@ -68,7 +68,9 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
 [node name="PanelContainer" type="PanelContainer" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer" unique_id=2110713302]
+custom_minimum_size = Vector2(546, 641)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_6im2f")
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer" unique_id=354610730]
@@ -80,10 +82,13 @@ theme_override_constants/margin_bottom = 75
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer" unique_id=2046407500]
 layout_mode = 2
-theme_override_constants/separation = -67
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 26
 alignment = 1
 
 [node name="Resume" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1285791180]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
@@ -92,7 +97,7 @@ theme_override_font_sizes/font_size = 32
 text = "RESUME"
 
 [node name="Restart" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=593206445]
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
@@ -102,7 +107,7 @@ text = "RESTART"
 
 [node name="SaveAndPlay" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1011036892]
 visible = false
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
@@ -112,7 +117,7 @@ text = "RESTART"
 
 [node name="Practice" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1936105473]
 visible = false
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
@@ -122,7 +127,7 @@ text = "RESTART"
 
 [node name="Options" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=205620301]
 visible = false
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
@@ -131,7 +136,7 @@ theme_override_font_sizes/font_size = 32
 text = "OPTIONS"
 
 [node name="Exit" type="Button" parent="Menu/MarginContainer2/VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1939744868]
-custom_minimum_size = Vector2(250, 75)
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("8_7tier")
