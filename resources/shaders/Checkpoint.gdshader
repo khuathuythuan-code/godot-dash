@@ -1,9 +1,9 @@
 shader_type canvas_item;
 #include "Color.gdshaderinc"
 
-instance uniform float hue = 0.33333;
-instance uniform float enabled_factor: hint_range(0.0, 1.0, 0.1) = 1.0;
-instance uniform float flash_factor: hint_range(0.0, 1.0, 0.1) = 0.0;
+uniform float hue = 0.33333;
+uniform float enabled_factor: hint_range(0.0, 1.0, 0.1) = 1.0;
+uniform float flash_factor: hint_range(0.0, 1.0, 0.1) = 0.0;
 
 void fragment() {
 	vec3 hsv = rgb_to_hsv(COLOR.rgb);

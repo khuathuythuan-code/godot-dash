@@ -6,13 +6,14 @@ extends Component
 
 
 func _ready() -> void:
-	sprite.set_instance_shader_parameter(&"enabled_factor", 0.0)
-	sprite.set_instance_shader_parameter(&"hue", 2.0 / 3.0)
+	sprite.material = sprite.material.duplicate()
+	sprite.material.set_shader_parameter(&"enabled_factor", 0.0)
+	sprite.material.set_shader_parameter(&"hue", 2.0 / 3.0)
 	parent.interacted.connect(place_checkpoint)
 
 
 func place_checkpoint(player: Player) -> void:
-	sprite.set_instance_shader_parameter(&"enabled_factor", 1.0)
+	sprite.material.set_shader_parameter(&"enabled_factor", 1.0)
 	var player_just_respawned: bool = LevelManager.current_level.stopwatch.elapsed_time < get_process_delta_time()
 	if player_just_respawned:
 		return
@@ -32,4 +33,4 @@ func place_checkpoint(player: Player) -> void:
 
 
 func _set_sprite_enabled_factor(factor: float) -> void:
-	sprite.set_instance_shader_parameter(&"flash_factor", factor)
+	sprite.material.set_shader_parameter(&"flash_factor", factor)
