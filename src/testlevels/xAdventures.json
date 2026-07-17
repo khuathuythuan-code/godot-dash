@@ -25,7 +25,7 @@
 	"enter_effect": 1,
 	"flashing_lights": false,
 	"game_version": "0.0.1",
-	"is_editable": false,
+	"is_editable": true,
 	"layers": [
 		{
 			"name": "UnnameLayer",
@@ -29341,16 +29341,16 @@
 					},
 					"transform": {
 						"origin": [
-							30720.0,
+							30784.0,
 							-1088.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 442
@@ -29416,16 +29416,16 @@
 					},
 					"transform": {
 						"origin": [
-							30720.0,
+							30784.0,
 							-1216.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 443
@@ -29491,16 +29491,16 @@
 					},
 					"transform": {
 						"origin": [
-							30720.0,
+							30784.0,
 							-1344.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 444
@@ -29566,16 +29566,16 @@
 					},
 					"transform": {
 						"origin": [
-							30720.0,
+							30784.0,
 							-1472.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 445
@@ -29641,7 +29641,7 @@
 					},
 					"transform": {
 						"origin": [
-							30848.0,
+							30912.0,
 							-1088.0
 						],
 						"x": [
@@ -29716,7 +29716,7 @@
 					},
 					"transform": {
 						"origin": [
-							30848.0,
+							30912.0,
 							-1216.0
 						],
 						"x": [
@@ -29791,7 +29791,7 @@
 					},
 					"transform": {
 						"origin": [
-							30848.0,
+							30912.0,
 							-1344.0
 						],
 						"x": [
@@ -29866,7 +29866,7 @@
 					},
 					"transform": {
 						"origin": [
-							30848.0,
+							30912.0,
 							-1472.0
 						],
 						"x": [
@@ -29941,8 +29941,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-1216.0
+							31296.0,
+							-1344.0
 						],
 						"x": [
 							1.0,
@@ -30016,8 +30016,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-960.0
+							31296.0,
+							-1088.0
 						],
 						"x": [
 							1.0,
@@ -30091,8 +30091,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-832.0
+							31296.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -30166,8 +30166,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-1088.0
+							31296.0,
+							-1216.0
 						],
 						"x": [
 							1.0,
@@ -30241,8 +30241,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-1344.0
+							31296.0,
+							-1472.0
 						],
 						"x": [
 							1.0,
@@ -30316,8 +30316,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-1472.0
+							31296.0,
+							-1600.0
 						],
 						"x": [
 							1.0,
@@ -30392,7 +30392,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-576.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -30467,7 +30467,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-832.0
+							-1024.0
 						],
 						"x": [
 							1.0,
@@ -30542,7 +30542,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-960.0
+							-1152.0
 						],
 						"x": [
 							1.0,
@@ -30617,7 +30617,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-704.0
+							-896.0
 						],
 						"x": [
 							1.0,
@@ -30692,7 +30692,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-1216.0
+							-1408.0
 						],
 						"x": [
 							1.0,
@@ -30767,7 +30767,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-1088.0
+							-1280.0
 						],
 						"x": [
 							1.0,
@@ -30842,7 +30842,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-1344.0
+							-1536.0
 						],
 						"x": [
 							1.0,
@@ -30917,7 +30917,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-1472.0
+							-1664.0
 						],
 						"x": [
 							1.0,
@@ -75178,7 +75178,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							30976.0,
+							31040.0,
 							-832.0
 						],
 						"x": [
@@ -75640,8 +75640,8 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							31360.0,
-							-576.0
+							31424.0,
+							-704.0
 						],
 						"x": [
 							1.0,
@@ -75673,8 +75673,8 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							33152.0,
-							-576.0
+							33216.0,
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -75706,8 +75706,8 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							33920.0,
-							-576.0
+							33984.0,
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -79171,7 +79171,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							84608.0,
+							84864.0,
 							-1088.0
 						],
 						"x": [
@@ -82505,7 +82505,7 @@
 					"transform": {
 						"origin": [
 							15104.0,
-							-64.0
+							-128.0
 						],
 						"x": [
 							1.0,
@@ -88411,7 +88411,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							37376.0,
+							37440.0,
 							-64.0
 						],
 						"x": [
@@ -105142,7 +105142,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							85376.0,
+							85248.0,
 							-448.0
 						],
 						"x": [
@@ -113986,7 +113986,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							85248.0,
+							85120.0,
 							-448.0
 						],
 						"x": [
@@ -114844,7 +114844,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							85504.0,
+							85376.0,
 							-448.0
 						],
 						"x": [
@@ -117703,16 +117703,16 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							10496.0,
-							-576.0
+							10368.0,
+							-448.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 3
@@ -117740,16 +117740,16 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							11648.0,
-							-704.0
+							11584.0,
+							-640.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 4
@@ -117777,8 +117777,8 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalFlipped.tscn",
 					"transform": {
 						"origin": [
-							15872.0,
-							-192.0
+							15744.0,
+							-320.0
 						],
 						"x": [
 							1.0,
@@ -117814,16 +117814,16 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							18944.0,
-							-704.0
+							18880.0,
+							-576.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 6
@@ -117935,8 +117935,8 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							16384.0,
-							-704.0
+							16256.0,
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -117972,8 +117972,8 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalFlipped.tscn",
 					"transform": {
 						"origin": [
-							30720.0,
-							-576.0
+							30656.0,
+							-704.0
 						],
 						"x": [
 							1.0,
@@ -118009,16 +118009,16 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							32000.0,
-							-704.0
+							31936.0,
+							-640.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 13
@@ -118083,8 +118083,8 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							36864.0,
-							-704.0
+							37056.0,
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -118315,8 +118315,8 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalFlipped.tscn",
 					"transform": {
 						"origin": [
-							65920.0,
-							-192.0
+							65728.0,
+							-384.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -118352,7 +118352,7 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalFlipped.tscn",
 					"transform": {
 						"origin": [
-							87296.0,
+							87264.0,
 							-704.0
 						],
 						"x": [
@@ -118390,7 +118390,7 @@
 					"transform": {
 						"origin": [
 							80256.0,
-							-960.0
+							-896.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -118474,7 +118474,7 @@
 					"transform": {
 						"origin": [
 							78464.0,
-							-960.0
+							-896.0
 						],
 						"x": [
 							1.0,
@@ -118702,7 +118702,7 @@
 					"transform": {
 						"origin": [
 							12544.0,
-							-576.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -118741,7 +118741,7 @@
 					"transform": {
 						"origin": [
 							12928.0,
-							-704.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -118780,7 +118780,7 @@
 					"transform": {
 						"origin": [
 							13312.0,
-							-320.0
+							-192.0
 						],
 						"x": [
 							1.0,
@@ -118819,7 +118819,7 @@
 					"transform": {
 						"origin": [
 							13440.0,
-							-320.0
+							-192.0
 						],
 						"x": [
 							1.0,
@@ -118858,7 +118858,7 @@
 					"transform": {
 						"origin": [
 							13824.0,
-							-704.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -118896,8 +118896,8 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							14976.0,
-							-448.0
+							15104.0,
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -118935,7 +118935,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							30464.0,
+							30400.0,
 							-192.0
 						],
 						"x": [
@@ -119091,7 +119091,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							36224.0,
+							36480.0,
 							-704.0
 						],
 						"x": [
@@ -121080,8 +121080,8 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							66816.0,
-							-704.0
+							66944.0,
+							-832.0
 						],
 						"x": [
 							1.0,
@@ -121119,7 +121119,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							67584.0,
+							67712.0,
 							-576.0
 						],
 						"x": [
@@ -121158,8 +121158,8 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							65024.0,
-							-448.0
+							64896.0,
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -121275,7 +121275,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							68096.0,
+							68224.0,
 							-960.0
 						],
 						"x": [
@@ -121314,7 +121314,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							66176.0,
+							66432.0,
 							-704.0
 						],
 						"x": [
@@ -121431,7 +121431,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/BluePad.tscn",
 					"transform": {
 						"origin": [
-							67456.0,
+							67584.0,
 							-832.0
 						],
 						"x": [
@@ -126020,7 +126020,7 @@
 					"transform": {
 						"origin": [
 							13440.0,
-							-224.0
+							-96.0
 						],
 						"x": [
 							1.0,
@@ -126095,7 +126095,7 @@
 					"transform": {
 						"origin": [
 							13312.0,
-							-224.0
+							-96.0
 						],
 						"x": [
 							1.0,
@@ -130216,7 +130216,7 @@
 					},
 					"transform": {
 						"origin": [
-							30464.0,
+							30400.0,
 							-64.0
 						],
 						"x": [
@@ -130249,7 +130249,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							30464.0,
+							30400.0,
 							-64.0
 						],
 						"x": [
@@ -130324,7 +130324,7 @@
 					},
 					"transform": {
 						"origin": [
-							30976.0,
+							31040.0,
 							-960.0
 						],
 						"x": [
@@ -130399,7 +130399,7 @@
 					},
 					"transform": {
 						"origin": [
-							30848.0,
+							30912.0,
 							-960.0
 						],
 						"x": [
@@ -130474,7 +130474,7 @@
 					},
 					"transform": {
 						"origin": [
-							30720.0,
+							30784.0,
 							-960.0
 						],
 						"x": [
@@ -130549,8 +130549,8 @@
 					},
 					"transform": {
 						"origin": [
-							31360.0,
-							-704.0
+							31424.0,
+							-832.0
 						],
 						"x": [
 							1.0,
@@ -130624,8 +130624,8 @@
 					},
 					"transform": {
 						"origin": [
-							31232.0,
-							-704.0
+							31296.0,
+							-832.0
 						],
 						"x": [
 							1.0,
@@ -130700,7 +130700,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-448.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -131749,8 +131749,8 @@
 					},
 					"transform": {
 						"origin": [
-							33152.0,
-							-704.0
+							33216.0,
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -131824,8 +131824,8 @@
 					},
 					"transform": {
 						"origin": [
-							33920.0,
-							-704.0
+							33984.0,
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -141373,7 +141373,7 @@
 					},
 					"transform": {
 						"origin": [
-							62080.0,
+							62144.0,
 							-192.0
 						],
 						"x": [
@@ -141448,7 +141448,7 @@
 					},
 					"transform": {
 						"origin": [
-							62080.0,
+							62144.0,
 							-64.0
 						],
 						"x": [
@@ -145081,7 +145081,7 @@
 					},
 					"transform": {
 						"origin": [
-							67456.0,
+							67584.0,
 							-960.0
 						],
 						"x": [
@@ -145156,7 +145156,7 @@
 					},
 					"transform": {
 						"origin": [
-							67584.0,
+							67712.0,
 							-448.0
 						],
 						"x": [
@@ -145231,7 +145231,7 @@
 					},
 					"transform": {
 						"origin": [
-							68864.0,
+							68992.0,
 							-448.0
 						],
 						"x": [
@@ -145306,7 +145306,7 @@
 					},
 					"transform": {
 						"origin": [
-							69376.0,
+							69504.0,
 							-576.0
 						],
 						"x": [
@@ -155689,7 +155689,7 @@
 					},
 					"transform": {
 						"origin": [
-							83712.0,
+							83968.0,
 							-1216.0
 						],
 						"x": [
@@ -155764,7 +155764,7 @@
 					},
 					"transform": {
 						"origin": [
-							84608.0,
+							84864.0,
 							-1216.0
 						],
 						"x": [
@@ -155839,7 +155839,7 @@
 					},
 					"transform": {
 						"origin": [
-							84352.0,
+							84480.0,
 							-704.0
 						],
 						"x": [
@@ -155914,7 +155914,7 @@
 					},
 					"transform": {
 						"origin": [
-							84736.0,
+							84864.0,
 							-704.0
 						],
 						"x": [
@@ -155990,7 +155990,7 @@
 					"transform": {
 						"origin": [
 							85120.0,
-							-576.0
+							-448.0
 						],
 						"x": [
 							1.0,
@@ -156065,7 +156065,7 @@
 					"transform": {
 						"origin": [
 							85376.0,
-							-576.0
+							-448.0
 						],
 						"x": [
 							1.0,
@@ -156139,7 +156139,7 @@
 					},
 					"transform": {
 						"origin": [
-							86912.0,
+							86784.0,
 							-1216.0
 						],
 						"x": [
@@ -156214,7 +156214,7 @@
 					},
 					"transform": {
 						"origin": [
-							87040.0,
+							86912.0,
 							-1216.0
 						],
 						"x": [
@@ -157339,7 +157339,7 @@
 					},
 					"transform": {
 						"origin": [
-							83840.0,
+							84096.0,
 							-1216.0
 						],
 						"x": [
@@ -157414,7 +157414,7 @@
 					},
 					"transform": {
 						"origin": [
-							83968.0,
+							84224.0,
 							-1216.0
 						],
 						"x": [
@@ -157489,7 +157489,7 @@
 					},
 					"transform": {
 						"origin": [
-							84096.0,
+							84352.0,
 							-1216.0
 						],
 						"x": [
@@ -157564,7 +157564,7 @@
 					},
 					"transform": {
 						"origin": [
-							84224.0,
+							84480.0,
 							-1216.0
 						],
 						"x": [
@@ -157639,7 +157639,7 @@
 					},
 					"transform": {
 						"origin": [
-							84352.0,
+							84608.0,
 							-1216.0
 						],
 						"x": [
@@ -157714,7 +157714,7 @@
 					},
 					"transform": {
 						"origin": [
-							84480.0,
+							84736.0,
 							-1216.0
 						],
 						"x": [
@@ -157789,7 +157789,7 @@
 					},
 					"transform": {
 						"origin": [
-							84480.0,
+							84608.0,
 							-704.0
 						],
 						"x": [
@@ -157864,7 +157864,7 @@
 					},
 					"transform": {
 						"origin": [
-							84608.0,
+							84736.0,
 							-704.0
 						],
 						"x": [
@@ -157940,7 +157940,7 @@
 					"transform": {
 						"origin": [
 							85248.0,
-							-576.0
+							-448.0
 						],
 						"x": [
 							1.0,
@@ -161199,45 +161199,6 @@
 						"origin": [
 							90240.0,
 							-1088.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"DirectionChangerComponent": {
-							"direction": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "YellowOrb5",
-					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
-					"transform": {
-						"origin": [
-							92032.0,
-							-960.0
 						],
 						"x": [
 							1.0,
@@ -195033,7 +194994,7 @@
 					"transform": {
 						"origin": [
 							12544.0,
-							-448.0
+							-384.0
 						],
 						"x": [
 							1.0,
@@ -195066,7 +195027,7 @@
 					"transform": {
 						"origin": [
 							12544.0,
-							-704.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -195099,7 +195060,7 @@
 					"transform": {
 						"origin": [
 							12928.0,
-							-576.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -195132,7 +195093,7 @@
 					"transform": {
 						"origin": [
 							12928.0,
-							-832.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -195165,7 +195126,7 @@
 					"transform": {
 						"origin": [
 							13824.0,
-							-576.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -195198,7 +195159,7 @@
 					"transform": {
 						"origin": [
 							13824.0,
-							-832.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -195230,8 +195191,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							14976.0,
-							-576.0
+							15104.0,
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -195263,8 +195224,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							14976.0,
-							-320.0
+							15104.0,
+							-384.0
 						],
 						"x": [
 							1.0,
@@ -198788,7 +198749,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							30976.0,
+							31040.0,
 							-1088.0
 						],
 						"x": [
@@ -198821,8 +198782,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							31360.0,
-							-832.0
+							31424.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -198854,7 +198815,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
 					"transform": {
 						"origin": [
-							30784.0,
+							30912.0,
 							-832.0
 						],
 						"x": [
@@ -198887,8 +198848,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
 					"transform": {
 						"origin": [
-							31232.0,
-							-576.0
+							31296.0,
+							-704.0
 						],
 						"x": [
 							1.0,
@@ -198921,7 +198882,7 @@
 					"transform": {
 						"origin": [
 							31616.0,
-							-320.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -199118,8 +199079,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							33152.0,
-							-832.0
+							33216.0,
+							-896.0
 						],
 						"x": [
 							1.0,
@@ -199151,8 +199112,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							33920.0,
-							-832.0
+							33984.0,
+							-896.0
 						],
 						"x": [
 							1.0,
@@ -205541,7 +205502,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
 					"transform": {
 						"origin": [
-							62080.0,
+							62144.0,
 							-320.0
 						],
 						"x": [
@@ -205805,8 +205766,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							65024.0,
-							-608.0
+							64896.0,
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -205838,8 +205799,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							65024.0,
-							-288.0
+							64896.0,
+							-416.0
 						],
 						"x": [
 							1.0,
@@ -205970,7 +205931,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							66176.0,
+							66432.0,
 							-864.0
 						],
 						"x": [
@@ -206003,7 +205964,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							66176.0,
+							66432.0,
 							-544.0
 						],
 						"x": [
@@ -206168,7 +206129,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							67456.0,
+							67584.0,
 							-1088.0
 						],
 						"x": [
@@ -206300,7 +206261,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							67584.0,
+							67712.0,
 							-320.0
 						],
 						"x": [
@@ -206333,7 +206294,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							68864.0,
+							68992.0,
 							-320.0
 						],
 						"x": [
@@ -206366,7 +206327,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							69376.0,
+							69504.0,
 							-448.0
 						],
 						"x": [
@@ -206498,8 +206459,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							66816.0,
-							-864.0
+							66944.0,
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -206531,8 +206492,8 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							66816.0,
-							-544.0
+							66944.0,
+							-672.0
 						],
 						"x": [
 							1.0,
@@ -206564,7 +206525,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							68096.0,
+							68224.0,
 							-1120.0
 						],
 						"x": [
@@ -206597,7 +206558,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							68096.0,
+							68224.0,
 							-800.0
 						],
 						"x": [
@@ -206630,7 +206591,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/ShortBeacon.tscn",
 					"transform": {
 						"origin": [
-							68864.0,
+							68992.0,
 							-576.0
 						],
 						"x": [
@@ -206663,7 +206624,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/ShortBeacon.tscn",
 					"transform": {
 						"origin": [
-							69376.0,
+							69504.0,
 							-704.0
 						],
 						"x": [
@@ -212480,7 +212441,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							83712.0,
+							83968.0,
 							-1344.0
 						],
 						"x": [
@@ -212513,7 +212474,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							84608.0,
+							84864.0,
 							-1344.0
 						],
 						"x": [
@@ -212546,7 +212507,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							84352.0,
+							84480.0,
 							-832.0
 						],
 						"x": [
@@ -212579,7 +212540,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							84736.0,
+							84864.0,
 							-832.0
 						],
 						"x": [
@@ -212613,7 +212574,7 @@
 					"transform": {
 						"origin": [
 							85120.0,
-							-704.0
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -212646,7 +212607,7 @@
 					"transform": {
 						"origin": [
 							85376.0,
-							-704.0
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -212678,7 +212639,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86912.0,
+							86784.0,
 							-1344.0
 						],
 						"x": [
@@ -212711,7 +212672,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							87040.0,
+							86912.0,
 							-1344.0
 						],
 						"x": [
@@ -213866,7 +213827,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							85760.0,
+							85632.0,
 							-1216.0
 						],
 						"x": [
@@ -213899,7 +213860,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							85760.0,
+							85632.0,
 							-960.0
 						],
 						"x": [
@@ -213932,7 +213893,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86144.0,
+							86016.0,
 							-832.0
 						],
 						"x": [
@@ -213965,7 +213926,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86144.0,
+							86016.0,
 							-576.0
 						],
 						"x": [
@@ -213998,7 +213959,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86400.0,
+							86272.0,
 							-1216.0
 						],
 						"x": [
@@ -214031,7 +213992,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86400.0,
+							86272.0,
 							-960.0
 						],
 						"x": [
@@ -214064,7 +214025,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86784.0,
+							86528.0,
 							-832.0
 						],
 						"x": [
@@ -214097,7 +214058,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							86784.0,
+							86528.0,
 							-576.0
 						],
 						"x": [
@@ -223931,7 +223892,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike01.tscn",
 					"transform": {
 						"origin": [
-							85248.0,
+							85120.0,
 							-448.0
 						],
 						"x": [
@@ -226605,7 +226566,7 @@
 					"transform": {
 						"origin": [
 							98432.0,
-							-832.0
+							-704.0
 						],
 						"x": [
 							1.0,
@@ -230571,7 +230532,7 @@
 					"transform": {
 						"origin": [
 							64448.0,
-							-1600.0
+							-1856.0
 						],
 						"x": [
 							1.0,
@@ -230609,7 +230570,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/BlueOrb.tscn",
 					"transform": {
 						"origin": [
-							85760.0,
+							85632.0,
 							-1088.0
 						],
 						"x": [
@@ -230648,7 +230609,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/BlueOrb.tscn",
 					"transform": {
 						"origin": [
-							86400.0,
+							86272.0,
 							-1088.0
 						],
 						"x": [
@@ -230687,7 +230648,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/BlueOrb.tscn",
 					"transform": {
 						"origin": [
-							86144.0,
+							86016.0,
 							-704.0
 						],
 						"x": [
@@ -230726,7 +230687,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/BlueOrb.tscn",
 					"transform": {
 						"origin": [
-							86784.0,
+							86528.0,
 							-704.0
 						],
 						"x": [
@@ -230814,6 +230775,217 @@
 						]
 					},
 					"z_index": 733
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "AutoCheckpointTrigger",
+					"scene_file_path": "scenes/components/level_components/triggers/AutoCheckpointTrigger.tscn",
+					"transform": {
+						"origin": [
+							27264.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "AutoCheckpointTrigger2",
+					"scene_file_path": "scenes/components/level_components/triggers/AutoCheckpointTrigger.tscn",
+					"transform": {
+						"origin": [
+							55808.0,
+							-576.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "AutoCheckpointTrigger3",
+					"scene_file_path": "scenes/components/level_components/triggers/AutoCheckpointTrigger.tscn",
+					"transform": {
+						"origin": [
+							73600.0,
+							-832.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"attributes": [
+						"HiddenOutsideEditorAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"TriggerHitboxComponent": {
+							"hitbox_height": 64.0,
+							"hitbox_shape": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "AutoCheckpointTrigger5",
+					"scene_file_path": "scenes/components/level_components/triggers/AutoCheckpointTrigger.tscn",
+					"transform": {
+						"origin": [
+							1920.0,
+							-448.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"components": {
+						"DirectionChangerComponent": {
+							"direction": 0
+						}
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"markers": [],
+					"name": "BlueOrb6",
+					"scene_file_path": "scenes/components/level_components/orbs/BlueOrb.tscn",
+					"transform": {
+						"origin": [
+							92032.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
 				}
 			]
 		}

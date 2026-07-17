@@ -11248,7 +11248,7 @@
 					},
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-576.0
 						],
 						"x": [
@@ -11404,7 +11404,7 @@
 					},
 					"transform": {
 						"origin": [
-							48000.0,
+							48064.0,
 							-832.0
 						],
 						"x": [
@@ -11482,7 +11482,7 @@
 					},
 					"transform": {
 						"origin": [
-							48000.0,
+							48064.0,
 							-960.0
 						],
 						"x": [
@@ -11560,7 +11560,7 @@
 					},
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-704.0
 						],
 						"x": [
@@ -11638,7 +11638,7 @@
 					},
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-832.0
 						],
 						"x": [
@@ -11716,7 +11716,7 @@
 					},
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-960.0
 						],
 						"x": [
@@ -14758,7 +14758,7 @@
 					},
 					"transform": {
 						"origin": [
-							50048.0,
+							49920.0,
 							-960.0
 						],
 						"x": [
@@ -18034,7 +18034,7 @@
 					},
 					"transform": {
 						"origin": [
-							52480.0,
+							52288.0,
 							-960.0
 						],
 						"x": [
@@ -18268,7 +18268,7 @@
 					},
 					"transform": {
 						"origin": [
-							53888.0,
+							53696.0,
 							-960.0
 						],
 						"x": [
@@ -21076,7 +21076,7 @@
 					},
 					"transform": {
 						"origin": [
-							71680.0,
+							71808.0,
 							-192.0
 						],
 						"x": [
@@ -21154,7 +21154,7 @@
 					},
 					"transform": {
 						"origin": [
-							71680.0,
+							71808.0,
 							-320.0
 						],
 						"x": [
@@ -21232,7 +21232,7 @@
 					},
 					"transform": {
 						"origin": [
-							71680.0,
+							71808.0,
 							-64.0
 						],
 						"x": [
@@ -38400,7 +38400,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							29696.0,
+							29760.0,
 							-1120.0
 						],
 						"x": [
@@ -38436,7 +38436,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							29952.0,
+							30016.0,
 							-992.0
 						],
 						"x": [
@@ -38472,7 +38472,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							30208.0,
+							30272.0,
 							-864.0
 						],
 						"x": [
@@ -39121,7 +39121,7 @@
 					"transform": {
 						"origin": [
 							45056.0,
-							-832.0
+							-800.0
 						],
 						"x": [
 							1.0,
@@ -40561,7 +40561,7 @@
 					"transform": {
 						"origin": [
 							67232.0,
-							-512.0
+							-576.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -40597,7 +40597,7 @@
 					"transform": {
 						"origin": [
 							67232.0,
-							-640.0
+							-704.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -40705,7 +40705,7 @@
 					"transform": {
 						"origin": [
 							68352.0,
-							-448.0
+							-512.0
 						],
 						"x": [
 							1.0,
@@ -40776,7 +40776,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							71424.0,
+							71488.0,
 							-448.0
 						],
 						"x": [
@@ -47552,7 +47552,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							53760.0,
+							53632.0,
 							-960.0
 						],
 						"x": [
@@ -48092,7 +48092,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							52352.0,
+							52288.0,
 							-960.0
 						],
 						"x": [
@@ -48592,47 +48592,11 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "GroundSpike167",
-					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
-					"transform": {
-						"origin": [
-							49920.0,
-							-960.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							-1.0
-						]
-					},
-					"z_index": 167
-				},
-				{
-					"attributes": [
-						"LDMAttribute.gd"
-					],
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "GroundSpike168",
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							50048.0,
+							49920.0,
 							-960.0
 						],
 						"x": [
@@ -48884,7 +48848,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-960.0
 						],
 						"x": [
@@ -49064,7 +49028,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							48000.0,
+							48064.0,
 							-960.0
 						],
 						"x": [
@@ -49100,7 +49064,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							52480.0,
+							52288.0,
 							-960.0
 						],
 						"x": [
@@ -49964,7 +49928,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							71424.0,
+							71552.0,
 							-64.0
 						],
 						"x": [
@@ -50000,7 +49964,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							71552.0,
+							71680.0,
 							-64.0
 						],
 						"x": [
@@ -50036,7 +50000,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							71680.0,
+							71808.0,
 							-64.0
 						],
 						"x": [
@@ -56768,7 +56732,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							48000.0,
+							48064.0,
 							-960.0
 						],
 						"x": [
@@ -58877,7 +58841,7 @@
 					},
 					"transform": {
 						"origin": [
-							29696.0,
+							29760.0,
 							-1248.0
 						],
 						"x": [
@@ -58955,7 +58919,7 @@
 					},
 					"transform": {
 						"origin": [
-							29952.0,
+							30016.0,
 							-1120.0
 						],
 						"x": [
@@ -59033,7 +58997,7 @@
 					},
 					"transform": {
 						"origin": [
-							30208.0,
+							30272.0,
 							-992.0
 						],
 						"x": [
@@ -59658,7 +59622,7 @@
 					"transform": {
 						"origin": [
 							45056.0,
-							-704.0
+							-672.0
 						],
 						"x": [
 							1.0,
@@ -60696,7 +60660,7 @@
 					"transform": {
 						"origin": [
 							67360.0,
-							-640.0
+							-704.0
 						],
 						"x": [
 							1.0,
@@ -60774,7 +60738,7 @@
 					"transform": {
 						"origin": [
 							67360.0,
-							-512.0
+							-576.0
 						],
 						"x": [
 							1.0,
@@ -60852,7 +60816,7 @@
 					"transform": {
 						"origin": [
 							68352.0,
-							-576.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -61007,7 +60971,7 @@
 					},
 					"transform": {
 						"origin": [
-							71424.0,
+							71488.0,
 							-320.0
 						],
 						"x": [
@@ -70142,7 +70106,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							29696.0,
+							29760.0,
 							-1376.0
 						],
 						"x": [
@@ -70175,7 +70139,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							29952.0,
+							30016.0,
 							-1248.0
 						],
 						"x": [
@@ -70208,7 +70172,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/regular/Chain02.tscn",
 					"transform": {
 						"origin": [
-							30208.0,
+							30272.0,
 							-1120.0
 						],
 						"x": [
@@ -70968,7 +70932,7 @@
 					"transform": {
 						"origin": [
 							45056.0,
-							-576.0
+							-544.0
 						],
 						"x": [
 							1.0,
@@ -71198,7 +71162,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/MediumBeacon.tscn",
 					"transform": {
 						"origin": [
-							47360.0,
+							47424.0,
 							-448.0
 						],
 						"x": [
@@ -71330,7 +71294,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike02.tscn",
 					"transform": {
 						"origin": [
-							49792.0,
+							49664.0,
 							-960.0
 						],
 						"x": [
@@ -71958,7 +71922,7 @@
 					"transform": {
 						"origin": [
 							67360.0,
-							-768.0
+							-832.0
 						],
 						"x": [
 							1.0,
@@ -71991,7 +71955,7 @@
 					"transform": {
 						"origin": [
 							68352.0,
-							-704.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -80343,6 +80307,78 @@
 						]
 					},
 					"z_index": 0
+				},
+				{
+					"attributes": [
+						"LDMAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike399",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							71424.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 205
+				},
+				{
+					"attributes": [
+						"LDMAttribute.gd"
+					],
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike167",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							53760.0,
+							-960.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							-1.0
+						]
+					},
+					"z_index": 139
 				}
 			]
 		}

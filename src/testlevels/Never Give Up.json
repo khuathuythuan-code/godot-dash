@@ -2375,156 +2375,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "RegularBlock01129",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							28544.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 129
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock01130",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/grid_blocks/GridBlock01.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							29312.0,
-							-320.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 130
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock01131",
 					"physics": {
 						"absorbent": false,
@@ -18602,8 +18452,8 @@
 					},
 					"transform": {
 						"origin": [
-							79616.0,
-							-1088.0
+							79744.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -18677,8 +18527,8 @@
 					},
 					"transform": {
 						"origin": [
-							80000.0,
-							-1216.0
+							80064.0,
+							-1088.0
 						],
 						"x": [
 							1.0,
@@ -18753,7 +18603,7 @@
 					"transform": {
 						"origin": [
 							80384.0,
-							-1344.0
+							-1216.0
 						],
 						"x": [
 							1.0,
@@ -18828,7 +18678,7 @@
 					"transform": {
 						"origin": [
 							80512.0,
-							-1344.0
+							-1216.0
 						],
 						"x": [
 							1.0,
@@ -18903,7 +18753,7 @@
 					"transform": {
 						"origin": [
 							80640.0,
-							-1344.0
+							-1216.0
 						],
 						"x": [
 							1.0,
@@ -18977,8 +18827,8 @@
 					},
 					"transform": {
 						"origin": [
-							81024.0,
-							-1088.0
+							81088.0,
+							-1024.0
 						],
 						"x": [
 							1.0,
@@ -22428,7 +22278,7 @@
 					"transform": {
 						"origin": [
 							84224.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -22503,7 +22353,7 @@
 					"transform": {
 						"origin": [
 							82688.0,
-							-320.0
+							-352.0
 						],
 						"x": [
 							1.0,
@@ -22653,7 +22503,7 @@
 					"transform": {
 						"origin": [
 							83968.0,
-							-320.0
+							-256.0
 						],
 						"x": [
 							1.0,
@@ -22728,7 +22578,7 @@
 					"transform": {
 						"origin": [
 							81408.0,
-							-832.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -22803,7 +22653,7 @@
 					"transform": {
 						"origin": [
 							81408.0,
-							-576.0
+							-480.0
 						],
 						"x": [
 							1.0,
@@ -22877,8 +22727,8 @@
 					},
 					"transform": {
 						"origin": [
-							82048.0,
-							-1216.0
+							81920.0,
+							-1088.0
 						],
 						"x": [
 							1.0,
@@ -22952,8 +22802,8 @@
 					},
 					"transform": {
 						"origin": [
-							81792.0,
-							-1088.0
+							81664.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -23328,7 +23178,7 @@
 					"transform": {
 						"origin": [
 							82688.0,
-							-576.0
+							-640.0
 						],
 						"x": [
 							1.0,
@@ -23628,7 +23478,7 @@
 					"transform": {
 						"origin": [
 							83968.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -23703,7 +23553,7 @@
 					"transform": {
 						"origin": [
 							84352.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -23778,7 +23628,7 @@
 					"transform": {
 						"origin": [
 							84096.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -23853,7 +23703,7 @@
 					"transform": {
 						"origin": [
 							83840.0,
-							-704.0
+							-736.0
 						],
 						"x": [
 							1.0,
@@ -23928,7 +23778,7 @@
 					"transform": {
 						"origin": [
 							83840.0,
-							-320.0
+							-256.0
 						],
 						"x": [
 							1.0,
@@ -25203,7 +25053,7 @@
 					"transform": {
 						"origin": [
 							88448.0,
-							-960.0
+							-1024.0
 						],
 						"x": [
 							1.0,
@@ -25578,7 +25428,7 @@
 					"transform": {
 						"origin": [
 							89344.0,
-							-960.0
+							-992.0
 						],
 						"x": [
 							1.0,
@@ -25653,7 +25503,7 @@
 					"transform": {
 						"origin": [
 							89728.0,
-							-704.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -26253,7 +26103,7 @@
 					"transform": {
 						"origin": [
 							90496.0,
-							-704.0
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -27527,7 +27377,7 @@
 					},
 					"transform": {
 						"origin": [
-							93312.0,
+							93184.0,
 							-320.0
 						],
 						"x": [
@@ -27602,7 +27452,7 @@
 					},
 					"transform": {
 						"origin": [
-							93440.0,
+							93312.0,
 							-320.0
 						],
 						"x": [
@@ -27677,7 +27527,7 @@
 					},
 					"transform": {
 						"origin": [
-							93440.0,
+							93312.0,
 							-192.0
 						],
 						"x": [
@@ -27752,7 +27602,7 @@
 					},
 					"transform": {
 						"origin": [
-							93440.0,
+							93312.0,
 							-64.0
 						],
 						"x": [
@@ -27827,16 +27677,16 @@
 					},
 					"transform": {
 						"origin": [
-							93312.0,
+							93184.0,
 							-192.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 533
@@ -27902,16 +27752,16 @@
 					},
 					"transform": {
 						"origin": [
-							93312.0,
+							93184.0,
 							-64.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 534
@@ -46299,7 +46149,7 @@
 					"transform": {
 						"origin": [
 							80640.0,
-							-1216.0
+							-1088.0
 						],
 						"x": [
 							1.0,
@@ -46364,8 +46214,8 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							82048.0,
-							-1088.0
+							81920.0,
+							-960.0
 						],
 						"x": [
 							1.0,
@@ -46464,7 +46314,7 @@
 					"transform": {
 						"origin": [
 							83840.0,
-							-448.0
+							-384.0
 						],
 						"x": [
 							1.0,
@@ -46497,7 +46347,7 @@
 					"transform": {
 						"origin": [
 							83968.0,
-							-448.0
+							-384.0
 						],
 						"x": [
 							1.0,
@@ -46530,7 +46380,7 @@
 					"transform": {
 						"origin": [
 							84352.0,
-							-576.0
+							-608.0
 						],
 						"x": [
 							1.0,
@@ -48048,7 +47898,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-736.0
+							-800.0
 						],
 						"x": [
 							1.0,
@@ -48081,7 +47931,7 @@
 					"transform": {
 						"origin": [
 							101504.0,
-							-864.0
+							-896.0
 						],
 						"x": [
 							1.0,
@@ -59102,7 +58952,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							93312.0,
+							93184.0,
 							-64.0
 						],
 						"x": [
@@ -59135,7 +58985,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							93440.0,
+							93312.0,
 							-64.0
 						],
 						"x": [
@@ -60367,7 +60217,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							11008.0,
+							11136.0,
 							-192.0
 						],
 						"x": [
@@ -60406,7 +60256,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							11520.0,
+							11648.0,
 							-448.0
 						],
 						"x": [
@@ -60718,7 +60568,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							24960.0,
+							24928.0,
 							-1088.0
 						],
 						"x": [
@@ -60731,123 +60581,6 @@
 						]
 					},
 					"z_index": 11
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"DirectionChangerComponent": {
-							"direction": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "Item12",
-					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
-					"transform": {
-						"origin": [
-							27776.0,
-							-192.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 12
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"DirectionChangerComponent": {
-							"direction": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "Item13",
-					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
-					"transform": {
-						"origin": [
-							28544.0,
-							-320.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 13
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"components": {
-						"DirectionChangerComponent": {
-							"direction": 0
-						}
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"markers": [],
-					"name": "Item14",
-					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
-					"transform": {
-						"origin": [
-							29312.0,
-							-448.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 14
 				},
 				{
 					"children_hsv": [],
@@ -61576,8 +61309,8 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							85632.0,
-							-704.0
+							85568.0,
+							-768.0
 						],
 						"x": [
 							1.0,
@@ -66914,7 +66647,7 @@
 					},
 					"transform": {
 						"origin": [
-							24960.0,
+							24928.0,
 							-992.0
 						],
 						"x": [
@@ -67666,81 +67399,6 @@
 						"origin": [
 							25472.0,
 							-1728.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "RegularBlock76",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.0
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NinePatchBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/solids/regular_blocks/RegularBlock01.svg",
-						"id": 0.0
-					},
-					"transform": {
-						"origin": [
-							27776.0,
-							-64.0
 						],
 						"x": [
 							1.0,
@@ -75798,7 +75456,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-864.0
+							-928.0
 						],
 						"x": [
 							1.0,
@@ -75873,7 +75531,7 @@
 					"transform": {
 						"origin": [
 							101504.0,
-							-992.0
+							-1024.0
 						],
 						"x": [
 							1.0,
@@ -85452,7 +85110,7 @@
 					"transform": {
 						"origin": [
 							82688.0,
-							-192.0
+							-224.0
 						],
 						"x": [
 							1.0,
@@ -85485,7 +85143,7 @@
 					"transform": {
 						"origin": [
 							83840.0,
-							-192.0
+							-128.0
 						],
 						"x": [
 							1.0,
@@ -85518,7 +85176,7 @@
 					"transform": {
 						"origin": [
 							83968.0,
-							-192.0
+							-128.0
 						],
 						"x": [
 							1.0,
@@ -86112,7 +85770,7 @@
 					"transform": {
 						"origin": [
 							100608.0,
-							-992.0
+							-1056.0
 						],
 						"x": [
 							1.0,
@@ -86145,7 +85803,7 @@
 					"transform": {
 						"origin": [
 							101504.0,
-							-1120.0
+							-1152.0
 						],
 						"x": [
 							1.0,
@@ -86311,6 +85969,39 @@
 						"origin": [
 							104960.0,
 							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike215",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							27776.0,
+							-64.0
 						],
 						"x": [
 							1.0,

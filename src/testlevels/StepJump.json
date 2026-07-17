@@ -65777,7 +65777,7 @@
 					},
 					"transform": {
 						"origin": [
-							95616.0,
+							95776.0,
 							-64.0
 						],
 						"x": [
@@ -65852,7 +65852,7 @@
 					},
 					"transform": {
 						"origin": [
-							95616.0,
+							95776.0,
 							-64.0
 						],
 						"x": [
@@ -65927,7 +65927,7 @@
 					},
 					"transform": {
 						"origin": [
-							96000.0,
+							96128.0,
 							-320.0
 						],
 						"x": [
@@ -66002,7 +66002,7 @@
 					},
 					"transform": {
 						"origin": [
-							96000.0,
+							96128.0,
 							-64.0
 						],
 						"x": [
@@ -66077,7 +66077,7 @@
 					},
 					"transform": {
 						"origin": [
-							96000.0,
+							96128.0,
 							-64.0
 						],
 						"x": [
@@ -66152,7 +66152,7 @@
 					},
 					"transform": {
 						"origin": [
-							96000.0,
+							96128.0,
 							-192.0
 						],
 						"x": [
@@ -89495,7 +89495,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							96000.0,
+							96128.0,
 							-448.0
 						],
 						"x": [
@@ -89528,7 +89528,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							96128.0,
+							96256.0,
 							-64.0
 						],
 						"x": [
@@ -89561,7 +89561,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							96128.0,
+							96256.0,
 							-192.0
 						],
 						"x": [
@@ -89594,7 +89594,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							96128.0,
+							96256.0,
 							-320.0
 						],
 						"x": [
@@ -89759,7 +89759,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							97664.0,
+							97600.0,
 							-64.0
 						],
 						"x": [
@@ -89792,7 +89792,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							97792.0,
+							97728.0,
 							-64.0
 						],
 						"x": [
@@ -101210,7 +101210,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							98688.0,
+							98560.0,
 							-64.0
 						],
 						"x": [
@@ -102728,7 +102728,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							95616.0,
+							95776.0,
 							-64.0
 						],
 						"x": [
@@ -102761,7 +102761,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							95744.0,
+							95808.0,
 							-64.0
 						],
 						"x": [
@@ -102794,7 +102794,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							95872.0,
+							96000.0,
 							-64.0
 						],
 						"x": [
@@ -104098,7 +104098,7 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							64384.0,
+							64320.0,
 							-576.0
 						],
 						"x": [
@@ -104177,7 +104177,7 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalFlipped.tscn",
 					"transform": {
 						"origin": [
-							100096.0,
+							100064.0,
 							-448.0
 						],
 						"x": [
@@ -104214,7 +104214,7 @@
 					"scene_file_path": "scenes/components/level_components/portals/other_portals/GravityPortalNormal.tscn",
 					"transform": {
 						"origin": [
-							107136.0,
+							107008.0,
 							-352.0
 						],
 						"x": [
@@ -104486,7 +104486,7 @@
 					"scene_file_path": "scenes/components/level_components/pads/YellowPad.tscn",
 					"transform": {
 						"origin": [
-							95616.0,
+							95776.0,
 							-320.0
 						],
 						"x": [
@@ -104564,7 +104564,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							99200.0,
+							99072.0,
 							-192.0
 						],
 						"x": [
@@ -104603,7 +104603,7 @@
 					"scene_file_path": "scenes/components/level_components/orbs/YellowOrb.tscn",
 					"transform": {
 						"origin": [
-							99712.0,
+							99648.0,
 							-192.0
 						],
 						"x": [
@@ -147060,7 +147060,7 @@
 					},
 					"transform": {
 						"origin": [
-							95616.0,
+							95776.0,
 							-192.0
 						],
 						"x": [
@@ -147285,7 +147285,7 @@
 					},
 					"transform": {
 						"origin": [
-							97920.0,
+							97856.0,
 							-64.0
 						],
 						"x": [
@@ -147360,7 +147360,7 @@
 					},
 					"transform": {
 						"origin": [
-							98432.0,
+							98304.0,
 							-192.0
 						],
 						"x": [
@@ -147435,7 +147435,7 @@
 					},
 					"transform": {
 						"origin": [
-							98816.0,
+							98560.0,
 							-64.0
 						],
 						"x": [
@@ -147468,7 +147468,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
 					"transform": {
 						"origin": [
-							98816.0,
+							98560.0,
 							-64.0
 						],
 						"x": [
@@ -166329,7 +166329,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/pulsating/LongBeacon.tscn",
 					"transform": {
 						"origin": [
-							98432.0,
+							98304.0,
 							-320.0
 						],
 						"x": [
@@ -167431,6 +167431,138 @@
 						]
 					},
 					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike386",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							95680.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 351
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike387",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							98816.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 290
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike388",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							95552.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 351
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GroundSpike389",
+					"scene_file_path": "scenes/components/level_components/hazards/GroundSpike.tscn",
+					"transform": {
+						"origin": [
+							95936.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 354
 				}
 			]
 		}
