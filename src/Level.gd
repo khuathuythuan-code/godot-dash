@@ -518,13 +518,29 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 			# ❗ bỏ qua nếu rỗng
 		if override_data.is_empty():
 			return
-		if "base" in override_data:
-			base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
-		if "detail" in override_data:
-			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
+		var target_scale := Vector2(0.25, 0.25)
+		if "scale_factor" in override_data:
+			var sf = override_data.scale_factor
+			if sf is Array and sf.size() == 2:
+				target_scale = Vector2(sf[0], sf[1])
+			elif sf is Vector2:
+				target_scale = sf
+		else:
+			if base and "texture" in base and base.texture:
+				target_scale = Vector2.ONE * Constants.CELL_SIZE / base.texture.get_size()
+		if base:
+			if "base" in override_data:
+				base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
+			if base is Sprite2D:
+				base.scale = target_scale
+		if detail:
+			if "detail" in override_data:
+				detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
+			if detail is Sprite2D:
+				detail.scale = target_scale
 			
 			
-			# ❗ check id trước khi dùng
+
 		if "id" in override_data:
 			var collider = object.get_node_or_null(^"EditorSelectionCollider")
 			if collider:

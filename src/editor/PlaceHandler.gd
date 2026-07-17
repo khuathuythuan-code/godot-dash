@@ -43,14 +43,28 @@ func handle_place(block_palette_button_group: ButtonGroup, placed_objects_collid
 			if override.prefab_override:
 				object.queue_free()
 				object = override.prefab_override.instantiate()
-			if override.base:
-				object.get_node(^"Base").texture = override.base
-			if override.detail:
-				object.get_node(^"Detail").texture = override.detail
+			var target_scale = override.scale_factor
+			if target_scale == Vector2.ONE and override.base:
+				target_scale = Vector2.ONE * Constants.CELL_SIZE / override.base.get_size()
+			var base_node = object.get_node_or_null(^"Base")
+			if base_node:
+				if override.base:
+					base_node.texture = override.base
+				if base_node is Sprite2D:
+					base_node.scale = target_scale
+			var detail_node = object.get_node_or_null(^"Detail")
+			if detail_node:
+				if override.detail:
+					detail_node.texture = override.detail
+				if detail_node is Sprite2D:
+					detail_node.scale = target_scale
+				
 			object.name = override.name
 			var id: int = block_palette_ref.id
-			object.get_node(^"EditorSelectionCollider").id = id
-			_set_texture_override_metadata(object, override, id)
+			var collider = object.get_node_or_null(^"EditorSelectionCollider")
+			if collider:
+				collider.id = id
+			_set_texture_override_metadata(object, override, id, target_scale)
 
 		var editor_grid := game_scene.get_node("%EditorGrid") as EditorGrid
 		var grid_offset_to_level_origin := Vector2(0, 64)
@@ -129,9 +143,10 @@ func texture_variation_overlapping(placed_objects_collider: Area2D, type: Editor
 	return false
 
 
-func _set_texture_override_metadata(object: Node2D, override: TextureOverride, id: int) -> void:
+func _set_texture_override_metadata(object: Node2D, override: TextureOverride, id: int, target_scale: Vector2) -> void:
 	var texture_override_data: Dictionary = {
 		"id": id,
+		"scale_factor": [target_scale.x, target_scale.y]
 	}
 	if override.base:
 		texture_override_data.base = override.base.resource_path.trim_prefix("res://")
