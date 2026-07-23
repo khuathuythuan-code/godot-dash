@@ -14,6 +14,7 @@ carousel_container = NodePath("CarouselContainer")
 
 [node name="CarouselContainer" type="Control" parent="." unique_id=1961124689 node_paths=PackedStringArray("position_offset_node")]
 layout_mode = 1
+anchors_preset = 0
 offset_left = -405.0
 offset_top = -225.0
 script = ExtResource("1_d8k6s")
@@ -23,11 +24,13 @@ wraparound_height = -20.0
 opacity_strength = 0.5
 scale_strength = 0.0
 scale_min = 0.01
-selected_index = 3
+selected_index = 14
 position_offset_node = NodePath("Control")
+angular_spacing_deg = null
 
 [node name="Control" type="Control" parent="CarouselContainer" unique_id=412257201]
 layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -202.49997

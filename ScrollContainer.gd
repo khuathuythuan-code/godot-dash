@@ -13,6 +13,7 @@ class_name CarouselContainer
 @export var selected_index: int = 0 
 @export var follow_button_focus: bool = false
 @export var position_offset_node: Control = null
+@export var angular_spacing_deg: float = 40.0
 
 func _process(delta: float) -> void:
 	if !position_offset_node or position_offset_node.get_child_count() == 0: 
@@ -22,8 +23,8 @@ func _process(delta: float) -> void:
 	
 	for i in position_offset_node.get_children():
 		if wraparound_enabled:
-			var max_index_range = max(1, (position_offset_node.get_child_count() - 1) /2.0)
-			var angle = clamp((i.get_index() - selected_index) / max_index_range, -1.0,1.0) * PI
+			var index_diff = i.get_index() - selected_index
+			var angle = index_diff * deg_to_rad(angular_spacing_deg)
 			var x = sin(angle) * wraparound_radius
 			var y = cos(angle) * wraparound_height
 			var target_pos = Vector2(x, y - wraparound_height) - i.size / 2.0
