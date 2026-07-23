@@ -515,9 +515,16 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 	# Texture Override
 	if "texture_override" in object_data:
 		var override_data: Dictionary = object_data.texture_override
-			# ❗ bỏ qua nếu rỗng
 		if override_data.is_empty():
 			return
+
+		# 1. Gán texture mới vào trước
+		if base and "base" in override_data:
+			base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
+		if detail and "detail" in override_data:
+			detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
+
+		# 2. Xác định scale factor (ưu tiên dữ liệu lưu, nếu thiếu sẽ đo trực tiếp ảnh mới vừa nạp ở trên)
 		var target_scale := Vector2(0.25, 0.25)
 		if "scale_factor" in override_data:
 			var sf = override_data.scale_factor
@@ -526,18 +533,14 @@ static func deserialize_data_to_object(object_data: Dictionary, object: Node2D, 
 			elif sf is Vector2:
 				target_scale = sf
 		else:
-			if base and "texture" in base and base.texture:
+			if base and base.texture:
 				target_scale = Vector2.ONE * Constants.CELL_SIZE / base.texture.get_size()
-		if base:
-			if "base" in override_data:
-				base.texture = resource_cache.get_or_load("res://%s" % override_data.base)
-			if base is Sprite2D:
-				base.scale = target_scale
-		if detail:
-			if "detail" in override_data:
-				detail.texture = resource_cache.get_or_load("res://%s" % override_data.detail)
-			if detail is Sprite2D:
-				detail.scale = target_scale
+
+		# 3. Áp dụng scale cho Sprite2D
+		if base and base is Sprite2D:
+			base.scale = target_scale
+		if detail and detail is Sprite2D:
+			detail.scale = target_scale
 			
 			
 
