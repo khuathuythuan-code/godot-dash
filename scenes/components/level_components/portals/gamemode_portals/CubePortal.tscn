@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="6_yjtas"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="8_4wp27"]
 [ext_resource type="Script" uid="uid://ch7r67xegri61" path="res://src/interactables/public_components/GamemodeChangerComponent.gd" id="9_g22vt"]
+[ext_resource type="Texture2D" uid="uid://uixjk4ga5vsk" path="res://assets/textures/cyber_punk_gui/portals/mặt trái-8.png" id="9_yfm58"]
+[ext_resource type="Texture2D" uid="uid://c3iqkpkab4n5r" path="res://assets/textures/cyber_punk_gui/portals/mặt phải-8.png" id="10_fii4s"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="11_sjwk2"]
 [ext_resource type="Script" uid="uid://dh8clxh0ec2bd" path="res://src/interactables/public_components/GroundMoverComponent.gd" id="12_re3iv"]
 [ext_resource type="Script" uid="uid://cd3jqi4il3x2p" path="res://src/interactables/public_components/TextureRotationPinComponent.gd" id="13_hwy8w"]
@@ -31,31 +33,57 @@ debug_color = Color(0, 1, 0, 0)
 
 [node name="Sprites" type="Node2D" parent="." unique_id=1191487583]
 material = ExtResource("3_ox385")
-instance_shader_parameters/factor = 0.0
 script = ExtResource("4_lbm7o")
 
 [node name="CubePortalBack" type="Sprite2D" parent="Sprites" unique_id=581222983]
+visible = false
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_n76ru")
 
 [node name="CubePortalFront" type="Sprite2D" parent="Sprites" unique_id=63140137]
+visible = false
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_vk6wf")
 
 [node name="CubePortalIndicatorBg" type="Sprite2D" parent="Sprites" unique_id=1659709087]
+visible = false
 z_index = 1
 use_parent_material = true
 position = Vector2(48, 0)
 texture = ExtResource("4_7vbrb")
 
 [node name="IndicatorIcon" type="Sprite2D" parent="Sprites" unique_id=2049835147]
+visible = false
 z_index = 1
 use_parent_material = true
 position = Vector2(44, 0)
+texture = ExtResource("5_4knf6")
+
+[node name="MặtTrái8" type="Sprite2D" parent="Sprites" unique_id=488512450]
+modulate = Color(13.680414, 6.144511, 0, 1)
+z_index = -1
+use_parent_material = true
+position = Vector2(-30.599998, -4)
+scale = Vector2(0.4, 0.7)
+texture = ExtResource("9_yfm58")
+
+[node name="MặtPhải8" type="Sprite2D" parent="Sprites" unique_id=798795110]
+modulate = Color(13.680414, 6.144511, 0, 1)
+z_index = 1
+use_parent_material = true
+position = Vector2(43.40001, -4)
+scale = Vector2(0.4, 0.7)
+texture = ExtResource("10_fii4s")
+
+[node name="IndicatorIcon2" type="Sprite2D" parent="Sprites" unique_id=55035772]
+z_index = 1
+use_parent_material = true
+position = Vector2(65, 3)
+scale = Vector2(1.2380953, 1.1904762)
 texture = ExtResource("5_4knf6")
 
 [node name="PulseCircle" type="Node2D" parent="." unique_id=1669252763]
@@ -73,4 +101,4 @@ script = ExtResource("12_re3iv")
 
 [node name="TextureRotationPin" type="Node" parent="." unique_id=2113591157 node_paths=PackedStringArray("pinned")]
 script = ExtResource("13_hwy8w")
-pinned = NodePath("../Sprites/IndicatorIcon")
+pinned = NodePath("../Sprites/IndicatorIcon2")

@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://beiu6q5nankgc" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalIndicatorBG.png" id="5_67rea"]
 [ext_resource type="Texture2D" uid="uid://d272nnl1ar6hv" path="res://assets/textures/portals/other_portals/gravity_portal_normal/GravityPortalNormalIndicatorIcon.png" id="6_dfbcm"]
 [ext_resource type="PackedScene" uid="uid://d23j4fpbpdrv4" path="res://scenes/particle_emitter_presets/PortalParticles.tscn" id="7_5eui3"]
+[ext_resource type="Texture2D" uid="uid://dlme30t54ff66" path="res://assets/textures/cyber_punk_gui/portals/gravity_portal.png" id="8_srkp0"]
+[ext_resource type="Texture2D" uid="uid://24v6uf5x7ppx" path="res://assets/textures/cyber_punk_gui/portals/gravity_portal_2.png" id="9_5jgm6"]
 [ext_resource type="Script" uid="uid://cvm8jm6xidbjf" path="res://src/interactables/private_components/PulseCircle.gd" id="9_nodad"]
 [ext_resource type="Script" uid="uid://n8ym1w4r5ke" path="res://src/interactables/private_components/PulseWhite.gd" id="10_ufkdc"]
 [ext_resource type="Script" uid="uid://df636dbhnu65v" path="res://src/interactables/public_components/GravityFlipChangerComponent.gd" id="11_12or6"]
@@ -30,27 +32,52 @@ material = ExtResource("2_ukvqu")
 script = ExtResource("3_xtega")
 
 [node name="PortalBack" type="Sprite2D" parent="Sprites" unique_id=167072589]
+visible = false
 z_index = -1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("3_h3dng")
 
 [node name="PortalFront" type="Sprite2D" parent="Sprites" unique_id=1578417085]
+visible = false
 z_index = 1
 use_parent_material = true
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("4_m7fq6")
 
 [node name="PortalIndicatorBg" type="Sprite2D" parent="Sprites" unique_id=1311732190]
+visible = false
 z_index = 1
 use_parent_material = true
 position = Vector2(58, 0)
 texture = ExtResource("5_67rea")
 
 [node name="IndicatorIcon" type="Sprite2D" parent="Sprites" unique_id=88302707]
+visible = false
 z_index = 1
 use_parent_material = true
 position = Vector2(52, 0)
+texture = ExtResource("6_dfbcm")
+
+[node name="GravityPortal" type="Sprite2D" parent="Sprites" unique_id=22059197]
+modulate = Color(4.3302517, 4.3302517, 4.3302517, 1)
+z_index = -1
+position = Vector2(-56.000004, 7)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("8_srkp0")
+
+[node name="GravityPortal2" type="Sprite2D" parent="Sprites" unique_id=1498172764]
+modulate = Color(4.3302517, 4.3302517, 4.3302517, 1)
+z_index = 1
+position = Vector2(99, -1)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("9_5jgm6")
+
+[node name="IndicatorIcon2" type="Sprite2D" parent="Sprites" unique_id=1715117849]
+z_index = 1
+use_parent_material = true
+position = Vector2(97.00001, 8)
+scale = Vector2(1.4375, 1.4375)
 texture = ExtResource("6_dfbcm")
 
 [node name="ParticleEmitter" parent="." unique_id=1866013509 instance=ExtResource("7_5eui3")]
@@ -68,5 +95,5 @@ script = ExtResource("11_12or6")
 
 [node name="TextureRotationPin" type="Node" parent="." unique_id=74377547 node_paths=PackedStringArray("pinned")]
 script = ExtResource("12_rnoqo")
-pinned = NodePath("../Sprites/IndicatorIcon")
+pinned = NodePath("../Sprites/IndicatorIcon2")
 pin_to_gameplay_rotation = true

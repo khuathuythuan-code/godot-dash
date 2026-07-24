@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://calhypvupvj4m"]
 
-[ext_resource type="Texture2D" uid="uid://djlnfy6mugjwc" path="res://assets/textures/hazards/spike/normal/RegularSpikeNormal.svg" id="1_yfgdv"]
+[ext_resource type="Texture2D" uid="uid://b0fqusdrwg6nc" path="res://assets/textures/cyber_punk_gui/spikes/spike.png" id="1_lg66x"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_l6f50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu62t"]
@@ -11,7 +11,7 @@ collision_layer = 4
 
 [node name="RegularSpike01" type="Sprite2D" parent="." unique_id=2047067139]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_yfgdv")
+texture = ExtResource("1_lg66x")
 
 [node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1588948432]
 position = Vector2(0, 27.5)
