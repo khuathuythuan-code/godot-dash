@@ -90,6 +90,7 @@ func restart_level() -> void:
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
 	else:
+		LevelManager.game_scene.pause_menu.attempt_count+=1
 		free_current_level()
 		reset()
 		load_level()

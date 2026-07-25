@@ -8,6 +8,7 @@ class_name StatController
 
 var time_elapsed: float = 0.0
 var jump_count: int = 0
+var is_restart_after_complete = false
 
 func _process(delta: float) -> void:
 	if LevelManager.level_playing and !get_tree().paused:
@@ -33,4 +34,7 @@ func _process(delta: float) -> void:
 
 func refresh():
 	time_elapsed = 0.0
-	jump_count = 0
+	if is_restart_after_complete:
+		jump_count = 0
+		LevelManager.game_scene.pause_menu.attempt_count = 0
+		is_restart_after_complete = false
