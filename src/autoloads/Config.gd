@@ -121,8 +121,8 @@ var menu_loop: String:
 
 # Internet
 @export_group("Internet")
-@export var check_for_updates: bool = true
-@export var discord_rich_presence: bool = true
+@export var check_for_updates: bool = false
+@export var discord_rich_presence: bool = false
 
 # Icons
 @export_group("Icon")

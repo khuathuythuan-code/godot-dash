@@ -6,16 +6,8 @@ var new_version: String
 
 
 func _ready() -> void:
-	if not Config.check_for_updates:
-		text = version
-		return
-	pressed.connect(_on_pressed)
-	var http: HTTPRequest = HTTPRequest.new()
-	add_child(http)
-	http.request_completed.connect(_on_request_completed)
-	http.request("https://codeberg.org/godot-dash/godot-dash/raw/branch/master/project.godot")
-	text = "(v%s) Checking for updates..." % version
-
+	text = version
+	return
 
 func _on_request_completed(_result: int, _response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 	if not body.get_string_from_utf8().containsn('config/version='):
