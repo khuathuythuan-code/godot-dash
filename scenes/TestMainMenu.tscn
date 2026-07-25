@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://cea1yr5xp7xmd"]
 
-[ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="1_belvq"]
-[ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="2_7x357"]
 [ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_qovpe"]
 [ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="4_pw3ed"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="5_q5gxh"]
@@ -278,10 +276,6 @@ texture = ExtResource("36_qovpe")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=240017271]
 visible = false
-
-[node name="MenuIcon" parent="Node2D" unique_id=1938015 instance=ExtResource("1_belvq")]
-position = Vector2(-128, 860)
-script = ExtResource("2_7x357")
 
 [node name="Kill Box" type="Area2D" parent="Node2D" unique_id=313833091 node_paths=PackedStringArray("hitbox")]
 physics_interpolation_mode = 1
@@ -1144,7 +1138,7 @@ from_editor_camera = NodePath("../CameraCenterParent/FromEditorCamera")
 title_screen_layer = NodePath("../TitleScreenLayer")
 title_screen_background = NodePath("../Node2D/BackgroundParallax")
 title_screen_ground = NodePath("../Node2D/GroundDownParallax")
-menu_icon = NodePath("../Node2D/MenuIcon")
+menu_icon = NodePath("")
 menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("34_36m4y")]
