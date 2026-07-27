@@ -52,6 +52,11 @@ static func generate(object: Node2D, side_length: int) -> ImageTexture:
 		return AssetManager.generated_editor_object_thumbnails[cache_path]
 	var composite_image_size: Vector2i = Vector2i.ONE * side_length
 	var images: Array[Image] = get_object_thumbnail_image(object)
+	if images.is_empty():
+		var empty_image: Image = Image.create_empty(side_length, side_length, false, Image.FORMAT_RGBA8)
+		var pattern: ImageTexture = ImageTexture.create_from_image(empty_image)
+		AssetManager.generated_editor_object_thumbnails[cache_path] = pattern
+		return pattern
 	for image: Image in images:
 		var image_size: Vector2i = fit_size_to_square(image.get_size(), side_length)
 		image.resize(image_size.x, image_size.y, Image.Interpolation.INTERPOLATE_LANCZOS)
