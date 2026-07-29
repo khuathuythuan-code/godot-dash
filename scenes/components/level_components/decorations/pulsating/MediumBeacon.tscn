@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://6mqyee30v3ts" path="res://assets/textures/decorations/decor/Asset 13.png" id="1_pegvy"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_lf5rq"]
+[ext_resource type="Texture2D" uid="uid://clkd6k2ybkqv5" path="res://assets/textures/Circle.svg" id="3_pf7i8"]
+
+[sub_resource type="Curve" id="Curve_in4rv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Medium Beacon" type="Node2D" unique_id=144950146]
 
@@ -12,3 +17,14 @@ texture = ExtResource("1_pegvy")
 
 [node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_lf5rq")]
 type = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1140939519]
+position = Vector2(0, -63)
+amount = 1
+texture = ExtResource("3_pf7i8")
+lifetime = 0.5
+gravity = Vector2(0, 0)
+scale_amount_min = 0.1
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_in4rv")
+color = Color(1, 1, 1, 0.83137256)

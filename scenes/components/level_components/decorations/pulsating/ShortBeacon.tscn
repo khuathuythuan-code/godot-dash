@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://cl7qa7l1gc6ff" path="res://assets/textures/decorations/decor/Asset 14.png" id="1_875cc"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_lfynx"]
+[ext_resource type="Texture2D" uid="uid://d3amssdvmvmr7" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect02.png" id="3_q6bh2"]
+
+[sub_resource type="Curve" id="Curve_lyqjy"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Short Beacon" type="Node2D" unique_id=144950146]
 
@@ -12,3 +17,13 @@ texture = ExtResource("1_875cc")
 
 [node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_lfynx")]
 type = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1112591252]
+amount = 1
+texture = ExtResource("3_q6bh2")
+lifetime = 0.5
+gravity = Vector2(0, 0)
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+scale_amount_curve = SubResource("Curve_lyqjy")
+color = Color(1, 1, 0.09019608, 0.6392157)

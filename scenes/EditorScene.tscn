@@ -114,19 +114,23 @@
 [ext_resource type="PackedScene" uid="uid://cmf4u0ppyqchv" path="res://scenes/components/level_components/portals/gamemode_portals/WavePortal.tscn" id="49_aico2"]
 [ext_resource type="Texture2D" uid="uid://ci7wofbd2np4y" path="res://assets/textures/solids/fill_blocks/FillSlopeLarge01.svg" id="49_knigi"]
 [ext_resource type="Texture2D" uid="uid://bvhu2o467ogw3" path="res://assets/textures/pads/BlackPad.svg" id="49_ksayh"]
+[ext_resource type="Texture2D" uid="uid://d2gou8hl1uvl8" path="res://assets/textures/cyber_punk_gui/blocks/asset_2.png" id="49_ns2uq"]
 [ext_resource type="PackedScene" uid="uid://bsl2ssfhthw00" path="res://scenes/components/level_components/pads/BlackPad.tscn" id="50_0xs65"]
 [ext_resource type="Texture2D" uid="uid://bp6ukusnk6ufx" path="res://assets/textures/portals/gamemode_portals/swing_portal/SwingPortalFront.png" id="50_j5nlm"]
 [ext_resource type="Texture2D" uid="uid://c0bsvfc1ce8wd" path="res://assets/textures/pads/BluePad.svg" id="51_1i48y"]
+[ext_resource type="Texture2D" uid="uid://c2albtkacs58g" path="res://assets/textures/cyber_punk_gui/blocks/asset_4.png" id="51_6m03t"]
 [ext_resource type="Texture2D" uid="uid://mhmstl4xjq2g" path="res://assets/textures/portals/gamemode_portals/spider_portal/SpiderPortalFront.png" id="51_fn488"]
 [ext_resource type="PackedScene" uid="uid://dspnvt3u8uhqy" path="res://scenes/components/level_components/portals/gamemode_portals/SwingPortal.tscn" id="51_vkyby"]
 [ext_resource type="Texture2D" uid="uid://dd1s2apollksy" path="res://assets/textures/portals/gamemode_portals/ball_portal/BallPortalFront.png" id="51_vpsba"]
 [ext_resource type="PackedScene" uid="uid://c1lfp5vqcpgiw" path="res://scenes/components/game_components/EditorMoveControls.tscn" id="51_w2i7q"]
 [ext_resource type="Texture2D" uid="uid://c0krnicwnskr8" path="res://assets/textures/guis/editor/edit_panel/RotateObjectLeft90.svg" id="52_jpmdx"]
+[ext_resource type="Texture2D" uid="uid://bcwi838nidtbw" path="res://assets/textures/cyber_punk_gui/blocks/asset_5.png" id="52_pjeb3"]
 [ext_resource type="PackedScene" uid="uid://dnah6ge1p0rr3" path="res://scenes/components/level_components/pads/BluePad.tscn" id="52_xvtum"]
 [ext_resource type="PackedScene" uid="uid://duu44mnb4uo8u" path="res://scenes/components/level_components/portals/gamemode_portals/BallPortal.tscn" id="53_jb677"]
 [ext_resource type="Texture2D" uid="uid://dapmy33vj7qi7" path="res://assets/textures/guis/editor/edit_panel/RotateObjectRight90.svg" id="53_mgdr6"]
 [ext_resource type="Texture2D" uid="uid://bmyejgekcl17a" path="res://assets/textures/pads/SpiderPad.svg" id="53_nlcfe"]
 [ext_resource type="Texture2D" uid="uid://c52yyuk8wf0pr" path="res://assets/textures/guis/editor/edit_panel/RotateObjectLeft45.svg" id="54_0gg2o"]
+[ext_resource type="Texture2D" uid="uid://b2lsnpykqxtt2" path="res://assets/textures/cyber_punk_gui/blocks/asset_7.png" id="54_5eb8o"]
 [ext_resource type="PackedScene" uid="uid://ht60eohfg08" path="res://scenes/components/level_components/pads/SpiderPad.tscn" id="54_lv6tf"]
 [ext_resource type="Texture2D" uid="uid://c7wme8mgm4tvu" path="res://assets/textures/hazards/spike/small/RegularSpikeSmall.svg" id="54_w44k4"]
 [ext_resource type="Texture2D" uid="uid://cfmq0ydjokwp5" path="res://assets/textures/guis/editor/edit_panel/RotateObjectRight45.svg" id="55_4de2s"]
@@ -134,33 +138,47 @@
 [ext_resource type="PackedScene" uid="uid://da4xswy05y0ve" path="res://scenes/components/game_components/GroupEditor.tscn" id="55_5vu0v"]
 [ext_resource type="PackedScene" uid="uid://b6re4iesb8ux4" path="res://scenes/components/level_components/hazards/SpikeSmall.tscn" id="55_vt33b"]
 [ext_resource type="PackedScene" uid="uid://cw15476n2m4we" path="res://scenes/components/game_components/ColorChannelEditor.tscn" id="55_wey7f"]
+[ext_resource type="Texture2D" uid="uid://d2juxwvb3fs3v" path="res://assets/textures/cyber_punk_gui/blocks/asset_3.png" id="56_mjtuj"]
 [ext_resource type="Texture2D" uid="uid://cj6wk0jtmbbjp" path="res://assets/textures/portals/other_portals/count_portal_single/CountPortalSingleFront.png" id="56_ot2jm"]
 [ext_resource type="PackedScene" uid="uid://ycasm4t3yh3a" path="res://scenes/components/level_components/portals/other_portals/CountPortalSingle.tscn" id="57_1ad2k"]
+[ext_resource type="Texture2D" uid="uid://dxcl7klvjf1vc" path="res://assets/textures/cyber_punk_gui/blocks/asset_10.png" id="57_5ac71"]
+[ext_resource type="Texture2D" uid="uid://bwxg8wn32a42v" path="res://assets/textures/cyber_punk_gui/blocks/asset_6.png" id="57_sja60"]
 [ext_resource type="Texture2D" uid="uid://djvb6aor51lsu" path="res://assets/textures/guis/editor/edit_panel/FlipObjectH.svg" id="57_tt0di"]
 [ext_resource type="PackedScene" uid="uid://jdhlbkky38ej" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal0x.tscn" id="58_20xqs"]
 [ext_resource type="PackedScene" uid="uid://cd4end0ruw2y3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal05x.tscn" id="58_a0ef7"]
 [ext_resource type="Script" uid="uid://csdb54xplbtd2" path="res://src/editor/InspectorManager.gd" id="58_hnsxj"]
 [ext_resource type="Texture2D" uid="uid://djl51mcjms05k" path="res://assets/textures/portals/other_portals/count_portal_dual/CountPortalDualFront.png" id="58_le1qd"]
+[ext_resource type="Texture2D" uid="uid://dggs4p1488hg4" path="res://assets/textures/cyber_punk_gui/blocks/asset_9.png" id="58_mbs0q"]
 [ext_resource type="Texture2D" uid="uid://b4kmc5iqyscr1" path="res://assets/textures/guis/editor/edit_panel/FlipObjectV.svg" id="58_q5hg5"]
+[ext_resource type="Texture2D" uid="uid://cwaa53e8nshur" path="res://assets/textures/cyber_punk_gui/blocks/asset_11.png" id="58_vxk01"]
 [ext_resource type="Texture2D" uid="uid://bm4o6qn8mdapu" path="res://assets/textures/portals/speed_portals/SpeedPortal0x.svg" id="58_w5vw8"]
 [ext_resource type="Texture2D" uid="uid://dskce326io828" path="res://assets/textures/guis/editor/edit_panel/RotateObjectFree.svg" id="59_1fu1b"]
+[ext_resource type="Texture2D" uid="uid://b8ml0dxl6jjxy" path="res://assets/textures/cyber_punk_gui/blocks/asset_12.png" id="59_b2ytb"]
 [ext_resource type="PackedScene" uid="uid://dvdjnndhk1ir0" path="res://scenes/components/level_components/portals/other_portals/CountPortalDual.tscn" id="59_d556q"]
+[ext_resource type="Texture2D" uid="uid://dupv84bde20ft" path="res://assets/textures/cyber_punk_gui/blocks/asset_8.png" id="59_ns2uq"]
 [ext_resource type="Texture2D" uid="uid://bh5xvhek8i1m6" path="res://assets/textures/portals/speed_portals/SpeedPortal05x.svg" id="60_32shx"]
 [ext_resource type="Texture2D" uid="uid://cwm251i41arye" path="res://assets/textures/guis/editor/edit_panel/ScaleObjectFree.svg" id="60_46ckf"]
 [ext_resource type="Texture2D" uid="uid://qhnuoanrd53a" path="res://assets/textures/hazards/sawblade/normal/RegularSawbladeNormal.svg" id="60_iia8k"]
 [ext_resource type="PackedScene" uid="uid://cachxsihpvoep" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal1x.tscn" id="60_kbsrm"]
+[ext_resource type="Texture2D" uid="uid://bd653tq1mxk7k" path="res://assets/textures/cyber_punk_gui/blocks/asset_1.png" id="60_sja60"]
+[ext_resource type="Texture2D" uid="uid://bksxkdfkmmejm" path="res://assets/textures/cyber_punk_gui/blocks/asset_13.png" id="60_vexkx"]
 [ext_resource type="Shader" uid="uid://c8fmb7haov3m7" path="res://resources/shaders/Sawblade.gdshader" id="60_xoit7"]
+[ext_resource type="Texture2D" uid="uid://bfabaaleexsct" path="res://assets/textures/cyber_punk_gui/blocks/asset_14.png" id="61_5eb8o"]
 [ext_resource type="Texture2D" uid="uid://dw38va1ai5osi" path="res://assets/textures/hazards/sawblade/medium/RegularSawbladeMedium.svg" id="61_5qwq7"]
 [ext_resource type="PackedScene" uid="uid://csu7yo83ohdk3" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal2x.tscn" id="61_l48od"]
 [ext_resource type="PackedScene" uid="uid://dyseodr1cc6sr" path="res://scenes/components/level_components/hazards/Sawblade.tscn" id="61_qb4ou"]
+[ext_resource type="Texture2D" uid="uid://b8y2q5ll564nm" path="res://assets/textures/cyber_punk_gui/blocks/asset_15.png" id="62_5ac71"]
 [ext_resource type="Texture2D" uid="uid://bc3mwmxfrxugt" path="res://assets/textures/hazards/sawblade/small/RegularSawbladeSmall.svg" id="62_8f43i"]
 [ext_resource type="PackedScene" uid="uid://dtumn0qc8usca" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal3x.tscn" id="62_n03i7"]
 [ext_resource type="Texture2D" uid="uid://cuaoks3l1edif" path="res://assets/textures/portals/speed_portals/SpeedPortal1x.svg" id="62_n6cnt"]
 [ext_resource type="PackedScene" uid="uid://cf2ads3atrx78" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal4x.tscn" id="63_itagw"]
+[ext_resource type="Texture2D" uid="uid://dxjrg3osev3sb" path="res://assets/textures/cyber_punk_gui/blocks/asset_16.png" id="63_vxk01"]
 [ext_resource type="PackedScene" uid="uid://d3eov8ks0tqhl" path="res://scenes/components/level_components/hazards/SawbladeMedium.tscn" id="63_xoit7"]
 [ext_resource type="Texture2D" uid="uid://ba7uh3fv4d5jq" path="res://assets/textures/portals/speed_portals/SpeedPortal2x.svg" id="64_pd34h"]
+[ext_resource type="Texture2D" uid="uid://dia3snj0idmvw" path="res://assets/textures/cyber_punk_gui/blocks/asset_17.png" id="64_vxk01"]
 [ext_resource type="Script" uid="uid://bvvp2bquxkha5" path="res://src/editor/BaseDetailHandler.gd" id="64_ycx04"]
 [ext_resource type="PackedScene" uid="uid://bvu6th40mvb3q" path="res://scenes/components/level_components/portals/speed_portals/SpeedPortal5x.tscn" id="64_yuboy"]
+[ext_resource type="Texture2D" uid="uid://b08e1uwcjxjqo" path="res://assets/textures/cyber_punk_gui/blocks/asset_18.png" id="65_b2ytb"]
 [ext_resource type="PackedScene" uid="uid://cwuamvvlwaodm" path="res://scenes/components/level_components/hazards/SawbladeSmall.tscn" id="65_ukctk"]
 [ext_resource type="Texture2D" uid="uid://bxkysp21y32lm" path="res://assets/textures/portals/speed_portals/SpeedPortal3x.svg" id="66_wdba8"]
 [ext_resource type="Texture2D" uid="uid://crgfornwvgker" path="res://assets/textures/portals/speed_portals/SpeedPortal4x.svg" id="68_107fg"]
@@ -273,18 +291,14 @@
 [ext_resource type="Texture2D" uid="uid://c3ewfw6juwiuk" path="res://assets/textures/guis/editor/edit_panel/MoveObjectFree.svg" id="240_vp4xm"]
 [ext_resource type="Texture2D" uid="uid://c6q7fc5wfka6p" path="res://assets/textures/decorations/pulsating/9-ball_03.png" id="241_y3yry"]
 [ext_resource type="PackedScene" uid="uid://c0c1wdt7286h4" path="res://scenes/components/level_components/decorations/pulsating/Ball03.tscn" id="242_dse14"]
-[ext_resource type="Texture2D" uid="uid://dav0xwfbvbgxv" path="res://assets/textures/decorations/pulsating/10-ball_04.png" id="243_18uym"]
 [ext_resource type="Script" uid="uid://bkadwmxos4osm" path="res://src/gui/EnumButton.gd" id="244_leg3o"]
-[ext_resource type="PackedScene" uid="uid://ce41jpdcf7xu5" path="res://scenes/components/level_components/decorations/pulsating/Ball04.tscn" id="244_ufdyd"]
 [ext_resource type="Texture2D" uid="uid://das02nf7axbxe" path="res://assets/textures/icons/lucide/focus.svg" id="245_6cy18"]
 [ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="245_7jp64"]
 [ext_resource type="Texture2D" uid="uid://dlfi5nj0fat40" path="res://assets/textures/icons/lucide/file.svg" id="245_e2gl0"]
 [ext_resource type="Script" uid="uid://5wf1ujgda80e" path="res://src/gui/EnumButtonTabContainer.gd" id="245_leg3o"]
 [ext_resource type="Script" uid="uid://s6rdxe42bj6w" path="res://src/editor/InspectorTree.gd" id="245_r73tb"]
-[ext_resource type="Texture2D" uid="uid://bk4kri1flccg2" path="res://assets/textures/decorations/pulsating/11-ball_05.png" id="245_s6ory"]
 [ext_resource type="Texture2D" uid="uid://dyhjriyp2n167" path="res://assets/textures/icons/lucide/component.svg" id="246_e2gl0"]
 [ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="246_lk43j"]
-[ext_resource type="PackedScene" uid="uid://djk2rwn5y4yob" path="res://scenes/components/level_components/decorations/pulsating/Ball05.tscn" id="246_to83l"]
 [ext_resource type="Texture2D" uid="uid://biaevbwkpkedb" path="res://assets/textures/decorations/pulsating/12-ball_06.png" id="247_ks60w"]
 [ext_resource type="Texture2D" uid="uid://bgqqtnpwap3x0" path="res://assets/textures/icons/lucide/orbit.svg" id="247_r73tb"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="247_w3qyq"]
@@ -304,9 +318,13 @@
 [ext_resource type="PackedScene" uid="uid://1tsr36keg111" path="res://scenes/components/level_components/decorations/ground/GrounDecorCloud01.tscn" id="258_lujqk"]
 [ext_resource type="Texture2D" uid="uid://dkb1puvbjo0yk" path="res://assets/textures/decorations/ground/6-ground_cloud_01.png" id="259_lj7ri"]
 [ext_resource type="PackedScene" uid="uid://cxxnoba8avm0w" path="res://scenes/components/level_components/decorations/ground/GrounDecorCloud02.tscn" id="260_fo1h0"]
+[ext_resource type="Texture2D" uid="uid://iapx1voay3yk" path="res://assets/textures/decorations/decor/Asset 19.png" id="261_5eb8o"]
 [ext_resource type="Texture2D" uid="uid://t66px003gac5" path="res://assets/textures/decorations/regular/1-chain_01.png" id="261_8bg6b"]
+[ext_resource type="PackedScene" path="res://scenes/components/level_components/decorations/pulsating/Ball04.tscn" id="262_5eb8o"]
 [ext_resource type="PackedScene" uid="uid://brxxbbugmrsq3" path="res://scenes/components/level_components/decorations/regular/Chain01.tscn" id="262_mjtuj"]
+[ext_resource type="Texture2D" uid="uid://bwclo6q4mg521" path="res://assets/textures/decorations/decor/Asset 20.png" id="263_5ac71"]
 [ext_resource type="Texture2D" uid="uid://bcamqbw01y37n" path="res://assets/textures/decorations/regular/d_chain_02_001.png" id="263_sja60"]
+[ext_resource type="PackedScene" path="res://scenes/components/level_components/decorations/pulsating/Ball05.tscn" id="264_5ac71"]
 [ext_resource type="PackedScene" uid="uid://deh0vmushw8y2" path="res://scenes/components/level_components/decorations/regular/Chain02.tscn" id="264_mbs0q"]
 [ext_resource type="PackedScene" uid="uid://bc6orrlrxjjt" path="res://scenes/components/level_components/decorations/block/GridDecorBlock.tscn" id="265_qi258"]
 
@@ -435,6 +453,134 @@ prefab_override = ExtResource("40_dqjdx")
 scale_factor = Vector2(8, 8)
 name = "Bricks"
 filtering = 3
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_jtxxb"]
+script = ExtResource("12_egrfm")
+base = ExtResource("60_sja60")
+kind = 1
+prefab_override = ExtResource("24_3y10s")
+name = "asset_1"
+filtering = 1
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_mjtuj"]
+script = ExtResource("12_egrfm")
+base = ExtResource("49_ns2uq")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_2"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_sja60"]
+script = ExtResource("12_egrfm")
+base = ExtResource("56_mjtuj")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_3"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_mbs0q"]
+script = ExtResource("12_egrfm")
+base = ExtResource("51_6m03t")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_4"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_ns2uq"]
+script = ExtResource("12_egrfm")
+base = ExtResource("52_pjeb3")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_5"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_6m03t"]
+script = ExtResource("12_egrfm")
+base = ExtResource("57_sja60")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_6"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_pjeb3"]
+script = ExtResource("12_egrfm")
+base = ExtResource("54_5eb8o")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_7"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_5eb8o"]
+script = ExtResource("12_egrfm")
+base = ExtResource("59_ns2uq")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_8"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_5ac71"]
+script = ExtResource("12_egrfm")
+base = ExtResource("58_mbs0q")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_9"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_vxk01"]
+script = ExtResource("12_egrfm")
+base = ExtResource("57_5ac71")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_10"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_b2ytb"]
+script = ExtResource("12_egrfm")
+base = ExtResource("58_vxk01")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_11"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_vexkx"]
+script = ExtResource("12_egrfm")
+base = ExtResource("59_b2ytb")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_12"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_1gsut"]
+script = ExtResource("12_egrfm")
+base = ExtResource("60_vexkx")
+prefab_override = ExtResource("40_dqjdx")
+name = "asset_13"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_h4j8m"]
+script = ExtResource("12_egrfm")
+base = ExtResource("61_5eb8o")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_14"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_myrlh"]
+script = ExtResource("12_egrfm")
+base = ExtResource("62_5ac71")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_15"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_44wdh"]
+script = ExtResource("12_egrfm")
+base = ExtResource("63_vxk01")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_16"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_y17fv"]
+script = ExtResource("12_egrfm")
+base = ExtResource("64_vxk01")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_17"
+metadata/_custom_type_script = "uid://co2f1y4xv7viv"
+
+[sub_resource type="Resource" id="Resource_qsfg3"]
+script = ExtResource("12_egrfm")
+base = ExtResource("65_b2ytb")
+prefab_override = ExtResource("24_3y10s")
+name = "asset_18"
 metadata/_custom_type_script = "uid://co2f1y4xv7viv"
 
 [sub_resource type="Resource" id="Resource_a0ntt"]
@@ -862,9 +1008,9 @@ theme_override_constants/v_separation = 10
 script = ExtResource("12_lvhj5")
 button_group = ExtResource("3_0vcbd")
 object = ExtResource("7_ii36d")
-textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_aofxv"), SubResource("Resource_lvhj5"), SubResource("Resource_w5ynp"), SubResource("Resource_fa2ga"), SubResource("Resource_sl8yb"), SubResource("Resource_37pxl"), SubResource("Resource_6ukik"), SubResource("Resource_bs2up"), SubResource("Resource_3clt4"), SubResource("Resource_e0lml"), SubResource("Resource_momrj"), SubResource("Resource_6fwf3"), SubResource("Resource_gdkvu"), SubResource("Resource_vtwef"), SubResource("Resource_7k2uw"), SubResource("Resource_tkktq"), SubResource("Resource_mvta7"), SubResource("Resource_wiub1"), SubResource("Resource_gdb1n")])
+textures = Array[ExtResource("12_egrfm")]([SubResource("Resource_aofxv"), SubResource("Resource_lvhj5"), SubResource("Resource_w5ynp"), SubResource("Resource_fa2ga"), SubResource("Resource_sl8yb"), SubResource("Resource_37pxl"), SubResource("Resource_6ukik"), SubResource("Resource_bs2up"), SubResource("Resource_3clt4"), SubResource("Resource_e0lml"), SubResource("Resource_momrj"), SubResource("Resource_6fwf3"), SubResource("Resource_gdkvu"), SubResource("Resource_vtwef"), SubResource("Resource_7k2uw"), SubResource("Resource_tkktq"), SubResource("Resource_mvta7"), SubResource("Resource_wiub1"), SubResource("Resource_gdb1n"), SubResource("Resource_jtxxb"), SubResource("Resource_mjtuj"), SubResource("Resource_sja60"), SubResource("Resource_mbs0q"), SubResource("Resource_ns2uq"), SubResource("Resource_6m03t"), SubResource("Resource_pjeb3"), SubResource("Resource_5eb8o"), SubResource("Resource_5ac71"), SubResource("Resource_vxk01"), SubResource("Resource_b2ytb"), SubResource("Resource_vexkx"), SubResource("Resource_1gsut"), SubResource("Resource_h4j8m"), SubResource("Resource_myrlh"), SubResource("Resource_44wdh"), SubResource("Resource_y17fv"), SubResource("Resource_qsfg3")])
 
-[node name="RegularBlock01" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2097724137]
+[node name="RegularBlock02" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1813165448]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -934,110 +1080,23 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_aofxv")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock01" unique_id=1311538457]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02" unique_id=1036104632]
 script = ExtResource("7_f0stj")
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28490" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock01" unique_id=1580243702]
+[node name="@CenterContainer@26273" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02" unique_id=1946785587]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock01/@CenterContainer@28490" unique_id=1810789491]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02/@CenterContainer@26273" unique_id=1913677229]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("4_u8igg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RegularBlock02" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=529507021]
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 2
-auto_translate_mode = 0
-editor_description = ""
-visible = true
-modulate = Color(1, 1, 1, 1)
-self_modulate = Color(1, 1, 1, 1)
-show_behind_parent = false
-top_level = false
-clip_children = 0
-light_mask = 1
-visibility_layer = 1
-z_index = 0
-z_as_relative = true
-y_sort_enabled = false
-texture_filter = 0
-texture_repeat = 0
-material = null
-use_parent_material = false
-clip_contents = false
-custom_minimum_size = Vector2(64, 64)
-layout_direction = 0
-layout_mode = 2
-size_flags_horizontal = 1
-size_flags_vertical = 1
-size_flags_stretch_ratio = 1.0
-localize_numeral_system = true
-tooltip_text = ""
-tooltip_auto_translate_mode = 0
-focus_neighbor_left = NodePath("")
-focus_neighbor_top = NodePath("")
-focus_neighbor_right = NodePath("")
-focus_neighbor_bottom = NodePath("")
-focus_next = NodePath("")
-focus_previous = NodePath("")
-focus_mode = 2
-focus_behavior_recursive = 0
-mouse_filter = 1
-mouse_behavior_recursive = 0
-mouse_force_pass_scroll_events = true
-mouse_default_cursor_shape = 0
-accessibility_name = ""
-accessibility_description = ""
-accessibility_live = 0
-accessibility_controls_nodes = Array[NodePath]([])
-accessibility_described_by_nodes = Array[NodePath]([])
-accessibility_labeled_by_nodes = Array[NodePath]([])
-accessibility_flow_to_nodes = Array[NodePath]([])
-theme = null
-theme_type_variation = &""
-disabled = false
-toggle_mode = true
-button_pressed = false
-action_mode = 1
-button_mask = 1
-keep_pressed_outside = false
-button_group = ExtResource("3_0vcbd")
-shortcut = null
-shortcut_feedback = true
-shortcut_in_tooltip = true
-script = ExtResource("4_gl2yd")
-block_palette_button = true
-metadata/texture_override = SubResource("Resource_aofxv")
-metadata/_edit_group_ = true
-
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02" unique_id=1613588186]
-script = ExtResource("7_f0stj")
-id = 19
-object = ExtResource("7_ii36d")
-
-[node name="_CenterContainer_28490" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02" unique_id=1904526812]
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
-
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/RegularBlock02/_CenterContainer_28490" unique_id=1003797522]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-texture = ExtResource("22_fa2ga")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="OutlineBlock01" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=84255897]
+[node name="OutlineBlock03" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1230164277]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1107,24 +1166,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_lvhj5")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock01" unique_id=1407712021]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock03" unique_id=1337764537]
 script = ExtResource("7_f0stj")
 id = 1
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28492" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock01" unique_id=33053603]
+[node name="@CenterContainer@26275" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock03" unique_id=1385933257]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock01/@CenterContainer@28492" unique_id=2011295942]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock03/@CenterContainer@26275" unique_id=241523664]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_wadpq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="FillBlock02" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1290870059]
+[node name="FillBlock01" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=591624047]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1194,24 +1253,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_w5ynp")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock02" unique_id=1922569135]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock01" unique_id=1521217489]
 script = ExtResource("7_f0stj")
 id = 2
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28494" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock02" unique_id=90750577]
+[node name="@CenterContainer@26277" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock01" unique_id=1972956890]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock02/@CenterContainer@28494" unique_id=912993106]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/FillBlock01/@CenterContainer@26277" unique_id=650707044]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="OutlineBlock02" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1957884828]
+[node name="OutlineBlock04" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=769219142]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1281,17 +1340,17 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_fa2ga")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock02" unique_id=1136550130]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock04" unique_id=1491517686]
 script = ExtResource("7_f0stj")
 id = 3
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28496" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock02" unique_id=1450553466]
+[node name="@CenterContainer@26279" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock04" unique_id=2063038321]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Detail" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock02/@CenterContainer@28496" unique_id=826375902]
+[node name="Detail" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock04/@CenterContainer@26279" unique_id=1505686806]
 modulate = Color(0.75, 0.75, 0.75, 1)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -1299,14 +1358,14 @@ texture = ExtResource("22_fa2ga")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock02/@CenterContainer@28496" unique_id=628778486]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/OutlineBlock04/@CenterContainer@26279" unique_id=545193115]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_wadpq")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock01" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1235008780]
+[node name="GridBlock13" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=140555397]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1376,24 +1435,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_sl8yb")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock01" unique_id=431136728]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock13" unique_id=1511284208]
 script = ExtResource("7_f0stj")
 id = 4
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28498" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock01" unique_id=1938829900]
+[node name="@CenterContainer@26281" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock13" unique_id=1391898019]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock01/@CenterContainer@28498" unique_id=1213217096]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock13/@CenterContainer@26281" unique_id=150565605]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("13_fa2pl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock02" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1586822661]
+[node name="GridBlock14" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=243538072]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1463,24 +1522,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_37pxl")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock02" unique_id=1453959140]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock14" unique_id=561680941]
 script = ExtResource("7_f0stj")
 id = 5
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28500" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock02" unique_id=2006586298]
+[node name="@CenterContainer@26283" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock14" unique_id=418609272]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock02/@CenterContainer@28500" unique_id=299281029]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock14/@CenterContainer@26283" unique_id=862657924]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("14_ajdcu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock03" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1964602157]
+[node name="GridBlock17" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1203289351]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1550,24 +1609,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_6ukik")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock03" unique_id=686110407]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock17" unique_id=2093505579]
 script = ExtResource("7_f0stj")
 id = 6
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28502" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock03" unique_id=188507667]
+[node name="@CenterContainer@26285" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock17" unique_id=910752931]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock03/@CenterContainer@28502" unique_id=23755506]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock17/@CenterContainer@26285" unique_id=38658222]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("15_e8m1b")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock04" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1986529608]
+[node name="GridBlock18" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=126850585]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1637,24 +1696,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_bs2up")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock04" unique_id=75317253]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock18" unique_id=898416673]
 script = ExtResource("7_f0stj")
 id = 7
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28504" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock04" unique_id=1745693010]
+[node name="@CenterContainer@26287" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock18" unique_id=916241322]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock04/@CenterContainer@28504" unique_id=820292576]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock18/@CenterContainer@26287" unique_id=27763067]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("16_cbmyc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock05" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=761619177]
+[node name="GridBlock19" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2056536384]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1724,24 +1783,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_3clt4")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock05" unique_id=411662435]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock19" unique_id=763347747]
 script = ExtResource("7_f0stj")
 id = 8
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28506" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock05" unique_id=1238129083]
+[node name="@CenterContainer@26289" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock19" unique_id=1767836907]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock05/@CenterContainer@28506" unique_id=167620684]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock19/@CenterContainer@26289" unique_id=1837993464]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("17_4a8ke")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock06" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=94588506]
+[node name="GridBlock20" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=94189498]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1811,24 +1870,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_e0lml")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock06" unique_id=1164296480]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock20" unique_id=1489782832]
 script = ExtResource("7_f0stj")
 id = 9
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28508" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock06" unique_id=1973544112]
+[node name="@CenterContainer@26291" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock20" unique_id=1682039117]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock06/@CenterContainer@28508" unique_id=2104741266]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock20/@CenterContainer@26291" unique_id=958461981]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("18_3clt4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock07" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1236603675]
+[node name="GridBlock21" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=490718409]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1898,24 +1957,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_momrj")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock07" unique_id=353022190]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock21" unique_id=444875709]
 script = ExtResource("7_f0stj")
 id = 10
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28510" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock07" unique_id=601591883]
+[node name="@CenterContainer@26293" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock21" unique_id=1060306381]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock07/@CenterContainer@28510" unique_id=546934548]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock21/@CenterContainer@26293" unique_id=2090040132]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("19_ao6md")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock08" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2049011776]
+[node name="GridBlock22" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=274017202]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -1985,24 +2044,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_6fwf3")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock08" unique_id=40061653]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock22" unique_id=1366679381]
 script = ExtResource("7_f0stj")
 id = 11
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28512" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock08" unique_id=866011358]
+[node name="@CenterContainer@26295" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock22" unique_id=1301631062]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock08/@CenterContainer@28512" unique_id=1536027352]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock22/@CenterContainer@26295" unique_id=1995588754]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("20_nk067")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock09" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=86269247]
+[node name="GridBlock23" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1352716244]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2072,24 +2131,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_gdkvu")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock09" unique_id=1491126525]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock23" unique_id=1430906422]
 script = ExtResource("7_f0stj")
 id = 12
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28514" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock09" unique_id=2030553128]
+[node name="@CenterContainer@26297" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock23" unique_id=2090954616]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock09/@CenterContainer@28514" unique_id=1822759876]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock23/@CenterContainer@26297" unique_id=10270956]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("21_wkjme")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock10" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=545669193]
+[node name="GridBlock24" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1488017670]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2159,24 +2218,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_vtwef")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock10" unique_id=882706734]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock24" unique_id=1456260855]
 script = ExtResource("7_f0stj")
 id = 13
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28516" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock10" unique_id=291898554]
+[node name="@CenterContainer@26299" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock24" unique_id=1871932351]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock10/@CenterContainer@28516" unique_id=499428273]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock24/@CenterContainer@26299" unique_id=2093039022]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("22_rke8t")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock11" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2012321993]
+[node name="GridBlock25" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2004106793]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2246,24 +2305,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_7k2uw")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock11" unique_id=757766661]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock25" unique_id=997010732]
 script = ExtResource("7_f0stj")
 id = 14
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28518" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock11" unique_id=1442709523]
+[node name="@CenterContainer@26301" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock25" unique_id=357127373]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock11/@CenterContainer@28518" unique_id=1649834425]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock25/@CenterContainer@26301" unique_id=752295226]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("23_5ik7l")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock12" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=496570982]
+[node name="GridBlock26" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=274618006]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2333,24 +2392,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_tkktq")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock12" unique_id=1147304276]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock26" unique_id=976734947]
 script = ExtResource("7_f0stj")
 id = 15
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28520" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock12" unique_id=388710599]
+[node name="@CenterContainer@26303" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock26" unique_id=1925692778]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock12/@CenterContainer@28520" unique_id=1455199647]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock26/@CenterContainer@26303" unique_id=1337938996]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("24_0v0om")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock15" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1215059819]
+[node name="GridBlock27" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1402171853]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2420,24 +2479,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_mvta7")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock15" unique_id=345025603]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock27" unique_id=425954583]
 script = ExtResource("7_f0stj")
 id = 16
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28522" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock15" unique_id=834921788]
+[node name="@CenterContainer@26305" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock27" unique_id=1949305440]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock15/@CenterContainer@28522" unique_id=663494943]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock27/@CenterContainer@26305" unique_id=1354818591]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("25_33w7i")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GridBlock16" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1527085865]
+[node name="GridBlock28" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=581808182]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2507,24 +2566,24 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_wiub1")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock16" unique_id=616663329]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock28" unique_id=55528379]
 script = ExtResource("7_f0stj")
 id = 17
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28524" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock16" unique_id=763823671]
+[node name="@CenterContainer@26307" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock28" unique_id=131471563]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock16/@CenterContainer@28524" unique_id=438114722]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/GridBlock28/@CenterContainer@26307" unique_id=1201266428]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("26_t7625")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Bricks" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=100654497]
+[node name="Bricks2" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=918639030]
 unique_name_in_owner = false
 process_mode = 0
 process_priority = 0
@@ -2594,21 +2653,1588 @@ block_palette_button = true
 metadata/texture_override = SubResource("Resource_gdb1n")
 metadata/_edit_group_ = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks" unique_id=1122685538]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks2" unique_id=1042476805]
 script = ExtResource("7_f0stj")
 id = 18
 object = ExtResource("7_ii36d")
 
-[node name="@CenterContainer@28526" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks" unique_id=991485744]
+[node name="@CenterContainer@26309" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks2" unique_id=1078755672]
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 
-[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks/@CenterContainer@28526" unique_id=297441722]
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/Bricks2/@CenterContainer@26309" unique_id=47568353]
 texture_filter = 3
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("39_dqjdx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_1" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=550229551]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_jtxxb")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_1" unique_id=1972417124]
+script = ExtResource("7_f0stj")
+id = 19
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26311" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_1" unique_id=1343153943]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_1/@CenterContainer@26311" unique_id=1694183045]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("60_sja60")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_2" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=411715158]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_mjtuj")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_2" unique_id=308073580]
+script = ExtResource("7_f0stj")
+id = 20
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26313" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_2" unique_id=1847818191]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_2/@CenterContainer@26313" unique_id=1165263412]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("49_ns2uq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_3" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=204060386]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_sja60")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_3" unique_id=2107529177]
+script = ExtResource("7_f0stj")
+id = 21
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26315" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_3" unique_id=204093321]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_3/@CenterContainer@26315" unique_id=2100163072]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("56_mjtuj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_4" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=320853191]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_mbs0q")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_4" unique_id=564760159]
+script = ExtResource("7_f0stj")
+id = 22
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26317" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_4" unique_id=1790978828]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_4/@CenterContainer@26317" unique_id=497773211]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("51_6m03t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_5" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=120046452]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_ns2uq")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_5" unique_id=499734703]
+script = ExtResource("7_f0stj")
+id = 23
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26319" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_5" unique_id=522783158]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_5/@CenterContainer@26319" unique_id=1054967075]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("52_pjeb3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_6" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=260156862]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_6m03t")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_6" unique_id=3354568]
+script = ExtResource("7_f0stj")
+id = 24
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26321" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_6" unique_id=1691068870]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_6/@CenterContainer@26321" unique_id=729240937]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("57_sja60")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_7" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1218534549]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_pjeb3")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_7" unique_id=283263271]
+script = ExtResource("7_f0stj")
+id = 25
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26323" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_7" unique_id=571506367]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_7/@CenterContainer@26323" unique_id=313905513]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("54_5eb8o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_8" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1169771152]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_5eb8o")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_8" unique_id=1273843992]
+script = ExtResource("7_f0stj")
+id = 26
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26325" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_8" unique_id=1466882848]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_8/@CenterContainer@26325" unique_id=1800128612]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("59_ns2uq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_9" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2017184076]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_5ac71")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_9" unique_id=628600944]
+script = ExtResource("7_f0stj")
+id = 27
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26327" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_9" unique_id=38912743]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_9/@CenterContainer@26327" unique_id=793602029]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("58_mbs0q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_10" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1977468445]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_vxk01")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_10" unique_id=1070832403]
+script = ExtResource("7_f0stj")
+id = 28
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26329" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_10" unique_id=1312595982]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_10/@CenterContainer@26329" unique_id=1628759402]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("57_5ac71")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_11" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1715930052]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_b2ytb")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_11" unique_id=25744210]
+script = ExtResource("7_f0stj")
+id = 29
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26331" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_11" unique_id=58345946]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_11/@CenterContainer@26331" unique_id=930645427]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("58_vxk01")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_12" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=270818159]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_vexkx")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_12" unique_id=1556466767]
+script = ExtResource("7_f0stj")
+id = 30
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26333" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_12" unique_id=2090510709]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_12/@CenterContainer@26333" unique_id=2121037857]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("59_b2ytb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_13" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1084940898]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_1gsut")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_13" unique_id=349005340]
+script = ExtResource("7_f0stj")
+id = 31
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26335" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_13" unique_id=371885830]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_13/@CenterContainer@26335" unique_id=550405922]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("60_vexkx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_14" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1011306081]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_h4j8m")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_14" unique_id=869652707]
+script = ExtResource("7_f0stj")
+id = 32
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26337" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_14" unique_id=944107307]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_14/@CenterContainer@26337" unique_id=791676272]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("61_5eb8o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_15" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1703844999]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_myrlh")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_15" unique_id=1706486433]
+script = ExtResource("7_f0stj")
+id = 33
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26339" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_15" unique_id=1932079248]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_15/@CenterContainer@26339" unique_id=789063857]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("62_5ac71")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_16" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=2050446608]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_44wdh")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_16" unique_id=2098835711]
+script = ExtResource("7_f0stj")
+id = 34
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26341" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_16" unique_id=1219226068]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_16/@CenterContainer@26341" unique_id=1135714719]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("63_vxk01")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_17" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1263538073]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_y17fv")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_17" unique_id=1255173532]
+script = ExtResource("7_f0stj")
+id = 35
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26343" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_17" unique_id=2036979063]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_17/@CenterContainer@26343" unique_id=772108392]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("64_vxk01")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="asset_18" type="BaseButton" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1515149023]
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 2
+auto_translate_mode = 0
+editor_description = ""
+visible = true
+modulate = Color(1, 1, 1, 1)
+self_modulate = Color(1, 1, 1, 1)
+show_behind_parent = false
+top_level = false
+clip_children = 0
+light_mask = 1
+visibility_layer = 1
+z_index = 0
+z_as_relative = true
+y_sort_enabled = false
+texture_filter = 0
+texture_repeat = 0
+material = null
+use_parent_material = false
+clip_contents = false
+custom_minimum_size = Vector2(64, 64)
+layout_direction = 0
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.0
+localize_numeral_system = true
+tooltip_text = ""
+tooltip_auto_translate_mode = 0
+focus_neighbor_left = NodePath("")
+focus_neighbor_top = NodePath("")
+focus_neighbor_right = NodePath("")
+focus_neighbor_bottom = NodePath("")
+focus_next = NodePath("")
+focus_previous = NodePath("")
+focus_mode = 2
+focus_behavior_recursive = 0
+mouse_filter = 1
+mouse_behavior_recursive = 0
+mouse_force_pass_scroll_events = true
+mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
+theme = null
+theme_type_variation = &""
+disabled = false
+toggle_mode = true
+button_pressed = false
+action_mode = 1
+button_mask = 1
+keep_pressed_outside = false
+button_group = ExtResource("3_0vcbd")
+shortcut = null
+shortcut_feedback = true
+shortcut_in_tooltip = true
+script = ExtResource("4_gl2yd")
+block_palette_button = true
+metadata/texture_override = SubResource("Resource_qsfg3")
+metadata/_edit_group_ = true
+
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_18" unique_id=1619935721]
+script = ExtResource("7_f0stj")
+id = 36
+object = ExtResource("7_ii36d")
+
+[node name="@CenterContainer@26345" type="CenterContainer" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_18" unique_id=912378445]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Base" type="TextureRect" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Blocks/SmoothScrollContainer/MarginContainer/ButtonContainer/asset_18/@CenterContainer@26345" unique_id=1662738591]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("65_b2ytb")
 expand_mode = 1
 stretch_mode = 5
 
@@ -5227,7 +6853,6 @@ object = ExtResource("167_mesjt")
 
 [node name="Checkpoint" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Interactables/SmoothScrollContainer/MarginContainer/ButtonContainer/LetterObjects" unique_id=1639180617]
 material = ExtResource("183_vp4xm")
-instance_shader_parameters/hue = 0.667
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -6184,7 +7809,7 @@ script = ExtResource("7_f0stj")
 type = 9
 object = ExtResource("242_dse14")
 
-[node name="Ball04" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=442160925]
+[node name="GearDecor" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=442160925]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -6192,19 +7817,19 @@ mouse_filter = 1
 theme = ExtResource("147_1ad2k")
 toggle_mode = true
 button_group = ExtResource("3_0vcbd")
-icon = ExtResource("243_18uym")
+icon = ExtResource("261_5eb8o")
 flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer/Ball04" unique_id=1161415547]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer/GearDecor" unique_id=1161415547]
 script = ExtResource("7_f0stj")
 type = 9
-object = ExtResource("244_ufdyd")
+object = ExtResource("262_5eb8o")
 
-[node name="Ball05" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1750903417]
+[node name="StarDecor" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1750903417]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 focus_mode = 0
@@ -6212,17 +7837,17 @@ mouse_filter = 1
 theme = ExtResource("147_1ad2k")
 toggle_mode = true
 button_group = ExtResource("3_0vcbd")
-icon = ExtResource("245_s6ory")
+icon = ExtResource("263_5ac71")
 flat = true
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("4_gl2yd")
 block_palette_button = true
 
-[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer/Ball05" unique_id=666688085]
+[node name="BlockPaletteRef" type="Node" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer/StarDecor" unique_id=666688085]
 script = ExtResource("7_f0stj")
 type = 9
-object = ExtResource("246_to83l")
+object = ExtResource("264_5ac71")
 
 [node name="Ball06" type="Button" parent="EditorUI/Editor/VBoxContainer/VSplitContainer/Modes/Place/Decorations/SmoothScrollContainer/MarginContainer/ButtonContainer" unique_id=1090507413]
 custom_minimum_size = Vector2(64, 64)

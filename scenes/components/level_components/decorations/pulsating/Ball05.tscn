@@ -3,12 +3,19 @@
 [ext_resource type="Texture2D" uid="uid://bwclo6q4mg521" path="res://assets/textures/decorations/decor/Asset 20.png" id="1_62iyf"]
 [ext_resource type="PackedScene" uid="uid://cnru264bpjwxo" path="res://scenes/components/level_components/EditorSelectionCollider.tscn" id="2_15sa8"]
 
-[node name="Ball05" type="Node2D" unique_id=144950146]
+[sub_resource type="Curve" id="Curve_62iyf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.117088616, 0.9669632), 0.0, 0.0, 0, 0, Vector2(0.30379748, 0.8017789), 0.0, 0.0, 0, 0, Vector2(0.5822785, 0.46315122), 0.0, 0.0, 0, 0, Vector2(0.7943038, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 6
 
-[node name="1Beacon01" type="Sprite2D" parent="." unique_id=435999217]
-texture_filter = 1
-position = Vector2(0, 3)
-texture = ExtResource("1_62iyf")
+[node name="Ball05" type="Node2D" unique_id=144950146]
 
 [node name="EditorSelectionCollider" parent="." unique_id=81707223 instance=ExtResource("2_15sa8")]
 type = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=349778231]
+amount = 1
+texture = ExtResource("1_62iyf")
+lifetime = 1.9
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_62iyf")
+color = Color(1, 1, 1, 0.83137256)
