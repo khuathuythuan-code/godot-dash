@@ -126,13 +126,14 @@ var menu_loop: String:
 
 # Icons
 @export_group("Icon")
-@export var icons: Dictionary[PreviewIcon.Icon, Dictionary] = {
-	PreviewIcon.Icon.CUBE: { "path" ="res://assets/textures/player/cube/Cube1.svg" },
-	PreviewIcon.Icon.SHIP: { "path" ="res://assets/textures/player/ship/Ship1.svg" },
+#@export var icons: Dictionary[PreviewIcon.Icon, Dictionary]
+@export var icons: Dictionary = {
+	PreviewIcon.Icon.CUBE: { "path" ="res://assets/textures/player/cube/Cube2.png" },
+	PreviewIcon.Icon.SHIP: { "path" ="res://assets/textures/player/ship/Ship4.png" },
 	PreviewIcon.Icon.JETPACK: { "path" ="res://assets/textures/player/jetpack/Jetpack1.svg" },
 	PreviewIcon.Icon.UFO: { "path" ="res://assets/textures/player/ufo/Ufo1.svg" },
-	PreviewIcon.Icon.BALL: { "path" ="res://assets/textures/player/ball/Ball1.svg" },
-	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave1.svg" },
+	PreviewIcon.Icon.BALL: { "path" ="res://assets/textures/player/ball/Ball3.png" },
+	PreviewIcon.Icon.WAVE: { "path" ="res://assets/textures/player/wave/Wave2.png" },
 	PreviewIcon.Icon.ROBOT: { "path" ="res://assets/textures/player/cube/Cube1.svg" },
 	PreviewIcon.Icon.SPIDER: { "path" ="res://assets/textures/player/spider/Spider1/" },
 	PreviewIcon.Icon.SWING: { "path" ="res://assets/textures/player/swing/Swing1/" },

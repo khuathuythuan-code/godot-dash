@@ -3,7 +3,8 @@ extends VBoxContainer
 
 @export var preview_icons: HBoxContainer
 @export var icon_selector: GridContainer
-@export var icons: Dictionary[PreviewIcon.Icon, Array] = {
+#@export var icons: Dictionary[PreviewIcon.Icon, Array] = {
+@export var icons: Dictionary = {
 	PreviewIcon.Icon.CUBE: [],
 	PreviewIcon.Icon.SHIP: [],
 	PreviewIcon.Icon.JETPACK: [],
@@ -33,9 +34,47 @@ func reload() -> void:
 			DirAccess.make_dir_recursive_absolute(directory)
 	for icon_type: PreviewIcon.Icon in icons:
 		icons[icon_type].clear()
-	for icon_path in [Constants.ICON_DIR, Constants.CUSTOM_ICON_DIR]:
-		var opened_icon_path: DirAccess = DirAccess.open(icon_path)
-		for type_dir in opened_icon_path.get_directories():
+	#for icon_path in [Constants.ICON_DIR, Constants.CUSTOM_ICON_DIR]:
+		#var opened_icon_path: DirAccess = DirAccess.open(icon_path)
+		#for type_dir in opened_icon_path.get_directories():
+
+	# 1. Load built-in icons directly (bypassing res:// DirAccess scanning which fails on Web exports)
+	var builtin_icons: Dictionary[PreviewIcon.Icon, Array] = {
+		PreviewIcon.Icon.CUBE: [
+			"res://assets/textures/player/cube/Cube2.png"
+		],
+		PreviewIcon.Icon.SHIP: [
+			"res://assets/textures/player/ship/Ship4.png"
+		],
+		PreviewIcon.Icon.JETPACK: ["res://assets/textures/player/jetpack/Jetpack1.svg"],
+		PreviewIcon.Icon.UFO: ["res://assets/textures/player/ufo/Ufo1.svg"],
+		PreviewIcon.Icon.BALL: [
+			"res://assets/textures/player/ball/Ball3.png"
+		],
+		PreviewIcon.Icon.WAVE: [
+			"res://assets/textures/player/wave/Wave2.png"
+		],
+		PreviewIcon.Icon.ROBOT: [],
+		PreviewIcon.Icon.SPIDER: [
+			"res://assets/textures/player/spider/Spider1"
+			],
+		PreviewIcon.Icon.SWING: ["res://assets/textures/player/swing/Swing1"],
+		PreviewIcon.Icon.TRAIL: [
+			"res://assets/textures/player/trail/Trail1.png",
+            "res://assets/textures/player/trail/Trail2.png"
+		],
+		PreviewIcon.Icon.DEATH_EFFECT: ["res://assets/textures/player/death_effect/DeathEffect1"],
+	}
+
+
+	for icon_type: PreviewIcon.Icon in icons:
+		if builtin_icons.has(icon_type):
+			icons[icon_type].append_array(builtin_icons[icon_type])
+
+	# 2. Scan custom user icons directory (DirAccess works perfectly on user:// even in Web exports)
+	var opened_custom_path := DirAccess.open(Constants.CUSTOM_ICON_DIR)
+	if opened_custom_path:
+		for type_dir in opened_custom_path.get_directories():
 			var icon_type: PreviewIcon.Icon
 			match type_dir:
 				"cube":
@@ -66,13 +105,26 @@ func reload() -> void:
 			var textures_dir: PackedStringArray
 			match icon_type:
 				PreviewIcon.Icon.SPIDER, PreviewIcon.Icon.SWING, PreviewIcon.Icon.DEATH_EFFECT:
-					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_directories()
+					#textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_directories()
+					var sub_dir := Constants.CUSTOM_ICON_DIR.path_join(type_dir)
+					var sub_access := DirAccess.open(sub_dir)
+					if sub_access:
+						textures_dir = sub_access.get_directories()
 				_:
-					textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_files()
+					#textures_dir = DirAccess.open(icon_path.path_join(type_dir)).get_files()
+					var sub_dir := Constants.CUSTOM_ICON_DIR.path_join(type_dir)
+					var sub_access := DirAccess.open(sub_dir)
+					if sub_access:
+						textures_dir = sub_access.get_files()
+						
 			for icon: String in textures_dir:
-				if icon.contains(".import"):
-					continue
-				icons[icon_type].append(icon_path.path_join(type_dir).path_join(icon))
+				#if icon.contains(".import"):
+					#continue
+				#icons[icon_type].append(icon_path.path_join(type_dir).path_join(icon))
+				var clean_icon := icon.trim_suffix(".import").trim_suffix(".remap")
+				var full_path := Constants.CUSTOM_ICON_DIR.path_join(type_dir).path_join(clean_icon)
+				if not icons[icon_type].has(full_path):
+					icons[icon_type].append(full_path)
 	refresh()
 
 
@@ -108,7 +160,7 @@ func update_icons() -> void:
 	# preview_icons.get_node(^"Robot").icon_path = Config.icons[PreviewIcon.Icon.ROBOT].path
 	preview_icons.get_node(^"Spider").icon_path = Config.icons[PreviewIcon.Icon.SPIDER].path
 	preview_icons.get_node(^"Swing").icon_path = Config.icons[PreviewIcon.Icon.SWING].path
-	# preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path
+	#preview_icons.get_node(^"DeathEffect").icon_path = Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path
 
 
 func _on_icon_pressed(icon: PreviewIcon) -> void:

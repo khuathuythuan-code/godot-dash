@@ -45,13 +45,38 @@ func _refresh() -> void:
 			$Sprite.texture = AssetManager.load_icon(icon_path.path_join("Swing.svg"), gamemode)
 		Icon.DEATH_EFFECT:
 			$"Death Effect".show()
-			for icon in DirAccess.open(icon_path).get_files():
-				if icon.contains(".import"):
-					continue
-				var frame: Texture2D = AssetManager.load_icon(icon_path + "/" + icon, gamemode)
-				$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
-				$"Death Effect/Death Effect".scale = Vector2.ONE * 0.25 * icon_scale
-				$"Death Effect/Death Effect".play(&"default")
+			#for icon in DirAccess.open(icon_path).get_files():
+				#if icon.contains(".import"):
+					#continue
+				#var frame: Texture2D = AssetManager.load_icon(icon_path + "/" + icon, gamemode)
+				#$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
+				#$"Death Effect/Death Effect".scale = Vector2.ONE * 0.25 * icon_scale
+				#$"Death Effect/Death Effect".play(&"default")
+		Icon.DEATH_EFFECT:
+			$"Death Effect".show()
+			$"Death Effect/Death Effect".sprite_frames.clear(&"default")
+			var loaded_frames := []
+			var dir_access := DirAccess.open(icon_path)
+			if dir_access:
+				for icon in dir_access.get_files():
+					var clean_icon := icon.trim_suffix(".import").trim_suffix(".remap")
+					var frame_path := icon_path.path_join(clean_icon)
+					if not frame_path in loaded_frames:
+						loaded_frames.append(frame_path)
+						var frame: Texture2D = AssetManager.load_icon(frame_path, gamemode)
+						$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
+			# Dự phòng tự động nạp trên Web
+			if $"Death Effect/Death Effect".sprite_frames.get_frame_count(&"default") == 0:
+				for i in range(1, 100):
+					var frame_name := "DeathEffect%02d.png" % i
+					var frame_path := icon_path.path_join(frame_name)
+					if ResourceLoader.exists(frame_path):
+						var frame: Texture2D = AssetManager.load_icon(frame_path, gamemode)
+						$"Death Effect/Death Effect".sprite_frames.add_frame(&"default", frame)
+					else:
+						break
+			$"Death Effect/Death Effect".scale = Vector2.ONE * 0.25 * icon_scale
+			$"Death Effect/Death Effect".play(&"default")
 		Icon.TRAIL:
 			$Trail.show()
 			$Trail/Trail.texture = AssetManager.load_icon(icon_path, gamemode)

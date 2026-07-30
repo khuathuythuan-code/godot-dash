@@ -7,7 +7,8 @@ var thread: Thread
 
 var loaded_songs: Dictionary[String, AudioStream]
 var loaded_fonts: Dictionary[String, Font]
-var loaded_icons: Dictionary[PreviewIcon.Icon, Dictionary]
+var loaded_icons: Dictionary
+#var loaded_icons: Dictionary[PreviewIcon.Icon, Dictionary]
 var player_packed: PackedScene
 var title_screen_packed: PackedScene
 var editor_packed: PackedScene
@@ -139,7 +140,8 @@ func load_icon(path: String, icon: PreviewIcon.Icon) -> Texture2D:
 			PreviewIcon.Icon.DEATH_EFFECT:
 				for frame in loaded_icons[icon]["sprite"]:
 					if frame["path"] == path:
-						return frame["path"]
+						#return frame["path"]
+						return frame["sprite"]
 			_:
 				return loaded_icons[icon]["sprite"]
 	return load_image(path)
@@ -153,15 +155,35 @@ func load_icons(icons: Array = PreviewIcon.Icon.values()) -> void:
 		match icon:
 			PreviewIcon.Icon.SWING:
 				loaded_icons[icon]["sprite"] = load_image(icon_path.path_join("Swing.svg"))
+			#PreviewIcon.Icon.DEATH_EFFECT:
+				#for frame in DirAccess.open(icon_path).get_files():
+					#if frame.contains(".import"):
+						#continue
+					#loaded_icons[icon].get_or_add("sprite", []).append({ "sprite"= load_image(icon_path + "/" + frame), "path"= icon_path + "/" + frame })
 			PreviewIcon.Icon.DEATH_EFFECT:
-				for frame in DirAccess.open(icon_path).get_files():
-					if frame.contains(".import"):
-						continue
-					loaded_icons[icon].get_or_add("sprite", []).append({ "sprite"= load_image(icon_path + "/" + frame), "path"= icon_path + "/" + frame })
+				loaded_icons[icon]["sprite"] = [] # Clear trước khi nạp lại
+				var loaded_frames := []
+				var dir_access := DirAccess.open(icon_path)
+				if dir_access:
+					for frame in dir_access.get_files():
+						var clean_frame := frame.trim_suffix(".import").trim_suffix(".remap")
+						var frame_path := icon_path.path_join(clean_frame)
+						if not frame_path in loaded_frames:
+							loaded_frames.append(frame_path)
+							loaded_icons[icon]["sprite"].append({ "sprite"= load_image(frame_path), "path"= frame_path })
+				# Dự phòng nạp frame trên Web
+				if loaded_icons[icon]["sprite"].is_empty():
+					for i in range(1, 100):
+						var frame_name := "DeathEffect%02d.png" % i
+						var frame_path := icon_path.path_join(frame_name)
+						if ResourceLoader.exists(frame_path):
+							loaded_icons[icon]["sprite"].append({ "sprite"= load_image(frame_path), "path"= frame_path })
+						else:
+							break
 			PreviewIcon.Icon.SPIDER:
-				loaded_icons[icon]["head_sprite"] = load_image(icon_path.path_join("Spider_Head.svg"))
+				loaded_icons[icon]["head_sprite"] = load_image(icon_path.path_join("Spider_Head2.png"))
 				loaded_icons[icon]["head_glow"] = load_image(icon_path.path_join("Spider_Head-glow.svg"))
-				loaded_icons[icon]["leg_sprite"] = load_image(icon_path.path_join("Spider_Leg.svg"))
+				loaded_icons[icon]["leg_sprite"] = load_image(icon_path.path_join("Spider_Leg2.png"))
 				loaded_icons[icon]["leg_glow"] = load_image(icon_path.path_join("Spider_Leg-glow.svg"))
 			_:
 				loaded_icons[icon]["sprite"] = load_image(icon_path)

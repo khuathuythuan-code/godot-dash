@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://kyj1mtwpgw26" path="res://src/IconGamemodeProp.gd" id="2_sxyn3"]
 [ext_resource type="Texture2D" uid="uid://da262ssovimq3" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame2.png" id="3_go6vy"]
 [ext_resource type="Texture2D" uid="uid://c0yd5dehfdmfb" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame3.png" id="4_lmais"]
-[ext_resource type="Texture2D" uid="uid://b54ubk48x1iu1" path="res://assets/textures/player/ship/Ship1.svg" id="4_mqpwg"]
 [ext_resource type="Texture2D" uid="uid://bqtjw0dj4adi0" path="res://assets/textures/player/dash_orb/dash_orb_flame/DashFlame4.png" id="5_5qxcb"]
 [ext_resource type="Material" uid="uid://urnhm06n6ar4" path="res://resources/AdditiveBlendingMaterial.tres" id="5_dvha5"]
 [ext_resource type="Texture2D" uid="uid://cvrhuk7gkomp1" path="res://assets/textures/particles/Square.png" id="5_qm8k0"]
@@ -34,15 +33,16 @@
 [ext_resource type="Texture2D" uid="uid://btd3nl8o3v0ij" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect11.png" id="16_4ncex"]
 [ext_resource type="Shader" uid="uid://8oxsywl4108l" path="res://resources/shaders/PlayerTrail.gdshader" id="16_6n35y"]
 [ext_resource type="Texture2D" uid="uid://ci828dwxt326b" path="res://assets/textures/player/death_effect/DeathEffect1/DeathEffect12.png" id="17_ctfuu"]
-[ext_resource type="Texture2D" uid="uid://ddnfr4m8fgb15" path="res://assets/textures/player/ball/Ball1.svg" id="18_b7ibp"]
-[ext_resource type="Texture2D" uid="uid://bqx4a65opjmir" path="res://assets/textures/player/cube/Cube1.svg" id="19_244xe"]
+[ext_resource type="Texture2D" uid="uid://dg1jy8msg5bvx" path="res://assets/textures/player/cube/Cube2.png" id="19_dmk7f"]
 [ext_resource type="Texture2D" uid="uid://dk4m8cnwt8kst" path="res://assets/textures/player/spider/Spider1/Spider_Head-glow.svg" id="19_w1emf"]
-[ext_resource type="Texture2D" uid="uid://bxf2eny7xic88" path="res://assets/textures/player/spider/Spider1/Spider.svg" id="20_bb8qe"]
+[ext_resource type="Texture2D" uid="uid://dex4g8v2sgp6w" path="res://assets/textures/player/spider/Spider1/Spider_Leg2.png" id="21_6n35y"]
 [ext_resource type="Texture2D" uid="uid://dnl23vymdbygl" path="res://assets/textures/player/spider/Spider1/Spider_Leg-glow.svg" id="21_fajhm"]
-[ext_resource type="Texture2D" uid="uid://dyu6awwvh1u7c" path="res://assets/textures/player/spider/Spider1/Spider_Leg.svg" id="22_2ro0i"]
 [ext_resource type="AnimationLibrary" uid="uid://cuomby61m2774" path="res://resources/SpiderAnimations.tres" id="23_244xe"]
-[ext_resource type="Texture2D" uid="uid://b5edol3n0fged" path="res://assets/textures/player/wave/Wave1.svg" id="26_fruiv"]
+[ext_resource type="Texture2D" uid="uid://d3p5wspvgv6s" path="res://assets/textures/player/spider/Spider1/Spider_Head2.png" id="23_kpsk7"]
+[ext_resource type="Texture2D" uid="uid://cd3oofwh7fnet" path="res://assets/textures/player/ball/Ball3.png" id="25_f203b"]
+[ext_resource type="Texture2D" uid="uid://br31cdvkfmj3o" path="res://assets/textures/player/wave/Wave2.png" id="26_xpcv0"]
 [ext_resource type="Texture2D" uid="uid://bpvqfk8hakv6t" path="res://assets/textures/player/ufo/Ufo1.svg" id="27_k4whp"]
+[ext_resource type="Texture2D" uid="uid://mcw1rhy2l74e" path="res://assets/textures/player/ship/Ship4.png" id="28_2yqkt"]
 [ext_resource type="Texture2D" uid="uid://cclfd4gmsd4a0" path="res://assets/textures/player/FireBoost.svg" id="29_475ha"]
 [ext_resource type="Texture2D" uid="uid://co5622oddlvir" path="res://assets/textures/player/jetpack/Jetpack1.svg" id="29_dmk7f"]
 [ext_resource type="Script" uid="uid://by1h78riu3uvw" path="res://src/HSVWatcher.gd" id="45_k4whp"]
@@ -544,7 +544,7 @@ script = ExtResource("2_sxyn3")
 
 [node name="CubeIcon" type="Sprite2D" parent="Icon/Cube" unique_id=1996823347]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("19_244xe")
+texture = ExtResource("19_dmk7f")
 
 [node name="Robot" type="Node2D" parent="Icon" unique_id=1028692649]
 visible = false
@@ -553,10 +553,9 @@ gamemode = 5
 
 [node name="CubeIcon" type="Sprite2D" parent="Icon/Robot" unique_id=627873927]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("19_244xe")
+texture = ExtResource("19_dmk7f")
 
 [node name="Spider" type="Node2D" parent="Icon" unique_id=1699397179]
-visible = false
 script = ExtResource("2_sxyn3")
 gamemode = 6
 
@@ -569,6 +568,7 @@ collide_with_areas = true
 position = Vector2(0, 64)
 
 [node name="SpiderSprites" type="Node2D" parent="Icon/Spider" unique_id=1957238328]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="Leg-Back-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1215883236]
@@ -578,6 +578,7 @@ scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
 [node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=403274015]
+visible = false
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
@@ -585,7 +586,7 @@ texture = ExtResource("21_fajhm")
 [node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Left" unique_id=965830863]
 modulate = Color(0.5, 0.5, 0.5, 1)
 position = Vector2(0, 100)
-texture = ExtResource("22_2ro0i")
+texture = ExtResource("21_6n35y")
 
 [node name="Leg-Back-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1235814377]
 position = Vector2(58, 9)
@@ -594,6 +595,7 @@ scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
 [node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=674233427]
+visible = false
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
@@ -601,7 +603,7 @@ texture = ExtResource("21_fajhm")
 [node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Back-Right" unique_id=1297745958]
 modulate = Color(0.62, 0.62, 0.5, 1)
 position = Vector2(0, 100)
-texture = ExtResource("22_2ro0i")
+texture = ExtResource("21_6n35y")
 
 [node name="Head" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=1218811074]
 position = Vector2(8, -14)
@@ -609,11 +611,12 @@ scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
 [node name="SpiderHead-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1459056244]
+visible = false
 z_index = -1
 texture = ExtResource("19_w1emf")
 
 [node name="Spider" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Head" unique_id=1205236476]
-texture = ExtResource("20_bb8qe")
+texture = ExtResource("23_kpsk7")
 
 [node name="Leg-Front-Left" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=2090889761]
 position = Vector2(-30, 12)
@@ -622,13 +625,14 @@ scale = Vector2(0.25, 0.305)
 metadata/_edit_group_ = true
 
 [node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1084466350]
+visible = false
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
 [node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Left" unique_id=1157656146]
 position = Vector2(0, 100)
-texture = ExtResource("22_2ro0i")
+texture = ExtResource("21_6n35y")
 
 [node name="Leg-Front-Right" type="Marker2D" parent="Icon/Spider/SpiderSprites" unique_id=918424365]
 position = Vector2(-9, 8)
@@ -637,13 +641,14 @@ scale = Vector2(0.25, 0.25)
 metadata/_edit_group_ = true
 
 [node name="SpiderLeg-glow" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1756458607]
+visible = false
 z_index = -1
 position = Vector2(0, 100)
 texture = ExtResource("21_fajhm")
 
 [node name="SpiderLeg" type="Sprite2D" parent="Icon/Spider/SpiderSprites/Leg-Front-Right" unique_id=1434132859]
 position = Vector2(0, 100)
-texture = ExtResource("22_2ro0i")
+texture = ExtResource("21_6n35y")
 
 [node name="SpiderAnimation" type="AnimationPlayer" parent="Icon/Spider/SpiderSprites" unique_id=287943173]
 libraries/ = ExtResource("23_244xe")
@@ -669,7 +674,7 @@ gamemode = 3
 
 [node name="Ball" type="Sprite2D" parent="Icon/Ball" unique_id=1700073485]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("18_b7ibp")
+texture = ExtResource("25_f203b")
 
 [node name="Wave" type="Node2D" parent="Icon" unique_id=577725467]
 visible = false
@@ -678,7 +683,7 @@ gamemode = 4
 
 [node name="Icon" type="Sprite2D" parent="Icon/Wave" unique_id=453892104]
 scale = Vector2(0.417, 0.417)
-texture = ExtResource("26_fruiv")
+texture = ExtResource("26_xpcv0")
 
 [node name="UFO" type="Node2D" parent="Icon" unique_id=2032529004]
 visible = false
@@ -709,7 +714,7 @@ process_material = SubResource("ParticleProcessMaterial_vov5s")
 
 [node name="ShipIcon" type="Sprite2D" parent="Icon/Ship" unique_id=2005628673]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_mqpwg")
+texture = ExtResource("28_2yqkt")
 
 [node name="Jetpack" type="Node2D" parent="Icon" unique_id=142755310]
 visible = false

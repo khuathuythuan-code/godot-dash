@@ -20,9 +20,9 @@ func _ready() -> void:
 			$"SwingGlow".texture = AssetManager.load_icon(Config.icons[icon_type].path.path_join("SwingGlow.svg"), icon_type)
 			$"SwingNoGlow".texture = AssetManager.load_icon(Config.icons[icon_type].path.path_join("SwingNoGlow.svg"), icon_type)
 		PreviewIcon.Icon.SPIDER:
-			var head_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Head.svg"), icon_type)
+			var head_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Head2.png"), icon_type)
 			var head_glow_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Head-glow.svg"), icon_type)
-			var leg_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Leg.svg"), icon_type)
+			var leg_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Leg2.png"), icon_type)
 			var leg_glow_sprite: Texture2D = AssetManager.load_icon(Config.icons[icon_type].path.path_join("Spider_Leg-glow.svg"), icon_type)
 			for part in get_node(^"SpiderSprites").get_children():
 				if not part is Marker2D:

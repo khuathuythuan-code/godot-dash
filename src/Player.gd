@@ -150,11 +150,32 @@ func _ready() -> void:
 	if %DebugOverlays:
 		%DebugOverlays.visible = Config.draw_debug_overlays
 	$DeathEffect.sprite_frames.clear(&"default")
-	for icon in DirAccess.open(Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path).get_files():
-		if icon.contains(".import"):
-			continue
-		var frame := load(Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path + "/" + icon)
-		$DeathEffect.sprite_frames.add_frame(&"default", frame)
+	#for icon in DirAccess.open(Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path).get_files():
+		#if icon.contains(".import"):
+			#continue
+		#var frame := load(Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path + "/" + icon)
+		#$DeathEffect.sprite_frames.add_frame(&"default", frame)
+	var loaded_frames := []
+	var death_effect_dir: String = Config.icons[PreviewIcon.Icon.DEATH_EFFECT].path
+	var dir_access := DirAccess.open(death_effect_dir)
+	if dir_access:
+		for icon in dir_access.get_files():
+			var clean_icon := icon.trim_suffix(".import").trim_suffix(".remap")
+			var frame_path := death_effect_dir.path_join(clean_icon)
+			if not frame_path in loaded_frames:
+				loaded_frames.append(frame_path)
+				var frame := load(frame_path)
+				$DeathEffect.sprite_frames.add_frame(&"default", frame)
+	# Cơ chế dự phòng động trên bản Web
+	if $DeathEffect.sprite_frames.get_frame_count(&"default") == 0:
+		for i in range(1, 100):
+			var frame_name := "DeathEffect%02d.png" % i
+			var frame_path := death_effect_dir.path_join(frame_name)
+			if ResourceLoader.exists(frame_path):
+				var frame := load(frame_path)
+				$DeathEffect.sprite_frames.add_frame(&"default", frame)
+			else:
+				break
 	%Trail.texture = load(Config.icons[PreviewIcon.Icon.TRAIL].path)
 	%Trail.width = %Trail.texture.get_width()
 	#var empty_frame := Texture2D.new() # đây là frame rỗng để ẩn deathAnimation — thay vì dùng visible = false
@@ -175,6 +196,7 @@ func _ready() -> void:
 	# Preload tất cả icon gamemode
 	for icon in $Icon.get_children():
 		icon.show()
+	$DeathEffect.play("default")
 	await RenderingServer.frame_post_draw
 	await RenderingServer.frame_post_draw  # đợi 1 frame để GPU render
 	# Ẩn lại, chỉ giữ icon đúng gamemode
@@ -1055,21 +1077,21 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 
 func _player_death() -> void:
-	#AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
-	#dead = true
-	#last_automatic_checkpoint_position = position
-	#$Icon.hide()
-	#$DeathEffect.frame = 0
-	#$DeathEffect.play()
-	#$DeathParticles.restart()
-	#$DashParticles.emitting = false
-	#%GroundParticles.emitting = false
-	#SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
+	dead = true
+	last_automatic_checkpoint_position = position
+	$Icon.hide()
+	$DeathEffect.frame = 0
+	$DeathEffect.play()
+	$DeathParticles.restart()
+	$DashParticles.emitting = false
+	%GroundParticles.emitting = false
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 	pass
 
 
 func _on_death_restart() -> void:
-	#LevelManager.game_scene.restart_level()
+	LevelManager.game_scene.restart_level()
 	pass
 
 
