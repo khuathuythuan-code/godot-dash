@@ -300,6 +300,7 @@ func _physics_process(delta: float) -> void:
 
 
 func reset() -> void:
+	%Trail.add_points = false
 	show()
 	rotation = 0.0
 	# Cancel death animation
