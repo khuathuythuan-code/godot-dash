@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bloneuraopk6j"]
+
+[ext_resource type="Script" uid="uid://cwnakrvidtn15" path="res://scenes/components/stat_components/LifeCount.gd" id="1_ilyr2"]
+[ext_resource type="Texture2D" uid="uid://dg1jy8msg5bvx" path="res://assets/textures/player/cube/Cube2.png" id="1_uubof"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilyr2"]
+bg_color = Color(0.5998109, 0, 0, 0.12941177)
+
+[sub_resource type="Animation" id="Animation_gpt4a"]
+resource_name = "Hurt"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageVignettePanel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.015727744, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.6, 0, 0, 0), Color(0.6, 0, 0, 1), Color(0.6, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l671j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageVignettePanel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.5998109, 0, 0, 0.12941177)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0stdf"]
+_data = {
+&"Hurt": SubResource("Animation_gpt4a"),
+&"RESET": SubResource("Animation_l671j")
+}
+
+[node name="LifeCount" type="CanvasLayer" unique_id=1549931615]
+visible = false
+script = ExtResource("1_ilyr2")
+
+[node name="Control" type="Control" parent="." unique_id=27402549]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=143187434]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=445073567]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer" unique_id=1959677089]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_uubof")
+expand_mode = 1
+
+[node name="LifeCountLabel" type="Label" parent="Control/MarginContainer/HBoxContainer" unique_id=1721389474]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "100"
+
+[node name="DamageVignettePanel" type="Panel" parent="." unique_id=1610414325]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ilyr2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=491558196]
+libraries/ = SubResource("AnimationLibrary_0stdf")

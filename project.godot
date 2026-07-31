@@ -79,6 +79,7 @@ KeymapLoader="*res://src/autoloads/KeymapLoader.gd"
 DebugMenu="*uid://cggqb75a8w8r"
 DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 SignalLens="*uid://85rkx60vm7a7"
+LifeCount="*uid://bloneuraopk6j"
 
 [debug]
 

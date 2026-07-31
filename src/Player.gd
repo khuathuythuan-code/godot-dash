@@ -1078,6 +1078,11 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 
 func _player_death() -> void:
+	LifeCount.lives -= 1
+	LifeCount.animation_player.play("Hurt")
+	
+	if Config.is_god_mode:
+		return
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	dead = true
 	last_automatic_checkpoint_position = position
@@ -1092,6 +1097,8 @@ func _player_death() -> void:
 
 
 func _on_death_restart() -> void:
+	if Config.is_god_mode:
+		return
 	LevelManager.game_scene.restart_level()
 	pass
 

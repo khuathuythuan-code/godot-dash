@@ -37,6 +37,10 @@ enum ParticlePreprocessing {
 	MAX = (1 << 4) - 1,
 }
 
+#Debug
+@export var is_god_mode = true
+
+
 # Graphics
 @export_group("Graphics")
 

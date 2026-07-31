@@ -1,6 +1,7 @@
 class_name GameScene
 extends Node2D
 
+
 @export var checkpoint_parent: Node2D
 @export var pause_menu: CyberPunkPauseMenu
 @export var fade_screen: FadeScreen
@@ -11,6 +12,10 @@ var cached_level_path: String
 var progress_percentage: float
 
 func _ready() -> void:
+	if Config.is_god_mode:
+		LifeCount.visible = true
+		print("hahaha")
+	
 	Engine.time_scale = 1.0
 	LevelManager.game_scene = self
 	LevelManager.background_sprites.clear()
@@ -116,6 +121,8 @@ func reset() -> void:
 
 
 func _leave_level() -> void:
+	LifeCount.lives = 100
+	LifeCount.visible = false
 	LevelManager.game_scene.level_complete_menu.stat_controller.refresh()
 	pause_menu.attempt_count = 0
 	for level in $Level.get_children():
