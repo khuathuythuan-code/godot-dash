@@ -43,7 +43,7 @@ func load_song(path: String) -> AudioStream:
 	if path.is_empty():
 		return null
 	var audio_stream: AudioStream
-	if path.begins_with("uid"):
+	if path.begins_with("uid") or path.begins_with("res://"):
 		audio_stream = load(path)
 	else:
 		match path.get_extension():

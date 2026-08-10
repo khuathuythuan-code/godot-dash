@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsmhuffy5oaf6"
+path="res://.godot/imported/Neon Dash Circuit (1).mp3-f07da0fa6a23b66bfa52248f61db3cf9.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/game_music/Neon Dash Circuit (1).mp3"
+dest_files=["res://.godot/imported/Neon Dash Circuit (1).mp3-f07da0fa6a23b66bfa52248f61db3cf9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
