@@ -149,7 +149,8 @@ var menu_loop: String:
 @export_group("Replay")
 
 var config_file: ConfigFile = ConfigFile.new()
-
+var current_level_index = 0
+var last_level_index = 0
 
 func _init():
 	config_file.load("user://config.cfg")

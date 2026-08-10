@@ -24,9 +24,7 @@ wraparound_height = -20.0
 opacity_strength = 0.5
 scale_strength = 0.0
 scale_min = 0.01
-selected_index = 14
 position_offset_node = NodePath("Control")
-angular_spacing_deg = null
 
 [node name="Control" type="Control" parent="CarouselContainer" unique_id=412257201]
 layout_mode = 1

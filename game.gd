@@ -14,18 +14,76 @@ var selected_carousel_node: LevelItem
 
 
 func _ready() -> void:
-	# Đọc thư mục levels ngay khi game chạy
 	var dir := DirAccess.open(Constants.LEVEL_DIR)
 	
-	levels = dir.get_files()
+	var raw_files = dir.get_files()
+	var levels_with_index: Array = []
+	
+	# 1. Đọc từng file JSON để lấy chỉ số difficulty_index
+	for file_name in raw_files:
+		if file_name.ends_with(".json"):
+			var file_path = Constants.LEVEL_DIR + file_name
+			var file = FileAccess.open(file_path, FileAccess.READ)
+			if file:
+				var json_str = file.get_as_text()
+				file.close()
+				var level_data = JSON.parse_string(json_str)
+				if level_data is Dictionary:
+					# Lấy difficulty_index, nếu không có thì gán giá trị là null
+					var diff_idx = level_data.get("difficulty_index", null)
+					levels_with_index.append({
+						"file_name": file_name,
+						"difficulty_index": diff_idx
+					})
+	
+	# 2. Sắp xếp mảng tạm với điều kiện fallback
+	levels_with_index.sort_custom(func(a, b):
+		var a_has_idx: bool = a["difficulty_index"] != null
+		var b_has_idx: bool = b["difficulty_index"] != null
+		
+		if a_has_idx and b_has_idx:
+			# Cả hai đều có: So sánh index trước
+			if a["difficulty_index"] == b["difficulty_index"]:
+				# Nếu trùng index, xếp theo tên file A-Z
+				return a["file_name"].to_lower() < b["file_name"].to_lower()
+			return a["difficulty_index"] < b["difficulty_index"]
+			
+		elif a_has_idx and not b_has_idx:
+			# Chỉ a có index -> a lên trước (trả về true)
+			return true
+			
+		elif not a_has_idx and b_has_idx:
+			# Chỉ b có index -> b lên trước (trả về false)
+			return false
+			
+		else:
+			# Cả hai đều không có index -> sắp xếp theo tên file A-Z
+			return a["file_name"].to_lower() < b["file_name"].to_lower()
+	)
+	
+	# 3. Nạp lại danh sách đã sắp xếp vào mảng levels
+	levels.clear()
+	for item in levels_with_index:
+		levels.append(item["file_name"])
+	
 	pre_btn.pressed.connect(_on_pre_pressed)
 	next_btn.pressed.connect(_on_next_pressed)
 	play_btn.pressed.connect(_on_play_pressed)
 	
-
 	_update_level_display()
 
+func _process(delta: float) -> void:
+	if pre_btn:
+		pre_btn.visible = Config.current_level_index != 0
+	if next_btn and play_btn:
+		next_btn.visible = !(Config.current_level_index == Config.last_level_index)
+		play_btn.visible = !(Config.current_level_index == Config.last_level_index)
 
+	selected_carousel_node = $CarouselContainer. position_offset_node.get_child($CarouselContainer. selected_index) 
+	#print(selected_carousel_node.name) 
+	#print(selected_carousel_node.size) 
+	#print (selected_carousel_node.position)
+		
 
 # Đổi tên từ loadLevels thành _update_level_display cho đúng bản chất (chỉ cập nhật chữ hiển thị)
 func _update_level_display() -> void:
@@ -35,6 +93,11 @@ func _update_level_display() -> void:
 		var level_item = level_item_scene.instantiate() as LevelItem
 		item_container.add_child(level_item)
 		level_item.set_level_name(level_name)
+	var coming_soon_level_item = level_item_scene.instantiate() as LevelItem
+	item_container.add_child(coming_soon_level_item)
+	coming_soon_level_item.set_level_name("Coming Soon")
+	coming_soon_level_item.level_info.visible = false
+	Config.last_level_index = item_container.get_child_count() - 1
 	
 
 
@@ -63,12 +126,6 @@ func _play_level(level_name: String) -> void:
 	get_tree().change_scene_to_packed(AssetManager.game_scene_packed)
 	
 
-
-func _process(delta: float) -> void:
-	selected_carousel_node = $CarouselContainer. position_offset_node.get_child($CarouselContainer. selected_index) 
-	#print(selected_carousel_node.name) 
-	#print(selected_carousel_node.size) 
-	#print (selected_carousel_node.position)
 
 
 func _on_pre_pressed() -> void:

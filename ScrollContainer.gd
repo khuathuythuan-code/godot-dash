@@ -10,10 +10,18 @@ class_name CarouselContainer
 @export_range(0.0, 1.0) var scale_strength: float = 0.25
 @export_range(0.01, 0.99, 0.01) var scale_min: float = 0.1
 @export var smoothing_speed: float = 6.5 
-@export var selected_index: int = 0 
+@export var selected_index: int = 0:
+	set(value):
+		selected_index = value
+		Config.current_level_index = value
+		
 @export var follow_button_focus: bool = false
 @export var position_offset_node: Control = null
 @export var angular_spacing_deg: float = 40.0
+
+
+func _ready() -> void:
+	selected_index = Config.current_level_index
 
 func _process(delta: float) -> void:
 	if !position_offset_node or position_offset_node.get_child_count() == 0: 
