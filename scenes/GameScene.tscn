@@ -16,8 +16,11 @@
 [ext_resource type="Shader" uid="uid://g502tst55eft" path="res://resources/shaders/Sepia.gdshader" id="11_yix40"]
 [ext_resource type="Script" uid="uid://md5b1qxtkghp" path="res://src/PercentageLayer.gd" id="14_21xg8"]
 [ext_resource type="FontFile" uid="uid://8e1lxpyo40t5" path="res://assets/fonts/Pusab.otf" id="14_kxqg4"]
+[ext_resource type="Texture2D" uid="uid://bq6l2tka1olnn" path="res://assets/textures/cyber_punk_gui/pausebtn/pause_1-8.png" id="15_lpvha"]
+[ext_resource type="Texture2D" uid="uid://b0yj5dreqqng8" path="res://assets/textures/cyber_punk_gui/pausebtn/pause_2-8.png" id="16_s4ole"]
 [ext_resource type="Script" uid="uid://df58p5n7dllpj" path="res://src/WorldEnvironment.gd" id="17_21xg8"]
 [ext_resource type="Script" uid="uid://b0xmfrq6wj4dc" path="res://src/TouchScreenControls.gd" id="17_iaegw"]
+[ext_resource type="Texture2D" uid="uid://dugbocdsr7mqa" path="res://assets/textures/cyber_punk_gui/pausebtn/pause_3-8.png" id="17_x1py8"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="18_2gh7q"]
 [ext_resource type="Texture2D" uid="uid://85pp4jeny8qv" path="res://assets/textures/guis/touchscreen/Pause.svg" id="19_a5tct"]
 [ext_resource type="Texture2D" uid="uid://dpcfokjp1cj5m" path="res://assets/textures/guis/touchscreen/Left.svg" id="20_a5tct"]
@@ -56,6 +59,15 @@ font = ExtResource("14_kxqg4")
 font_size = 48
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_03l4r"]
+texture = ExtResource("15_lpvha")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lpvha"]
+texture = ExtResource("16_s4ole")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4ole"]
+texture = ExtResource("17_x1py8")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1npfk"]
 content_margin_left = 13.0
@@ -122,7 +134,7 @@ modulate = Color(0.211765, 0.439216, 1, 1)
 z_index = -4096
 texture_repeat = 2
 position = Vector2(0, -40)
-texture = ExtResource("2_lk0vr")
+texture = ExtResource("2_3t3mo")
 region_enabled = true
 region_rect = Rect2(0, 0, 10240, 2048)
 metadata/_edit_lock_ = true
@@ -132,13 +144,14 @@ modulate = Color(0.211765, 0.439216, 1, 1)
 z_index = -4096
 texture_repeat = 2
 position = Vector2(0, 2000)
-texture = ExtResource("2_lk0vr")
+texture = ExtResource("2_3t3mo")
 flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 10240, 2048)
 metadata/_edit_lock_ = true
 
 [node name="EditorGridParallax" type="Parallax2D" parent="." unique_id=1293053916]
+visible = false
 z_index = -4096
 repeat_size = Vector2(32768, 32768)
 repeat_times = 2
@@ -180,7 +193,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_kxqg4")
 position = Vector2(300, 300)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("8_lk0vr")
+texture = ExtResource("8_a8ip2")
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
 metadata/_edit_group_ = true
@@ -216,7 +229,7 @@ texture_repeat = 2
 material = SubResource("ShaderMaterial_kxqg4")
 position = Vector2(300, -300)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("8_lk0vr")
+texture = ExtResource("8_a8ip2")
 flip_v = true
 region_enabled = true
 region_rect = Rect2(0, 0, 9600, 240)
@@ -282,6 +295,36 @@ text = "Infinite"
 label_settings = SubResource("LabelSettings_21xg8")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="PercentageLayer" unique_id=1476488898]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PercentageLayer/Control" unique_id=1165456213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="PauseBtn" type="Button" parent="PercentageLayer/Control/MarginContainer" unique_id=1075027592]
+process_mode = 3
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_03l4r")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lpvha")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s4ole")
 
 [node name="TouchscreenControlsLayer" type="CanvasLayer" parent="." unique_id=263669596]
 process_mode = 3
@@ -441,4 +484,5 @@ environment = SubResource("Environment_4phyr")
 camera_attributes = SubResource("CameraAttributesPractical_bwo2a")
 script = ExtResource("17_21xg8")
 
+[connection signal="pressed" from="PercentageLayer/Control/MarginContainer/PauseBtn" to="." method="_on_pause_button_pressed"]
 [connection signal="pressed" from="TouchscreenControlsLayer/Pause" to="TouchscreenControlsLayer" method="_pause"]

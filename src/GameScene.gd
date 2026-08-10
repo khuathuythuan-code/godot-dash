@@ -151,3 +151,6 @@ func save_game():
 	SaveManager.update_and_save_best_record(level_name, level_completion, level_attempt, new_time, new_jump)
 	
 	
+func _on_pause_button_pressed() -> void:
+	if pause_menu:
+		pause_menu.toggle_pause_menu()
