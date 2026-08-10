@@ -7,6 +7,8 @@ func _ready() -> void:
 	monitoring = false
 	await get_tree().process_frame
 	await get_tree().process_frame
+	await get_tree().process_frame
+	await get_tree().process_frame
 	monitoring = true
 	#chữa lỗi khiến logic của endLevelTrigger vẫn giữ signal body_entered
 	#player sẽ tự kích hoạt trạng thái end game
