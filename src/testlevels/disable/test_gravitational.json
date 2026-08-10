@@ -13277,7 +13277,7 @@
 					},
 					"transform": {
 						"origin": [
-							75392.0,
+							75360.0,
 							-448.0
 						],
 						"x": [
@@ -13352,16 +13352,16 @@
 					},
 					"transform": {
 						"origin": [
-							75264.0,
+							75232.0,
 							-320.0
 						],
 						"x": [
-							0.0,
+							-0.0000000437113882867379,
 							-1.0
 						],
 						"y": [
 							1.0,
-							0.0
+							-0.0000000437113882867379
 						]
 					},
 					"z_index": 347
@@ -13427,7 +13427,7 @@
 					},
 					"transform": {
 						"origin": [
-							75264.0,
+							75232.0,
 							-448.0
 						],
 						"x": [
@@ -13502,7 +13502,7 @@
 					},
 					"transform": {
 						"origin": [
-							75392.0,
+							75360.0,
 							-320.0
 						],
 						"x": [
@@ -18228,7 +18228,7 @@
 					"transform": {
 						"origin": [
 							90688.0,
-							-1728.0
+							-1856.0
 						],
 						"x": [
 							1.0,
@@ -18303,7 +18303,7 @@
 					"transform": {
 						"origin": [
 							90688.0,
-							-1856.0
+							-1984.0
 						],
 						"x": [
 							1.0,
@@ -18378,7 +18378,7 @@
 					"transform": {
 						"origin": [
 							90816.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18453,7 +18453,7 @@
 					"transform": {
 						"origin": [
 							90944.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18528,7 +18528,7 @@
 					"transform": {
 						"origin": [
 							91072.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18603,7 +18603,7 @@
 					"transform": {
 						"origin": [
 							91200.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18678,7 +18678,7 @@
 					"transform": {
 						"origin": [
 							91328.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18753,7 +18753,7 @@
 					"transform": {
 						"origin": [
 							91456.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18828,7 +18828,7 @@
 					"transform": {
 						"origin": [
 							91584.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18903,7 +18903,7 @@
 					"transform": {
 						"origin": [
 							91712.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -18978,7 +18978,7 @@
 					"transform": {
 						"origin": [
 							91840.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -19053,7 +19053,7 @@
 					"transform": {
 						"origin": [
 							91968.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -19128,7 +19128,7 @@
 					"transform": {
 						"origin": [
 							92096.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -19203,7 +19203,7 @@
 					"transform": {
 						"origin": [
 							92224.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -19278,7 +19278,7 @@
 					"transform": {
 						"origin": [
 							92352.0,
-							-1856.0
+							-1984.0
 						],
 						"x": [
 							1.0,
@@ -19353,7 +19353,7 @@
 					"transform": {
 						"origin": [
 							92352.0,
-							-1728.0
+							-1856.0
 						],
 						"x": [
 							1.0,
@@ -27380,7 +27380,7 @@
 					"scene_file_path": "scenes/components/level_components/hazards/Spike.tscn",
 					"transform": {
 						"origin": [
-							75392.0,
+							75360.0,
 							-960.0
 						],
 						"x": [
@@ -69100,7 +69100,7 @@
 					},
 					"transform": {
 						"origin": [
-							75392.0,
+							75360.0,
 							-832.0
 						],
 						"x": [
@@ -69445,156 +69445,6 @@
 						],
 						"intensity": 1.0
 					},
-					"name": "GridBlock34",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.3125
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NearestNeighborSpriteBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/cyber_punk_gui/blocks/asset_5.png",
-						"id": 5.0
-					},
-					"transform": {
-						"origin": [
-							75264.0,
-							-112.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.3125
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridBlock35",
-					"physics": {
-						"absorbent": false,
-						"angular_velocity": 0.0,
-						"bounce": 0.0,
-						"friction": 1.0,
-						"gravity_scale": 1.0,
-						"linear_velocity": [
-							0.0,
-							0.0
-						],
-						"mass": 1.0,
-						"physics_object": false,
-						"pushable_by_player": true,
-						"rough": false,
-						"scale": [
-							1.0,
-							1.3125
-						]
-					},
-					"scene_file_path": "scenes/components/level_components/solids/NearestNeighborSpriteBlock.tscn",
-					"texture_override": {
-						"base": "assets/textures/cyber_punk_gui/blocks/asset_5.png",
-						"id": 5.0
-					},
-					"transform": {
-						"origin": [
-							75392.0,
-							-112.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.3125
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						},
-						{
-							"alpha": 1.0,
-							"hsv_shift": [
-								0.0,
-								0.0,
-								0.0
-							],
-							"intensity": 1.0
-						}
-					],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
 					"name": "RegularBlock01348",
 					"physics": {
 						"absorbent": false,
@@ -69622,7 +69472,7 @@
 					},
 					"transform": {
 						"origin": [
-							75264.0,
+							75232.0,
 							-224.0
 						],
 						"x": [
@@ -69697,7 +69547,7 @@
 					},
 					"transform": {
 						"origin": [
-							75392.0,
+							75360.0,
 							-224.0
 						],
 						"x": [
@@ -69763,7 +69613,7 @@
 					"scene_file_path": "scenes/components/level_components/decorations/ground/GrounDecorSpike03.tscn",
 					"transform": {
 						"origin": [
-							75264.0,
+							75232.0,
 							-64.0
 						],
 						"x": [
@@ -71874,468 +71724,6 @@
 						"origin": [
 							91392.0,
 							-64.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							90816.0,
-							-1728.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock2",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							90816.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock3",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							90944.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock4",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91072.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock5",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91200.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock6",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91328.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock7",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91456.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock8",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91584.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock9",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91712.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock10",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91840.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock11",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							91968.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock12",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							92096.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock13",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							92224.0,
-							-1856.0
-						],
-						"x": [
-							1.0,
-							0.0
-						],
-						"y": [
-							0.0,
-							1.0
-						]
-					},
-					"z_index": 0
-				},
-				{
-					"children_hsv": [],
-					"color_channels": {
-
-					},
-					"groups": [],
-					"hsv": {
-						"alpha": 1.0,
-						"hsv_shift": [
-							0.0,
-							0.0,
-							0.0
-						],
-						"intensity": 1.0
-					},
-					"name": "GridDecorBlock14",
-					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
-					"transform": {
-						"origin": [
-							92224.0,
-							-1728.0
 						],
 						"x": [
 							1.0,
@@ -78217,7 +77605,7 @@
 					"scene_file_path": "scenes/components/level_components/solids/NearestNeighborSpriteBlock.tscn",
 					"texture_override": {
 						"base": "assets/textures/cyber_punk_gui/blocks/asset_18.png",
-						"id": 36,
+						"id": 36.0,
 						"scale_factor": [
 							0.5589519739151,
 							0.5589519739151
@@ -78226,7 +77614,7 @@
 					"transform": {
 						"origin": [
 							90688.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							1.0,
@@ -78296,7 +77684,7 @@
 					"scene_file_path": "scenes/components/level_components/solids/NearestNeighborSpriteBlock.tscn",
 					"texture_override": {
 						"base": "assets/textures/cyber_punk_gui/blocks/asset_18.png",
-						"id": 36,
+						"id": 36.0,
 						"scale_factor": [
 							0.5589519739151,
 							0.5589519739151
@@ -78305,7 +77693,7 @@
 					"transform": {
 						"origin": [
 							92352.0,
-							-1984.0
+							-2112.0
 						],
 						"x": [
 							-0.0000000437113882867379,
@@ -78314,6 +77702,600 @@
 						"y": [
 							-1.0,
 							-0.0000000437113882867379
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock15",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							75360.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock16",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							75232.0,
+							-64.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock17",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							75232.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock18",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							75360.0,
+							-192.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							90816.0,
+							-1856.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock2",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							90816.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock3",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							90944.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock4",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91072.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock5",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91200.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock6",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91328.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock7",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91456.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock8",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91584.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock9",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91712.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock10",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91840.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock11",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							91968.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock12",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							92096.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock13",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							92224.0,
+							-1984.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
+						]
+					},
+					"z_index": 0
+				},
+				{
+					"children_hsv": [],
+					"color_channels": {
+
+					},
+					"groups": [],
+					"hsv": {
+						"alpha": 1.0,
+						"hsv_shift": [
+							0.0,
+							0.0,
+							0.0
+						],
+						"intensity": 1.0
+					},
+					"name": "GridDecorBlock14",
+					"scene_file_path": "scenes/components/level_components/decorations/block/GridDecorBlock.tscn",
+					"transform": {
+						"origin": [
+							92224.0,
+							-1856.0
+						],
+						"x": [
+							1.0,
+							0.0
+						],
+						"y": [
+							0.0,
+							1.0
 						]
 					},
 					"z_index": 0
@@ -78339,7 +78321,7 @@
 		"z_index": 0
 	},
 	"rating": -1,
-	"song_path": "",
+	"song_path": "Drop Grid.mp3",
 	"song_start_time": 0.0,
 	"start_displayed_gamemode": 0,
 	"start_freefly": true,
