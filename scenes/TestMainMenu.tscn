@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="12_usj3b"]
 [ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="13_177ul"]
 [ext_resource type="Texture2D" uid="uid://dsgbtoflddq8r" path="res://assets/textures/cyber_punk_gui/button/blank/BlankText (1).png" id="13_kv8dc"]
+[ext_resource type="Texture2D" uid="uid://d10icd2hweebo" path="res://assets/textures/cyber_punk_gui/window/3/NoTitle.png" id="14_4gxlv"]
 [ext_resource type="Texture2D" uid="uid://dvopm8x8ytt00" path="res://assets/textures/cyber_punk_gui/button/blank/BlankText (2).png" id="14_a36d0"]
 [ext_resource type="Texture2D" uid="uid://dgobch7m00i7a" path="res://assets/textures/icons/godot/Search.svg" id="14_tpojm"]
 [ext_resource type="Script" uid="uid://y1hecem53675" path="res://addons/search_bar_node/SearchBarNode.gd" id="15_nqjvc"]
@@ -72,6 +73,13 @@ texture = ExtResource("14_a36d0")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_usj3b"]
 texture = ExtResource("15_nrw5p")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8nsk"]
+texture = ExtResource("14_4gxlv")
+texture_margin_left = 153.0
+texture_margin_top = 148.0
+texture_margin_right = 156.0
+texture_margin_bottom = 157.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qovpe"]
 texture = ExtResource("11_7x357")
@@ -354,6 +362,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 
 [node name="MainPanel" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=2063761728]
+visible = false
 material = ExtResource("8_a36d0")
 layout_mode = 1
 anchors_preset = -1
@@ -369,6 +378,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="UpdateChecker" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/MarginContainer" unique_id=1040548127]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -387,7 +397,7 @@ alignment = 1
 texture_filter = 6
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-texture = ExtResource("10_h5lgf")
+texture = ExtResource("9_m4n26")
 expand_mode = 3
 stretch_mode = 5
 
@@ -396,9 +406,10 @@ custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer" unique_id=879028698]
-custom_minimum_size = Vector2(500, 700)
+custom_minimum_size = Vector2(500, 400)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxTexture_q5gxh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer" unique_id=171342115]
@@ -409,6 +420,7 @@ theme_override_constants/separation = 26
 alignment = 1
 
 [node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=299438892]
+visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -428,9 +440,10 @@ theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
-text = "COMMUNITY"
+text = "Level"
 
 [node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2135693891]
+visible = false
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -442,7 +455,6 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
 text = "ICONS"
 
 [node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer" unique_id=53588540]
-visible = false
 custom_minimum_size = Vector2(300, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -463,6 +475,259 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
 text = "QUIT"
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1065349223]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 649.0
+grow_vertical = 2
+theme_override_constants/margin_left = 49
+
+[node name="MainPanel2" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/MarginContainer" unique_id=990300686]
+custom_minimum_size = Vector2(600, 600)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b8nsk")
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2" unique_id=25197823]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpdateChecker" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/MarginContainer" unique_id=803240613]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+disabled = true
+text = "Update Checker"
+flat = true
+script = ExtResource("9_nrw5p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2" unique_id=1025000061]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer" unique_id=1899387834]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+texture = ExtResource("9_m4n26")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer" unique_id=1195924220]
+visible = false
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer" unique_id=1790602326]
+visible = false
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_q5gxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer" unique_id=1977931595]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1174139963]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "PLAY"
+
+[node name="Community" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=375361255]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "Level"
+
+[node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=2074036487]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "ICONS"
+
+[node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1309371844]
+visible = false
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1676369937]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "QUIT"
+
+[node name="MainPanel2" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=687581528]
+custom_minimum_size = Vector2(600, 800)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33
+anchor_bottom = 1.0
+offset_right = 0.39996338
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b8nsk")
+
+[node name="MarginContainer" type="MarginContainer" parent="TitleScreenLayer/TitleScreen/MainPanel2" unique_id=848627060]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="UpdateChecker" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/MarginContainer" unique_id=2128610210]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+disabled = true
+text = "Update Checker"
+flat = true
+script = ExtResource("9_nrw5p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel2" unique_id=1640918030]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Title" type="TextureRect" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer" unique_id=489309464]
+texture_filter = 6
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+texture = ExtResource("9_m4n26")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer" unique_id=644302449]
+visible = false
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer" unique_id=1545675918]
+visible = false
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_q5gxh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer" unique_id=1470555266]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 26
+alignment = 1
+
+[node name="Play" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1231986411]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "PLAY"
+
+[node name="Community" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1265482621]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "Level"
+
+[node name="Icon Garage" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1474375677]
+visible = false
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "ICONS"
+
+[node name="Settings" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=1209445352]
+visible = false
+custom_minimum_size = Vector2(300, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer" unique_id=741526525]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"TitleScreenButton"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_h5lgf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_h4rjt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_usj3b")
+text = "QUIT"
+
+[node name="Title2" type="TextureRect" parent="TitleScreenLayer/TitleScreen/MainPanel2" unique_id=778368428]
+texture_filter = 6
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+texture = ExtResource("9_m4n26")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="LevelSelector" type="PanelContainer" parent="TitleScreenLayer/TitleScreen" unique_id=1262912517]
 visible = false
@@ -742,6 +1007,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_tis8u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2k1c6")
 
 [node name="Close" type="Button" parent="TitleScreenLayer/TitleScreen/Community/MarginContainer2/Buttons" unique_id=1550671216]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.96000004
@@ -1119,7 +1385,7 @@ script = ExtResource("31_02d04")
 bus = &"Music"
 script = ExtResource("32_gvl4o")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon_killer")]
 script = ExtResource("33_wpvfx")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
@@ -1138,7 +1404,6 @@ from_editor_camera = NodePath("../CameraCenterParent/FromEditorCamera")
 title_screen_layer = NodePath("../TitleScreenLayer")
 title_screen_background = NodePath("../Node2D/BackgroundParallax")
 title_screen_ground = NodePath("../Node2D/GroundDownParallax")
-menu_icon = NodePath("")
 menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("34_36m4y")]
@@ -1148,6 +1413,16 @@ menu_icon_killer = NodePath("../Node2D/Kill Box")
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel/VBoxContainer/PanelContainer/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MarginContainer/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Play" to="Subscene Manager" method="_on_go_to_level_selector_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Community" to="Subscene Manager" method="_on_go_to_community_menu_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Icon Garage" to="Subscene Manager" method="_on_go_to_icon_garage_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Settings" to="Subscene Manager" method="_on_settings_pressed"]
+[connection signal="pressed" from="TitleScreenLayer/TitleScreen/MainPanel2/VBoxContainer/PanelContainer/VBoxContainer/Quit" to="Subscene Manager" method="_on_quit_game_pressed"]
 [connection signal="file_selected" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/ImportLevelDialog" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_import_level"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Create" to="Subscene Manager" method="_on_editor_pressed"]
 [connection signal="pressed" from="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/HBoxContainer2/Import" to="TitleScreenLayer/TitleScreen/Community/MarginContainer/VBoxContainer/SmoothScrollContainer/LevelPanelLoader" method="_open_importer"]

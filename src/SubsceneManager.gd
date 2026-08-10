@@ -93,7 +93,7 @@ func _ready() -> void:
 	title_screen_camera.set_tween_duration(Config.transition_duration)
 	from_editor_camera.set_tween_duration(Config.transition_duration)
 	is_first_load = false
-
+	_on_go_to_community_menu_pressed()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and not (_camera_tween and _camera_tween.is_running()):
@@ -116,12 +116,13 @@ func zoom_out_title_screen_layer() -> void:
 
 
 func _return_to_title_screen() -> void:
-	#_toggle_background_sprites_autoscroll(true)
-	_current_subscene = SubScene.TITLE_SCREEN
-	#_change_background_color(_base_background_color)
-	for object in [level_selector, community_menu, settings_panel, icon_garage]:
-		if object.visible:
-			object.hide_tween()
+	##_toggle_background_sprites_autoscroll(true)
+	#_current_subscene = SubScene.TITLE_SCREEN
+	##_change_background_color(_base_background_color)
+	#for object in [level_selector, community_menu, settings_panel, icon_garage]:
+		#if object.visible:
+			#object.hide_tween()
+	pass
 
 
 #func _toggle_background_sprites_autoscroll(enabled: bool) -> void:
@@ -196,13 +197,14 @@ func _on_editor_pressed() -> void:
 
 
 func _on_quit_game_pressed() -> void:
-	if fade_screen.is_fading:
-		return
-	fade_screen.fade_in()
-	history.change_phantomcamera(active_pcam, quit_game_camera)
-	zoom_in_title_screen_layer()
-	await fade_screen.fade_finished
-	get_tree().quit()
+	#if fade_screen.is_fading:
+		#return
+	#fade_screen.fade_in()
+	#history.change_phantomcamera(active_pcam, quit_game_camera)
+	#zoom_in_title_screen_layer()
+	#await fade_screen.fade_finished
+	#get_tree().quit()
+	pass
 
 
 func _on_back_button_pressed() -> void:
