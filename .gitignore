@@ -27,11 +27,6 @@ rust/bin/
 *.kate-swp
 .idea/
 
-# ==========================================
-# Assets & Audio (Tùy chọn của bạn)
-# ==========================================
-assets/sounds/music/level_music/*
-*.mp3
 
 # Sau này nếu có file .txt hoặc .json rác từ Rust build, 
 # hãy chặn đích danh thư mục chứa nó, đừng chặn toàn cục:
@@ -43,3 +38,13 @@ assets/sounds/music/level_music/*
 Thumbs.db
 Desktop.ini
 .DS_Store
+*.tmp
+
+# ==========================================
+# Logs & General Backups
+# ==========================================
+*.log
+*~
+*.swp
+*.swo
+.history/
