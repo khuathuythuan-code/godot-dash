@@ -209,12 +209,12 @@ func _ready() -> void:
 	#đây là lí do dùng await RenderingServer.frame_post_draw thay vì process_frame
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("disable_ground_collision"):
+	if Input.is_action_pressed("disable_ground_collision") and Config.is_god_mode:
 		$GroundCollider.disabled = true
 	else:
 		$GroundCollider.disabled = false
 		
-	if Input.is_action_just_pressed("gravity_toggle"):
+	if Input.is_action_just_pressed("gravity_toggle") and Config.is_god_mode:
 		gravity_flip *= -1
 	
 		
