@@ -157,7 +157,7 @@ func _on_leave_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	LevelManager.game_scene.level_complete_menu.stat_controller.refresh()
-	attempt_count +=1
+	#attempt_count +=1
 	get_tree().paused = false
 	unpaused.emit()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN

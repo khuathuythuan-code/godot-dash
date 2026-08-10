@@ -123,8 +123,6 @@ func reset() -> void:
 func _leave_level() -> void:
 	LifeCount.lives = 100
 	LifeCount.visible = false
-	LevelManager.game_scene.level_complete_menu.stat_controller.refresh()
-	pause_menu.attempt_count = 0
 	for level in $Level.get_children():
 		level.stop_level()
 	LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED

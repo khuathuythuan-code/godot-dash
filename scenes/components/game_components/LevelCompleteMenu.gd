@@ -34,9 +34,9 @@ func _on_leave_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	stat_controller.is_restart_after_complete = true
-	stat_controller.refresh()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 	restart.emit()
 	hide()
 	LevelManager.game_scene.restart_level()
+	stat_controller.refresh()

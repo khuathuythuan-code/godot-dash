@@ -39,8 +39,8 @@ func _process(_delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):
-		_on_restart_pressed()
+	#if LevelManager.level_playing and event.is_action_pressed(&"restart_level"):
+		#_on_restart_pressed()
 	if event.is_action_pressed(&"pause_level") and Editor.shortcut_blocker == null and not SceneManager.is_transitioning:
 		toggle_pause_menu()
 	if event.is_action_pressed(&"hide_pause_menu"):
