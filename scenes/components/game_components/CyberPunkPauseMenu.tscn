@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cw4eayru44as6" path="res://scenes/components/game_components/CyberPunkPauseMenu.gd" id="1_r6cf0"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="2_thyv4"]
-[ext_resource type="Texture2D" uid="uid://jmbkbqmgv0r6" path="res://assets/textures/guis/title_screen/Title.svg" id="6_ghmn4"]
+[ext_resource type="Texture2D" uid="uid://dtolyo0hba11n" path="res://assets/textures/cyberpunk_logo/512x512-8.png" id="3_tddqc"]
 [ext_resource type="Texture2D" uid="uid://djvjr2iqv4nm4" path="res://assets/textures/cyber_punk_gui/items/Window.png" id="7_r6cf0"]
 [ext_resource type="Texture2D" uid="uid://dilaj4vmscdns" path="res://assets/textures/cyber_punk_gui/button/Close (2).png" id="7_tddqc"]
 [ext_resource type="Theme" uid="uid://ceq7mxpm7x2mm" path="res://resources/CyberPunkTheme.tres" id="8_7tier"]
@@ -52,7 +52,7 @@ theme_override_constants/separation = 12
 texture_filter = 6
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-texture = ExtResource("6_ghmn4")
+texture = ExtResource("3_tddqc")
 expand_mode = 3
 stretch_mode = 5
 

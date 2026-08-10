@@ -56,7 +56,7 @@ config/use_custom_user_dir=true
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 boot_splash/image="uid://c1mj3e3vvh1h0"
-config/icon="uid://c8auew2txgxb5"
+config/icon="uid://d0pjwaqhlywb8"
 
 [audio]
 
