@@ -60,7 +60,6 @@ func reload() -> void:
 			],
 		PreviewIcon.Icon.SWING: ["res://assets/textures/player/swing/Swing1"],
 		PreviewIcon.Icon.TRAIL: [
-			"res://assets/textures/player/trail/Trail1.png",
             "res://assets/textures/player/trail/Trail2.png"
 		],
 		PreviewIcon.Icon.DEATH_EFFECT: ["res://assets/textures/player/death_effect/DeathEffect1"],

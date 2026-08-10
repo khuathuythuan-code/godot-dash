@@ -1087,6 +1087,7 @@ func _player_death() -> void:
 	
 	if Config.is_god_mode:
 		return
+	%Trail.clear_points()
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), true)
 	dead = true
 	last_automatic_checkpoint_position = position

@@ -29,7 +29,11 @@ func _process(delta: float) -> void:
 			if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
 				add_point(point, 0)
 			if get_point_count() > length / abs(Engine.time_scale) or not add_points:
-				remove_point(get_point_count() - 1)
+				# Nếu đang tắt đuôi (not add_points), xóa 3 điểm mỗi frame để đuôi biến mất nhanh hơn
+				var remove_count = 3 if not add_points else 1
+				for i in range(remove_count):
+					if get_point_count() > 0:
+						remove_point(get_point_count() - 1)
 
 
 func _physics_process(delta: float) -> void:
@@ -41,5 +45,8 @@ func _physics_process(delta: float) -> void:
 		if points.is_empty() or point != points[0] and get_point_count() <= length and add_points:
 			add_point(point, 0)
 		if get_point_count() > length or not add_points:
-			remove_point(get_point_count() - 1)
-
+			# Nếu đang tắt đuôi (not add_points), xóa 3 điểm mỗi frame để đuôi biến mất nhanh hơn
+			var remove_count = 3 if not add_points else 1
+			for i in range(remove_count):
+				if get_point_count() > 0:
+					remove_point(get_point_count() - 1)
