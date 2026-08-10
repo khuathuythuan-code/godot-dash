@@ -10,12 +10,12 @@ extends Node2D
 var cached_level_data: Dictionary
 var cached_level_path: String
 var progress_percentage: float
+var is_restarting: bool = false
 var is_leaving: bool = false
 
 func _ready() -> void:
 	if Config.is_god_mode:
 		LifeCount.visible = true
-		print("hahaha")
 	
 	Engine.time_scale = 1.0
 	LevelManager.game_scene = self
@@ -44,6 +44,8 @@ func _process(delta: float) -> void:
 	progress_percentage = $PercentageLayer.percentage
 
 func load_level() -> void:
+	if is_leaving:
+		return
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	assert(not LevelManager.current_level_path.is_empty() or should_use_practice_snapshot)
 	if not should_use_practice_snapshot:
@@ -78,6 +80,8 @@ func add_loaded_level(level: Level) -> Level:
 
 
 func start_level() -> void:
+	if is_leaving:
+		return
 	$PercentageLayer.show() 
 	var level: Level = LevelManager.current_level
 	level.prepare_external_data()
@@ -95,6 +99,10 @@ func restart_level() -> void:
 	if is_leaving:
 		return
 	save_game()
+	if is_restarting:
+		return
+	is_restarting = true
+	$FadeScreen.fade_out()
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
@@ -106,6 +114,7 @@ func restart_level() -> void:
 		if not LevelManager.current_level.is_node_ready():
 			await LevelManager.current_level.ready
 		start_level()
+	is_restarting = false
 
 
 func free_current_level() -> void:
