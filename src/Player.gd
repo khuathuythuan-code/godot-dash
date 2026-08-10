@@ -1078,6 +1078,10 @@ func _update_spider_state_machine(jump_state: int) -> void:
 
 
 func _player_death() -> void:
+	if dead:
+		return
+	if LevelManager.game_scene:
+		LevelManager.game_scene.save_game()
 	LifeCount.lives -= 1
 	LifeCount.animation_player.play("Hurt")
 	

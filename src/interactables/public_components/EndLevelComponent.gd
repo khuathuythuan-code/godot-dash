@@ -68,3 +68,9 @@ func _on_shake_easing_finished(_player: Player) -> void:
 	LevelManager.current_level.stop_level()
 	var end_level_menu = LevelManager.game_scene.level_complete_menu
 	end_level_menu._show()
+	var new_time = end_level_menu.stat_controller.time_elapsed
+	var new_jump = end_level_menu.stat_controller.jump_count
+	var new_attempt = LevelManager.game_scene.pause_menu.attempt_count
+	var level_name = LevelManager.current_level_name
+	var new_completion: float = 100.0
+	SaveManager.update_and_save_best_record(level_name, new_completion, new_attempt,new_time,new_jump)

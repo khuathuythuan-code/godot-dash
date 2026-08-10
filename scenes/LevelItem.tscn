@@ -2,20 +2,25 @@
 
 [ext_resource type="Script" uid="uid://cc33jm4vytsy1" path="res://scenes/LevelItem.gd" id="1_hlbo8"]
 [ext_resource type="Texture2D" uid="uid://0dnamjppdi7s" path="res://assets/textures/cyber_punk_gui/items/level-Recovered.png" id="2_2k7yc"]
-[ext_resource type="Texture2D" uid="uid://b56vqgatclss1" path="res://assets/textures/cyber_punk_gui/items/Untitled-1_0001_Layer-2.png" id="2_hlbo8"]
 [ext_resource type="Texture2D" uid="uid://dwhdjylx138y2" path="res://assets/textures/cyber_punk_gui/BG.png" id="3_2k7yc"]
+[ext_resource type="Texture2D" uid="uid://c561ovlncx4ci" path="res://assets/textures/cyber_punk_gui/items/Asset 31-8.png" id="3_u3att"]
 [ext_resource type="Texture2D" uid="uid://3pt3a60mp0i8" path="res://assets/textures/cyber_punk_gui/items/Asset 26.png" id="4_nogmh"]
+[ext_resource type="Texture2D" uid="uid://b7xcqxwnrfy8f" path="res://assets/textures/cyber_punk_gui/items/Asset 32-8.png" id="5_216pq"]
 [ext_resource type="Texture2D" uid="uid://cbd4m7t45qwop" path="res://assets/textures/cyber_punk_gui/items/Seek.png" id="5_u3att"]
 [ext_resource type="Texture2D" uid="uid://d0v1fm5bw34og" path="res://assets/textures/cyber_punk_gui/items/Bar (1).png" id="6_216pq"]
 [ext_resource type="Texture2D" uid="uid://dhywh6balvw3q" path="res://assets/textures/cyber_punk_gui/items/Bar.png" id="7_xafeu"]
 [ext_resource type="Texture2D" uid="uid://be36giuo22t4u" path="res://assets/textures/cyber_punk_gui/items/Yellow (6).png" id="8_i6714"]
+[ext_resource type="Texture2D" uid="uid://che776355iwvj" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (14).png" id="10_nogmh"]
+[ext_resource type="Texture2D" uid="uid://d3osdw5p6ldg8" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (16).png" id="11_u3att"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dqkgc"]
-load_path = "res://.godot/imported/Untitled-1_0000_Layer-3.png-14a72117c2a62999b04b292adfe52afa.ctex"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3att"]
+bg_color = Color(0, 0, 0, 0.5411765)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_testn"]
 content_margin_bottom = 14.0
 texture = ExtResource("6_216pq")
+expand_margin_left = 4.0
+expand_margin_right = 4.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sqodc"]
 texture = ExtResource("7_xafeu")
@@ -25,6 +30,7 @@ texture = ExtResource("7_xafeu")
 
 [node name="LevelItem" type="Control" unique_id=1898392187]
 layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -58,11 +64,11 @@ offset_bottom = 128.33557
 scale = Vector2(1.937, 1.961)
 metadata/_edit_lock_ = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Control" unique_id=1679485822]
+[node name="Triangle" type="NinePatchRect" parent="Control" unique_id=1679485822]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_hlbo8")
+texture = ExtResource("3_u3att")
 metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="Control" unique_id=565136021]
@@ -88,20 +94,31 @@ offset_bottom = 918.44434
 texture = ExtResource("3_2k7yc")
 metadata/_edit_use_anchors_ = true
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="Control" unique_id=1126026601]
+[node name="Outline" type="NinePatchRect" parent="Control" unique_id=1126026601]
 layout_mode = 0
 offset_left = 1.0
 offset_right = 143.0
 offset_bottom = 163.0
-texture = SubResource("CompressedTexture2D_dqkgc")
+texture = ExtResource("5_216pq")
 metadata/_edit_lock_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1976145597]
+visible = false
 layout_mode = 0
 offset_left = 260.0
 offset_top = 259.0
 offset_right = 569.0
 offset_bottom = 408.0
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=518600248]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 285.0
+offset_top = 257.0
+offset_right = 554.0
+offset_bottom = 394.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u3att")
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1912223279]
@@ -167,17 +184,17 @@ theme_override_constants/separation = 116
 [node name="Label" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=539409306]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-text = "EASY"
+text = "Easy"
 
 [node name="Label2" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=585728279]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-text = "NORMAL"
+text = "Normal"
 
 [node name="Label3" type="Label" parent="Control2/VBoxContainer2/HBoxContainer" unique_id=1801115146]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
-text = "HARD"
+text = "Hard"
 
 [node name="HSlider" type="HSlider" parent="Control2/VBoxContainer2" unique_id=779605940]
 layout_mode = 2
@@ -190,6 +207,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_4cbq
 value = 50.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control2" unique_id=794912519]
+visible = false
 layout_mode = 0
 offset_left = 396.39645
 offset_top = 279.99994
@@ -217,3 +235,121 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
 theme_override_font_sizes/font_size = 32
 text = "99,999"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control2" unique_id=1494724406]
+layout_mode = 0
+offset_left = 387.38745
+offset_top = 272.381
+offset_right = 748.38745
+offset_bottom = 336.381
+scale = Vector2(1.03, 1.03)
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="Control2/HBoxContainer3" unique_id=1939078316]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 32
+text = "BEST"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control2/HBoxContainer3" unique_id=1924708954]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control2/HBoxContainer3/VBoxContainer" unique_id=504744038]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_i6714")
+expand_mode = 2
+
+[node name="Label2" type="Label" parent="Control2/HBoxContainer3/VBoxContainer" unique_id=278143314]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "0%"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control2/HBoxContainer3" unique_id=1809997785]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="Control2/HBoxContainer3/VBoxContainer4" unique_id=2122989465]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "Completion"
+horizontal_alignment = 1
+
+[node name="CompletionLabel" type="Label" parent="Control2/HBoxContainer3/VBoxContainer4" unique_id=1332176742]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "--"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control2/HBoxContainer3" unique_id=863032539]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control2/HBoxContainer3/VBoxContainer2" unique_id=415222258]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("10_nogmh")
+expand_mode = 2
+
+[node name="Label3" type="Label" parent="Control2/HBoxContainer3/VBoxContainer2" unique_id=1394789352]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "Time"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Control2/HBoxContainer3/VBoxContainer2" unique_id=932930150]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "--:--:--"
+horizontal_alignment = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control2/HBoxContainer3" unique_id=668164598]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label2" type="Label" parent="Control2/HBoxContainer3/VBoxContainer5" unique_id=1993489528]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "Attempt"
+horizontal_alignment = 1
+
+[node name="AttemptLabel" type="Label" parent="Control2/HBoxContainer3/VBoxContainer5" unique_id=445484996]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "--"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control2/HBoxContainer3" unique_id=1615167105]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control2/HBoxContainer3/VBoxContainer3" unique_id=749841340]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("11_u3att")
+expand_mode = 2
+
+[node name="Label2" type="Label" parent="Control2/HBoxContainer3/VBoxContainer3" unique_id=705190825]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9607843, 0.9137255, 0.043137256, 1)
+theme_override_font_sizes/font_size = 19
+text = "0"
+horizontal_alignment = 1

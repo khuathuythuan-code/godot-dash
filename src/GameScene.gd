@@ -10,6 +10,7 @@ extends Node2D
 var cached_level_data: Dictionary
 var cached_level_path: String
 var progress_percentage: float
+var is_leaving: bool = false
 
 func _ready() -> void:
 	if Config.is_god_mode:
@@ -91,6 +92,9 @@ func start_level() -> void:
 
 
 func restart_level() -> void:
+	if is_leaving:
+		return
+	save_game()
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
@@ -121,6 +125,8 @@ func reset() -> void:
 
 
 func _leave_level() -> void:
+	is_leaving = true
+	save_game()
 	LifeCount.lives = 100
 	LifeCount.visible = false
 	for level in $Level.get_children():
@@ -134,3 +140,14 @@ static func get_camera_rect(camera: Camera2D, viewport: Viewport) -> Rect2:
 	var rect_pos := camera.get_screen_center_position()
 	var rect_size := (viewport.get_visible_rect().size / camera.zoom)
 	return Rect2(rect_pos - rect_size * 0.5, rect_size)
+	
+func save_game():
+	var level_name: String = LevelManager.current_level_name
+	var level_completion: float = progress_percentage
+	var level_attempt = pause_menu.attempt_count
+	var end_level_menu = LevelManager.game_scene.level_complete_menu
+	var new_time = end_level_menu.stat_controller.time_elapsed
+	var new_jump = end_level_menu.stat_controller.jump_count
+	SaveManager.update_and_save_best_record(level_name, level_completion, level_attempt, new_time, new_jump)
+	
+	

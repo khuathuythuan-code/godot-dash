@@ -80,6 +80,7 @@ DebugMenu="*uid://cggqb75a8w8r"
 DiscordRPCManager="*res://src/autoloads/DiscordRPCManager.gd"
 SignalLens="*uid://85rkx60vm7a7"
 LifeCount="*uid://bloneuraopk6j"
+SaveManager="*uid://crn47d7w3xxl2"
 
 [debug]
 
