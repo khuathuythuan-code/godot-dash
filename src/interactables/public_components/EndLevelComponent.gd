@@ -39,6 +39,7 @@ func start(player: Player) -> void:
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	initial_player_positions.set(player, player.global_position)
 	LevelManager.current_level.stop_timer()
+	LevelManager.player_camera.freefly = true
 
 
 # We use the static trigger's easing instead of requiring one,
