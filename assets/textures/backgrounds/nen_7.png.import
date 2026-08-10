@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d28fe80iokedt"
-path="res://.godot/imported/back godot dash 11.png-1f935e546757c97f483c64c43794b5ae.ctex"
+uid="uid://c6xmqalb8e308"
+path="res://.godot/imported/nen_7.png-a27b810cda6faea7f24855b7fdbb9c1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/backgrounds/back godot dash 11.png"
-dest_files=["res://.godot/imported/back godot dash 11.png-1f935e546757c97f483c64c43794b5ae.ctex"]
+source_file="res://assets/textures/backgrounds/nen_7.png"
+dest_files=["res://.godot/imported/nen_7.png-a27b810cda6faea7f24855b7fdbb9c1c.ctex"]
 
 [params]
 
