@@ -38,7 +38,7 @@ enum ParticlePreprocessing {
 }
 
 #Debug
-@export var is_god_mode = true
+@export var is_god_mode = false
 
 
 # Graphics
