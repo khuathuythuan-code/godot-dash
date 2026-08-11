@@ -30,6 +30,8 @@ const START_SPEED: Array[float] = [
 @export var rating: int = -1
 @export var creation_date: int = int(Time.get_unix_time_from_system())
 @export var flashing_lights: bool = false
+@export var difficulty_index: int = 0
+@export var thumbnail: String = ""
 
 @export_file var song_path: String:
 	set(value):
@@ -144,7 +146,6 @@ func _ready() -> void:
 	stopwatch.name = "Stopwatch"
 	stopwatch.paused = true
 	add_child(stopwatch, false, INTERNAL_MODE_BACK)
-	AssetManager.load_song_threaded_request(song_path)
 	song_player = AudioStreamPlayer.new()
 	song_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	song_player.set_bus(&"Music")
@@ -321,6 +322,8 @@ func to_data(reason: SerializeReason = SerializeReason.SAVE) -> Dictionary:
 		"duration": duration,
 		"layers": [],
 		"active_layer_idx": active_layer_idx,
+		"difficulty_index": difficulty_index,
+		"thumbnail": thumbnail,
 		"player_data": {
 			"groups": player.get_groups(),
 			"hsv": player.get_node(^"HSVWatcher").to_data(),
@@ -428,6 +431,8 @@ static func from_data(data: Dictionary) -> Level:
 	level.color_channels.assign(data.color_channels.map(ColorChannelData.from_data))
 	level.ready.connect(level.setup_color_channel_watchers, CONNECT_ONE_SHOT)
 	level.duration = data.duration
+	level.difficulty_index = data.get("difficulty_index", 0)
+	level.thumbnail = data.get("thumbnail", "")
 
 	LevelManager.player.global_position = level.start_position
 	for group in data.player_data.groups:
