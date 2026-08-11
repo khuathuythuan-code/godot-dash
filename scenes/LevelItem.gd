@@ -9,15 +9,36 @@ class_name LevelItem
 @onready var completion_label: Label = $Control2/HBoxContainer3/VBoxContainer4/CompletionLabel
 @onready var triangle: NinePatchRect = $Control/Triangle
 @onready var outline: NinePatchRect = $Control/Outline
+@onready var thumbnail_rect: TextureRect = $Control/Control2/Polygon2D/Thumbnail
+
+#func set_level_name(level_name: String) -> void:
+	## Nếu chưa vào Tree thì đợi, hoặc kiểm tra label trước
+	#if not is_inside_tree():
+		#await ready
+	#title_label.text = level_name
+	#set_best_record()
 
 
 func set_level_name(level_name: String) -> void:
-	# Nếu chưa vào Tree thì đợi, hoặc kiểm tra label trước
+	# Nếu chưa vào Tree thì đợi
 	if not is_inside_tree():
 		await ready
 	title_label.text = level_name
 	set_best_record()
-
+	
+	# Đọc ảnh thumbnail từ file JSON tương ứng của màn chơi
+	var file_path = Constants.LEVEL_DIR + level_name + ".json"
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		if file:
+			var json_str = file.get_as_text()
+			file.close()
+			var level_data = JSON.parse_string(json_str)
+			if level_data is Dictionary and level_data.has("thumbnail"):
+				var thumb_path = level_data.get("thumbnail", "")
+				set_thumbnail(thumb_path)
+	else:
+		set_thumbnail("")
 
 func set_best_record():
 	var level_name = title_label.text.strip_edges()
@@ -28,6 +49,7 @@ func set_best_record():
 	var best_completion: float = record.get("completion", 0.0)
 	print(record)
 	if best_attempt > 0:
+		@warning_ignore("integer_division")
 		var minutes: int = int(best_time) / 60
 		var seconds: int = int(best_time) % 60
 		# Lấy phần thập phân rồi nhân với 100 để ra 2 chữ số "tích tắc" (centi-seconds)
@@ -53,3 +75,11 @@ func display_completion_outline(completion: float):
 		triangle.modulate = Color("ffffff")
 		outline.modulate = Color("ffffff")
 	
+
+func set_thumbnail(texture_path: String) -> void:
+	if texture_path == "" or texture_path == "res://" or DirAccess.dir_exists_absolute(texture_path) or not FileAccess.file_exists(texture_path):
+		thumbnail_rect.texture = preload("res://assets/textures/thumbnails/level_default.jpg")
+		return
+	var texture = load(texture_path)
+	if texture is Texture2D:
+		thumbnail_rect.texture = texture

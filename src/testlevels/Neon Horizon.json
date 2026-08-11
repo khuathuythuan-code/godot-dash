@@ -1,6 +1,7 @@
 {
 	"active_layer_idx": 0,
 	"difficulty_index": 0,
+	"thumbnail": "res://assets/textures/thumbnails/level_0.png",
 	"color_channels": [],
 	"creation_date": 1776827167,
 	"creator": "Player",

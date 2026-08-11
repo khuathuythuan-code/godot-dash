@@ -1,13 +1,13 @@
 {
 	"active_layer_idx": 0,
 	"color_channels": [],
-	"difficulty_index": 1,
 	"creation_date": 1776827167,
 	"creator": "Player",
 	"default_background_color": 915341311,
 	"default_ground_color": 455787775,
 	"default_line_color": 4294967295,
 	"description": "",
+	"difficulty_index": 1,
 	"duration": 91.095680666669,
 	"enter_effect": 1,
 	"flashing_lights": false,
@@ -78336,5 +78336,6 @@
 	],
 	"start_reverse": false,
 	"start_speed": 1.0,
-	"start_speed_preset": 2
+	"start_speed_preset": 2,
+	"thumbnail": "res://assets/textures/thumbnails/level_1.jpg"
 }
