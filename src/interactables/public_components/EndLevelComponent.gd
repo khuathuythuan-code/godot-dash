@@ -32,6 +32,7 @@ func start(player: Player) -> void:
 	if parent.query(TargetObjectComponent).target.is_empty():
 		Toasts.error("In %s: target object is unset" % parent.name)
 		return
+	player.normal_trail.clear_points()
 	var static_target: TargetObjectComponent = static_trigger.query(TargetObjectComponent)
 	static_target.target = parent.query(TargetObjectComponent).target
 	static_trigger.interacted.emit(player)
