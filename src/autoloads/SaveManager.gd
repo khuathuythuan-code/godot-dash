@@ -20,10 +20,10 @@ func save_game_data() -> void:
 		config.set_value(lvl, "completion", data.get("completion", 0.0))
 	
 	var error = config.save(SAVE_FILE_PATH)
-	if error == OK:
-		print("Đã lưu dữ liệu thành công!")
-	else:
-		print("Lỗi lưu file: ", error)
+	#if error == OK:
+		##print("Đã lưu dữ liệu thành công!")
+	#else:
+		##print("Lỗi lưu file: ", error)
 
 # Hàm tải dữ liệu
 func load_game_data() -> void:
@@ -44,9 +44,9 @@ func load_game_data() -> void:
 				"jump": jump,
 				"completion": completion
 			}
-		print("Đã tải dữ liệu thành công! ", level_records)
-	else:
-		print("Chưa có file lưu, sử dụng dữ liệu mặc định.")
+		#print("Đã tải dữ liệu thành công! ", level_records)
+	#else:
+		#print("Chưa có file lưu, sử dụng dữ liệu mặc định.")
 
 func get_best_record(level_name: String) -> Dictionary:
 	if level_records.has(level_name):

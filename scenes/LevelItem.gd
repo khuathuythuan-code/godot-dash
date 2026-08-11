@@ -47,7 +47,6 @@ func set_best_record():
 	var best_attempt = record.get("attempt", 0)
 	var best_jump = record.get("jump", 0)
 	var best_completion: float = record.get("completion", 0.0)
-	print(record)
 	if best_attempt > 0:
 		@warning_ignore("integer_division")
 		var minutes: int = int(best_time) / 60
