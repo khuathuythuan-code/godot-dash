@@ -4,7 +4,7 @@ extends Camera2D
 #const DEFAULT_ZOOM: Vector2 = Vector2(0.65, 0.65) #ảnh hưởng đến khoảng cách giữa ground_up và ground_down
 const DEFAULT_ZOOM: Vector2 = Vector2(0.6, 0.6)
 const DEFAULT_OFFSET: Vector2 = Vector2(400.0, 100.0)
-const MAX_DISTANCE := Vector2(400.0, 300.0)
+const MAX_DISTANCE := Vector2(400.0, 100.0)
 
 @export var position_smoothing: float = 0.1
 @export var offset_smoothing: float = 0.125

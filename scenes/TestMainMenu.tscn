@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://cea1yr5xp7xmd"]
 
+[ext_resource type="PackedScene" uid="uid://bl48psvuka73y" path="res://scenes/components/game_components/Player.tscn" id="1_ior5h"]
+[ext_resource type="Script" uid="uid://m6mit8vm2ggv" path="res://src/MenuIcon.gd" id="2_x8mo2"]
 [ext_resource type="Script" uid="uid://dn0mt7lsuav33" path="res://src/MenuIconKiller.gd" id="3_qovpe"]
-[ext_resource type="Texture2D" uid="uid://djstmwdco77pp" path="res://assets/textures/backgrounds/background1-3.png" id="4_pw3ed"]
+[ext_resource type="Texture2D" uid="uid://c6xmqalb8e308" path="res://assets/textures/backgrounds/nen_7.png" id="4_ior5h"]
 [ext_resource type="Script" uid="uid://dwo41qkfxpajj" path="res://src/GroundObject.gd" id="5_q5gxh"]
 [ext_resource type="Shader" uid="uid://dghfnabjmw7js" path="res://resources/shaders/Ground.gdshader" id="6_38af2"]
-[ext_resource type="Texture2D" uid="uid://cf2aoop5e5i0k" path="res://assets/textures/grounds/Ground1.svg" id="7_kv8dc"]
+[ext_resource type="Texture2D" uid="uid://e8s64asmah1r" path="res://assets/textures/grounds/foreground.png" id="7_x8mo2"]
 [ext_resource type="Material" uid="uid://dmfwkx1hhpd5x" path="res://resources/SimpleBlurMaterial.tres" id="8_a36d0"]
 [ext_resource type="Texture2D" uid="uid://dtolyo0hba11n" path="res://assets/textures/cyberpunk_logo/512x512-8.png" id="9_m4n26"]
 [ext_resource type="Script" uid="uid://cc6dieqa88a8y" path="res://src/UpdateChecker.gd" id="9_nrw5p"]
@@ -53,14 +55,14 @@
 [ext_resource type="Texture2D" uid="uid://dilaj4vmscdns" path="res://assets/textures/cyber_punk_gui/button/Close (2).png" id="38_4tqpa"]
 [ext_resource type="Texture2D" uid="uid://dqyjr7ih7nij4" path="res://assets/textures/cyber_punk_gui/button/Close (1).png" id="39_02d04"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fto0a"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r2cpq"]
 size = Vector2(2, 2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dchwh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fgrv"]
 shader = ExtResource("6_38af2")
 shader_parameter/ground_color = Color(1, 1, 1, 1)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jk6fi"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_60lnx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5gxh"]
 texture = ExtResource("12_pw3ed")
@@ -269,7 +271,116 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="Node2D" type="Node2D" parent="." unique_id=1318103768]
+z_index = -999
+
+[node name="MenuIcon" parent="Node2D" unique_id=509732007 instance=ExtResource("1_ior5h")]
+position = Vector2(-128, 860)
+script = ExtResource("2_x8mo2")
+
+[node name="MenuIcon2" parent="Node2D" unique_id=937214688 instance=ExtResource("1_ior5h")]
+position = Vector2(-512, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 1
+
+[node name="MenuIcon3" parent="Node2D" unique_id=1755648880 instance=ExtResource("1_ior5h")]
+position = Vector2(-900, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 2
+
+[node name="MenuIcon4" parent="Node2D" unique_id=1773511269 instance=ExtResource("1_ior5h")]
+position = Vector2(-800, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 3
+
+[node name="MenuIcon5" parent="Node2D" unique_id=969834173 instance=ExtResource("1_ior5h")]
+position = Vector2(-1000, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 4
+
+[node name="MenuIcon6" parent="Node2D" unique_id=732398416 instance=ExtResource("1_ior5h")]
+position = Vector2(-1200, 860)
+up_direction = Vector2(-0.9999944, -0.0033333148)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 5
+
+[node name="MenuIcon7" parent="Node2D" unique_id=134402386 instance=ExtResource("1_ior5h")]
+position = Vector2(-605, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 6
+
+[node name="MenuIcon8" parent="Node2D" unique_id=992252924 instance=ExtResource("1_ior5h")]
+position = Vector2(-1600, 860)
+script = ExtResource("2_x8mo2")
+displayed_gamemode = 7
+
+[node name="Kill Box" type="Area2D" parent="Node2D" unique_id=1997954852 node_paths=PackedStringArray("hitbox")]
+physics_interpolation_mode = 1
+collision_layer = 4
+script = ExtResource("3_qovpe")
+hitbox = NodePath("Hitbox")
+metadata/_edit_lock_ = true
+
+[node name="Hitbox" type="CollisionShape2D" parent="Node2D/Kill Box" unique_id=616241734]
+shape = SubResource("RectangleShape2D_r2cpq")
+disabled = true
+debug_color = Color(0.284375, 0, 0.7, 0.42)
+
+[node name="BackgroundParallax" type="Parallax2D" parent="Node2D" unique_id=705000675]
+z_index = -2
+repeat_size = Vector2(12800, 0)
+autoscroll = Vector2(-300, 0)
+repeat_times = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Background" type="Sprite2D" parent="Node2D/BackgroundParallax" unique_id=298902606]
+modulate = Color(0.213669, 0.439779, 1, 1)
+texture_repeat = 2
+position = Vector2(973, 3.05176e-05)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_ior5h")
+region_enabled = true
+region_rect = Rect2(0, 0, 10240, 2048)
+
+[node name="GroundDownParallax" type="Parallax2D" parent="Node2D" unique_id=60128942]
+repeat_size = Vector2(24000, 0)
+autoscroll = Vector2(-1600, 0)
+repeat_times = 3
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="GroundDownOrigin" type="Marker2D" parent="Node2D/GroundDownParallax" unique_id=933177412]
+position = Vector2(640, 925)
+gizmo_extents = 64.0
+script = ExtResource("5_q5gxh")
+default_y = 925.0
+
+[node name="Ground" type="Sprite2D" parent="Node2D/GroundDownParallax/GroundDownOrigin" unique_id=442320411]
+self_modulate = Color(0.105882, 0.294118, 0.768627, 1)
+z_index = 50
+texture_repeat = 2
+material = SubResource("ShaderMaterial_6fgrv")
+position = Vector2(300, 300)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("7_x8mo2")
+region_enabled = true
+region_rect = Rect2(0, 0, 9600, 240)
+metadata/_edit_group_ = true
+
+[node name="GroundColliderDown" type="StaticBody2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground" unique_id=2117552057]
+z_index = 50
+position = Vector2(-120, -120)
+collision_layer = 32
+metadata/_edit_group_ = true
+
+[node name="GroundHitbox" type="CollisionShape2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground/GroundColliderDown" unique_id=1048492190]
+position = Vector2(0, 1.5258789e-05)
+shape = SubResource("WorldBoundaryShape2D_60lnx")
+debug_color = Color(0, 0.701961, 0.607843, 0.419608)
+
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1728565977]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,73 +393,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("36_qovpe")
 
-[node name="Node2D" type="Node2D" parent="." unique_id=240017271]
-visible = false
-
-[node name="Kill Box" type="Area2D" parent="Node2D" unique_id=313833091 node_paths=PackedStringArray("hitbox")]
-physics_interpolation_mode = 1
-collision_layer = 4
-script = ExtResource("3_qovpe")
-hitbox = NodePath("Hitbox")
-metadata/_edit_lock_ = true
-
-[node name="Hitbox" type="CollisionShape2D" parent="Node2D/Kill Box" unique_id=1651038472]
-shape = SubResource("RectangleShape2D_fto0a")
-disabled = true
-debug_color = Color(0.284375, 0, 0.7, 0.42)
-
-[node name="BackgroundParallax" type="Parallax2D" parent="Node2D" unique_id=1416286345]
-z_index = -2
-repeat_size = Vector2(12800, 0)
-autoscroll = Vector2(-300, 0)
-repeat_times = 2
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="Background" type="Sprite2D" parent="Node2D/BackgroundParallax" unique_id=1895486172]
-modulate = Color(0.213669, 0.439779, 1, 1)
-texture_repeat = 2
-position = Vector2(973, 3.05176e-05)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("4_pw3ed")
-region_enabled = true
-region_rect = Rect2(0, 0, 10240, 2048)
-
-[node name="GroundDownParallax" type="Parallax2D" parent="Node2D" unique_id=1544494845]
-repeat_size = Vector2(24000, 0)
-autoscroll = Vector2(-1600, 0)
-repeat_times = 3
-metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
-
-[node name="GroundDownOrigin" type="Marker2D" parent="Node2D/GroundDownParallax" unique_id=1969847813]
-position = Vector2(640, 925)
-gizmo_extents = 64.0
-script = ExtResource("5_q5gxh")
-default_y = 925.0
-
-[node name="Ground" type="Sprite2D" parent="Node2D/GroundDownParallax/GroundDownOrigin" unique_id=653056734]
-self_modulate = Color(0.105882, 0.294118, 0.768627, 1)
-z_index = 50
-texture_repeat = 2
-material = SubResource("ShaderMaterial_dchwh")
-position = Vector2(300, 300)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("7_kv8dc")
-region_enabled = true
-region_rect = Rect2(0, 0, 9600, 240)
-metadata/_edit_group_ = true
-
-[node name="GroundColliderDown" type="StaticBody2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground" unique_id=540793833]
-z_index = 50
-position = Vector2(-120, -120)
-collision_layer = 32
-metadata/_edit_group_ = true
-
-[node name="GroundHitbox" type="CollisionShape2D" parent="Node2D/GroundDownParallax/GroundDownOrigin/Ground/GroundColliderDown" unique_id=1658936076]
-position = Vector2(0, 1.5258789e-05)
-shape = SubResource("WorldBoundaryShape2D_jk6fi")
-debug_color = Color(0, 0.701961, 0.607843, 0.419608)
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=1496874508]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.124000005
+anchor_top = -0.125
+anchor_right = 1.1240001
+anchor_bottom = 1.1240001
+offset_left = -263.91998
+offset_top = -184.0
+offset_right = 274.91992
+offset_bottom = 199.07996
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_qovpe")
 
 [node name="TitleScreenLayer" type="CanvasLayer" parent="." unique_id=1427652507]
 
@@ -1385,7 +1443,7 @@ script = ExtResource("31_02d04")
 bus = &"Music"
 script = ExtResource("32_gvl4o")
 
-[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer", "title_screen_background", "title_screen_ground", "menu_icon_killer")]
+[node name="Subscene Manager" type="Node" parent="." unique_id=748274109 node_paths=PackedStringArray("camera", "active_pcam", "history", "fade_screen", "menu_loop", "splash", "level_selector", "community_menu", "icon_garage", "settings_panel", "settings_menu", "quit_game_camera", "title_screen_camera", "from_editor_camera", "title_screen_layer")]
 script = ExtResource("33_wpvfx")
 camera = NodePath("../Camera")
 active_pcam = NodePath("../CameraCenterParent/TitleScreenCamera")
@@ -1402,9 +1460,6 @@ quit_game_camera = NodePath("../CameraCenterParent/QuitGameCamera")
 title_screen_camera = NodePath("../CameraCenterParent/TitleScreenCamera")
 from_editor_camera = NodePath("../CameraCenterParent/FromEditorCamera")
 title_screen_layer = NodePath("../TitleScreenLayer")
-title_screen_background = NodePath("../Node2D/BackgroundParallax")
-title_screen_ground = NodePath("../Node2D/GroundDownParallax")
-menu_icon_killer = NodePath("../Node2D/Kill Box")
 
 [node name="PhantomCamera2DHistory" parent="Subscene Manager" unique_id=1584635840 instance=ExtResource("34_36m4y")]
 

@@ -12,6 +12,9 @@ func _ready() -> void:
 		return
 	super()
 	%DebugOverlays.hide()
+	if displayed_gamemode == Gamemode.UFO:
+		await get_tree().create_timer(0.5).timeout
+		_player_death()
 
 
 func _process(_delta: float) -> void:
@@ -86,7 +89,7 @@ func _player_death() -> void:
 	$DeathParticles.restart()
 	$DashParticles.emitting = false
 	%GroundParticles.emitting = false
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	#SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
 	await get_tree().create_timer(0.5).timeout
 	speed_multiplier = 1.0
 	global_position.x = 10000

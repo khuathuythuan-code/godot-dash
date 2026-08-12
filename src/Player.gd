@@ -144,6 +144,7 @@ var _snap_sprite_rotation: bool = false
 var _snap_sprite_rotation_frames: int = 0
 
 @onready var last_automatic_checkpoint_position: Vector2 = position
+@onready var normal_trail: Trail2D = %Trail
 
 
 func _ready() -> void:
@@ -193,20 +194,56 @@ func _ready() -> void:
 	_set_particles_visibility.call_deferred()
 	if not Editor.in_editor:
 		_reset_replay.call_deferred()
-	# Preload tất cả icon gamemode
-	for icon in $Icon.get_children():
-		icon.show()
-	$DeathEffect.play("default")
-	await RenderingServer.frame_post_draw
-	await RenderingServer.frame_post_draw  # đợi 1 frame để GPU render
-	# Ẩn lại, chỉ giữ icon đúng gamemode
-	displayed_gamemode = displayed_gamemode  # trigger setter để show đúng icon
-	#displayed_gamemode mặc đinh là level.start_displayed_gamemode = data.start_displayed_gamemode trong level.gd
-	#mỗi lần gán sẽ kích hoạt setter để show/hide icon đúng
-	#process_frame là signal của CPU — emit khi CPU xử lý xong logic frame, nhưng không đảm bảo GPU đã render xong.
-	#RenderingServer.frame_post_draw là signal emit sau khi GPU thực sự render xong frame 
-	#đảm bảo texture đã được upload và shader đã compile trước khi tiếp tục
-	#đây là lí do dùng await RenderingServer.frame_post_draw thay vì process_frame
+	## Preload tất cả icon gamemode
+	#for icon in $Icon.get_children():
+		#icon.show()
+	#$DeathEffect.play("default")
+	#
+	## --- PRELOAD TEXTURE / WARMUP SHADER CHO CÁC TRAIL ---
+	## Đảm bảo các trail hiển thị để GPU có thể render nháp
+	#%Trail.visible = true
+	#%Trail.modulate.a = 1.0
+	#%Trail.process_mode = PROCESS_MODE_DISABLED # tạm tắt xử lý để không bị xoá/thêm điểm tự động trong process
+	#%Trail.add_point(global_position)
+	#%Trail.add_point(global_position + Vector2(1, 1))
+	#
+	#%WaveTrail.visible = true
+	#%WaveTrail.modulate.a = 1.0
+	#%WaveTrail.process_mode = PROCESS_MODE_DISABLED
+	#%WaveTrail.add_point(global_position)
+	#%WaveTrail.add_point(global_position + Vector2(1, 1))
+	#
+	#%WaveTrailInner.visible = true
+	#%WaveTrailInner.modulate.a = 1.0
+	#%WaveTrailInner.process_mode = PROCESS_MODE_DISABLED
+	#%WaveTrailInner.add_point(global_position)
+	#%WaveTrailInner.add_point(global_position + Vector2(1, 1))
+	## -----------------------------------------------------
+#
+	#await RenderingServer.frame_post_draw
+	#await RenderingServer.frame_post_draw  # đợi 2 frame để GPU render xong toàn bộ
+	#
+	## Ẩn lại các icon không đúng gamemode
+	#displayed_gamemode = displayed_gamemode
+	
+	## --- DỌN DẸP SAU KHI PRELOAD XONG ---
+	## Xoá các điểm dummy của các trail ngay sau khi đã compile shader
+	#%Trail.clear_points()
+	#%WaveTrail.clear_points()
+	#%WaveTrailInner.clear_points()
+	#
+	## Khôi phục chế độ xử lý bình thường cho các trail
+	#%Trail.process_mode = PROCESS_MODE_INHERIT
+	#%WaveTrail.process_mode = PROCESS_MODE_INHERIT
+	#%WaveTrailInner.process_mode = PROCESS_MODE_INHERIT
+	#
+	## Thiết lập trạng thái hoạt động ban đầu của Trail dựa trên gamemode hiện tại
+	#if not (displayed_gamemode in [Gamemode.SHIP, Gamemode.SWING, Gamemode.UFO]):
+		#%Trail.add_points = false
+	#else:
+		#%Trail.add_points = true
+	## ------------------------------------
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("disable_ground_collision") and Config.is_god_mode:
