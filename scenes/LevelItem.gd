@@ -76,7 +76,7 @@ func display_completion_outline(completion: float):
 	
 
 func set_thumbnail(texture_path: String) -> void:
-	if texture_path == "" or texture_path == "res://" or DirAccess.dir_exists_absolute(texture_path) or not FileAccess.file_exists(texture_path):
+	if texture_path == "" or texture_path == "res://" or DirAccess.dir_exists_absolute(texture_path) or not ResourceLoader.exists(texture_path):
 		thumbnail_rect.texture = preload("res://assets/textures/thumbnails/level_default.jpg")
 		return
 	var texture = load(texture_path)
