@@ -20,7 +20,7 @@ func _on_button_pressed() -> void:
 	if selected_level.is_empty() or not FileAccess.file_exists(selected_level):
 		return
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay_2.mp3")
 	var fade_screen: FadeScreen = fade_screen_layer.get_node(^"FadeScreen")
 	fade_screen.fade_in()
 	await fade_screen.fade_finished

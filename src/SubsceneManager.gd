@@ -185,7 +185,7 @@ func _on_editor_pressed() -> void:
 	if fade_screen.is_fading:
 		return
 	$"../MenuLoop".playing = false
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay_2.mp3")
 	history.change_phantomcamera(active_pcam, quit_game_camera)
 	zoom_in_title_screen_layer()
 	fade_screen.fade_in()

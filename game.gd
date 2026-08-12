@@ -109,7 +109,7 @@ func _on_play_pressed() -> void:
 
 func _play_level(level_name: String) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay.ogg")
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay_2.mp3")
 	fade_screen.fade_in()
 	
 	subscene_manager.history.change_phantomcamera(subscene_manager.active_pcam, subscene_manager.quit_game_camera)

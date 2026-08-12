@@ -1134,7 +1134,7 @@ func _player_death() -> void:
 	$DeathParticles.restart()
 	$DashParticles.emitting = false
 	%GroundParticles.emitting = false
-	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound.mp3")
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/DeathSound_2.mp3")
 	pass
 
 

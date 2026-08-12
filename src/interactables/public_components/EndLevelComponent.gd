@@ -76,3 +76,4 @@ func _on_shake_easing_finished(_player: Player) -> void:
 	var level_name = LevelManager.current_level_name
 	var new_completion: float = 100.0
 	SaveManager.update_and_save_best_record(level_name, new_completion, new_attempt,new_time,new_jump)
+	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelComplete_2.mp3")
