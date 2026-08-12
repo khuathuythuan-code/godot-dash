@@ -100,14 +100,22 @@ func load_font(path: String) -> FontFile:
 	if path.is_empty():
 		loaded_font = ThemeDB.get_project_theme().default_font.duplicate()
 	else:
-		loaded_font = FontFile.new()
-		var error: Error = loaded_font.load_dynamic_font(path)
-		if error != OK:
-			push_error("Error while loading font at %s: %s" % [path, error])
-			return null
-	loaded_font.multichannel_signed_distance_field = true
-	loaded_font.msdf_pixel_range = 64
-	loaded_font.msdf_size = 128
+		if path.begins_with("res://") or path.begins_with("uid://"):
+			var res = load(path)
+			if res is FontFile:
+				loaded_font = res
+			elif res is Font:
+				loaded_font = res
+		else:
+			loaded_font = FontFile.new()
+			var error: Error = loaded_font.load_dynamic_font(path)
+			if error != OK:
+				push_error("Error while loading font at %s: %s" % [path, error])
+				return null
+	if loaded_font:
+		loaded_font.multichannel_signed_distance_field = true
+		loaded_font.msdf_pixel_range = 64
+		loaded_font.msdf_size = 128
 	loaded_fonts[path] = loaded_font
 	return loaded_font
 
