@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d3osdw5p6ldg8" path="res://assets/textures/cyber_punk_gui/elements/icons/Yellow (16).png" id="11_u3att"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3att"]
-bg_color = Color(0, 0, 0, 0.5411765)
+bg_color = Color(0, 0, 0, 0.8745098)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_testn"]
 content_margin_bottom = 14.0
