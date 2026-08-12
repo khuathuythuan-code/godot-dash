@@ -2,7 +2,7 @@
 # Godot 4+ Specific Ignores
 # ==========================================
 .godot/
-#export_presets.cfg
+export_presets.cfg
 
 # Chặn các file import riêng lẻ nếu bạn không muốn đưa lên
 scenes/levels/imported/
