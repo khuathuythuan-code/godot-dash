@@ -115,7 +115,6 @@ func toggle_pause_menu() -> void:
 		show_tween()
 	else:
 		unpaused.emit()
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 		#settings_were_open = $Settings.visible
 		#replays_were_open = $Replays.visible
 		#if $Settings.visible:
@@ -160,7 +159,6 @@ func _on_restart_pressed() -> void:
 	#attempt_count +=1
 	get_tree().paused = false
 	unpaused.emit()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Editor.in_editor else Input.MOUSE_MODE_CONFINED_HIDDEN
 	hide()
 	LevelManager.game_scene.restart_level()
 

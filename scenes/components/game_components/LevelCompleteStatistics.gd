@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 		time_elapsed += delta
 		
 		# Tính toán Phút, Giây và Tích tắc
+		@warning_ignore("integer_division")
 		var minutes: int = int(time_elapsed) / 60
 		var seconds: int = int(time_elapsed) % 60
 		# Lấy phần thập phân rồi nhân với 100 để ra 2 chữ số "tích tắc" (centi-seconds)
