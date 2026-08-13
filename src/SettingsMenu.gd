@@ -7,7 +7,8 @@ signal closed
 func _ready() -> void:
 	Engine.max_fps = int(Config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.vsync)
-	AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
+	if ResourceLoader.exists("user://default_bus_layout.tres"):
+		AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	RenderingServer.global_shader_parameter_set("menu_blur", Config.menu_blur)
 	RenderingServer.global_shader_parameter_set("blur_strength", Config.blur_strength)
 	RenderingServer.global_shader_parameter_set("ui_color", Config.ui_color)
