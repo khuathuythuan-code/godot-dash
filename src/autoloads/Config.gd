@@ -153,6 +153,16 @@ var current_level_index = 0
 var last_level_index = 0
 
 func _init():
+	var required_dirs = [
+		"user://created_levels/levels",
+		"user://created_levels/songs",
+		"user://created_levels/fonts",
+		"user://replays",
+		"user://textures/player"
+	]
+	for dir_path in required_dirs:
+		if not DirAccess.dir_exists_absolute(dir_path):
+			DirAccess.make_dir_recursive_absolute(dir_path)
 	config_file.load("user://config.cfg")
 
 	# Graphics
