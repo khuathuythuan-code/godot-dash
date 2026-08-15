@@ -82,8 +82,8 @@ enum ParticlePreprocessing {
 @export_subgroup("Volume")
 @export_range(0, 100, 5) var master_audio_level: int = 100
 @export_range(0, 100, 5) var music_audio_level: int = 100
-@export_range(0, 100, 5) var game_sfx_audio_level: int = 100
-@export_range(0, 100, 5) var in_level_sfx_audio_level: int = 100
+@export_range(0, 100, 5) var game_sfx_audio_level: int = 70
+@export_range(0, 100, 5) var in_level_sfx_audio_level: int = 70
 @export var mute_game_on_unfocus: bool = true
 
 @export_subgroup("Music")
@@ -186,7 +186,7 @@ func _init():
 	in_level_sfx_audio_level = config_file.get_value("Audio", "in_level_sfx_audio_level", in_level_sfx_audio_level)
 	mute_game_on_unfocus = config_file.get_value("Audio", "mute_game_on_unfocus", mute_game_on_unfocus)
 	menu_loop = config_file.get_value("Audio", "menu_loop", menu_loop)
-
+	set_game_sfx_and_in_level_sfx_to_70()
 	# Keybinds
 	input_map = config_file.get_value("Keybinds", "input_map", input_map)
 
@@ -306,3 +306,15 @@ func save() -> void:
 	config_file.set_value("Icons", "icons", icons)
 
 	config_file.save("user://config.cfg")
+	
+func set_game_sfx_and_in_level_sfx_to_70():
+	game_sfx_audio_level = 70
+	in_level_sfx_audio_level = 70
+	
+	config_file.set_value("Audio", "game_sfx_audio_level", 70)
+	config_file.set_value("Audio", "in_level_sfx_audio_level", 70)
+	config_file.save("user://config.cfg") # Chỉ lưu 1 lần ở cuối để tối ưu ổ cứng
+	
+	# Áp dụng trực tiếp mức 70% (0.7) vào các kênh âm thanh đang phát
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Game SFX"), 0.7)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"In Level SFX"), 0.7)
