@@ -217,6 +217,24 @@ func _init():
 	icons = config_file.get_value("Icons", "icons", icons)
 
 
+func _ready() -> void:
+	# Ensure the master bus and other audio buses are not muted initially
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Master"), false)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Music"), false)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"Game SFX"), false)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(&"In Level SFX"), false)
+
+	# Apply volumes from config
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Master"), master_audio_level / 100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Music"), music_audio_level / 100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Game SFX"), game_sfx_audio_level / 100.0)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"In Level SFX"), in_level_sfx_audio_level / 100.0)
+
+	# Clean up any legacy layout file to prevent future issues
+	if FileAccess.file_exists("user://default_bus_layout.tres"):
+		DirAccess.remove_absolute("user://default_bus_layout.tres")
+
+
 func _notification(what):
 	if mute_game_on_unfocus:
 		if what == NOTIFICATION_APPLICATION_FOCUS_IN:

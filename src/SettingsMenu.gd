@@ -7,8 +7,6 @@ signal closed
 func _ready() -> void:
 	Engine.max_fps = int(Config.max_fps)
 	DisplayServer.window_set_vsync_mode(Config.vsync)
-	if ResourceLoader.exists("user://default_bus_layout.tres"):
-		AudioServer.set_bus_layout(load("user://default_bus_layout.tres"))
 	RenderingServer.global_shader_parameter_set("menu_blur", Config.menu_blur)
 	RenderingServer.global_shader_parameter_set("blur_strength", Config.blur_strength)
 	RenderingServer.global_shader_parameter_set("ui_color", Config.ui_color)
@@ -71,27 +69,19 @@ func _on_texture_filtering_value_changed(texture_filtering_mode: Config.TextureF
 
 
 func _on_game_volume_value_changed(value: float) -> void:
-	var master_bus: int = AudioServer.get_bus_index(&"Master")
-	var mute_state: bool = AudioServer.is_bus_mute(master_bus)
-	AudioServer.set_bus_volume_linear(master_bus, value / 100.0)
-	AudioServer.set_bus_mute(master_bus, false)
-	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
-	AudioServer.set_bus_mute(master_bus, mute_state)
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Master"), value / 100.0)
 
 
 func _on_music_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Music"), value / 100.0)
-	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
 func _on_game_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"Game SFX"), value / 100.0)
-	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
 func _on_in_level_sfx_volume_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index(&"In Level SFX"), value / 100.0)
-	ResourceSaver.save(AudioServer.generate_bus_layout(), "user://default_bus_layout.tres")
 
 
 func _on_close_pressed() -> void:
