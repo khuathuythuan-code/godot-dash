@@ -13,6 +13,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	bus = &"Music"
 	await get_tree().process_frame
 	play()
 
