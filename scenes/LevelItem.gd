@@ -10,6 +10,8 @@ class_name LevelItem
 @onready var triangle: NinePatchRect = $Control/Triangle
 @onready var outline: NinePatchRect = $Control/Outline
 @onready var thumbnail_rect: TextureRect = $Control/Control2/Polygon2D/Thumbnail
+@onready var difficulty_slider: HSlider = $Control2/VBoxContainer2/HSlider
+
 
 #func set_level_name(level_name: String) -> void:
 	## Nếu chưa vào Tree thì đợi, hoặc kiểm tra label trước
@@ -82,3 +84,9 @@ func set_thumbnail(texture_path: String) -> void:
 	var texture = load(texture_path)
 	if texture is Texture2D:
 		thumbnail_rect.texture = texture
+
+
+func set_difficulty_value(val: float) -> void:
+	if not is_inside_tree():
+		await ready
+	difficulty_slider.value = val

@@ -93,11 +93,30 @@ func _update_level_display() -> void:
 		var level_item = level_item_scene.instantiate() as LevelItem
 		item_container.add_child(level_item)
 		level_item.set_level_name(level_name)
+	
+	# Tính và gán giá trị độ khó cho slider của từng level item
+	_update_levels_difficulty()
+	
 	var coming_soon_level_item = level_item_scene.instantiate() as LevelItem
 	item_container.add_child(coming_soon_level_item)
 	coming_soon_level_item.set_level_name("Coming Soon")
 	coming_soon_level_item.level_info.visible = false
 	Config.last_level_index = item_container.get_child_count() - 1
+
+
+# Hàm tính và gán giá trị difficulty_slider cho từng level item dựa trên độ khó nhân lên
+func _update_levels_difficulty() -> void:
+	var total_levels = levels.size()
+	if total_levels == 0:
+		return
+	
+	var step: float = 100.0 / total_levels
+	for i in range(total_levels):
+		var level_item = item_container.get_child(i) as LevelItem
+		if level_item:
+			var difficulty_val = (i + 1) * step
+			level_item.set_difficulty_value(difficulty_val)
+
 	
 
 
