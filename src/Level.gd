@@ -37,7 +37,8 @@ const START_SPEED: Array[float] = [
 	set(value):
 		register_required_song(song_path, value.get_file())
 		song_path = value.get_file()
-		AssetManager.load_song_threaded_request(Constants.SONG_DIR + value.get_file())
+		if not song_path.is_empty():
+			AssetManager.load_song_threaded_request(Constants.SONG_DIR + song_path)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var song_start_time: float
 @export var default_font: String:
 	set(value):

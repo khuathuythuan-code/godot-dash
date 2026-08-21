@@ -40,7 +40,7 @@ func _ready() -> void:
 
 
 func load_song(path: String) -> AudioStream:
-	if path.is_empty():
+	if path.is_empty() or path.ends_with("/") or path == Constants.SONG_DIR or path == Constants.SONG_DIR.trim_suffix("/"):
 		return null
 	var audio_stream: AudioStream
 	if path.begins_with("uid") or path.begins_with("res://"):
@@ -63,7 +63,7 @@ func load_song(path: String) -> AudioStream:
 func load_song_threaded_request(path: String) -> Error:
 	if path in loaded_songs:
 		return OK
-	if path.is_empty() or path == null:
+	if path.is_empty() or path == null or path.ends_with("/") or path == Constants.SONG_DIR or path == Constants.SONG_DIR.trim_suffix("/"):
 		return ERR_FILE_BAD_PATH
 	# Web không hỗ trợ thread → load đồng bộ
 	if OS.has_feature("web"):
@@ -77,7 +77,7 @@ func load_song_threaded_request(path: String) -> Error:
 
 
 func load_song_threaded_get(path: String) -> AudioStream:
-	if path.is_empty() or path == null:
+	if path.is_empty() or path == null or path.ends_with("/") or path == Constants.SONG_DIR or path == Constants.SONG_DIR.trim_suffix("/"):
 		return null
 	if thread and thread.is_started():  # thêm "thread and" để tránh null error
 		thread.wait_to_finish()

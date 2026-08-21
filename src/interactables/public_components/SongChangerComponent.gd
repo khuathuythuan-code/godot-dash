@@ -13,7 +13,8 @@ var path: String:
 		if LevelManager.current_level:
 			LevelManager.current_level.register_required_song(path, value.get_file())
 		path = value.get_file()
-		AssetManager.load_song_threaded_request(Constants.SONG_DIR + value.get_file())
+		if not path.is_empty():
+			AssetManager.load_song_threaded_request(Constants.SONG_DIR + path)
 @export_range(0.0, 60.0, 0.01, "or_greater", "suffix:s") var start_offset: float
 @export_custom(PROPERTY_HINT_TOOL_BUTTON, "Preview,Play") var preview: Callable = start_preview
 
