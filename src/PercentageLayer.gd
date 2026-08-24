@@ -4,6 +4,7 @@ extends CanvasLayer
 
 var percentage: float
 var end_level_x: float = 0.0
+var original_start_x: float = 0.0
 
 func _ready() -> void:
 	LevelManager.level_started.connect(_find_end_level_trigger)
@@ -14,6 +15,9 @@ func _find_end_level_trigger() -> void:
 	var level = LevelManager.current_level
 	if not level:
 		return
+	
+	if LevelManager.practice_level_snapshots.is_empty():
+		original_start_x = level.start_position.x
 	
 	for data in level.layers:
 		for object in data.get_children():
@@ -28,7 +32,7 @@ func _process(_delta: float) -> void:
 		label.text = ""
 		return
 	if not LevelManager.player.dead:
-		var start_x: float = LevelManager.current_level.start_position.x
+		var start_x: float = original_start_x
 		var player_x: float = LevelManager.player.global_position.x
 		percentage = (player_x - start_x) / (end_level_x - start_x) * 100.0
 		percentage = clampf(percentage, 0.0, 100.0)
