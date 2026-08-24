@@ -103,6 +103,7 @@ func restart_level() -> void:
 		return
 	is_restarting = true
 	$FadeScreen.fade_out()
+	LevelManager.player.normal_trail.clear_points()
 	var should_use_practice_snapshot: bool = not LevelManager.practice_level_snapshots.is_empty()
 	if Editor.in_editor and not should_use_practice_snapshot:
 		Editor.root.stop_playtest()
