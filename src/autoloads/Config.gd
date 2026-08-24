@@ -73,7 +73,7 @@ enum ParticlePreprocessing {
 
 # Practice
 @export_group("Practice")
-@export var automatic_checkpoints: bool = true
+@export var automatic_checkpoints: bool = false
 @export var automatic_checkpoint_distance: float = 10.0
 
 # Audio
@@ -186,7 +186,10 @@ func _init():
 	particles_preprocessing = config_file.get_value("Performance", "particles_preprocessing", particles_preprocessing)
 
 	# Practice
-	automatic_checkpoints = config_file.get_value("Practice", "automatic_checkpoints", automatic_checkpoints)
+	automatic_checkpoints = false
+	if config_file.has_section_key("Practice", "automatic_checkpoints"):
+		config_file.set_value("Practice", "automatic_checkpoints", false)
+		config_file.save("user://config.cfg")
 	automatic_checkpoint_distance = config_file.get_value("Practice", "automatic_checkpoint_distance", automatic_checkpoint_distance)
 
 	# Audio
