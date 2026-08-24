@@ -19,6 +19,8 @@ func _on_leave_pressed() -> void:
 	get_tree().paused = false
 	leave.emit()
 	LevelManager.platformer = false
+	LevelManager.practice_mode = false
+	LevelManager.practice_level_snapshots.clear()
 	LevelManager.level_playing = false
 	AssetManager.unload_all()
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelQuit_2.mp3")
@@ -37,5 +39,7 @@ func _on_restart_pressed() -> void:
 	get_tree().paused = false
 	restart.emit()
 	hide()
+	LevelManager.practice_mode = false
+	LevelManager.practice_level_snapshots.clear()
 	LevelManager.game_scene.restart_level()
 	stat_controller.refresh()

@@ -28,6 +28,8 @@ func _ready() -> void:
 	LevelManager.ground_down = $GroundDownParallax/GroundDownOrigin
 	LevelManager.ground_up = $GroundUpParallax/GroundUpOrigin
 	if not SceneManager.in_editor():
+		LevelManager.practice_mode = false
+		LevelManager.practice_level_snapshots.clear()
 		LevelManager.player.process_mode = Node.PROCESS_MODE_DISABLED
 		pause_menu.leave.connect(_leave_level)
 		level_complete_menu.leave.connect(_leave_level)
