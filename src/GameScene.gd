@@ -90,6 +90,7 @@ func start_level() -> void:
 	if LevelManager.attempt == 0 and not Editor.in_editor:
 		$FadeScreen.fade_out()
 		await $FadeScreen.fade_finished
+	SceneManager.is_transitioning = false
 	level.start_level()
 	LevelManager.attempt += 1
 	LevelManager.player.process_mode = Node.PROCESS_MODE_INHERIT

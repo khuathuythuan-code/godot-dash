@@ -18,6 +18,11 @@ func _ready() -> void:
 	hide()
 
 
+func _input(event: InputEvent) -> void:
+	if visible:
+		get_viewport().set_input_as_handled()
+
+
 func fade_in() -> void:
 	is_fading = true
 	show()

@@ -72,6 +72,24 @@ func _ready() -> void:
 	
 	_update_level_display()
 
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_visible_in_tree():
+		return
+		
+	if event.is_action_pressed("ui_left"):
+		if pre_btn and pre_btn.visible:
+			_on_pre_pressed()
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("ui_right"):
+		if next_btn and next_btn.visible:
+			_on_next_pressed()
+			get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("ui_accept"):
+		if play_btn and play_btn.visible:
+			_on_play_pressed()
+			get_viewport().set_input_as_handled()
+
 func _process(delta: float) -> void:
 	if pre_btn:
 		pre_btn.visible = Config.current_level_index != 0
@@ -127,6 +145,7 @@ func _on_play_pressed() -> void:
 
 
 func _play_level(level_name: String) -> void:
+	SceneManager.is_transitioning = true
 	AudioServer.set_bus_mute(AudioServer.get_bus_index("Music"), true)
 	SFXManager.play_sfx("res://assets/sounds/sfx/game_sfx/LevelPlay_2.mp3")
 	fade_screen.fade_in()
